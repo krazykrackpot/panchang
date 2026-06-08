@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 27-1: त्योहार समय नियम",
         "mai": "Module 27-1: पर्वक समयक नियम",
         "mr": "मॉड्यूल 27-1: त्योहार समय नियम",
-        "ta": "Module 27-1: Festival Timing Rules",
-        "te": "Module 27-1: Festival Timing Rules",
-        "bn": "Module 27-1: Festival Timing Rules",
-        "kn": "Module 27-1: Festival Timing Rules",
-        "gu": "Module 27-1: Festival Timing Rules"
+        "ta": "தொகுதி 27-1: பண்டிகை நேர விதிகள்",
+        "te": "మాడ్యూల్ 27-1: పండుగల సమయ నియమాలు",
+        "bn": "মডিউল ২৭-১: উৎসবের সময় নির্ধারণের নিয়মাবলী",
+        "kn": "ಮಾಡ್ಯೂಲ್ 27-1: ಹಬ್ಬದ ಸಮಯದ ನಿಯಮಗಳು",
+        "gu": "મોડ્યુલ ૨૭-૧: તહેવારોના સમયના નિયમો"
       },
       "href": "/learn/modules/27-1"
     },
@@ -42,11 +42,11 @@
         "hi": "मॉड्यूल 5-3: तिथियाँ  –  चान्द्र दिन",
         "mai": "Module 5-3: तिथि – चंद्र दिन",
         "mr": "मॉड्यूल 5-3: तिथियाँ  –  चान्द्र दिन",
-        "ta": "Module 5-3: Tithis  –  Lunar Days",
-        "te": "Module 5-3: Tithis  –  Lunar Days",
-        "bn": "Module 5-3: Tithis  –  Lunar Days",
-        "kn": "Module 5-3: Tithis  –  Lunar Days",
-        "gu": "Module 5-3: Tithis  –  Lunar Days"
+        "ta": "தொகுதி 5-3: திதிகள் – சந்திர நாட்கள்",
+        "te": "మాడ్యూల్ 5-3: తిథులు – చాంద్రమాన దినాలు",
+        "bn": "মডিউল ৫-৩: তিথি – চান্দ্র দিন",
+        "kn": "ಮಾಡ್ಯೂಲ್ 5-3: ತಿಥಿಗಳು – ಚಂದ್ರ ದಿನಗಳು",
+        "gu": "મોડ્યુલ ૫-૩: તિથિઓ – ચાંદ્ર દિવસો"
       },
       "href": "/learn/modules/5-3"
     }
@@ -58,14 +58,14 @@
       "question": {
         "en": "What astronomical condition defines an Adhika month?",
         "hi": "कौन सी खगोलीय स्थिति अधिक मास को परिभाषित करती है?",
-        "mr": "What astronomical condition defines an Adhika month?",
+        "mr": "अधिक मास कशाने परिभाषित होतो?",
         "mai": "की खगोलीय स्थिति एकटा अधिक मास केँ परिभाषित करैत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Per the Surya Siddhanta, if no solar Sankranti (the Sun entering a new sidereal sign) occurs between two consecutive New Moons, that lunar month is declared Adhika (intercalary). This means the Sun stays in the same zodiac sign for the entire month.",
         "hi": "सूर्य सिद्धान्त के अनुसार, यदि दो लगातार अमावस्याओं के बीच कोई सौर संक्रान्ति (सूर्य का नई राशि में प्रवेश) नहीं होती, तो उस चान्द्र मास को अधिक (अधिकमास) घोषित किया जाता है। इसका अर्थ है कि सूर्य पूरे मास एक ही राशि में रहता है।",
-        "mr": "Per the Surya Siddhanta, if no solar Sankranti (the Sun entering a new sidereal sign) occurs between two consecutive New Moons, that lunar month is declared Adhika (intercalary). This means the Sun stays in the same zodiac sign for the entire month.",
+        "mr": "सूर्य सिद्धांतनुसार, जर कोणतीही सौर संक्रांती (सूर्य एका नवीन राशीत प्रवेश करतो) दोन अमावस्यांच्या दरम्यान होत नसेल, तर तो चंद्र महिना अधिक म्हणून घोषित केला जातो. याचा अर्थ सूर्य संपूर्ण महिनाभर त्याच राशीत राहतो.",
         "mai": "सूर्य सिद्धांतक अनुसार, जँ दूटा लगातार अमावस्याक बीच कोनो सौर संक्रांति (सूर्य केँ नव निरयण राशि मे प्रवेश करब) नहि होइत अछि, तँ ओहि चंद्र मास केँ अधिक (मलमास) घोषित कएल जाइत अछि। एकर अर्थ अछि जे सूर्य पूरा मास भरि एकहि राशि मे रहैत अछि।"
       },
       "options": [
@@ -74,44 +74,44 @@
           "hi": "एक सौर मास में दो पूर्णिमाएँ",
           "mai": "एकटा सौर मास मे दूटा पूर्णिमा",
           "mr": "एक सौर मास में दो पूर्णिमाएँ",
-          "ta": "Two Full Moons in one solar month",
-          "te": "Two Full Moons in one solar month",
-          "bn": "Two Full Moons in one solar month",
-          "kn": "Two Full Moons in one solar month",
-          "gu": "Two Full Moons in one solar month"
+          "ta": "ஒரு சூரிய மாதத்தில் இரண்டு பௌர்ணமிகள்",
+          "te": "ఒక సౌరమాసంలో రెండు పౌర్ణమిలు",
+          "bn": "এক সৌর মাসে দুটি পূর্ণিমা",
+          "kn": "ಒಂದು ಸೌರ ಮಾಸದಲ್ಲಿ ಎರಡು ಹುಣ್ಣಿಮೆಗಳು",
+          "gu": "એક સૌર માસમાં બે પૂર્ણિમાઓ"
         },
         {
           "en": "No solar Sankranti between two New Moons",
           "hi": "दो अमावस्याओं के बीच कोई सौर संक्रान्ति नहीं",
           "mai": "दूटा अमावस्याक बीच कोनो सौर संक्रांति नहि",
           "mr": "दो अमावस्याओं के बीच कोई सौर संक्रान्ति नहीं",
-          "ta": "No solar Sankranti between two New Moons",
-          "te": "No solar Sankranti between two New Moons",
-          "bn": "No solar Sankranti between two New Moons",
-          "kn": "No solar Sankranti between two New Moons",
-          "gu": "No solar Sankranti between two New Moons"
+          "ta": "இரண்டு அமாவாசைகளுக்கு இடையில் சூரிய சங்கராந்தி இல்லை",
+          "te": "రెండు అమావాస్యల మధ్య సౌర సంక్రాంతి లేదు",
+          "bn": "দুটি অমাবস্যার মধ্যে কোনো সৌর সংক্রান্তি নেই",
+          "kn": "ಎರಡು ಅಮಾವಾಸ್ಯೆಗಳ ನಡುವೆ ಸೌರ ಸಂಕ್ರಾಂತಿ ಇಲ್ಲ",
+          "gu": "બે અમાસ વચ્ચે કોઈ સૌર સંક્રાંતિ નહીં"
         },
         {
           "en": "Moon in same nakshatra at both New Moons",
           "hi": "दोनों अमावस्याओं पर चन्द्रमा एक ही नक्षत्र में",
           "mai": "दुनू अमावस्याक समय चंद्रमा एकहि नक्षत्र मे",
           "mr": "दोनों अमावस्याओं पर चन्द्रमा एक ही नक्षत्र में",
-          "ta": "Moon in same nakshatra at both New Moons",
-          "te": "Moon in same nakshatra at both New Moons",
-          "bn": "Moon in same nakshatra at both New Moons",
-          "kn": "Moon in same nakshatra at both New Moons",
-          "gu": "Moon in same nakshatra at both New Moons"
+          "ta": "இரண்டு அமாவாசைகளிலும் சந்திரன் அதே நட்சத்திரத்தில்",
+          "te": "రెండు అమావాస్యల వద్ద చంద్రుడు ఒకే నక్షత్రంలో",
+          "bn": "উভয় অমাবস্যায় চন্দ্র একই নক্ষত্রে",
+          "kn": "ಎರಡೂ ಅಮಾವಾಸ್ಯೆಗಳಲ್ಲಿ ಚಂದ್ರನು ಅದೇ ನಕ್ಷತ್ರದಲ್ಲಿ",
+          "gu": "બંને અમાસ વખતે ચંદ્ર એક જ નક્ષત્રમાં"
         },
         {
           "en": "Eclipse occurring during the month",
           "hi": "मास के दौरान ग्रहण होना",
           "mai": "मासक दौरान ग्रहण होइत",
           "mr": "मास के दौरान ग्रहण होना",
-          "ta": "Eclipse occurring during the month",
-          "te": "Eclipse occurring during the month",
-          "bn": "Eclipse occurring during the month",
-          "kn": "Eclipse occurring during the month",
-          "gu": "Eclipse occurring during the month"
+          "ta": "மாதத்தில் கிரகணம் நிகழ்கிறது",
+          "te": "ఆ మాసంలో గ్రహణం సంభవించడం",
+          "bn": "মাসে গ্রহণ হচ্ছে",
+          "kn": "ತಿಂಗಳ ಅವಧಿಯಲ್ಲಿ ಗ್ರಹಣ ಸಂಭವಿಸುವುದು",
+          "gu": "મહિના દરમિયાન ગ્રહણ થતું"
         }
       ]
     },
@@ -121,14 +121,14 @@
       "question": {
         "en": "In 2029, why is it 'Adhika Chaitra' and not 'Adhika Phalguna'?",
         "hi": "2029 में यह 'अधिक चैत्र' क्यों है, 'अधिक फाल्गुन' क्यों नहीं?",
-        "mr": "In 2029, why is it 'Adhika Chaitra' and not 'Adhika Phalguna'?",
+        "mr": "२०२९ मध्ये, तो 'अधिक चैत्र' का आहे आणि 'अधिक फाल्गुन' का नाही?",
         "mai": "२०२९ मे, ई 'अधिक चैत्र' की लेल अछि आ 'अधिक फाल्गुन' की लेल नहि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The Adhika month gets its name from the solar sign the Sun occupies. In 2029, the Sun is in Meena (Pisces) at both New Moons. The SOLAR_MONTH_MAP maps Meena to Chaitra, so the month is named Adhika Chaitra. The name comes from the Sun's sign, not from the preceding month.",
         "hi": "अधिक मास को अपना नाम उस सौर राशि से मिलता है जिसमें सूर्य स्थित होता है। 2029 में, दोनों अमावस्याओं पर सूर्य मीन राशि में है। SOLAR_MONTH_MAP मीन को चैत्र से जोड़ता है, इसलिए मास का नाम अधिक चैत्र पड़ता है। नाम सूर्य की राशि से आता है, पिछले मास से नहीं।",
-        "mr": "The Adhika month gets its name from the solar sign the Sun occupies. In 2029, the Sun is in Meena (Pisces) at both New Moons. The SOLAR_MONTH_MAP maps Meena to Chaitra, so the month is named Adhika Chaitra. The name comes from the Sun's sign, not from the preceding month.",
+        "mr": "अधिक महिन्याला त्याचे नाव सूर्याने व्यापलेल्या सौर राशीवरून मिळते. २०२९ मध्ये, सूर्य दोन्ही अमावस्यांना मीन (मीन) राशीत असतो. SOLAR_MONTH_MAP मीनला चैत्राशी जोडते, त्यामुळे महिन्याचे नाव अधिक चैत्र आहे. हे नाव सूर्याच्या राशीवरून येते, मागील महिन्यावरून नाही.",
         "mai": "अधिक मास केँ नाम ओहि सौर राशि सँ भेटैत अछि जाहि मे सूर्य रहैत अछि। २०२९ मे, दुनू अमावस्याक समय सूर्य मीन (मीन) राशि मे अछि। SOLAR_MONTH_MAP मीन केँ चैत्र सँ जोड़ैत अछि, तेँ मासक नाम अधिक चैत्र अछि। नाम सूर्यक राशि सँ अबैत अछि, नहि जे पहिनेक मास सँ।"
       },
       "options": [
@@ -137,44 +137,44 @@
           "hi": "क्योंकि चैत्र वर्ष का पहला मास है",
           "mai": "कियाकि चैत्र वर्षक पहिल मास अछि",
           "mr": "क्योंकि चैत्र वर्ष का पहला मास है",
-          "ta": "Because Chaitra is the first month of the year",
-          "te": "Because Chaitra is the first month of the year",
-          "bn": "Because Chaitra is the first month of the year",
-          "kn": "Because Chaitra is the first month of the year",
-          "gu": "Because Chaitra is the first month of the year"
+          "ta": "ஏனெனில் சித்திரை ஆண்டின் முதல் மாதம்",
+          "te": "చైత్రం సంవత్సరంలో మొదటి మాసం కాబట్టి",
+          "bn": "কারণ চৈত্র বছরের প্রথম মাস",
+          "kn": "ಏಕೆಂದರೆ ಚೈತ್ರವು ವರ್ಷದ ಮೊದಲ ತಿಂಗಳು",
+          "gu": "કારણ કે ચૈત્ર વર્ષનો પ્રથમ મહિનો છે"
         },
         {
           "en": "Because the Sun is in Pisces which maps to Chaitra",
           "hi": "क्योंकि सूर्य मीन राशि में है जो चैत्र से जुड़ती है",
           "mai": "कियाकि सूर्य मीन राशि मे अछि जे चैत्र सँ जुड़ल अछि",
           "mr": "क्योंकि सूर्य मीन राशि में है जो चैत्र से जुड़ती है",
-          "ta": "Because the Sun is in Pisces which maps to Chaitra",
-          "te": "Because the Sun is in Pisces which maps to Chaitra",
-          "bn": "Because the Sun is in Pisces which maps to Chaitra",
-          "kn": "Because the Sun is in Pisces which maps to Chaitra",
-          "gu": "Because the Sun is in Pisces which maps to Chaitra"
+          "ta": "ஏனெனில் சூரியன் மீன ராசியில் உள்ளது, இது சித்திரைக்கு ஒத்திருக்கிறது",
+          "te": "సూర్యుడు మీన రాశిలో ఉండటం వలన, ఇది చైత్ర మాసానికి అనుగుణంగా ఉంటుంది",
+          "bn": "কারণ সূর্য মীন রাশিতে রয়েছে যা চৈত্রের সাথে মিলে যায়",
+          "kn": "ಏಕೆಂದರೆ ಸೂರ್ಯನು ಮೀನ ರಾಶಿಯಲ್ಲಿದ್ದಾನೆ, ಇದು ಚೈತ್ರಕ್ಕೆ ಸಂಬಂಧಿಸಿದೆ",
+          "gu": "કારણ કે સૂર્ય મીન રાશિમાં છે જે ચૈત્ર સાથે સંબંધિત છે"
         },
         {
           "en": "Because it follows Phalguna",
           "hi": "क्योंकि यह फाल्गुन के बाद आता है",
           "mai": "कियाकि ई फाल्गुनक बाद अबैत अछि",
           "mr": "क्योंकि यह फाल्गुन के बाद आता है",
-          "ta": "Because it follows Phalguna",
-          "te": "Because it follows Phalguna",
-          "bn": "Because it follows Phalguna",
-          "kn": "Because it follows Phalguna",
-          "gu": "Because it follows Phalguna"
+          "ta": "ஏனெனில் இது பங்குனையைத் தொடர்கிறது",
+          "te": "అది ఫాల్గుణం తర్వాత వస్తుంది కాబట్టి",
+          "bn": "কারণ এটি ফাল্গুনের পরে আসে",
+          "kn": "ಏಕೆಂದರೆ ಇದು ಫಾಲ್ಗುಣವನ್ನು ಅನುಸರಿಸುತ್ತದೆ",
+          "gu": "કારણ કે તે ફાલ્ગુન પછી આવે છે"
         },
         {
           "en": "Because of the Purnimanta convention",
           "hi": "पूर्णिमान्त पद्धति के कारण",
           "mai": "पूर्णिमांतक परंपराक कारण",
           "mr": "पूर्णिमान्त पद्धति के कारण",
-          "ta": "Because of the Purnimanta convention",
-          "te": "Because of the Purnimanta convention",
-          "bn": "Because of the Purnimanta convention",
-          "kn": "Because of the Purnimanta convention",
-          "gu": "Because of the Purnimanta convention"
+          "ta": "பௌர்ணிமாந்த மரபு காரணமாக",
+          "te": "పూర్ణిమాంత సంప్రదాయం వలన",
+          "bn": "কারণ পূর্ণিমান্ত প্রথা",
+          "kn": "ಪೂರ್ಣಿಮಾಂತ ಸಂಪ್ರದಾಯದಿಂದಾಗಿ",
+          "gu": "પૂર્ણિમાંત પરંપરાના કારણે"
         }
       ]
     },
@@ -184,14 +184,14 @@
       "question": {
         "en": "Are festivals observed during Adhika months?",
         "hi": "क्या अधिक मास में त्योहार मनाए जाते हैं?",
-        "mr": "Are festivals observed during Adhika months?",
+        "mr": "अधिक महिन्यांमध्ये उत्सव पाळले जातात का?",
         "mai": "की अधिक मासक दौरान पर्व मनाओल जाइत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Festivals are NOT observed during Adhika (intercalary) months  –  only during Nija (regular/natural) months. The festival engine filters out entries with isAdhika: true. However, Adhika Masa itself is considered sacred for extra spiritual practices like japa, daan, and vrat.",
         "hi": "अधिक (अधिकमास) मास में त्योहार नहीं मनाए जाते  –  केवल निज (नियमित/प्राकृतिक) मास में मनाए जाते हैं। त्योहार इंजन isAdhika: true वाली प्रविष्टियों को छान देता है। हालाँकि, अधिक मास स्वयं अतिरिक्त आध्यात्मिक साधनाओं जैसे जप, दान और व्रत के लिए पवित्र माना जाता है।",
-        "mr": "Festivals are NOT observed during Adhika (intercalary) months  –  only during Nija (regular/natural) months. The festival engine filters out entries with isAdhika: true. However, Adhika Masa itself is considered sacred for extra spiritual practices like japa, daan, and vrat.",
+        "mr": "अधिक (अधिशेष) महिन्यांमध्ये उत्सव पाळले जात नाहीत – फक्त निज (नियमित/नैसर्गिक) महिन्यांमध्ये. उत्सव इंजिन isAdhika: true असलेल्या नोंदी फिल्टर करते. तथापि, अधिक मास स्वतः जप, दान आणि व्रत यांसारख्या अतिरिक्त आध्यात्मिक अभ्यासांसाठी पवित्र मानला जातो.",
         "mai": "अधिक (मलमास) मासक दौरान पर्व नहि मनाओल जाइत अछि – मात्र निज (नियमित/प्राकृतिक) मासक दौरान। पर्वक इंजन isAdhika: true वला प्रविष्टि सभ केँ फिल्टर करैत अछि। मुदा, अधिक मास स्वयं केँ जप, दान, आ व्रत जेना अतिरिक्त आध्यात्मिक अभ्यासक लेल पवित्र मानल जाइत अछि।"
       },
       "options": [
@@ -200,44 +200,44 @@
           "hi": "हाँ, सभी त्योहार मनाए जाते हैं",
           "mai": "हाँ, सभ पर्व मनाओल जाइत अछि",
           "mr": "हाँ, सभी त्योहार मनाए जाते हैं",
-          "ta": "Yes, all festivals are observed",
-          "te": "Yes, all festivals are observed",
-          "bn": "Yes, all festivals are observed",
-          "kn": "Yes, all festivals are observed",
-          "gu": "Yes, all festivals are observed"
+          "ta": "ஆம், அனைத்து பண்டிகைகளும் கடைபிடிக்கப்படுகின்றன",
+          "te": "అవును, అన్ని పండుగలు ఆచరిస్తారు",
+          "bn": "হ্যাঁ, সমস্ত উৎসব পালন করা হয়",
+          "kn": "ಹೌದು, ಎಲ್ಲಾ ಹಬ್ಬಗಳನ್ನು ಆಚರಿಸಲಾಗುತ್ತದೆ",
+          "gu": "હા, બધા તહેવારો ઉજવવામાં આવે છે"
         },
         {
           "en": "Only major festivals",
           "hi": "केवल प्रमुख त्योहार",
           "mai": "मात्र प्रमुख पर्व",
           "mr": "केवल प्रमुख त्योहार",
-          "ta": "Only major festivals",
-          "te": "Only major festivals",
-          "bn": "Only major festivals",
-          "kn": "Only major festivals",
-          "gu": "Only major festivals"
+          "ta": "முக்கிய பண்டிகைகள் மட்டும்",
+          "te": "కేవలం ముఖ్యమైన పండుగలు",
+          "bn": "শুধুমাত্র প্রধান উৎসবগুলি",
+          "kn": "ಪ್ರಮುಖ ಹಬ್ಬಗಳನ್ನು ಮಾತ್ರ",
+          "gu": "ફક્ત મુખ્ય તહેવારો"
         },
         {
           "en": "No, festivals are observed only in Nija (regular) months",
           "hi": "नहीं, त्योहार केवल निज (नियमित) मास में मनाए जाते हैं",
           "mai": "नहि, पर्व मात्र निज (नियमित) मास मे मनाओल जाइत अछि",
           "mr": "नहीं, त्योहार केवल निज (नियमित) मास में मनाए जाते हैं",
-          "ta": "No, festivals are observed only in Nija (regular) months",
-          "te": "No, festivals are observed only in Nija (regular) months",
-          "bn": "No, festivals are observed only in Nija (regular) months",
-          "kn": "No, festivals are observed only in Nija (regular) months",
-          "gu": "No, festivals are observed only in Nija (regular) months"
+          "ta": "இல்லை, பண்டிகைகள் நிஜ (சாதாரண) மாதங்களில் மட்டுமே கடைபிடிக்கப்படுகின்றன",
+          "te": "లేదు, పండుగలు కేవలం నిజ (సాధారణ) మాసాలలో ఆచరిస్తారు",
+          "bn": "না, উৎসবগুলি শুধুমাত্র নিজ (নিয়মিত) মাসগুলিতে পালন করা হয়",
+          "kn": "ಇಲ್ಲ, ಹಬ್ಬಗಳನ್ನು ನಿಜ (ಸಾಮಾನ್ಯ) ಮಾಸಗಳಲ್ಲಿ ಮಾತ್ರ ಆಚರಿಸಲಾಗುತ್ತದೆ",
+          "gu": "ના, તહેવારો ફક્ત નિજ (નિયમિત) મહિનાઓમાં ઉજવવામાં આવે છે"
         },
         {
           "en": "Only Ekadashis are observed",
           "hi": "केवल एकादशी मनाई जाती है",
           "mai": "मात्र एकादशी मनाओल जाइत अछि",
           "mr": "केवल एकादशी मनाई जाती है",
-          "ta": "Only Ekadashis are observed",
-          "te": "Only Ekadashis are observed",
-          "bn": "Only Ekadashis are observed",
-          "kn": "Only Ekadashis are observed",
-          "gu": "Only Ekadashis are observed"
+          "ta": "ஏகாதசிகள் மட்டும் கடைபிடிக்கப்படுகின்றன",
+          "te": "కేవలం ఏకాదశులు ఆచరిస్తారు",
+          "bn": "শুধুমাত্র একাদশীগুলি পালন করা হয়",
+          "kn": "ಏಕಾದಶಿಗಳನ್ನು ಮಾತ್ರ ಆಚರಿಸಲಾಗುತ್ತದೆ",
+          "gu": "ફક્ત એકાદશીઓ ઉજવવામાં આવે છે"
         }
       ]
     }

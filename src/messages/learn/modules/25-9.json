@@ -86,14 +86,14 @@
       "question": {
         "en": "Who is considered the founder of the Kerala School of Mathematics, and approximately when did he work?",
         "hi": "केरल गणित विद्यालय के संस्थापक कौन माने जाते हैं, और उन्होंने लगभग कब कार्य किया?",
-        "mr": "Who is considered the founder of the Kerala School of Mathematics, and approximately when did he work?",
+        "mr": "केरळ गणित परंपरेचा संस्थापक कोणाला मानले जाते, आणि त्यांनी अंदाजे कधी काम केले?",
         "mai": "केरल गणित स्कूलक संस्थापक के मानल जाइत अछि, आ अनुमानतः ओ कहिया काज केलन्हि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Madhava of Sangamagrama (~1340–1425 CE) from Irinjalakuda, Kerala, founded the school. He discovered infinite series for π, sin, cos, and arctan, and invented correction terms for series acceleration. His students carried the tradition forward for 200 years.",
         "hi": "संगमग्राम के माधव (~1340–1425 ई.) ने केरल के इरिंजलकुड़ा से इस स्कूल की स्थापना की। उन्होंने π, sin, cos और arctan के लिए अनन्त श्रेणियों की खोज की और श्रेणी-त्वरण के लिए सुधार पदों का आविष्कार किया।",
-        "mr": "Madhava of Sangamagrama (~1340–1425 CE) from Irinjalakuda, Kerala, founded the school. He discovered infinite series for π, sin, cos, and arctan, and invented correction terms for series acceleration. His students carried the tradition forward for 200 years.",
+        "mr": "केरळमधील इरिंजलकुडा येथील संगमग्रामचे माधव (अंदाजे १३४०-१४२५ CE) यांनी या परंपरेची स्थापना केली. त्यांनी π, sin, cos, आणि arctan साठी अनंत श्रेणी (infinite series) शोधल्या आणि श्रेणींच्या गतीसाठी (series acceleration) दुरुस्तीच्या अटी (correction terms) शोधल्या. त्यांच्या विद्यार्थ्यांनी २०० वर्षे ही परंपरा पुढे नेली.",
         "mai": "संगमग्रामक माधव (~१३४०–१४२५ ई.) केरलक इरिंजालकुडा सँ, ई स्कूलक स्थापना केलन्हि। ओ π, sin, cos, आ arctan के लेल अनंत श्रृंखलाक खोज केलन्हि, आ श्रृंखला त्वरण के लेल सुधार पदक आविष्कार केलन्हि। हुनकर छात्र २०० वर्ष धरि ई परंपराकेँ आगाँ बढ़ाओलन्हि।"
       },
       "options": [
@@ -149,14 +149,14 @@
       "question": {
         "en": "The series π/4 = 1 − 1/3 + 1/5 − 1/7 + ... is known in Western textbooks as the:",
         "hi": "π/4 = 1 − 1/3 + 1/5 − 1/7 + ... श्रेणी को पश्चिमी पाठ्यपुस्तकों में कहा जाता है:",
-        "mr": "The series π/4 = 1 − 1/3 + 1/5 − 1/7 + ... is known in Western textbooks as the:",
+        "mr": "π/4 = 1 − 1/3 + 1/5 − 1/7 + ... ही श्रेणी पाश्चात्त्य पाठ्यपुस्तकांमध्ये कशा नावाने ओळखली जाते:",
         "mai": "ई श्रृंखला π/४ = १ − १/३ + १/५ − १/७ + ... पश्चिमी पाठ्यपुस्तक मे एहि रूप मे जानल जाइत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "It is called the \"Leibniz formula for π\" after Gottfried Leibniz who published it in 1674. However, Madhava derived this series around 1350 CE  –  approximately 324 years earlier. More accurately, it should be called the Madhava-Leibniz series.",
         "hi": "इसे गॉटफ्रीड लाइबनिज (1674) के नाम पर \"लाइबनिज सूत्र\" कहा जाता है। लेकिन माधव ने यह श्रेणी ~1350 ई. में व्युत्पन्न की  –  लगभग 324 वर्ष पहले। अधिक सटीक रूप से, इसे माधव-लाइबनिज श्रेणी कहा जाना चाहिए।",
-        "mr": "It is called the \"Leibniz formula for π\" after Gottfried Leibniz who published it in 1674. However, Madhava derived this series around 1350 CE  –  approximately 324 years earlier. More accurately, it should be called the Madhava-Leibniz series.",
+        "mr": "गॉटफ्रीड लाइबनिझ यांनी १६७४ मध्ये प्रकाशित केल्यामुळे याला \"π साठी लाइबनिझ सूत्र\" असे म्हटले जाते. तथापि, माधवांनी ही श्रेणी अंदाजे १३५० CE मध्ये – सुमारे ३२४ वर्षांपूर्वी – शोधली होती. अधिक अचूकपणे, याला माधव-लाइबनिझ श्रेणी म्हटले पाहिजे.",
         "mai": "एकरा \"π के लेल लाइबनिज़ सूत्र\" कहल जाइत अछि गॉटफ्रीड लाइबनिज़क नाम पर, जे एकरा १६७४ मे प्रकाशित केलन्हि। मुदा, माधव ई श्रृंखलाकेँ लगभग १३५० ई. मे व्युत्पन्न केलन्हि – अनुमानतः ३२४ वर्ष पहिने। बेसी सटीक रूप सँ, एकरा माधव-लाइबनिज़ श्रृंखला कहल जेबाक चाही।"
       },
       "options": [
@@ -212,14 +212,14 @@
       "question": {
         "en": "Why is Madhava\"s discovery of correction terms for the π series considered even more remarkable than the series itself?",
         "hi": "π श्रेणी के लिए माधव द्वारा सुधार पदों की खोज को श्रेणी से भी अधिक उल्लेखनीय क्यों माना जाता है?",
-        "mr": "Why is Madhava\"s discovery of correction terms for the π series considered even more remarkable than the series itself?",
+        "mr": "π श्रेणीसाठी दुरुस्तीच्या अटींचा माधवांचा शोध श्रेणीपेक्षाही अधिक उल्लेखनीय का मानला जातो?",
         "mai": "π श्रृंखला के लेल सुधार पदक माधव द्वारा कयल गेल खोज श्रृंखला सँ सेहो बेसी उल्लेखनीय किएक मानल जाइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The raw series converges extremely slowly  –  you need millions of terms for 6 correct decimals. Madhava's correction terms transform this: with just 50 terms plus correction, he achieved 11 correct decimal places. Europe did not develop comparable acceleration techniques until Euler in the 1740s, nearly 400 years later.",
         "hi": "कच्ची श्रेणी अत्यन्त धीमी अभिसरित होती है  –  6 सही दशमलव के लिए लाखों पदों की आवश्यकता। माधव के सुधार पद इसे बदल देते हैं: केवल 50 पदों और सुधार के साथ 11 सही दशमलव। यूरोप में ऑयलर (1740 के दशक) तक तुलनीय तकनीक विकसित नहीं हुई।",
-        "mr": "The raw series converges extremely slowly  –  you need millions of terms for 6 correct decimals. Madhava's correction terms transform this: with just 50 terms plus correction, he achieved 11 correct decimal places. Europe did not develop comparable acceleration techniques until Euler in the 1740s, nearly 400 years later.",
+        "mr": "मूळ श्रेणी अत्यंत हळू अभिसरण करते (converges) – ६ अचूक दशांश स्थानांसाठी तुम्हाला लाखो पदांची (terms) आवश्यकता असते. माधवांच्या दुरुस्तीच्या अटींनी यात बदल केला: केवळ ५० पदे आणि दुरुस्तीसह, त्यांनी ११ अचूक दशांश स्थाने प्राप्त केली. युरोपमध्ये १७४० च्या दशकात यूलरने अशा तुल्यबळ प्रवेग तंत्रांचा (acceleration techniques) विकास करेपर्यंत, म्हणजे सुमारे ४०० वर्षांनंतर, असे तंत्रज्ञान विकसित झाले नव्हते.",
         "mai": "कच्चा श्रृंखला बहुत धीरे-धीरे अभिसरित होइत अछि – अहाँकेँ ६ सही दशमलव के लेल लाखो पदक आवश्यकता होइत अछि। माधव केर सुधार पद एकरा बदलैत अछि: मात्र ५० पद आ सुधारक संग, ओ ११ सही दशमलव स्थान प्राप्त केलन्हि। यूरोप १७४० के दशक मे यूलर धरि तुलनीय त्वरण तकनीक विकसित नहि केलक, लगभग ४०० वर्ष बाद।"
       },
       "options": [
@@ -275,14 +275,14 @@
       "question": {
         "en": "The Yuktibhasha (~1530 CE) is significant because it:",
         "hi": "युक्तिभाषा (~1530 ई.) महत्त्वपूर्ण है क्योंकि:",
-        "mr": "The Yuktibhasha (~1530 CE) is significant because it:",
+        "mr": "युक्तिभाषा (अंदाजे १५३० CE) महत्त्वाची आहे कारण ती:",
         "mai": "युक्तिभाषा (~१५३० ई.) महत्वपूर्ण अछि किएक जे ई:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Jyeshthadeva\"s Yuktibhasha is arguably the world\"s first calculus textbook. Written in Malayalam (not Sanskrit) for wider accessibility, it contains detailed step-by-step proofs of all Kerala School results including the infinite series for π, sin, cos, and arctan. It derives these using geometric limit arguments equivalent to modern Riemann sums.",
         "hi": "ज्येष्ठदेव की युक्तिभाषा विश्व की पहली कलनशास्त्र पाठ्यपुस्तक है। व्यापक सुगम्यता के लिए मलयालम में लिखी गई, इसमें π, sin, cos और arctan की अनन्त श्रेणियों सहित सभी केरल परिणामों के विस्तृत चरणबद्ध प्रमाण हैं।",
-        "mr": "Jyeshthadeva\"s Yuktibhasha is arguably the world\"s first calculus textbook. Written in Malayalam (not Sanskrit) for wider accessibility, it contains detailed step-by-step proofs of all Kerala School results including the infinite series for π, sin, cos, and arctan. It derives these using geometric limit arguments equivalent to modern Riemann sums.",
+        "mr": "ज्येष्ठदेवांची युक्तिभाषा हे जगातील पहिले कॅल्क्युलस पाठ्यपुस्तक मानले जाते. अधिक सुलभतेसाठी मल्याळममध्ये (संस्कृतमध्ये नाही) लिहिलेले, यात π, sin, cos, आणि arctan साठीच्या अनंत श्रेणींसह केरळ परंपरेच्या सर्व निष्कर्षांचे तपशीलवार, टप्प्याटप्प्याने पुरावे आहेत. हे आधुनिक रीमान बेरजेच्या (Riemann sums) समतुल्य भूमितीय मर्यादा युक्तिवादांचा वापर करून हे निष्कर्ष काढते.",
         "mai": "ज्येष्ठदेव केर युक्तिभाषा संभवतः विश्वक पहिल कैलकुलस पाठ्यपुस्तक अछि। बेसी पहुँच के लेल मलयालम मे लिखल गेल (संस्कृत मे नहि), एहि मे π, sin, cos, आ arctan के लेल अनंत श्रृंखला सहित केरल स्कूलक सभ परिणामक विस्तृत चरण-दर-चरण प्रमाण अछि। ई आधुनिक रीमैन योगक समतुल्य ज्यामितीय सीमा तर्कक उपयोग कयने एहि सभकेँ व्युत्पन्न करैत अछि।"
       },
       "options": [
@@ -300,7 +300,7 @@
         {
           "en": "Contains the world\"s first complete proofs of infinite series results, written in Malayalam",
           "hi": "इसमें अनन्त श्रेणी परिणामों के विश्व के प्रथम पूर्ण प्रमाण हैं, मलयालम में",
-          "mr": "Contains the world\"s first complete proofs of infinite series results, written in Malayalam",
+          "mr": "यात अनंत श्रेणींच्या निष्कर्षांचे जगातील पहिले संपूर्ण पुरावे आहेत, जे मल्याळममध्ये लिहिलेले आहेत.",
           "mai": "एहि मे मलयालम मे लिखल गेल अनंत श्रृंखला परिणामक विश्वक पहिल पूर्ण प्रमाण अछि।"
         },
         {
@@ -333,14 +333,14 @@
       "question": {
         "en": "Nilakantha Somayaji's Tantrasangraha (1500 CE) proposed a planetary model where:",
         "hi": "नीलकण्ठ सोमयाजी के तन्त्रसंग्रह (1500 ई.) ने एक ग्रहीय मॉडल प्रस्तावित किया जिसमें:",
-        "mr": "Nilakantha Somayaji's Tantrasangraha (1500 CE) proposed a planetary model where:",
+        "mr": "नीलकंठ सोमयाजींच्या तंत्रसंग्रहाने (१५०० CE) असा ग्रह-नक्षत्र (planetary) नमुना (model) प्रस्तावित केला जिथे:",
         "mai": "नीलकण्ठ सोमयाजीक तंत्रसंग्रह (१५०० ई.) एकटा ग्रहीय मॉडल प्रस्तावित केलन्हि जतय:"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Nilakantha proposed that Mercury and Venus orbit the Sun, while the Sun orbits Earth  –  a partially heliocentric model. This is geometrically identical to the Tychonic system proposed by Tycho Brahe in 1588, a full 88 years later. Nilakantha\"s model correctly predicted Mercury and Venus positions better than any previous model.",
         "hi": "नीलकण्ठ ने प्रस्तावित किया कि बुध और शुक्र सूर्य की परिक्रमा करते हैं, जबकि सूर्य पृथ्वी की  –  आंशिक सौर-केन्द्रीय मॉडल। यह ब्राहे (1588) की टाइकोनिक प्रणाली से ज्यामितीय रूप से समरूप है, पूरे 88 वर्ष बाद।",
-        "mr": "Nilakantha proposed that Mercury and Venus orbit the Sun, while the Sun orbits Earth  –  a partially heliocentric model. This is geometrically identical to the Tychonic system proposed by Tycho Brahe in 1588, a full 88 years later. Nilakantha\"s model correctly predicted Mercury and Venus positions better than any previous model.",
+        "mr": "नीलकंठांनी असे प्रस्तावित केले की बुध आणि शुक्र सूर्याभोवती फिरतात, तर सूर्य पृथ्वीभोवती फिरतो – हा एक अंशतः सूर्यकेंद्रित (partially heliocentric) नमुना होता. हा १५८८ मध्ये टायको ब्राहे यांनी प्रस्तावित केलेल्या टायकोनिक प्रणालीशी भूमितीयदृष्ट्या समान आहे, जो पूर्ण ८८ वर्षांनंतर आला. नीलकंठांच्या नमुन्याने बुध आणि शुक्राच्या स्थितीचे कोणत्याही मागील नमुन्यापेक्षा अधिक अचूकपणे भाकीत केले.",
         "mai": "नीलकण्ठ प्रस्तावित केलन्हि जे बुध आ शुक्र सूर्यक परिक्रमा करैत अछि, जखन कि सूर्य पृथ्वीक परिक्रमा करैत अछि – एकटा आंशिक रूप सँ सूर्यकेंद्रीय मॉडल। ई ज्यामितीय रूप सँ टाइकोनिक प्रणालीक समान अछि जे टाइको ब्राहे द्वारा १५८८ मे प्रस्तावित कयल गेल छल, ८८ वर्ष बाद। नीलकण्ठक मॉडल बुध आ शुक्रक स्थिति कोनो सेहो पहिनेक मॉडल सँ बेसी नीक सही ढंग सँ भविष्यवाणी केलक।"
       },
       "options": [
@@ -396,14 +396,14 @@
       "question": {
         "en": "The sine series sin(x) = x − x³/3! + x⁵/5! − ... is attributed in Western mathematics to:",
         "hi": "sine श्रेणी sin(x) = x − x³/3! + x⁵/5! − ... का श्रेय पश्चिमी गणित में किसे दिया जाता है:",
-        "mr": "The sine series sin(x) = x − x³/3! + x⁵/5! − ... is attributed in Western mathematics to:",
+        "mr": "sin(x) = x − x³/3! + x⁵/5! − ... ही साइन श्रेणी (sine series) पाश्चात्त्य गणितामध्ये कोणाला दिली जाते:",
         "mai": "साइन श्रृंखला sin(x) = x − x³/३! + x⁵/५! − ... पश्चिमी गणित मे एहि केँ श्रेय देल जाइत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The series is called the \"Taylor series\" (Brook Taylor, 1715) or \"Maclaurin series\" (Colin Maclaurin, 1742). Madhava derived it around 1400 CE  –  more than 300 years before either European mathematician. The Kerala texts contain not just the result but full proofs.",
         "hi": "इस श्रेणी को \"टेलर श्रेणी\" (ब्रुक टेलर, 1715) या \"मैक्लॉरिन श्रेणी\" (कॉलिन मैक्लॉरिन, 1742) कहा जाता है। माधव ने इसे ~1400 ई. में व्युत्पन्न किया  –  दोनों यूरोपीय गणितज्ञों से 300+ वर्ष पहले।",
-        "mr": "The series is called the \"Taylor series\" (Brook Taylor, 1715) or \"Maclaurin series\" (Colin Maclaurin, 1742). Madhava derived it around 1400 CE  –  more than 300 years before either European mathematician. The Kerala texts contain not just the result but full proofs.",
+        "mr": "या श्रेणीला \"टेलर श्रेणी\" (ब्रुक टेलर, १७१५) किंवा \"मॅक्लॉरिन श्रेणी\" (कॉलिन मॅक्लॉरिन, १७४२) असे म्हटले जाते. माधवांनी ती अंदाजे १४०० CE मध्ये – या दोन्ही युरोपीय गणितज्ञांच्या ३०० वर्षांहून अधिक काळ आधी – शोधली होती. केरळच्या ग्रंथांमध्ये केवळ निष्कर्षच नाही तर त्याचे संपूर्ण पुरावे देखील आहेत.",
         "mai": "ई श्रृंखलाकेँ \"टेलर श्रृंखला\" (ब्रुक टेलर, १७१५) ओ \"मैकलॉरिन श्रृंखला\" (कोलिन मैकलॉरिन, १७४२) कहल जाइत अछि। माधव एकरा लगभग १४०० ई. मे व्युत्पन्न केलन्हि – कोनो सेहो यूरोपीय गणितज्ञ सँ ३०० वर्ष सँ बेसी पहिने। केरलक ग्रंथ मे मात्र परिणाम नहि अपितु पूर्ण प्रमाण सेहो अछि।"
       },
       "options": [
@@ -459,14 +459,14 @@
       "question": {
         "en": "Madhava used the substitution x = 1/√3 in the arctangent series because it converges much faster than x = 1, enabling him to compute π to high precision with fewer terms.",
         "hi": "माधव ने arctangent श्रेणी में x = 1/√3 प्रतिस्थापन का उपयोग किया क्योंकि यह x = 1 से बहुत तेज़ अभिसरित होता है, जिससे कम पदों में π की उच्च सटीकता सम्भव हुई।",
-        "mr": "Madhava used the substitution x = 1/√3 in the arctangent series because it converges much faster than x = 1, enabling him to compute π to high precision with fewer terms.",
+        "mr": "माधवांनी आर्कटेंजेंट श्रेणीमध्ये x = 1/√3 ही प्रतिस्थापना (substitution) वापरली कारण ती x = 1 पेक्षा खूप वेगाने अभिसरण करते, ज्यामुळे त्यांना कमी पदांसह π ची उच्च अचूकता मोजता आली.",
         "mai": "माधव आर्कटैन्जेंट श्रृंखला मे प्रतिस्थापन x = १/√३ उपयोग केलन्हि किएक जे ई x = १ सँ बहुत तेज अभिसरित होइत अछि, जे हुनका कम पदक संग उच्च सटीकता सँ π के गणना करबा मे सक्षम बनाबैत अछि।"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "True. When x = 1, the series 1 − 1/3 + 1/5 − ... converges extremely slowly. But with x = 1/√3 (≈ 0.577), each successive power shrinks much faster. This gives π/6 = arctan(1/√3), and combined with correction terms, Madhava achieved 11-decimal accuracy from relatively few terms.",
         "hi": "सत्य। x = 1 पर श्रेणी अत्यन्त धीमी अभिसरित होती है। लेकिन x = 1/√3 (≈ 0.577) के साथ, प्रत्येक क्रमिक घात बहुत तेज़ी से घटती है। इससे π/6 = arctan(1/√3) मिलता है, और सुधार पदों के साथ माधव ने कम पदों से 11-दशमलव सटीकता प्राप्त की।",
-        "mr": "True. When x = 1, the series 1 − 1/3 + 1/5 − ... converges extremely slowly. But with x = 1/√3 (≈ 0.577), each successive power shrinks much faster. This gives π/6 = arctan(1/√3), and combined with correction terms, Madhava achieved 11-decimal accuracy from relatively few terms.",
+        "mr": "खरे. जेव्हा x = 1 असतो, तेव्हा 1 − 1/3 + 1/5 − ... ही श्रेणी अत्यंत हळू अभिसरण करते. परंतु x = 1/√3 (≈ 0.577) सह, प्रत्येक क्रमिक घात (successive power) खूप वेगाने कमी होतो. यामुळे π/6 = arctan(1/√3) मिळते, आणि दुरुस्तीच्या अटींसह, माधवांनी तुलनेने कमी पदांमधून ११-दशांश अचूकता प्राप्त केली.",
         "mai": "सत्य। जखन x = १ होइत अछि, श्रृंखला १ − १/३ + १/५ − ... बहुत धीरे-धीरे अभिसरित होइत अछि। मुदा x = १/√३ (≈ ०.५७७) केर संग, प्रत्येक क्रमिक घात बहुत तेज सिकुड़ैत अछि। ई π/६ = arctan(१/√३) दैत अछि, आ सुधार पदक संग मिला कय, माधव अपेक्षाकृत कम पद सँ ११-दशमलव सटीकता प्राप्त केलन्हि।"
       }
     },
@@ -476,14 +476,14 @@
       "question": {
         "en": "The Jesuit missionaries in Kerala have been conclusively proven to have transmitted Kerala mathematical results to Europe before Newton.",
         "hi": "केरल में जेसुइट मिशनरियों ने न्यूटन से पहले केरल गणितीय परिणामों को यूरोप तक पहुँचाया  –  यह निर्णायक रूप से प्रमाणित हो चुका है।",
-        "mr": "The Jesuit missionaries in Kerala have been conclusively proven to have transmitted Kerala mathematical results to Europe before Newton.",
+        "mr": "केरळमधील जेसुइट मिशनऱ्यांनी न्यूटनपूर्वी केरळचे गणितीय निष्कर्ष युरोपमध्ये पोहोचवले होते, हे निश्चितपणे सिद्ध झाले आहे.",
         "mai": "केरल मे जेसुइट मिशनरी निर्णायक रूप सँ सिद्ध भेल अछि जे ओ न्यूटन सँ पहिने केरलक गणितीय परिणाम यूरोप मे प्रसारित केने छथि।"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "False. While circumstantial evidence is suggestive (Jesuits were in Kerala from ~1540, had access to manuscripts, and the timing aligns), no direct \"smoking gun\" documentary proof has been found. The scholarly debate remains open. What is beyond debate: the Kerala School achieved these results 250–340 years before their European counterparts.",
         "hi": "असत्य। परिस्थितिजन्य साक्ष्य संकेतपूर्ण हैं (जेसुइट ~1540 से केरल में थे, पाण्डुलिपियों तक पहुँच थी), लेकिन कोई प्रत्यक्ष निर्णायक दस्तावेज़ी प्रमाण नहीं मिला। विद्वत्-बहस जारी है। जो बहस से परे है: केरल स्कूल ने ये परिणाम यूरोपीय समकक्षों से 250–340 वर्ष पहले प्राप्त किए।",
-        "mr": "False. While circumstantial evidence is suggestive (Jesuits were in Kerala from ~1540, had access to manuscripts, and the timing aligns), no direct \"smoking gun\" documentary proof has been found. The scholarly debate remains open. What is beyond debate: the Kerala School achieved these results 250–340 years before their European counterparts.",
+        "mr": "असत्य. जरी परिस्थितीजन्य पुरावे सूचक असले तरी (जेसुइट अंदाजे १५४० पासून केरळमध्ये होते, त्यांना हस्तलिखितांपर्यंत पोहोच होती आणि वेळ जुळतो), कोणताही थेट \"धूम्रशस्त्र\" (smoking gun) दस्तऐवजी पुरावा सापडलेला नाही. विद्वत्तापूर्ण चर्चा अजूनही सुरू आहे. वादातीत सत्य हे आहे की: केरळ परंपरेने हे निष्कर्ष त्यांच्या युरोपीय समकक्षांच्या २५०-३४० वर्षांपूर्वी प्राप्त केले होते.",
         "mai": "असत्य। जखन कि परिस्थितिजन्य प्रमाण सुझावात्मक अछि (जेसुइट्स ~१५४० सँ केरल मे छलाह, पांडुलिपि तक पहुँच छलन्हि, आ समय सेहो मेल खाइत अछि), कोनो प्रत्यक्ष \"धूम्रपान बंदूक\" दस्तावेजी प्रमाण नहि भेटल अछि। विद्वत्तापूर्ण बहस खुल्ला रहल अछि। जे बहस सँ बाहर अछि: केरल स्कूल ई परिणाम अपन यूरोपीय समकक्ष सँ २५०–३४० वर्ष पहिने प्राप्त केलक।"
       }
     },
@@ -493,14 +493,14 @@
       "question": {
         "en": "Parameshvara (~1360–1455 CE) is notable for conducting the longest systematic astronomical observation program in pre-telescopic history. How many years did it span?",
         "hi": "परमेश्वर (~1360–1455 ई.) दूरबीन-पूर्व इतिहास में सबसे लम्बा व्यवस्थित खगोलीय प्रेक्षण कार्यक्रम चलाने के लिए उल्लेखनीय हैं। यह कितने वर्षों तक चला?",
-        "mr": "Parameshvara (~1360–1455 CE) is notable for conducting the longest systematic astronomical observation program in pre-telescopic history. How many years did it span?",
+        "mr": "परमेश्वर (अंदाजे १३६०-१४५५ CE) हे दुर्बिणीपूर्व इतिहासातील सर्वात लांब, पद्धतशीर खगोलशास्त्रीय निरीक्षण कार्यक्रम आयोजित करण्यासाठी उल्लेखनीय आहेत. तो किती वर्षे चालला?",
         "mai": "परमेश्वर (~१३६०–१४५५ ई.) दूरबीन-पूर्व इतिहास मे सभ सँ लंबा व्यवस्थित खगोलीय अवलोकन कार्यक्रम संचालित करबाक लेल उल्लेखनीय छथि। ई केटा वर्ष धरि रहल?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Parameshvara conducted 55 years of continuous, systematic astronomical observations  –  the most extensive observational program before the invention of the telescope. He used these empirical data to create the Drigganita system, which corrected planetary positions based on actual observations rather than inherited theoretical models.",
         "hi": "परमेश्वर ने 55 वर्षों तक निरन्तर, व्यवस्थित खगोलीय प्रेक्षण किए  –  दूरबीन के आविष्कार से पहले सबसे व्यापक प्रेक्षण कार्यक्रम। उन्होंने इन अनुभवजन्य आँकड़ों से दृग्गणित प्रणाली बनाई।",
-        "mr": "Parameshvara conducted 55 years of continuous, systematic astronomical observations  –  the most extensive observational program before the invention of the telescope. He used these empirical data to create the Drigganita system, which corrected planetary positions based on actual observations rather than inherited theoretical models.",
+        "mr": "परमेश्वरांनी ५५ वर्षे सतत, पद्धतशीर खगोलशास्त्रीय निरीक्षणे केली – दुर्बिणीच्या शोधापूर्वीचा सर्वात व्यापक निरीक्षण कार्यक्रम. त्यांनी या अनुभवजन्य डेटाचा वापर दृग्गणिता (Drigganita) प्रणाली तयार करण्यासाठी केला, ज्याने वारसाहक्काने मिळालेल्या सैद्धांतिक नमुन्यांऐवजी प्रत्यक्ष निरीक्षणांवर आधारित ग्रह-नक्षत्रांच्या स्थिती सुधारल्या.",
         "mai": "परमेश्वर ५५ वर्षक निरंतर, व्यवस्थित खगोलीय अवलोकन केलन्हि – दूरबीनक आविष्कार सँ पहिने सभ सँ व्यापक अवलोकन कार्यक्रम। ओ ई अनुभवजन्य डेटाक उपयोग दृग्गणित प्रणाली बनेबाक लेल केलन्हि, जे विरासत मे भेटल सैद्धांतिक मॉडलक बजाय वास्तविक अवलोकन पर आधारित ग्रहीय स्थितिमे सुधार केलक।"
       },
       "options": [
@@ -556,14 +556,14 @@
       "question": {
         "en": "Using Madhava\"s sine series, what is sin(30°) computed to with just the first three terms (x, −x³/3!, +x⁵/5!)?",
         "hi": "माधव की sine श्रेणी के पहले तीन पदों (x, −x³/3!, +x⁵/5!) से sin(30°) की गणना का परिणाम क्या है?",
-        "mr": "Using Madhava\"s sine series, what is sin(30°) computed to with just the first three terms (x, −x³/3!, +x⁵/5!)?",
+        "mr": "माधवांच्या साइन श्रेणीचा वापर करून, sin(30°) ची गणना केवळ पहिल्या तीन पदांसह (x, −x³/3!, +x⁵/5!) किती येते?",
         "mai": "माधव केर साइन श्रृंखलाक उपयोग कयने, मात्र पहिल तीन पद (x, −x³/३!, +x⁵/५!) केर संग sin(३०°) के गणना कयल जाइत अछि की?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "With x = π/6 ≈ 0.5236: Term 1 = 0.5236, Term 2 = −0.02392, Term 3 = +0.00033. Sum = 0.50001, which is nearly exactly 0.5 (the true value of sin 30°). Just three terms of Madhava's series give five-decimal accuracy for this angle.",
         "hi": "x = π/6 ≈ 0.5236 के साथ: पद 1 = 0.5236, पद 2 = −0.02392, पद 3 = +0.00033। योग = 0.50001, जो लगभग ठीक 0.5 है (sin 30° का वास्तविक मान)। माधव की श्रेणी के केवल तीन पदों से पाँच-दशमलव सटीकता।",
-        "mr": "With x = π/6 ≈ 0.5236: Term 1 = 0.5236, Term 2 = −0.02392, Term 3 = +0.00033. Sum = 0.50001, which is nearly exactly 0.5 (the true value of sin 30°). Just three terms of Madhava's series give five-decimal accuracy for this angle.",
+        "mr": "x = π/6 ≈ 0.5236 सह: पद 1 = 0.5236, पद 2 = −0.02392, पद 3 = +0.00033. बेरीज = 0.50001, जी जवळजवळ अचूक 0.5 आहे (sin 30° चे खरे मूल्य). माधवाच्या मालिकेतील फक्त तीन पदे या कोनासाठी पाच दशांश अचूकता देतात.",
         "mai": "x = π/६ ≈ ०.५२३६ केर संग: पद १ = ०.५२३६, पद २ = −०.०२३९२, पद ३ = +०.०००३३। योग = ०.५०००१, जे लगभग ठीक ०.५ अछि (sin ३०° केर वास्तविक मान)। माधव केर श्रृंखलाक मात्र तीन पद एहि कोण के लेल पाँच-दशमलव सटीकता दैत अछि।"
       },
       "options": [
@@ -572,44 +572,44 @@
           "hi": "0.47 (बहुत करीब नहीं)",
           "mai": "०.४७ (बहुत नजदीक नहि)",
           "mr": "0.47 (बहुत करीब नहीं)",
-          "ta": "0.47 (not very close)",
-          "te": "0.47 (not very close)",
-          "bn": "0.47 (not very close)",
-          "kn": "0.47 (not very close)",
-          "gu": "0.47 (not very close)"
+          "ta": "0.47 (மிகவும் நெருக்கமாக இல்லை)",
+          "te": "0.47 (అంత దగ్గరగా లేదు)",
+          "bn": "০.৪৭ (খুব কাছাকাছি নয়)",
+          "kn": "೦.೪೭ (ಅಷ್ಟೊಂದು ಹತ್ತಿರವಿಲ್ಲ)",
+          "gu": "0.47 (ખૂબ નજીક નથી)"
         },
         {
           "en": "0.50001 (nearly exact)",
           "hi": "0.50001 (लगभग सटीक)",
           "mai": "०.५०००१ (लगभग सटीक)",
           "mr": "0.50001 (लगभग सटीक)",
-          "ta": "0.50001 (nearly exact)",
-          "te": "0.50001 (nearly exact)",
-          "bn": "0.50001 (nearly exact)",
-          "kn": "0.50001 (nearly exact)",
-          "gu": "0.50001 (nearly exact)"
+          "ta": "0.50001 (கிட்டத்தட்ட துல்லியமானது)",
+          "te": "0.50001 (దాదాపు ఖచ్చితమైనది)",
+          "bn": "০.৫০০০১ (প্রায় সঠিক)",
+          "kn": "೦.೫೦೦೦೧ (ಬಹುತೇಕ ನಿಖರ)",
+          "gu": "0.50001 (લગભગ ચોક્કસ)"
         },
         {
           "en": "0.52 (too high)",
           "hi": "0.52 (बहुत अधिक)",
           "mai": "०.५२ (बहुत बेसी)",
           "mr": "0.52 (बहुत अधिक)",
-          "ta": "0.52 (too high)",
-          "te": "0.52 (too high)",
-          "bn": "0.52 (too high)",
-          "kn": "0.52 (too high)",
-          "gu": "0.52 (too high)"
+          "ta": "0.52 (மிக அதிகம்)",
+          "te": "0.52 (చాలా ఎక్కువ)",
+          "bn": "০.৫২ (অনেক বেশি)",
+          "kn": "೦.೫೨ (ತುಂಬಾ ಹೆಚ್ಚು)",
+          "gu": "0.52 (ખૂબ ઊંચું)"
         },
         {
           "en": "0.49 (close but needs more terms)",
           "hi": "0.49 (करीब लेकिन और पदों की ज़रूरत)",
           "mai": "०.४९ (नजदीक मुदा आओर पदक आवश्यकता अछि)",
           "mr": "0.49 (करीब लेकिन और पदों की ज़रूरत)",
-          "ta": "0.49 (close but needs more terms)",
-          "te": "0.49 (close but needs more terms)",
-          "bn": "0.49 (close but needs more terms)",
-          "kn": "0.49 (close but needs more terms)",
-          "gu": "0.49 (close but needs more terms)"
+          "ta": "0.49 (நெருக்கமாக உள்ளது, ஆனால் மேலும் சொற்கள் தேவை)",
+          "te": "0.49 (దగ్గరగా ఉంది కానీ మరిన్ని పదాలు అవసరం)",
+          "bn": "০.৪৯ (কাছাকাছি কিন্তু আরও পদ প্রয়োজন)",
+          "kn": "೦.೪೯ (ಹತ್ತಿರವಿದೆ ಆದರೆ ಹೆಚ್ಚಿನ ಪದಗಳು ಬೇಕು)",
+          "gu": "0.49 (નજીક છે પણ વધુ પદોની જરૂર છે)"
         }
       ]
     }

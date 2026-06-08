@@ -86,7 +86,7 @@
       "question": {
         "en": "How many total sub-divisions cover the 360-degree zodiac in the KP system?",
         "hi": "केपी पद्धति में 360 अंश राशिचक्र को कुल कितने उप-विभाग आवृत करते हैं?",
-        "mr": "How many total sub-divisions cover the 360-degree zodiac in the KP system?",
+        "mr": "केपी प्रणालीमध्ये ३६० अंशांच्या राशीचक्राला एकूण किती उप-विभाग व्यापतात?",
         "mai": "केपी प्रणाली मे ३६०-डिग्री राशिचक्र मे केतेक कुल उप-विभाजन अछि?"
       },
       "options": [
@@ -139,7 +139,7 @@
       "explanation": {
         "en": "KP divides the zodiac into 249 sub-divisions (27 nakshatras, each divided into 9 unequal subs based on Vimshottari dasha proportions). Each sub has a unique Sign Lord, Star Lord, and Sub Lord.",
         "hi": "केपी राशिचक्र को 249 उप-विभागों में बाँटता है (27 नक्षत्र, प्रत्येक विंशोत्तरी दशा अनुपात के आधार पर 9 असमान उप-भागों में विभक्त)। प्रत्येक उप-भाग का अद्वितीय राशि स्वामी, नक्षत्र स्वामी और उप-स्वामी होता है।",
-        "mr": "KP divides the zodiac into 249 sub-divisions (27 nakshatras, each divided into 9 unequal subs based on Vimshottari dasha proportions). Each sub has a unique Sign Lord, Star Lord, and Sub Lord.",
+        "mr": "केपी राशीचक्राला २४९ उप-विभागांमध्ये विभागते (२७ नक्षत्रे, प्रत्येक ९ असमान उप-विभागांमध्ये विंशोत्तरी दशा प्रमाणांवर आधारित विभागलेले). प्रत्येक उप-विभागाचा एक अद्वितीय राशी स्वामी, नक्षत्र स्वामी आणि उप-स्वामी असतो.",
         "mai": "केपी राशिचक्र केँ २४९ उप-विभाजन मे बाँटैत अछि (२७ नक्षत्र, प्रत्येक केँ ९ असमान उप-विभाजन मे बाँटल गेल अछि जे विंशोत्तरी दशाक अनुपात पर आधारित अछि)। प्रत्येक उपक एकटा अद्वितीय राशि स्वामी, नक्षत्र स्वामी, आ उप स्वामी होइत अछि।"
       }
     },
@@ -149,7 +149,7 @@
       "question": {
         "en": "What determines the size of each sub-division within a nakshatra?",
         "hi": "एक नक्षत्र के भीतर प्रत्येक उप-विभाग का आकार क्या निर्धारित करता है?",
-        "mr": "What determines the size of each sub-division within a nakshatra?",
+        "mr": "नक्षत्रातील प्रत्येक उप-विभागाचा आकार काय ठरवते?",
         "mai": "एकटा नक्षत्रक भीतर प्रत्येक उप-विभाजनक आकार केँ की निर्धारित करैत अछि?"
       },
       "options": [
@@ -202,7 +202,7 @@
       "explanation": {
         "en": "Each nakshatra (13 degrees 20 minutes) is divided into 9 subs proportional to the Vimshottari dasha years: Sun gets 6/120, Moon 10/120, Mars 7/120, etc. of the total 13 degrees 20 minutes.",
         "hi": "प्रत्येक नक्षत्र (13 अंश 20 कला) को विंशोत्तरी दशा वर्षों के अनुपात में 9 उप-भागों में बाँटा जाता है: सूर्य को 6/120, चन्द्र को 10/120, मंगल को 7/120, आदि कुल 13 अंश 20 कला का।",
-        "mr": "Each nakshatra (13 degrees 20 minutes) is divided into 9 subs proportional to the Vimshottari dasha years: Sun gets 6/120, Moon 10/120, Mars 7/120, etc. of the total 13 degrees 20 minutes.",
+        "mr": "प्रत्येक नक्षत्र (१३ अंश २० मिनिटे) ९ उप-विभागांमध्ये विभागले जाते, जे विंशोत्तरी दशा वर्षांच्या प्रमाणात असतात: सूर्य एकूण १३ अंश २० मिनिटांपैकी ६/१२०, चंद्र १०/१२०, मंगळ ७/१२०, इत्यादी मिळवतो.",
         "mai": "प्रत्येक नक्षत्र (१३ डिग्री २० मिनट) केँ विंशोत्तरी दशाक वर्षक अनुपात मे ९ उप मे बाँटल जाइत अछि: सूर्य केँ कुल १३ डिग्री २० मिनटक ६/१२०, चन्द्रमा केँ १०/१२०, मंगल केँ ७/१२०, आदि भेटैत अछि।"
       }
     },
@@ -212,14 +212,14 @@
       "question": {
         "en": "All 9 sub-divisions within a nakshatra are equal in size.",
         "hi": "एक नक्षत्र के भीतर सभी 9 उप-विभाग आकार में समान होते हैं।",
-        "mr": "All 9 sub-divisions within a nakshatra are equal in size.",
+        "mr": "नक्षत्रातील सर्व ९ उप-विभाग आकारात समान आहेत.",
         "mai": "एकटा नक्षत्रक भीतर सभ ९ उप-विभाजन आकार मे समान अछि।"
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. The subs are unequal because they follow Vimshottari dasha proportions. Venus sub (20 years) spans about 2 degrees 13 minutes, while Sun sub (6 years) spans only about 0 degrees 40 minutes within each nakshatra.",
         "hi": "असत्य। उप-भाग असमान हैं क्योंकि वे विंशोत्तरी दशा अनुपात का पालन करते हैं। शुक्र उप (20 वर्ष) लगभग 2 अंश 13 कला में फैलता है, जबकि सूर्य उप (6 वर्ष) प्रत्येक नक्षत्र में केवल लगभग 0 अंश 40 कला में।",
-        "mr": "False. The subs are unequal because they follow Vimshottari dasha proportions. Venus sub (20 years) spans about 2 degrees 13 minutes, while Sun sub (6 years) spans only about 0 degrees 40 minutes within each nakshatra.",
+        "mr": "असत्य. उप-विभाग असमान आहेत कारण ते विंशोत्तरी दशा प्रमाणांचे पालन करतात. शुक्र उप-विभाग (२० वर्षे) सुमारे २ अंश १३ मिनिटे व्यापतो, तर सूर्य उप-विभाग (६ वर्षे) प्रत्येक नक्षत्रात फक्त ० अंश ४० मिनिटे व्यापतो.",
         "mai": "गलत। उप असमान होइत अछि किएक तँ ओ विंशोत्तरी दशाक अनुपात केँ मानैत अछि। शुक्र उप (२० वर्ष) लगभग २ डिग्री १३ मिनट तक फैलल अछि, जबकि सूर्य उप (६ वर्ष) प्रत्येक नक्षत्रक भीतर मात्र लगभग ० डिग्री ४० मिनट तक फैलल अछि।"
       }
     },
@@ -229,7 +229,7 @@
       "question": {
         "en": "In KP terminology, what are the three levels of lordship for any zodiac degree?",
         "hi": "केपी शब्दावली में किसी भी राशिचक्र अंश के लिए स्वामित्व के तीन स्तर क्या हैं?",
-        "mr": "In KP terminology, what are the three levels of lordship for any zodiac degree?",
+        "mr": "केपीच्या परिभाषेत, कोणत्याही राशी अंशासाठी आधिपत्याचे तीन स्तर कोणते आहेत?",
         "mai": "केपी शब्दावली मे, कोनो राशि डिग्रीक लेल आधिपत्यक तीन स्तर की अछि?"
       },
       "options": [
@@ -282,7 +282,7 @@
       "explanation": {
         "en": "Every degree in KP has three lords: the Sign Lord (ruler of the rashi), the Star Lord (ruler of the nakshatra), and the Sub Lord (ruler of the specific sub-division). The Sub Lord is KP's unique contribution.",
         "hi": "केपी में प्रत्येक अंश के तीन स्वामी हैं: राशि स्वामी (राशि का शासक), नक्षत्र स्वामी (नक्षत्र का शासक), और उप स्वामी (विशिष्ट उप-विभाग का शासक)। उप स्वामी केपी का अद्वितीय योगदान है।",
-        "mr": "Every degree in KP has three lords: the Sign Lord (ruler of the rashi), the Star Lord (ruler of the nakshatra), and the Sub Lord (ruler of the specific sub-division). The Sub Lord is KP's unique contribution.",
+        "mr": "केपीमध्ये प्रत्येक अंशाचे तीन स्वामी असतात: राशी स्वामी (राशीचा शासक), नक्षत्र स्वामी (नक्षत्राचा शासक) आणि उप-स्वामी (विशिष्ट उप-विभागाचा शासक). उप-स्वामी हे केपीचे अद्वितीय योगदान आहे.",
         "mai": "केपी मे प्रत्येक डिग्रीक तीन स्वामी होइत अछि: राशि स्वामी (राशि केँ शासक), नक्षत्र स्वामी (नक्षत्र केँ शासक), आ उप स्वामी (विशिष्ट उप-विभाजनक शासक)। उप स्वामी केपीक अद्वितीय योगदान अछि।"
       }
     },
@@ -292,7 +292,7 @@
       "question": {
         "en": "For a cusp at 15 degrees 30 minutes Aries, which nakshatra does it fall in?",
         "hi": "15 अंश 30 कला मेष पर स्थित सन्धि किस नक्षत्र में आती है?",
-        "mr": "For a cusp at 15 degrees 30 minutes Aries, which nakshatra does it fall in?",
+        "mr": "मेष राशीतील १५ अंश ३० मिनिटांच्या cusp साठी, ते कोणत्या नक्षत्रात येते?",
         "mai": "१५ डिग्री ३० मिनट मेष राशि पर एकटा कस्पक लेल, ई कोन नक्षत्र मे पड़ैत अछि?"
       },
       "options": [
@@ -345,7 +345,7 @@
       "explanation": {
         "en": "15 degrees 30 minutes Aries = 15.5 degrees absolute. Ashwini covers 0 to 13 degrees 20 minutes; Bharani covers 13 degrees 20 minutes to 26 degrees 40 minutes. So 15.5 degrees falls in Bharani, ruled by Venus.",
         "hi": "15 अंश 30 कला मेष = 15.5 अंश निरपेक्ष। अश्विनी 0 से 13 अंश 20 कला; भरणी 13 अंश 20 कला से 26 अंश 40 कला। अतः 15.5 अंश भरणी में आता है, जिसका स्वामी शुक्र है।",
-        "mr": "15 degrees 30 minutes Aries = 15.5 degrees absolute. Ashwini covers 0 to 13 degrees 20 minutes; Bharani covers 13 degrees 20 minutes to 26 degrees 40 minutes. So 15.5 degrees falls in Bharani, ruled by Venus.",
+        "mr": "मेष राशीतील १५ अंश ३० मिनिटे = १५.५ अंश निरपेक्ष. अश्विनी ० ते १३ अंश २० मिनिटे व्यापते; भरणी १३ अंश २० मिनिटे ते २६ अंश ४० मिनिटे व्यापते. म्हणून १५.५ अंश भरणीत येते, ज्याचा स्वामी शुक्र आहे.",
         "mai": "१५ डिग्री ३० मिनट मेष = १५.५ डिग्री निरपेक्ष। अश्विनी ० सँ १३ डिग्री २० मिनट तक घेरल अछि; भरणी १३ डिग्री २० मिनट सँ २६ डिग्री ४० मिनट तक घेरल अछि। तेँ १५.५ डिग्री भरणी मे पड़ैत अछि, जे शुक्र द्वारा शासित अछि।"
       }
     },
@@ -355,14 +355,14 @@
       "question": {
         "en": "The Sub Lord of a house cusp is the final deciding factor in KP for whether that house's significations will manifest.",
         "hi": "भाव सन्धि का उप स्वामी केपी में इस बात का अन्तिम निर्णायक कारक है कि उस भाव के कारकत्व प्रकट होंगे या नहीं।",
-        "mr": "The Sub Lord of a house cusp is the final deciding factor in KP for whether that house's significations will manifest.",
+        "mr": "भाव cusp चा उप-स्वामी, त्या भावाची फलितं प्रकट होतील की नाही यासाठी केपीमध्ये अंतिम निर्णायक घटक आहे.",
         "mai": "एकटा भाव कस्पक उप स्वामी केपी मे अंतिम निर्णायक कारक अछि जे ओहि भावक कारकत्व प्रकट होयत की नहि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. This is KP's core principle: the Sign Lord shows the general area, the Star Lord shows the source of results, but the Sub Lord is the final \"yes/no\" switch that determines whether the house promise will actually manifest.",
         "hi": "सत्य। यह केपी का मूल सिद्धान्त है: राशि स्वामी सामान्य क्षेत्र दिखाता है, नक्षत्र स्वामी परिणामों का स्रोत दिखाता है, किन्तु उप स्वामी अन्तिम \"हाँ/नहीं\" स्विच है जो निर्धारित करता है कि भाव का वादा वास्तव में फलित होगा या नहीं।",
-        "mr": "True. This is KP's core principle: the Sign Lord shows the general area, the Star Lord shows the source of results, but the Sub Lord is the final \"yes/no\" switch that determines whether the house promise will actually manifest.",
+        "mr": "सत्य. हे केपीचे मूळ तत्त्व आहे: राशी स्वामी सामान्य क्षेत्र दाखवतो, नक्षत्र स्वामी फलांचा स्रोत दाखवतो, पण उप-स्वामी हा अंतिम \"होय/नाही\" स्विच आहे जो घराचे वचन प्रत्यक्षात प्रकट होईल की नाही हे ठरवतो.",
         "mai": "सत्य। ई केपीक मूल सिद्धांत अछि: राशि स्वामी सामान्य क्षेत्र देखाबैत अछि, नक्षत्र स्वामी परिणामक स्रोत देखाबैत अछि, मुदा उप स्वामी अंतिम \"हाँ/नहि\" स्विच अछि जे निर्धारित करैत अछि जे भावक वादा वास्तव मे प्रकट होयत की नहि।"
       }
     },
@@ -372,7 +372,7 @@
       "question": {
         "en": "Which planet's sub-division is the largest within each nakshatra?",
         "hi": "प्रत्येक नक्षत्र के भीतर किस ग्रह का उप-विभाग सबसे बड़ा है?",
-        "mr": "Which planet's sub-division is the largest within each nakshatra?",
+        "mr": "प्रत्येक नक्षत्रात कोणत्या ग्रहाचा उप-विभाग सर्वात मोठा आहे?",
         "mai": "प्रत्येक नक्षत्रक भीतर कोन ग्रहक उप-विभाजन सभ सँ पैघ अछि?"
       },
       "options": [
@@ -425,7 +425,7 @@
       "explanation": {
         "en": "Venus has the longest Vimshottari dasha period (20 years out of 120 total), so its sub-division is the largest: 20/120 of 13 degrees 20 minutes = approximately 2 degrees 13 minutes per nakshatra.",
         "hi": "शुक्र की विंशोत्तरी दशा अवधि सबसे लम्बी है (कुल 120 में से 20 वर्ष), अतः उसका उप-विभाग सबसे बड़ा है: 13 अंश 20 कला का 20/120 = लगभग 2 अंश 13 कला प्रति नक्षत्र।",
-        "mr": "Venus has the longest Vimshottari dasha period (20 years out of 120 total), so its sub-division is the largest: 20/120 of 13 degrees 20 minutes = approximately 2 degrees 13 minutes per nakshatra.",
+        "mr": "शुक्राचा विंशोत्तरी दशा कालावधी सर्वात लांब आहे (एकूण १२० पैकी २० वर्षे), म्हणून त्याचा उप-विभाग सर्वात मोठा आहे: १३ अंश २० मिनिटांच्या २०/१२० = प्रत्येक नक्षत्रात अंदाजे २ अंश १३ मिनिटे.",
         "mai": "शुक्रक सभ सँ लम्बा विंशोत्तरी दशाक अवधि अछि (कुल १२० मे सँ २० वर्ष), तेँ एकर उप-विभाजन सभ सँ पैघ अछि: १३ डिग्री २० मिनटक २०/१२० = प्रत्येक नक्षत्र मे लगभग २ डिग्री १३ मिनट।"
       }
     },
@@ -435,7 +435,7 @@
       "question": {
         "en": "The sub-divisions within a nakshatra start from which planet's sub?",
         "hi": "एक नक्षत्र के भीतर उप-विभाग किस ग्रह के उप-भाग से आरम्भ होते हैं?",
-        "mr": "The sub-divisions within a nakshatra start from which planet's sub?",
+        "mr": "नक्षत्रातील उप-विभाग कोणत्या ग्रहाच्या उप-विभागापासून सुरू होतात?",
         "mai": "एकटा नक्षत्रक भीतर उप-विभाजन कोन ग्रहक उप सँ शुरू होइत अछि?"
       },
       "options": [
@@ -488,7 +488,7 @@
       "explanation": {
         "en": "The sub-divisions within a nakshatra begin from the nakshatra lord itself and then follow the Vimshottari sequence. For example, Bharani (Venus-ruled) starts with Venus sub, then Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury, Ketu.",
         "hi": "एक नक्षत्र के भीतर उप-विभाग स्वयं नक्षत्र स्वामी से आरम्भ होते हैं और फिर विंशोत्तरी क्रम का पालन करते हैं। उदाहरणार्थ, भरणी (शुक्र-शासित) शुक्र उप से आरम्भ होती है, फिर सूर्य, चन्द्र, मंगल, राहु, गुरु, शनि, बुध, केतु।",
-        "mr": "The sub-divisions within a nakshatra begin from the nakshatra lord itself and then follow the Vimshottari sequence. For example, Bharani (Venus-ruled) starts with Venus sub, then Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury, Ketu.",
+        "mr": "नक्षत्रातील उप-विभाग स्वतः नक्षत्र स्वामीपासून सुरू होतात आणि नंतर विंशोत्तरी क्रम पाळतात. उदाहरणार्थ, भरणी (शुक्र-शासित) शुक्र उप-विभागापासून सुरू होते, नंतर सूर्य, चंद्र, मंगळ, राहू, गुरु, शनि, बुध, केतू.",
         "mai": "एकटा नक्षत्रक भीतर उप-विभाजन नक्षत्र स्वामी सँ स्वयं शुरू होइत अछि आ फेर विंशोत्तरी क्रम केँ मानैत अछि। उदाहरणक लेल, भरणी (शुक्र-शासित) शुक्र उप सँ शुरू होइत अछि, फेर सूर्य, चन्द्रमा, मंगल, राहु, बृहस्पति, शनि, बुध, केतु।"
       }
     },
@@ -498,14 +498,14 @@
       "question": {
         "en": "If the Sub Lord of the 7th house cusp signifies houses 2, 7, and 11, KP would predict a successful marriage.",
         "hi": "यदि सप्तम भाव सन्धि का उप स्वामी भाव 2, 7 और 11 का कारक है, तो केपी सफल विवाह का फलादेश करेगा।",
-        "mr": "If the Sub Lord of the 7th house cusp signifies houses 2, 7, and 11, KP would predict a successful marriage.",
+        "mr": "जर ७व्या भाव cusp चा उप-स्वामी २, ७ आणि ११ भावांना सूचित करतो, तर केपी यशस्वी विवाहाची भविष्यवाणी करेल.",
         "mai": "यदि ७म भाव कस्पक उप स्वामी भाव २, ७, आ ११ केँ कारकत्व करैत अछि, तँ केपी एकटा सफल विवाहक भविष्यवाणी करत।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. In KP, houses 2, 7, and 11 are the marriage-supporting houses. If the 7th cusp Sub Lord signifies these houses (through occupation, star lord, or ownership), it indicates the promise of marriage exists in the chart.",
         "hi": "सत्य। केपी में भाव 2, 7 और 11 विवाह-सहायक भाव हैं। यदि 7वीं सन्धि का उप स्वामी इन भावों का कारक है (निवास, नक्षत्र स्वामी, या स्वामित्व द्वारा), तो यह संकेत करता है कि कुण्डली में विवाह का वादा विद्यमान है।",
-        "mr": "True. In KP, houses 2, 7, and 11 are the marriage-supporting houses. If the 7th cusp Sub Lord signifies these houses (through occupation, star lord, or ownership), it indicates the promise of marriage exists in the chart.",
+        "mr": "सत्य. केपीमध्ये, २, ७ आणि ११ हे विवाह-सहाय्यक भाव आहेत. जर ७व्या cusp चा उप-स्वामी या भावांना सूचित करतो (व्याप्ती, नक्षत्र स्वामी किंवा मालकीद्वारे), तर ते कुंडलीत विवाहाचे वचन अस्तित्वात असल्याचे दर्शवते.",
         "mai": "सत्य। केपी मे, भाव २, ७, आ ११ विवाह-सहायक भाव अछि। यदि ७म कस्पक उप स्वामी ई भावसभ केँ कारकत्व करैत अछि (अधिभोग, नक्षत्र स्वामी, वा स्वामित्वक माध्यम सँ), तँ ई चार्ट मे विवाहक वादाक अस्तित्व केँ इंगित करैत अछि।"
       }
     },
@@ -515,7 +515,7 @@
       "question": {
         "en": "What is the angular span of the Sun's sub-division within one nakshatra?",
         "hi": "एक नक्षत्र के भीतर सूर्य के उप-विभाग का कोणीय विस्तार कितना है?",
-        "mr": "What is the angular span of the Sun's sub-division within one nakshatra?",
+        "mr": "एका नक्षत्रात सूर्याच्या उप-विभागाचा कोनीय विस्तार किती आहे?",
         "mai": "एकटा नक्षत्रक भीतर सूर्यक उप-विभाजनक कोणीय विस्तार की अछि?"
       },
       "options": [
@@ -568,7 +568,7 @@
       "explanation": {
         "en": "Sun's Vimshottari period is 6 years out of 120. So Sun sub = 6/120 of 13 degrees 20 minutes = 0 degrees 40 minutes (0.667 degrees). This is the smallest sub-division, making Sun sub very precise for timing.",
         "hi": "सूर्य की विंशोत्तरी अवधि 120 में से 6 वर्ष है। अतः सूर्य उप = 13 अंश 20 कला का 6/120 = 0 अंश 40 कला (0.667 अंश)। यह सबसे छोटा उप-विभाग है, जो समय निर्धारण के लिए सूर्य उप को अत्यन्त सटीक बनाता है।",
-        "mr": "Sun's Vimshottari period is 6 years out of 120. So Sun sub = 6/120 of 13 degrees 20 minutes = 0 degrees 40 minutes (0.667 degrees). This is the smallest sub-division, making Sun sub very precise for timing.",
+        "mr": "सूर्याचा विंशोत्तरी कालावधी १२० पैकी ६ वर्षे आहे. म्हणून सूर्य उप-विभाग = १३ अंश २० मिनिटांच्या ६/१२० = ० अंश ४० मिनिटे (०.६६७ अंश). हा सर्वात लहान उप-विभाग आहे, ज्यामुळे सूर्य उप-विभाग वेळेच्या निश्चितीसाठी खूप अचूक ठरतो.",
         "mai": "सूर्यक विंशोत्तरी अवधि १२० मे सँ ६ वर्षक अछि। तेँ सूर्य उप = १३ डिग्री २० मिनटक ६/१२० = ० डिग्री ४० मिनट (०.६६७ डिग्री)। ई सभ सँ छोट उप-विभाजन अछि, जे सूर्य उप केँ समयक लेल बहुत सटीक बनाबैत अछि।"
       }
     }

@@ -72,7 +72,7 @@
       "question": {
         "en": "What is Tithi Pravesha based on?",
         "hi": "तिथि प्रवेश किस पर आधारित है?",
-        "mr": "What is Tithi Pravesha based on?",
+        "mr": "तिथी प्रवेश कशावर आधारित आहे?",
         "mai": "तिथि प्रवेश की ककरा पर आधारित अछि?"
       },
       "options": [
@@ -125,7 +125,7 @@
       "explanation": {
         "en": "Tithi Pravesha is based on the annual recurrence of the natal tithi  –  the exact Sun-Moon elongation angle at birth. The chart is cast for the moment this angular relationship repeats each year.",
         "hi": "तिथि प्रवेश जन्म तिथि  –  जन्म के समय सूर्य-चन्द्र के यथार्थ कोणीय विस्तार  –  के वार्षिक पुनरावर्तन पर आधारित है। कुण्डली उस क्षण के लिए बनाई जाती है जब यह कोणीय सम्बन्ध प्रत्येक वर्ष दोहराता है।",
-        "mr": "Tithi Pravesha is based on the annual recurrence of the natal tithi  –  the exact Sun-Moon elongation angle at birth. The chart is cast for the moment this angular relationship repeats each year.",
+        "mr": "तिथी प्रवेश हा जन्म तिथीच्या वार्षिक पुनरावृत्तीवर आधारित आहे – जन्मावेळीच्या अचूक सूर्य-चंद्र युती कोनावर. जेव्हा हे कोनीय संबंध दरवर्षी पुनरावृत्त होतात, त्या क्षणासाठी कुंडली तयार केली जाते.",
         "mai": "तिथि प्रवेश जन्म तिथि केर वार्षिक पुनरावृत्ति पर आधारित अछि – जन्मक समय सूर्य-चन्द्रमाक सटीक विस्तार कोण। कुण्डली ओहि क्षणक लेल बनाओल जाइत अछि जखन ई कोणीय संबंध प्रतिवर्ष दोहरायल जाइत अछि।"
       }
     },
@@ -135,14 +135,14 @@
       "question": {
         "en": "Tithi Pravesha always falls on the same Gregorian date as the native's birthday.",
         "hi": "तिथि प्रवेश सदैव जातक के ग्रेगोरियन जन्मदिन की तिथि पर पड़ता है।",
-        "mr": "Tithi Pravesha always falls on the same Gregorian date as the native's birthday.",
+        "mr": "तिथी प्रवेश नेहमी जातकाच्या वाढदिवसाच्या ग्रेगोरियन तारखेलाच येतो.",
         "mai": "तिथि प्रवेश सदिखन जातकक जन्मदिनक ओही ग्रेगोरियन तिथि पर पड़ैत अछि।"
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. Since Tithi Pravesha is based on the Sun-Moon angular relationship (not the Sun's absolute position), it may fall a few days before or after the Gregorian birthday. The lunar calendar shifts relative to the solar calendar each year.",
         "hi": "असत्य। चूँकि तिथि प्रवेश सूर्य-चन्द्र कोणीय सम्बन्ध पर आधारित है (सूर्य की निरपेक्ष स्थिति पर नहीं), यह ग्रेगोरियन जन्मदिन से कुछ दिन पहले या बाद में पड़ सकता है। चान्द्र पंचांग प्रत्येक वर्ष सौर पंचांग के सापेक्ष खिसकता है।",
-        "mr": "False. Since Tithi Pravesha is based on the Sun-Moon angular relationship (not the Sun's absolute position), it may fall a few days before or after the Gregorian birthday. The lunar calendar shifts relative to the solar calendar each year.",
+        "mr": "खोटे. कारण तिथी प्रवेश हा सूर्य-चंद्र कोनीय संबंधांवर आधारित आहे (सूर्याच्या निरपेक्ष स्थितीवर नाही), तो ग्रेगोरियन वाढदिवसाच्या काही दिवस आधी किंवा नंतर येऊ शकतो. चंद्र कॅलेंडर दरवर्षी सौर कॅलेंडरच्या तुलनेत बदलते.",
         "mai": "गलत। चूँकि तिथि प्रवेश सूर्य-चन्द्रमाक कोणीय संबंध पर आधारित अछि (सूर्य केर निरपेक्ष स्थिति पर नहि), ई ग्रेगोरियन जन्मदिन सँ किछु दिन पहिने वा बाद मे पड़ि सकैत अछि। चान्द्र पंचांग प्रतिवर्ष सौर पंचांगक सापेक्ष खिसकैत अछि।"
       }
     },
@@ -152,7 +152,7 @@
       "question": {
         "en": "How does Tithi Pravesha differ from Varshaphal (solar return)?",
         "hi": "तिथि प्रवेश वर्षफल (सौर प्रत्यावर्तन) से कैसे भिन्न है?",
-        "mr": "How does Tithi Pravesha differ from Varshaphal (solar return)?",
+        "mr": "तिथी प्रवेश वर्षफल (सौर पुनरागमन) पेक्षा कसा वेगळा आहे?",
         "mai": "तिथि प्रवेश वर्षफल (सौर प्रत्यागमन) सँ कना भिन्न अछि?"
       },
       "options": [
@@ -170,7 +170,7 @@
         {
           "en": "Varshaphal tracks Sun's return, Tithi Pravesha tracks the Sun-Moon relationship",
           "hi": "वर्षफल सूर्य के लौटने को, तिथि प्रवेश सूर्य-चन्द्र सम्बन्ध को ट्रैक करता है",
-          "mr": "Varshaphal tracks Sun's return, Tithi Pravesha tracks the Sun-Moon relationship",
+          "mr": "वर्षफल सूर्याच्या पुनरागमनाचा मागोवा घेते, तिथी प्रवेश सूर्य-चंद्र संबंधांचा मागोवा घेते",
           "mai": "वर्षफल सूर्यक प्रत्यागमनक ट्रैक करैत अछि, तिथि प्रवेश सूर्य-चन्द्रमाक संबंधक ट्रैक करैत अछि।"
         },
         {
@@ -200,7 +200,7 @@
       "explanation": {
         "en": "Varshaphal casts the chart when the Sun returns to its exact natal longitude. Tithi Pravesha casts the chart when the Sun-Moon elongation (tithi) matches the natal value. They are complementary but different charts.",
         "hi": "वर्षफल तब कुण्डली बनाता है जब सूर्य अपने यथार्थ जन्म भोगांश पर लौटता है। तिथि प्रवेश तब बनाता है जब सूर्य-चन्द्र विस्तार (तिथि) जन्म मान से मेल खाता है। ये पूरक किन्तु भिन्न कुण्डलियाँ हैं।",
-        "mr": "Varshaphal casts the chart when the Sun returns to its exact natal longitude. Tithi Pravesha casts the chart when the Sun-Moon elongation (tithi) matches the natal value. They are complementary but different charts.",
+        "mr": "वर्षफल कुंडली तेव्हा तयार करते जेव्हा सूर्य त्याच्या अचूक जन्मकालीन रेखांशावर परत येतो. तिथी प्रवेश कुंडली तेव्हा तयार करते जेव्हा सूर्य-चंद्र युती (तिथी) जन्मकालीन मूल्याशी जुळते. त्या पूरक आहेत पण वेगवेगळ्या कुंडल्या आहेत.",
         "mai": "वर्षफल कुण्डली ओहि समय बनाबैत अछि जखन सूर्य अपन सटीक जन्मक देशांतर पर वापस आबैत अछि। तिथि प्रवेश कुण्डली ओहि समय बनाबैत अछि जखन सूर्य-चन्द्रमाक विस्तार (तिथि) जन्मक मान सँ मेल खाबैत अछि। ओ पूरक अछि मुदा भिन्न कुण्डली।"
       }
     },
@@ -210,20 +210,20 @@
       "question": {
         "en": "What does the tithi represent astronomically?",
         "hi": "तिथि खगोलीय रूप से क्या प्रदर्शित करती है?",
-        "mr": "What does the tithi represent astronomically?",
+        "mr": "तिथी खगोलशास्त्रीयदृष्ट्या काय दर्शवते?",
         "mai": "तिथि खगोलीय रूप सँ की दर्शाबैत अछि?"
       },
       "options": [
         {
           "en": "The Sun's longitude",
           "hi": "सूर्य का भोगांश",
-          "mr": "The Sun's longitude",
+          "mr": "सूर्याचा रेखांश",
           "mai": "सूर्यक देशांतर"
         },
         {
           "en": "The Moon's longitude",
           "hi": "चन्द्रमा का भोगांश",
-          "mr": "The Moon's longitude",
+          "mr": "चंद्राचा रेखांश",
           "mai": "चन्द्रमाक देशांतर"
         },
         {
@@ -253,7 +253,7 @@
       "explanation": {
         "en": "A tithi is defined by the Moon-Sun elongation (Moon's longitude minus Sun's longitude). Each tithi spans 12 degrees of elongation. There are 30 tithis in a lunar month (360 degrees / 12 degrees each).",
         "hi": "तिथि चन्द्र-सूर्य विस्तार (चन्द्र भोगांश घटा सूर्य भोगांश) द्वारा परिभाषित है। प्रत्येक तिथि 12 अंश विस्तार में फैली है। एक चान्द्र मास में 30 तिथियाँ हैं (360 अंश / प्रत्येक 12 अंश)।",
-        "mr": "A tithi is defined by the Moon-Sun elongation (Moon's longitude minus Sun's longitude). Each tithi spans 12 degrees of elongation. There are 30 tithis in a lunar month (360 degrees / 12 degrees each).",
+        "mr": "तिथी चंद्र-सूर्य युतीद्वारे (चंद्राचा रेखांश वजा सूर्याचा रेखांश) परिभाषित केली जाते. प्रत्येक तिथी १२ अंशांच्या युतीमध्ये असते. एका चंद्र महिन्यात ३० तिथी असतात (३६० अंश / १२ अंश प्रत्येकी).",
         "mai": "एकटा तिथि चन्द्रमा-सूर्य विस्तार सँ परिभाषित होइत अछि (चन्द्रमाक देशांतर घटाव सूर्यक देशांतर)। प्रत्येक तिथि १२ अंशक विस्तार धरि फैलल अछि। एकटा चान्द्र मास मे ३० तिथि होइत अछि (३६० अंश / १२ अंश प्रत्येक)।"
       }
     },
@@ -263,14 +263,14 @@
       "question": {
         "en": "In Hindu tradition, a person's \"real\" birthday is their tithi, not their Gregorian calendar date.",
         "hi": "हिन्दू परम्परा में व्यक्ति का \"वास्तविक\" जन्मदिन उसकी तिथि है, ग्रेगोरियन तिथि नहीं।",
-        "mr": "In Hindu tradition, a person's \"real\" birthday is their tithi, not their Gregorian calendar date.",
+        "mr": "हिंदू परंपरेनुसार, एखाद्या व्यक्तीचा \"खरा\" वाढदिवस त्यांची तिथी असते, त्यांची ग्रेगोरियन कॅलेंडर तारीख नाही.",
         "mai": "हिन्दू परम्परा मे, एकटा व्यक्तिक \"वास्तविक\" जन्मदिन ओकर तिथि होइत अछि, ओकर ग्रेगोरियन पंचांग तिथि नहि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Traditional Hindu birthdays (Janma Tithi) are celebrated based on the lunar tithi, not the solar/Gregorian date. This is why Tithi Pravesha honors the same tradition  –  your cosmic \"birthday\" is when the Sun-Moon relationship recurs.",
         "hi": "सत्य। पारम्परिक हिन्दू जन्मदिन (जन्म तिथि) चान्द्र तिथि के आधार पर मनाए जाते हैं, सौर/ग्रेगोरियन तिथि पर नहीं। इसीलिए तिथि प्रवेश उसी परम्परा का सम्मान करता है  –  आपका ब्रह्माण्डीय \"जन्मदिन\" वह है जब सूर्य-चन्द्र सम्बन्ध पुनरावृत्त होता है।",
-        "mr": "True. Traditional Hindu birthdays (Janma Tithi) are celebrated based on the lunar tithi, not the solar/Gregorian date. This is why Tithi Pravesha honors the same tradition  –  your cosmic \"birthday\" is when the Sun-Moon relationship recurs.",
+        "mr": "सत्य. पारंपारिक हिंदू वाढदिवस (जन्म तिथी) चंद्र तिथीनुसार साजरे केले जातात, सौर/ग्रेगोरियन तारखेनुसार नाही. म्हणूनच तिथी प्रवेश हीच परंपरा जपतो – तुमचा वैश्विक \"वाढदिवस\" तेव्हा असतो जेव्हा सूर्य-चंद्र संबंध पुन्हा येतात.",
         "mai": "सत्य। पारंपरिक हिन्दू जन्मदिन (जन्म तिथि) चान्द्र तिथि पर आधारित मनाओल जाइत अछि, सौर/ग्रेगोरियन तिथि पर नहि। ई कारण अछि जे तिथि प्रवेश एहि परम्पराक सम्मान करैत अछि – अहाँक ब्रह्मांडीय \"जन्मदिन\" ओहि समय होइत अछि जखन सूर्य-चन्द्रमाक संबंध पुनरावृत्ति होइत अछि।"
       }
     },
@@ -280,7 +280,7 @@
       "question": {
         "en": "For Tithi Pravesha computation, what two conditions must be met?",
         "hi": "तिथि प्रवेश गणना के लिए कौन-सी दो शर्तें पूरी होनी चाहिए?",
-        "mr": "For Tithi Pravesha computation, what two conditions must be met?",
+        "mr": "तिथी प्रवेश गणनेसाठी कोणत्या दोन अटी पूर्ण केल्या पाहिजेत?",
         "mai": "तिथि प्रवेशक गणनाक लेल, कोन दूटा शर्त पूरा हेबाक चाही?"
       },
       "options": [
@@ -333,7 +333,7 @@
       "explanation": {
         "en": "For a valid Tithi Pravesha, two conditions must be met: (1) the Moon-Sun elongation must equal the natal elongation (same tithi), and (2) the Sun must be within the same zodiacal sign as at birth. This ensures the correct annual recurrence.",
         "hi": "वैध तिथि प्रवेश के लिए दो शर्तें पूरी होनी चाहिए: (1) चन्द्र-सूर्य विस्तार जन्म विस्तार के बराबर हो (वही तिथि), और (2) सूर्य जन्म की ही राशि में हो। यह सही वार्षिक पुनरावृत्ति सुनिश्चित करता है।",
-        "mr": "For a valid Tithi Pravesha, two conditions must be met: (1) the Moon-Sun elongation must equal the natal elongation (same tithi), and (2) the Sun must be within the same zodiacal sign as at birth. This ensures the correct annual recurrence.",
+        "mr": "वैध तिथी प्रवेशासाठी, दोन अटी पूर्ण केल्या पाहिजेत: (१) चंद्र-सूर्य युती जन्मकालीन युती (तीच तिथी) इतकी असावी, आणि (२) सूर्य जन्मावेळीच्या राशीतच असावा. हे योग्य वार्षिक पुनरावृत्ती सुनिश्चित करते.",
         "mai": "एकटा वैध तिथि प्रवेशक लेल, दूटा शर्त पूरा हेबाक चाही: (१) चन्द्रमा-सूर्य विस्तार जन्मक विस्तारक बराबर हेबाक चाही (एकहि तिथि), आ (२) सूर्य जन्मक समान राशि मे हेबाक चाही। ई सही वार्षिक पुनरावृत्तिक सुनिश्चित करैत अछि।"
       }
     },
@@ -343,7 +343,7 @@
       "question": {
         "en": "Which area of life is Tithi Pravesha considered most relevant for?",
         "hi": "तिथि प्रवेश को जीवन के किस क्षेत्र के लिए सर्वाधिक प्रासंगिक माना जाता है?",
-        "mr": "Which area of life is Tithi Pravesha considered most relevant for?",
+        "mr": "जीवनाचा कोणता भाग तिथी प्रवेशासाठी सर्वात संबंधित मानला जातो?",
         "mai": "जीवनक कोन क्षेत्र तिथि प्रवेशक लेल सबसँ अधिक प्रासंगिक मानल जाइत अछि?"
       },
       "options": [
@@ -396,7 +396,7 @@
       "explanation": {
         "en": "Since Tithi Pravesha tracks the Sun-Moon (emotional/lunar) relationship, it is considered most relevant for emotional wellbeing, family dynamics, relationships, and domestic matters. Varshaphal (solar return) is better for career and external matters.",
         "hi": "चूँकि तिथि प्रवेश सूर्य-चन्द्र (भावनात्मक/चान्द्र) सम्बन्ध को ट्रैक करता है, इसे भावनात्मक कल्याण, पारिवारिक गतिशीलता, सम्बन्ध और घरेलू विषयों के लिए सर्वाधिक प्रासंगिक माना जाता है। वर्षफल (सौर प्रत्यावर्तन) करियर और बाह्य विषयों के लिए बेहतर है।",
-        "mr": "Since Tithi Pravesha tracks the Sun-Moon (emotional/lunar) relationship, it is considered most relevant for emotional wellbeing, family dynamics, relationships, and domestic matters. Varshaphal (solar return) is better for career and external matters.",
+        "mr": "कारण तिथी प्रवेश सूर्य-चंद्र (भावनिक/चंद्र) संबंधांचा मागोवा घेतो, तो भावनिक कल्याण, कौटुंबिक गतिशीलता, संबंध आणि घरगुती बाबींसाठी सर्वात संबंधित मानला जातो. वर्षफल (सौर पुनरागमन) करिअर आणि बाह्य बाबींसाठी चांगले आहे.",
         "mai": "चूँकि तिथि प्रवेश सूर्य-चन्द्रमाक (भावनात्मक/चान्द्र) संबंधक ट्रैक करैत अछि, ई भावनात्मक कल्याण, पारिवारिक गतिशीलता, संबंध, ओ घरेलू मामलाक लेल सबसँ अधिक प्रासंगिक मानल जाइत अछि। वर्षफल (सौर प्रत्यागमन) करियर ओ बाह्य मामलाक लेल बेसी नीक अछि।"
       }
     },
@@ -406,14 +406,14 @@
       "question": {
         "en": "Some astrologers use both Varshaphal and Tithi Pravesha for a complete annual picture.",
         "hi": "कुछ ज्योतिषी सम्पूर्ण वार्षिक चित्र के लिए वर्षफल और तिथि प्रवेश दोनों का उपयोग करते हैं।",
-        "mr": "Some astrologers use both Varshaphal and Tithi Pravesha for a complete annual picture.",
+        "mr": "काही ज्योतिषी संपूर्ण वार्षिक चित्रासाठी वर्षफल आणि तिथी प्रवेश दोन्ही वापरतात.",
         "mai": "किछु ज्योतिषी वर्षफल ओ तिथि प्रवेश दुनूक उपयोग करैत छथि एकटा पूर्ण वार्षिक चित्रक लेल।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Varshaphal captures the solar/external energy of the year (career, public life), while Tithi Pravesha captures the lunar/internal energy (emotions, family, relationships). Using both gives a more complete annual forecast.",
         "hi": "सत्य। वर्षफल वर्ष की सौर/बाह्य ऊर्जा (करियर, सार्वजनिक जीवन) को पकड़ता है, जबकि तिथि प्रवेश चान्द्र/आन्तरिक ऊर्जा (भावनाएँ, परिवार, सम्बन्ध) को। दोनों का उपयोग अधिक सम्पूर्ण वार्षिक पूर्वानुमान देता है।",
-        "mr": "True. Varshaphal captures the solar/external energy of the year (career, public life), while Tithi Pravesha captures the lunar/internal energy (emotions, family, relationships). Using both gives a more complete annual forecast.",
+        "mr": "सत्य. वर्षफल वर्षाची सौर/बाह्य ऊर्जा (करिअर, सार्वजनिक जीवन) दर्शवते, तर तिथी प्रवेश चंद्र/आंतरिक ऊर्जा (भावना, कुटुंब, संबंध) दर्शवते. दोन्ही वापरल्याने अधिक संपूर्ण वार्षिक अंदाज मिळतो.",
         "mai": "सत्य। वर्षफल वर्षक सौर/बाह्य ऊर्जा (करियर, सार्वजनिक जीवन) के ग्रहण करैत अछि, जखनकि तिथि प्रवेश चान्द्र/आंतरिक ऊर्जा (भावना, परिवार, संबंध) के ग्रहण करैत अछि। दुनूक उपयोग सँ बेसी पूर्ण वार्षिक पूर्वानुमान भेटैत अछि।"
       }
     },
@@ -423,7 +423,7 @@
       "question": {
         "en": "What elements of the Tithi Pravesha chart are interpreted for the coming year?",
         "hi": "तिथि प्रवेश कुण्डली के किन तत्त्वों की आगामी वर्ष हेतु व्याख्या होती है?",
-        "mr": "What elements of the Tithi Pravesha chart are interpreted for the coming year?",
+        "mr": "येणाऱ्या वर्षासाठी तिथी प्रवेश कुंडलीचे कोणते घटक पाहिले जातात?",
         "mai": "तिथि प्रवेश कुण्डलीक कोन-कोन तत्व आबयवला वर्षक लेल व्याख्या कएल जाइत अछि?"
       },
       "options": [
@@ -452,7 +452,7 @@
         {
           "en": "Only the Moon's position",
           "hi": "केवल चन्द्रमा की स्थिति",
-          "mr": "Only the Moon's position",
+          "mr": "फक्त चंद्राची स्थिती",
           "mai": "मात्र चन्द्रमाक स्थिति"
         },
         {
@@ -471,7 +471,7 @@
       "explanation": {
         "en": "The Tithi Pravesha chart is interpreted like a full birth chart: the lagna determines the year's overall theme, planetary placements show house-wise effects, and Mudda Dasha provides monthly timing.",
         "hi": "तिथि प्रवेश कुण्डली की एक पूर्ण जन्म कुण्डली की तरह व्याख्या होती है: लग्न वर्ष की समग्र विषयवस्तु निर्धारित करता है, ग्रह स्थितियाँ भाव-वार प्रभाव दिखाती हैं, और मुद्दा दशा मासिक समय प्रदान करती है।",
-        "mr": "The Tithi Pravesha chart is interpreted like a full birth chart: the lagna determines the year's overall theme, planetary placements show house-wise effects, and Mudda Dasha provides monthly timing.",
+        "mr": "तिथी प्रवेश कुंडलीचे विश्लेषण पूर्ण जन्मकुंडलीप्रमाणे केले जाते: लग्न वर्षाची एकूण थीम ठरवते, ग्रहांची स्थिती भावानुसार परिणाम दर्शवते, आणि मुद्द दशा मासिक वेळेचे संकेत देते.",
         "mai": "तिथि प्रवेश कुण्डली एकटा पूर्ण जन्म कुण्डलीक समान व्याख्या कएल जाइत अछि: लग्न वर्षक समग्र विषयवस्तु निर्धारित करैत अछि, ग्रहीय स्थिति भाव-वार प्रभाव देखाबैत अछि, ओ मुद्दा दशा मासिक समय प्रदान करैत अछि।"
       }
     },
@@ -481,7 +481,7 @@
       "question": {
         "en": "Why might Tithi Pravesha be preferred over Varshaphal for predicting emotional matters?",
         "hi": "भावनात्मक विषयों के फलादेश हेतु वर्षफल से तिथि प्रवेश को क्यों प्राथमिकता दी जा सकती है?",
-        "mr": "Why might Tithi Pravesha be preferred over Varshaphal for predicting emotional matters?",
+        "mr": "भावनिक बाबींच्या भाकीतासाठी वर्षफलाच्या तुलनेत तिथी प्रवेशाला प्राधान्य का दिले जाते?",
         "mai": "भावनात्मक मामलाक भविष्यवाणीक लेल वर्षफलक तुलना मे तिथि प्रवेश केँ वरीयता किए देल जा सकैत अछि?"
       },
       "options": [
@@ -534,7 +534,7 @@
       "explanation": {
         "en": "The Moon in Vedic astrology represents the mind (mana) and emotions. Since Tithi Pravesha is based on the Sun-Moon angular relationship, it is inherently tuned to emotional, psychological, and domestic themes  –  areas where the Moon's influence is paramount.",
         "hi": "वैदिक ज्योतिष में चन्द्रमा मन (मनस) और भावनाओं का प्रतिनिधित्व करता है। चूँकि तिथि प्रवेश सूर्य-चन्द्र कोणीय सम्बन्ध पर आधारित है, यह स्वाभाविक रूप से भावनात्मक, मनोवैज्ञानिक और घरेलू विषयों से अनुकूलित है  –  ऐसे क्षेत्र जहाँ चन्द्रमा का प्रभाव सर्वोपरि है।",
-        "mr": "The Moon in Vedic astrology represents the mind (mana) and emotions. Since Tithi Pravesha is based on the Sun-Moon angular relationship, it is inherently tuned to emotional, psychological, and domestic themes  –  areas where the Moon's influence is paramount.",
+        "mr": "वैदिक ज्योतिषशास्त्रानुसार चंद्र मन (मानस) आणि भावनांचे प्रतिनिधित्व करतो. तिथी प्रवेश सूर्य-चंद्र कोनीय संबंधांवर आधारित असल्यामुळे, ते स्वाभाविकपणे भावनिक, मानसिक आणि कौटुंबिक थीमशी जुळलेले आहे – अशा क्षेत्रांमध्ये जिथे चंद्राचा प्रभाव प्रमुख आहे.",
         "mai": "वैदिक ज्योतिष मे चन्द्रमा मन (मानस) ओ भावनाक प्रतिनिधित्व करैत अछि। चूँकि तिथि प्रवेश सूर्य-चन्द्रमाक कोणीय संबंध पर आधारित अछि, ई स्वाभाविक रूप सँ भावनात्मक, मनोवैज्ञानिक, ओ घरेलू विषयक प्रति समस्वरित अछि – ओहि क्षेत्र जतय चन्द्रमाक प्रभाव सर्वोपरि अछि।"
       }
     }

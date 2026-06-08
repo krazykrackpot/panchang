@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 17-1: मुहूर्त चयन",
         "mai": "खण्ड १७-१: मुहूर्तक चयन",
         "mr": "मॉड्यूल 17-1: मुहूर्त चयन",
-        "ta": "Module 17-1: Muhurta Selection",
-        "te": "Module 17-1: Muhurta Selection",
-        "bn": "Module 17-1: Muhurta Selection",
-        "kn": "Module 17-1: Muhurta Selection",
-        "gu": "Module 17-1: Muhurta Selection"
+        "ta": "தொகுதி 17-1: முஹூர்த்த தேர்வு",
+        "te": "మాడ్యూల్ 17-1: ముహూర్త ఎంపిక",
+        "bn": "মডিউল ১৭-১: মুহূর্ত নির্বাচন",
+        "kn": "ಘಟಕ 17-1: ಮುಹೂರ್ತ ಆಯ್ಕೆ",
+        "gu": "મોડ્યુલ ૧૭-૧: મુહૂર્ત પસંદગી"
       },
       "href": "/learn/modules/17-1"
     },
@@ -42,11 +42,11 @@
         "hi": "मॉड्यूल 17-2: विवाह मुहूर्त",
         "mai": "खण्ड १७-२: विवाहक लेल मुहूर्त",
         "mr": "मॉड्यूल 17-2: विवाह मुहूर्त",
-        "ta": "Module 17-2: Muhurta for Marriage",
-        "te": "Module 17-2: Muhurta for Marriage",
-        "bn": "Module 17-2: Muhurta for Marriage",
-        "kn": "Module 17-2: Muhurta for Marriage",
-        "gu": "Module 17-2: Muhurta for Marriage"
+        "ta": "தொகுதி 17-2: திருமணத்திற்கான முஹூர்த்தம்",
+        "te": "మాడ్యూల్ 17-2: వివాహ ముహూర్తం",
+        "bn": "মডিউল ১৭-২: বিবাহের জন্য মুহূর্ত",
+        "kn": "ಘಟಕ 17-2: ವಿವಾಹ ಮುಹೂರ್ತ",
+        "gu": "મોડ્યુલ ૧૭-૨: લગ્ન માટે મુહૂર્ત"
       },
       "href": "/learn/modules/17-2"
     },
@@ -56,11 +56,11 @@
         "hi": "मुहूर्त AI उपकरण",
         "mai": "मुहूर्त एआई उपकरण",
         "mr": "मुहूर्त AI उपकरण",
-        "ta": "Muhurta AI Tool",
-        "te": "Muhurta AI Tool",
-        "bn": "Muhurta AI Tool",
-        "kn": "Muhurta AI Tool",
-        "gu": "Muhurta AI Tool"
+        "ta": "முஹூர்த்த AI கருவி",
+        "te": "ముహూర్త AI సాధనం",
+        "bn": "মুহূর্ত এআই টুল",
+        "kn": "ಮುಹೂರ್ತ ಎಐ ಸಾಧನ",
+        "gu": "મુહૂર્ત AI ટૂલ"
       },
       "href": "/muhurta-ai"
     }
@@ -72,39 +72,39 @@
       "question": {
         "en": "What is Sarvartha Siddhi Yoga?",
         "hi": "सर्वार्थ सिद्धि योग क्या है?",
-        "mr": "What is Sarvartha Siddhi Yoga?",
+        "mr": "सर्वार्थ सिद्धी योग काय आहे?",
         "mai": "Sarvartha Siddhi Yoga की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Sarvartha Siddhi Yoga occurs when specific weekdays combine with specific nakshatras  –  for example, Sunday + Pushya, Monday + Hasta, Tuesday + Ashwini, etc. This yoga is considered universally auspicious (Sarvartha = all purposes, Siddhi = success) and can override certain negative factors. It is one of the most practically used yogas in muhurta selection.",
         "hi": "सर्वार्थ सिद्धि योग तब होता है जब विशिष्ट वार विशिष्ट नक्षत्रों के साथ मिलते हैं  –  जैसे रविवार + पुष्य, सोमवार + हस्त, मंगलवार + अश्विनी आदि।",
-        "mr": "Sarvartha Siddhi Yoga occurs when specific weekdays combine with specific nakshatras  –  for example, Sunday + Pushya, Monday + Hasta, Tuesday + Ashwini, etc. This yoga is considered universally auspicious (Sarvartha = all purposes, Siddhi = success) and can override certain negative factors. It is one of the most practically used yogas in muhurta selection.",
+        "mr": "जेव्हा विशिष्ट वार विशिष्ट नक्षत्रांशी जुळतात, तेव्हा सर्वार्थ सिद्धी योग तयार होतो – उदाहरणार्थ, रविवार + पुष्य, सोमवार + हस्त, मंगळवार + अश्विनी इत्यादी. हा योग सार्वत्रिक शुभ मानला जातो (सर्वार्थ = सर्व उद्देश, सिद्धी = यश) आणि काही नकारात्मक घटकांना निष्प्रभ करू शकतो. मुहूर्त निवडताना वापरल्या जाणाऱ्या सर्वात व्यावहारिक योगांपैकी हा एक आहे.",
         "mai": "Sarvartha Siddhi Yoga तखन होइत अछि जखन किछु खास दिन किछु खास नक्षत्रक संग मिलैत अछि – जेना, रवि दिन + पुष्य, सोम दिन + हस्त, मंगल दिन + अश्विनी, आदि। ई योग सार्वभौमिक रूप सँ शुभ मानल जाइत अछि (Sarvartha = सभटा उद्देश्य, Siddhi = सफलता) आ किछु नकारात्मक कारककें निरस्त क' सकैत अछि। ई मुहूर्तक चयन मे सभसँ बेसी व्यावहारिक रूप सँ उपयोग कयल जायवला योग मे सँ एकटा अछि।"
       },
       "options": [
         {
           "en": "A planetary yoga in the birth chart",
           "hi": "जन्म कुण्डली में एक ग्रहीय योग",
-          "mr": "A planetary yoga in the birth chart",
+          "mr": "जन्मकुंडलीतील एक ग्रहीय योग",
           "mai": "जन्म कुण्डली मे एकटा ग्रहीय योग"
         },
         {
           "en": "A weekday-nakshatra combination considered universally auspicious",
           "hi": "एक वार-नक्षत्र संयोजन जो सार्वभौमिक रूप से शुभ माना जाता है",
-          "mr": "A weekday-nakshatra combination considered universally auspicious",
+          "mr": "वार-नक्षत्र यांचा एक शुभ संयोग जो सार्वत्रिक शुभ मानला जातो",
           "mai": "एकटा दिन-नक्षत्रक संयोजन जे सार्वभौमिक रूप सँ शुभ मानल जाइत अछि"
         },
         {
           "en": "A special tithi that occurs once a year",
           "hi": "एक विशेष तिथि जो वर्ष में एक बार आती है",
-          "mr": "A special tithi that occurs once a year",
+          "mr": "एक विशेष तिथी जी वर्षातून एकदा येते",
           "mai": "एकटा खास तिथि जे साल मे एक बेर होइत अछि"
         },
         {
           "en": "The moment of sunrise",
           "hi": "सूर्योदय का क्षण",
-          "mr": "The moment of sunrise",
+          "mr": "सूर्योदयाची वेळ",
           "mai": "सूर्योदयक क्षण"
         }
       ]
@@ -115,39 +115,39 @@
       "question": {
         "en": "In Vivaha (marriage) muhurta, which factors must ALL be simultaneously favorable?",
         "hi": "विवाह मुहूर्त में कौन से कारक एक साथ अनुकूल होने चाहिए?",
-        "mr": "In Vivaha (marriage) muhurta, which factors must ALL be simultaneously favorable?",
+        "mr": "विवाह मुहूर्तामध्ये, कोणते घटक एकाच वेळी अनुकूल असणे आवश्यक आहे?",
         "mai": "विवाह (बियाह) मुहूर्त मे, कोन सभ कारक एक संग अनुकूल हेबाक चाही?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Marriage muhurta requires simultaneous favorability of: Tithi (avoid Rikta tithis 4/9/14), Nakshatra (avoid Bharani, Krittika, Ardra, Ashlesha, Magha, Vishakha, Jyeshtha, Moola), Vara (avoid Tuesday and Saturday), Yoga (avoid Vyaghata, Vajra, Parigha, Vishkambha), Lagna (7th house free of malefics), and no Rahu Kala/Yamaganda during ceremony time.",
         "hi": "विवाह मुहूर्त के लिए एक साथ अनुकूलता चाहिए: तिथि, नक्षत्र, वार, योग, लग्न (सप्तम भाव पापमुक्त), और राहु काल/यमगण्ड से मुक्त समय।",
-        "mr": "Marriage muhurta requires simultaneous favorability of: Tithi (avoid Rikta tithis 4/9/14), Nakshatra (avoid Bharani, Krittika, Ardra, Ashlesha, Magha, Vishakha, Jyeshtha, Moola), Vara (avoid Tuesday and Saturday), Yoga (avoid Vyaghata, Vajra, Parigha, Vishkambha), Lagna (7th house free of malefics), and no Rahu Kala/Yamaganda during ceremony time.",
+        "mr": "विवाह मुहूर्तासाठी खालील गोष्टी एकाच वेळी अनुकूल असणे आवश्यक आहे: तिथी (रिक्ता तिथी ४/९/१४ टाळा), नक्षत्र (भरणी, कृत्तिका, आर्द्रा, आश्लेषा, मघा, विशाखा, ज्येष्ठा, मूळ टाळा), वार (मंगळवार आणि शनिवार टाळा), योग (व्याघात, वज्र, परिघ, विष्कंभ टाळा), लग्न (७वे स्थान पापग्रहांपासून मुक्त असावे), आणि समारंभाच्या वेळी राहू काल/यमगंड नसावा.",
         "mai": "विवाह मुहूर्त मे एक संग अनुकूलता आवश्यक अछि: तिथि (रिक्ता तिथि ४/९/१४ सँ बचू), नक्षत्र (भरणी, कृत्तिका, आर्द्रा, आश्लेषा, मघा, विशाखा, ज्येष्ठा, मूला सँ बचू), वार (मंगल आ शनि दिन सँ बचू), योग (व्याघात, वज्र, परिघ, विष्कम्भ सँ बचू), लग्न (सप्तम भाव मे कोनो पापी ग्रह नहि), आ समारोहक समय मे राहु काल/यमगण्ड नहि हेबाक चाही।"
       },
       "options": [
         {
           "en": "Only the tithi and nakshatra",
           "hi": "केवल तिथि और नक्षत्र",
-          "mr": "Only the tithi and nakshatra",
+          "mr": "फक्त तिथी आणि नक्षत्र",
           "mai": "मात्र तिथि आ नक्षत्र"
         },
         {
           "en": "Only the Lagna chart",
           "hi": "केवल लग्न कुण्डली",
-          "mr": "Only the Lagna chart",
+          "mr": "फक्त लग्न कुंडली",
           "mai": "मात्र लग्न कुण्डली"
         },
         {
           "en": "Tithi, nakshatra, vara, yoga, lagna, and absence of Rahu Kala",
           "hi": "तिथि, नक्षत्र, वार, योग, लग्न, और राहु काल की अनुपस्थिति",
-          "mr": "Tithi, nakshatra, vara, yoga, lagna, and absence of Rahu Kala",
+          "mr": "तिथी, नक्षत्र, वार, योग, लग्न, आणि राहू कालाची अनुपस्थिती",
           "mai": "तिथि, नक्षत्र, वार, योग, लग्न, आ राहु कालक अनुपस्थिति"
         },
         {
           "en": "The bride's birth star only",
           "hi": "केवल वधू का जन्म नक्षत्र",
-          "mr": "The bride's birth star only",
+          "mr": "फक्त वधूचे जन्म नक्षत्र",
           "mai": "कन्याक जन्म नक्षत्र मात्र"
         }
       ]
@@ -158,39 +158,39 @@
       "question": {
         "en": "What is Amrita Siddhi Yoga?",
         "hi": "अमृत सिद्धि योग क्या है?",
-        "mr": "What is Amrita Siddhi Yoga?",
+        "mr": "अमृत सिद्धी योग काय आहे?",
         "mai": "Amrita Siddhi Yoga की अछि?"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "Amrita Siddhi Yoga occurs when specific weekdays combine with specific tithis  –  for example, Sunday + Dvitiya, Monday + Saptami, Wednesday + Dvadashi, etc. 'Amrita' means nectar/immortality and 'Siddhi' means success  –  this yoga is said to bestow nectar-like success on activities initiated during it. Unlike Sarvartha Siddhi (weekday + nakshatra), Amrita Siddhi uses weekday + tithi.",
         "hi": "अमृत सिद्धि योग तब होता है जब विशिष्ट वार विशिष्ट तिथियों के साथ मिलते हैं। 'अमृत' का अर्थ अमृत और 'सिद्धि' का अर्थ सफलता है।",
-        "mr": "Amrita Siddhi Yoga occurs when specific weekdays combine with specific tithis  –  for example, Sunday + Dvitiya, Monday + Saptami, Wednesday + Dvadashi, etc. 'Amrita' means nectar/immortality and 'Siddhi' means success  –  this yoga is said to bestow nectar-like success on activities initiated during it. Unlike Sarvartha Siddhi (weekday + nakshatra), Amrita Siddhi uses weekday + tithi.",
+        "mr": "जेव्हा विशिष्ट वार विशिष्ट तिथींशी जुळतात, तेव्हा अमृत सिद्धी योग तयार होतो – उदाहरणार्थ, रविवार + द्वितीया, सोमवार + सप्तमी, बुधवार + द्वादशी इत्यादी. 'अमृत' म्हणजे अमृत/अमरत्व आणि 'सिद्धी' म्हणजे यश – हा योग त्या काळात सुरू केलेल्या कार्यांवर अमृततुल्य यश देतो असे मानले जाते. सर्वार्थ सिद्धी (वार + नक्षत्र) च्या विपरीत, अमृत सिद्धी वार + तिथी वापरते.",
         "mai": "Amrita Siddhi Yoga तखन होइत अछि जखन किछु खास दिन किछु खास तिथिक संग मिलैत अछि – जेना, रवि दिन + द्वितीया, सोम दिन + सप्तमी, बुध दिन + द्वादशी, आदि। 'अमृत' क' अर्थ अमृत/अमरता आ 'सिद्धि' क' अर्थ सफलता होइत अछि – ई योग ओहि समय मे शुरू कयल गेल काज पर अमृत-समान सफलता प्रदान करबाक लेल कहल जाइत अछि। Sarvartha Siddhi (दिन + नक्षत्र) सँ भिन्न, Amrita Siddhi मे दिन + तिथि क' उपयोग होइत अछि।"
       },
       "options": [
         {
           "en": "A weekday-tithi combination considered highly auspicious",
           "hi": "एक वार-तिथि संयोजन जो अत्यन्त शुभ माना जाता है",
-          "mr": "A weekday-tithi combination considered highly auspicious",
+          "mr": "वार-तिथी यांचा एक संयोग जो अत्यंत शुभ मानला जातो",
           "mai": "एकटा दिन-तिथिक संयोजन जे अत्यधिक शुभ मानल जाइत अछि"
         },
         {
           "en": "The time of moonrise",
           "hi": "चन्द्रोदय का समय",
-          "mr": "The time of moonrise",
+          "mr": "चंद्रोदयाची वेळ",
           "mai": "चन्द्रोदयक समय"
         },
         {
           "en": "A rare planetary alignment",
           "hi": "एक दुर्लभ ग्रहीय संरेखण",
-          "mr": "A rare planetary alignment",
+          "mr": "एक दुर्मिळ ग्रहीय संरेखन",
           "mai": "एकटा दुर्लभ ग्रहीय संरेखण"
         },
         {
           "en": "The festival of Amrit",
           "hi": "अमृत का त्योहार",
-          "mr": "The festival of Amrit",
+          "mr": "अमृत उत्सव",
           "mai": "अमृतक पर्व"
         }
       ]
@@ -201,14 +201,14 @@
       "question": {
         "en": "Abhijit Muhurta (the auspicious midday window) should NOT be used on Wednesdays according to classical rules.",
         "hi": "शास्त्रीय नियमों के अनुसार बुधवार को अभिजित मुहूर्त (शुभ मध्याह्न खिड़की) का उपयोग नहीं करना चाहिए।",
-        "mr": "Abhijit Muhurta (the auspicious midday window) should NOT be used on Wednesdays according to classical rules.",
+        "mr": "अभिजीत मुहूर्त (शुभ दुपारचा काळ) शास्त्रीय नियमांनुसार बुधवारी वापरला जाऊ नये.",
         "mai": "अभिजीत मुहूर्त (शुभ मध्याह्नक समय) बुध दिन शास्त्रीय नियमक अनुसार उपयोग नहि कयल जेबाक चाही।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "True. Classical texts state that Abhijit Muhurta (the 8th muhurta of the day, approximately 24 minutes around local solar noon) is universally auspicious EXCEPT on Wednesdays. On Wednesday, Abhijit Muhurta is considered inauspicious. This is one of the most commonly cited exceptions in muhurta shastra.",
         "hi": "सत्य। शास्त्रीय ग्रन्थ कहते हैं कि अभिजित मुहूर्त (दिन का 8वाँ मुहूर्त, स्थानीय सूर्य मध्याह्न के आसपास लगभग 24 मिनट) बुधवार को छोड़कर सार्वभौमिक रूप से शुभ है।",
-        "mr": "True. Classical texts state that Abhijit Muhurta (the 8th muhurta of the day, approximately 24 minutes around local solar noon) is universally auspicious EXCEPT on Wednesdays. On Wednesday, Abhijit Muhurta is considered inauspicious. This is one of the most commonly cited exceptions in muhurta shastra.",
+        "mr": "खरं आहे. शास्त्रीय ग्रंथांनुसार अभिजीत मुहूर्त (दिवसाचा ८वा मुहूर्त, स्थानिक सौर दुपारच्या सुमारे २४ मिनिटांचा काळ) बुधवार वगळता सार्वत्रिक शुभ असतो. बुधवारी, अभिजीत मुहूर्त अशुभ मानला जातो. मुहूर्त शास्त्रातील सर्वात सामान्यपणे उल्लेख केलेल्या अपवादांपैकी हा एक आहे.",
         "mai": "सत्य। शास्त्रीय ग्रन्थ कहैत अछि जे अभिजीत मुहूर्त (दिनक ८म मुहूर्त, स्थानीय सौर मध्याह्नक लगभग २४ मिनट) बुध दिन छोड़ि क' सार्वभौमिक रूप सँ शुभ होइत अछि। बुध दिन, अभिजीत मुहूर्त कें अशुभ मानल जाइत अछि। ई मुहूर्त शास्त्र मे सभसँ बेसी उद्धृत अपवाद मे सँ एकटा अछि।"
       }
     }

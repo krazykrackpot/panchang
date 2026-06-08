@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 25-3: π = 3.1416",
         "mai": "मॉड्यूल २५-३: पाई = ३.१४१६",
         "mr": "मॉड्यूल 25-3: π = 3.1416",
-        "ta": "Module 25-3: Pi = 3.1416",
-        "te": "Module 25-3: Pi = 3.1416",
-        "bn": "Module 25-3: Pi = 3.1416",
-        "kn": "Module 25-3: Pi = 3.1416",
-        "gu": "Module 25-3: Pi = 3.1416"
+        "ta": "அலகு 25-3: பை = 3.1416",
+        "te": "మాడ్యూల్ 25-3: పై = 3.1416",
+        "bn": "মডিউল 25-3: পাই = 3.1416",
+        "kn": "ಮಾಡ್ಯೂಲ್ 25-3: ಪೈ = 3.1416",
+        "gu": "મોડ્યુલ 25-3: પાઇ = 3.1416"
       },
       "href": "/learn/modules/25-3"
     },
@@ -42,11 +42,11 @@
         "hi": "मॉड्यूल 25-7: केरल गणित",
         "mai": "मॉड्यूल २५-७: केरल कैलकुलस",
         "mr": "मॉड्यूल 25-7: केरल गणित",
-        "ta": "Module 25-7: Kerala Calculus",
-        "te": "Module 25-7: Kerala Calculus",
-        "bn": "Module 25-7: Kerala Calculus",
-        "kn": "Module 25-7: Kerala Calculus",
-        "gu": "Module 25-7: Kerala Calculus"
+        "ta": "அலகு 25-7: கேரள நுண்கணிதம்",
+        "te": "మాడ్యూల్ 25-7: కేరళ కలన గణితం",
+        "bn": "মডিউল 25-7: কেরালা ক্যালকুলাস",
+        "kn": "ಮಾಡ್ಯೂಲ್ 25-7: ಕೇರಳ ಕಲನಶಾಸ್ತ್ರ",
+        "gu": "મોડ્યુલ 25-7: કેરળ કેલ્ક્યુલસ"
       },
       "href": "/learn/modules/25-7"
     },
@@ -56,11 +56,11 @@
         "hi": "मॉड्यूल 25-1: शून्य",
         "mai": "मॉड्यूल २५-१: शून्य",
         "mr": "मॉड्यूल 25-1: शून्य",
-        "ta": "Module 25-1: Zero",
-        "te": "Module 25-1: Zero",
-        "bn": "Module 25-1: Zero",
-        "kn": "Module 25-1: Zero",
-        "gu": "Module 25-1: Zero"
+        "ta": "அலகு 25-1: பூஜ்ஜியம்",
+        "te": "మాడ్యూల్ 25-1: సున్నా",
+        "bn": "মডিউল 25-1: শূন্য",
+        "kn": "ಮಾಡ್ಯೂಲ್ 25-1: ಶೂನ್ಯ",
+        "gu": "મોડ્યુલ 25-1: શૂન્ય"
       },
       "href": "/learn/modules/25-1"
     }
@@ -72,14 +72,14 @@
       "question": {
         "en": "Who created the world\"s first systematic sine table?",
         "hi": "विश्व की पहली व्यवस्थित ज्या सारणी किसने बनाई?",
-        "mr": "Who created the world\"s first systematic sine table?",
+        "mr": "जगातील पहिली पद्धतशीर ज्या सारणी कोणी तयार केली?",
         "mai": "संसारक पहिल व्यवस्थित ज्या सारणी के बनौलनि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Aryabhata (476–550 CE), writing in the Aryabhatiya in 499 CE, created the world\"s first systematic sine table. The Greek astronomers Hipparchus and Ptolemy had tables of chords (twice the sine of half the angle)  –  a different and less elegant system. Aryabhata was the first to use half-chords (what we now call sine) as the primary trigonometric function, computing values at 24 equally-spaced intervals of 3.75° each.",
         "hi": "आर्यभट (476–550 ई.), 499 ई. में आर्यभटीय में लिखते हुए, विश्व की पहली व्यवस्थित ज्या सारणी बनाई। ग्रीक खगोलशास्त्री हिप्पार्कस और टॉलेमी के पास जीवाओं (chord) की सारणियाँ थीं  –  एक अलग और कम सुरुचिपूर्ण प्रणाली। आर्यभट अर्ध-जीवाओं (जिसे हम अब sine कहते हैं) को प्राथमिक त्रिकोणमितीय फलन के रूप में उपयोग करने वाले पहले थे।",
-        "mr": "Aryabhata (476–550 CE), writing in the Aryabhatiya in 499 CE, created the world\"s first systematic sine table. The Greek astronomers Hipparchus and Ptolemy had tables of chords (twice the sine of half the angle)  –  a different and less elegant system. Aryabhata was the first to use half-chords (what we now call sine) as the primary trigonometric function, computing values at 24 equally-spaced intervals of 3.75° each.",
+        "mr": "आर्यभट (इ.स. ४७६–५५०), ज्यांनी ४९९ इ.स. मध्ये आर्यभटीय लिहिले, त्यांनी जगातील पहिली पद्धतशीर ज्या सारणी तयार केली. ग्रीक खगोलशास्त्रज्ञ हिप्पार्कस आणि टॉलेमी यांच्याकडे जीवांची सारणी होती (कोनाच्या अर्ध्या भागाच्या ज्याच्या दुप्पट) – ही एक वेगळी आणि कमी आकर्षक प्रणाली होती. आर्यभट हे अर्ध-जीवा (ज्याला आपण आता ज्या म्हणतो) प्राथमिक त्रिकोणमितीय कार्य म्हणून वापरणारे पहिले होते, त्यांनी प्रत्येकी ३.७५° च्या २४ समान अंतरांवर मूल्ये मोजली.",
         "mai": "आर्यभट (४७६–५५० ईस्वी), ४९९ ईस्वीमे आर्यभटीयमे लिखैत, संसारक पहिल व्यवस्थित ज्या सारणी बनौलनि। ग्रीक ज्योतिषी हिप्पार्कस आ टॉलेमी कें जीवा सारणी छलनि (आधा कोणक ज्याक दू गुणा) – एकटा भिन्न आ कम सुरुचिपूर्ण प्रणाली। आर्यभट पहिल छलाह जे अर्ध-जीवाक (जकरा अखन हमसभ ज्या कहैत छी) प्राथमिक त्रिकोणमितीय फलनक रूपमे उपयोग केलनि, प्रत्येक ३.७५° क २४ समान दूरीक अंतराल पर मानक गणना करैत।"
       },
       "options": [
@@ -88,11 +88,11 @@
           "hi": "हिप्पार्कस",
           "mai": "नाइसियाक हिप्पार्कस",
           "mr": "हिप्पार्कस",
-          "ta": "Hipparchus of Nicaea",
-          "te": "Hipparchus of Nicaea",
-          "bn": "Hipparchus of Nicaea",
-          "kn": "Hipparchus of Nicaea",
-          "gu": "Hipparchus of Nicaea"
+          "ta": "நைசியாவின் ஹிப்பார்க்கஸ்",
+          "te": "నికేయాకు చెందిన హిప్పార్కస్",
+          "bn": "নাইসিয়ার হিপ্পার্কাস",
+          "kn": "ನೈಸಿಯಾದ ಹಿಪ್ಪಾರ್ಕಸ್",
+          "gu": "નિકાયાનો હિપ્પાર્કસ"
         },
         {
           "en": "Aryabhata",
@@ -135,14 +135,14 @@
       "question": {
         "en": "What year did Aryabhata write the Aryabhatiya containing his sine table?",
         "hi": "आर्यभट ने अपनी ज्या सारणी सहित आर्यभटीय किस वर्ष लिखी?",
-        "mr": "What year did Aryabhata write the Aryabhatiya containing his sine table?",
+        "mr": "आर्यभटांनी त्यांची ज्या सारणी असलेले आर्यभटीय कोणत्या वर्षी लिहिले?",
         "mai": "कोन वर्ष आर्यभट अपन ज्या सारणी सहित आर्यभटीय लिखलनि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "499 CE is when Aryabhata completed the Aryabhatiya. He tells us this himself  –  the text records that it was composed when he was 23 years old, and he was born in 476 CE, giving us 499 CE. The Aryabhatiya is a landmark text in the history of mathematics, covering astronomy, mathematics, and what we now call trigonometry. The sine table in its Ganitapada section remained one of the most accurate in the world for centuries.",
         "hi": "499 ई. वह वर्ष है जब आर्यभट ने आर्यभटीय पूरी की। यह वे स्वयं बताते हैं  –  पाठ में लिखा है कि यह 23 वर्ष की आयु में रचा गया था, और उनका जन्म 476 ई. में हुआ था। आर्यभटीय गणित के इतिहास में एक मील का पत्थर है, जिसमें खगोल विज्ञान, गणित और त्रिकोणमिति शामिल है।",
-        "mr": "499 CE is when Aryabhata completed the Aryabhatiya. He tells us this himself  –  the text records that it was composed when he was 23 years old, and he was born in 476 CE, giving us 499 CE. The Aryabhatiya is a landmark text in the history of mathematics, covering astronomy, mathematics, and what we now call trigonometry. The sine table in its Ganitapada section remained one of the most accurate in the world for centuries.",
+        "mr": "४९९ इ.स. मध्ये आर्यभटांनी आर्यभटीय पूर्ण केले. त्यांनी स्वतःच हे सांगितले आहे – मजकुरात नोंद आहे की ते २३ वर्षांचे असताना याची रचना केली गेली होती, आणि त्यांचा जन्म ४७६ इ.स. मध्ये झाला होता, ज्यामुळे आपल्याला ४९९ इ.स. हे वर्ष मिळते. आर्यभटीय हा गणिताच्या इतिहासातील एक महत्त्वाचा ग्रंथ आहे, ज्यात खगोलशास्त्र, गणित आणि ज्याला आपण आता त्रिकोणमिती म्हणतो, यांचा समावेश आहे. त्याच्या गणितपाद विभागातील ज्या सारणी अनेक शतके जगातील सर्वात अचूक सारण्यांपैकी एक राहिली.",
         "mai": "४९९ ईस्वीमे आर्यभट आर्यभटीय पूरा केलनि। ओ ई बात स्वयं कहैत छथि – ग्रंथमे दर्ज अछि जे एकर रचना ओहि समय भेल छल जखन ओ २३ वर्षक छलाह, आ ओ ४७६ ईस्वीमे जन्मल छलाह, जकरा सँ हमरासभकें ४९९ ईस्वी भेटैत अछि। आर्यभटीय गणितक इतिहासमे एकटा महत्वपूर्ण ग्रंथ अछि, जाहिमे खगोल विज्ञान, गणित, आ जकरा अखन हमसभ त्रिकोणमिति कहैत छी, ओ सब शामिल अछि। एकर गणितपाद खंडमे ज्या सारणी सदियों धरि संसारक सभसँ सटीक सारणीमे सँ एक रहल।"
       },
       "options": [
@@ -151,44 +151,44 @@
           "hi": "376 ई.",
           "mai": "३७६ ईस्वी",
           "mr": "376 ई.",
-          "ta": "376 CE",
-          "te": "376 CE",
-          "bn": "376 CE",
-          "kn": "376 CE",
-          "gu": "376 CE"
+          "ta": "376 கி.பி.",
+          "te": "376 సా.శ.",
+          "bn": "376 খ্রিস্টাব্দ",
+          "kn": "376 ಕ್ರಿ.ಶ.",
+          "gu": "376 ઈ.સ."
         },
         {
           "en": "499 CE",
           "hi": "499 ई.",
           "mai": "४९९ ईस्वी",
           "mr": "499 ई.",
-          "ta": "499 CE",
-          "te": "499 CE",
-          "bn": "499 CE",
-          "kn": "499 CE",
-          "gu": "499 CE"
+          "ta": "499 கி.பி.",
+          "te": "499 సా.శ.",
+          "bn": "499 খ্রিস্টাব্দ",
+          "kn": "499 ಕ್ರಿ.ಶ.",
+          "gu": "499 ઈ.સ."
         },
         {
           "en": "628 CE",
           "hi": "628 ई.",
           "mai": "६२८ ईस्वी",
           "mr": "628 ई.",
-          "ta": "628 CE",
-          "te": "628 CE",
-          "bn": "628 CE",
-          "kn": "628 CE",
-          "gu": "628 CE"
+          "ta": "628 கி.பி.",
+          "te": "628 సా.శ.",
+          "bn": "628 খ্রিস্টাব্দ",
+          "kn": "628 ಕ್ರಿ.ಶ.",
+          "gu": "628 ઈ.સ."
         },
         {
           "en": "830 CE",
           "hi": "830 ई.",
           "mai": "८३० ईस्वी",
           "mr": "830 ई.",
-          "ta": "830 CE",
-          "te": "830 CE",
-          "bn": "830 CE",
-          "kn": "830 CE",
-          "gu": "830 CE"
+          "ta": "830 கி.பி.",
+          "te": "830 సా.శ.",
+          "bn": "830 খ্রিস্টাব্দ",
+          "kn": "830 ಕ್ರಿ.ಶ.",
+          "gu": "830 ઈ.સ."
         }
       ]
     },
@@ -198,14 +198,14 @@
       "question": {
         "en": "What is the Sanskrit word Aryabhata used for \"sine\"?",
         "hi": "आर्यभट ने \"sine\" के लिए कौन सा संस्कृत शब्द प्रयोग किया?",
-        "mr": "What is the Sanskrit word Aryabhata used for \"sine\"?",
+        "mr": "\"sine\" या शब्दासाठी आर्यभटांनी कोणता संस्कृत शब्द वापरला?",
         "mai": "\"ज्या\" के लेल आर्यभट कोन संस्कृत शब्दक उपयोग केलनि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "\"Jya\" (ज्या) is the Sanskrit term Aryabhata used for what we now call sine. In Sanskrit, \"jya\" means \"bowstring\"  –  visualising the arc of a bow (the angle) and the string that connects its two ends (the chord). Aryabhata's innovation was to use the half-chord (ardha-jya, half the bowstring) of double the angle, which is exactly the modern sine function. The abbreviated form \"jya\" came to mean this half-chord.",
         "hi": "\"ज्या\" वह संस्कृत शब्द है जो आर्यभट ने प्रयोग किया और जिसे हम अब sine कहते हैं। संस्कृत में \"ज्या\" का अर्थ है \"धनुष की डोरी\"  –  चाप (कोण) और उसके दोनों सिरों को जोड़ने वाली डोरी (जीवा) की कल्पना करें। आर्यभट का नवाचार था: दोगुने कोण की अर्ध-जीवा का उपयोग, जो आधुनिक sine फलन है।",
-        "mr": "\"Jya\" (ज्या) is the Sanskrit term Aryabhata used for what we now call sine. In Sanskrit, \"jya\" means \"bowstring\"  –  visualising the arc of a bow (the angle) and the string that connects its two ends (the chord). Aryabhata's innovation was to use the half-chord (ardha-jya, half the bowstring) of double the angle, which is exactly the modern sine function. The abbreviated form \"jya\" came to mean this half-chord.",
+        "mr": "\"ज्या\" (ज्या) हा संस्कृत शब्द आहे जो आर्यभटांनी ज्याला आपण आता ज्या म्हणतो त्यासाठी वापरला. संस्कृतमध्ये, \"ज्या\" म्हणजे \"धनुष्याची दोरी\" – धनुष्याच्या कमानीची (कोन) आणि तिच्या दोन टोकांना जोडणाऱ्या दोरीची (जीवा) कल्पना करणे. आर्यभटांचे नवोपक्रम हे दुप्पट कोनाची अर्ध-जीवा (अर्ध-ज्या, धनुष्याच्या दोरीचा अर्धा भाग) वापरणे होते, जी आधुनिक ज्या कार्यासारखीच आहे. \"ज्या\" हे संक्षिप्त रूप या अर्ध-जीवेसाठी वापरले जाऊ लागले.",
         "mai": "\"ज्या\" (ज्या) ओ संस्कृत शब्द अछि जकरा आर्यभट ओहि लेल उपयोग केलनि जकरा अखन हमसभ ज्या कहैत छी। संस्कृतमे, \"ज्या\" क अर्थ \"धनुषक डोरी\" होइत अछि – धनुषक चाप (कोण) आ ओहि डोरीक कल्पना करैत जे एकर दू टा छोरकें जोड़ैत अछि (जीवा)। आर्यभटक नवोन्मेष छल जे दू गुणा कोणक अर्ध-जीवा (अर्ध-ज्या, धनुषक डोरीक आधा) क उपयोग करब, जे आधुनिक ज्या फलनक ठीक बराबर अछि। संक्षिप्त रूप \"ज्या\" क अर्थ ई अर्ध-जीवा भेल।"
       },
       "options": [
@@ -261,14 +261,14 @@
       "question": {
         "en": "What does the Sanskrit word \"Jya\" literally mean?",
         "hi": "संस्कृत शब्द \"ज्या\" का शाब्दिक अर्थ क्या है?",
-        "mr": "What does the Sanskrit word \"Jya\" literally mean?",
+        "mr": "\"ज्या\" या संस्कृत शब्दाचा शब्दशः अर्थ काय आहे?",
         "mai": "संस्कृत शब्द \"ज्या\" क शाब्दिक अर्थ की होइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "\"Jya\" literally means \"bowstring\" in Sanskrit. The trigonometric analogy: imagine a bow (a circular arc representing an angle). The bowstring connects the two ends of the arc  –  this is the chord. The half-chord from the midpoint of the arc to the midpoint of the string is the sine. Indian mathematicians visualised their trigonometry through the physical metaphor of a bow and arrow, which was central to both warfare and the Mahabharata/Ramayana epics.",
         "hi": "\"ज्या\" का संस्कृत में शाब्दिक अर्थ है \"धनुष की डोरी।\" त्रिकोणमितीय सादृश्य: एक धनुष (कोण को दर्शाने वाला वृत्ताकार चाप) की कल्पना करें। धनुष की डोरी चाप के दोनों सिरों को जोड़ती है  –  यह जीवा है। चाप के मध्यबिन्दु से डोरी के मध्यबिन्दु तक की अर्ध-जीवा sine है।",
-        "mr": "\"Jya\" literally means \"bowstring\" in Sanskrit. The trigonometric analogy: imagine a bow (a circular arc representing an angle). The bowstring connects the two ends of the arc  –  this is the chord. The half-chord from the midpoint of the arc to the midpoint of the string is the sine. Indian mathematicians visualised their trigonometry through the physical metaphor of a bow and arrow, which was central to both warfare and the Mahabharata/Ramayana epics.",
+        "mr": "संस्कृतमध्ये \"ज्या\" या शब्दाचा शब्दशः अर्थ \"धनुष्याची दोरी\" आहे. त्रिकोणमितीय उपमा: एका धनुष्याची कल्पना करा (कोन दर्शवणारी एक वर्तुळाकार कमान). धनुष्याची दोरी कमानीच्या दोन टोकांना जोडते – ही जीवा आहे. कमानीच्या मध्यबिंदूपासून दोरीच्या मध्यबिंदूपर्यंतची अर्ध-जीवा ही ज्या आहे. भारतीय गणितज्ञांनी त्यांची त्रिकोणमिती धनुष्यबाणाच्या भौतिक रूपकाद्वारे पाहिली, जे युद्ध आणि महाभारत/रामायण या दोन्ही महाकाव्यांमध्ये महत्त्वाचे होते.",
         "mai": "संस्कृतमे \"ज्या\" क शाब्दिक अर्थ \"धनुषक डोरी\" होइत अछि। त्रिकोणमितीय सादृश्य: एकटा धनुषक कल्पना करू (एकटा वृत्ताकार चाप जे एकटा कोणक प्रतिनिधित्व करैत अछि)। धनुषक डोरी चापक दू टा छोरकें जोड़ैत अछि – ई जीवा अछि। चापक मध्यबिंदु सँ डोरीक मध्यबिंदु धरिक अर्ध-जीवा ज्या अछि। भारतीय गणितज्ञ अपन त्रिकोणमितिकें धनुष आ बाणक भौतिक रूपक माध्यम सँ देखलनि, जे युद्ध आ महाभारत आ रामायण महाकाव्य दुनू लेल केंद्रीय छल।"
       },
       "options": [
@@ -319,14 +319,14 @@
       "question": {
         "en": "What is the correct sequence of the mistranslation chain that gave us the English word \"sine\"?",
         "hi": "अंग्रेजी शब्द \"sine\" देने वाली गलत-अनुवाद श्रृंखला का सही क्रम क्या है?",
-        "mr": "What is the correct sequence of the mistranslation chain that gave us the English word \"sine\"?",
+        "mr": "इंग्रजी शब्द \"sine\" देणाऱ्या चुकीच्या भाषांतराच्या साखळीचा योग्य क्रम काय आहे?",
         "mai": "गलत अनुवादक ओ श्रृंखलाक सही क्रम की अछि जे हमरासभकें अंग्रेजी शब्द \"sine\" देलक?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The chain is: Jya (ज्या, Sanskrit for bowstring) → Jiba (جيب, Arabic transliteration of jya  –  meaningless in Arabic) → Sinus (Latin  –  medieval translators mistook Arabic \"jiba\" for \"jaib\" meaning \"fold/pocket/bay,\" then translated it to Latin \"sinus\" meaning \"fold, bay, bosom\") → Sine (English). The word \"sine\" has no Indo-European root meaning  –  it is an accident of mispronunciation and mistranslation across three languages.",
         "hi": "श्रृंखला है: ज्या (Sanskrit, धनुष की डोरी) → जिबा (Arabic लिप्यंतरण  –  अरबी में अर्थहीन) → Sinus (Latin  –  मध्ययुगीन अनुवादकों ने \"जिबा\" को \"जैब\" समझा जिसका अर्थ \"तह/जेब\" है, फिर इसे \"sinus\" = \"तह, खाड़ी\" में अनुवादित किया) → Sine (अंग्रेजी)। \"Sine\" शब्द का कोई भारोपीय मूल अर्थ नहीं  –  यह तीन भाषाओं में गलत उच्चारण और गलत अनुवाद का परिणाम है।",
-        "mr": "The chain is: Jya (ज्या, Sanskrit for bowstring) → Jiba (جيب, Arabic transliteration of jya  –  meaningless in Arabic) → Sinus (Latin  –  medieval translators mistook Arabic \"jiba\" for \"jaib\" meaning \"fold/pocket/bay,\" then translated it to Latin \"sinus\" meaning \"fold, bay, bosom\") → Sine (English). The word \"sine\" has no Indo-European root meaning  –  it is an accident of mispronunciation and mistranslation across three languages.",
+        "mr": "ही साखळी अशी आहे: ज्या (ज्या, धनुष्याची दोरीसाठी संस्कृत) → जिबा (جيب, ज्याचे अरबी लिप्यांतर – अरबीमध्ये अर्थहीन) → सायनस (लॅटिन – मध्ययुगीन अनुवादकांनी अरबी \"जिबा\" ला \"जैब\" समजले, ज्याचा अर्थ \"घडी/खिसा/खाडी\" आहे, नंतर त्याचे लॅटिन \"सायनस\" मध्ये भाषांतर केले, ज्याचा अर्थ \"घडी, खाडी, छाती\" आहे) → साइन (इंग्रजी). \"sine\" या शब्दाला कोणताही इंडो-युरोपियन मूळ अर्थ नाही – हे तीन भाषांमधील चुकीच्या उच्चार आणि चुकीच्या भाषांतराचा एक अपघात आहे.",
         "mai": "श्रृंखला अछि: ज्या (ज्या, संस्कृतमे धनुषक डोरी) → जिबा (جيب, ज्याक अरबी लिप्यंतरण – अरबीमे अर्थहीन) → साइनस (लैटिन – मध्यकालीन अनुवादक अरबी \"जिबा\" कें \"जैब\" बुझि लेलनि, जकर अर्थ \"मोड़/जेब/खाड़ी\" होइत अछि, फेर एकरा लैटिन \"साइनस\" मे अनुवाद केलनि जकर अर्थ \"मोड़, खाड़ी, छाती\" होइत अछि) → साइन (अंग्रेजी)। \"साइन\" शब्दक कोनो भारोपीय मूल अर्थ नहि अछि – ई तीनटा भाषामे गलत उच्चारण आ गलत अनुवादक एकटा संयोग अछि।"
       },
       "options": [
@@ -335,44 +335,44 @@
           "hi": "ज्या → Sinus → जिबा → Sine",
           "mai": "ज्या → साइनस → जिबा → साइन",
           "mr": "ज्या → Sinus → जिबा → Sine",
-          "ta": "Jya → Sinus → Jiba → Sine",
-          "te": "Jya → Sinus → Jiba → Sine",
-          "bn": "Jya → Sinus → Jiba → Sine",
-          "kn": "Jya → Sinus → Jiba → Sine",
-          "gu": "Jya → Sinus → Jiba → Sine"
+          "ta": "ஜ்யா → சைனஸ் → ஜிபா → சைன்",
+          "te": "జ్యా → సైనస్ → జిబా → సైన్",
+          "bn": "জ্যা → সাইনাস → জিবা → সাইন",
+          "kn": "ಜ್ಯ → ಸೈನಸ್ → ಜಿಬಾ → ಸೈನ್",
+          "gu": "જ્યા → સાઇનસ → જીબા → સાઇન"
         },
         {
           "en": "Jya → Jiba → Sinus → Sine",
           "hi": "ज्या → जिबा → Sinus → Sine",
           "mai": "ज्या → जिबा → साइनस → साइन",
           "mr": "ज्या → जिबा → Sinus → Sine",
-          "ta": "Jya → Jiba → Sinus → Sine",
-          "te": "Jya → Jiba → Sinus → Sine",
-          "bn": "Jya → Jiba → Sinus → Sine",
-          "kn": "Jya → Jiba → Sinus → Sine",
-          "gu": "Jya → Jiba → Sinus → Sine"
+          "ta": "ஜ்யா → ஜிபா → சைனஸ் → சைன்",
+          "te": "జ్యా → జిబా → సైనస్ → సైన్",
+          "bn": "জ্যা → জিবা → সাইনাস → সাইন",
+          "kn": "ಜ್ಯ → ಜಿಬಾ → ಸೈನಸ್ → ಸೈನ್",
+          "gu": "જ્યા → જીબા → સાઇનસ → સાઇન"
         },
         {
           "en": "Jya → Chord → Sinus → Sine",
           "hi": "ज्या → Chord → Sinus → Sine",
           "mai": "ज्या → जीवा → साइनस → साइन",
           "mr": "ज्या → Chord → Sinus → Sine",
-          "ta": "Jya → Chord → Sinus → Sine",
-          "te": "Jya → Chord → Sinus → Sine",
-          "bn": "Jya → Chord → Sinus → Sine",
-          "kn": "Jya → Chord → Sinus → Sine",
-          "gu": "Jya → Chord → Sinus → Sine"
+          "ta": "ஜ்யா → நாண் → சைனஸ் → சைன்",
+          "te": "జ్యా → జ్యా → సైనస్ → సైన్",
+          "bn": "জ্যা → কর্ড → সাইনাস → সাইন",
+          "kn": "ಜ್ಯ → ಕಾರ್ಡ್ → ಸೈನಸ್ → ಸೈನ್",
+          "gu": "જ્યા → જીવા → સાઇનસ → સાઇન"
         },
         {
           "en": "Ardha-jya → Jiba → Sine → Sinus",
           "hi": "अर्धज्या → जिबा → Sine → Sinus",
           "mai": "अर्ध-ज्या → जिबा → साइन → साइनस",
           "mr": "अर्धज्या → जिबा → Sine → Sinus",
-          "ta": "Ardha-jya → Jiba → Sine → Sinus",
-          "te": "Ardha-jya → Jiba → Sine → Sinus",
-          "bn": "Ardha-jya → Jiba → Sine → Sinus",
-          "kn": "Ardha-jya → Jiba → Sine → Sinus",
-          "gu": "Ardha-jya → Jiba → Sine → Sinus"
+          "ta": "அர்த-ஜ்யா → ஜிபா → சைன் → சைனஸ்",
+          "te": "అర్ధ-జ్యా → జిబా → సైన్ → సైనస్",
+          "bn": "অর্ধ-জ্যা → জিবা → সাইন → সাইনাস",
+          "kn": "ಅರ್ಧ-ಜ್ಯ → ಜಿಬಾ → ಸೈನ್ → ಸೈನಸ್",
+          "gu": "અર્ધ-જ્યા → જીબા → સાઇન → સાઇનસ"
         }
       ]
     },
@@ -382,14 +382,14 @@
       "question": {
         "en": "How many values did Aryabhata include in his sine table?",
         "hi": "आर्यभट की ज्या सारणी में कितने मान थे?",
-        "mr": "How many values did Aryabhata include in his sine table?",
+        "mr": "आर्यभटांनी त्यांच्या ज्या सारणीत किती मूल्ये समाविष्ट केली?",
         "mai": "आर्यभट अपन ज्या सारणीमे केटा मान शामिल केलनि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Aryabhata\"s sine table contains 24 values, covering angles from 3.75° to 90° in steps of 3.75° (which is 90°/24). He gave these as first-order differences  –  a compact way to encode the full table. From these 24 differences, one can reconstruct all 24 sine values. The table appears in just 4 Sanskrit verses in the Aryabhatiya, using a clever encoding in consonant-vowel pairs. It is one of the most elegant mathematical encodings in history.",
         "hi": "आर्यभट की ज्या सारणी में 24 मान हैं, जो 3.75° से 90° तक 3.75° (90°/24) के अन्तराल पर हैं। उन्होंने इन्हें प्रथम-कोटि अन्तरों के रूप में दिया  –  पूरी सारणी को संक्षेप में एन्कोड करने का तरीका। आर्यभटीय में मात्र 4 संस्कृत श्लोकों में व्यञ्जन-स्वर युग्मों में एन्कोड करके  –  इतिहास में सबसे सुरुचिपूर्ण गणितीय एन्कोडिंग में से एक।",
-        "mr": "Aryabhata\"s sine table contains 24 values, covering angles from 3.75° to 90° in steps of 3.75° (which is 90°/24). He gave these as first-order differences  –  a compact way to encode the full table. From these 24 differences, one can reconstruct all 24 sine values. The table appears in just 4 Sanskrit verses in the Aryabhatiya, using a clever encoding in consonant-vowel pairs. It is one of the most elegant mathematical encodings in history.",
+        "mr": "आर्यभटांच्या ज्या सारणीत २४ मूल्ये आहेत, ज्यात ३.७५° ते ९०° पर्यंतचे कोन ३.७५° च्या फरकाने (म्हणजे ९०°/२४) समाविष्ट आहेत. त्यांनी ही मूल्ये प्रथम-क्रम फरकांच्या स्वरूपात दिली – संपूर्ण सारणी एन्कोड करण्याचा एक संक्षिप्त मार्ग. या २४ फरकांमधून, सर्व २४ ज्या मूल्ये पुन्हा तयार करता येतात. ही सारणी आर्यभटीयमध्ये केवळ ४ संस्कृत श्लोकांमध्ये दिसते, ज्यात व्यंजन-स्वर जोड्यांमध्ये एक हुशार एन्कोडिंग वापरले आहे. हा इतिहासातील सर्वात सुंदर गणितीय एन्कोडिंगपैकी एक आहे.",
         "mai": "आर्यभटक ज्या सारणीमे २४ टा मान अछि, जे ३.७५° सँ ९०° धरि ३.७५° क चरणमे कोणकें कवर करैत अछि (जे ९०°/२४ अछि)। ओ एकरासभकें प्रथम-क्रमक अंतरक रूपमे देलनि – पूरा सारणीकें एन्कोड करबाक एकटा संक्षिप्त तरीका। ई २४ टा अंतर सँ, कोनो व्यक्ति सभ २४ ज्या मानकें पुनर्निर्माण कऽ सकैत अछि। ई सारणी आर्यभटीयमे मात्र ४ टा संस्कृत श्लोकमे प्रकट होइत अछि, व्यंजन-स्वरक जोड़ामे एकटा चतुर एन्कोडिंगक उपयोग करैत। ई इतिहासक सभसँ सुरुचिपूर्ण गणितीय एन्कोडिंगमे सँ एक अछि।"
       },
       "options": [
@@ -445,14 +445,14 @@
       "question": {
         "en": "What interval (in degrees) separates each entry in Aryabhata\"s sine table?",
         "hi": "आर्यभट की ज्या सारणी की प्रत्येक प्रविष्टि के बीच कितने अंशों का अन्तराल है?",
-        "mr": "What interval (in degrees) separates each entry in Aryabhata\"s sine table?",
+        "mr": "आर्यभटांच्या ज्या सारणीतील प्रत्येक नोंदीला किती अंतर (अंशांमध्ये) वेगळे करते?",
         "mai": "आर्यभटक ज्या सारणीमे प्रत्येक प्रविष्टि कें कोन अंतराल (डिग्रीमे) अलग करैत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "3.75° is the interval  –  because 90° divided by 24 equals exactly 3.75°. In Indian reckoning, this is 225 arc-minutes (3° 45'), and the full circle of 360° is divided into 96 equal parts of 3.75° each. Aryabhata expressed sine values as lengths in a circle of radius 3438 (the number of arc-minutes in one radian), chosen because sin(1°) ≈ 1/3438. This unit circle with R = 3438 is called the \"trijya\" (radius in arc-minutes).",
         "hi": "3.75° अन्तराल है  –  क्योंकि 90° को 24 से विभाजित करने पर ठीक 3.75° मिलता है। भारतीय गणना में यह 225 चापमिनट (3° 45') है। आर्यभट ने sine मान 3438 त्रिज्या वाले वृत्त में लम्बाई के रूप में व्यक्त किए (एक रेडियन में चापमिनटों की संख्या), क्योंकि sin(1°) ≈ 1/3438। यह \"त्रिज्या\" (R = 3438 चापमिनट) है।",
-        "mr": "3.75° is the interval  –  because 90° divided by 24 equals exactly 3.75°. In Indian reckoning, this is 225 arc-minutes (3° 45'), and the full circle of 360° is divided into 96 equal parts of 3.75° each. Aryabhata expressed sine values as lengths in a circle of radius 3438 (the number of arc-minutes in one radian), chosen because sin(1°) ≈ 1/3438. This unit circle with R = 3438 is called the \"trijya\" (radius in arc-minutes).",
+        "mr": "३.७५° हे अंतर आहे – कारण ९०° ला २४ ने भागल्यास नेमके ३.७५° येते. भारतीय गणनेनुसार, हे २२५ चाप-मिनिटे (३° ४५') आहे, आणि ३६०° चे पूर्ण वर्तुळ प्रत्येकी ३.७५° च्या ९६ समान भागांमध्ये विभागले आहे. आर्यभटांनी ज्या मूल्ये ३४३८ त्रिज्येच्या वर्तुळात लांबी म्हणून व्यक्त केली (एक रेडियनमधील चाप-मिनिटांची संख्या), कारण sin(१°) ≈ १/३४३८. R = ३४३८ असलेले हे एकक वर्तुळ \"त्रिज्या\" (चाप-मिनिटांमधील त्रिज्या) म्हणून ओळखले जाते.",
         "mai": "३.७५° अंतराल अछि – कारण ९०° कें २४ सँ भाग देला पर ठीक ३.७५° होइत अछि। भारतीय गणनामे, ई २२५ चाप-मिनट (३° ४५') अछि, आ ३६०° क पूरा वृत्त कें प्रत्येक ३.७५° क ९६ समान भागमे विभाजित कएल गेल अछि। आर्यभट ज्या मानकें ३४३८ त्रिज्याक वृत्तमे लंबाईक रूपमे व्यक्त केलनि (एक रेडियनमे चाप-मिनटक संख्या), ई एहि लेल चुनल गेल छल कारण sin(१°) ≈ १/३४३८। R = ३४३८ वाला ई इकाई वृत्त कें \"त्रिज्या\" (चाप-मिनटमे त्रिज्या) कहल जाइत अछि।"
       },
       "options": [
@@ -508,14 +508,14 @@
       "question": {
         "en": "What is the Sanskrit term \"Kojya\" equivalent to in modern trigonometry?",
         "hi": "आधुनिक त्रिकोणमिति में संस्कृत शब्द \"कोज्या\" किसके समतुल्य है?",
-        "mr": "What is the Sanskrit term \"Kojya\" equivalent to in modern trigonometry?",
+        "mr": "आधुनिक त्रिकोणमितीमध्ये \"कोज्या\" हा संस्कृत शब्द कशाच्या समतुल्य आहे?",
         "mai": "आधुनिक त्रिकोणमितिमे संस्कृत शब्द \"कोज्या\" केकर बराबर अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "\"Kojya\" (कोज्या) is the Sanskrit for cosine. \"Ko\" is a prefix meaning \"complementary\" (from \"koti\"  –  the complement of an angle), and \"jya\" is sine. So kojya = the sine of the complementary angle = cosine. Indian mathematicians also had \"utkramajya\" for versine (1 − cos θ), which was widely used in navigation. The versine appears prominently in Indian astronomical calculations because it is always positive and avoids the negative values that cosine can take.",
         "hi": "\"कोज्या\" cosine का संस्कृत नाम है। \"को\" पूरक का उपसर्ग है (\"कोटि\" से  –  कोण का पूरक), और \"ज्या\" sine है। तो कोज्या = पूरक कोण की ज्या = cosine। भारतीय गणितज्ञों के पास versine (1 − cos θ) के लिए \"उत्क्रमज्या\" भी था, जो नौवहन में व्यापक रूप से उपयोग किया जाता था।",
-        "mr": "\"Kojya\" (कोज्या) is the Sanskrit for cosine. \"Ko\" is a prefix meaning \"complementary\" (from \"koti\"  –  the complement of an angle), and \"jya\" is sine. So kojya = the sine of the complementary angle = cosine. Indian mathematicians also had \"utkramajya\" for versine (1 − cos θ), which was widely used in navigation. The versine appears prominently in Indian astronomical calculations because it is always positive and avoids the negative values that cosine can take.",
+        "mr": "\"कोज्या\" (कोज्या) हे कोसाइनसाठी संस्कृत आहे. \"को\" हा \"पूरक\" (कोटी – कोनाचा पूरक) या अर्थाचा उपसर्ग आहे, आणि \"ज्या\" म्हणजे साइन. म्हणून कोज्या = पूरक कोनाची ज्या = कोसाइन. भारतीय गणितज्ञांकडे वर्साइनसाठी \"उत्क्रमज्या\" (१ − cos θ) देखील होती, जी नौकानयनात मोठ्या प्रमाणावर वापरली जात होती. भारतीय खगोलशास्त्रीय गणितांमध्ये वर्साइन प्रमुखपणे दिसते कारण ते नेहमी सकारात्मक असते आणि कोसाइन घेऊ शकणारी नकारात्मक मूल्ये टाळते.",
         "mai": "\"कोज्या\" (कोज्या) कोसाइनक लेल संस्कृत शब्द अछि। \"को\" एकटा उपसर्ग अछि जकर अर्थ \"पूरक\" होइत अछि (\"कोटि\" सँ – एकटा कोणक पूरक), आ \"ज्या\" ज्या अछि। ताहि लेल कोज्या = पूरक कोणक ज्या = कोसाइन। भारतीय गणितज्ञसभकें वर्साइन (१ − cos θ) के लेल \"उत्क्रमज्या\" सेहो छलनि, जकर उपयोग नेविगेशनमे व्यापक रूप सँ होइत छल। वर्साइन भारतीय खगोलीय गणनामे प्रमुख रूप सँ प्रकट होइत अछि कारण ई सदिखन सकारात्मक होइत अछि आ कोसाइन जे नकारात्मक मान लऽ सकैत अछि, ओकरा सँ बचैत अछि।"
       },
       "options": [
@@ -571,14 +571,14 @@
       "question": {
         "en": "Greek mathematicians invented trigonometry using the same sine function that Indian mathematicians used.",
         "hi": "ग्रीक गणितज्ञों ने उसी sine फलन का उपयोग करके त्रिकोणमिति का आविष्कार किया जो भारतीय गणितज्ञ उपयोग करते थे।",
-        "mr": "Greek mathematicians invented trigonometry using the same sine function that Indian mathematicians used.",
+        "mr": "ग्रीक गणितज्ञांनी भारतीय गणितज्ञांनी वापरलेल्या त्याच ज्या कार्याचा वापर करून त्रिकोणमितीचा शोध लावला.",
         "mai": "ग्रीक गणितज्ञसभ ओही ज्या फलनक उपयोग करैत त्रिकोणमितिक आविष्कार केलनि जे भारतीय गणितज्ञसभ उपयोग केलनि।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "False. Greek mathematicians (Hipparchus, Ptolemy) used chord tables  –  values of the full chord for various arc lengths in a circle  –  not half-chords (sines). The chord of angle θ = 2·sin(θ/2), which is a less elegant formulation. Indians independently developed the half-chord (jya = sine) as the primary function, which is far more convenient for calculations. The sine function as we know it is an Indian invention, not Greek.",
         "hi": "असत्य। ग्रीक गणितज्ञों (हिप्पार्कस, टॉलेमी) ने जीवा सारणियों का उपयोग किया  –  वृत्त में विभिन्न चापों के लिए पूर्ण जीवा के मान  –  अर्ध-जीवा (sine) का नहीं। कोण θ की जीवा = 2·sin(θ/2), जो कम सुरुचिपूर्ण है। भारतीयों ने स्वतन्त्र रूप से अर्ध-जीवा (ज्या = sine) को प्राथमिक फलन के रूप में विकसित किया। sine फलन जैसा हम जानते हैं, एक भारतीय आविष्कार है।",
-        "mr": "False. Greek mathematicians (Hipparchus, Ptolemy) used chord tables  –  values of the full chord for various arc lengths in a circle  –  not half-chords (sines). The chord of angle θ = 2·sin(θ/2), which is a less elegant formulation. Indians independently developed the half-chord (jya = sine) as the primary function, which is far more convenient for calculations. The sine function as we know it is an Indian invention, not Greek.",
+        "mr": "असत्य. ग्रीक गणितज्ञांनी (हिप्पार्कस, टॉलेमी) जीवा सारण्या वापरल्या – वर्तुळातील विविध चाप लांबीसाठी पूर्ण जीवेची मूल्ये – अर्ध-जीवा (ज्या) नव्हे. कोन θ ची जीवा = २·sin(θ/२), जी एक कमी आकर्षक मांडणी आहे. भारतीयांनी स्वतंत्रपणे अर्ध-जीवा (ज्या = साइन) प्राथमिक कार्य म्हणून विकसित केली, जी गणितासाठी खूप सोयीस्कर आहे. आपल्याला माहीत असलेले साइन कार्य ही भारतीय निर्मिती आहे, ग्रीक नव्हे.",
         "mai": "गलत। ग्रीक गणितज्ञसभ (हिप्पार्कस, टॉलेमी) जीवा सारणीक उपयोग केलनि – एकटा वृत्तमे विभिन्न चाप लंबाईक लेल पूर्ण जीवाक मान – अर्ध-जीवा (ज्या) नहि। कोण θ क जीवा = २·sin(θ/२), जे एकटा कम सुरुचिपूर्ण सूत्र अछि। भारतीयसभ स्वतंत्र रूप सँ अर्ध-जीवा (ज्या = साइन) कें प्राथमिक फलनक रूपमे विकसित केलनि, जे गणनाक लेल बहुत बेसी सुविधाजनक अछि। ज्या फलन जकरा हमसभ जनैत छी, ओ भारतीय आविष्कार अछि, ग्रीक नहि।"
       }
     },
@@ -588,14 +588,14 @@
       "question": {
         "en": "The English word \"sine\" ultimately derives from the Sanskrit word \"jya\" (bowstring), through a chain of mistranslations via Arabic and Latin.",
         "hi": "अंग्रेजी शब्द \"sine\" अन्ततः संस्कृत शब्द \"ज्या\" (धनुष की डोरी) से अरबी और लैटिन के माध्यम से गलत-अनुवाद की श्रृंखला से निकला है।",
-        "mr": "The English word \"sine\" ultimately derives from the Sanskrit word \"jya\" (bowstring), through a chain of mistranslations via Arabic and Latin.",
+        "mr": "इंग्रजी शब्द \"sine\" शेवटी संस्कृत शब्द \"ज्या\" (धनुष्याची दोरी) पासून, अरबी आणि लॅटिनद्वारे चुकीच्या भाषांतरांच्या साखळीतून आला आहे.",
         "mai": "अंग्रेजी शब्द \"साइन\" अंततः संस्कृत शब्द \"ज्या\" (धनुषक डोरी) सँ व्युत्पन्न अछि, अरबी आ लैटिनक माध्यम सँ गलत अनुवादक एकटा श्रृंखलाक द्वारा।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "True. The word \"sine\" traces directly back to Sanskrit \"jya\" through a fascinating chain: Aryabhata wrote \"jya\" → Arab translators wrote it as \"jiba\" (جيب, a transliteration with no meaning in Arabic) → medieval Latin translators mistread \"jiba\" as \"jaib\" (جيب, meaning \"pocket/fold/bay\" in Arabic) → they translated \"jaib\" to Latin \"sinus\" (meaning \"fold, bay, bosom\") → English shortened it to \"sine.\" The word has no genuine etymological meaning in any of the languages it passed through  –  only Sanskrit \"jya\" (bowstring) is meaningful.",
         "hi": "सत्य। \"Sine\" शब्द सीधे संस्कृत \"ज्या\" से इस श्रृंखला के माध्यम से आता है: आर्यभट ने \"ज्या\" लिखा → अरब अनुवादकों ने \"जिबा\" (जिबا, अरबी में अर्थहीन लिप्यंतरण) लिखा → मध्ययुगीन लैटिन अनुवादकों ने \"जिबा\" को \"जैब\" (अरबी में \"जेब/तह\") पढ़ा → उन्होंने \"जैब\" को लैटिन \"sinus\" (तह, खाड़ी) में अनुवाद किया → अंग्रेजी ने इसे \"sine\" बना दिया।",
-        "mr": "True. The word \"sine\" traces directly back to Sanskrit \"jya\" through a fascinating chain: Aryabhata wrote \"jya\" → Arab translators wrote it as \"jiba\" (جيب, a transliteration with no meaning in Arabic) → medieval Latin translators mistread \"jiba\" as \"jaib\" (جيب, meaning \"pocket/fold/bay\" in Arabic) → they translated \"jaib\" to Latin \"sinus\" (meaning \"fold, bay, bosom\") → English shortened it to \"sine.\" The word has no genuine etymological meaning in any of the languages it passed through  –  only Sanskrit \"jya\" (bowstring) is meaningful.",
+        "mr": "सत्य. \"sine\" हा शब्द संस्कृत \"ज्या\" पासून एका आकर्षक साखळीतून थेट परत येतो: आर्यभटांनी \"ज्या\" लिहिले → अरबी अनुवादकांनी ते \"जिबा\" (جيب, अरबीमध्ये अर्थहीन लिप्यांतर) असे लिहिले → मध्ययुगीन लॅटिन अनुवादकांनी \"जिबा\" ला \"जैब\" (جيب, अरबीमध्ये \"खिसा/घडी/खाडी\" असा अर्थ) असे चुकीचे वाचले → त्यांनी \"जैब\" चे लॅटिन \"सायनस\" (ज्याचा अर्थ \"घडी, खाडी, छाती\") मध्ये भाषांतर केले → इंग्रजीने ते \"sine\" असे संक्षिप्त केले. ज्या भाषांमधून हा शब्द गेला त्यापैकी कोणत्याही भाषेत त्याला खरा व्युत्पत्तिशास्त्रीय अर्थ नाही – फक्त संस्कृत \"ज्या\" (धनुष्याची दोरी) अर्थपूर्ण आहे.",
         "mai": "सत्य। \"साइन\" शब्द एकटा आकर्षक श्रृंखलाक माध्यम सँ सीधे संस्कृत \"ज्या\" धरि जाइत अछि: आर्यभट \"ज्या\" लिखलनि → अरब अनुवादकसभ एकरा \"जिबा\" (جيب, अरबीमे कोनो अर्थ नहि रखनिहार लिप्यंतरण) क रूपमे लिखलनि → मध्यकालीन लैटिन अनुवादकसभ \"जिबा\" कें \"जैब\" (جيب, अरबीमे \"जेब/मोड़/खाड़ी\" अर्थ) बुझि लेलनि → ओसभ \"जैब\" कें लैटिन \"साइनस\" (जकर अर्थ \"मोड़, खाड़ी, छाती\") मे अनुवाद केलनि → अंग्रेजी एकरा \"साइन\" मे संक्षिप्त केलनि। ई शब्दक कोनो भी भाषामे कोनो वास्तविक व्युत्पत्तिगत अर्थ नहि अछि जकरा सँ ई गुजरल – मात्र संस्कृत \"ज्या\" (धनुषक डोरी) सार्थक अछि।"
       }
     }

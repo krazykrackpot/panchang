@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 5-3: तिथियाँ  –  चान्द्र दिन",
         "mai": "मॉड्यूल 5-3: तिथि – चान्हक दिन",
         "mr": "मॉड्यूल 5-3: तिथियाँ  –  चान्द्र दिन",
-        "ta": "Module 5-3: Tithis  –  Lunar Days",
-        "te": "Module 5-3: Tithis  –  Lunar Days",
-        "bn": "Module 5-3: Tithis  –  Lunar Days",
-        "kn": "Module 5-3: Tithis  –  Lunar Days",
-        "gu": "Module 5-3: Tithis  –  Lunar Days"
+        "ta": "அலகு 5-3: திதிகள் – சந்திர நாட்கள்",
+        "te": "మాడ్యూల్ 5-3: తిథులు – చంద్ర దినాలు",
+        "bn": "মডিউল ৫-৩: তিথি – চান্দ্র দিন",
+        "kn": "ಮಾಡ್ಯೂಲ್ 5-3: ತಿಥಿಗಳು – ಚಂದ್ರ ದಿನಗಳು",
+        "gu": "મોડ્યુલ 5-3: તિથિઓ – ચંદ્ર દિવસો"
       },
       "href": "/learn/modules/5-3"
     },
@@ -42,11 +42,11 @@
         "hi": "मॉड्यूल 7-3: वार और सप्ताह के दिन",
         "mai": "मॉड्यूल 7-3: वार आ सप्ताहक दिन",
         "mr": "मॉड्यूल 7-3: वार और सप्ताह के दिन",
-        "ta": "Module 7-3: Vara & Weekdays",
-        "te": "Module 7-3: Vara & Weekdays",
-        "bn": "Module 7-3: Vara & Weekdays",
-        "kn": "Module 7-3: Vara & Weekdays",
-        "gu": "Module 7-3: Vara & Weekdays"
+        "ta": "அலகு 7-3: வாரம் மற்றும் வார நாட்கள்",
+        "te": "మాడ్యూల్ 7-3: వారం & వార దినాలు",
+        "bn": "মডিউল ৭-৩: বার ও সপ্তাহের দিনগুলি",
+        "kn": "ಮಾಡ್ಯೂಲ್ 7-3: ವಾರ ಮತ್ತು ವಾರದ ದಿನಗಳು",
+        "gu": "મોડ્યુલ 7-3: વાર અને અઠવાડિયાના દિવસો"
       },
       "href": "/learn/modules/7-3"
     },
@@ -56,11 +56,11 @@
         "hi": "मॉड्यूल 22-6: मुहूर्त पद्धति",
         "mai": "मॉड्यूल 22-6: मुहूर्त प्रणाली",
         "mr": "मॉड्यूल 22-6: मुहूर्त पद्धति",
-        "ta": "Module 22-6: The Muhurta System",
-        "te": "Module 22-6: The Muhurta System",
-        "bn": "Module 22-6: The Muhurta System",
-        "kn": "Module 22-6: The Muhurta System",
-        "gu": "Module 22-6: The Muhurta System"
+        "ta": "அலகு 22-6: முஹூர்த்த முறை",
+        "te": "మాడ్యూల్ 22-6: ముహూర్త వ్యవస్థ",
+        "bn": "মডিউল ২২-৬: মুহূর্ত পদ্ধতি",
+        "kn": "ಮಾಡ್ಯೂಲ್ 22-6: ಮುಹೂರ್ತ ವ್ಯವಸ್ಥೆ",
+        "gu": "મોડ્યુલ 22-6: મુહૂર્ત પ્રણાલી"
       },
       "href": "/learn/modules/22-6"
     }
@@ -72,14 +72,14 @@
       "question": {
         "en": "Diwali is observed using which timing rule?",
         "hi": "दीपावली किस काल नियम के अनुसार मनाई जाती है?",
-        "mr": "Diwali is observed using which timing rule?",
+        "mr": "दिवाळी कोणत्या वेळेच्या नियमानुसार पाळली जाते?",
         "mai": "दीपावली कोन समय नियमसँ मनाओल जाइत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Lakshmi Puja is performed during Pradosh Kaal (evening twilight, from sunset to about 96 minutes after sunset), so Diwali follows the Pradosh rule. The day on which the Amavasya tithi prevails during Pradosh Kaal is chosen for Diwali observance.",
         "hi": "लक्ष्मी पूजा प्रदोष काल (सूर्यास्त से लगभग 96 मिनट बाद तक) में की जाती है, इसलिए दीपावली प्रदोष नियम का पालन करती है। जिस दिन अमावस्या तिथि प्रदोष काल में व्याप्त होती है, उस दिन दीपावली मनाई जाती है।",
-        "mr": "Lakshmi Puja is performed during Pradosh Kaal (evening twilight, from sunset to about 96 minutes after sunset), so Diwali follows the Pradosh rule. The day on which the Amavasya tithi prevails during Pradosh Kaal is chosen for Diwali observance.",
+        "mr": "लक्ष्मी पूजा प्रदोष काळात (संध्याकाळची वेळ, सूर्यास्तापासून सूर्यास्तानंतर सुमारे ९६ मिनिटांपर्यंत) केली जाते, त्यामुळे दिवाळी प्रदोष नियमानुसार पाळली जाते. ज्या दिवशी प्रदोष काळात अमावस्या तिथी असते तो दिवस दिवाळी साजरी करण्यासाठी निवडला जातो.",
         "mai": "लक्ष्मी पूजा प्रदोष कालक समय (साँझक गोधूलि बेला, सूर्यास्तसँ लऽ कऽ सूर्यास्तक लगभग ९६ मिनट धरि) कएल जाइत अछि, तेँ दीपावली प्रदोष नियमक पालन करैत अछि। ओ दिन जाहि दिन प्रदोष कालक समय अमावस्या तिथि रहैत अछि, से दीपावली मनाबय लेल चुनl जाइत अछि।"
       },
       "options": [
@@ -88,11 +88,11 @@
           "hi": "उदय तिथि",
           "mai": "उदय तिथि",
           "mr": "उदय तिथि",
-          "ta": "Udaya Tithi",
-          "te": "Udaya Tithi",
-          "bn": "Udaya Tithi",
-          "kn": "Udaya Tithi",
-          "gu": "Udaya Tithi"
+          "ta": "உதய திதி",
+          "te": "ఉదయ తిథి",
+          "bn": "উদয় তিথি",
+          "kn": "ಉದಯ ತಿಥಿ",
+          "gu": "ઉદય તિથિ"
         },
         {
           "en": "Madhyahna",
@@ -110,22 +110,22 @@
           "hi": "प्रदोष काल",
           "mai": "प्रदोष काल",
           "mr": "प्रदोष काल",
-          "ta": "Pradosh Kaal",
-          "te": "Pradosh Kaal",
-          "bn": "Pradosh Kaal",
-          "kn": "Pradosh Kaal",
-          "gu": "Pradosh Kaal"
+          "ta": "பிரதோஷ காலம்",
+          "te": "ప్రదోష కాలం",
+          "bn": "প্রদোষ কাল",
+          "kn": "ಪ್ರದೋಷ ಕಾಲ",
+          "gu": "પ્રદોષ કાળ"
         },
         {
           "en": "Nishita Kaal",
           "hi": "निशीथ काल",
           "mai": "निशिता काल",
           "mr": "निशीथ काल",
-          "ta": "Nishita Kaal",
-          "te": "Nishita Kaal",
-          "bn": "Nishita Kaal",
-          "kn": "Nishita Kaal",
-          "gu": "Nishita Kaal"
+          "ta": "நிஷித காலம்",
+          "te": "నిశిత కాలం",
+          "bn": "নিশীথ কাল",
+          "kn": "ನಿಶಿತ ಕಾಲ",
+          "gu": "નિશિતા કાળ"
         }
       ]
     },
@@ -135,14 +135,14 @@
       "question": {
         "en": "Why might Ram Navami fall on a different day than the one where Navami is at sunrise?",
         "hi": "राम नवमी उस दिन से अलग दिन पर क्यों पड़ सकती है जिस दिन सूर्योदय पर नवमी हो?",
-        "mr": "Why might Ram Navami fall on a different day than the one where Navami is at sunrise?",
+        "mr": "राम नवमी त्या दिवसापेक्षा वेगळ्या दिवशी का येऊ शकते, ज्या दिवशी नवमी सूर्योदयाला असते?",
         "mai": "राम नवमी ओ दिनसँ भिन्न की लेल पड़ि सकैत अछि जाहि दिन नवमी सूर्योदयक समय रहैत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Ram Navami follows the Madhyahna rule  –  the day when the 9th tithi (Navami) is active during midday (Madhyahna Kaal) is chosen, because Lord Rama was born at noon. If Navami prevails at sunrise on Day 1 but not at midday, while Day 2 has Navami at midday, Day 2 is chosen.",
         "hi": "राम नवमी मध्याह्न नियम का पालन करती है  –  जिस दिन नवमी तिथि मध्याह्न काल में व्याप्त हो, वह दिन चुना जाता है, क्योंकि भगवान राम का जन्म दोपहर में हुआ था। यदि दिन 1 पर सूर्योदय पर नवमी हो पर मध्याह्न में नहीं, जबकि दिन 2 पर मध्याह्न में नवमी हो, तो दिन 2 चुना जाता है।",
-        "mr": "Ram Navami follows the Madhyahna rule  –  the day when the 9th tithi (Navami) is active during midday (Madhyahna Kaal) is chosen, because Lord Rama was born at noon. If Navami prevails at sunrise on Day 1 but not at midday, while Day 2 has Navami at midday, Day 2 is chosen.",
+        "mr": "राम नवमी मध्यान्ह नियमानुसार पाळली जाते – ज्या दिवशी ९ वी तिथी (नवमी) मध्यान्ह काळात (मध्यान्ह काळ) सक्रिय असते तो दिवस निवडला जातो, कारण भगवान रामाचा जन्म दुपारी झाला होता. जर पहिल्या दिवशी सूर्योदयाला नवमी असेल पण मध्यान्ही नसेल, तर दुसऱ्या दिवशी मध्यान्ही नवमी असल्यास, दुसरा दिवस निवडला जातो.",
         "mai": "राम नवमी माध्याह्न नियमक पालन करैत अछि – ओ दिन जाहि दिन ९म तिथि (नवमी) माध्याह्न (माध्याह्न काल) मे सक्रिय रहैत अछि, से चुनl जाइत अछि, किएक तँ भगवान रामक जन्म दोपहरिया मे भेल छल। जँ नवमी पहिल दिन सूर्योदयक समय रहैत अछि मुदा दोपहरिया मे नहि, जखन कि दोसर दिन नवमी दोपहरिया मे रहैत अछि, तँ दोसर दिन चुनl जाइत अछि।"
       },
       "options": [
@@ -151,44 +151,44 @@
           "hi": "क्योंकि नवमी तिथि छूट गई",
           "mai": "किएक तँ नवमी तिथि छोड़ि देल गेल छल",
           "mr": "क्योंकि नवमी तिथि छूट गई",
-          "ta": "Because the Navami tithi was skipped",
-          "te": "Because the Navami tithi was skipped",
-          "bn": "Because the Navami tithi was skipped",
-          "kn": "Because the Navami tithi was skipped",
-          "gu": "Because the Navami tithi was skipped"
+          "ta": "ஏனெனில் நவமி திதி தவிர்க்கப்பட்டது",
+          "te": "నవమి తిథి దాటవేయబడింది కాబట్టి",
+          "bn": "কারণ নবমী তিথি বাদ পড়েছিল",
+          "kn": "ಏಕೆಂದರೆ ನವಮಿ ತಿಥಿ ಬಿಟ್ಟುಹೋಗಿತ್ತು",
+          "gu": "કારણ કે નવમી તિથિનો લોપ થયો હતો"
         },
         {
           "en": "Because Rama was born at midday, so Madhyahna prevalence decides",
           "hi": "क्योंकि राम का जन्म मध्याह्न में हुआ था, इसलिए मध्याह्न व्याप्ति निर्णायक है",
           "mai": "किएक तँ रामक जन्म दोपहरिया मे भेल छल, तेँ माध्याह्नक प्रधानता निर्णय करैत अछि",
           "mr": "क्योंकि राम का जन्म मध्याह्न में हुआ था, इसलिए मध्याह्न व्याप्ति निर्णायक है",
-          "ta": "Because Rama was born at midday, so Madhyahna prevalence decides",
-          "te": "Because Rama was born at midday, so Madhyahna prevalence decides",
-          "bn": "Because Rama was born at midday, so Madhyahna prevalence decides",
-          "kn": "Because Rama was born at midday, so Madhyahna prevalence decides",
-          "gu": "Because Rama was born at midday, so Madhyahna prevalence decides"
+          "ta": "ஏனெனில் ராமர் மதிய வேளையில் பிறந்தார், அதனால் மதிய வேளையின் ஆதிக்கம் தீர்மானிக்கிறது",
+          "te": "రాముడు మధ్యాహ్నం జన్మించాడు కాబట్టి, మధ్యాహ్న ప్రాబల్యం నిర్ణయిస్తుంది",
+          "bn": "কারণ রাম মধ্যাহ্নে জন্মগ্রহণ করেছিলেন, তাই মধ্যাহ্নের ব্যাপ্তি প্রাধান্য পায়",
+          "kn": "ಏಕೆಂದರೆ ರಾಮನು ಮಧ್ಯಾಹ್ನ ಜನಿಸಿದನು, ಆದ್ದರಿಂದ ಮಾಧ್ಯಾಹ್ನ ಪ್ರಬಲತೆ ನಿರ್ಧರಿಸುತ್ತದೆ",
+          "gu": "કારણ કે રામનો જન્મ મધ્યાહ્ને થયો હતો, તેથી મધ્યાહ્નની પ્રબળતા નક્કી કરે છે"
         },
         {
           "en": "Because of Adhika Masa",
           "hi": "अधिक मास के कारण",
           "mai": "अधिक मासक कारण",
           "mr": "अधिक मास के कारण",
-          "ta": "Because of Adhika Masa",
-          "te": "Because of Adhika Masa",
-          "bn": "Because of Adhika Masa",
-          "kn": "Because of Adhika Masa",
-          "gu": "Because of Adhika Masa"
+          "ta": "அதிக மாசம் காரணமாக",
+          "te": "అధిక మాసం కారణంగా",
+          "bn": "কারণ অধিক মাস",
+          "kn": "ಏಕೆಂದರೆ ಅಧಿಕ ಮಾಸ",
+          "gu": "અધિક માસના કારણે"
         },
         {
           "en": "Because of timezone differences",
           "hi": "समय क्षेत्र के अन्तर के कारण",
           "mai": "समय क्षेत्रक भिन्नताक कारण",
           "mr": "समय क्षेत्र के अन्तर के कारण",
-          "ta": "Because of timezone differences",
-          "te": "Because of timezone differences",
-          "bn": "Because of timezone differences",
-          "kn": "Because of timezone differences",
-          "gu": "Because of timezone differences"
+          "ta": "நேர மண்டல வேறுபாடுகள் காரணமாக",
+          "te": "సమయ మండల వ్యత్యాసాల కారణంగా",
+          "bn": "কারণ সময় অঞ্চলের পার্থক্য",
+          "kn": "ಏಕೆಂದರೆ ಸಮಯ ವಲಯ ವ್ಯತ್ಯಾಸಗಳು",
+          "gu": "સમય ઝોનના તફાવતોના કારણે"
         }
       ]
     },
@@ -198,14 +198,14 @@
       "question": {
         "en": "When a tithi overlaps with the Nishita Kaal window on both consecutive nights, which night is traditionally chosen for Janmashtami?",
         "hi": "जब तिथि लगातार दोनों रातों में निशीथ काल से व्याप्त हो, तो जन्माष्टमी के लिए परम्परागत रूप से कौन सी रात चुनी जाती है?",
-        "mr": "When a tithi overlaps with the Nishita Kaal window on both consecutive nights, which night is traditionally chosen for Janmashtami?",
+        "mr": "जेव्हा तिथी सलग दोन्ही रात्री निशिता काळ विंडोमध्ये येते, तेव्हा जन्माष्टमीसाठी पारंपारिकपणे कोणती रात्र निवडली जाते?",
         "mai": "जखन कोनो तिथि दुहुन लगातार राति मे निशिता कालक समय-सीमाक संग मिलैत अछि, तँ जन्माष्टमीक लेल कोन राति परम्परागत रूपसँ चुनl जाइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Per Dharmasindhu and Nirnayasindhu, for night festivals like Janmashtami, the first night is preferred when the tithi prevails at Nishita Kaal on both nights. The earlier observance takes precedence for nocturnal celebrations.",
         "hi": "धर्मसिन्धु और निर्णयसिन्धु के अनुसार, जन्माष्टमी जैसे रात्रि उत्सवों के लिए, जब दोनों रातों में निशीथ काल पर तिथि व्याप्त हो तो पहली रात को प्राथमिकता दी जाती है। रात्रिकालीन उत्सवों के लिए पूर्ववर्ती पालन को वरीयता मिलती है।",
-        "mr": "Per Dharmasindhu and Nirnayasindhu, for night festivals like Janmashtami, the first night is preferred when the tithi prevails at Nishita Kaal on both nights. The earlier observance takes precedence for nocturnal celebrations.",
+        "mr": "धर्मसिंधू आणि निर्णयसिंधूनुसार, जन्माष्टमीसारख्या रात्रीच्या उत्सवांसाठी, जेव्हा तिथी दोन्ही रात्री निशिता काळात असते, तेव्हा पहिली रात्र पसंत केली जाते. रात्रीच्या उत्सवांसाठी आधीचे पालन महत्त्वाचे मानले जाते.",
         "mai": "धर्मसिन्धु आ निर्णयसिन्धु क अनुसार, जन्माष्टमी जेकाँ रातिक पर्वक लेल, पहिल राति केँ प्राथमिकता देल जाइत अछि जखन दुहुन राति मे निशिता कालक समय तिथि रहैत अछि। रातिक उत्सव सभक लेल पहिनेक पालन केँ प्राथमिकता भेटैत अछि।"
       },
       "options": [
@@ -214,44 +214,44 @@
           "hi": "दूसरी रात",
           "mai": "दोसर राति",
           "mr": "दूसरी रात",
-          "ta": "The second night",
-          "te": "The second night",
-          "bn": "The second night",
-          "kn": "The second night",
-          "gu": "The second night"
+          "ta": "இரண்டாவது இரவு",
+          "te": "రెండవ రాత్రి",
+          "bn": "দ্বিতীয় রাত",
+          "kn": "ಎರಡನೇ ರಾತ್ರಿ",
+          "gu": "બીજી રાત્રિ"
         },
         {
           "en": "The night with greater overlap, or the first night",
           "hi": "अधिक व्याप्ति वाली रात, या पहली रात",
           "mai": "जाहि राति मे बेसी मेल होइत अछि, आ पहिल राति",
           "mr": "अधिक व्याप्ति वाली रात, या पहली रात",
-          "ta": "The night with greater overlap, or the first night",
-          "te": "The night with greater overlap, or the first night",
-          "bn": "The night with greater overlap, or the first night",
-          "kn": "The night with greater overlap, or the first night",
-          "gu": "The night with greater overlap, or the first night"
+          "ta": "அதிகமாகப் பொருந்தும் இரவு, அல்லது முதல் இரவு",
+          "te": "ఎక్కువ అతివ్యాప్తి ఉన్న రాత్రి, లేదా మొదటి రాత్రి",
+          "bn": "যে রাতে অধিক ব্যাপ্তি থাকে, অথবা প্রথম রাত",
+          "kn": "ಹೆಚ್ಚು ಅತಿಕ್ರಮಿಸುವ ರಾತ್ರಿ, ಅಥವಾ ಮೊದಲ ರಾತ್ರಿ",
+          "gu": "વધુ ઓવરલેપવાળી રાત્રિ, અથવા પ્રથમ રાત્રિ"
         },
         {
           "en": "Neither  –  both are observed",
           "hi": "कोई नहीं  –  दोनों मनाई जाती हैं",
           "mai": "दुहुन मेसँ कोनो नहि – दुहुन मनाओल जाइत अछि",
           "mr": "कोई नहीं  –  दोनों मनाई जाती हैं",
-          "ta": "Neither  –  both are observed",
-          "te": "Neither  –  both are observed",
-          "bn": "Neither  –  both are observed",
-          "kn": "Neither  –  both are observed",
-          "gu": "Neither  –  both are observed"
+          "ta": "இரண்டும் இல்லை – இரண்டும் அனுசரிக்கப்படுகின்றன",
+          "te": "రెండూ కాదు – రెండూ ఆచరిస్తారు",
+          "bn": "কোনটিই নয় – উভয়ই পালন করা হয়",
+          "kn": "ಯಾವುದೂ ಇಲ್ಲ – ಎರಡನ್ನೂ ಆಚರಿಸಲಾಗುತ್ತದೆ",
+          "gu": "બંનેમાંથી કોઈ નહીં – બંનેનું પાલન કરવામાં આવે છે"
         },
         {
           "en": "The night closest to Purnima",
           "hi": "पूर्णिमा के सबसे निकट की रात",
           "mai": "पूर्णिमाक सभसँ नजदीकक राति",
           "mr": "पूर्णिमा के सबसे निकट की रात",
-          "ta": "The night closest to Purnima",
-          "te": "The night closest to Purnima",
-          "bn": "The night closest to Purnima",
-          "kn": "The night closest to Purnima",
-          "gu": "The night closest to Purnima"
+          "ta": "பௌர்ணமிக்கு மிக நெருக்கமான இரவு",
+          "te": "పౌర్ణమికి దగ్గరగా ఉన్న రాత్రి",
+          "bn": "পূর্ণিমার সবচেয়ে কাছের রাত",
+          "kn": "ಪೂರ್ಣಿಮೆಗೆ ಹತ್ತಿರದ ರಾತ್ರಿ",
+          "gu": "પૂનમની સૌથી નજીકની રાત્રિ"
         }
       ]
     }

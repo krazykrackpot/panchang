@@ -26,13 +26,14 @@ describe('buildCanonicalUrl', () => {
       .toBe(`${BASE_URL}/hi/learn/yoga/gajakesari`);
   });
 
-  it('falls back to defaultLocale when the input locale is non-indexable but defaultLocale IS indexable', () => {
-    // /learn/ is the last remaining thin-coverage cluster. gu is not
-    // in that set; canonical should fall back to en. (/baby-names/,
-    // /matching/, /devotional/ used to be examples here but were all
-    // promoted to full 9 locales.)
+  it('keeps the served locale when all prefixes resolve to full 9-locale parity', () => {
+    // After PR #596 (2026-06-08) the /learn/ prefix was promoted to all
+    // 9 locales, so there are no remaining thin-coverage clusters.
+    // Every locale's canonical maps to itself for /learn/* slugs.
     expect(buildCanonicalUrl('/learn/surya', 'gu'))
-      .toBe(`${BASE_URL}/en/learn/surya`);
+      .toBe(`${BASE_URL}/gu/learn/surya`);
+    expect(buildCanonicalUrl('/learn/surya', 'mr'))
+      .toBe(`${BASE_URL}/mr/learn/surya`);
   });
 
   it('keeps gauri-panchang ta/te/kn indexable (partial-coverage policy)', () => {
@@ -74,14 +75,16 @@ describe('buildIndexableHreflang', () => {
     expect(out.sa).toBeUndefined();
   });
 
-  it('restricts to indexable locales for a thin-coverage route', () => {
-    // /learn/ is the last remaining thin-coverage cluster.
-    // /baby-names/, /matching/, /devotional/ all promoted to all 9
-    // locales; /learn/yoga/ promotion is covered below.
+  it('emits all 9 locales for /learn/ after the 2026-06-08 promotion (PR #596)', () => {
+    // The /learn/ prefix was promoted to full 9-locale parity once
+    // every src/messages/learn/*.json file reached ≥86% per-locale
+    // coverage. Previously this test expected en+hi+x-default only.
     const out = buildIndexableHreflang('/learn/surya');
-    expect(Object.keys(out).sort()).toEqual(['en', 'hi', 'x-default'].sort());
-    expect(out.mai).toBeUndefined();
-    expect(out.gu).toBeUndefined();
+    expect(Object.keys(out).sort()).toEqual(
+      ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn', 'x-default'].sort(),
+    );
+    expect(out.mai).toContain('/mai/learn/surya');
+    expect(out.gu).toContain('/gu/learn/surya');
   });
 
   it('emits all 9 locales for /matching/ after the rashi-compatibility overlay merge', () => {

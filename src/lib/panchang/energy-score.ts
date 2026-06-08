@@ -13,7 +13,7 @@
  */
 
 import type { PanchangData } from '@/types/panchang';
-import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities';
+import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities-with-overlay';
 
 export interface DailyEnergy {
   score: number;           // 0–100 (clamped integer)

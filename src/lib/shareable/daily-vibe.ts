@@ -8,7 +8,7 @@
 
 import type { PanchangData, LocaleText } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities';
+import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities-with-overlay';
 import { computeDailyEnergy } from '@/lib/panchang/energy-score';
 
 // ---------------------------------------------------------------------------

@@ -5,10 +5,10 @@
     "ta": "இந்து நாட்காட்டி: விக்ரம் சம்வத் & பஞ்சாங்கம்",
     "bn": "হিন্দু ক্যালেন্ডার: বিক্রম সম্বৎ ও পঞ্চাঙ্গ",
     "mai": "हिन्दू क्यालेन्डर प्रणाली: विक्रम संवत् आ पंचांग",
-    "te": "The Hindu Calendar System: Vikram Samvat & Panchang",
-    "gu": "The Hindu Calendar System: Vikram Samvat & Panchang",
-    "kn": "The Hindu Calendar System: Vikram Samvat & Panchang",
-    "mr": "The Hindu Calendar System: Vikram Samvat & Panchang"
+    "te": "హిందూ క్యాలెండర్ వ్యవస్థ: విక్రమ సంవత్సరం & పంచాంగం",
+    "gu": "હિંદુ કેલેન્ડર પ્રણાલી: વિક્રમ સંવત અને પંચાંગ",
+    "kn": "ಹಿಂದೂ ಪಂಚಾಂಗ ವ್ಯವಸ್ಥೆ: ವಿಕ್ರಮ ಸಂವತ್ ಮತ್ತು ಪಂಚಾಂಗ",
+    "mr": "हिंदू दिनदर्शिका प्रणाली: विक्रम संवत आणि पंचांग"
   },
   "subtitle": {
     "en": "Understanding the lunisolar calendar  –  months, seasons, eras, and intercalary months",
@@ -16,10 +16,10 @@
     "ta": "சந்திர-சூரிய நாட்காட்டி  –  மாதங்கள், பருவங்கள், சகாப்தங்கள் மற்றும் அதிக மாதம்",
     "bn": "চন্দ্র-সৌর ক্যালেন্ডার  –  মাস, ঋতু, সম্বৎ এবং অধিক মাস",
     "mai": "चान्द्र-सौर क्यालेन्डर के बुझब – मास, ऋतु, युग, आ अधिक मास",
-    "te": "Understanding the lunisolar calendar  –  months, seasons, eras, and intercalary months",
-    "gu": "Understanding the lunisolar calendar  –  months, seasons, eras, and intercalary months",
-    "kn": "Understanding the lunisolar calendar  –  months, seasons, eras, and intercalary months",
-    "mr": "Understanding the lunisolar calendar  –  months, seasons, eras, and intercalary months"
+    "te": "చాంద్రమాన సౌర క్యాలెండర్‌ను అర్థం చేసుకోవడం – నెలలు, ఋతువులు, శకాలు మరియు అధిక మాసాలు",
+    "gu": "સૌર-ચંદ્ર કેલેન્ડરને સમજવું – મહિનાઓ, ઋતુઓ, યુગ અને અધિક માસ",
+    "kn": "ಚಾಂದ್ರಮಾನ ಸೌರಮಾನ ಪಂಚಾಂಗವನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವುದು – ತಿಂಗಳುಗಳು, ಋತುಗಳು, ಯುಗಗಳು ಮತ್ತು ಅಧಿಕ ಮಾಸಗಳು",
+    "mr": "चांद्र-सौर दिनदर्शिका समजून घेणे – महिने, ऋतू, युग आणि अधिक मास"
   },
   "intro": {
     "en": "The Hindu calendar is a lunisolar system  –  it tracks both the Moon's phases and the Sun's position through the zodiac. Unlike the purely solar Gregorian calendar (where months have no relationship to lunar cycles) or purely lunar calendars like the Islamic Hijri (which drift through seasons), the Hindu calendar reconciles both by periodically inserting an intercalary month (Adhika Masa).",
@@ -27,10 +27,10 @@
     "ta": "இந்து நாட்காட்டி ஒரு சந்திர-சூரிய முறை  –  இது நிலவின் நிலைகள் மற்றும் சூரியனின் ராசி நிலை இரண்டையும் கண்காணிக்கிறது.",
     "bn": "হিন্দু ক্যালেন্ডার একটি চন্দ্র-সৌর পদ্ধতি  –  এটি চন্দ্রের কলা এবং সূর্যের রাশি অবস্থান উভয়ই অনুসরণ করে।",
     "mai": "हिन्दू क्यालेन्डर एकटा चान्द्र-सौर प्रणाली अछि – ई चन्द्रमाक कला आ सूर्यक राशि मे स्थिति दुनू के ट्रैक करैत अछि। शुद्ध सौर ग्रेगोरियन क्यालेन्डर (जाहिमे मासक चन्द्रमाक चक्र सँ कोनो सम्बन्ध नहि होइत अछि) वा इस्लामिक हिजरी जकाँ शुद्ध चन्द्र क्यालेन्डर (जे ऋतुसभ सँ विचलित होइत अछि) सँ भिन्न, हिन्दू क्यालेन्डर दुनू के समय-समय पर एकटा अधिक मास (Adhika Masa) जोड़ि क' सामंजस्य स्थापित करैत अछि।",
-    "te": "The Hindu calendar is a lunisolar system  –  it tracks both the Moon's phases and the Sun's position through the zodiac. Unlike the purely solar Gregorian calendar (where months have no relationship to lunar cycles) or purely lunar calendars like the Islamic Hijri (which drift through seasons), the Hindu calendar reconciles both by periodically inserting an intercalary month (Adhika Masa).",
-    "gu": "The Hindu calendar is a lunisolar system  –  it tracks both the Moon's phases and the Sun's position through the zodiac. Unlike the purely solar Gregorian calendar (where months have no relationship to lunar cycles) or purely lunar calendars like the Islamic Hijri (which drift through seasons), the Hindu calendar reconciles both by periodically inserting an intercalary month (Adhika Masa).",
-    "kn": "The Hindu calendar is a lunisolar system  –  it tracks both the Moon's phases and the Sun's position through the zodiac. Unlike the purely solar Gregorian calendar (where months have no relationship to lunar cycles) or purely lunar calendars like the Islamic Hijri (which drift through seasons), the Hindu calendar reconciles both by periodically inserting an intercalary month (Adhika Masa).",
-    "mr": "The Hindu calendar is a lunisolar system  –  it tracks both the Moon's phases and the Sun's position through the zodiac. Unlike the purely solar Gregorian calendar (where months have no relationship to lunar cycles) or purely lunar calendars like the Islamic Hijri (which drift through seasons), the Hindu calendar reconciles both by periodically inserting an intercalary month (Adhika Masa)."
+    "te": "హిందూ క్యాలెండర్ ఒక చాంద్రమాన సౌర వ్యవస్థ – ఇది చంద్రుని దశలను మరియు సూర్యుని రాశి స్థానాన్ని రెండింటినీ ట్రాక్ చేస్తుంది. పూర్తిగా సౌర గ్రెగోరియన్ క్యాలెండర్ (నెలలకు చంద్ర చక్రాలతో సంబంధం లేనిది) లేదా ఇస్లామిక్ హిజ్రీ (ఋతువుల గుండా కదులుతుంది) వంటి పూర్తిగా చంద్ర క్యాలెండర్‌ల వలె కాకుండా, హిందూ క్యాలెండర్ కాలానుగుణంగా ఒక అధిక మాసాన్ని (అధిక మాసం) చేర్చడం ద్వారా రెండింటినీ సమన్వయం చేస్తుంది.",
+    "gu": "હિંદુ કેલેન્ડર એક સૌર-ચંદ્ર પ્રણાલી છે – તે ચંદ્રની કળાઓ અને સૂર્યની રાશિમાં સ્થિતિ બંનેને ટ્રેક કરે છે. સંપૂર્ણપણે સૌર ગ્રેગોરિયન કેલેન્ડર (જ્યાં મહિનાઓનો ચંદ્ર ચક્ર સાથે કોઈ સંબંધ નથી) અથવા ઇસ્લામિક હિજરી જેવા સંપૂર્ણપણે ચંદ્ર કેલેન્ડર (જે ઋતુઓમાંથી પસાર થાય છે)થી વિપરીત, હિંદુ કેલેન્ડર સમયાંતરે અધિક માસ દાખલ કરીને બંનેને સુમેળ સાધે છે.",
+    "kn": "ಹಿಂದೂ ಪಂಚಾಂಗವು ಚಾಂದ್ರಮಾನ ಸೌರಮಾನ ವ್ಯವಸ್ಥೆಯಾಗಿದೆ – ಇದು ಚಂದ್ರನ ಕಲೆಗಳು ಮತ್ತು ಸೂರ್ಯನ ರಾಶಿ ಸ್ಥಾನ ಎರಡನ್ನೂ ಪತ್ತೆ ಮಾಡುತ್ತದೆ. ಸಂಪೂರ್ಣ ಸೌರಮಾನ ಗ್ರೆಗೋರಿಯನ್ ಕ್ಯಾಲೆಂಡರ್ (ತಿಂಗಳುಗಳಿಗೆ ಚಂದ್ರನ ಚಕ್ರಗಳೊಂದಿಗೆ ಸಂಬಂಧವಿಲ್ಲ) ಅಥವಾ ಇಸ್ಲಾಮಿಕ್ ಹಿಜ್ರಿ (ಇದು ಋತುಗಳ ಮೂಲಕ ಬದಲಾಗುತ್ತದೆ) ನಂತಹ ಸಂಪೂರ್ಣ ಚಾಂದ್ರಮಾನ ಕ್ಯಾಲೆಂಡರ್‌ಗಳಿಗಿಂತ ಭಿನ್ನವಾಗಿ, ಹಿಂದೂ ಪಂಚಾಂಗವು ನಿಯತಕಾಲಿಕವಾಗಿ ಅಧಿಕ ಮಾಸವನ್ನು ಸೇರಿಸುವ ಮೂಲಕ ಎರಡನ್ನೂ ಸಮನ್ವಯಗೊಳಿಸುತ್ತದೆ.",
+    "mr": "हिंदू दिनदर्शिका ही एक चांद्र-सौर प्रणाली आहे – ती चंद्राच्या कला आणि सूर्याचे राशीचक्रातील स्थान या दोन्हीचा मागोवा घेते. पूर्णपणे सौर ग्रेगोरियन दिनदर्शिकेच्या (जिथे महिन्यांचा चंद्राच्या चक्रांशी संबंध नाही) किंवा इस्लामिक हिजरीसारख्या पूर्णपणे चांद्र दिनदर्शिकांच्या (ज्या ऋतूंमधून सरकतात) विपरीत, हिंदू दिनदर्शिका दोन्हीचा मेळ घालते, वेळोवेळी अधिक मास (Adhika Masa) घालून."
   },
   "erasTitle": {
     "en": "Calendar Eras: Vikram, Shaka & Gregorian",
@@ -38,10 +38,10 @@
     "ta": "நாட்காட்டி சகாப்தங்கள்: விக்ரம், சகா & கிரிகோரியன்",
     "bn": "ক্যালেন্ডার সম্বৎ: বিক্রম, শক ও গ্রেগরিয়ান",
     "mai": "क्यालेन्डर युग: विक्रम, शक आ ग्रेगोरियन",
-    "te": "Calendar Eras: Vikram, Shaka & Gregorian",
-    "gu": "Calendar Eras: Vikram, Shaka & Gregorian",
-    "kn": "Calendar Eras: Vikram, Shaka & Gregorian",
-    "mr": "Calendar Eras: Vikram, Shaka & Gregorian"
+    "te": "క్యాలెండర్ శకాలు: విక్రమ, శక & గ్రెగోరియన్",
+    "gu": "કેલેન્ડર યુગ: વિક્રમ, શક અને ગ્રેગોરિયન",
+    "kn": "ಪಂಚಾಂಗ ಯುಗಗಳು: ವಿಕ್ರಮ, ಶಕ ಮತ್ತು ಗ್ರೆಗೋರಿಯನ್",
+    "mr": "दिनदर्शिका युग: विक्रम, शक आणि ग्रेगोरियन"
   },
   "erasContent": {
     "en": "India uses multiple calendar eras simultaneously. The Vikram Samvat (VS) is 56-57 years ahead of Gregorian (2026 CE = VS 2083). It begins with Chaitra Shukla Pratipada (Hindu New Year). The Shaka Samvat, used by the Indian Government, is 78 years behind Gregorian (2026 CE = Shaka 1948). The Kali Yuga era counts from 3102 BCE, making 2026 CE = Kali 5128.",
@@ -49,10 +49,10 @@
     "ta": "இந்தியா பல நாட்காட்டி சகாப்தங்களை ஒரே நேரத்தில் பயன்படுத்துகிறது.",
     "bn": "ভারত একসাথে একাধিক ক্যালেন্ডার সম্বৎ ব্যবহার করে।",
     "mai": "भारत मे एक सङ्ग अनेक क्यालेन्डर युगक उपयोग होइत अछि। विक्रम संवत् (VS) ग्रेगोरियन सँ 56-57 वर्ष आगू अछि (2026 ई. = VS 2083)। ई चैत्र शुक्ल प्रतिपदा (हिन्दू नव वर्ष) सँ शुरू होइत अछि। भारत सरकार द्वारा उपयोग कएल जाइवला शक संवत् ग्रेगोरियन सँ 78 वर्ष पाछू अछि (2026 ई. = शक 1948)। कलि युग 3102 ईसा पूर्व सँ गनल जाइत अछि, जाहि सँ 2026 ई. = कलि 5128 होइत अछि।",
-    "te": "India uses multiple calendar eras simultaneously. The Vikram Samvat (VS) is 56-57 years ahead of Gregorian (2026 CE = VS 2083). It begins with Chaitra Shukla Pratipada (Hindu New Year). The Shaka Samvat, used by the Indian Government, is 78 years behind Gregorian (2026 CE = Shaka 1948). The Kali Yuga era counts from 3102 BCE, making 2026 CE = Kali 5128.",
-    "gu": "India uses multiple calendar eras simultaneously. The Vikram Samvat (VS) is 56-57 years ahead of Gregorian (2026 CE = VS 2083). It begins with Chaitra Shukla Pratipada (Hindu New Year). The Shaka Samvat, used by the Indian Government, is 78 years behind Gregorian (2026 CE = Shaka 1948). The Kali Yuga era counts from 3102 BCE, making 2026 CE = Kali 5128.",
-    "kn": "India uses multiple calendar eras simultaneously. The Vikram Samvat (VS) is 56-57 years ahead of Gregorian (2026 CE = VS 2083). It begins with Chaitra Shukla Pratipada (Hindu New Year). The Shaka Samvat, used by the Indian Government, is 78 years behind Gregorian (2026 CE = Shaka 1948). The Kali Yuga era counts from 3102 BCE, making 2026 CE = Kali 5128.",
-    "mr": "India uses multiple calendar eras simultaneously. The Vikram Samvat (VS) is 56-57 years ahead of Gregorian (2026 CE = VS 2083). It begins with Chaitra Shukla Pratipada (Hindu New Year). The Shaka Samvat, used by the Indian Government, is 78 years behind Gregorian (2026 CE = Shaka 1948). The Kali Yuga era counts from 3102 BCE, making 2026 CE = Kali 5128."
+    "te": "భారతదేశం ఏకకాలంలో బహుళ క్యాలెండర్ శకాలను ఉపయోగిస్తుంది. విక్రమ సంవత్సరం (VS) గ్రెగోరియన్ క్యాలెండర్ కంటే 56-57 సంవత్సరాలు ముందు ఉంటుంది (2026 CE = VS 2083). ఇది చైత్ర శుక్ల ప్రతిపద (హిందూ నూతన సంవత్సరం) తో ప్రారంభమవుతుంది. భారత ప్రభుత్వం ఉపయోగించే శక సంవత్సరం గ్రెగోరియన్ క్యాలెండర్ కంటే 78 సంవత్సరాలు వెనుకబడి ఉంటుంది (2026 CE = శక 1948). కలియుగం 3102 BCE నుండి లెక్కించబడుతుంది, 2026 CE = కలి 5128 అవుతుంది.",
+    "gu": "ભારત એકસાથે અનેક કેલેન્ડર યુગનો ઉપયોગ કરે છે. વિક્રમ સંવત (VS) ગ્રેગોરિયન કરતાં 56-57 વર્ષ આગળ છે (2026 CE = VS 2083). તે ચૈત્ર શુક્લ પ્રતિપદા (હિંદુ નવું વર્ષ) થી શરૂ થાય છે. ભારત સરકાર દ્વારા ઉપયોગમાં લેવાતો શક સંવત ગ્રેગોરિયન કરતાં 78 વર્ષ પાછળ છે (2026 CE = શક 1948). કલિયુગનો યુગ 3102 BCE થી ગણાય છે, જે 2026 CE = કલિ 5128 બનાવે છે.",
+    "kn": "ಭಾರತವು ಏಕಕಾಲದಲ್ಲಿ ಅನೇಕ ಪಂಚಾಂಗ ಯುಗಗಳನ್ನು ಬಳಸುತ್ತದೆ. ವಿಕ್ರಮ ಸಂವತ್ (VS) ಗ್ರೆಗೋರಿಯನ್ ಕ್ಯಾಲೆಂಡರ್‌ಗಿಂತ 56-57 ವರ್ಷಗಳಷ್ಟು ಮುಂದಿದೆ (2026 CE = VS 2083). ಇದು ಚೈತ್ರ ಶುಕ್ಲ ಪ್ರತಿಪದೆಯೊಂದಿಗೆ (ಹಿಂದೂ ಹೊಸ ವರ್ಷ) ಪ್ರಾರಂಭವಾಗುತ್ತದೆ. ಭಾರತ ಸರ್ಕಾರವು ಬಳಸುವ ಶಕ ಸಂವತ್ ಗ್ರೆಗೋರಿಯನ್ ಕ್ಯಾಲೆಂಡರ್‌ಗಿಂತ 78 ವರ್ಷಗಳಷ್ಟು ಹಿಂದಿದೆ (2026 CE = ಶಕ 1948). ಕಲಿಯುಗವು 3102 BCE ಯಿಂದ ಎಣಿಕೆ ಮಾಡುತ್ತದೆ, 2026 CE = ಕಲಿ 5128.",
+    "mr": "भारत एकाच वेळी अनेक दिनदर्शिका युग वापरतो. विक्रम संवत (VS) ग्रेगोरियनपेक्षा ५६-५७ वर्षांनी पुढे आहे (२०२६ CE = VS २०८३). त्याची सुरुवात चैत्र शुद्ध प्रतिपदेला (हिंदू नववर्ष) होते. भारत सरकारने वापरलेला शक संवत ग्रेगोरियनपेक्षा ७८ वर्षांनी मागे आहे (२०२६ CE = शक १९४८). कलियुगाची गणना ३१०२ BCE पासून होते, ज्यामुळे २०२६ CE = कलि ५१२८."
   },
   "monthsTitle": {
     "en": "The 12 Lunar Months",
@@ -60,10 +60,10 @@
     "ta": "12 சந்திர மாதங்கள்",
     "bn": "১২ চন্দ্র মাস",
     "mai": "12टा चान्द्र मास",
-    "te": "The 12 Lunar Months",
-    "gu": "The 12 Lunar Months",
-    "kn": "The 12 Lunar Months",
-    "mr": "The 12 Lunar Months"
+    "te": "12 చాంద్రమాన నెలలు",
+    "gu": "12 ચંદ્ર મહિનાઓ",
+    "kn": "12 ಚಾಂದ್ರಮಾನ ಮಾಸಗಳು",
+    "mr": "१२ चांद्र महिने"
   },
   "monthsContent": {
     "en": "Each Hindu month spans one complete lunar cycle (~29.5 days). The months are named after the Nakshatra in which the Full Moon falls. Since lunar months are shorter than solar months, about every 32.5 months an extra month (Adhika Masa) is inserted to keep the calendar aligned with seasons.",
@@ -71,10 +71,10 @@
     "ta": "ஒவ்வொரு இந்து மாதமும் ஒரு முழு சந்திர சுழற்சியை (~29.5 நாட்கள்) உள்ளடக்கியது.",
     "bn": "প্রতিটি হিন্দু মাস একটি পূর্ণ চন্দ্র চক্র (~২৯.৫ দিন)।",
     "mai": "प्रत्येक हिन्दू मास एकटा पूर्ण चन्द्र चक्र (~29.5 दिन) धरि रहैत अछि। मासक नाम ओहि नक्षत्रक नाम पर राखल जाइत अछि जाहिमे पूर्णिमाक चन्द्रमा पड़ैत अछि। चूंकि चान्द्र मास सौर मास सँ छोट होइत अछि, लगभग प्रत्येक 32.5 मास पर एकटा अतिरिक्त मास (Adhika Masa) जोड़ल जाइत अछि ताकि क्यालेन्डर ऋतुसभ सँ मेल खाए।",
-    "te": "Each Hindu month spans one complete lunar cycle (~29.5 days). The months are named after the Nakshatra in which the Full Moon falls. Since lunar months are shorter than solar months, about every 32.5 months an extra month (Adhika Masa) is inserted to keep the calendar aligned with seasons.",
-    "gu": "Each Hindu month spans one complete lunar cycle (~29.5 days). The months are named after the Nakshatra in which the Full Moon falls. Since lunar months are shorter than solar months, about every 32.5 months an extra month (Adhika Masa) is inserted to keep the calendar aligned with seasons.",
-    "kn": "Each Hindu month spans one complete lunar cycle (~29.5 days). The months are named after the Nakshatra in which the Full Moon falls. Since lunar months are shorter than solar months, about every 32.5 months an extra month (Adhika Masa) is inserted to keep the calendar aligned with seasons.",
-    "mr": "Each Hindu month spans one complete lunar cycle (~29.5 days). The months are named after the Nakshatra in which the Full Moon falls. Since lunar months are shorter than solar months, about every 32.5 months an extra month (Adhika Masa) is inserted to keep the calendar aligned with seasons."
+    "te": "ప్రతి హిందూ నెల ఒక పూర్తి చంద్ర చక్రం (~29.5 రోజులు) ఉంటుంది. పౌర్ణమి ఏ నక్షత్రంలో వస్తుందో ఆ నక్షత్రం పేరు మీద నెలలకు పేరు పెట్టబడింది. చాంద్రమాన నెలలు సౌరమాన నెలల కంటే తక్కువగా ఉంటాయి కాబట్టి, క్యాలెండర్‌ను ఋతువులతో సమలేఖనం చేయడానికి సుమారు ప్రతి 32.5 నెలలకు ఒక అదనపు నెల (అధిక మాసం) చేర్చబడుతుంది.",
+    "gu": "દરેક હિંદુ મહિનો એક સંપૂર્ણ ચંદ્ર ચક્ર (~29.5 દિવસ) સુધી ચાલે છે. મહિનાઓ તે નક્ષત્રના નામ પરથી રાખવામાં આવે છે જેમાં પૂર્ણિમા આવે છે. કારણ કે ચંદ્ર મહિનાઓ સૌર મહિનાઓ કરતાં ટૂંકા હોય છે, તેથી કેલેન્ડરને ઋતુઓ સાથે સંરેખિત રાખવા માટે દર 32.5 મહિને એક વધારાનો મહિનો (અધિક માસ) દાખલ કરવામાં આવે છે.",
+    "kn": "ಪ್ರತಿಯೊಂದು ಹಿಂದೂ ಮಾಸವು ಒಂದು ಸಂಪೂರ್ಣ ಚಂದ್ರ ಚಕ್ರವನ್ನು (~29.5 ದಿನಗಳು) ಒಳಗೊಂಡಿದೆ. ಹುಣ್ಣಿಮೆ ಬೀಳುವ ನಕ್ಷತ್ರದ ಹೆಸರಿನಿಂದ ಮಾಸಗಳಿಗೆ ಹೆಸರಿಡಲಾಗಿದೆ. ಚಾಂದ್ರಮಾನ ಮಾಸಗಳು ಸೌರಮಾನ ಮಾಸಗಳಿಗಿಂತ ಚಿಕ್ಕದಾಗಿರುವುದರಿಂದ, ಪಂಚಾಂಗವನ್ನು ಋತುಗಳೊಂದಿಗೆ ಜೋಡಿಸಲು ಪ್ರತಿ 32.5 ತಿಂಗಳಿಗೊಮ್ಮೆ ಒಂದು ಹೆಚ್ಚುವರಿ ಮಾಸವನ್ನು (ಅಧಿಕ ಮಾಸ) ಸೇರಿಸಲಾಗುತ್ತದೆ.",
+    "mr": "प्रत्येक हिंदू महिना एक पूर्ण चंद्रचक्र (~२९.५ दिवस) व्यापतो. ज्या नक्षत्रात पौर्णिमा येते, त्या नक्षत्रावरून महिन्यांना नावे दिली जातात. चांद्र महिने सौर महिन्यांपेक्षा लहान असल्यामुळे, दर सुमारे ३२.५ महिन्यांनी एक अतिरिक्त महिना (अधिक मास) दिनदर्शिका ऋतूंशी जुळवून ठेवण्यासाठी घातला जातो."
   },
   "amantaTitle": {
     "en": "Amanta vs Purnimanta: Two Month Systems",
@@ -82,10 +82,10 @@
     "ta": "அமாந்த vs பூர்ணிமாந்த",
     "bn": "অমান্ত বনাম পূর্ণিমান্ত",
     "mai": "अमांत बनाम पूर्णिमांत: दुई मास प्रणाली",
-    "te": "Amanta vs Purnimanta: Two Month Systems",
-    "gu": "Amanta vs Purnimanta: Two Month Systems",
-    "kn": "Amanta vs Purnimanta: Two Month Systems",
-    "mr": "Amanta vs Purnimanta: Two Month Systems"
+    "te": "అమాంతం వర్సెస్ పూర్ణిమాంతం: రెండు నెలల వ్యవస్థలు",
+    "gu": "અમાન્ત વિરુદ્ધ પૂર્ણિમાન્ત: બે મહિનાની પ્રણાલીઓ",
+    "kn": "ಅಮಾವಾಸ್ಯಾಂತ vs ಪೂರ್ಣಿಮಾಂತ: ಎರಡು ಮಾಸ ಪದ್ಧತಿಗಳು",
+    "mr": "अमांत विरुद्ध पौर्णिमांत: दोन महिना प्रणाली"
   },
   "amantaContent": {
     "en": "The same months have two different starting points depending on region. Amanta (New Moon ending) starts the month after the New Moon  –  used in Gujarat, Maharashtra, South India, and by most panchang publishers. Purnimanta (Full Moon ending) starts the month after the Full Moon  –  used in North India (UP, MP, Bihar, Rajasthan). During Krishna Paksha (waning phase), the Purnimanta month name is one month ahead of Amanta.",
@@ -93,10 +93,10 @@
     "ta": "ஒரே மாதங்களுக்கு இரண்டு வெவ்வேறு தொடக்கப் புள்ளிகள் உள்ளன.",
     "bn": "একই মাসের দুটি ভিন্ন শুরু আছে।",
     "mai": "एकहि मासक क्षेत्रक आधार पर दुईटा भिन्न शुरुआती बिन्दु होइत अछि। अमांत (अमावस्याक अन्त) अमावस्याक बाद मास शुरू करैत अछि – गुजरात, महाराष्ट्र, दक्षिण भारत, आ अधिकांश पंचांग प्रकाशक द्वारा उपयोग कएल जाइत अछि। पूर्णिमांत (पूर्णिमाक अन्त) पूर्णिमाक बाद मास शुरू करैत अछि – उत्तर भारत (यूपी, एमपी, बिहार, राजस्थान) मे उपयोग कएल जाइत अछि। कृष्ण पक्ष (घटैत चन्द्रमाक चरण) के दौरान, पूर्णिमांत मासक नाम अमांत सँ एक मास आगू होइत अछि।",
-    "te": "The same months have two different starting points depending on region. Amanta (New Moon ending) starts the month after the New Moon  –  used in Gujarat, Maharashtra, South India, and by most panchang publishers. Purnimanta (Full Moon ending) starts the month after the Full Moon  –  used in North India (UP, MP, Bihar, Rajasthan). During Krishna Paksha (waning phase), the Purnimanta month name is one month ahead of Amanta.",
-    "gu": "The same months have two different starting points depending on region. Amanta (New Moon ending) starts the month after the New Moon  –  used in Gujarat, Maharashtra, South India, and by most panchang publishers. Purnimanta (Full Moon ending) starts the month after the Full Moon  –  used in North India (UP, MP, Bihar, Rajasthan). During Krishna Paksha (waning phase), the Purnimanta month name is one month ahead of Amanta.",
-    "kn": "The same months have two different starting points depending on region. Amanta (New Moon ending) starts the month after the New Moon  –  used in Gujarat, Maharashtra, South India, and by most panchang publishers. Purnimanta (Full Moon ending) starts the month after the Full Moon  –  used in North India (UP, MP, Bihar, Rajasthan). During Krishna Paksha (waning phase), the Purnimanta month name is one month ahead of Amanta.",
-    "mr": "The same months have two different starting points depending on region. Amanta (New Moon ending) starts the month after the New Moon  –  used in Gujarat, Maharashtra, South India, and by most panchang publishers. Purnimanta (Full Moon ending) starts the month after the Full Moon  –  used in North India (UP, MP, Bihar, Rajasthan). During Krishna Paksha (waning phase), the Purnimanta month name is one month ahead of Amanta."
+    "te": "ఒకే నెలలకు ప్రాంతాన్ని బట్టి రెండు వేర్వేరు ప్రారంభ స్థానాలు ఉంటాయి. అమాంతం (అమావాస్యతో ముగిసేది) అమావాస్య తర్వాత నెల ప్రారంభమవుతుంది – గుజరాత్, మహారాష్ట్ర, దక్షిణ భారతదేశం మరియు చాలా పంచాంగ ప్రచురణకర్తలు దీనిని ఉపయోగిస్తారు. పూర్ణిమాంతం (పౌర్ణమితో ముగిసేది) పౌర్ణమి తర్వాత నెల ప్రారంభమవుతుంది – ఉత్తర భారతదేశం (UP, MP, బీహార్, రాజస్థాన్) లో ఉపయోగిస్తారు. కృష్ణ పక్షం (క్షీణించే దశ) సమయంలో, పూర్ణిమాంతం నెల పేరు అమాంతం కంటే ఒక నెల ముందు ఉంటుంది.",
+    "gu": "પ્રદેશના આધારે સમાન મહિનાઓના બે અલગ-અલગ પ્રારંભિક બિંદુઓ હોય છે. અમાન્ત (અમાસ સમાપ્તિ) અમાસ પછી મહિનો શરૂ કરે છે – ગુજરાત, મહારાષ્ટ્ર, દક્ષિણ ભારત અને મોટાભાગના પંચાંગ પ્રકાશકો દ્વારા ઉપયોગમાં લેવાય છે. પૂર્ણિમાન્ત (પૂર્ણિમા સમાપ્તિ) પૂર્ણિમા પછી મહિનો શરૂ કરે છે – ઉત્તર ભારતમાં (યુપી, એમપી, બિહાર, રાજસ્થાન) ઉપયોગમાં લેવાય છે. કૃષ્ણ પક્ષ (વદ પક્ષ) દરમિયાન, પૂર્ણિમાન્ત મહિનાનું નામ અમાન્ત કરતાં એક મહિનો આગળ હોય છે.",
+    "kn": "ಒಂದೇ ಮಾಸಗಳು ಪ್ರದೇಶಕ್ಕೆ ಅನುಗುಣವಾಗಿ ಎರಡು ವಿಭಿನ್ನ ಆರಂಭಿಕ ಬಿಂದುಗಳನ್ನು ಹೊಂದಿವೆ. ಅಮಾವಾಸ್ಯಾಂತ (ಅಮಾವಾಸ್ಯೆಯೊಂದಿಗೆ ಕೊನೆಗೊಳ್ಳುವ) ಅಮಾವಾಸ್ಯೆಯ ನಂತರ ಮಾಸವನ್ನು ಪ್ರಾರಂಭಿಸುತ್ತದೆ – ಗುಜರಾತ್, ಮಹಾರಾಷ್ಟ್ರ, ದಕ್ಷಿಣ ಭಾರತ ಮತ್ತು ಹೆಚ್ಚಿನ ಪಂಚಾಂಗ ಪ್ರಕಾಶಕರು ಇದನ್ನು ಬಳಸುತ್ತಾರೆ. ಪೂರ್ಣಿಮಾಂತ (ಹುಣ್ಣಿಮೆಯೊಂದಿಗೆ ಕೊನೆಗೊಳ್ಳುವ) ಹುಣ್ಣಿಮೆಯ ನಂತರ ಮಾಸವನ್ನು ಪ್ರಾರಂಭಿಸುತ್ತದೆ – ಉತ್ತರ ಭಾರತದಲ್ಲಿ (ಯುಪಿ, ಎಂಪಿ, ಬಿಹಾರ, ರಾಜಸ್ಥಾನ) ಇದನ್ನು ಬಳಸುತ್ತಾರೆ. ಕೃಷ್ಣ ಪಕ್ಷದಲ್ಲಿ (ಕ್ಷೀಣಿಸುವ ಹಂತ), ಪೂರ್ಣಿಮಾಂತ ಮಾಸದ ಹೆಸರು ಅಮಾವಾಸ್ಯಾಂತಕ್ಕಿಂತ ಒಂದು ಮಾಸ ಮುಂದಿರುತ್ತದೆ.",
+    "mr": "प्रदेशानुसार एकाच महिन्याची सुरुवात दोन वेगवेगळ्या बिंदूंपासून होते. अमांत (अमावस्येने समाप्त होणारा) अमावस्येनंतर महिना सुरू करतो – गुजरात, महाराष्ट्र, दक्षिण भारत आणि बहुतेक पंचांग प्रकाशकांद्वारे वापरला जातो. पौर्णिमांत (पौर्णिमेने समाप्त होणारा) पौर्णिमेनंतर महिना सुरू करतो – उत्तर भारतात (यूपी, एमपी, बिहार, राजस्थान) वापरला जातो. कृष्ण पक्षात (चंद्राची घटणारी कला), पौर्णिमांत महिन्याचे नाव अमांतपेक्षा एक महिना पुढे असते."
   },
   "seasonsTitle": {
     "en": "The 6 Ritus (Seasons)",
@@ -104,10 +104,10 @@
     "ta": "6 ருதுக்கள் (பருவங்கள்)",
     "bn": "৬ ঋতু",
     "mai": "6टा ऋतु",
-    "te": "The 6 Ritus (Seasons)",
-    "gu": "The 6 Ritus (Seasons)",
-    "kn": "The 6 Ritus (Seasons)",
-    "mr": "The 6 Ritus (Seasons)"
+    "te": "6 ఋతువులు (సీజన్లు)",
+    "gu": "6 ઋતુઓ",
+    "kn": "6 ಋತುಗಳು",
+    "mr": "६ ऋतू"
   },
   "seasonsContent": {
     "en": "The Hindu year divides into 6 seasons of two months each, linked to the Sun's position. These seasons determined agricultural cycles, festivals, and daily routines for millennia.",
@@ -115,10 +115,10 @@
     "ta": "இந்து ஆண்டு 6 பருவங்களாக பிரிக்கப்பட்டுள்ளது, ஒவ்வொன்றும் இரண்டு மாதங்கள்.",
     "bn": "হিন্দু বছর ৬টি ঋতুতে বিভক্ত, প্রতিটি দুই মাসের।",
     "mai": "हिन्दू वर्ष सूर्यक स्थिति सँ जुड़ल दुई-दुई मासक 6टा ऋतु मे विभाजित अछि। ई ऋतुसभ सहस्राब्दी धरि कृषि चक्र, पर्व, आ दैनिक दिनचर्या के निर्धारित केलक।",
-    "te": "The Hindu year divides into 6 seasons of two months each, linked to the Sun's position. These seasons determined agricultural cycles, festivals, and daily routines for millennia.",
-    "gu": "The Hindu year divides into 6 seasons of two months each, linked to the Sun's position. These seasons determined agricultural cycles, festivals, and daily routines for millennia.",
-    "kn": "The Hindu year divides into 6 seasons of two months each, linked to the Sun's position. These seasons determined agricultural cycles, festivals, and daily routines for millennia.",
-    "mr": "The Hindu year divides into 6 seasons of two months each, linked to the Sun's position. These seasons determined agricultural cycles, festivals, and daily routines for millennia."
+    "te": "హిందూ సంవత్సరం సూర్యుని స్థానానికి అనుసంధానించబడిన రెండు నెలల చొప్పున 6 ఋతువులుగా విభజించబడింది. ఈ ఋతువులు వేల సంవత్సరాలుగా వ్యవసాయ చక్రాలు, పండుగలు మరియు రోజువారీ దినచర్యలను నిర్ణయించాయి.",
+    "gu": "હિંદુ વર્ષ સૂર્યની સ્થિતિ સાથે જોડાયેલી બે મહિનાની 6 ઋતુઓમાં વિભાજિત થાય છે. આ ઋતુઓએ સહસ્ત્રાબ્દીઓ સુધી કૃષિ ચક્ર, તહેવારો અને દૈનિક દિનચર્યાઓ નક્કી કરી હતી.",
+    "kn": "ಹಿಂದೂ ವರ್ಷವು ಸೂರ್ಯನ ಸ್ಥಾನಕ್ಕೆ ಸಂಬಂಧಿಸಿದಂತೆ ತಲಾ ಎರಡು ಮಾಸಗಳ 6 ಋತುಗಳಾಗಿ ವಿಭಜನೆಯಾಗುತ್ತದೆ. ಈ ಋತುಗಳು ಸಹಸ್ರಾರು ವರ್ಷಗಳಿಂದ ಕೃಷಿ ಚಕ್ರಗಳು, ಹಬ್ಬಗಳು ಮತ್ತು ದೈನಂದಿನ ದಿನಚರಿಗಳನ್ನು ನಿರ್ಧರಿಸಿವೆ.",
+    "mr": "हिंदू वर्ष प्रत्येकी दोन महिन्यांच्या ६ ऋतूंमध्ये विभागले जाते, जे सूर्याच्या स्थितीशी जोडलेले आहेत. या ऋतूंनी हजारो वर्षांपासून कृषी चक्र, सण आणि दैनंदिन दिनचर्या निश्चित केली."
   },
   "ayanaTitle": {
     "en": "Uttarayana & Dakshinayana",
@@ -126,10 +126,10 @@
     "ta": "உத்தராயணம் & தக்ஷிணாயனம்",
     "bn": "উত্তরায়ণ ও দক্ষিণায়ন",
     "mai": "उत्तरायण आ दक्षिणायन",
-    "te": "Uttarayana & Dakshinayana",
-    "gu": "Uttarayana & Dakshinayana",
-    "kn": "Uttarayana & Dakshinayana",
-    "mr": "Uttarayana & Dakshinayana"
+    "te": "ఉత్తరాయణం & దక్షిణాయణం",
+    "gu": "ઉત્તરાયણ અને દક્ષિણાયન",
+    "kn": "ಉತ್ತರಾಯಣ ಮತ್ತು ದಕ್ಷಿಣಾಯಣ",
+    "mr": "उत्तरायण आणि दक्षिणायन"
   },
   "ayanaContent": {
     "en": "The solar year is divided into two halves called Ayanas. Uttarayana (northward journey) begins when the Sun enters Makara (Capricorn)  –  celebrated as Makar Sankranti. This 6-month period (roughly Jan-Jul) is considered auspicious for ceremonies. Dakshinayana (southward journey) begins when the Sun enters Karka (Cancer)  –  roughly Jul-Jan. While less favoured for rituals, Dakshinayana is considered the 'night of the gods' and is associated with tapasya (austerity).",
@@ -137,10 +137,10 @@
     "ta": "சூரிய ஆண்டு அயனங்கள் என்ற இரண்டு பகுதிகளாக பிரிக்கப்பட்டுள்ளது.",
     "bn": "সৌর বছর দুটি অয়নে বিভক্ত।",
     "mai": "सौर वर्ष के अयन नामक दुई भाग मे बाँटल गेल अछि। उत्तरायण (उत्तर दिसि यात्रा) ओखन शुरू होइत अछि जखन सूर्य मकर (मकर राशि) मे प्रवेश करैत अछि – ई मकर संक्रान्ति के रूप मे मनाओल जाइत अछि। ई 6 मासक अवधि (लगभग जनवरी-जुलाई) समारोहक लेल शुभ मानल जाइत अछि। दक्षिणायन (दक्षिण दिसि यात्रा) ओखन शुरू होइत अछि जखन सूर्य कर्क (कर्क राशि) मे प्रवेश करैत अछि – लगभग जुलाई-जनवरी। यद्यपि अनुष्ठानक लेल कम पसन्द कएल जाइत अछि, दक्षिणायन के 'देवताक राति' मानल जाइत अछि आ तपस्या सँ जुड़ल अछि।",
-    "te": "The solar year is divided into two halves called Ayanas. Uttarayana (northward journey) begins when the Sun enters Makara (Capricorn)  –  celebrated as Makar Sankranti. This 6-month period (roughly Jan-Jul) is considered auspicious for ceremonies. Dakshinayana (southward journey) begins when the Sun enters Karka (Cancer)  –  roughly Jul-Jan. While less favoured for rituals, Dakshinayana is considered the 'night of the gods' and is associated with tapasya (austerity).",
-    "gu": "The solar year is divided into two halves called Ayanas. Uttarayana (northward journey) begins when the Sun enters Makara (Capricorn)  –  celebrated as Makar Sankranti. This 6-month period (roughly Jan-Jul) is considered auspicious for ceremonies. Dakshinayana (southward journey) begins when the Sun enters Karka (Cancer)  –  roughly Jul-Jan. While less favoured for rituals, Dakshinayana is considered the 'night of the gods' and is associated with tapasya (austerity).",
-    "kn": "The solar year is divided into two halves called Ayanas. Uttarayana (northward journey) begins when the Sun enters Makara (Capricorn)  –  celebrated as Makar Sankranti. This 6-month period (roughly Jan-Jul) is considered auspicious for ceremonies. Dakshinayana (southward journey) begins when the Sun enters Karka (Cancer)  –  roughly Jul-Jan. While less favoured for rituals, Dakshinayana is considered the 'night of the gods' and is associated with tapasya (austerity).",
-    "mr": "The solar year is divided into two halves called Ayanas. Uttarayana (northward journey) begins when the Sun enters Makara (Capricorn)  –  celebrated as Makar Sankranti. This 6-month period (roughly Jan-Jul) is considered auspicious for ceremonies. Dakshinayana (southward journey) begins when the Sun enters Karka (Cancer)  –  roughly Jul-Jan. While less favoured for rituals, Dakshinayana is considered the 'night of the gods' and is associated with tapasya (austerity)."
+    "te": "సౌర సంవత్సరం అయనాలు అని పిలువబడే రెండు భాగాలుగా విభజించబడింది. ఉత్తరాయణం (ఉత్తరం వైపు ప్రయాణం) సూర్యుడు మకర రాశిలోకి ప్రవేశించినప్పుడు ప్రారంభమవుతుంది – మకర సంక్రాంతిగా జరుపుకుంటారు. ఈ 6 నెలల కాలం (సుమారు జనవరి-జూలై) వేడుకలకు శుభప్రదంగా పరిగణించబడుతుంది. దక్షిణాయణం (దక్షిణం వైపు ప్రయాణం) సూర్యుడు కర్కాటక రాశిలోకి ప్రవేశించినప్పుడు ప్రారంభమవుతుంది – సుమారు జూలై-జనవరి. ఆచారాలకు తక్కువ ప్రాధాన్యత ఉన్నప్పటికీ, దక్షిణాయణం 'దేవతల రాత్రి'గా పరిగణించబడుతుంది మరియు తపస్సు (కఠినమైన నియమాలు) తో సంబంధం కలిగి ఉంటుంది.",
+    "gu": "સૌર વર્ષને અયન નામના બે ભાગમાં વિભાજિત કરવામાં આવે છે. ઉત્તરાયણ (ઉત્તર તરફની યાત્રા) ત્યારે શરૂ થાય છે જ્યારે સૂર્ય મકર રાશિમાં (કેપ્રિકોર્ન) પ્રવેશ કરે છે – જે મકર સંક્રાંતિ તરીકે ઉજવવામાં આવે છે. આ 6 મહિનાનો સમયગાળો (લગભગ જાન્યુઆરી-જુલાઈ) સમારંભો માટે શુભ માનવામાં આવે છે. દક્ષિણાયન (દક્ષિણ તરફની યાત્રા) ત્યારે શરૂ થાય છે જ્યારે સૂર્ય કર્ક રાશિમાં (કેન્સર) પ્રવેશ કરે છે – લગભગ જુલાઈ-જાન્યુઆરી. જ્યારે ધાર્મિક વિધિઓ માટે ઓછું પસંદ કરવામાં આવે છે, ત્યારે દક્ષિણાયનને 'દેવોની રાત્રિ' માનવામાં આવે છે અને તે તપસ્યા (તપ) સાથે સંકળાયેલું છે.",
+    "kn": "ಸೌರ ವರ್ಷವನ್ನು ಅಯನಗಳು ಎಂದು ಕರೆಯಲ್ಪಡುವ ಎರಡು ಭಾಗಗಳಾಗಿ ವಿಂಗಡಿಸಲಾಗಿದೆ. ಸೂರ್ಯನು ಮಕರ ರಾಶಿಯನ್ನು (ಮಕರ) ಪ್ರವೇಶಿಸಿದಾಗ ಉತ್ತರಾಯಣ (ಉತ್ತರ ದಿಕ್ಕಿನ ಪ್ರಯಾಣ) ಪ್ರಾರಂಭವಾಗುತ್ತದೆ – ಇದನ್ನು ಮಕರ ಸಂಕ್ರಾಂತಿ ಎಂದು ಆಚರಿಸಲಾಗುತ್ತದೆ. ಈ 6 ತಿಂಗಳ ಅವಧಿಯನ್ನು (ಸುಮಾರು ಜನವರಿ-ಜುಲೈ) ಸಮಾರಂಭಗಳಿಗೆ ಶುಭವೆಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ. ಸೂರ್ಯನು ಕರ್ಕ ರಾಶಿಯನ್ನು (ಕರ್ಕ) ಪ್ರವೇಶಿಸಿದಾಗ ದಕ್ಷಿಣಾಯಣ (ದಕ್ಷಿಣ ದಿಕ್ಕಿನ ಪ್ರಯಾಣ) ಪ್ರಾರಂಭವಾಗುತ್ತದೆ – ಸುಮಾರು ಜುಲೈ-ಜನವರಿ. ಆಚರಣೆಗಳಿಗೆ ಕಡಿಮೆ ಆದ್ಯತೆ ನೀಡಲಾಗಿದ್ದರೂ, ದಕ್ಷಿಣಾಯಣವನ್ನು 'ದೇವತೆಗಳ ರಾತ್ರಿ' ಎಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ತಪಸ್ಸಿಗೆ (ಸಂಯಮ) ಸಂಬಂಧಿಸಿದೆ.",
+    "mr": "सौर वर्ष दोन भागांमध्ये विभागले जाते ज्यांना अयन म्हणतात. उत्तरायण (सूर्याचा उत्तर दिशेकडील प्रवास) सूर्य मकर राशीत (मकर) प्रवेश करतो तेव्हा सुरू होते – मकर संक्रांती म्हणून साजरे केले जाते. हा ६ महिन्यांचा कालावधी (सुमारे जानेवारी-जुलै) समारंभांसाठी शुभ मानला जातो. दक्षिणायन (सूर्याचा दक्षिण दिशेकडील प्रवास) सूर्य कर्क राशीत (कर्क) प्रवेश करतो तेव्हा सुरू होते – सुमारे जुलै-जानेवारी. विधींसाठी कमी पसंत असले तरी, दक्षिणायन 'देवांची रात्र' मानले जाते आणि ते तपस्येशी (कठोर तपश्चर्या) संबंधित आहे."
   },
   "adhikaTitle": {
     "en": "Adhika Masa: The Intercalary Month",
@@ -148,10 +148,10 @@
     "ta": "அதிக மாசம்: இடைச்செருகல் மாதம்",
     "bn": "অধিক মাস: অতিরিক্ত চন্দ্র মাস",
     "mai": "अधिक मास: मलमास",
-    "te": "Adhika Masa: The Intercalary Month",
-    "gu": "Adhika Masa: The Intercalary Month",
-    "kn": "Adhika Masa: The Intercalary Month",
-    "mr": "Adhika Masa: The Intercalary Month"
+    "te": "అధిక మాసం: అధిక మాసం",
+    "gu": "અધિક માસ: અધિક મહિનો",
+    "kn": "ಅಧಿಕ ಮಾಸ: ಸೇರ್ಪಡೆಗೊಂಡ ಮಾಸ",
+    "mr": "अधिक मास: अधिक महिना"
   },
   "adhikaContent": {
     "en": "A lunar year of 12 months totals ~354 days  –  about 11 days short of the solar year. Without correction, Hindu festivals would drift through seasons like Islamic holidays. The solution: when a lunar month passes without the Sun changing zodiac signs (Sankranti), that month is declared Adhika (extra). This happens roughly every 32.5 months. The Adhika Masa takes the name of the following month with the prefix 'Adhika'. Ceremonies and auspicious activities are generally avoided during Adhika Masa, though charitable acts are considered especially meritorious.",
@@ -159,10 +159,10 @@
     "ta": "12 சந்திர மாதங்களின் ஆண்டு ~354 நாட்கள்  –  சூரிய ஆண்டை விட சுமார் 11 நாட்கள் குறைவு.",
     "bn": "১২ চন্দ্র মাসের বছর ~৩৫৪ দিন  –  সৌর বছরের চেয়ে প্রায় ১১ দিন কম।",
     "mai": "12 मासक एकटा चान्द्र वर्ष मे कुल ~354 दिन होइत अछि – जे सौर वर्ष सँ लगभग 11 दिन कम अछि। बिना सुधार केने, हिन्दू पर्व इस्लामिक छुट्टी जकाँ ऋतुसभ सँ विचलित भ' जेतय। समाधान: जखन कोनो चान्द्र मास सूर्यक राशि परिवर्तन (संक्रान्ति) के बिना बीत जाइत अछि, तखन ओहि मास के अधिक (अतिरिक्त) घोषित कएल जाइत अछि। ई लगभग प्रत्येक 32.5 मास पर होइत अछि। अधिक मास मे आगाँ आबयवला मासक नाम 'अधिक' उपसर्गक सङ्ग जोड़ल जाइत अछि। अधिक मास के दौरान समारोह आ शुभ कार्य सामान्यतः टाड़ल जाइत अछि, यद्यपि धर्मार्थ कार्य विशेष रूप सँ पुण्यकारी मानल जाइत अछि।",
-    "te": "A lunar year of 12 months totals ~354 days  –  about 11 days short of the solar year. Without correction, Hindu festivals would drift through seasons like Islamic holidays. The solution: when a lunar month passes without the Sun changing zodiac signs (Sankranti), that month is declared Adhika (extra). This happens roughly every 32.5 months. The Adhika Masa takes the name of the following month with the prefix 'Adhika'. Ceremonies and auspicious activities are generally avoided during Adhika Masa, though charitable acts are considered especially meritorious.",
-    "gu": "A lunar year of 12 months totals ~354 days  –  about 11 days short of the solar year. Without correction, Hindu festivals would drift through seasons like Islamic holidays. The solution: when a lunar month passes without the Sun changing zodiac signs (Sankranti), that month is declared Adhika (extra). This happens roughly every 32.5 months. The Adhika Masa takes the name of the following month with the prefix 'Adhika'. Ceremonies and auspicious activities are generally avoided during Adhika Masa, though charitable acts are considered especially meritorious.",
-    "kn": "A lunar year of 12 months totals ~354 days  –  about 11 days short of the solar year. Without correction, Hindu festivals would drift through seasons like Islamic holidays. The solution: when a lunar month passes without the Sun changing zodiac signs (Sankranti), that month is declared Adhika (extra). This happens roughly every 32.5 months. The Adhika Masa takes the name of the following month with the prefix 'Adhika'. Ceremonies and auspicious activities are generally avoided during Adhika Masa, though charitable acts are considered especially meritorious.",
-    "mr": "A lunar year of 12 months totals ~354 days  –  about 11 days short of the solar year. Without correction, Hindu festivals would drift through seasons like Islamic holidays. The solution: when a lunar month passes without the Sun changing zodiac signs (Sankranti), that month is declared Adhika (extra). This happens roughly every 32.5 months. The Adhika Masa takes the name of the following month with the prefix 'Adhika'. Ceremonies and auspicious activities are generally avoided during Adhika Masa, though charitable acts are considered especially meritorious."
+    "te": "12 నెలల చాంద్రమాన సంవత్సరం మొత్తం ~354 రోజులు – సౌర సంవత్సరం కంటే సుమారు 11 రోజులు తక్కువ. దిద్దుబాటు లేకుండా, హిందూ పండుగలు ఇస్లామిక్ పండుగల వలె ఋతువుల గుండా కదులుతాయి. పరిష్కారం: ఒక చాంద్రమాన నెలలో సూర్యుడు రాశిని (సంక్రాంతి) మార్చకుండా గడిచినప్పుడు, ఆ నెల అధిక (అదనపు) గా ప్రకటించబడుతుంది. ఇది సుమారు ప్రతి 32.5 నెలలకు జరుగుతుంది. అధిక మాసం తదుపరి నెల పేరును 'అధిక' అనే ఉపసర్గతో తీసుకుంటుంది. అధిక మాసంలో వేడుకలు మరియు శుభ కార్యాలు సాధారణంగా నివారించబడతాయి, అయితే ధార్మిక కార్యాలు ముఖ్యంగా పుణ్యప్రదమైనవిగా పరిగణించబడతాయి.",
+    "gu": "12 મહિનાના ચંદ્ર વર્ષનો કુલ સમય ~354 દિવસ હોય છે – જે સૌર વર્ષ કરતાં લગભગ 11 દિવસ ઓછો છે. સુધારા વિના, હિંદુ તહેવારો ઇસ્લામિક રજાઓની જેમ ઋતુઓમાંથી પસાર થશે. ઉકેલ: જ્યારે કોઈ ચંદ્ર મહિનો સૂર્ય રાશિ બદલ્યા વિના (સંક્રાંતિ) પસાર થાય છે, ત્યારે તે મહિનાને અધિક (વધારાનો) જાહેર કરવામાં આવે છે. આવું લગભગ દર 32.5 મહિને થાય છે. અધિક માસ પછીના મહિનાનું નામ 'અધિક' ઉપસર્ગ સાથે લે છે. અધિક માસ દરમિયાન સમારંભો અને શુભ કાર્યો સામાન્ય રીતે ટાળવામાં આવે છે, જોકે દાનધર્મ ખાસ કરીને પુણ્યશાળી માનવામાં આવે છે.",
+    "kn": "12 ಮಾಸಗಳ ಚಾಂದ್ರಮಾನ ವರ್ಷವು ಒಟ್ಟು ~354 ದಿನಗಳು – ಸೌರ ವರ್ಷಕ್ಕಿಂತ ಸುಮಾರು 11 ದಿನಗಳು ಕಡಿಮೆ. ತಿದ್ದುಪಡಿ ಇಲ್ಲದೆ, ಹಿಂದೂ ಹಬ್ಬಗಳು ಇಸ್ಲಾಮಿಕ್ ಹಬ್ಬಗಳಂತೆ ಋತುಗಳ ಮೂಲಕ ಬದಲಾಗುತ್ತವೆ. ಪರಿಹಾರ: ಸೂರ್ಯನು ರಾಶಿ ಚಿಹ್ನೆಗಳನ್ನು (ಸಂಕ್ರಾಂತಿ) ಬದಲಾಯಿಸದೆ ಒಂದು ಚಾಂದ್ರಮಾನ ಮಾಸವು ಕಳೆದಾಗ, ಆ ಮಾಸವನ್ನು ಅಧಿಕ (ಹೆಚ್ಚುವರಿ) ಎಂದು ಘೋಷಿಸಲಾಗುತ್ತದೆ. ಇದು ಸುಮಾರು ಪ್ರತಿ 32.5 ತಿಂಗಳಿಗೊಮ್ಮೆ ಸಂಭವಿಸುತ್ತದೆ. ಅಧಿಕ ಮಾಸವು ಮುಂದಿನ ಮಾಸದ ಹೆಸರನ್ನು 'ಅಧಿಕ' ಎಂಬ ಪೂರ್ವಪ್ರತ್ಯಯದೊಂದಿಗೆ ತೆಗೆದುಕೊಳ್ಳುತ್ತದೆ. ಅಧಿಕ ಮಾಸದಲ್ಲಿ ಸಮಾರಂಭಗಳು ಮತ್ತು ಶುಭ ಕಾರ್ಯಗಳನ್ನು ಸಾಮಾನ್ಯವಾಗಿ ತಪ್ಪಿಸಲಾಗುತ್ತದೆ, ಆದರೂ ದಾನ ಕಾರ್ಯಗಳನ್ನು ವಿಶೇಷವಾಗಿ ಪುಣ್ಯಕರವೆಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ.",
+    "mr": "१२ महिन्यांचे चांद्र वर्ष सुमारे ३५४ दिवसांचे असते – सौर वर्षापेक्षा सुमारे ११ दिवसांनी कमी. दुरुस्तीशिवाय, हिंदू सण इस्लामिक सुट्ट्यांप्रमाणे ऋतूंमधून सरकतील. उपाय: जेव्हा सूर्य राशी बदलल्याशिवाय (संक्रांतीशिवाय) चांद्र महिना जातो, तेव्हा तो महिना अधिक (अतिरिक्त) घोषित केला जातो. हे दर सुमारे ३२.५ महिन्यांनी घडते. अधिक मास पुढील महिन्याचे नाव 'अधिक' हे उपसर्ग लावून घेतो. अधिक मासात समारंभ आणि शुभ कार्ये सामान्यतः टाळली जातात, जरी दानधर्म विशेष फलदायी मानला जातो."
   },
   "readingTitle": {
     "en": "How to Read a Traditional Panchang",
@@ -170,10 +170,10 @@
     "ta": "பாரம்பரிய பஞ்சாங்கத்தை எப்படி படிப்பது",
     "bn": "ঐতিহ্যবাহী পঞ্চাঙ্গ কীভাবে পড়বেন",
     "mai": "एकटा पारम्परिक पंचांग कोना पढ़ब",
-    "te": "How to Read a Traditional Panchang",
-    "gu": "How to Read a Traditional Panchang",
-    "kn": "How to Read a Traditional Panchang",
-    "mr": "How to Read a Traditional Panchang"
+    "te": "సాంప్రదాయ పంచాంగాన్ని ఎలా చదవాలి",
+    "gu": "પરંપરાગત પંચાંગ કેવી રીતે વાંચવું",
+    "kn": "ಸಾಂಪ್ರದಾಯಿಕ ಪಂಚಾಂಗವನ್ನು ಓದುವುದು ಹೇಗೆ",
+    "mr": "पारंपरिक पंचांग कसे वाचावे"
   },
   "readingContent": {
     "en": "A daily panchang page shows five core elements (Tithi, Nakshatra, Yoga, Karana, Vara), along with sunrise/sunset, Rahu Kaal, and lunar month information. The five elements change at different rates  –  Vara changes at sunrise, Tithi and Karana change roughly twice per day, while Nakshatra and Yoga change approximately once per day. Understanding these rhythms is key to reading the panchang effectively.",
@@ -181,10 +181,10 @@
     "ta": "தினசரி பஞ்சாங்க பக்கம் ஐந்து முக்கிய கூறுகளை (திதி, நட்சத்திரம், யோகம், கரணம், வாரம்) காட்டுகிறது.",
     "bn": "দৈনিক পঞ্চাঙ্গ পৃষ্ঠা পাঁচটি মূল উপাদান (তিথি, নক্ষত্র, যোগ, করণ, বার) দেখায়।",
     "mai": "एकटा दैनिक पंचांग पृष्ठ मे पाँचटा मुख्य तत्व (तिथि, नक्षत्र, योग, करण, वार), सूर्योदय/सूर्यास्त, राहु काल, आ चान्द्र मासक जानकारी देखाओल जाइत अछि। पाँचटा तत्व भिन्न-भिन्न दर सँ बदलैत अछि – वार सूर्योदय पर बदलैत अछि, तिथि आ करण लगभग दिन मे दुई बेर बदलैत अछि, जखन कि नक्षत्र आ योग लगभग दिन मे एक बेर बदलैत अछि। ई लय के बुझब पंचांग के प्रभावी ढंग सँ पढ़बाक लेल महत्वपूर्ण अछि।",
-    "te": "A daily panchang page shows five core elements (Tithi, Nakshatra, Yoga, Karana, Vara), along with sunrise/sunset, Rahu Kaal, and lunar month information. The five elements change at different rates  –  Vara changes at sunrise, Tithi and Karana change roughly twice per day, while Nakshatra and Yoga change approximately once per day. Understanding these rhythms is key to reading the panchang effectively.",
-    "gu": "A daily panchang page shows five core elements (Tithi, Nakshatra, Yoga, Karana, Vara), along with sunrise/sunset, Rahu Kaal, and lunar month information. The five elements change at different rates  –  Vara changes at sunrise, Tithi and Karana change roughly twice per day, while Nakshatra and Yoga change approximately once per day. Understanding these rhythms is key to reading the panchang effectively.",
-    "kn": "A daily panchang page shows five core elements (Tithi, Nakshatra, Yoga, Karana, Vara), along with sunrise/sunset, Rahu Kaal, and lunar month information. The five elements change at different rates  –  Vara changes at sunrise, Tithi and Karana change roughly twice per day, while Nakshatra and Yoga change approximately once per day. Understanding these rhythms is key to reading the panchang effectively.",
-    "mr": "A daily panchang page shows five core elements (Tithi, Nakshatra, Yoga, Karana, Vara), along with sunrise/sunset, Rahu Kaal, and lunar month information. The five elements change at different rates  –  Vara changes at sunrise, Tithi and Karana change roughly twice per day, while Nakshatra and Yoga change approximately once per day. Understanding these rhythms is key to reading the panchang effectively."
+    "te": "ఒక రోజువారీ పంచాంగ పేజీ ఐదు ప్రధాన అంశాలను (తిథి, నక్షత్రం, యోగం, కరణం, వారం) చూపుతుంది, సూర్యోదయం/సూర్యాస్తమయం, రాహు కాలం మరియు చాంద్రమాన నెల సమాచారంతో పాటు. ఐదు అంశాలు వేర్వేరు రేట్లలో మారుతాయి – వారం సూర్యోదయం వద్ద మారుతుంది, తిథి మరియు కరణం సుమారు రోజుకు రెండుసార్లు మారుతాయి, నక్షత్రం మరియు యోగం సుమారు రోజుకు ఒకసారి మారుతాయి. ఈ లయలను అర్థం చేసుకోవడం పంచాంగాన్ని సమర్థవంతంగా చదవడానికి కీలకం.",
+    "gu": "દૈનિક પંચાંગ પૃષ્ઠ પાંચ મુખ્ય તત્વો (તિથિ, નક્ષત્ર, યોગ, કરણ, વાર) દર્શાવે છે, સૂર્યોદય/સૂર્યાસ્ત, રાહુ કાળ અને ચંદ્ર મહિનાની માહિતી સાથે. પાંચ તત્વો અલગ-અલગ દરે બદલાય છે – વાર સૂર્યોદય સમયે બદલાય છે, તિથિ અને કરણ દિવસમાં લગભગ બે વાર બદલાય છે, જ્યારે નક્ષત્ર અને યોગ દિવસમાં લગભગ એક વાર બદલાય છે. આ લયને સમજવું પંચાંગને અસરકારક રીતે વાંચવા માટે મહત્વપૂર્ણ છે.",
+    "kn": "ದೈನಂದಿನ ಪಂಚಾಂಗ ಪುಟವು ಐದು ಪ್ರಮುಖ ಅಂಶಗಳನ್ನು (ತಿಥಿ, ನಕ್ಷತ್ರ, ಯೋಗ, ಕರಣ, ವಾರ) ಸೂರ್ಯೋದಯ/ಸೂರ್ಯಾಸ್ತ, ರಾಹು ಕಾಲ ಮತ್ತು ಚಾಂದ್ರಮಾನ ಮಾಸದ ಮಾಹಿತಿಯೊಂದಿಗೆ ತೋರಿಸುತ್ತದೆ. ಐದು ಅಂಶಗಳು ವಿಭಿನ್ನ ದರಗಳಲ್ಲಿ ಬದಲಾಗುತ್ತವೆ – ವಾರವು ಸೂರ್ಯೋದಯದಲ್ಲಿ ಬದಲಾಗುತ್ತದೆ, ತಿಥಿ ಮತ್ತು ಕರಣವು ದಿನಕ್ಕೆ ಸುಮಾರು ಎರಡು ಬಾರಿ ಬದಲಾಗುತ್ತವೆ, ಆದರೆ ನಕ್ಷತ್ರ ಮತ್ತು ಯೋಗವು ದಿನಕ್ಕೆ ಸುಮಾರು ಒಮ್ಮೆ ಬದಲಾಗುತ್ತವೆ. ಈ ಲಯಗಳನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವುದು ಪಂಚಾಂಗವನ್ನು ಪರಿಣಾಮಕಾರಿಯಾಗಿ ಓದಲು ಪ್ರಮುಖವಾಗಿದೆ.",
+    "mr": "दैनंदिन पंचांग पृष्ठ पाच मुख्य घटक (तिथी, नक्षत्र, योग, करण, वार) दर्शवते, सूर्योदय/सूर्यास्त, राहू काळ आणि चांद्र महिन्याच्या माहितीसह. हे पाच घटक वेगवेगळ्या दरांनी बदलतात – वार सूर्योदयाला बदलतो, तिथी आणि करण दिवसातून साधारणपणे दोनदा बदलतात, तर नक्षत्र आणि योग दिवसातून अंदाजे एकदा बदलतात. या तालांना समजून घेणे हे पंचांग प्रभावीपणे वाचण्यासाठी महत्त्वाचे आहे."
   },
   "sourceDisclaimer": {
     "en": "Based on Surya Siddhanta (astronomical foundations), regional panchang conventions, and the National Calendar Committee of India's standardisation work. The Amanta/Purnimanta distinction follows the conventions documented by S.B. Dikshit in 'Bharatiya Jyotish Shastra'.",
@@ -192,9 +192,9 @@
     "ta": "சூர்ய சித்தாந்தம், பிராந்திய பஞ்சாங்க மரபுகள் மற்றும் இந்திய தேசிய நாட்காட்டி குழுவின் தரப்படுத்தல் பணியின் அடிப்படையில்.",
     "bn": "সূর্য সিদ্ধান্ত, আঞ্চলিক পঞ্চাঙ্গ ঐতিহ্য এবং ভারতের জাতীয় ক্যালেন্ডার কমিটির মানকরণ কাজের ভিত্তিতে।",
     "mai": "सूर्य सिद्धान्त (खगोलीय आधार), क्षेत्रीय पंचांग परम्परा, आ भारतक राष्ट्रीय क्यालेन्डर समितिक मानकीकरण कार्य पर आधारित। अमांत/पूर्णिमांतक भेद एस.बी. दीक्षित द्वारा 'भारतीय ज्योतिष शास्त्र' मे दस्तावेजित परम्परासभक पालन करैत अछि।",
-    "te": "Based on Surya Siddhanta (astronomical foundations), regional panchang conventions, and the National Calendar Committee of India's standardisation work. The Amanta/Purnimanta distinction follows the conventions documented by S.B. Dikshit in 'Bharatiya Jyotish Shastra'.",
-    "gu": "Based on Surya Siddhanta (astronomical foundations), regional panchang conventions, and the National Calendar Committee of India's standardisation work. The Amanta/Purnimanta distinction follows the conventions documented by S.B. Dikshit in 'Bharatiya Jyotish Shastra'.",
-    "kn": "Based on Surya Siddhanta (astronomical foundations), regional panchang conventions, and the National Calendar Committee of India's standardisation work. The Amanta/Purnimanta distinction follows the conventions documented by S.B. Dikshit in 'Bharatiya Jyotish Shastra'.",
-    "mr": "Based on Surya Siddhanta (astronomical foundations), regional panchang conventions, and the National Calendar Committee of India's standardisation work. The Amanta/Purnimanta distinction follows the conventions documented by S.B. Dikshit in 'Bharatiya Jyotish Shastra'."
+    "te": "సూర్య సిద్ధాంతం (ఖగోళ పునాదులు), ప్రాంతీయ పంచాంగ సంప్రదాయాలు మరియు భారత జాతీయ క్యాలెండర్ కమిటీ యొక్క ప్రామాణీకరణ పని ఆధారంగా. అమాంతం/పూర్ణిమాంతం వ్యత్యాసం 'భారతీయ జ్యోతిష శాస్త్రం' లో S.B. దీక్షిత్ ద్వారా నమోదు చేయబడిన సంప్రదాయాలను అనుసరిస్తుంది.",
+    "gu": "સૂર્ય સિદ્ધાંત (ખગોળીય પાયા), પ્રાદેશિક પંચાંગ પરંપરાઓ અને ભારતીય રાષ્ટ્રીય કેલેન્ડર સમિતિના માનકીકરણ કાર્ય પર આધારિત. અમાન્ત/પૂર્ણિમાન્તનો ભેદ એસ.બી. દીક્ષિત દ્વારા 'ભારતીય જ્યોતિષ શાસ્ત્ર'માં દસ્તાવેજીકૃત પરંપરાઓને અનુસરે છે.",
+    "kn": "ಸೂರ್ಯ ಸಿದ್ಧಾಂತ (ಖಗೋಳಶಾಸ್ತ್ರದ ಅಡಿಪಾಯಗಳು), ಪ್ರಾದೇಶಿಕ ಪಂಚಾಂಗ ಸಂಪ್ರದಾಯಗಳು ಮತ್ತು ಭಾರತದ ರಾಷ್ಟ್ರೀಯ ಪಂಚಾಂಗ ಸಮಿತಿಯ ಪ್ರಮಾಣೀಕರಣ ಕಾರ್ಯವನ್ನು ಆಧರಿಸಿದೆ. ಅಮಾವಾಸ್ಯಾಂತ/ಪೂರ್ಣಿಮಾಂತ ವ್ಯತ್ಯಾಸವು ಎಸ್.ಬಿ. ದೀಕ್ಷಿತ್ ಅವರ 'ಭಾರತೀಯ ಜ್ಯೋತಿಷ್ಯ ಶಾಸ್ತ್ರ'ದಲ್ಲಿ ದಾಖಲಾಗಿರುವ ಸಂಪ್ರದಾಯಗಳನ್ನು ಅನುಸರಿಸುತ್ತದೆ.",
+    "mr": "सूर्य सिद्धांत (खगोलशास्त्रीय आधार), प्रादेशिक पंचांग पद्धती, आणि भारताच्या राष्ट्रीय दिनदर्शिका समितीच्या मानकीकरण कार्यावर आधारित. अमांत/पौर्णिमांत भेद एस.बी. दीक्षित यांनी 'भारतीय ज्योतिष शास्त्र' मध्ये नमूद केलेल्या पद्धतींनुसार आहे."
   }
 }

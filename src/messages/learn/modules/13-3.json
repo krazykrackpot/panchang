@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 13-1: योग अवलोकन",
         "mai": "मॉड्यूल १३-१: योगक अवलोकन",
         "mr": "मॉड्यूल 13-1: योग अवलोकन",
-        "ta": "Module 13-1: Yogas Overview",
-        "te": "Module 13-1: Yogas Overview",
-        "bn": "Module 13-1: Yogas Overview",
-        "kn": "Module 13-1: Yogas Overview",
-        "gu": "Module 13-1: Yogas Overview"
+        "ta": "தொகுதி 13-1: யோகங்கள் ஒரு பார்வை",
+        "te": "మాడ్యూల్ 13-1: యోగాల అవలోకనం",
+        "bn": "মডিউল ১৩-১: যোগের সংক্ষিপ্ত বিবরণ",
+        "kn": "ಮಾಡ್ಯೂಲ್ 13-1: ಯೋಗಗಳ ಅವಲೋಕನ",
+        "gu": "મોડ્યુલ ૧૩-૧: યોગોની ઝાંખી"
       },
       "href": "/learn/modules/13-1"
     },
@@ -42,11 +42,11 @@
         "hi": "मॉड्यूल 13-2: धन और अरिष्ट योग",
         "mai": "मॉड्यूल १३-२: धन ओ अरिष्ट योग",
         "mr": "मॉड्यूल 13-2: धन और अरिष्ट योग",
-        "ta": "Module 13-2: Dhana & Arishta Yogas",
-        "te": "Module 13-2: Dhana & Arishta Yogas",
-        "bn": "Module 13-2: Dhana & Arishta Yogas",
-        "kn": "Module 13-2: Dhana & Arishta Yogas",
-        "gu": "Module 13-2: Dhana & Arishta Yogas"
+        "ta": "தொகுதி 13-2: தன மற்றும் அரிஷ்ட யோகங்கள்",
+        "te": "మాడ్యూల్ 13-2: ధన మరియు అరిష్ట యోగాలు",
+        "bn": "মডিউল ১৩-২: ধন ও অরিষ্ট যোগ",
+        "kn": "ಮಾಡ್ಯೂಲ್ 13-2: ಧನ ಮತ್ತು ಅರಿಷ್ಟ ಯೋಗಗಳು",
+        "gu": "મોડ્યુલ ૧૩-૨: ધન અને અરિષ્ટ યોગો"
       },
       "href": "/learn/modules/13-2"
     }
@@ -58,24 +58,24 @@
       "question": {
         "en": "Mangal Dosha is formed when Mars is placed in which houses from Lagna, Moon, or Venus?",
         "hi": "मंगल दोष तब बनता है जब मंगल लग्न, चन्द्र या शुक्र से किन भावों में स्थित हो?",
-        "ta": "Mangal Dosha is formed when Mars is placed in which houses from Lagna, Moon, or Venus?",
-        "te": "Mangal Dosha is formed when Mars is placed in which houses from Lagna, Moon, or Venus?",
-        "bn": "Mangal Dosha is formed when Mars is placed in which houses from Lagna, Moon, or Venus?",
-        "kn": "Mangal Dosha is formed when Mars is placed in which houses from Lagna, Moon, or Venus?",
+        "ta": "லக்னம், சந்திரன் அல்லது சுக்கிரனில் இருந்து செவ்வாய் எந்த பாவங்களில் அமர்ந்திருக்கும் போது செவ்வாய் தோஷம் உருவாகிறது?",
+        "te": "లగ్నం, చంద్రుడు లేదా శుక్రుడి నుండి కుజుడు ఏ భావాలలో ఉన్నప్పుడు మంగళ దోషం ఏర్పడుతుంది?",
+        "bn": "লগ্ন, চন্দ্র বা শুক্র থেকে মঙ্গল কোন ভাবে অবস্থিত হলে মঙ্গল দোষ গঠিত হয়?",
+        "kn": "ಲಗ್ನ, ಚಂದ್ರ, ಅಥವಾ ಶುಕ್ರದಿಂದ ಯಾವ ಭಾವಗಳಲ್ಲಿ ಮಂಗಳ ಗ್ರಹವು ಇರಿಸಲ್ಪಟ್ಟಾಗ ಮಂಗಳ ದೋಷವು ರೂಪುಗೊಳ್ಳುತ್ತದೆ?",
         "mr": "मंगल दोष तब बनता है जब मंगल लग्न, चन्द्र या शुक्र से किन भावों में स्थित हो?",
-        "gu": "Mangal Dosha is formed when Mars is placed in which houses from Lagna, Moon, or Venus?",
+        "gu": "લગ્ન, ચંદ્ર કે શુક્રથી કયા ભાવમાં મંગળ હોય ત્યારે મંગળ દોષ બને છે?",
         "mai": "मंगल दोष कहिया बनैत अछि जखन मंगल लग्न, चन्द्रमा ओ शुक्र सं कोन घरसभमे स्थित रहैत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Mangal Dosha forms when Mars occupies the 1st (self/temperament), 2nd (family/speech), 4th (domestic peace), 7th (spouse), 8th (longevity/intimacy), or 12th (bed pleasures/losses) house from Lagna, Moon, or Venus. These houses directly affect marital harmony.",
         "hi": "मंगल दोष तब बनता है जब मंगल लग्न, चन्द्र या शुक्र से 1ले (स्वयं/स्वभाव), 2रे (परिवार/वाणी), 4थे (गृह शान्ति), 7वें (जीवनसाथी), 8वें (आयु/अन्तरंगता) या 12वें (शय्या सुख/हानि) भाव में हो। ये भाव वैवाहिक सामंजस्य को सीधे प्रभावित करते हैं।",
-        "ta": "Mangal Dosha forms when Mars occupies the 1st (self/temperament), 2nd (family/speech), 4th (domestic peace), 7th (spouse), 8th (longevity/intimacy), or 12th (bed pleasures/losses) house from Lagna, Moon, or Venus. These houses directly affect marital harmony.",
-        "te": "Mangal Dosha forms when Mars occupies the 1st (self/temperament), 2nd (family/speech), 4th (domestic peace), 7th (spouse), 8th (longevity/intimacy), or 12th (bed pleasures/losses) house from Lagna, Moon, or Venus. These houses directly affect marital harmony.",
-        "bn": "Mangal Dosha forms when Mars occupies the 1st (self/temperament), 2nd (family/speech), 4th (domestic peace), 7th (spouse), 8th (longevity/intimacy), or 12th (bed pleasures/losses) house from Lagna, Moon, or Venus. These houses directly affect marital harmony.",
-        "kn": "Mangal Dosha forms when Mars occupies the 1st (self/temperament), 2nd (family/speech), 4th (domestic peace), 7th (spouse), 8th (longevity/intimacy), or 12th (bed pleasures/losses) house from Lagna, Moon, or Venus. These houses directly affect marital harmony.",
+        "ta": "லக்னம், சந்திரன் அல்லது சுக்கிரனில் இருந்து செவ்வாய் கிரகம் 1 ஆம் பாவம் (சுயம்/குணம்), 2 ஆம் பாவம் (குடும்பம்/பேச்சு), 4 ஆம் பாவம் (வீட்டு அமைதி), 7 ஆம் பாவம் (வாழ்க்கைத் துணை), 8 ஆம் பாவம் (ஆயுள்/நெருக்கம்), அல்லது 12 ஆம் பாவம் (படுக்கை இன்பங்கள்/இழப்புகள்) ஆகிய பாவங்களில் அமர்ந்திருக்கும் போது செவ்வாய் தோஷம் உருவாகிறது. இந்த பாவங்கள் திருமண நல்லிணக்கத்தை நேரடியாகப் பாதிக்கின்றன.",
+        "te": "లగ్నం, చంద్రుడు లేదా శుక్రుడి నుండి కుజుడు 1వ (స్వభావం/ప్రకృతి), 2వ (కుటుంబం/వాక్కు), 4వ (గృహ శాంతి), 7వ (జీవిత భాగస్వామి), 8వ (దీర్ఘాయువు/శారీరక సంబంధం) లేదా 12వ (శయ్య సుఖాలు/నష్టాలు) భావంలో ఉన్నప్పుడు మంగళ దోషం ఏర్పడుతుంది. ఈ భావాలు వైవాహిక సామరస్యాన్ని నేరుగా ప్రభావితం చేస్తాయి.",
+        "bn": "লগ্ন, চন্দ্র বা শুক্র থেকে মঙ্গল যখন ১ম (আত্মা/স্বভাব), ২য় (পরিবার/বাকশক্তি), ৪র্থ (পারিবারিক শান্তি), ৭ম (জীবনসঙ্গী), ৮ম (আয়ু/ঘনিষ্ঠতা), অথবা ১২শ (শয্যাসুখ/ক্ষতি) ভাবে অবস্থিত হয়, তখন মঙ্গল দোষ গঠিত হয়। এই ভাবগুলি সরাসরি দাম্পত্য সম্প্রীতিকে প্রভাবিত করে।",
+        "kn": "ಲಗ್ನ, ಚಂದ್ರ, ಅಥವಾ ಶುಕ್ರದಿಂದ 1ನೇ (ಸ್ವ/ಸ್ವಭಾವ), 2ನೇ (ಕುಟುಂಬ/ಮಾತು), 4ನೇ (ಗೃಹ ಶಾಂತಿ), 7ನೇ (ಪತಿ/ಪತ್ನಿ), 8ನೇ (ದೀರ್ಘಾಯುಷ್ಯ/ಅನ್ಯೋನ್ಯತೆ), ಅಥವಾ 12ನೇ (ಶಯನ ಸುಖ/ನಷ್ಟಗಳು) ಭಾವದಲ್ಲಿ ಮಂಗಳ ಗ್ರಹವು ಆಕ್ರಮಿಸಿದಾಗ ಮಂಗಳ ದೋಷವು ರೂಪುಗೊಳ್ಳುತ್ತದೆ. ಈ ಭಾವಗಳು ವೈವಾಹಿಕ ಸಾಮರಸ್ಯದ ಮೇಲೆ ನೇರವಾಗಿ ಪರಿಣಾಮ ಬೀರುತ್ತವೆ.",
         "mr": "मंगल दोष तब बनता है जब मंगल लग्न, चन्द्र या शुक्र से 1ले (स्वयं/स्वभाव), 2रे (परिवार/वाणी), 4थे (गृह शान्ति), 7वें (जीवनसाथी), 8वें (आयु/अन्तरंगता) या 12वें (शय्या सुख/हानि) भाव में हो। ये भाव वैवाहिक सामंजस्य को सीधे प्रभावित करते हैं।",
-        "gu": "Mangal Dosha forms when Mars occupies the 1st (self/temperament), 2nd (family/speech), 4th (domestic peace), 7th (spouse), 8th (longevity/intimacy), or 12th (bed pleasures/losses) house from Lagna, Moon, or Venus. These houses directly affect marital harmony.",
+        "gu": "લગ્ન, ચંદ્ર કે શુક્રથી ૧લા (સ્વભાવ/વ્યક્તિત્વ), ૨જા (કુટુંબ/વાણી), ૪થા (ઘરની શાંતિ), ૭મા (જીવનસાથી), ૮મા (આયુષ્ય/ઘનિષ્ઠતા), કે ૧૨મા (શય્યા સુખ/નુકસાન) ભાવમાં મંગળ હોય ત્યારે મંગળ દોષ બને છે. આ ભાવ સીધા લગ્નજીવનની સુમેળ પર અસર કરે છે.",
         "mai": "मंगल दोष बनैत अछि जखन मंगल लग्न, चन्द्रमा ओ शुक्र सं पहिल (स्वयं/स्वभाव), दोसर (परिवार/वाणी), चारिम (पारिवारिक शान्ति), सातम् (जीवनसाथी), आठम् (दीर्घायु/घनिष्ठता), ओ बारहम् (शैया सुख/हानि) घरमे रहैत अछि। ई घरसभ वैवाहिक सामंजस्य केँ सीधा प्रभावित करैत अछि।"
       },
       "options": [
@@ -106,22 +106,22 @@
           "hi": "केवल 5, 9",
           "mai": "५, ९ मात्र",
           "mr": "केवल 5, 9",
-          "ta": "5, 9 only",
-          "te": "5, 9 only",
-          "bn": "5, 9 only",
-          "kn": "5, 9 only",
-          "gu": "5, 9 only"
+          "ta": "5, 9 மட்டுமே",
+          "te": "5, 9 మాత్రమే",
+          "bn": "৫, ৯ শুধুমাত্র",
+          "kn": "5, 9 ಮಾತ್ರ",
+          "gu": "ફક્ત ૫, ૯"
         },
         {
           "en": "2, 7 only",
           "hi": "केवल 2, 7",
           "mai": "२, ७ मात्र",
           "mr": "केवल 2, 7",
-          "ta": "2, 7 only",
-          "te": "2, 7 only",
-          "bn": "2, 7 only",
-          "kn": "2, 7 only",
-          "gu": "2, 7 only"
+          "ta": "2, 7 மட்டுமே",
+          "te": "2, 7 మాత్రమే",
+          "bn": "২, ৭ শুধুমাত্র",
+          "kn": "2, 7 ಮಾತ್ರ",
+          "gu": "ફક્ત ૨, ૭"
         }
       ]
     },
@@ -131,24 +131,24 @@
       "question": {
         "en": "If both partners have Mangal Dosha, the dosha is considered cancelled for marriage compatibility.",
         "hi": "यदि दोनों साथियों में मंगल दोष हो, तो विवाह अनुकूलता के लिए दोष निरस्त माना जाता है।",
-        "ta": "If both partners have Mangal Dosha, the dosha is considered cancelled for marriage compatibility.",
-        "te": "If both partners have Mangal Dosha, the dosha is considered cancelled for marriage compatibility.",
-        "bn": "If both partners have Mangal Dosha, the dosha is considered cancelled for marriage compatibility.",
-        "kn": "If both partners have Mangal Dosha, the dosha is considered cancelled for marriage compatibility.",
+        "ta": "இரு கூட்டாளிகளுக்கும் செவ்வாய் தோஷம் இருந்தால், திருமணப் பொருத்தத்திற்காக தோஷம் ரத்து செய்யப்பட்டதாகக் கருதப்படுகிறது.",
+        "te": "ఇద్దరు భాగస్వాములకు మంగళ దోషం ఉంటే, వివాహ అనుకూలత కోసం దోషం రద్దయినట్లు పరిగణించబడుతుంది.",
+        "bn": "যদি উভয় সঙ্গীর মঙ্গল দোষ থাকে, তাহলে বিবাহ সঙ্গতির জন্য দোষটি বাতিল বলে গণ্য হয়।",
+        "kn": "ಇಬ್ಬರೂ ಪಾಲುದಾರರಿಗೆ ಮಂಗಳ ದೋಷವಿದ್ದರೆ, ವಿವಾಹ ಹೊಂದಾಣಿಕೆಗೆ ದೋಷವು ರದ್ದುಗೊಂಡಿದೆ ಎಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ.",
         "mr": "यदि दोनों साथियों में मंगल दोष हो, तो विवाह अनुकूलता के लिए दोष निरस्त माना जाता है।",
-        "gu": "If both partners have Mangal Dosha, the dosha is considered cancelled for marriage compatibility.",
+        "gu": "જો બંને ભાગીદારોને મંગળ દોષ હોય, તો લગ્ન સુસંગતતા માટે દોષ રદ થયેલો ગણાય છે.",
         "mai": "जँ दुनू साथी केँ मंगल दोष अछि, तँ विवाहक अनुकूलता के लेल दोष रद्द मानल जाइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. When both partners have Mangal Dosha, their Mars energies are considered balanced  –  the aggressive/fiery nature matches, reducing the risk of one partner dominating or harming the other. This is one of the most common cancellation conditions.",
         "hi": "सत्य। जब दोनों साथियों में मंगल दोष हो, तो उनकी मंगल ऊर्जा सन्तुलित मानी जाती है  –  आक्रामक/अग्नि स्वभाव मेल खाता है, एक साथी के दूसरे पर प्रभुत्व या हानि का जोखिम कम होता है। यह सबसे सामान्य निवारण शर्तों में से एक है।",
-        "ta": "True. When both partners have Mangal Dosha, their Mars energies are considered balanced  –  the aggressive/fiery nature matches, reducing the risk of one partner dominating or harming the other. This is one of the most common cancellation conditions.",
-        "te": "True. When both partners have Mangal Dosha, their Mars energies are considered balanced  –  the aggressive/fiery nature matches, reducing the risk of one partner dominating or harming the other. This is one of the most common cancellation conditions.",
-        "bn": "True. When both partners have Mangal Dosha, their Mars energies are considered balanced  –  the aggressive/fiery nature matches, reducing the risk of one partner dominating or harming the other. This is one of the most common cancellation conditions.",
-        "kn": "True. When both partners have Mangal Dosha, their Mars energies are considered balanced  –  the aggressive/fiery nature matches, reducing the risk of one partner dominating or harming the other. This is one of the most common cancellation conditions.",
+        "ta": "உண்மை. இரு கூட்டாளிகளுக்கும் செவ்வாய் தோஷம் இருக்கும் போது, அவர்களின் செவ்வாய் ஆற்றல்கள் சமநிலையில் இருப்பதாகக் கருதப்படுகிறது – ஆக்ரோஷமான/தீவிரமான இயல்பு பொருந்திப் போகிறது, ஒரு கூட்டாளி மற்றவரை ஆதிக்கம் செலுத்துவது அல்லது தீங்கு விளைவிப்பது போன்ற அபாயத்தைக் குறைக்கிறது. இது மிகவும் பொதுவான ரத்து செய்யும் நிபந்தனைகளில் ஒன்றாகும்.",
+        "te": "నిజం. ఇద్దరు భాగస్వాములకు మంగళ దోషం ఉన్నప్పుడు, వారి కుజుడి శక్తులు సమతుల్యంగా పరిగణించబడతాయి – దూకుడు/అగ్ని స్వభావం సరిపోతుంది, ఒక భాగస్వామి మరొకరిపై ఆధిపత్యం చెలాయించే లేదా హాని కలిగించే ప్రమాదాన్ని తగ్గిస్తుంది. ఇది అత్యంత సాధారణ రద్దు పరిస్థితులలో ఒకటి.",
+        "bn": "সত্য। যখন উভয় সঙ্গীর মঙ্গল দোষ থাকে, তখন তাদের মঙ্গলের শক্তি ভারসাম্যপূর্ণ বলে বিবেচিত হয় – আক্রমণাত্মক/উগ্র স্বভাব মিলে যায়, যা একজন সঙ্গীর অন্যকে প্রভাবিত বা ক্ষতি করার ঝুঁকি হ্রাস করে। এটি সবচেয়ে সাধারণ বাতিলকরণ শর্তগুলির মধ্যে একটি।",
+        "kn": "ಸರಿ. ಇಬ್ಬರೂ ಪಾಲುದಾರರಿಗೆ ಮಂಗಳ ದೋಷವಿದ್ದಾಗ, ಅವರ ಮಂಗಳ ಶಕ್ತಿಗಳು ಸಮತೋಲಿತವಾಗಿವೆ ಎಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ  –  ಆಕ್ರಮಣಕಾರಿ/ಉಗ್ರ ಸ್ವಭಾವವು ಹೊಂದಾಣಿಕೆಯಾಗುತ್ತದೆ, ಒಬ್ಬ ಪಾಲುದಾರ ಇನ್ನೊಬ್ಬರನ್ನು ಆಳುವ ಅಥವಾ ಹಾನಿ ಮಾಡುವ ಅಪಾಯವನ್ನು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ. ಇದು ಅತ್ಯಂತ ಸಾಮಾನ್ಯ ರದ್ದತಿ ಪರಿಸ್ಥಿತಿಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ.",
         "mr": "सत्य। जब दोनों साथियों में मंगल दोष हो, तो उनकी मंगल ऊर्जा सन्तुलित मानी जाती है  –  आक्रामक/अग्नि स्वभाव मेल खाता है, एक साथी के दूसरे पर प्रभुत्व या हानि का जोखिम कम होता है। यह सबसे सामान्य निवारण शर्तों में से एक है।",
-        "gu": "True. When both partners have Mangal Dosha, their Mars energies are considered balanced  –  the aggressive/fiery nature matches, reducing the risk of one partner dominating or harming the other. This is one of the most common cancellation conditions.",
+        "gu": "સાચું. જ્યારે બંને ભાગીદારોને મંગળ દોષ હોય, ત્યારે તેમની મંગળ ઊર્જા સંતુલિત ગણાય છે  –  આક્રમક/અગ્નિ તત્વનો સ્વભાવ મેળ ખાય છે, જે એક ભાગીદાર બીજા પર પ્રભુત્વ જમાવે કે નુકસાન પહોંચાડે તે જોખમ ઘટાડે છે. આ સૌથી સામાન્ય રદ્દીકરણની શરતોમાંની એક છે.",
         "mai": "सत्य। जखन दुनू साथी केँ मंगल दोष रहैत अछि, तँ हुनकर मंगलक ऊर्जा संतुलित मानल जाइत अछि – आक्रामक/अग्नियुक्त स्वभाव मेल खा जाइत अछि, जाहि सं एकटा साथी दोसर पर हावी होयबाक वा नुकसान पहुँचायबाक जोखिम कम भऽ जाइत अछि। ई सबसँ सामान्य रद्द करयवला स्थिति मे सं एकटा अछि।"
       }
     },
@@ -158,24 +158,24 @@
       "question": {
         "en": "How many standard cancellation conditions exist for Mangal Dosha?",
         "hi": "मंगल दोष के कितने मानक निवारण नियम हैं?",
-        "ta": "How many standard cancellation conditions exist for Mangal Dosha?",
-        "te": "How many standard cancellation conditions exist for Mangal Dosha?",
-        "bn": "How many standard cancellation conditions exist for Mangal Dosha?",
-        "kn": "How many standard cancellation conditions exist for Mangal Dosha?",
+        "ta": "செவ்வாய் தோஷத்திற்கு எத்தனை நிலையான ரத்து செய்யும் நிபந்தனைகள் உள்ளன?",
+        "te": "మంగళ దోషం కోసం ఎన్ని ప్రామాణిక రద్దు పరిస్థితులు ఉన్నాయి?",
+        "bn": "মঙ্গল দোষের জন্য কতগুলি প্রামাণ্য বাতিলকরণ শর্ত বিদ্যমান?",
+        "kn": "ಮಂಗಳ ದೋಷಕ್ಕೆ ಎಷ್ಟು ಪ್ರಮಾಣಿತ ರದ್ದತಿ ಪರಿಸ್ಥಿತಿಗಳು ಅಸ್ತಿತ್ವದಲ್ಲಿವೆ?",
         "mr": "मंगल दोष के कितने मानक निवारण नियम हैं?",
-        "gu": "How many standard cancellation conditions exist for Mangal Dosha?",
+        "gu": "મંગળ દોષ માટે કેટલી પ્રમાણભૂત રદ્દીકરણની શરતો અસ્તિત્વમાં છે?",
         "mai": "मंगल दोष के लेल केटा मानक रद्द करयवला स्थिति अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "There are 6 major cancellation conditions for Mangal Dosha: (1) Jupiter's aspect on Mars, (2) Mars in own/exalted sign, (3) Same dosha in partner's chart, (4) Mars in specific signs (Aries, Scorpio, Capricorn), (5) Benefic conjunction with Mars, (6) Mars past 28° in the sign.",
         "hi": "मंगल दोष के 6 प्रमुख निवारण नियम हैं: (1) मंगल पर गुरु की दृष्टि, (2) मंगल स्वराशि/उच्च में, (3) साथी की कुण्डली में समान दोष, (4) मंगल विशिष्ट राशियों (मेष, वृश्चिक, मकर) में, (5) मंगल के साथ शुभ ग्रह का संयोग, (6) राशि में 28° से आगे मंगल।",
-        "ta": "There are 6 major cancellation conditions for Mangal Dosha: (1) Jupiter's aspect on Mars, (2) Mars in own/exalted sign, (3) Same dosha in partner's chart, (4) Mars in specific signs (Aries, Scorpio, Capricorn), (5) Benefic conjunction with Mars, (6) Mars past 28° in the sign.",
-        "te": "There are 6 major cancellation conditions for Mangal Dosha: (1) Jupiter's aspect on Mars, (2) Mars in own/exalted sign, (3) Same dosha in partner's chart, (4) Mars in specific signs (Aries, Scorpio, Capricorn), (5) Benefic conjunction with Mars, (6) Mars past 28° in the sign.",
-        "bn": "There are 6 major cancellation conditions for Mangal Dosha: (1) Jupiter's aspect on Mars, (2) Mars in own/exalted sign, (3) Same dosha in partner's chart, (4) Mars in specific signs (Aries, Scorpio, Capricorn), (5) Benefic conjunction with Mars, (6) Mars past 28° in the sign.",
-        "kn": "There are 6 major cancellation conditions for Mangal Dosha: (1) Jupiter's aspect on Mars, (2) Mars in own/exalted sign, (3) Same dosha in partner's chart, (4) Mars in specific signs (Aries, Scorpio, Capricorn), (5) Benefic conjunction with Mars, (6) Mars past 28° in the sign.",
+        "ta": "செவ்வாய் தோஷத்திற்கான 6 முக்கிய ரத்து செய்யும் நிபந்தனைகள் உள்ளன: (1) குருவின் செவ்வாய் மீதான பார்வை, (2) செவ்வாய் தனது சொந்த/உச்ச ராசியில், (3) கூட்டாளியின் ஜாதகத்தில் அதே தோஷம், (4) செவ்வாய் குறிப்பிட்ட ராசிகளில் (மேஷம், விருச்சிகம், மகரம்), (5) சுப கிரகத்துடன் செவ்வாய் சேர்க்கை, (6) செவ்வாய் ராசியில் 28° கடந்த பிறகு.",
+        "te": "మంగళ దోషం కోసం 6 ప్రధాన రద్దు పరిస్థితులు ఉన్నాయి: (1) కుజుడిపై గురుడి దృష్టి, (2) కుజుడు స్వ/ఉచ్చ రాశిలో ఉండటం, (3) భాగస్వామి జాతకంలో అదే దోషం, (4) కుజుడు నిర్దిష్ట రాశులలో (మేషం, వృశ్చికం, మకరం) ఉండటం, (5) కుజుడితో శుభ గ్రహ సంయోగం, (6) కుజుడు రాశిలో 28° దాటి ఉండటం.",
+        "bn": "মঙ্গল দোষের জন্য ৬টি প্রধান বাতিলকরণ শর্ত রয়েছে: (১) মঙ্গলের উপর বৃহস্পতির দৃষ্টি, (২) মঙ্গল স্বক্ষেত্র/উচ্চ রাশিতে, (৩) সঙ্গীর কুণ্ডলীতে একই দোষ, (৪) মঙ্গল নির্দিষ্ট রাশিতে (মেষ, বৃশ্চিক, মকর), (৫) মঙ্গলের সাথে শুভ গ্রহের যোগ, (৬) রাশিতে মঙ্গল ২৮° অতিক্রম করলে।",
+        "kn": "ಮಂಗಳ ದೋಷಕ್ಕೆ 6 ಪ್ರಮುಖ ರದ್ದತಿ ಪರಿಸ್ಥಿತಿಗಳಿವೆ: (1) ಮಂಗಳ ಗ್ರಹದ ಮೇಲೆ ಗುರು ಗ್ರಹದ ದೃಷ್ಟಿ, (2) ಮಂಗಳ ಗ್ರಹವು ಸ್ವಂತ/ಉಚ್ಚ ರಾಶಿಯಲ್ಲಿ, (3) ಪಾಲುದಾರರ ಜಾತಕದಲ್ಲಿ ಅದೇ ದೋಷ, (4) ನಿರ್ದಿಷ್ಟ ರಾಶಿಗಳಲ್ಲಿ ಮಂಗಳ ಗ್ರಹ (ಮೇಷ, ವೃಶ್ಚಿಕ, ಮಕರ), (5) ಮಂಗಳ ಗ್ರಹದೊಂದಿಗೆ ಶುಭ ಗ್ರಹದ ಯುತಿ, (6) ರಾಶಿಯಲ್ಲಿ 28° ಮೀರಿ ಮಂಗಳ ಗ್ರಹ.",
         "mr": "मंगल दोष के 6 प्रमुख निवारण नियम हैं: (1) मंगल पर गुरु की दृष्टि, (2) मंगल स्वराशि/उच्च में, (3) साथी की कुण्डली में समान दोष, (4) मंगल विशिष्ट राशियों (मेष, वृश्चिक, मकर) में, (5) मंगल के साथ शुभ ग्रह का संयोग, (6) राशि में 28° से आगे मंगल।",
-        "gu": "There are 6 major cancellation conditions for Mangal Dosha: (1) Jupiter's aspect on Mars, (2) Mars in own/exalted sign, (3) Same dosha in partner's chart, (4) Mars in specific signs (Aries, Scorpio, Capricorn), (5) Benefic conjunction with Mars, (6) Mars past 28° in the sign.",
+        "gu": "મંગળ દોષ માટે ૬ મુખ્ય રદ્દીકરણની શરતો છે: (૧) મંગળ પર ગુરુની દ્રષ્ટિ, (૨) મંગળ સ્વરાશિ/ઉચ્ચ રાશિમાં, (૩) ભાગીદારની કુંડળીમાં સમાન દોષ, (૪) મંગળ ચોક્કસ રાશિઓમાં (મેષ, વૃશ્ચિક, મકર), (૫) મંગળ સાથે શુભ ગ્રહનો યુતિ, (૬) મંગળ રાશિમાં ૨૮° થી આગળ.",
         "mai": "मंगल दोष के लेल ६ टा प्रमुख रद्द करयवला स्थिति अछि: (१) मंगल पर बृहस्पति के दृष्टि, (२) मंगल अपन/उच्च राशि मे, (३) साथीक कुण्डली मे समान दोष, (४) मंगल विशिष्ट राशि मे (मेष, वृश्चिक, मकर), (५) मंगलक संग शुभ ग्रहक युति, (६) मंगल राशि मे २८° सं बेसी।"
       },
       "options": [
@@ -217,11 +217,11 @@
           "hi": "कोई नहीं  –  इसे कभी निरस्त नहीं किया जा सकता",
           "mai": "कोनो नहि – ई कहियो रद्द नहि भऽ सकैत अछि",
           "mr": "कोई नहीं  –  इसे कभी निरस्त नहीं किया जा सकता",
-          "ta": "None  –  it can never be cancelled",
-          "te": "None  –  it can never be cancelled",
-          "bn": "None  –  it can never be cancelled",
-          "kn": "None  –  it can never be cancelled",
-          "gu": "None  –  it can never be cancelled"
+          "ta": "எதுவும் இல்லை – அதை ஒருபோதும் ரத்து செய்ய முடியாது",
+          "te": "ఏదీ కాదు – అది ఎప్పటికీ రద్దు చేయబడదు",
+          "bn": "কোনটিই নয় – এটি কখনোই বাতিল করা যায় না",
+          "kn": "ಯಾವುದೂ ಇಲ್ಲ  –  ಅದನ್ನು ಎಂದಿಗೂ ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ",
+          "gu": "કોઈ નહીં  –  તે ક્યારેય રદ થઈ શકતો નથી"
         }
       ]
     },
@@ -231,24 +231,24 @@
       "question": {
         "en": "Kala Sarpa Dosha is formed when:",
         "hi": "काल सर्प दोष तब बनता है जब:",
-        "ta": "Kala Sarpa Dosha is formed when:",
-        "te": "Kala Sarpa Dosha is formed when:",
-        "bn": "Kala Sarpa Dosha is formed when:",
-        "kn": "Kala Sarpa Dosha is formed when:",
+        "ta": "கால சர்ப்ப தோஷம் உருவாகிறது எப்போது:",
+        "te": "కాళ సర్ప దోషం ఏర్పడుతుంది ఎప్పుడు:",
+        "bn": "কালসর্প দোষ গঠিত হয় যখন:",
+        "kn": "ಕಾಲ ಸರ್ಪ ದೋಷವು ರೂಪುಗೊಳ್ಳುತ್ತದೆ ಯಾವಾಗ:",
         "mr": "काल सर्प दोष तब बनता है जब:",
-        "gu": "Kala Sarpa Dosha is formed when:",
+        "gu": "કાલસર્પ દોષ ક્યારે બને છે જ્યારે:",
         "mai": "कालसर्प दोष बनैत अछि जखन:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Kala Sarpa Dosha forms when all 7 visible planets (Sun through Saturn) are contained on one side of the Rahu-Ketu axis. This creates an imbalance  –  half the chart is empty while the other half is crowded, concentrating all planetary energy within a hemmed arc.",
         "hi": "काल सर्प दोष तब बनता है जब सभी 7 दृश्य ग्रह (सूर्य से शनि) राहु-केतु अक्ष के एक ओर स्थित हों। इससे असन्तुलन बनता है  –  आधी कुण्डली खाली जबकि आधी भरी, सारी ग्रह ऊर्जा एक घेरे में केन्द्रित।",
-        "ta": "Kala Sarpa Dosha forms when all 7 visible planets (Sun through Saturn) are contained on one side of the Rahu-Ketu axis. This creates an imbalance  –  half the chart is empty while the other half is crowded, concentrating all planetary energy within a hemmed arc.",
-        "te": "Kala Sarpa Dosha forms when all 7 visible planets (Sun through Saturn) are contained on one side of the Rahu-Ketu axis. This creates an imbalance  –  half the chart is empty while the other half is crowded, concentrating all planetary energy within a hemmed arc.",
-        "bn": "Kala Sarpa Dosha forms when all 7 visible planets (Sun through Saturn) are contained on one side of the Rahu-Ketu axis. This creates an imbalance  –  half the chart is empty while the other half is crowded, concentrating all planetary energy within a hemmed arc.",
-        "kn": "Kala Sarpa Dosha forms when all 7 visible planets (Sun through Saturn) are contained on one side of the Rahu-Ketu axis. This creates an imbalance  –  half the chart is empty while the other half is crowded, concentrating all planetary energy within a hemmed arc.",
+        "ta": "ராகு-கேது அச்சுக்கு ஒருபுறம் அனைத்து 7 காணக்கூடிய கிரகங்களும் (சூரியன் முதல் சனி வரை) அடைக்கப்பட்டிருக்கும் போது கால சர்ப்ப தோஷம் உருவாகிறது. இது ஒரு சமநிலையின்மையை உருவாக்குகிறது – ஜாதகத்தின் ஒரு பாதி காலியாகவும், மறுபாதி நெரிசலாகவும் இருக்கும், அனைத்து கிரக ஆற்றலையும் ஒரு அடைக்கப்பட்ட வளைவுக்குள் குவிக்கிறது.",
+        "te": "రాహు-కేతువుల అక్షం యొక్క ఒక వైపున 7 దృశ్య గ్రహాలు (సూర్యుడి నుండి శని వరకు) ఉన్నప్పుడు కాళ సర్ప దోషం ఏర్పడుతుంది. ఇది అసమతుల్యతను సృష్టిస్తుంది – జాతకంలో సగం ఖాళీగా ఉండగా, మిగిలిన సగం రద్దీగా ఉంటుంది, అన్ని గ్రహ శక్తిని ఒక పరిమిత ఆర్క్‌లో కేంద్రీకరిస్తుంది.",
+        "bn": "কালসর্প দোষ গঠিত হয় যখন সমস্ত ৭টি দৃশ্যমান গ্রহ (সূর্য থেকে শনি) রাহু-কেতু অক্ষের একপাশে আবদ্ধ থাকে। এটি একটি ভারসাম্যহীনতা তৈরি করে – কুণ্ডলীর অর্ধেক খালি থাকে যখন অন্য অর্ধেক গ্রহ দ্বারা পূর্ণ থাকে, একটি আবদ্ধ বৃত্তচাপের মধ্যে সমস্ত গ্রহের শক্তি কেন্দ্রীভূত করে।",
+        "kn": "ಕಾಲ ಸರ್ಪ ದೋಷವು ರೂಪುಗೊಳ್ಳುತ್ತದೆ ಯಾವಾಗ ಎಲ್ಲಾ 7 ಗೋಚರ ಗ್ರಹಗಳು (ಸೂರ್ಯನಿಂದ ಶನಿವರೆಗೆ) ರಾಹು-ಕೇತು ಅಕ್ಷದ ಒಂದು ಬದಿಯಲ್ಲಿ ಇರುತ್ತವೆ. ಇದು ಅಸಮತೋಲನವನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ  –  ಜಾತಕದ ಅರ್ಧ ಭಾಗವು ಖಾಲಿಯಾಗಿರುತ್ತದೆ ಆದರೆ ಇನ್ನರ್ಧವು ತುಂಬಿರುತ್ತದೆ, ಎಲ್ಲಾ ಗ್ರಹಗಳ ಶಕ್ತಿಯನ್ನು ಒಂದು ನಿರ್ಬಂಧಿತ ಕಮಾನಿನಲ್ಲಿ ಕೇಂದ್ರೀಕರಿಸುತ್ತದೆ.",
         "mr": "काल सर्प दोष तब बनता है जब सभी 7 दृश्य ग्रह (सूर्य से शनि) राहु-केतु अक्ष के एक ओर स्थित हों। इससे असन्तुलन बनता है  –  आधी कुण्डली खाली जबकि आधी भरी, सारी ग्रह ऊर्जा एक घेरे में केन्द्रित।",
-        "gu": "Kala Sarpa Dosha forms when all 7 visible planets (Sun through Saturn) are contained on one side of the Rahu-Ketu axis. This creates an imbalance  –  half the chart is empty while the other half is crowded, concentrating all planetary energy within a hemmed arc.",
+        "gu": "કાલસર્પ દોષ ત્યારે બને છે જ્યારે બધા ૭ દૃશ્યમાન ગ્રહો (સૂર્યથી શનિ સુધી) રાહુ-કેતુ ધરીની એક બાજુએ સમાયેલા હોય. આ અસંતુલન બનાવે છે  –  કુંડળીનો અડધો ભાગ ખાલી હોય છે જ્યારે બીજો અડધો ભાગ ભીડવાળો હોય છે, બધી ગ્રહ ઊર્જાને એક બંધ ચાપમાં કેન્દ્રિત કરે છે.",
         "mai": "कालसर्प दोष बनैत अछि जखन सभ ७ दृश्य ग्रह (सूर्य सं शनि धरि) राहु-केतु अक्षक एकटा दिस मे समाहित रहैत अछि। एहि सं असंतुलन उत्पन्न होइत अछि – कुण्डलीक आधा भाग खाली रहैत अछि जखन कि दोसर आधा भाग भरल रहैत अछि, जाहि सं सभ ग्रहक ऊर्जा एकटा सीमित चाप मे केंद्रित भऽ जाइत अछि।"
       },
       "options": [
@@ -257,44 +257,44 @@
           "hi": "शनि मंगल को दृष्टि करे",
           "mai": "शनि मंगल पर दृष्टि करैत अछि",
           "mr": "शनि मंगल को दृष्टि करे",
-          "ta": "Saturn aspects Mars",
-          "te": "Saturn aspects Mars",
-          "bn": "Saturn aspects Mars",
-          "kn": "Saturn aspects Mars",
-          "gu": "Saturn aspects Mars"
+          "ta": "சனி செவ்வாயைப் பார்க்கிறது",
+          "te": "శని కుజుడిని చూసినప్పుడు",
+          "bn": "শনি মঙ্গলের উপর দৃষ্টি দেয়",
+          "kn": "ಶನಿ ಗ್ರಹವು ಮಂಗಳ ಗ್ರಹವನ್ನು ದೃಷ್ಟಿಸುತ್ತದೆ",
+          "gu": "શનિ મંગળને જુએ છે"
         },
         {
           "en": "All 7 planets are hemmed between the Rahu-Ketu axis",
           "hi": "सभी 7 ग्रह राहु-केतु अक्ष के बीच घिरे हों",
           "mai": "सभ ७ ग्रह राहु-केतु अक्षक बीच मे फँसल रहैत अछि",
           "mr": "सभी 7 ग्रह राहु-केतु अक्ष के बीच घिरे हों",
-          "ta": "All 7 planets are hemmed between the Rahu-Ketu axis",
-          "te": "All 7 planets are hemmed between the Rahu-Ketu axis",
-          "bn": "All 7 planets are hemmed between the Rahu-Ketu axis",
-          "kn": "All 7 planets are hemmed between the Rahu-Ketu axis",
-          "gu": "All 7 planets are hemmed between the Rahu-Ketu axis"
+          "ta": "அனைத்து 7 கிரகங்களும் ராகு-கேது அச்சுக்கு இடையில் அடைக்கப்பட்டுள்ளன",
+          "te": "అన్ని 7 గ్రహాలు రాహు-కేతువుల అక్షం మధ్య చిక్కుకున్నప్పుడు",
+          "bn": "সমস্ত ৭টি গ্রহ রাহু-কেতু অক্ষের মধ্যে আবদ্ধ থাকে",
+          "kn": "ಎಲ್ಲಾ 7 ಗ್ರಹಗಳು ರಾಹು-ಕೇತು ಅಕ್ಷದ ನಡುವೆ ಸಿಕ್ಕಿಹಾಕಿಕೊಂಡಿರುತ್ತವೆ",
+          "gu": "બધા ૭ ગ્રહો રાહુ-કેતુ ધરીની વચ્ચે ઘેરાયેલા હોય"
         },
         {
           "en": "Jupiter is debilitated",
           "hi": "गुरु नीच हो",
           "mai": "बृहस्पति नीचस्थ अछि",
           "mr": "गुरु नीच हो",
-          "ta": "Jupiter is debilitated",
-          "te": "Jupiter is debilitated",
-          "bn": "Jupiter is debilitated",
-          "kn": "Jupiter is debilitated",
-          "gu": "Jupiter is debilitated"
+          "ta": "குரு நீச்சம் அடைகிறார்",
+          "te": "గురుడు నీచ స్థితిలో ఉన్నప్పుడు",
+          "bn": "বৃহস্পতি নীচস্থ হয়",
+          "kn": "ಗುರು ಗ್ರಹವು ನೀಚನಾಗಿರುತ್ತದೆ",
+          "gu": "ગુરુ નીચનો હોય"
         },
         {
           "en": "Moon is in the 8th house",
           "hi": "चन्द्रमा 8वें भाव में हो",
           "mai": "चन्द्रमा आठम् घर मे अछि",
           "mr": "चन्द्रमा 8वें भाव में हो",
-          "ta": "Moon is in the 8th house",
-          "te": "Moon is in the 8th house",
-          "bn": "Moon is in the 8th house",
-          "kn": "Moon is in the 8th house",
-          "gu": "Moon is in the 8th house"
+          "ta": "சந்திரன் 8 ஆம் பாவத்தில் உள்ளது",
+          "te": "చంద్రుడు 8వ భావంలో ఉన్నప్పుడు",
+          "bn": "চন্দ্র ৮ম ভাবে থাকে",
+          "kn": "ಚಂದ್ರನು 8ನೇ ಭಾವದಲ್ಲಿರುತ್ತಾನೆ",
+          "gu": "ચંદ્ર ૮મા ભાવમાં હોય"
         }
       ]
     },
@@ -304,24 +304,24 @@
       "question": {
         "en": "A planet conjunct Rahu or Ketu breaks the Kala Sarpa Dosha into a partial form.",
         "hi": "राहु या केतु के साथ संयुक्त ग्रह काल सर्प दोष को आंशिक रूप में तोड़ता है।",
-        "ta": "A planet conjunct Rahu or Ketu breaks the Kala Sarpa Dosha into a partial form.",
-        "te": "A planet conjunct Rahu or Ketu breaks the Kala Sarpa Dosha into a partial form.",
-        "bn": "A planet conjunct Rahu or Ketu breaks the Kala Sarpa Dosha into a partial form.",
-        "kn": "A planet conjunct Rahu or Ketu breaks the Kala Sarpa Dosha into a partial form.",
+        "ta": "ராகு அல்லது கேதுவுடன் ஒரு கிரகம் சேர்க்கை பெற்றால், கால சர்ப்ப தோஷத்தை ஒரு பகுதி வடிவமாக உடைக்கிறது.",
+        "te": "ఒక గ్రహం రాహువు లేదా కేతువుతో సంయోగం చెందినప్పుడు కాళ సర్ప దోషాన్ని పాక్షిక రూపంలోకి విచ్ఛిన్నం చేస్తుంది.",
+        "bn": "রাহু বা কেতুর সাথে কোনো গ্রহের যোগ কালসর্প দোষকে আংশিক রূপে ভেঙে দেয়।",
+        "kn": "ರಾಹು ಅಥವಾ ಕೇತುವಿನೊಂದಿಗೆ ಯುತಿಯಲ್ಲಿರುವ ಗ್ರಹವು ಕಾಲ ಸರ್ಪ ದೋಷವನ್ನು ಭಾಗಶಃ ರೂಪಕ್ಕೆ ಮುರಿಯುತ್ತದೆ.",
         "mr": "राहु या केतु के साथ संयुक्त ग्रह काल सर्प दोष को आंशिक रूप में तोड़ता है।",
-        "gu": "A planet conjunct Rahu or Ketu breaks the Kala Sarpa Dosha into a partial form.",
+        "gu": "રાહુ કે કેતુ સાથે યુતિ કરતો ગ્રહ કાલસર્પ દોષને આંશિક સ્વરૂપમાં તોડે છે.",
         "mai": "कोनो ग्रह राहु ओ केतु सं युति करैत अछि तँ कालसर्प दोष केँ आंशिक रूप मे तोड़ि दैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. If any planet is conjunct (within a few degrees of) Rahu or Ketu, it is considered to be on the boundary of the axis rather than fully hemmed. This converts complete Kala Sarpa into partial Kala Sarpa, which has significantly reduced effects.",
         "hi": "सत्य। यदि कोई ग्रह राहु या केतु के साथ संयुक्त (कुछ अंशों के भीतर) हो, तो उसे पूर्णतः घिरा नहीं बल्कि अक्ष की सीमा पर माना जाता है। यह पूर्ण काल सर्प को आंशिक काल सर्प में बदल देता है, जिसके प्रभाव काफी कम होते हैं।",
-        "ta": "True. If any planet is conjunct (within a few degrees of) Rahu or Ketu, it is considered to be on the boundary of the axis rather than fully hemmed. This converts complete Kala Sarpa into partial Kala Sarpa, which has significantly reduced effects.",
-        "te": "True. If any planet is conjunct (within a few degrees of) Rahu or Ketu, it is considered to be on the boundary of the axis rather than fully hemmed. This converts complete Kala Sarpa into partial Kala Sarpa, which has significantly reduced effects.",
-        "bn": "True. If any planet is conjunct (within a few degrees of) Rahu or Ketu, it is considered to be on the boundary of the axis rather than fully hemmed. This converts complete Kala Sarpa into partial Kala Sarpa, which has significantly reduced effects.",
-        "kn": "True. If any planet is conjunct (within a few degrees of) Rahu or Ketu, it is considered to be on the boundary of the axis rather than fully hemmed. This converts complete Kala Sarpa into partial Kala Sarpa, which has significantly reduced effects.",
+        "ta": "உண்மை. ராகு அல்லது கேதுவுடன் எந்த கிரகமும் சேர்க்கை பெற்றிருந்தால் (சில பாகைகளுக்குள்), அது முழுமையாக அடைக்கப்படாமல், அச்சின் எல்லையில் இருப்பதாகக் கருதப்படுகிறது. இது முழுமையான கால சர்ப்பத்தை பகுதி கால சர்ப்பமாக மாற்றுகிறது, இது கணிசமாகக் குறைக்கப்பட்ட விளைவுகளைக் கொண்டுள்ளது.",
+        "te": "నిజం. ఏదైనా గ్రహం రాహువు లేదా కేతువుతో (కొన్ని డిగ్రీల లోపల) సంయోగం చెందితే, అది పూర్తిగా చిక్కుకోకుండా అక్షం యొక్క సరిహద్దులో ఉన్నట్లు పరిగణించబడుతుంది. ఇది సంపూర్ణ కాళ సర్ప దోషాన్ని పాక్షిక కాళ సర్ప దోషంగా మారుస్తుంది, దీని ప్రభావాలు గణనీయంగా తగ్గుతాయి.",
+        "bn": "সত্য। যদি কোনো গ্রহ রাহু বা কেতুর সাথে (কয়েক ডিগ্রির মধ্যে) যুক্ত থাকে, তবে এটিকে সম্পূর্ণরূপে আবদ্ধ না হয়ে অক্ষের সীমানায় অবস্থিত বলে মনে করা হয়। এটি সম্পূর্ণ কালসর্পকে আংশিক কালসর্পে রূপান্তরিত করে, যার প্রভাব উল্লেখযোগ্যভাবে হ্রাস পায়।",
+        "kn": "ಸರಿ. ಯಾವುದೇ ಗ್ರಹವು ರಾಹು ಅಥವಾ ಕೇತುವಿನೊಂದಿಗೆ ಯುತಿಯಲ್ಲಿದ್ದರೆ (ಕೆಲವು ಡಿಗ್ರಿಗಳ ಒಳಗೆ), ಅದನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ಸಿಕ್ಕಿಹಾಕಿಕೊಳ್ಳುವ ಬದಲು ಅಕ್ಷದ ಗಡಿಯಲ್ಲಿ ಇದೆ ಎಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ. ಇದು ಸಂಪೂರ್ಣ ಕಾಲ ಸರ್ಪವನ್ನು ಭಾಗಶಃ ಕಾಲ ಸರ್ಪವಾಗಿ ಪರಿವರ್ತಿಸುತ್ತದೆ, ಇದು ಗಮನಾರ್ಹವಾಗಿ ಕಡಿಮೆ ಪರಿಣಾಮಗಳನ್ನು ಹೊಂದಿರುತ್ತದೆ.",
         "mr": "सत्य। यदि कोई ग्रह राहु या केतु के साथ संयुक्त (कुछ अंशों के भीतर) हो, तो उसे पूर्णतः घिरा नहीं बल्कि अक्ष की सीमा पर माना जाता है। यह पूर्ण काल सर्प को आंशिक काल सर्प में बदल देता है, जिसके प्रभाव काफी कम होते हैं।",
-        "gu": "True. If any planet is conjunct (within a few degrees of) Rahu or Ketu, it is considered to be on the boundary of the axis rather than fully hemmed. This converts complete Kala Sarpa into partial Kala Sarpa, which has significantly reduced effects.",
+        "gu": "સાચું. જો કોઈ ગ્રહ રાહુ કે કેતુ સાથે યુતિમાં (થોડા અંશની અંદર) હોય, તો તેને સંપૂર્ણપણે ઘેરાયેલાને બદલે ધરીની સીમા પર ગણવામાં આવે છે. આ સંપૂર્ણ કાલસર્પને આંશિક કાલસર્પમાં રૂપાંતરિત કરે છે, જેના પ્રભાવો નોંધપાત્ર રીતે ઓછા હોય છે.",
         "mai": "सत्य। जँ कोनो ग्रह राहु ओ केतु सं युति करैत अछि (किछु डिग्रीक भीतर), तँ ओकरा अक्षक सीमा पर मानल जाइत अछि, पूर्ण रूप सं फँसल रहबाक बदला मे। ई पूर्ण कालसर्प केँ आंशिक कालसर्प मे परिवर्तित कऽ दैत अछि, जाहिक प्रभाव बहुत कम भऽ जाइत अछि।"
       }
     },
@@ -331,24 +331,24 @@
       "question": {
         "en": "Pitra Dosha is primarily related to:",
         "hi": "पितृ दोष मुख्यतः किससे सम्बन्धित है?",
-        "ta": "Pitra Dosha is primarily related to:",
-        "te": "Pitra Dosha is primarily related to:",
-        "bn": "Pitra Dosha is primarily related to:",
-        "kn": "Pitra Dosha is primarily related to:",
+        "ta": "பித்ரு தோஷம் முக்கியமாக தொடர்புடையது:",
+        "te": "పితృ దోషం ప్రధానంగా దీనికి సంబంధించినది:",
+        "bn": "পিতৃ দোষ প্রধানত এর সাথে সম্পর্কিত:",
+        "kn": "ಪಿತೃ ದೋಷವು ಪ್ರಾಥಮಿಕವಾಗಿ ಸಂಬಂಧಿಸಿದೆ:",
         "mr": "पितृ दोष मुख्यतः किससे सम्बन्धित है?",
-        "gu": "Pitra Dosha is primarily related to:",
+        "gu": "પિતૃ દોષ મુખ્યત્વે કોની સાથે સંબંધિત છે:",
         "mai": "पितृ दोष मुख्य रूप सं संबंधित अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Pitra Dosha relates to unresolved karmic obligations to ancestors (pitrs). It is typically indicated by Sun-Rahu conjunction, Sun-Saturn conjunction, or affliction to the 9th house (father, ancestors). It manifests as recurring obstacles in progeny, career blocks, or persistent bad luck across generations.",
         "hi": "पितृ दोष पूर्वजों (पितरों) के प्रति अनसुलझे कार्मिक दायित्वों से सम्बन्धित है। यह प्रायः सूर्य-राहु संयोग, सूर्य-शनि संयोग, या 9वें भाव (पिता, पूर्वज) की पीड़ा से सूचित होता है। यह सन्तान में आवर्ती बाधाओं, करियर अवरोधों या पीढ़ियों में लगातार दुर्भाग्य के रूप में प्रकट होता है।",
-        "ta": "Pitra Dosha relates to unresolved karmic obligations to ancestors (pitrs). It is typically indicated by Sun-Rahu conjunction, Sun-Saturn conjunction, or affliction to the 9th house (father, ancestors). It manifests as recurring obstacles in progeny, career blocks, or persistent bad luck across generations.",
-        "te": "Pitra Dosha relates to unresolved karmic obligations to ancestors (pitrs). It is typically indicated by Sun-Rahu conjunction, Sun-Saturn conjunction, or affliction to the 9th house (father, ancestors). It manifests as recurring obstacles in progeny, career blocks, or persistent bad luck across generations.",
-        "bn": "Pitra Dosha relates to unresolved karmic obligations to ancestors (pitrs). It is typically indicated by Sun-Rahu conjunction, Sun-Saturn conjunction, or affliction to the 9th house (father, ancestors). It manifests as recurring obstacles in progeny, career blocks, or persistent bad luck across generations.",
-        "kn": "Pitra Dosha relates to unresolved karmic obligations to ancestors (pitrs). It is typically indicated by Sun-Rahu conjunction, Sun-Saturn conjunction, or affliction to the 9th house (father, ancestors). It manifests as recurring obstacles in progeny, career blocks, or persistent bad luck across generations.",
+        "ta": "பித்ரு தோஷம் முன்னோர்களுக்கு (பித்ருக்கள்) தீர்க்கப்படாத கர்ம கடமைகளுடன் தொடர்புடையது. இது பொதுவாக சூரியன்-ராகு சேர்க்கை, சூரியன்-சனி சேர்க்கை அல்லது 9 ஆம் பாவத்திற்கு (தந்தை, முன்னோர்கள்) ஏற்படும் பாதிப்பால் குறிக்கப்படுகிறது. இது சந்ததி, தொழில் தடைகள் அல்லது தலைமுறைகள் முழுவதும் தொடர்ச்சியான துரதிர்ஷ்டம் போன்ற தொடர்ச்சியான தடைகளாக வெளிப்படுகிறது.",
+        "te": "పితృ దోషం పూర్వీకులకు (పితృలు) తీర్చబడని కర్మ సంబంధిత బాధ్యతలకు సంబంధించినది. ఇది సాధారణంగా సూర్య-రాహు సంయోగం, సూర్య-శని సంయోగం లేదా 9వ భావానికి (తండ్రి, పూర్వీకులు) కలిగే పీడ ద్వారా సూచించబడుతుంది. ఇది సంతానంలో పునరావృతమయ్యే అడ్డంకులు, వృత్తిపరమైన ఆటంకాలు లేదా తరతరాలుగా నిరంతర దురదృష్టంగా వ్యక్తమవుతుంది.",
+        "bn": "পিতৃ দোষ পূর্বপুরুষদের (পিতৃগণ) প্রতি অমীমাংসিত কর্মফল সংক্রান্ত বাধ্যবাধকতার সাথে সম্পর্কিত। এটি সাধারণত সূর্য-রাহু যোগ, সূর্য-শনি যোগ, অথবা নবম ভাবের (পিতা, পূর্বপুরুষ) পীড়ন দ্বারা নির্দেশিত হয়। এটি সন্তান লাভে বারবার বাধা, কর্মজীবনে প্রতিবন্ধকতা, অথবা প্রজন্ম জুড়ে ক্রমাগত দুর্ভাগ্য হিসাবে প্রকাশ পায়।",
+        "kn": "ಪಿತೃ ದೋಷವು ಪೂರ್ವಜರಿಗೆ (ಪಿತೃಗಳು) ಬಗೆಹರಿಯದ ಕರ್ಮದ ಬಾಧ್ಯತೆಗಳಿಗೆ ಸಂಬಂಧಿಸಿದೆ. ಇದನ್ನು ಸಾಮಾನ್ಯವಾಗಿ ಸೂರ್ಯ-ರಾಹು ಯುತಿ, ಸೂರ್ಯ-ಶನಿ ಯುತಿ, ಅಥವಾ 9ನೇ ಭಾವಕ್ಕೆ (ತಂದೆ, ಪೂರ್ವಜರು) ಪೀಡೆಯಿಂದ ಸೂಚಿಸಲಾಗುತ್ತದೆ. ಇದು ಸಂತಾನದಲ್ಲಿ ಪುನರಾವರ್ತಿತ ಅಡೆತಡೆಗಳು, ವೃತ್ತಿಜೀವನದ ಅಡೆತಡೆಗಳು, ಅಥವಾ ತಲೆಮಾರುಗಳಾದ್ಯಂತ ನಿರಂತರ ದುರದೃಷ್ಟವಾಗಿ ಪ್ರಕಟವಾಗುತ್ತದೆ.",
         "mr": "पितृ दोष पूर्वजों (पितरों) के प्रति अनसुलझे कार्मिक दायित्वों से सम्बन्धित है। यह प्रायः सूर्य-राहु संयोग, सूर्य-शनि संयोग, या 9वें भाव (पिता, पूर्वज) की पीड़ा से सूचित होता है। यह सन्तान में आवर्ती बाधाओं, करियर अवरोधों या पीढ़ियों में लगातार दुर्भाग्य के रूप में प्रकट होता है।",
-        "gu": "Pitra Dosha relates to unresolved karmic obligations to ancestors (pitrs). It is typically indicated by Sun-Rahu conjunction, Sun-Saturn conjunction, or affliction to the 9th house (father, ancestors). It manifests as recurring obstacles in progeny, career blocks, or persistent bad luck across generations.",
+        "gu": "પિતૃ દોષ પૂર્વજો (પિતૃઓ) પ્રત્યેની અનિર્ણિત કર્મિક જવાબદારીઓ સાથે સંબંધિત છે. તે સામાન્ય રીતે સૂર્ય-રાહુ યુતિ, સૂર્ય-શનિ યુતિ, અથવા ૯મા ભાવ (પિતા, પૂર્વજો) પરના દુષ્પ્રભાવ દ્વારા સૂચવવામાં આવે છે. તે સંતાનમાં વારંવાર આવતી અડચણો, કારકિર્દીમાં અવરોધો, અથવા પેઢીઓ સુધી ચાલતા સતત ખરાબ નસીબ તરીકે પ્રગટ થાય છે.",
         "mai": "पितृ दोष पूर्वजसभ (पितृसभ) के प्रति अनसुलझल कर्मिक दायित्व सं संबंधित अछि। ई सामान्यतः सूर्य-राहु युति, सूर्य-शनि युति, वा नवम् घर (पिता, पूर्वज) परक पीड़ा सं सूचित होइत अछि। ई संतान मे बार-बार बाधा, करियर मे रुकावट, वा पीढ़ी दर पीढ़ी लगातार खराब भाग्यक रूप मे प्रकट होइत अछि।"
       },
       "options": [
@@ -357,44 +357,44 @@
           "hi": "वैवाहिक कलह",
           "mai": "विवाहक कलह",
           "mr": "वैवाहिक कलह",
-          "ta": "Marital discord",
-          "te": "Marital discord",
-          "bn": "Marital discord",
-          "kn": "Marital discord",
-          "gu": "Marital discord"
+          "ta": "திருமண சச்சரவு",
+          "te": "వైవాహిక కలహాలు",
+          "bn": "দাম্পত্য কলহ",
+          "kn": "ವೈವಾಹಿಕ ಭಿನ್ನಾಭಿಪ್ರಾಯ",
+          "gu": "લગ્નજીવનમાં કલહ"
         },
         {
           "en": "Ancestral karmic debts and unfulfilled obligations to forefathers",
           "hi": "पैतृक कार्मिक ऋण और पूर्वजों के प्रति अपूर्ण दायित्व",
           "mai": "पैतृक कर्मिक ऋण ओ पूर्वजसभ के प्रति अनपूरा दायित्व",
           "mr": "पैतृक कार्मिक ऋण और पूर्वजों के प्रति अपूर्ण दायित्व",
-          "ta": "Ancestral karmic debts and unfulfilled obligations to forefathers",
-          "te": "Ancestral karmic debts and unfulfilled obligations to forefathers",
-          "bn": "Ancestral karmic debts and unfulfilled obligations to forefathers",
-          "kn": "Ancestral karmic debts and unfulfilled obligations to forefathers",
-          "gu": "Ancestral karmic debts and unfulfilled obligations to forefathers"
+          "ta": "மூதாதையர்களின் கர்ம கடன்கள் மற்றும் முன்னோர்களுக்கு நிறைவேற்றப்படாத கடமைகள்",
+          "te": "పూర్వీకుల కర్మ సంబంధిత అప్పులు మరియు పూర్వీకులకు తీర్చబడని బాధ్యతలు",
+          "bn": "পৈতৃক কর্মফল ঋণ এবং পূর্বপুরুষদের প্রতি অপূর্ণ বাধ্যবাধকতা",
+          "kn": "ಪೂರ್ವಜರ ಕರ್ಮದ ಸಾಲಗಳು ಮತ್ತು ಪೂರ್ವಜರಿಗೆ ಪೂರೈಸದ ಬಾಧ್ಯತೆಗಳು",
+          "gu": "પૂર્વજોના કર્મિક દેવા અને પૂર્વજો પ્રત્યેની અધૂરી જવાબદારીઓ"
         },
         {
           "en": "Career obstacles only",
           "hi": "केवल करियर बाधा",
           "mai": "करियर मे बाधा मात्र",
           "mr": "केवल करियर बाधा",
-          "ta": "Career obstacles only",
-          "te": "Career obstacles only",
-          "bn": "Career obstacles only",
-          "kn": "Career obstacles only",
-          "gu": "Career obstacles only"
+          "ta": "தொழில் தடைகள் மட்டுமே",
+          "te": "వృత్తిపరమైన ఆటంకాలు మాత్రమే",
+          "bn": "শুধুমাত্র কর্মজীবনের বাধা",
+          "kn": "ವೃತ್ತಿಜೀವನದ ಅಡೆತಡೆಗಳು ಮಾತ್ರ",
+          "gu": "ફક્ત કારકિર્દીના અવરોધો"
         },
         {
           "en": "Educational failure",
           "hi": "शैक्षिक असफलता",
           "mai": "शैक्षिक विफलता",
           "mr": "शैक्षिक असफलता",
-          "ta": "Educational failure",
-          "te": "Educational failure",
-          "bn": "Educational failure",
-          "kn": "Educational failure",
-          "gu": "Educational failure"
+          "ta": "கல்வித் தோல்வி",
+          "te": "విద్యా వైఫల్యం",
+          "bn": "শিক্ষাগত ব্যর্থতা",
+          "kn": "ಶೈಕ್ಷಣಿಕ ವೈಫಲ್ಯ",
+          "gu": "શૈક્ષણિક નિષ્ફળતા"
         }
       ]
     },
@@ -404,24 +404,24 @@
       "question": {
         "en": "Guru Chandal Dosha is formed by:",
         "hi": "गुरु चाण्डाल दोष किससे बनता है?",
-        "ta": "Guru Chandal Dosha is formed by:",
-        "te": "Guru Chandal Dosha is formed by:",
-        "bn": "Guru Chandal Dosha is formed by:",
-        "kn": "Guru Chandal Dosha is formed by:",
+        "ta": "குரு சண்டாள தோஷம் உருவாகிறது:",
+        "te": "గురు చండాల దోషం దీని ద్వారా ఏర్పడుతుంది:",
+        "bn": "গুরু চণ্ডাল দোষ গঠিত হয়:",
+        "kn": "ಗುರು ಚಂಡಾಲ ದೋಷವು ರೂಪುಗೊಳ್ಳುತ್ತದೆ:",
         "mr": "गुरु चाण्डाल दोष किससे बनता है?",
-        "gu": "Guru Chandal Dosha is formed by:",
+        "gu": "ગુરુ ચાંડાલ દોષ કોના દ્વારા બને છે:",
         "mai": "गुरु चांडाल दोष बनैत अछि:"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "Guru Chandal Dosha forms when Jupiter (wisdom, dharma, guru) is conjunct Rahu (illusion, obsession, rule-breaking). This combination corrupts Jupiter's natural wisdom  –  the native may have unorthodox beliefs, guru-related issues, or difficulty distinguishing right from wrong.",
         "hi": "गुरु चाण्डाल दोष तब बनता है जब गुरु (ज्ञान, धर्म, गुरु) और राहु (भ्रम, आसक्ति, नियम-भंग) संयुक्त हों। यह संयोग गुरु के स्वाभाविक ज्ञान को दूषित करता है  –  जातक में अपरम्परागत मान्यताएँ, गुरु-सम्बन्धित समस्याएँ, या सही-गलत में भेद करने में कठिनाई हो सकती है।",
-        "ta": "Guru Chandal Dosha forms when Jupiter (wisdom, dharma, guru) is conjunct Rahu (illusion, obsession, rule-breaking). This combination corrupts Jupiter's natural wisdom  –  the native may have unorthodox beliefs, guru-related issues, or difficulty distinguishing right from wrong.",
-        "te": "Guru Chandal Dosha forms when Jupiter (wisdom, dharma, guru) is conjunct Rahu (illusion, obsession, rule-breaking). This combination corrupts Jupiter's natural wisdom  –  the native may have unorthodox beliefs, guru-related issues, or difficulty distinguishing right from wrong.",
-        "bn": "Guru Chandal Dosha forms when Jupiter (wisdom, dharma, guru) is conjunct Rahu (illusion, obsession, rule-breaking). This combination corrupts Jupiter's natural wisdom  –  the native may have unorthodox beliefs, guru-related issues, or difficulty distinguishing right from wrong.",
-        "kn": "Guru Chandal Dosha forms when Jupiter (wisdom, dharma, guru) is conjunct Rahu (illusion, obsession, rule-breaking). This combination corrupts Jupiter's natural wisdom  –  the native may have unorthodox beliefs, guru-related issues, or difficulty distinguishing right from wrong.",
+        "ta": "குரு (ஞானம், தர்மம், குரு) ராகுவுடன் (மாயை, மோகம், விதிகளை மீறுதல்) சேர்க்கை பெற்றிருக்கும் போது குரு சண்டாள தோஷம் உருவாகிறது. இந்த சேர்க்கை குருவின் இயல்பான ஞானத்தைக் கெடுக்கிறது – ஜாதகர் மரபுக்கு மாறான நம்பிக்கைகள், குரு தொடர்பான பிரச்சனைகள் அல்லது சரி தவறு பிரித்தறிவதில் சிரமம் இருக்கலாம்.",
+        "te": "గురు చండాల దోషం గురుడు (జ్ఞానం, ధర్మం, గురువు) రాహువుతో (భ్రమ, వ్యామోహం, నియమాలను ఉల్లంఘించడం) సంయోగం చెందినప్పుడు ఏర్పడుతుంది. ఈ కలయిక గురుడి సహజ జ్ఞానాన్ని కలుషితం చేస్తుంది – స్థానికుడు అసాధారణ నమ్మకాలు, గురువు సంబంధిత సమస్యలు లేదా సరైనది మరియు తప్పును గుర్తించడంలో ఇబ్బంది పడవచ్చు.",
+        "bn": "গুরু চণ্ডাল দোষ গঠিত হয় যখন বৃহস্পতি (জ্ঞান, ধর্ম, গুরু) রাহুর (ভ্রম, আসক্তি, নিয়ম লঙ্ঘন) সাথে যুক্ত হয়। এই যোগ বৃহস্পতির স্বাভাবিক জ্ঞানকে দূষিত করে – জাতকের অস্বাভাবিক বিশ্বাস, গুরু সংক্রান্ত সমস্যা, অথবা সঠিক-ভুল নির্ণয়ে অসুবিধা হতে পারে।",
+        "kn": "ಗುರು ಚಂಡಾಲ ದೋಷವು ರೂಪುಗೊಳ್ಳುತ್ತದೆ ಯಾವಾಗ ಗುರು ಗ್ರಹ (ಜ್ಞಾನ, ಧರ್ಮ, ಗುರು) ರಾಹು ಗ್ರಹದೊಂದಿಗೆ (ಭ್ರಮೆ, ಗೀಳು, ನಿಯಮ ಉಲ್ಲಂಘನೆ) ಯುತಿಯಲ್ಲಿರುತ್ತದೆ. ಈ ಸಂಯೋಜನೆಯು ಗುರು ಗ್ರಹದ ನೈಸರ್ಗಿಕ ಜ್ಞಾನವನ್ನು ಭ್ರಷ್ಟಗೊಳಿಸುತ್ತದೆ  –  ಸ್ಥಳೀಯರು ಅಸಾಂಪ್ರದಾಯಿಕ ನಂಬಿಕೆಗಳು, ಗುರು-ಸಂಬಂಧಿತ ಸಮಸ್ಯೆಗಳು, ಅಥವಾ ಸರಿ ಮತ್ತು ತಪ್ಪನ್ನು ಗುರುತಿಸುವಲ್ಲಿ ತೊಂದರೆಯನ್ನು ಹೊಂದಿರಬಹುದು.",
         "mr": "गुरु चाण्डाल दोष तब बनता है जब गुरु (ज्ञान, धर्म, गुरु) और राहु (भ्रम, आसक्ति, नियम-भंग) संयुक्त हों। यह संयोग गुरु के स्वाभाविक ज्ञान को दूषित करता है  –  जातक में अपरम्परागत मान्यताएँ, गुरु-सम्बन्धित समस्याएँ, या सही-गलत में भेद करने में कठिनाई हो सकती है।",
-        "gu": "Guru Chandal Dosha forms when Jupiter (wisdom, dharma, guru) is conjunct Rahu (illusion, obsession, rule-breaking). This combination corrupts Jupiter's natural wisdom  –  the native may have unorthodox beliefs, guru-related issues, or difficulty distinguishing right from wrong.",
+        "gu": "ગુરુ ચાંડાલ દોષ ત્યારે બને છે જ્યારે ગુરુ (જ્ઞાન, ધર્મ, ગુરુ) રાહુ (ભ્રમ, જુસ્સો, નિયમભંગ) સાથે યુતિમાં હોય. આ સંયોગ ગુરુના કુદરતી જ્ઞાનને ભ્રષ્ટ કરે છે  –  જાતકને રૂઢિચુસ્ત ન હોય તેવી માન્યતાઓ, ગુરુ સંબંધિત સમસ્યાઓ, અથવા સાચા-ખોટાને પારખવામાં મુશ્કેલી પડી શકે છે.",
         "mai": "गुरु चांडाल दोष बनैत अछि जखन बृहस्पति (ज्ञान, धर्म, गुरु) राहु (भ्रम, जुनून, नियम तोड़ना) सं युति करैत अछि। ई संयोजन बृहस्पति केँ प्राकृतिक ज्ञान केँ दूषित करैत अछि – जातक केँ अपरंपरागत विश्वास, गुरु सं संबंधित समस्या, वा सही ओ गलत केँ पहचानय मे कठिनाई भऽ सकैत अछि।"
       },
       "options": [
@@ -430,44 +430,44 @@
           "hi": "गुरु और राहु का संयोग",
           "mai": "बृहस्पति राहु सं युति",
           "mr": "गुरु और राहु का संयोग",
-          "ta": "Jupiter conjunct Rahu",
-          "te": "Jupiter conjunct Rahu",
-          "bn": "Jupiter conjunct Rahu",
-          "kn": "Jupiter conjunct Rahu",
-          "gu": "Jupiter conjunct Rahu"
+          "ta": "குரு ராகுவுடன் சேர்க்கை",
+          "te": "గురుడు రాహువుతో సంయోగం",
+          "bn": "বৃহস্পতি রাহু যুক্ত",
+          "kn": "ಗುರು ರಾಹುವಿನೊಂದಿಗೆ ಯುತಿ",
+          "gu": "ગુરુ રાહુ સાથે યુતિમાં"
         },
         {
           "en": "Jupiter conjunct Saturn",
           "hi": "गुरु और शनि का संयोग",
           "mai": "बृहस्पति शनि सं युति",
           "mr": "गुरु और शनि का संयोग",
-          "ta": "Jupiter conjunct Saturn",
-          "te": "Jupiter conjunct Saturn",
-          "bn": "Jupiter conjunct Saturn",
-          "kn": "Jupiter conjunct Saturn",
-          "gu": "Jupiter conjunct Saturn"
+          "ta": "குரு சனியுடன் சேர்க்கை",
+          "te": "గురుడు శనితో సంయోగం",
+          "bn": "বৃহস্পতি শনি যুক্ত",
+          "kn": "ಗುರು ಶನಿಯೊಂದಿಗೆ ಯುತಿ",
+          "gu": "ગુરુ શનિ સાથે યુતિમાં"
         },
         {
           "en": "Jupiter in the 12th house",
           "hi": "गुरु 12वें भाव में",
           "mai": "बृहस्पति १२म् घर मे",
           "mr": "गुरु 12वें भाव में",
-          "ta": "Jupiter in the 12th house",
-          "te": "Jupiter in the 12th house",
-          "bn": "Jupiter in the 12th house",
-          "kn": "Jupiter in the 12th house",
-          "gu": "Jupiter in the 12th house"
+          "ta": "குரு 12 ஆம் பாவத்தில்",
+          "te": "గురుడు 12వ భావంలో",
+          "bn": "বৃহস্পতি ১২শ ভাবে",
+          "kn": "ಗುರು 12ನೇ ಭಾವದಲ್ಲಿ",
+          "gu": "ગુરુ ૧૨મા ભાવમાં"
         },
         {
           "en": "Jupiter debilitated in Capricorn",
           "hi": "गुरु मकर में नीच",
           "mai": "बृहस्पति मकर राशि मे नीचस्थ",
           "mr": "गुरु मकर में नीच",
-          "ta": "Jupiter debilitated in Capricorn",
-          "te": "Jupiter debilitated in Capricorn",
-          "bn": "Jupiter debilitated in Capricorn",
-          "kn": "Jupiter debilitated in Capricorn",
-          "gu": "Jupiter debilitated in Capricorn"
+          "ta": "குரு மகரத்தில் நீச்சம்",
+          "te": "గురుడు మకర రాశిలో నీచ స్థితిలో",
+          "bn": "বৃহস্পতি মকর রাশিতে নীচস্থ",
+          "kn": "ಗುರು ಮಕರ ರಾಶಿಯಲ್ಲಿ ನೀಚನಾಗಿರುತ್ತಾನೆ",
+          "gu": "ગુરુ મકરમાં નીચનો"
         }
       ]
     },
@@ -477,24 +477,24 @@
       "question": {
         "en": "Shrapit Dosha is indicated by:",
         "hi": "शापित दोष किससे सूचित होता है?",
-        "ta": "Shrapit Dosha is indicated by:",
-        "te": "Shrapit Dosha is indicated by:",
-        "bn": "Shrapit Dosha is indicated by:",
-        "kn": "Shrapit Dosha is indicated by:",
+        "ta": "சர்பித் தோஷம் குறிக்கப்படுகிறது:",
+        "te": "శ్రాపిత దోషం దీని ద్వారా సూచించబడుతుంది:",
+        "bn": "শাপিত দোষ দ্বারা নির্দেশিত হয়:",
+        "kn": "ಶಾಪಿತ ದೋಷವನ್ನು ಸೂಚಿಸಲಾಗುತ್ತದೆ:",
         "mr": "शापित दोष किससे सूचित होता है?",
-        "gu": "Shrapit Dosha is indicated by:",
+        "gu": "શ્રાપિત દોષ કોના દ્વારા સૂચવાય છે:",
         "mai": "श्रापित दोष सूचित होइत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Shrapit Dosha (literally \"cursed\" combination) forms when Saturn and Rahu are conjunct. Saturn (karma, restriction) combined with Rahu (obsession, past-life desires) creates intense karmic pressure  –  the native faces inexplicable obstacles, delays, and a sense of being \"blocked\" in the house where this conjunction occurs.",
         "hi": "शापित दोष (शाब्दिक \"शापित\" संयोग) शनि और राहु के संयोग से बनता है। शनि (कर्म, प्रतिबन्ध) और राहु (आसक्ति, पूर्वजन्म इच्छाएँ) मिलकर तीव्र कार्मिक दबाव बनाते हैं  –  जातक को अकथनीय बाधाएँ, विलम्ब और जिस भाव में यह संयोग हो वहाँ \"अवरुद्ध\" होने का अनुभव होता है।",
-        "ta": "Shrapit Dosha (literally \"cursed\" combination) forms when Saturn and Rahu are conjunct. Saturn (karma, restriction) combined with Rahu (obsession, past-life desires) creates intense karmic pressure  –  the native faces inexplicable obstacles, delays, and a sense of being \"blocked\" in the house where this conjunction occurs.",
-        "te": "Shrapit Dosha (literally \"cursed\" combination) forms when Saturn and Rahu are conjunct. Saturn (karma, restriction) combined with Rahu (obsession, past-life desires) creates intense karmic pressure  –  the native faces inexplicable obstacles, delays, and a sense of being \"blocked\" in the house where this conjunction occurs.",
-        "bn": "Shrapit Dosha (literally \"cursed\" combination) forms when Saturn and Rahu are conjunct. Saturn (karma, restriction) combined with Rahu (obsession, past-life desires) creates intense karmic pressure  –  the native faces inexplicable obstacles, delays, and a sense of being \"blocked\" in the house where this conjunction occurs.",
-        "kn": "Shrapit Dosha (literally \"cursed\" combination) forms when Saturn and Rahu are conjunct. Saturn (karma, restriction) combined with Rahu (obsession, past-life desires) creates intense karmic pressure  –  the native faces inexplicable obstacles, delays, and a sense of being \"blocked\" in the house where this conjunction occurs.",
+        "ta": "சர்பித் தோஷம் (அதாவது \"சபிக்கப்பட்ட\" சேர்க்கை) சனி மற்றும் ராகு சேர்க்கை பெற்றிருக்கும் போது உருவாகிறது. சனி (கர்மா, கட்டுப்பாடு) ராகுவுடன் (மோகம், கடந்த கால ஆசைகள்) இணையும் போது தீவிர கர்ம அழுத்தத்தை உருவாக்குகிறது – இந்த சேர்க்கை நிகழும் பாவத்தில் ஜாதகர் விளக்க முடியாத தடைகள், தாமதங்கள் மற்றும் \"தடுக்கப்பட்ட\" உணர்வை எதிர்கொள்கிறார்.",
+        "te": "శ్రాపిత దోషం (అక్షరాలా \"శాపగ్రస్త\" కలయిక) శని మరియు రాహువు సంయోగం చెందినప్పుడు ఏర్పడుతుంది. శని (కర్మ, పరిమితి) రాహువుతో (వ్యామోహం, గత జన్మ కోరికలు) కలిసినప్పుడు తీవ్రమైన కర్మ ఒత్తిడిని సృష్టిస్తుంది – స్థానికుడు వివరించలేని అడ్డంకులు, ఆలస్యాలు మరియు ఈ సంయోగం సంభవించిన భావంలో \"నిరోధించబడిన\" అనుభూతిని ఎదుర్కొంటాడు.",
+        "bn": "শাপিত দোষ (আক্ষরিক অর্থে \"অভিশপ্ত\" যোগ) গঠিত হয় যখন শনি ও রাহু যুক্ত হয়। শনি (কর্ম, সীমাবদ্ধতা) রাহুর (আসক্তি, পূর্বজন্মের আকাঙ্ক্ষা) সাথে মিলিত হয়ে তীব্র কর্মফল চাপ সৃষ্টি করে – জাতক যে ভাবে এই যোগ ঘটে সেখানে অবর্ণনীয় বাধা, বিলম্ব এবং \"অবরুদ্ধ\" হওয়ার অনুভূতি অনুভব করে।",
+        "kn": "ಶಾಪಿತ ದೋಷ (ಅಕ್ಷರಶಃ \"ಶಾಪಗ್ರಸ್ತ\" ಸಂಯೋಜನೆ) ರೂಪುಗೊಳ್ಳುತ್ತದೆ ಯಾವಾಗ ಶನಿ ಮತ್ತು ರಾಹು ಯುತಿಯಲ್ಲಿರುತ್ತಾರೆ. ಶನಿ (ಕರ್ಮ, ನಿರ್ಬಂಧ) ರಾಹು (ಗೀಳು, ಹಿಂದಿನ ಜನ್ಮದ ಆಸೆಗಳು) ಜೊತೆಗೂಡಿ ತೀವ್ರ ಕರ್ಮದ ಒತ್ತಡವನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ  –  ಸ್ಥಳೀಯರು ವಿವರಿಸಲಾಗದ ಅಡೆತಡೆಗಳು, ವಿಳಂಬಗಳು ಮತ್ತು ಈ ಯುತಿ ಸಂಭವಿಸುವ ಭಾವದಲ್ಲಿ \"ತಡೆಯಲ್ಪಟ್ಟ\" ಭಾವನೆಯನ್ನು ಎದುರಿಸುತ್ತಾರೆ.",
         "mr": "शापित दोष (शाब्दिक \"शापित\" संयोग) शनि और राहु के संयोग से बनता है। शनि (कर्म, प्रतिबन्ध) और राहु (आसक्ति, पूर्वजन्म इच्छाएँ) मिलकर तीव्र कार्मिक दबाव बनाते हैं  –  जातक को अकथनीय बाधाएँ, विलम्ब और जिस भाव में यह संयोग हो वहाँ \"अवरुद्ध\" होने का अनुभव होता है।",
-        "gu": "Shrapit Dosha (literally \"cursed\" combination) forms when Saturn and Rahu are conjunct. Saturn (karma, restriction) combined with Rahu (obsession, past-life desires) creates intense karmic pressure  –  the native faces inexplicable obstacles, delays, and a sense of being \"blocked\" in the house where this conjunction occurs.",
+        "gu": "શ્રાપિત દોષ (શાબ્દિક રીતે \"શ્રાપિત\" સંયોગ) ત્યારે બને છે જ્યારે શનિ અને રાહુ યુતિમાં હોય. શનિ (કર્મ, પ્રતિબંધ) રાહુ (જુસ્સો, પૂર્વજન્મની ઇચ્છાઓ) સાથે મળીને તીવ્ર કર્મિક દબાણ બનાવે છે  –  જાતકને અગમ્ય અવરોધો, વિલંબ અને આ યુતિ જે ભાવમાં થાય છે ત્યાં \"અવરોધિત\" હોવાનો અહેસાસ થાય છે.",
         "mai": "श्रापित दोष (शाब्दिक अर्थ \"श्रापित\" संयोजन) बनैत अछि जखन शनि ओ राहु युति करैत अछि। शनि (कर्म, प्रतिबंध) राहु (जुनून, पूर्व जन्मक इच्छासभ) सं मिलि कऽ तीव्र कर्मिक दबाव उत्पन्न करैत अछि – जातक केँ अस्पष्ट बाधा, देरी, ओ \"अवरुद्ध\" होयबाक अनुभूति होइत अछि ओहि घर मे जतय ई युति होइत अछि।"
       },
       "options": [
@@ -503,44 +503,44 @@
           "hi": "चन्द्रमा और केतु",
           "mai": "चन्द्रमा केतु सं",
           "mr": "चन्द्रमा और केतु",
-          "ta": "Moon with Ketu",
-          "te": "Moon with Ketu",
-          "bn": "Moon with Ketu",
-          "kn": "Moon with Ketu",
-          "gu": "Moon with Ketu"
+          "ta": "சந்திரன் கேதுவுடன்",
+          "te": "చంద్రుడు కేతువుతో",
+          "bn": "চন্দ্র কেতুর সাথে",
+          "kn": "ಚಂದ್ರ ಕೇತುವಿನೊಂದಿಗೆ",
+          "gu": "ચંદ્ર કેતુ સાથે"
         },
         {
           "en": "Saturn conjunct Rahu",
           "hi": "शनि और राहु का संयोग",
           "mai": "शनि राहु सं युति",
           "mr": "शनि और राहु का संयोग",
-          "ta": "Saturn conjunct Rahu",
-          "te": "Saturn conjunct Rahu",
-          "bn": "Saturn conjunct Rahu",
-          "kn": "Saturn conjunct Rahu",
-          "gu": "Saturn conjunct Rahu"
+          "ta": "சனி ராகுவுடன் சேர்க்கை",
+          "te": "శని రాహువుతో సంయోగం",
+          "bn": "শনি রাহু যুক্ত",
+          "kn": "ಶನಿ ರಾಹುವಿನೊಂದಿಗೆ ಯುತಿ",
+          "gu": "શનિ રાહુ સાથે યુતિમાં"
         },
         {
           "en": "Mars in the 7th",
           "hi": "मंगल 7वें में",
           "mai": "मंगल ७म् मे",
           "mr": "मंगल 7वें में",
-          "ta": "Mars in the 7th",
-          "te": "Mars in the 7th",
-          "bn": "Mars in the 7th",
-          "kn": "Mars in the 7th",
-          "gu": "Mars in the 7th"
+          "ta": "செவ்வாய் 7 ஆம் பாவத்தில்",
+          "te": "కుజుడు 7వ భావంలో",
+          "bn": "মঙ্গল ৭ম ভাবে",
+          "kn": "ಮಂಗಳ 7ನೇ ಭಾವದಲ್ಲಿ",
+          "gu": "મંગળ ૭મા ભાવમાં"
         },
         {
           "en": "Venus combust",
           "hi": "शुक्र अस्त",
           "mai": "शुक्र अस्त",
           "mr": "शुक्र अस्त",
-          "ta": "Venus combust",
-          "te": "Venus combust",
-          "bn": "Venus combust",
-          "kn": "Venus combust",
-          "gu": "Venus combust"
+          "ta": "சுக்கிரன் அஸ்தமனம்",
+          "te": "శుక్రుడు అస్తంగత్వం",
+          "bn": "শুক্র অস্তগত",
+          "kn": "ಶುಕ್ರ ಅಸ್ತಂಗತ",
+          "gu": "શુક્ર અસ્તનો"
         }
       ]
     },
@@ -550,24 +550,24 @@
       "question": {
         "en": "An exalted planet in the chart can help cancel or mitigate Kala Sarpa Dosha.",
         "hi": "कुण्डली में उच्च ग्रह काल सर्प दोष को निरस्त या शमित करने में सहायक हो सकता है।",
-        "ta": "An exalted planet in the chart can help cancel or mitigate Kala Sarpa Dosha.",
-        "te": "An exalted planet in the chart can help cancel or mitigate Kala Sarpa Dosha.",
-        "bn": "An exalted planet in the chart can help cancel or mitigate Kala Sarpa Dosha.",
-        "kn": "An exalted planet in the chart can help cancel or mitigate Kala Sarpa Dosha.",
+        "ta": "ஜாதகத்தில் ஒரு உச்ச கிரகம் கால சர்ப்ப தோஷத்தை ரத்து செய்ய அல்லது குறைக்க உதவும்.",
+        "te": "జాతకంలో ఒక ఉచ్చ గ్రహం కాళ సర్ప దోషాన్ని రద్దు చేయడానికి లేదా తగ్గించడానికి సహాయపడుతుంది.",
+        "bn": "কুণ্ডলীতে একটি উচ্চস্থ গ্রহ কালসর্প দোষ বাতিল বা প্রশমিত করতে সাহায্য করতে পারে।",
+        "kn": "ಜಾತಕದಲ್ಲಿ ಉಚ್ಚ ಗ್ರಹವು ಕಾಲ ಸರ್ಪ ದೋಷವನ್ನು ರದ್ದುಗೊಳಿಸಲು ಅಥವಾ ಕಡಿಮೆ ಮಾಡಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ.",
         "mr": "कुण्डली में उच्च ग्रह काल सर्प दोष को निरस्त या शमित करने में सहायक हो सकता है।",
-        "gu": "An exalted planet in the chart can help cancel or mitigate Kala Sarpa Dosha.",
+        "gu": "કુંડળીમાં ઉચ્ચનો ગ્રહ કાલસર્પ દોષને રદ કરવામાં અથવા ઘટાડવામાં મદદ કરી શકે છે.",
         "mai": "कुण्डली मे एकटा उच्चस्थ ग्रह कालसर्प दोष केँ रद्द करय मे वा कम करय मे मदद कऽ सकैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. An exalted planet within the hemmed arc provides exceptional strength that can overcome the restrictive effects of Kala Sarpa Dosha. The exalted planet acts as a powerful counterforce  –  its significations tend to flourish despite the dosha.",
         "hi": "सत्य। घिरे चाप के भीतर उच्च ग्रह असाधारण बल प्रदान करता है जो काल सर्प दोष के प्रतिबन्धक प्रभावों पर विजय पा सकता है। उच्च ग्रह शक्तिशाली प्रतिबल का कार्य करता है  –  दोष के बावजूद इसके कारकत्व फलते-फूलते हैं।",
-        "ta": "True. An exalted planet within the hemmed arc provides exceptional strength that can overcome the restrictive effects of Kala Sarpa Dosha. The exalted planet acts as a powerful counterforce  –  its significations tend to flourish despite the dosha.",
-        "te": "True. An exalted planet within the hemmed arc provides exceptional strength that can overcome the restrictive effects of Kala Sarpa Dosha. The exalted planet acts as a powerful counterforce  –  its significations tend to flourish despite the dosha.",
-        "bn": "True. An exalted planet within the hemmed arc provides exceptional strength that can overcome the restrictive effects of Kala Sarpa Dosha. The exalted planet acts as a powerful counterforce  –  its significations tend to flourish despite the dosha.",
-        "kn": "True. An exalted planet within the hemmed arc provides exceptional strength that can overcome the restrictive effects of Kala Sarpa Dosha. The exalted planet acts as a powerful counterforce  –  its significations tend to flourish despite the dosha.",
+        "ta": "உண்மை. அடைக்கப்பட்ட வளைவுக்குள் உள்ள ஒரு உச்ச கிரகம் கால சர்ப்ப தோஷத்தின் கட்டுப்படுத்தும் விளைவுகளை சமாளிக்கக்கூடிய விதிவிலக்கான பலத்தை வழங்குகிறது. உச்ச கிரகம் ஒரு சக்திவாய்ந்த எதிர் சக்தியாக செயல்படுகிறது – அதன் காரகத்துவங்கள் தோஷம் இருந்தபோதிலும் செழித்து வளரும்.",
+        "te": "నిజం. చిక్కుకున్న ఆర్క్‌లోని ఒక ఉచ్చ గ్రహం అసాధారణ బలాన్ని అందిస్తుంది, ఇది కాళ సర్ప దోషం యొక్క పరిమిత ప్రభావాలను అధిగమించగలదు. ఉచ్చ గ్రహం ఒక శక్తివంతమైన ప్రతిఘటనగా పనిచేస్తుంది – దాని సూచనలు దోషం ఉన్నప్పటికీ వృద్ధి చెందుతాయి.",
+        "bn": "সত্য। আবদ্ধ বৃত্তচাপের মধ্যে একটি উচ্চস্থ গ্রহ অসাধারণ শক্তি প্রদান করে যা কালসর্প দোষের সীমাবদ্ধ প্রভাবগুলি কাটিয়ে উঠতে পারে। উচ্চস্থ গ্রহটি একটি শক্তিশালী প্রতিশক্তি হিসাবে কাজ করে – দোষ থাকা সত্ত্বেও এর কারকতাগুলি বিকশিত হতে থাকে।",
+        "kn": "ಸರಿ. ನಿರ್ಬಂಧಿತ ಕಮಾನಿನಲ್ಲಿರುವ ಉಚ್ಚ ಗ್ರಹವು ಕಾಲ ಸರ್ಪ ದೋಷದ ನಿರ್ಬಂಧಿತ ಪರಿಣಾಮಗಳನ್ನು ನಿವಾರಿಸಲು ಅಸಾಧಾರಣ ಶಕ್ತಿಯನ್ನು ಒದಗಿಸುತ್ತದೆ. ಉಚ್ಚ ಗ್ರಹವು ಪ್ರಬಲ ಪ್ರತಿಬಲವಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ  –  ಅದರ ಸೂಚನೆಗಳು ದೋಷದ ಹೊರತಾಗಿಯೂ ಅಭಿವೃದ್ಧಿ ಹೊಂದುತ್ತವೆ.",
         "mr": "सत्य। घिरे चाप के भीतर उच्च ग्रह असाधारण बल प्रदान करता है जो काल सर्प दोष के प्रतिबन्धक प्रभावों पर विजय पा सकता है। उच्च ग्रह शक्तिशाली प्रतिबल का कार्य करता है  –  दोष के बावजूद इसके कारकत्व फलते-फूलते हैं।",
-        "gu": "True. An exalted planet within the hemmed arc provides exceptional strength that can overcome the restrictive effects of Kala Sarpa Dosha. The exalted planet acts as a powerful counterforce  –  its significations tend to flourish despite the dosha.",
+        "gu": "સાચું. ઘેરાયેલી ચાપમાં ઉચ્ચનો ગ્રહ અપવાદરૂપ શક્તિ પ્રદાન કરે છે જે કાલસર્પ દોષની પ્રતિબંધિત અસરોને દૂર કરી શકે છે. ઉચ્ચનો ગ્રહ એક શક્તિશાળી પ્રતિરોધક બળ તરીકે કાર્ય કરે છે  –  તેના કારકત્વ દોષ હોવા છતાં ખીલી ઉઠે છે.",
         "mai": "सत्य। सीमित चापक भीतर एकटा उच्चस्थ ग्रह असाधारण शक्ति प्रदान करैत अछि जे कालसर्प दोषक प्रतिबंधात्मक प्रभाव केँ दूर कऽ सकैत अछि। उच्चस्थ ग्रह एकटा शक्तिशाली प्रतिबलक रूप मे काज करैत अछि – एकर कारकत्व दोषक बावजूद फलिभूत होयबाक प्रवृत्ति रखैत अछि।"
       }
     },
@@ -577,24 +577,24 @@
       "question": {
         "en": "The fundamental principle behind doshas in Vedic astrology is that they represent:",
         "hi": "वैदिक ज्योतिष में दोषों के पीछे मूलभूत सिद्धान्त यह है कि वे प्रतिनिधित्व करते हैं:",
-        "ta": "The fundamental principle behind doshas in Vedic astrology is that they represent:",
-        "te": "The fundamental principle behind doshas in Vedic astrology is that they represent:",
-        "bn": "The fundamental principle behind doshas in Vedic astrology is that they represent:",
-        "kn": "The fundamental principle behind doshas in Vedic astrology is that they represent:",
+        "ta": "வேத ஜோதிடத்தில் தோஷங்களுக்குப் பின்னால் உள்ள அடிப்படைக் கொள்கை என்னவென்றால், அவை குறிக்கின்றன:",
+        "te": "వేద జ్యోతిష్యంలోని దోషాల వెనుక ఉన్న ప్రాథమిక సూత్రం ఏమిటంటే అవి సూచిస్తాయి:",
+        "bn": "বৈদিক জ্যোতিষে দোষগুলির পেছনের মৌলিক নীতি হলো যে তারা প্রতিনিধিত্ব করে:",
+        "kn": "ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ದೋಷಗಳ ಹಿಂದಿನ ಮೂಲಭೂತ ತತ್ವವೆಂದರೆ ಅವು ಪ್ರತಿನಿಧಿಸುತ್ತವೆ:",
         "mr": "वैदिक ज्योतिष में दोषों के पीछे मूलभूत सिद्धान्त यह है कि वे प्रतिनिधित्व करते हैं:",
-        "gu": "The fundamental principle behind doshas in Vedic astrology is that they represent:",
+        "gu": "વૈદિક જ્યોતિષમાં દોષો પાછળનો મૂળભૂત સિદ્ધાંત એ છે કે તેઓ રજૂ કરે છે:",
         "mai": "वैदिक ज्योतिष मे दोषसभक पाछूक मौलिक सिद्धांत ई अछि जे ओ प्रतिनिधित्व करैत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Doshas represent karmic patterns  –  tendencies inherited from past actions that create specific challenges. They are not curses or punishments. Understanding the dosha reveals the lesson; remedial measures (gemstones, mantras, charity, spiritual practice) help work through the karma consciously.",
         "hi": "दोष कार्मिक प्रतिमान हैं  –  पिछले कर्मों से विरासत में मिली प्रवृत्तियाँ जो विशिष्ट चुनौतियाँ बनाती हैं। ये शाप या दण्ड नहीं हैं। दोष समझना पाठ प्रकट करता है; उपचारात्मक उपाय (रत्न, मन्त्र, दान, आध्यात्मिक साधना) कर्म को सचेत रूप से साधने में सहायता करते हैं।",
-        "ta": "Doshas represent karmic patterns  –  tendencies inherited from past actions that create specific challenges. They are not curses or punishments. Understanding the dosha reveals the lesson; remedial measures (gemstones, mantras, charity, spiritual practice) help work through the karma consciously.",
-        "te": "Doshas represent karmic patterns  –  tendencies inherited from past actions that create specific challenges. They are not curses or punishments. Understanding the dosha reveals the lesson; remedial measures (gemstones, mantras, charity, spiritual practice) help work through the karma consciously.",
-        "bn": "Doshas represent karmic patterns  –  tendencies inherited from past actions that create specific challenges. They are not curses or punishments. Understanding the dosha reveals the lesson; remedial measures (gemstones, mantras, charity, spiritual practice) help work through the karma consciously.",
-        "kn": "Doshas represent karmic patterns  –  tendencies inherited from past actions that create specific challenges. They are not curses or punishments. Understanding the dosha reveals the lesson; remedial measures (gemstones, mantras, charity, spiritual practice) help work through the karma consciously.",
+        "ta": "தோஷங்கள் கர்ம வடிவங்களைக் குறிக்கின்றன – கடந்தகால செயல்களில் இருந்து பெறப்பட்ட குறிப்பிட்ட சவால்களை உருவாக்கும் போக்குகள். அவை சாபங்கள் அல்லது தண்டனைகள் அல்ல. தோஷத்தைப் புரிந்துகொள்வது பாடத்தை வெளிப்படுத்துகிறது; பரிகாரங்கள் (ரத்தினங்கள், மந்திரங்கள், தானம், ஆன்மீக பயிற்சி) கர்மாவை உணர்வுபூர்வமாக கடந்து செல்ல உதவுகின்றன.",
+        "te": "దోషాలు కర్మ సంబంధిత నమూనాలను సూచిస్తాయి – గత కర్మల నుండి సంక్రమించిన ప్రవృత్తులు, ఇవి నిర్దిష్ట సవాళ్లను సృష్టిస్తాయి. అవి శాపాలు లేదా శిక్షలు కావు. దోషాన్ని అర్థం చేసుకోవడం పాఠాన్ని వెల్లడిస్తుంది; పరిహార చర్యలు (రత్నాలు, మంత్రాలు, దానం, ఆధ్యాత్మిక సాధన) కర్మను స్పృహతో అధిగమించడానికి సహాయపడతాయి.",
+        "bn": "দোষগুলি কর্মফল প্যাটার্নকে প্রতিনিধিত্ব করে – পূর্বজন্মের কর্ম থেকে উত্তরাধিকারসূত্রে প্রাপ্ত প্রবণতা যা নির্দিষ্ট চ্যালেঞ্জ তৈরি করে। এগুলি অভিশাপ বা শাস্তি নয়। দোষটি বোঝালে শিক্ষা প্রকাশ পায়; প্রতিকারমূলক ব্যবস্থা (রত্নপাথর, মন্ত্র, দান, আধ্যাত্মিক অনুশীলন) সচেতনভাবে কর্মফল অতিক্রম করতে সাহায্য করে।",
+        "kn": "ದೋಷಗಳು ಕರ್ಮದ ಮಾದರಿಗಳನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತವೆ  –  ಹಿಂದಿನ ಕಾರ್ಯಗಳಿಂದ ಆನುವಂಶಿಕವಾಗಿ ಪಡೆದ ಪ್ರವೃತ್ತಿಗಳು ನಿರ್ದಿಷ್ಟ ಸವಾಲುಗಳನ್ನು ಸೃಷ್ಟಿಸುತ್ತವೆ. ಅವು ಶಾಪಗಳು ಅಥವಾ ಶಿಕ್ಷೆಗಳಲ್ಲ. ದೋಷವನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವುದು ಪಾಠವನ್ನು ಬಹಿರಂಗಪಡಿಸುತ್ತದೆ; ಪರಿಹಾರ ಕ್ರಮಗಳು (ರತ್ನಗಳು, ಮಂತ್ರಗಳು, ದಾನ, ಆಧ್ಯಾತ್ಮಿಕ ಅಭ್ಯಾಸ) ಕರ್ಮವನ್ನು ಪ್ರಜ್ಞಾಪೂರ್ವಕವಾಗಿ ನಿಭಾಯಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತವೆ.",
         "mr": "दोष कार्मिक प्रतिमान हैं  –  पिछले कर्मों से विरासत में मिली प्रवृत्तियाँ जो विशिष्ट चुनौतियाँ बनाती हैं। ये शाप या दण्ड नहीं हैं। दोष समझना पाठ प्रकट करता है; उपचारात्मक उपाय (रत्न, मन्त्र, दान, आध्यात्मिक साधना) कर्म को सचेत रूप से साधने में सहायता करते हैं।",
-        "gu": "Doshas represent karmic patterns  –  tendencies inherited from past actions that create specific challenges. They are not curses or punishments. Understanding the dosha reveals the lesson; remedial measures (gemstones, mantras, charity, spiritual practice) help work through the karma consciously.",
+        "gu": "દોષો કર્મિક દાખલાઓ રજૂ કરે છે  –  ભૂતકાળના કાર્યોમાંથી વારસામાં મળેલી વૃત્તિઓ જે ચોક્કસ પડકારો ઊભા કરે છે. તે શ્રાપ કે સજા નથી. દોષને સમજવાથી પાઠ પ્રગટ થાય છે; ઉપચારાત્મક ઉપાયો (રત્નો, મંત્રો, દાન, આધ્યાત્મિક અભ્યાસ) સભાનપણે કર્મને પાર કરવામાં મદદ કરે છે.",
         "mai": "दोष कर्मिक पैटर्न केँ प्रतिनिधित्व करैत अछि – पूर्व कर्मसभ सं प्राप्त प्रवृत्तिसभ जे विशिष्ट चुनौती उत्पन्न करैत अछि। ई श्राप वा दंड नहि अछि। दोष केँ बुझनाइ सं सबक प्रकट होइत अछि; उपचारात्मक उपाय (रत्न, मंत्र, दान, आध्यात्मिक अभ्यास) कर्म केँ सचेत रूप सं पार करय मे मदद करैत अछि।"
       },
       "options": [
@@ -603,44 +603,44 @@
           "hi": "स्थायी शाप जो बदले नहीं जा सकते",
           "mai": "स्थायी श्राप जे बदलल नहि जा सकैत अछि",
           "mr": "स्थायी शाप जो बदले नहीं जा सकते",
-          "ta": "Permanent curses that cannot be changed",
-          "te": "Permanent curses that cannot be changed",
-          "bn": "Permanent curses that cannot be changed",
-          "kn": "Permanent curses that cannot be changed",
-          "gu": "Permanent curses that cannot be changed"
+          "ta": "மாற்ற முடியாத நிரந்தர சாபங்கள்",
+          "te": "మార్చలేని శాశ్వత శాపాలు",
+          "bn": "স্থায়ী অভিশাপ যা পরিবর্তন করা যায় না",
+          "kn": "ಬದಲಾಯಿಸಲಾಗದ ಶಾಶ್ವತ ಶಾಪಗಳು",
+          "gu": "કાયમી શ્રાપ જે બદલી શકાતા નથી"
         },
         {
           "en": "Karmic patterns that can be understood, mitigated, and worked through",
           "hi": "कार्मिक प्रतिमान जिन्हें समझा, शमित और साधा जा सकता है",
           "mai": "कर्मिक पैटर्न जेकरा बुझल, कम कएल, ओ पार कएल जा सकैत अछि",
           "mr": "कार्मिक प्रतिमान जिन्हें समझा, शमित और साधा जा सकता है",
-          "ta": "Karmic patterns that can be understood, mitigated, and worked through",
-          "te": "Karmic patterns that can be understood, mitigated, and worked through",
-          "bn": "Karmic patterns that can be understood, mitigated, and worked through",
-          "kn": "Karmic patterns that can be understood, mitigated, and worked through",
-          "gu": "Karmic patterns that can be understood, mitigated, and worked through"
+          "ta": "புரிந்து கொள்ளக்கூடிய, குறைக்கக்கூடிய மற்றும் கடந்து செல்லக்கூடிய கர்ம வடிவங்கள்",
+          "te": "అర్థం చేసుకోదగిన, తగ్గించదగిన మరియు అధిగమించదగిన కర్మ సంబంధిత నమూనాలు",
+          "bn": "কর্মফল প্যাটার্ন যা বোঝা, প্রশমিত করা এবং অতিক্রম করা যায়",
+          "kn": "ಅರ್ಥಮಾಡಿಕೊಳ್ಳಬಹುದಾದ, ಕಡಿಮೆ ಮಾಡಬಹುದಾದ ಮತ್ತು ನಿಭಾಯಿಸಬಹುದಾದ ಕರ್ಮದ ಮಾದರಿಗಳು",
+          "gu": "કર્મિક દાખલાઓ જેને સમજી શકાય છે, ઘટાડી શકાય છે અને તેમાંથી પસાર થઈ શકાય છે"
         },
         {
           "en": "Random misfortune",
           "hi": "यादृच्छिक दुर्भाग्य",
           "mai": "आकस्मिक दुर्भाग्य",
           "mr": "यादृच्छिक दुर्भाग्य",
-          "ta": "Random misfortune",
-          "te": "Random misfortune",
-          "bn": "Random misfortune",
-          "kn": "Random misfortune",
-          "gu": "Random misfortune"
+          "ta": "தற்செயலான துரதிர்ஷ்டம்",
+          "te": "యాదృచ్ఛిక దురదృష్టం",
+          "bn": "এলোমেলো দুর্ভাগ্য",
+          "kn": "ಯಾದೃಚ್ಛಿಕ ದುರದೃಷ್ಟ",
+          "gu": "રેન્ડમ દુર્ભાગ્ય"
         },
         {
           "en": "Punishments from deities",
           "hi": "देवताओं से दण्ड",
           "mai": "देवतासभ सं दंड",
           "mr": "देवताओं से दण्ड",
-          "ta": "Punishments from deities",
-          "te": "Punishments from deities",
-          "bn": "Punishments from deities",
-          "kn": "Punishments from deities",
-          "gu": "Punishments from deities"
+          "ta": "தெய்வங்களிடமிருந்து வரும் தண்டனைகள்",
+          "te": "దేవతల నుండి శిక్షలు",
+          "bn": "দেবতাদের কাছ থেকে শাস্তি",
+          "kn": "ದೇವತೆಗಳಿಂದ ಶಿಕ್ಷೆಗಳು",
+          "gu": "દેવતાઓ તરફથી સજા"
         }
       ]
     }

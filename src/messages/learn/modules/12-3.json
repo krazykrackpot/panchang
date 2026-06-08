@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 12-1: गोचर",
         "mai": "मॉड्यूल १२-१: गोचर",
         "mr": "मॉड्यूल 12-1: गोचर",
-        "ta": "Module 12-1: Transits (Gochar)",
-        "te": "Module 12-1: Transits (Gochar)",
-        "bn": "Module 12-1: Transits (Gochar)",
-        "kn": "Module 12-1: Transits (Gochar)",
-        "gu": "Module 12-1: Transits (Gochar)"
+        "ta": "தொகுதி 12-1: கோச்சாரங்கள் (கோச்சாரம்)",
+        "te": "మాడ్యూల్ 12-1: గోచారము",
+        "bn": "মডিউল ১২-১: গোচর",
+        "kn": "ಮಾಡ್ಯೂಲ್ 12-1: ಗೋಚಾರ",
+        "gu": "મોડ્યુલ ૧૨-૧: ગોચર"
       },
       "href": "/learn/modules/12-1"
     },
@@ -42,11 +42,11 @@
         "hi": "मॉड्यूल 12-2: साढ़े साती",
         "mai": "मॉड्यूल १२-२: साढ़े साती",
         "mr": "मॉड्यूल 12-2: साढ़े साती",
-        "ta": "Module 12-2: Sade Sati",
-        "te": "Module 12-2: Sade Sati",
-        "bn": "Module 12-2: Sade Sati",
-        "kn": "Module 12-2: Sade Sati",
-        "gu": "Module 12-2: Sade Sati"
+        "ta": "தொகுதி 12-2: ஏழரைச் சனி",
+        "te": "మాడ్యూల్ 12-2: సడే సతి",
+        "bn": "মডিউল ১২-২: সাড়ে সাতি",
+        "kn": "ಮಾಡ್ಯೂಲ್ 12-2: ಸಾದೇ ಸತಿ",
+        "gu": "મોડ્યુલ ૧૨-૨: સાડાસાતી"
       },
       "href": "/learn/modules/12-2"
     },
@@ -56,11 +56,11 @@
         "hi": "गोचर पञ्चाङ्ग",
         "mai": "गोचर पंचांग",
         "mr": "गोचर पञ्चाङ्ग",
-        "ta": "Transit Calendar",
-        "te": "Transit Calendar",
-        "bn": "Transit Calendar",
-        "kn": "Transit Calendar",
-        "gu": "Transit Calendar"
+        "ta": "கோச்சார நாட்காட்டி",
+        "te": "గోచార పంచాంగం",
+        "bn": "গোচর পঞ্জিকা",
+        "kn": "ಗೋಚಾರ ಕ್ಯಾಲೆಂಡರ್",
+        "gu": "ગોચર કેલેન્ડર"
       },
       "href": "/transits"
     }
@@ -72,24 +72,24 @@
       "question": {
         "en": "How long does Jupiter approximately stay in one zodiac sign?",
         "hi": "गुरु लगभग कितने समय तक एक राशि में रहता है?",
-        "ta": "How long does Jupiter approximately stay in one zodiac sign?",
-        "te": "How long does Jupiter approximately stay in one zodiac sign?",
-        "bn": "How long does Jupiter approximately stay in one zodiac sign?",
-        "kn": "How long does Jupiter approximately stay in one zodiac sign?",
+        "ta": "குரு கிரகம் தோராயமாக ஒரு ராசி பாவத்தில் எவ்வளவு காலம் தங்கியிருக்கும்?",
+        "te": "గురు గ్రహం ఒక రాశిలో సుమారుగా ఎంత కాలం ఉంటుంది?",
+        "bn": "বৃহস্পতি প্রায় কতদিন একটি রাশি-তে থাকে?",
+        "kn": "ಗುರು ಗ್ರಹವು ಸರಿಸುಮಾರು ಒಂದು ರಾಶಿಯಲ್ಲಿ ಎಷ್ಟು ಸಮಯ ಇರುತ್ತದೆ?",
         "mr": "गुरु लगभग कितने समय तक एक राशि में रहता है?",
-        "gu": "How long does Jupiter approximately stay in one zodiac sign?",
+        "gu": "ગુરુ ગ્રહ આશરે એક રાશિમાં કેટલો સમય રહે છે?",
         "mai": "गुरु लगभग केतेक काल धरि एकटा राशि मे रहैत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Jupiter takes about 12 years to complete one zodiacal revolution, spending approximately 13 months (just over 1 year) in each sign. This makes Jupiter's sign change an annual event closely watched in Vedic astrology.",
         "hi": "गुरु एक पूर्ण राशिचक्र परिक्रमा में लगभग 12 वर्ष लेता है, प्रत्येक राशि में लगभग 13 मास (1 वर्ष से थोड़ा अधिक) रहता है। इसलिए गुरु का राशि परिवर्तन एक वार्षिक घटना है जिस पर वैदिक ज्योतिष में विशेष दृष्टि रहती है।",
-        "ta": "Jupiter takes about 12 years to complete one zodiacal revolution, spending approximately 13 months (just over 1 year) in each sign. This makes Jupiter's sign change an annual event closely watched in Vedic astrology.",
-        "te": "Jupiter takes about 12 years to complete one zodiacal revolution, spending approximately 13 months (just over 1 year) in each sign. This makes Jupiter's sign change an annual event closely watched in Vedic astrology.",
-        "bn": "Jupiter takes about 12 years to complete one zodiacal revolution, spending approximately 13 months (just over 1 year) in each sign. This makes Jupiter's sign change an annual event closely watched in Vedic astrology.",
-        "kn": "Jupiter takes about 12 years to complete one zodiacal revolution, spending approximately 13 months (just over 1 year) in each sign. This makes Jupiter's sign change an annual event closely watched in Vedic astrology.",
+        "ta": "குரு கிரகம் ஒரு ராசி சக்கரத்தை முடிக்க சுமார் 12 ஆண்டுகள் ஆகும், ஒவ்வொரு ராசி பாவத்திலும் தோராயமாக 13 மாதங்கள் (1 வருடத்திற்கும் சற்று அதிகமாக) செலவிடுகிறது. இது குருவின் ராசி மாற்றத்தை வேத ஜோதிடத்தில் உன்னிப்பாகக் கவனிக்கப்படும் ஒரு வருடாந்திர நிகழ்வாக ஆக்குகிறது.",
+        "te": "గురు గ్రహం ఒక రాశి చక్ర భ్రమణాన్ని పూర్తి చేయడానికి సుమారు 12 సంవత్సరాలు పడుతుంది, ప్రతి రాశిలో సుమారు 13 నెలలు (1 సంవత్సరం కంటే కొంచెం ఎక్కువ) ఉంటుంది. దీని వలన గురు గ్రహ రాశి మార్పు వేద జ్యోతిష్యశాస్త్రంలో నిశితంగా గమనించబడే వార్షిక సంఘటనగా మారుతుంది.",
+        "bn": "বৃহস্পতির একটি রাশিচক্র সম্পূর্ণ করতে প্রায় ১২ বছর লাগে, প্রতিটি রাশি-তে প্রায় ১৩ মাস (১ বছরের সামান্য বেশি) ব্যয় করে। এর ফলে বৃহস্পতির রাশি পরিবর্তন একটি বার্ষিক ঘটনা যা বৈদিক জ্যোতিষ-এ নিবিড়ভাবে পর্যবেক্ষণ করা হয়।",
+        "kn": "ಗುರು ಗ್ರಹವು ಒಂದು ರಾಶಿಚಕ್ರದ ಪರಿಭ್ರಮಣವನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು ಸುಮಾರು 12 ವರ್ಷಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳುತ್ತದೆ, ಪ್ರತಿ ರಾಶಿಯಲ್ಲಿ ಸರಿಸುಮಾರು 13 ತಿಂಗಳು (ಒಂದು ವರ್ಷಕ್ಕಿಂತ ಸ್ವಲ್ಪ ಹೆಚ್ಚು) ಕಳೆಯುತ್ತದೆ. ಇದು ಗುರು ಗ್ರಹದ ರಾಶಿ ಬದಲಾವಣೆಯನ್ನು ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಸೂಕ್ಷ್ಮವಾಗಿ ಗಮನಿಸುವ ವಾರ್ಷಿಕ ಘಟನೆಯನ್ನಾಗಿ ಮಾಡುತ್ತದೆ.",
         "mr": "गुरु एक पूर्ण राशिचक्र परिक्रमा में लगभग 12 वर्ष लेता है, प्रत्येक राशि में लगभग 13 मास (1 वर्ष से थोड़ा अधिक) रहता है। इसलिए गुरु का राशि परिवर्तन एक वार्षिक घटना है जिस पर वैदिक ज्योतिष में विशेष दृष्टि रहती है।",
-        "gu": "Jupiter takes about 12 years to complete one zodiacal revolution, spending approximately 13 months (just over 1 year) in each sign. This makes Jupiter's sign change an annual event closely watched in Vedic astrology.",
+        "gu": "ગુરુને એક રાશિચક્ર પૂર્ણ કરવામાં લગભગ ૧૨ વર્ષ લાગે છે, તે દરેક રાશિમાં આશરે ૧૩ મહિના (૧ વર્ષથી થોડો વધુ) વિતાવે છે. આ ગુરુના રાશિ પરિવર્તનને વૈદિક જ્યોતિષમાં નજીકથી જોવામાં આવતી વાર્ષિક ઘટના બનાવે છે.",
         "mai": "गुरु केँ लगभग १२ वर्ष लागैत अछि एकटा राशिचक्र पूरा करबा मे, प्रत्येक राशि मे लगभग १३ मास (१ वर्ष सँ किछु बेसी) व्यतीत करैत अछि। एहि सँ गुरुक राशि परिवर्तन एकटा वार्षिक घटना बनि जाइत अछि जे वैदिक ज्योतिष मे बहुत ध्यान सँ देखल जाइत अछि।"
       },
       "options": [
@@ -98,44 +98,44 @@
           "hi": "लगभग 1 मास",
           "mai": "लगभग १ मास",
           "mr": "लगभग 1 मास",
-          "ta": "About 1 month",
-          "te": "About 1 month",
-          "bn": "About 1 month",
-          "kn": "About 1 month",
-          "gu": "About 1 month"
+          "ta": "சுமார் 1 மாதம்",
+          "te": "సుమారు 1 నెల",
+          "bn": "প্রায় ১ মাস",
+          "kn": "ಸುಮಾರು 1 ತಿಂಗಳು",
+          "gu": "લગભગ ૧ મહિનો"
         },
         {
           "en": "About 13 months",
           "hi": "लगभग 13 मास",
           "mai": "लगभग १३ मास",
           "mr": "लगभग 13 मास",
-          "ta": "About 13 months",
-          "te": "About 13 months",
-          "bn": "About 13 months",
-          "kn": "About 13 months",
-          "gu": "About 13 months"
+          "ta": "சுமார் 13 மாதங்கள்",
+          "te": "సుమారు 13 నెలలు",
+          "bn": "প্রায় ১৩ মাস",
+          "kn": "ಸುಮಾರು 13 ತಿಂಗಳುಗಳು",
+          "gu": "લગભગ ૧૩ મહિના"
         },
         {
           "en": "About 2.5 years",
           "hi": "लगभग 2.5 वर्ष",
           "mai": "लगभग २.५ वर्ष",
           "mr": "लगभग 2.5 वर्ष",
-          "ta": "About 2.5 years",
-          "te": "About 2.5 years",
-          "bn": "About 2.5 years",
-          "kn": "About 2.5 years",
-          "gu": "About 2.5 years"
+          "ta": "சுமார் 2.5 ஆண்டுகள்",
+          "te": "సుమారు 2.5 సంవత్సరాలు",
+          "bn": "প্রায় ২.৫ বছর",
+          "kn": "ಸುಮಾರು 2.5 ವರ್ಷಗಳು",
+          "gu": "લગભગ ૨.૫ વર્ષ"
         },
         {
           "en": "About 7 years",
           "hi": "लगभग 7 वर्ष",
           "mai": "लगभग ७ वर्ष",
           "mr": "लगभग 7 वर्ष",
-          "ta": "About 7 years",
-          "te": "About 7 years",
-          "bn": "About 7 years",
-          "kn": "About 7 years",
-          "gu": "About 7 years"
+          "ta": "சுமார் 7 ஆண்டுகள்",
+          "te": "సుమారు 7 సంవత్సరాలు",
+          "bn": "প্রায় ৭ বছর",
+          "kn": "ಸುಮಾರು 7 ವರ್ಷಗಳು",
+          "gu": "લગભગ ૭ વર્ષ"
         }
       ]
     },
@@ -145,24 +145,24 @@
       "question": {
         "en": "Jupiter transiting trikona houses (1, 5, 9) from the Moon is considered:",
         "hi": "चन्द्रमा से त्रिकोण भावों (1, 5, 9) में गुरु गोचर माना जाता है:",
-        "ta": "Jupiter transiting trikona houses (1, 5, 9) from the Moon is considered:",
-        "te": "Jupiter transiting trikona houses (1, 5, 9) from the Moon is considered:",
-        "bn": "Jupiter transiting trikona houses (1, 5, 9) from the Moon is considered:",
-        "kn": "Jupiter transiting trikona houses (1, 5, 9) from the Moon is considered:",
+        "ta": "சந்திரன் ராசியிலிருந்து திரிகோண பாவங்களில் (1, 5, 9) குருவின் கோச்சாரம் எவ்வாறு கருதப்படுகிறது?",
+        "te": "చంద్రుని నుండి త్రికోణ భావాలు (1, 5, 9) గురు గ్రహ గోచారం ఎలా పరిగణించబడుతుంది?",
+        "bn": "চন্দ্র থেকে ত্রিকোণ ভাব (১, ৫, ৯)-এ বৃহস্পতির গোচরকে কী হিসাবে বিবেচনা করা হয়?",
+        "kn": "ಗುರು ಗ್ರಹವು ಚಂದ್ರನಿಂದ ತ್ರಿಕೋಣ ಭಾವಗಳಲ್ಲಿ (1, 5, 9) ಗೋಚಾರದಲ್ಲಿ ಇರುವುದು ಎಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ:",
         "mr": "चन्द्रमा से त्रिकोण भावों (1, 5, 9) में गुरु गोचर माना जाता है:",
-        "gu": "Jupiter transiting trikona houses (1, 5, 9) from the Moon is considered:",
+        "gu": "ચંદ્રથી ત્રિકોણ ભાવ (૧, ૫, ૯) માં ગુરુનું ગોચર ગણાય છે:",
         "mai": "चन्द्रमा सँ त्रिकोण भाव (१, ५, ९) मे गुरुक गोचर केँ मानल जाइत अछि:"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "Jupiter in trikona (1st, 5th, 9th) from Moon is considered highly auspicious. The 1st brings personal growth, the 5th enhances intelligence and creativity, and the 9th brings fortune, spiritual progress, and guru blessings.",
         "hi": "चन्द्र से त्रिकोण (1, 5, 9) में गुरु अत्यन्त शुभ माना जाता है। 1ले में व्यक्तिगत विकास, 5वें में बुद्धि और सृजनात्मकता वृद्धि, और 9वें में भाग्य, आध्यात्मिक प्रगति और गुरु कृपा आती है।",
-        "ta": "Jupiter in trikona (1st, 5th, 9th) from Moon is considered highly auspicious. The 1st brings personal growth, the 5th enhances intelligence and creativity, and the 9th brings fortune, spiritual progress, and guru blessings.",
-        "te": "Jupiter in trikona (1st, 5th, 9th) from Moon is considered highly auspicious. The 1st brings personal growth, the 5th enhances intelligence and creativity, and the 9th brings fortune, spiritual progress, and guru blessings.",
-        "bn": "Jupiter in trikona (1st, 5th, 9th) from Moon is considered highly auspicious. The 1st brings personal growth, the 5th enhances intelligence and creativity, and the 9th brings fortune, spiritual progress, and guru blessings.",
-        "kn": "Jupiter in trikona (1st, 5th, 9th) from Moon is considered highly auspicious. The 1st brings personal growth, the 5th enhances intelligence and creativity, and the 9th brings fortune, spiritual progress, and guru blessings.",
+        "ta": "சந்திரனிலிருந்து திரிகோண பாவங்களில் (1, 5, 9) குரு இருப்பது மிகவும் சுபமாக கருதப்படுகிறது. முதல் பாவம் தனிப்பட்ட வளர்ச்சியைத் தருகிறது, ஐந்தாம் பாவம் புத்திசாலித்தனம் மற்றும் படைப்பாற்றலை மேம்படுத்துகிறது, மேலும் ஒன்பதாம் பாவம் அதிர்ஷ்டம், ஆன்மீக முன்னேற்றம் மற்றும் குருவின் ஆசீர்வாதங்களைக் கொண்டுவருகிறது.",
+        "te": "చంద్రుని నుండి త్రికోణ భావాలలో (1వ, 5వ, 9వ) గురు గ్రహం ఉండటం అత్యంత శుభప్రదంగా పరిగణించబడుతుంది. 1వ భావం వ్యక్తిగత వృద్ధిని ఇస్తుంది, 5వ భావం తెలివితేటలు మరియు సృజనాత్మకతను పెంచుతుంది, మరియు 9వ భావం అదృష్టం, ఆధ్యాత్మిక పురోగతి మరియు గురువుల ఆశీర్వాదాలను తెస్తుంది.",
+        "bn": "চন্দ্র থেকে ত্রিকোণ (১ম, ৫ম, ৯ম) ভাবে বৃহস্পতি অত্যন্ত শুভ বলে বিবেচিত হয়। ১ম ভাব ব্যক্তিগত বৃদ্ধি আনে, ৫ম ভাব বুদ্ধি ও সৃজনশীলতা বাড়ায়, এবং ৯ম ভাব সৌভাগ্য, আধ্যাত্মিক উন্নতি এবং গুরু আশীর্বাদ নিয়ে আসে।",
+        "kn": "ಚಂದ್ರನಿಂದ ತ್ರಿಕೋಣದಲ್ಲಿ (1ನೇ, 5ನೇ, 9ನೇ) ಗುರು ಗ್ರಹವು ಇರುವುದು ಅತ್ಯಂತ ಶುಭಕರವೆಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ. 1ನೇ ಭಾವವು ವೈಯಕ್ತಿಕ ಬೆಳವಣಿಗೆಯನ್ನು ತರುತ್ತದೆ, 5ನೇ ಭಾವವು ಬುದ್ಧಿಮತ್ತೆ ಮತ್ತು ಸೃಜನಶೀಲತೆಯನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ, ಮತ್ತು 9ನೇ ಭಾವವು ಅದೃಷ್ಟ, ಆಧ್ಯಾತ್ಮಿಕ ಪ್ರಗತಿ ಮತ್ತು ಗುರು ಆಶೀರ್ವಾದವನ್ನು ತರುತ್ತದೆ.",
         "mr": "चन्द्र से त्रिकोण (1, 5, 9) में गुरु अत्यन्त शुभ माना जाता है। 1ले में व्यक्तिगत विकास, 5वें में बुद्धि और सृजनात्मकता वृद्धि, और 9वें में भाग्य, आध्यात्मिक प्रगति और गुरु कृपा आती है।",
-        "gu": "Jupiter in trikona (1st, 5th, 9th) from Moon is considered highly auspicious. The 1st brings personal growth, the 5th enhances intelligence and creativity, and the 9th brings fortune, spiritual progress, and guru blessings.",
+        "gu": "ચંદ્રથી ત્રિકોણ (૧લો, ૫મો, ૯મો) ભાવમાં ગુરુ અત્યંત શુભ ગણાય છે. ૧લો ભાવ વ્યક્તિગત વિકાસ લાવે છે, ૫મો ભાવ બુદ્ધિ અને સર્જનાત્મકતામાં વધારો કરે છે, અને ૯મો ભાવ સૌભાગ્ય, આધ્યાત્મિક પ્રગતિ અને ગુરુના આશીર્વાદ લાવે છે.",
         "mai": "चन्द्रमा सँ त्रिकोण (१म, ५म, ९म) मे गुरु बहुत शुभ मानल जाइत अछि। १म भाव व्यक्तिगत विकास लबैत अछि, ५म भाव बुद्धि आ रचनात्मकता केँ बढ़ाबैत अछि, आ ९म भाव भाग्य, आध्यात्मिक प्रगति आ गुरुक आशीर्वाद लबैत अछि।"
       },
       "options": [
@@ -171,11 +171,11 @@
           "hi": "अत्यन्त शुभ",
           "mai": "बहुत शुभ",
           "mr": "अत्यन्त शुभ",
-          "ta": "Highly auspicious",
-          "te": "Highly auspicious",
-          "bn": "Highly auspicious",
-          "kn": "Highly auspicious",
-          "gu": "Highly auspicious"
+          "ta": "மிகவும் சுபமானது",
+          "te": "అత్యంత శుభప్రదం",
+          "bn": "অত্যন্ত শুভ",
+          "kn": "ಅತ್ಯಂತ ಶುಭಕರ",
+          "gu": "અત્યંત શુભ"
         },
         {
           "en": "Neutral",
@@ -204,11 +204,11 @@
           "hi": "पूर्णतः दशा पर निर्भर",
           "mai": "पूर्ण रूप सँ दशा पर निर्भर करैत अछि",
           "mr": "पूर्णतः दशा पर निर्भर",
-          "ta": "Depends entirely on dasha",
-          "te": "Depends entirely on dasha",
-          "bn": "Depends entirely on dasha",
-          "kn": "Depends entirely on dasha",
-          "gu": "Depends entirely on dasha"
+          "ta": "தசா காலத்தை முழுமையாகப் பொறுத்தது",
+          "te": "పూర్తిగా దశపై ఆధారపడి ఉంటుంది",
+          "bn": "সম্পূর্ণভাবে দশা-র উপর নির্ভর করে",
+          "kn": "ಸಂಪೂರ್ಣವಾಗಿ ದಶಾ ಅವಲಂಬಿತವಾಗಿದೆ",
+          "gu": "સંપૂર્ણપણે દશા પર આધાર રાખે છે"
         }
       ]
     },
@@ -218,24 +218,24 @@
       "question": {
         "en": "Rahu and Ketu move in direct (forward) motion through the zodiac like other planets.",
         "hi": "राहु और केतु अन्य ग्रहों की भाँति राशिचक्र में सीधी (अग्र) गति से चलते हैं।",
-        "ta": "Rahu and Ketu move in direct (forward) motion through the zodiac like other planets.",
-        "te": "Rahu and Ketu move in direct (forward) motion through the zodiac like other planets.",
-        "bn": "Rahu and Ketu move in direct (forward) motion through the zodiac like other planets.",
-        "kn": "Rahu and Ketu move in direct (forward) motion through the zodiac like other planets.",
+        "ta": "ராகு மற்றும் கேது மற்ற கிரகங்களைப் போலவே ராசி சக்கரத்தில் நேர் (முன்னோக்கிய) இயக்கத்தில் நகர்கின்றன.",
+        "te": "రాహువు మరియు కేతువు ఇతర గ్రహాల వలె రాశి చక్రంలో నేరుగా (ముందుకు) కదులుతాయి.",
+        "bn": "রাহু এবং কেতু অন্যান্য গ্রহের মতো রাশিচক্রের মধ্য দিয়ে সরাসরি (অগ্রগামী) গতিতে চলে।",
+        "kn": "ರಾಹು ಮತ್ತು ಕೇತು ಇತರ ಗ್ರಹಗಳಂತೆ ರಾಶಿಚಕ್ರದಲ್ಲಿ ನೇರ (ಮುಂದಕ್ಕೆ) ಚಲನೆಯಲ್ಲಿ ಚಲಿಸುತ್ತವೆ.",
         "mr": "राहु और केतु अन्य ग्रहों की भाँति राशिचक्र में सीधी (अग्र) गति से चलते हैं।",
-        "gu": "Rahu and Ketu move in direct (forward) motion through the zodiac like other planets.",
+        "gu": "રાહુ અને કેતુ અન્ય ગ્રહોની જેમ રાશિચક્રમાં સીધી (આગળની) ગતિમાં ફરે છે.",
         "mai": "राहु आ केतु आन ग्रह सभक जेकाँ राशिचक्र मे सीधा (अगिला) गति मे चलैत अछि।"
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. Rahu and Ketu always move in retrograde (reverse) motion through the zodiac. While other planets occasionally go retrograde, the lunar nodes are perpetually retrograde, moving from Aries toward Pisces (backward through the signs).",
         "hi": "असत्य। राहु और केतु सदैव वक्री (विपरीत) गति से राशिचक्र में चलते हैं। जबकि अन्य ग्रह कभी-कभी वक्री होते हैं, चन्द्र पात सदा वक्री हैं, मेष से मीन की ओर (राशियों में पीछे की ओर) चलते हैं।",
-        "ta": "False. Rahu and Ketu always move in retrograde (reverse) motion through the zodiac. While other planets occasionally go retrograde, the lunar nodes are perpetually retrograde, moving from Aries toward Pisces (backward through the signs).",
-        "te": "False. Rahu and Ketu always move in retrograde (reverse) motion through the zodiac. While other planets occasionally go retrograde, the lunar nodes are perpetually retrograde, moving from Aries toward Pisces (backward through the signs).",
-        "bn": "False. Rahu and Ketu always move in retrograde (reverse) motion through the zodiac. While other planets occasionally go retrograde, the lunar nodes are perpetually retrograde, moving from Aries toward Pisces (backward through the signs).",
-        "kn": "False. Rahu and Ketu always move in retrograde (reverse) motion through the zodiac. While other planets occasionally go retrograde, the lunar nodes are perpetually retrograde, moving from Aries toward Pisces (backward through the signs).",
+        "ta": "தவறு. ராகு மற்றும் கேது எப்போதும் ராசி சக்கரத்தில் வக்ர (பின்னோக்கிய) இயக்கத்தில் நகர்கின்றன. மற்ற கிரகங்கள் அவ்வப்போது வக்ரம் ஆனாலும், சந்திரனின் நிழல் கிரகங்கள் (ராகு-கேது) நிரந்தரமாக வக்ர நிலையில், மேஷத்திலிருந்து மீனத்தை நோக்கி (ராசி பாவங்களில் பின்னோக்கி) நகர்கின்றன.",
+        "te": "తప్పు. రాహువు మరియు కేతువు ఎల్లప్పుడూ రాశి చక్రంలో వక్ర (వెనుకకు) గమనంలో కదులుతాయి. ఇతర గ్రహాలు అప్పుడప్పుడు వక్ర గమనంలో వెళ్ళినప్పటికీ, చంద్ర నోడ్లు నిరంతరం వక్ర గమనంలో ఉంటాయి, మేషం నుండి మీనం వైపు (రాశులలో వెనుకకు) కదులుతాయి.",
+        "bn": "মিথ্যা। রাহু এবং কেতু সর্বদা বক্রী (বিপরীত) গতিতে রাশিচক্রের মধ্য দিয়ে চলে। যদিও অন্যান্য গ্রহ মাঝে মাঝে বক্রী হয়, চন্দ্রের নক্ষত্রগুলি (রাহু-কেতু) চিরকাল বক্রী থাকে, মেষ থেকে মীন রাশির দিকে (রাশিগুলির মধ্য দিয়ে পিছনের দিকে) চলে।",
+        "kn": "ತಪ್ಪು. ರಾಹು ಮತ್ತು ಕೇತು ಯಾವಾಗಲೂ ರಾಶಿಚಕ್ರದಲ್ಲಿ ವಕ್ರ (ಹಿಮ್ಮುಖ) ಚಲನೆಯಲ್ಲಿ ಚಲಿಸುತ್ತವೆ. ಇತರ ಗ್ರಹಗಳು ಸಾಂದರ್ಭಿಕವಾಗಿ ವಕ್ರ ಚಲನೆಯಲ್ಲಿ ಚಲಿಸಿದರೆ, ಚಂದ್ರನ ನೋಡ್‌ಗಳು ಶಾಶ್ವತವಾಗಿ ವಕ್ರ ಚಲನೆಯಲ್ಲಿರುತ್ತವೆ, ಮೇಷದಿಂದ ಮೀನದ ಕಡೆಗೆ ಚಲಿಸುತ್ತವೆ (ರಾಶಿಗಳ ಮೂಲಕ ಹಿಮ್ಮುಖವಾಗಿ).",
         "mr": "असत्य। राहु और केतु सदैव वक्री (विपरीत) गति से राशिचक्र में चलते हैं। जबकि अन्य ग्रह कभी-कभी वक्री होते हैं, चन्द्र पात सदा वक्री हैं, मेष से मीन की ओर (राशियों में पीछे की ओर) चलते हैं।",
-        "gu": "False. Rahu and Ketu always move in retrograde (reverse) motion through the zodiac. While other planets occasionally go retrograde, the lunar nodes are perpetually retrograde, moving from Aries toward Pisces (backward through the signs).",
+        "gu": "ખોટું. રાહુ અને કેતુ હંમેશા રાશિચક્રમાં વક્રી (વિપરીત) ગતિમાં ફરે છે. જ્યારે અન્ય ગ્રહો ક્યારેક વક્રી થાય છે, ત્યારે ચંદ્રના નોડ્સ (રાહુ-કેતુ) કાયમ વક્રી રહે છે, મેષ રાશિથી મીન રાશિ તરફ (રાશિઓમાંથી પાછળની તરફ) આગળ વધે છે.",
         "mai": "गलत। राहु आ केतु सदा राशिचक्र मे वक्री (उल्टा) गति मे चलैत अछि। जखन कि आन ग्रह सभ कहियो-कहियो वक्री होइत अछि, चन्द्रमाक नोड सभ सदा वक्री रहैत अछि, मेष सँ मीन दिस (राशि सभ मे पाछाँ) चलैत अछि।"
       }
     },
@@ -245,24 +245,24 @@
       "question": {
         "en": "Rahu transiting which houses from Moon is generally favorable?",
         "hi": "चन्द्र से राहु का गोचर किन भावों में सामान्यतः शुभ होता है?",
-        "ta": "Rahu transiting which houses from Moon is generally favorable?",
-        "te": "Rahu transiting which houses from Moon is generally favorable?",
-        "bn": "Rahu transiting which houses from Moon is generally favorable?",
-        "kn": "Rahu transiting which houses from Moon is generally favorable?",
+        "ta": "சந்திரனிலிருந்து எந்த பாவங்களில் ராகுவின் கோச்சாரம் பொதுவாக சாதகமானது?",
+        "te": "చంద్రుని నుండి ఏ భావాలలో రాహువు గోచారం సాధారణంగా శుభప్రదం?",
+        "bn": "চন্দ্র থেকে কোন ভাবগুলিতে রাহুর গোচর সাধারণত শুভ হয়?",
+        "kn": "ರಾಹು ಚಂದ್ರನಿಂದ ಯಾವ ಭಾವಗಳಲ್ಲಿ ಗೋಚಾರದಲ್ಲಿ ಇರುವುದು ಸಾಮಾನ್ಯವಾಗಿ ಶುಭಕರವಾಗಿದೆ?",
         "mr": "चन्द्र से राहु का गोचर किन भावों में सामान्यतः शुभ होता है?",
-        "gu": "Rahu transiting which houses from Moon is generally favorable?",
+        "gu": "ચંદ્રથી કયા ભાવમાં રાહુનું ગોચર સામાન્ય રીતે શુભ ગણાય છે?",
         "mai": "चन्द्रमा सँ कोन भाव सभ मे राहुक गोचर सामान्यतः शुभ होइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Rahu in the 3rd gives courage and adventure, 6th conquers enemies, 10th brings career rise and fame, 11th brings large gains and fulfillment. Rahu in the 1st is also considered favorable by some texts, giving personal magnetism.",
         "hi": "3वें में राहु साहस और रोमांच देता है, 6वें में शत्रु पराजय, 10वें में करियर उन्नति और प्रसिद्धि, 11वें में बड़ा लाभ और इच्छापूर्ति। 1ले में राहु को कुछ ग्रन्थ शुभ मानते हैं, व्यक्तिगत आकर्षण देता है।",
-        "ta": "Rahu in the 3rd gives courage and adventure, 6th conquers enemies, 10th brings career rise and fame, 11th brings large gains and fulfillment. Rahu in the 1st is also considered favorable by some texts, giving personal magnetism.",
-        "te": "Rahu in the 3rd gives courage and adventure, 6th conquers enemies, 10th brings career rise and fame, 11th brings large gains and fulfillment. Rahu in the 1st is also considered favorable by some texts, giving personal magnetism.",
-        "bn": "Rahu in the 3rd gives courage and adventure, 6th conquers enemies, 10th brings career rise and fame, 11th brings large gains and fulfillment. Rahu in the 1st is also considered favorable by some texts, giving personal magnetism.",
-        "kn": "Rahu in the 3rd gives courage and adventure, 6th conquers enemies, 10th brings career rise and fame, 11th brings large gains and fulfillment. Rahu in the 1st is also considered favorable by some texts, giving personal magnetism.",
+        "ta": "மூன்றாம் பாவத்தில் ராகு தைரியத்தையும் சாகசத்தையும் தருகிறது, ஆறாம் பாவம் எதிரிகளை வெல்லும், பத்தாம் பாவம் தொழில் உயர்வையும் புகழையும் தருகிறது, பதினொன்றாம் பாவம் பெரிய லாபங்களையும் நிறைவையும் தருகிறது. சில நூல்களின்படி, முதல் பாவத்தில் ராகு இருப்பது தனிப்பட்ட கவர்ச்சியை அளித்து சாதகமானதாகக் கருதப்படுகிறது.",
+        "te": "3వ భావంలో రాహువు ధైర్యం మరియు సాహసాన్ని ఇస్తుంది, 6వ భావం శత్రువులను జయిస్తుంది, 10వ భావం వృత్తిలో ఉన్నతి మరియు కీర్తిని తెస్తుంది, 11వ భావం పెద్ద లాభాలు మరియు నెరవేర్పును తెస్తుంది. కొన్ని గ్రంథాల ప్రకారం 1వ భావంలో రాహువు కూడా శుభప్రదంగా పరిగణించబడుతుంది, వ్యక్తిగత ఆకర్షణను ఇస్తుంది.",
+        "bn": "৩য় ভাবে রাহু সাহস ও অ্যাডভেঞ্চার দেয়, ৬ষ্ঠ ভাব শত্রুদের জয় করে, ১০ম ভাব কর্মজীবনে উন্নতি ও খ্যাতি আনে, ১১শ ভাব বড় লাভ ও পূর্ণতা নিয়ে আসে। কিছু শাস্ত্র মতে, ১ম ভাবে রাহুও শুভ বলে বিবেচিত হয়, যা ব্যক্তিগত আকর্ষণ প্রদান করে।",
+        "kn": "3ನೇ ಭಾವದಲ್ಲಿ ರಾಹು ಧೈರ್ಯ ಮತ್ತು ಸಾಹಸವನ್ನು ನೀಡುತ್ತದೆ, 6ನೇ ಭಾವದಲ್ಲಿ ಶತ್ರುಗಳನ್ನು ಜಯಿಸುತ್ತದೆ, 10ನೇ ಭಾವದಲ್ಲಿ ವೃತ್ತಿಜೀವನದ ಏರಿಕೆ ಮತ್ತು ಖ್ಯಾತಿಯನ್ನು ತರುತ್ತದೆ, 11ನೇ ಭಾವದಲ್ಲಿ ದೊಡ್ಡ ಲಾಭಗಳು ಮತ್ತು ನೆರವೇರಿಕೆಯನ್ನು ತರುತ್ತದೆ. ಕೆಲವು ಗ್ರಂಥಗಳ ಪ್ರಕಾರ, 1ನೇ ಭಾವದಲ್ಲಿ ರಾಹು ವೈಯಕ್ತಿಕ ಆಕರ್ಷಣೆಯನ್ನು ನೀಡುವುದರಿಂದ ಶುಭಕರವೆಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ.",
         "mr": "3वें में राहु साहस और रोमांच देता है, 6वें में शत्रु पराजय, 10वें में करियर उन्नति और प्रसिद्धि, 11वें में बड़ा लाभ और इच्छापूर्ति। 1ले में राहु को कुछ ग्रन्थ शुभ मानते हैं, व्यक्तिगत आकर्षण देता है।",
-        "gu": "Rahu in the 3rd gives courage and adventure, 6th conquers enemies, 10th brings career rise and fame, 11th brings large gains and fulfillment. Rahu in the 1st is also considered favorable by some texts, giving personal magnetism.",
+        "gu": "૩જા ભાવમાં રાહુ હિંમત અને સાહસ આપે છે, ૬ઠ્ઠો ભાવ શત્રુઓને હરાવે છે, ૧૦મો ભાવ કારકિર્દીમાં ઉન્નતિ અને ખ્યાતિ લાવે છે, ૧૧મો ભાવ મોટા લાભ અને પરિપૂર્ણતા લાવે છે. કેટલાક ગ્રંથો દ્વારા ૧લા ભાવમાં રાહુને પણ શુભ માનવામાં આવે છે, જે વ્યક્તિગત આકર્ષણ આપે છે.",
         "mai": "३म मे राहु साहस आ रोमांच दैत अछि, ६म शत्रु सभ पर विजय दैत अछि, १०म करियर मे उन्नति आ प्रसिद्धि लबैत अछि, ११म पैघ लाभ आ पूर्णता लबैत अछि। किछु ग्रंथ सभक अनुसार, १म मे राहु सेहो शुभ मानल जाइत अछि, जे व्यक्तिगत आकर्षण दैत अछि।"
       },
       "options": [
@@ -304,11 +304,11 @@
           "hi": "कोई भाव शुभ नहीं",
           "mai": "कोनो भाव शुभ नहि अछि",
           "mr": "कोई भाव शुभ नहीं",
-          "ta": "No house is favorable",
-          "te": "No house is favorable",
-          "bn": "No house is favorable",
-          "kn": "No house is favorable",
-          "gu": "No house is favorable"
+          "ta": "எந்த பாவமும் சாதகமானது அல்ல",
+          "te": "ఏ భావం కూడా శుభప్రదం కాదు",
+          "bn": "কোনো ভাবই শুভ নয়",
+          "kn": "ಯಾವುದೇ ಭಾವ ಶುಭಕರವಲ್ಲ",
+          "gu": "કોઈ ભાવ શુભ નથી"
         }
       ]
     },
@@ -318,24 +318,24 @@
       "question": {
         "en": "What is the \"Double Transit\" (Dwigraha Gochar) theory?",
         "hi": "\"दोहरा गोचर\" (द्विग्रह गोचर) सिद्धान्त क्या है?",
-        "ta": "What is the \"Double Transit\" (Dwigraha Gochar) theory?",
-        "te": "What is the \"Double Transit\" (Dwigraha Gochar) theory?",
-        "bn": "What is the \"Double Transit\" (Dwigraha Gochar) theory?",
-        "kn": "What is the \"Double Transit\" (Dwigraha Gochar) theory?",
+        "ta": "\"இரட்டை கோச்சாரம்\" (த்விக்ரஹ கோச்சாரம்) கோட்பாடு என்றால் என்ன?",
+        "te": "\"ద్విగ్రహ గోచారం\" సిద్ధాంతం అంటే ఏమిటి?",
+        "bn": "\"দ্বৈত গোচর\" (দ্বিগ্রহ গোচর) তত্ত্বটি কী?",
+        "kn": "\"ದ್ವಿಗ್ರಹ ಗೋಚಾರ\" ಸಿದ್ಧಾಂತ ಎಂದರೇನು?",
         "mr": "\"दोहरा गोचर\" (द्विग्रह गोचर) सिद्धान्त क्या है?",
-        "gu": "What is the \"Double Transit\" (Dwigraha Gochar) theory?",
+        "gu": "\"દ્વિગ્રહ ગોચર\" સિદ્ધાંત શું છે?",
         "mai": "\"द्वि-गोचर\" (द्विग्रह गोचर) सिद्धांत की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The Double Transit theory states that for a house's significations to fructify, BOTH Jupiter AND Saturn must simultaneously aspect or occupy that house (from Moon or Lagna). For example, marriage occurs when both planets influence the 7th house.",
         "hi": "दोहरा गोचर सिद्धान्त कहता है कि किसी भाव के फल प्रकट होने के लिए गुरु और शनि दोनों को एक साथ उस भाव (चन्द्र या लग्न से) को दृष्टि या अधिवास करना चाहिए। उदाहरणार्थ, विवाह तब होता है जब दोनों ग्रह 7वें भाव को प्रभावित करते हैं।",
-        "ta": "The Double Transit theory states that for a house's significations to fructify, BOTH Jupiter AND Saturn must simultaneously aspect or occupy that house (from Moon or Lagna). For example, marriage occurs when both planets influence the 7th house.",
-        "te": "The Double Transit theory states that for a house's significations to fructify, BOTH Jupiter AND Saturn must simultaneously aspect or occupy that house (from Moon or Lagna). For example, marriage occurs when both planets influence the 7th house.",
-        "bn": "The Double Transit theory states that for a house's significations to fructify, BOTH Jupiter AND Saturn must simultaneously aspect or occupy that house (from Moon or Lagna). For example, marriage occurs when both planets influence the 7th house.",
-        "kn": "The Double Transit theory states that for a house's significations to fructify, BOTH Jupiter AND Saturn must simultaneously aspect or occupy that house (from Moon or Lagna). For example, marriage occurs when both planets influence the 7th house.",
+        "ta": "ஒரு பாவத்தின் காரகத்துவங்கள் பலிக்க, குருவும் சனியும் ஒரே நேரத்தில் அந்த பாவத்தை (சந்திரன் அல்லது லக்னத்திலிருந்து) பார்க்க வேண்டும் அல்லது அதில் இருக்க வேண்டும் என்று இரட்டை கோச்சாரக் கோட்பாடு கூறுகிறது. உதாரணமாக, இரு கிரகங்களும் ஏழாம் பாவத்தை பாதிக்கும் போது திருமணம் நடக்கிறது.",
+        "te": "ద్విగ్రహ గోచారం సిద్ధాంతం ప్రకారం, ఒక భావం యొక్క ఫలితాలు ఫలించడానికి, గురు గ్రహం మరియు శని గ్రహం రెండూ ఏకకాలంలో ఆ భావాన్ని (చంద్రుని నుండి లేదా లగ్నం నుండి) చూడాలి లేదా ఆక్రమించాలి. ఉదాహరణకు, వివాహం జరగాలంటే రెండు గ్రహాలు 7వ భావాన్ని ప్రభావితం చేయాలి.",
+        "bn": "দ্বৈত গোচর তত্ত্ব বলে যে একটি ভাবের ফল ফলানোর জন্য, বৃহস্পতি এবং শনি উভয়কেই একই সাথে সেই ভাবকে দৃষ্টি দিতে হবে বা দখল করতে হবে (চন্দ্র বা লগ্ন থেকে)। উদাহরণস্বরূপ, যখন উভয় গ্রহ ৭ম ভাবকে প্রভাবিত করে তখন বিবাহ হয়।",
+        "kn": "ದ್ವಿಗ್ರಹ ಗೋಚಾರ ಸಿದ್ಧಾಂತದ ಪ್ರಕಾರ, ಒಂದು ಭಾವದ ಫಲಿತಾಂಶಗಳು ಫಲಿಸಲು, ಗುರು ಮತ್ತು ಶನಿ ಗ್ರಹಗಳು ಏಕಕಾಲದಲ್ಲಿ ಆ ಭಾವವನ್ನು (ಚಂದ್ರ ಅಥವಾ ಲಗ್ನದಿಂದ) ದೃಷ್ಟಿಸಬೇಕು ಅಥವಾ ಆಕ್ರಮಿಸಬೇಕು. ಉದಾಹರಣೆಗೆ, ಎರಡೂ ಗ್ರಹಗಳು 7ನೇ ಭಾವದ ಮೇಲೆ ಪ್ರಭಾವ ಬೀರಿದಾಗ ಮದುವೆ ನಡೆಯುತ್ತದೆ.",
         "mr": "दोहरा गोचर सिद्धान्त कहता है कि किसी भाव के फल प्रकट होने के लिए गुरु और शनि दोनों को एक साथ उस भाव (चन्द्र या लग्न से) को दृष्टि या अधिवास करना चाहिए। उदाहरणार्थ, विवाह तब होता है जब दोनों ग्रह 7वें भाव को प्रभावित करते हैं।",
-        "gu": "The Double Transit theory states that for a house's significations to fructify, BOTH Jupiter AND Saturn must simultaneously aspect or occupy that house (from Moon or Lagna). For example, marriage occurs when both planets influence the 7th house.",
+        "gu": "દ્વિગ્રહ ગોચર સિદ્ધાંત જણાવે છે કે કોઈ ભાવના ફળિત થવા માટે, ગુરુ અને શનિ બંનેએ એકસાથે તે ભાવને (ચંદ્ર અથવા લગ્નથી) દ્રષ્ટિ કરવી જોઈએ અથવા તેમાં સ્થાન લેવું જોઈએ. ઉદાહરણ તરીકે, જ્યારે બંને ગ્રહો ૭મા ભાવને પ્રભાવિત કરે છે ત્યારે લગ્ન થાય છે.",
         "mai": "द्वि-गोचर सिद्धांत कहैत अछि जे कोनो भावक फलित होयबाक लेल, गुरु आ शनि दुनू केँ एक संग ओहि भाव पर दृष्टि देबय वा ओहि मे रहय पड़त (चन्द्रमा वा लग्न सँ)। उदाहरणक लेल, विवाह तखन होइत अछि जखन दुनू ग्रह ७म भाव केँ प्रभावित करैत अछि।"
       },
       "options": [
@@ -344,44 +344,44 @@
           "hi": "दो ग्रह एक ही राशि में",
           "mai": "दू ग्रह एकहि राशि मे",
           "mr": "दो ग्रह एक ही राशि में",
-          "ta": "Two planets in the same sign",
-          "te": "Two planets in the same sign",
-          "bn": "Two planets in the same sign",
-          "kn": "Two planets in the same sign",
-          "gu": "Two planets in the same sign"
+          "ta": "ஒரே ராசி பாவத்தில் இரண்டு கிரகங்கள்",
+          "te": "ఒకే రాశిలో రెండు గ్రహాలు",
+          "bn": "একই রাশিতে দুটি গ্রহ",
+          "kn": "ಒಂದೇ ರಾಶಿಯಲ್ಲಿ ಎರಡು ಗ್ರಹಗಳು",
+          "gu": "એક જ રાશિમાં બે ગ્રહો"
         },
         {
           "en": "Both Jupiter and Saturn must aspect a house for its significations to manifest",
           "hi": "किसी भाव के फल प्रकट होने के लिए गुरु और शनि दोनों को उस भाव को दृष्टि करनी चाहिए",
           "mai": "गुरु आ शनि दुनू केँ एकटा भाव पर दृष्टि देबय पड़त ओकर फलित होयबाक लेल",
           "mr": "किसी भाव के फल प्रकट होने के लिए गुरु और शनि दोनों को उस भाव को दृष्टि करनी चाहिए",
-          "ta": "Both Jupiter and Saturn must aspect a house for its significations to manifest",
-          "te": "Both Jupiter and Saturn must aspect a house for its significations to manifest",
-          "bn": "Both Jupiter and Saturn must aspect a house for its significations to manifest",
-          "kn": "Both Jupiter and Saturn must aspect a house for its significations to manifest",
-          "gu": "Both Jupiter and Saturn must aspect a house for its significations to manifest"
+          "ta": "ஒரு பாவத்தின் காரகத்துவங்கள் வெளிப்பட குருவும் சனியும் அந்த பாவத்தை பார்க்க வேண்டும்",
+          "te": "ఒక భావం యొక్క ఫలితాలు వ్యక్తమవడానికి గురు గ్రహం మరియు శని గ్రహం రెండూ ఆ భావాన్ని చూడాలి",
+          "bn": "একটি ভাবের ফল প্রকাশ করার জন্য বৃহস্পতি এবং শনি উভয়কেই সেই ভাবকে দৃষ্টি দিতে হবে",
+          "kn": "ಗುರು ಮತ್ತು ಶನಿ ಎರಡೂ ಒಂದು ಭಾವವನ್ನು ದೃಷ್ಟಿಸಬೇಕು ಅದರ ಫಲಿತಾಂಶಗಳು ಪ್ರಕಟವಾಗಲು",
+          "gu": "ગુરુ અને શનિ બંનેએ ભાવના ફળિત થવા માટે તેને દ્રષ્ટિ કરવી જોઈએ"
         },
         {
           "en": "Sun and Moon in opposition",
           "hi": "सूर्य और चन्द्रमा विपरीत में",
           "mai": "सूर्य आ चन्द्रमा प्रतिपक्षी स्थिति मे",
           "mr": "सूर्य और चन्द्रमा विपरीत में",
-          "ta": "Sun and Moon in opposition",
-          "te": "Sun and Moon in opposition",
-          "bn": "Sun and Moon in opposition",
-          "kn": "Sun and Moon in opposition",
-          "gu": "Sun and Moon in opposition"
+          "ta": "சூரியனும் சந்திரனும் எதிரெதிர் நிலையில்",
+          "te": "సూర్యుడు మరియు చంద్రుడు వ్యతిరేక స్థానంలో",
+          "bn": "সূর্য এবং চন্দ্র প্রতিপাদনে",
+          "kn": "ಸೂರ್ಯ ಮತ್ತು ಚಂದ್ರರು ಪರಸ್ಪರ ವಿರುದ್ಧವಾಗಿ",
+          "gu": "સૂર્ય અને ચંદ્ર વિરોધમાં"
         },
         {
           "en": "Rahu and Ketu in the same axis",
           "hi": "राहु और केतु एक ही अक्ष में",
           "mai": "राहु आ केतु एकहि अक्ष मे",
           "mr": "राहु और केतु एक ही अक्ष में",
-          "ta": "Rahu and Ketu in the same axis",
-          "te": "Rahu and Ketu in the same axis",
-          "bn": "Rahu and Ketu in the same axis",
-          "kn": "Rahu and Ketu in the same axis",
-          "gu": "Rahu and Ketu in the same axis"
+          "ta": "ராகுவும் கேதுவும் ஒரே அச்சில்",
+          "te": "రాహువు మరియు కేతువు ఒకే అక్షంలో",
+          "bn": "একই অক্ষে রাহু এবং কেতু",
+          "kn": "ರಾಹು ಮತ್ತು ಕೇತು ಒಂದೇ ಅಕ್ಷದಲ್ಲಿ",
+          "gu": "રાહુ અને કેતુ એક જ ધરી પર"
         }
       ]
     },
@@ -391,24 +391,24 @@
       "question": {
         "en": "Jupiter aspects the 5th, 7th, and 9th houses from its transit position (in addition to the house it occupies).",
         "hi": "गुरु अपनी गोचर स्थिति से 5वें, 7वें और 9वें भाव को दृष्टि करता है (जिस भाव में बैठा है उसके अतिरिक्त)।",
-        "ta": "Jupiter aspects the 5th, 7th, and 9th houses from its transit position (in addition to the house it occupies).",
-        "te": "Jupiter aspects the 5th, 7th, and 9th houses from its transit position (in addition to the house it occupies).",
-        "bn": "Jupiter aspects the 5th, 7th, and 9th houses from its transit position (in addition to the house it occupies).",
-        "kn": "Jupiter aspects the 5th, 7th, and 9th houses from its transit position (in addition to the house it occupies).",
+        "ta": "குரு கிரகம் அதன் கோச்சார நிலையிலிருந்து (அது இருக்கும் பாவத்துடன் கூடுதலாக) 5, 7, மற்றும் 9 ஆம் பாவங்களை பார்க்கிறது.",
+        "te": "గురు గ్రహం దాని గోచార స్థానం నుండి (అది ఆక్రమించిన భావంతో పాటు) 5వ, 7వ మరియు 9వ భావాలను చూస్తుంది.",
+        "bn": "বৃহস্পতি তার গোচর অবস্থান থেকে ৫ম, ৭ম, এবং ৯ম ভাবকে দৃষ্টি দেয় (যে ভাবটি সে দখল করে আছে তার পাশাপাশি)।",
+        "kn": "ಗುರು ಗ್ರಹವು ತನ್ನ ಗೋಚಾರ ಸ್ಥಾನದಿಂದ (ಅದು ಆಕ್ರಮಿಸಿಕೊಂಡಿರುವ ಭಾವದ ಜೊತೆಗೆ) 5ನೇ, 7ನೇ ಮತ್ತು 9ನೇ ಭಾವಗಳನ್ನು ದೃಷ್ಟಿಸುತ್ತದೆ.",
         "mr": "गुरु अपनी गोचर स्थिति से 5वें, 7वें और 9वें भाव को दृष्टि करता है (जिस भाव में बैठा है उसके अतिरिक्त)।",
-        "gu": "Jupiter aspects the 5th, 7th, and 9th houses from its transit position (in addition to the house it occupies).",
+        "gu": "ગુરુ તેના ગોચર સ્થાનથી (તે જે ભાવમાં છે તે ઉપરાંત) ૫મા, ૭મા અને ૯મા ભાવને દ્રષ્ટિ કરે છે.",
         "mai": "गुरु अपन गोचर स्थिति सँ ५म, ७म, आ ९म भाव पर दृष्टि दैत अछि (ओहि भावक अतिरिक्त जाहि मे ओ रहैत अछि)।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Jupiter has special aspects (Vishesh Drishti) on the 5th, 7th, and 9th houses from its position. This means Jupiter's transit activates not just the house it occupies but three additional houses  –  greatly expanding its influence.",
         "hi": "सत्य। गुरु की अपनी स्थिति से 5वें, 7वें और 9वें भाव पर विशेष दृष्टि (विशेष दृष्टि) होती है। इसका अर्थ है गुरु का गोचर न केवल उस भाव को सक्रिय करता है जिसमें वह बैठा है, बल्कि तीन अतिरिक्त भावों को भी  –  जिससे उसका प्रभाव बहुत बढ़ जाता है।",
-        "ta": "True. Jupiter has special aspects (Vishesh Drishti) on the 5th, 7th, and 9th houses from its position. This means Jupiter's transit activates not just the house it occupies but three additional houses  –  greatly expanding its influence.",
-        "te": "True. Jupiter has special aspects (Vishesh Drishti) on the 5th, 7th, and 9th houses from its position. This means Jupiter's transit activates not just the house it occupies but three additional houses  –  greatly expanding its influence.",
-        "bn": "True. Jupiter has special aspects (Vishesh Drishti) on the 5th, 7th, and 9th houses from its position. This means Jupiter's transit activates not just the house it occupies but three additional houses  –  greatly expanding its influence.",
-        "kn": "True. Jupiter has special aspects (Vishesh Drishti) on the 5th, 7th, and 9th houses from its position. This means Jupiter's transit activates not just the house it occupies but three additional houses  –  greatly expanding its influence.",
+        "ta": "உண்மை. குரு கிரகம் இருக்கும் இடத்திலிருந்து 5, 7, மற்றும் 9 ஆம் பாவங்களில் சிறப்புப் பார்வைகளைக் (விசேஷ திருஷ்டி) கொண்டுள்ளது. இதன் பொருள், குருவின் கோச்சாரம் அது இருக்கும் பாவத்தை மட்டுமல்லாமல், மேலும் மூன்று பாவங்களையும் செயல்படுத்துகிறது  –  அதன் செல்வாக்கை பெரிதும் விரிவுபடுத்துகிறது.",
+        "te": "నిజం. గురు గ్రహం తన స్థానం నుండి 5వ, 7వ మరియు 9వ భావాలపై ప్రత్యేక దృష్టి (విశేష దృష్టి) కలిగి ఉంటుంది. దీని అర్థం గురు గ్రహ గోచారం అది ఆక్రమించిన భావాన్ని మాత్రమే కాకుండా మూడు అదనపు భావాలను కూడా సక్రియం చేస్తుంది – దాని ప్రభావాన్ని గణనీయంగా విస్తరిస్తుంది.",
+        "bn": "সত্য। বৃহস্পতির তার অবস্থান থেকে ৫ম, ৭ম, এবং ৯ম ভাবের উপর বিশেষ দৃষ্টি (বিশেষ দৃষ্টি) আছে। এর অর্থ হল বৃহস্পতির গোচর কেবল যে ভাবটি সে দখল করে আছে তাকেই নয়, আরও তিনটি অতিরিক্ত ভাবকে সক্রিয় করে – এর প্রভাবকে ব্যাপকভাবে প্রসারিত করে।",
+        "kn": "ಸರಿ. ಗುರು ಗ್ರಹವು ತನ್ನ ಸ್ಥಾನದಿಂದ 5ನೇ, 7ನೇ ಮತ್ತು 9ನೇ ಭಾವಗಳ ಮೇಲೆ ವಿಶೇಷ ದೃಷ್ಟಿ (ವಿಶೇಷ ದೃಷ್ಟಿ) ಹೊಂದಿದೆ. ಇದರರ್ಥ ಗುರು ಗ್ರಹದ ಗೋಚಾರವು ಅದು ಆಕ್ರಮಿಸಿಕೊಂಡಿರುವ ಭಾವವನ್ನು ಮಾತ್ರವಲ್ಲದೆ ಮೂರು ಹೆಚ್ಚುವರಿ ಭಾವಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುತ್ತದೆ  –  ಅದರ ಪ್ರಭಾವವನ್ನು ಬಹಳವಾಗಿ ವಿಸ್ತರಿಸುತ್ತದೆ.",
         "mr": "सत्य। गुरु की अपनी स्थिति से 5वें, 7वें और 9वें भाव पर विशेष दृष्टि (विशेष दृष्टि) होती है। इसका अर्थ है गुरु का गोचर न केवल उस भाव को सक्रिय करता है जिसमें वह बैठा है, बल्कि तीन अतिरिक्त भावों को भी  –  जिससे उसका प्रभाव बहुत बढ़ जाता है।",
-        "gu": "True. Jupiter has special aspects (Vishesh Drishti) on the 5th, 7th, and 9th houses from its position. This means Jupiter's transit activates not just the house it occupies but three additional houses  –  greatly expanding its influence.",
+        "gu": "સાચું. ગુરુ તેના સ્થાનથી ૫મા, ૭મા અને ૯મા ભાવ પર વિશેષ દ્રષ્ટિ (વિશેષ દ્રષ્ટિ) ધરાવે છે. આનો અર્થ એ છે કે ગુરુનું ગોચર ફક્ત તે જે ભાવમાં છે તેને જ નહીં, પરંતુ ત્રણ વધારાના ભાવોને પણ સક્રિય કરે છે – તેની અસરને મોટા પ્રમાણમાં વિસ્તૃત કરે છે.",
         "mai": "सत्य। गुरु अपन स्थिति सँ ५म, ७म, आ ९म भाव पर विशेष दृष्टि (विशेष दृष्टि) रखैत अछि। एकर अर्थ ई अछि जे गुरुक गोचर केवल ओहि भाव केँ सक्रिय नहि करैत अछि जाहि मे ओ रहैत अछि, बल्कि तीनटा अतिरिक्त भाव केँ सेहो सक्रिय करैत अछि  –  जे ओकर प्रभाव केँ बहुत बढ़ा दैत अछि।"
       }
     },
@@ -418,24 +418,24 @@
       "question": {
         "en": "The Rahu-Ketu transit cycle through the complete zodiac takes approximately:",
         "hi": "पूर्ण राशिचक्र में राहु-केतु गोचर चक्र लगभग कितना समय लेता है?",
-        "ta": "The Rahu-Ketu transit cycle through the complete zodiac takes approximately:",
-        "te": "The Rahu-Ketu transit cycle through the complete zodiac takes approximately:",
-        "bn": "The Rahu-Ketu transit cycle through the complete zodiac takes approximately:",
-        "kn": "The Rahu-Ketu transit cycle through the complete zodiac takes approximately:",
+        "ta": "ராகு-கேது கோச்சார சுழற்சி முழு ராசி சக்கரத்தையும் கடக்க தோராயமாக எடுக்கும் காலம்:",
+        "te": "పూర్తి రాశి చక్రం గుండా రాహు-కేతు గోచార చక్రం సుమారుగా ఎంత కాలం పడుతుంది:",
+        "bn": "সম্পূর্ণ রাশিচক্রের মধ্য দিয়ে রাহু-কেতুর গোচর চক্রের প্রায় সময় লাগে:",
+        "kn": "ರಾಹು-ಕೇತು ಗೋಚಾರ ಚಕ್ರವು ಸಂಪೂರ್ಣ ರಾಶಿಚಕ್ರದ ಮೂಲಕ ಸರಿಸುಮಾರು ತೆಗೆದುಕೊಳ್ಳುತ್ತದೆ:",
         "mr": "पूर्ण राशिचक्र में राहु-केतु गोचर चक्र लगभग कितना समय लेता है?",
-        "gu": "The Rahu-Ketu transit cycle through the complete zodiac takes approximately:",
+        "gu": "રાહુ-કેતુનું સંપૂર્ણ રાશિચક્રમાં ગોચર ચક્ર આશરે કેટલો સમય લે છે:",
         "mai": "पूरा राशिचक्र मे राहु-केतुक गोचर चक्र लगभग केतेक समय लैत अछि:"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Rahu and Ketu take approximately 18 years to transit all 12 signs (about 1.5 years per sign). This 18-year cycle is closely connected to eclipse cycles  –  every 18 years, eclipses repeat in similar zodiacal positions.",
         "hi": "राहु और केतु सभी 12 राशियों का गोचर लगभग 18 वर्षों में करते हैं (प्रत्येक राशि में लगभग 1.5 वर्ष)। यह 18-वर्षीय चक्र ग्रहण चक्रों से घनिष्ठ रूप से जुड़ा है  –  प्रत्येक 18 वर्ष में ग्रहण समान राशिचक्र स्थितियों में दोहराते हैं।",
-        "ta": "Rahu and Ketu take approximately 18 years to transit all 12 signs (about 1.5 years per sign). This 18-year cycle is closely connected to eclipse cycles  –  every 18 years, eclipses repeat in similar zodiacal positions.",
-        "te": "Rahu and Ketu take approximately 18 years to transit all 12 signs (about 1.5 years per sign). This 18-year cycle is closely connected to eclipse cycles  –  every 18 years, eclipses repeat in similar zodiacal positions.",
-        "bn": "Rahu and Ketu take approximately 18 years to transit all 12 signs (about 1.5 years per sign). This 18-year cycle is closely connected to eclipse cycles  –  every 18 years, eclipses repeat in similar zodiacal positions.",
-        "kn": "Rahu and Ketu take approximately 18 years to transit all 12 signs (about 1.5 years per sign). This 18-year cycle is closely connected to eclipse cycles  –  every 18 years, eclipses repeat in similar zodiacal positions.",
+        "ta": "ராகு மற்றும் கேது 12 ராசி பாவங்களையும் கடக்க தோராயமாக 18 ஆண்டுகள் ஆகும் (ஒரு ராசி பாவத்திற்கு சுமார் 1.5 ஆண்டுகள்). இந்த 18 ஆண்டு சுழற்சி கிரகண சுழற்சிகளுடன் நெருக்கமாக இணைக்கப்பட்டுள்ளது  –  ஒவ்வொரு 18 ஆண்டுகளுக்கும் ஒருமுறை, கிரகணங்கள் ஒத்த ராசி நிலைகளில் மீண்டும் நிகழ்கின்றன.",
+        "te": "రాహువు మరియు కేతువు 12 రాశులలో గోచారం చేయడానికి సుమారు 18 సంవత్సరాలు పడుతుంది (ప్రతి రాశికి సుమారు 1.5 సంవత్సరాలు). ఈ 18 సంవత్సరాల చక్రం గ్రహణ చక్రాలతో దగ్గరి సంబంధం కలిగి ఉంటుంది – ప్రతి 18 సంవత్సరాలకు, గ్రహణాలు ఇలాంటి రాశి స్థానాలలో పునరావృతమవుతాయి.",
+        "bn": "রাহু এবং কেতুর সমস্ত ১২টি রাশি অতিক্রম করতে প্রায় ১৮ বছর লাগে (প্রতি রাশিতে প্রায় ১.৫ বছর)। এই ১৮ বছরের চক্রটি গ্রহণ চক্রের সাথে নিবিড়ভাবে সংযুক্ত – প্রতি ১৮ বছর পর পর, গ্রহণগুলি একই রকম রাশিচক্রের অবস্থানে পুনরাবৃত্তি হয়।",
+        "kn": "ರಾಹು ಮತ್ತು ಕೇತು ಎಲ್ಲಾ 12 ರಾಶಿಗಳನ್ನು (ಪ್ರತಿ ರಾಶಿಗೆ ಸುಮಾರು 1.5 ವರ್ಷಗಳು) ಗೋಚಾರ ಮಾಡಲು ಸುಮಾರು 18 ವರ್ಷಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳುತ್ತವೆ. ಈ 18 ವರ್ಷಗಳ ಚಕ್ರವು ಗ್ರಹಣ ಚಕ್ರಗಳೊಂದಿಗೆ ನಿಕಟವಾಗಿ ಸಂಬಂಧ ಹೊಂದಿದೆ  –  ಪ್ರತಿ 18 ವರ್ಷಗಳಿಗೊಮ್ಮೆ, ಗ್ರಹಣಗಳು ಇದೇ ರೀತಿಯ ರಾಶಿಚಕ್ರ ಸ್ಥಾನಗಳಲ್ಲಿ ಪುನರಾವರ್ತಿಸುತ್ತವೆ.",
         "mr": "राहु और केतु सभी 12 राशियों का गोचर लगभग 18 वर्षों में करते हैं (प्रत्येक राशि में लगभग 1.5 वर्ष)। यह 18-वर्षीय चक्र ग्रहण चक्रों से घनिष्ठ रूप से जुड़ा है  –  प्रत्येक 18 वर्ष में ग्रहण समान राशिचक्र स्थितियों में दोहराते हैं।",
-        "gu": "Rahu and Ketu take approximately 18 years to transit all 12 signs (about 1.5 years per sign). This 18-year cycle is closely connected to eclipse cycles  –  every 18 years, eclipses repeat in similar zodiacal positions.",
+        "gu": "રાહુ અને કેતુને બધી ૧૨ રાશિઓમાંથી ગોચર કરવામાં આશરે ૧૮ વર્ષ લાગે છે (પ્રતિ રાશિ આશરે ૧.૫ વર્ષ). આ ૧૮ વર્ષનું ચક્ર ગ્રહણ ચક્ર સાથે ગાઢ રીતે જોડાયેલું છે – દર ૧૮ વર્ષે, ગ્રહણ સમાન રાશિ સ્થિતિમાં પુનરાવર્તિત થાય છે.",
         "mai": "राहु आ केतु केँ लगभग १८ वर्ष लागैत अछि सभ १२ राशि सभ मे गोचर करबा मे (प्रति राशि लगभग १.५ वर्ष)। ई १८ वर्षक चक्र ग्रहण चक्र सँ घनिष्ठ रूप सँ जुड़ल अछि  –  प्रत्येक १८ वर्ष पर, ग्रहण सभ समान राशि स्थिति मे दोहराओल जाइत अछि।"
       },
       "options": [
@@ -444,44 +444,44 @@
           "hi": "7 वर्ष",
           "mai": "७ वर्ष",
           "mr": "7 वर्ष",
-          "ta": "7 years",
-          "te": "7 years",
-          "bn": "7 years",
-          "kn": "7 years",
-          "gu": "7 years"
+          "ta": "7 ஆண்டுகள்",
+          "te": "7 సంవత్సరాలు",
+          "bn": "৭ বছর",
+          "kn": "7 ವರ್ಷಗಳು",
+          "gu": "૭ વર્ષ"
         },
         {
           "en": "12 years",
           "hi": "12 वर्ष",
           "mai": "१२ वर्ष",
           "mr": "12 वर्ष",
-          "ta": "12 years",
-          "te": "12 years",
-          "bn": "12 years",
-          "kn": "12 years",
-          "gu": "12 years"
+          "ta": "12 ஆண்டுகள்",
+          "te": "12 సంవత్సరాలు",
+          "bn": "১২ বছর",
+          "kn": "12 ವರ್ಷಗಳು",
+          "gu": "૧૨ વર્ષ"
         },
         {
           "en": "18 years",
           "hi": "18 वर्ष",
           "mai": "१८ वर्ष",
           "mr": "18 वर्ष",
-          "ta": "18 years",
-          "te": "18 years",
-          "bn": "18 years",
-          "kn": "18 years",
-          "gu": "18 years"
+          "ta": "18 ஆண்டுகள்",
+          "te": "18 సంవత్సరాలు",
+          "bn": "১৮ বছর",
+          "kn": "18 ವರ್ಷಗಳು",
+          "gu": "૧૮ વર્ષ"
         },
         {
           "en": "29 years",
           "hi": "29 वर्ष",
           "mai": "२९ वर्ष",
           "mr": "29 वर्ष",
-          "ta": "29 years",
-          "te": "29 years",
-          "bn": "29 years",
-          "kn": "29 years",
-          "gu": "29 years"
+          "ta": "29 ஆண்டுகள்",
+          "te": "29 సంవత్సరాలు",
+          "bn": "২৯ বছর",
+          "kn": "29 ವರ್ಷಗಳು",
+          "gu": "૨૯ વર્ષ"
         }
       ]
     },
@@ -491,24 +491,24 @@
       "question": {
         "en": "Ketu transiting over natal Rahu (or vice versa) is called:",
         "hi": "केतु का जन्मकालिक राहु पर गोचर (या इसके विपरीत) कहलाता है:",
-        "ta": "Ketu transiting over natal Rahu (or vice versa) is called:",
-        "te": "Ketu transiting over natal Rahu (or vice versa) is called:",
-        "bn": "Ketu transiting over natal Rahu (or vice versa) is called:",
-        "kn": "Ketu transiting over natal Rahu (or vice versa) is called:",
+        "ta": "கேது கோச்சாரத்தில் ஜென்ம ராகுவின் மேல் (அல்லது நேர்மாறாக) கடந்து செல்வது என்று அழைக்கப்படுகிறது:",
+        "te": "కేతువు జన్మ రాహువుపై గోచారం చేయడం (లేదా దీనికి విరుద్ధంగా) అని అంటారు:",
+        "bn": "কেতু যখন জন্মকালীন রাহুর উপর দিয়ে গোচর করে (বা এর বিপরীত) তখন তাকে বলা হয়:",
+        "kn": "ಕೇತು ಜನ್ಮ ರಾಹುವಿನ ಮೇಲೆ (ಅಥವಾ ಪ್ರತಿಯಾಗಿ) ಗೋಚಾರದಲ್ಲಿ ಇರುವುದನ್ನು ಹೀಗೆ ಕರೆಯಲಾಗುತ್ತದೆ:",
         "mr": "केतु का जन्मकालिक राहु पर गोचर (या इसके विपरीत) कहलाता है:",
-        "gu": "Ketu transiting over natal Rahu (or vice versa) is called:",
+        "gu": "કેતુનું જન્મના રાહુ પરથી ગોચર (અથવા ઊલટું) શું કહેવાય છે:",
         "mai": "केतुक जन्म राहु पर गोचर (वा एकर विपरीत) केँ कहबैत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "When transiting Rahu/Ketu crosses over the natal Ketu/Rahu position, it activates the karmic axis of the birth chart. This brings past-life themes to the surface  –  unresolved karma demands attention, often through sudden events or encounters.",
         "hi": "जब गोचरी राहु/केतु जन्मकालिक केतु/राहु स्थिति पर आता है, तो जन्म कुण्डली का कार्मिक अक्ष सक्रिय होता है। इससे पूर्वजन्म विषय सतह पर आते हैं  –  अनसुलझा कर्म अचानक घटनाओं या मिलनों के माध्यम से ध्यान माँगता है।",
-        "ta": "When transiting Rahu/Ketu crosses over the natal Ketu/Rahu position, it activates the karmic axis of the birth chart. This brings past-life themes to the surface  –  unresolved karma demands attention, often through sudden events or encounters.",
-        "te": "When transiting Rahu/Ketu crosses over the natal Ketu/Rahu position, it activates the karmic axis of the birth chart. This brings past-life themes to the surface  –  unresolved karma demands attention, often through sudden events or encounters.",
-        "bn": "When transiting Rahu/Ketu crosses over the natal Ketu/Rahu position, it activates the karmic axis of the birth chart. This brings past-life themes to the surface  –  unresolved karma demands attention, often through sudden events or encounters.",
-        "kn": "When transiting Rahu/Ketu crosses over the natal Ketu/Rahu position, it activates the karmic axis of the birth chart. This brings past-life themes to the surface  –  unresolved karma demands attention, often through sudden events or encounters.",
+        "ta": "கோச்சார ராகு/கேது ஜென்ம கேது/ராகு நிலையை கடக்கும் போது, அது ஜாதகத்தின் கர்ம அச்சுகளை செயல்படுத்துகிறது. இது கடந்த கால வாழ்க்கையின் கருப்பொருள்களை வெளிப்படுத்துகிறது  –  தீர்க்கப்படாத கர்மம் கவனம் கோருகிறது, பெரும்பாலும் திடீர் நிகழ்வுகள் அல்லது சந்திப்புகள் மூலம்.",
+        "te": "గోచార రాహువు/కేతువు జన్మ కేతువు/రాహువు స్థానాన్ని దాటినప్పుడు, అది జన్మ చార్ట్ యొక్క కర్మ అక్షాన్ని సక్రియం చేస్తుంది. ఇది గత జన్మల విషయాలను ఉపరితలంపైకి తెస్తుంది – పరిష్కరించబడని కర్మకు శ్రద్ధ అవసరం, తరచుగా ఆకస్మిక సంఘటనలు లేదా ఎదురైన పరిస్థితుల ద్వారా.",
+        "bn": "যখন গোচরকারী রাহু/কেতু জন্মকালীন কেতু/রাহুর অবস্থান অতিক্রম করে, তখন এটি জন্মছকের কর্মিক অক্ষকে সক্রিয় করে। এটি পূর্বজন্মের বিষয়গুলিকে সামনে নিয়ে আসে – অমীমাংসিত কর্ম মনোযোগ দাবি করে, প্রায়শই আকস্মিক ঘটনা বা সাক্ষাতের মাধ্যমে।",
+        "kn": "ಗೋಚಾರ ರಾಹು/ಕೇತು ಜನ್ಮ ಕೇತು/ರಾಹು ಸ್ಥಾನವನ್ನು ದಾಟಿದಾಗ, ಅದು ಜನ್ಮ ಕುಂಡಲಿಯ ಕರ್ಮಿಕ ಅಕ್ಷವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುತ್ತದೆ. ಇದು ಹಿಂದಿನ ಜನ್ಮದ ವಿಷಯಗಳನ್ನು ಮೇಲ್ಮೈಗೆ ತರುತ್ತದೆ  –  ಪರಿಹರಿಸಲಾಗದ ಕರ್ಮವು ಗಮನವನ್ನು ಬಯಸುತ್ತದೆ, ಸಾಮಾನ್ಯವಾಗಿ ಹಠಾತ್ ಘಟನೆಗಳು ಅಥವಾ ಎದುರಾಳಿಯ ಮೂಲಕ.",
         "mr": "जब गोचरी राहु/केतु जन्मकालिक केतु/राहु स्थिति पर आता है, तो जन्म कुण्डली का कार्मिक अक्ष सक्रिय होता है। इससे पूर्वजन्म विषय सतह पर आते हैं  –  अनसुलझा कर्म अचानक घटनाओं या मिलनों के माध्यम से ध्यान माँगता है।",
-        "gu": "When transiting Rahu/Ketu crosses over the natal Ketu/Rahu position, it activates the karmic axis of the birth chart. This brings past-life themes to the surface  –  unresolved karma demands attention, often through sudden events or encounters.",
+        "gu": "જ્યારે ગોચરનો રાહુ/કેતુ જન્મના કેતુ/રાહુની સ્થિતિ પરથી પસાર થાય છે, ત્યારે તે જન્મકુંડળીના કર્મિક ધરીને સક્રિય કરે છે. આ પૂર્વજન્મના વિષયોને સપાટી પર લાવે છે – વણઉકેલાયેલા કર્મો ધ્યાન માંગે છે, ઘણીવાર અચાનક ઘટનાઓ અથવા મુલાકાતો દ્વારા.",
         "mai": "जखन गोचर राहु/केतु जन्म केतु/राहुक स्थिति केँ पार करैत अछि, तँ ई जन्म कुंडलीक कर्मिक अक्ष केँ सक्रिय करैत अछि। ई पूर्व-जन्म केर विषय सभ केँ सतह पर लबैत अछि  –  अनसुलझल कर्म ध्यानक मांग करैत अछि, प्रायः अचानक घटना वा भेंट सँ।"
       },
       "options": [
@@ -517,44 +517,44 @@
           "hi": "ग्रहण योग",
           "mai": "ग्रहण योग",
           "mr": "ग्रहण योग",
-          "ta": "Grahan Yoga",
-          "te": "Grahan Yoga",
-          "bn": "Grahan Yoga",
-          "kn": "Grahan Yoga",
-          "gu": "Grahan Yoga"
+          "ta": "கிரகண யோகம்",
+          "te": "గ్రహణ యోగం",
+          "bn": "গ্রহণ যোগ",
+          "kn": "ಗ್ರಹಣ ಯೋಗ",
+          "gu": "ગ્રહણ યોગ"
         },
         {
           "en": "Karmic activation of the nodal axis",
           "hi": "नोडल अक्ष की कार्मिक सक्रियता",
           "mai": "नोडल अक्षक कर्मिक सक्रियता",
           "mr": "नोडल अक्ष की कार्मिक सक्रियता",
-          "ta": "Karmic activation of the nodal axis",
-          "te": "Karmic activation of the nodal axis",
-          "bn": "Karmic activation of the nodal axis",
-          "kn": "Karmic activation of the nodal axis",
-          "gu": "Karmic activation of the nodal axis"
+          "ta": "நிழல் கிரக அச்சுகளின் கர்மச் செயல்பாடு",
+          "te": "నోడల్ అక్షం యొక్క కర్మ సక్రియం",
+          "bn": "নাক্ষত্রিক অক্ষের কর্মিক সক্রিয়তা",
+          "kn": "ನೋಡಲ್ ಅಕ್ಷದ ಕರ್ಮಿಕ ಸಕ್ರಿಯಗೊಳಿಸುವಿಕೆ",
+          "gu": "નોડલ ધરીનું કર્મિક સક્રિયકરણ"
         },
         {
           "en": "Guru Chandal",
           "hi": "गुरु चाण्डाल",
           "mai": "गुरु चांडाल",
           "mr": "गुरु चाण्डाल",
-          "ta": "Guru Chandal",
-          "te": "Guru Chandal",
-          "bn": "Guru Chandal",
-          "kn": "Guru Chandal",
-          "gu": "Guru Chandal"
+          "ta": "குரு சண்டாள யோகம்",
+          "te": "గురు చండాల",
+          "bn": "গুরু চণ্ডাল",
+          "kn": "ಗುರು ಚಂಡಾಲ",
+          "gu": "ગુરુ ચાંડાલ"
         },
         {
           "en": "Shrapit Dosha",
           "hi": "शापित दोष",
           "mai": "श्रापित दोष",
           "mr": "शापित दोष",
-          "ta": "Shrapit Dosha",
-          "te": "Shrapit Dosha",
-          "bn": "Shrapit Dosha",
-          "kn": "Shrapit Dosha",
-          "gu": "Shrapit Dosha"
+          "ta": "சர்பித் தோஷம்",
+          "te": "శ్రాపిత దోషం",
+          "bn": "শাপিত দোষ",
+          "kn": "ಶ್ರಪಿತ ದೋಷ",
+          "gu": "શ્રાપિત દોષ"
         }
       ]
     },
@@ -564,24 +564,24 @@
       "question": {
         "en": "Eclipse seasons occur when the transiting Sun and Moon are near the Rahu-Ketu axis.",
         "hi": "ग्रहण काल तब आता है जब गोचरी सूर्य और चन्द्रमा राहु-केतु अक्ष के निकट होते हैं।",
-        "ta": "Eclipse seasons occur when the transiting Sun and Moon are near the Rahu-Ketu axis.",
-        "te": "Eclipse seasons occur when the transiting Sun and Moon are near the Rahu-Ketu axis.",
-        "bn": "Eclipse seasons occur when the transiting Sun and Moon are near the Rahu-Ketu axis.",
-        "kn": "Eclipse seasons occur when the transiting Sun and Moon are near the Rahu-Ketu axis.",
+        "ta": "கோச்சார சூரியனும் சந்திரனும் ராகு-கேது அச்சுகளுக்கு அருகில் இருக்கும் போது கிரகண காலங்கள் நிகழ்கின்றன.",
+        "te": "గోచార సూర్యుడు మరియు చంద్రుడు రాహు-కేతు అక్షం దగ్గర ఉన్నప్పుడు గ్రహణ కాలాలు సంభవిస్తాయి.",
+        "bn": "গ্রহণ ঋতু ঘটে যখন গোচরকারী সূর্য এবং চন্দ্র রাহু-কেতু অক্ষের কাছাকাছি থাকে।",
+        "kn": "ಗ್ರಹಣ ಕಾಲಗಳು ಸಂಭವಿಸುತ್ತವೆ ಯಾವಾಗ ಗೋಚಾರ ಸೂರ್ಯ ಮತ್ತು ಚಂದ್ರರು ರಾಹು-ಕೇತು ಅಕ್ಷದ ಸಮೀಪದಲ್ಲಿ ಇರುತ್ತಾರೆ.",
         "mr": "ग्रहण काल तब आता है जब गोचरी सूर्य और चन्द्रमा राहु-केतु अक्ष के निकट होते हैं।",
-        "gu": "Eclipse seasons occur when the transiting Sun and Moon are near the Rahu-Ketu axis.",
+        "gu": "ગ્રહણ ઋતુઓ ત્યારે થાય છે જ્યારે ગોચરનો સૂર્ય અને ચંદ્ર રાહુ-કેતુ ધરીની નજીક હોય છે.",
         "mai": "ग्रहण ऋतु तखन होइत अछि जखन गोचर सूर्य आ चन्द्रमा राहु-केतु अक्षक नजदीक रहैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Solar and lunar eclipses occur when the Sun and Moon align near the Rahu-Ketu axis (the lunar nodes). This happens roughly twice a year. In Jyotish, eclipse periods are considered karmically charged  –  events during eclipse seasons have amplified consequences.",
         "hi": "सत्य। सूर्य और चन्द्र ग्रहण तब होते हैं जब सूर्य और चन्द्रमा राहु-केतु अक्ष (चन्द्र पात) के निकट संरेखित होते हैं। यह वर्ष में लगभग दो बार होता है। ज्योतिष में ग्रहण काल कार्मिक रूप से आवेशित माना जाता है  –  ग्रहण काल की घटनाओं के परिणाम प्रवर्धित होते हैं।",
-        "ta": "True. Solar and lunar eclipses occur when the Sun and Moon align near the Rahu-Ketu axis (the lunar nodes). This happens roughly twice a year. In Jyotish, eclipse periods are considered karmically charged  –  events during eclipse seasons have amplified consequences.",
-        "te": "True. Solar and lunar eclipses occur when the Sun and Moon align near the Rahu-Ketu axis (the lunar nodes). This happens roughly twice a year. In Jyotish, eclipse periods are considered karmically charged  –  events during eclipse seasons have amplified consequences.",
-        "bn": "True. Solar and lunar eclipses occur when the Sun and Moon align near the Rahu-Ketu axis (the lunar nodes). This happens roughly twice a year. In Jyotish, eclipse periods are considered karmically charged  –  events during eclipse seasons have amplified consequences.",
-        "kn": "True. Solar and lunar eclipses occur when the Sun and Moon align near the Rahu-Ketu axis (the lunar nodes). This happens roughly twice a year. In Jyotish, eclipse periods are considered karmically charged  –  events during eclipse seasons have amplified consequences.",
+        "ta": "உண்மை. சூரிய மற்றும் சந்திர கிரகணங்கள் சூரியனும் சந்திரனும் ராகு-கேது அச்சுகளுக்கு (சந்திரனின் நிழல் கிரகங்கள்) அருகில் இணையும் போது நிகழ்கின்றன. இது தோராயமாக வருடத்திற்கு இருமுறை நிகழ்கிறது. ஜோதிடத்தில், கிரகண காலங்கள் கர்ம ரீதியாக சக்தி வாய்ந்ததாகக் கருதப்படுகின்றன  –  கிரகண காலங்களில் நிகழும் நிகழ்வுகள் பெருகிய விளைவுகளைக் கொண்டுள்ளன.",
+        "te": "నిజం. సూర్య మరియు చంద్ర గ్రహణాలు సూర్యుడు మరియు చంద్రుడు రాహు-కేతు అక్షం (చంద్ర నోడ్లు) దగ్గర సమలేఖనం అయినప్పుడు సంభవిస్తాయి. ఇది సంవత్సరానికి సుమారు రెండుసార్లు జరుగుతుంది. జ్యోతిష్యశాస్త్రంలో, గ్రహణ కాలాలు కర్మపరంగా శక్తివంతమైనవిగా పరిగణించబడతాయి – గ్రహణ కాలాలలో జరిగే సంఘటనలు విస్తృతమైన పరిణామాలను కలిగి ఉంటాయి.",
+        "bn": "সত্য। সূর্যগ্রহণ এবং চন্দ্রগ্রহণ ঘটে যখন সূর্য এবং চন্দ্র রাহু-কেতু অক্ষের (চন্দ্র নক্ষত্র) কাছাকাছি সারিবদ্ধ হয়। এটি বছরে প্রায় দুবার ঘটে। জ্যোতিষ-এ, গ্রহণ কালকে কর্মিকভাবে চার্জযুক্ত বলে মনে করা হয় – গ্রহণ ঋতুতে ঘটে যাওয়া ঘটনাগুলির পরিণতি তীব্র হয়।",
+        "kn": "ಸರಿ. ಸೂರ್ಯ ಮತ್ತು ಚಂದ್ರರು ರಾಹು-ಕೇತು ಅಕ್ಷದ (ಚಂದ್ರನ ನೋಡ್‌ಗಳು) ಸಮೀಪದಲ್ಲಿ ಜೋಡಿಸಿದಾಗ ಸೌರ ಮತ್ತು ಚಂದ್ರ ಗ್ರಹಣಗಳು ಸಂಭವಿಸುತ್ತವೆ. ಇದು ವರ್ಷಕ್ಕೆ ಸರಿಸುಮಾರು ಎರಡು ಬಾರಿ ಸಂಭವಿಸುತ್ತದೆ. ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ, ಗ್ರಹಣ ಕಾಲಗಳನ್ನು ಕರ್ಮಿಕವಾಗಿ ಚಾರ್ಜ್ ಮಾಡಲಾಗಿದೆ ಎಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ  –  ಗ್ರಹಣ ಕಾಲದಲ್ಲಿನ ಘಟನೆಗಳು ವರ್ಧಿತ ಪರಿಣಾಮಗಳನ್ನು ಹೊಂದಿರುತ್ತವೆ.",
         "mr": "सत्य। सूर्य और चन्द्र ग्रहण तब होते हैं जब सूर्य और चन्द्रमा राहु-केतु अक्ष (चन्द्र पात) के निकट संरेखित होते हैं। यह वर्ष में लगभग दो बार होता है। ज्योतिष में ग्रहण काल कार्मिक रूप से आवेशित माना जाता है  –  ग्रहण काल की घटनाओं के परिणाम प्रवर्धित होते हैं।",
-        "gu": "True. Solar and lunar eclipses occur when the Sun and Moon align near the Rahu-Ketu axis (the lunar nodes). This happens roughly twice a year. In Jyotish, eclipse periods are considered karmically charged  –  events during eclipse seasons have amplified consequences.",
+        "gu": "સાચું. સૂર્ય અને ચંદ્ર ગ્રહણ ત્યારે થાય છે જ્યારે સૂર્ય અને ચંદ્ર રાહુ-કેતુ ધરી (ચંદ્ર નોડ્સ) ની નજીક ગોઠવાય છે. આ વર્ષમાં લગભગ બે વાર થાય છે. જ્યોતિષમાં, ગ્રહણ કાળને કર્મિક રીતે પ્રભાવિત માનવામાં આવે છે – ગ્રહણ ઋતુઓ દરમિયાનની ઘટનાઓના પરિણામો વિસ્તૃત હોય છે.",
         "mai": "सत्य। सूर्य आ चन्द्र ग्रहण तखन होइत अछि जखन सूर्य आ चन्द्रमा राहु-केतु अक्ष (चन्द्रमाक नोड) क नजदीक संरेखित होइत अछि। ई लगभग वर्ष मे दू बेर होइत अछि। ज्योतिष मे, ग्रहण काल केँ कर्मिक रूप सँ आवेशित मानल जाइत अछि  –  ग्रहण ऋतु मे भेल घटना सभक परिणाम बढ़ि जाइत अछि।"
       }
     },
@@ -591,24 +591,24 @@
       "question": {
         "en": "For marriage to manifest according to double-transit theory, Jupiter and Saturn must both influence:",
         "hi": "दोहरे गोचर सिद्धान्त के अनुसार विवाह प्रकट होने के लिए गुरु और शनि दोनों को किसे प्रभावित करना चाहिए?",
-        "ta": "For marriage to manifest according to double-transit theory, Jupiter and Saturn must both influence:",
-        "te": "For marriage to manifest according to double-transit theory, Jupiter and Saturn must both influence:",
-        "bn": "For marriage to manifest according to double-transit theory, Jupiter and Saturn must both influence:",
-        "kn": "For marriage to manifest according to double-transit theory, Jupiter and Saturn must both influence:",
+        "ta": "இரட்டை கோச்சாரக் கோட்பாட்டின்படி திருமணம் நடைபெற, குருவும் சனியும் இரண்டும் எந்த பாவத்தை பாதிக்க வேண்டும்:",
+        "te": "ద్విగ్రహ గోచారం సిద్ధాంతం ప్రకారం వివాహం జరగడానికి, గురు గ్రహం మరియు శని గ్రహం రెండూ దేనిని ప్రభావితం చేయాలి:",
+        "bn": "দ্বৈত গোচর তত্ত্ব অনুসারে বিবাহের ফল প্রকাশের জন্য, বৃহস্পতি এবং শনি উভয়কেই প্রভাবিত করতে হবে:",
+        "kn": "ದ್ವಿಗ್ರಹ ಗೋಚಾರ ಸಿದ್ಧಾಂತದ ಪ್ರಕಾರ ವಿವಾಹವು ಫಲಿಸಲು, ಗುರು ಮತ್ತು ಶನಿ ಎರಡೂ ಪ್ರಭಾವ ಬೀರಬೇಕು:",
         "mr": "दोहरे गोचर सिद्धान्त के अनुसार विवाह प्रकट होने के लिए गुरु और शनि दोनों को किसे प्रभावित करना चाहिए?",
-        "gu": "For marriage to manifest according to double-transit theory, Jupiter and Saturn must both influence:",
+        "gu": "દ્વિગ્રહ ગોચર સિદ્ધાંત અનુસાર લગ્ન ફળિત થવા માટે, ગુરુ અને શનિ બંનેએ પ્રભાવિત કરવા જોઈએ:",
         "mai": "द्वि-गोचर सिद्धांतक अनुसार, विवाहक फलित होयबाक लेल, गुरु आ शनि दुनू केँ प्रभावित करय पड़त:"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "The 7th house is the house of marriage and partnerships. Both Jupiter and Saturn must aspect or occupy the 7th house (from Moon or Lagna) simultaneously for marriage to be timed. This can include direct occupation or special aspects.",
         "hi": "7वाँ भाव विवाह और साझेदारी का भाव है। विवाह का समय निर्धारित होने के लिए गुरु और शनि दोनों को एक साथ 7वें भाव (चन्द्र या लग्न से) पर दृष्टि या अधिवास करना चाहिए। इसमें प्रत्यक्ष अधिवास या विशेष दृष्टि सम्मिलित है।",
-        "ta": "The 7th house is the house of marriage and partnerships. Both Jupiter and Saturn must aspect or occupy the 7th house (from Moon or Lagna) simultaneously for marriage to be timed. This can include direct occupation or special aspects.",
-        "te": "The 7th house is the house of marriage and partnerships. Both Jupiter and Saturn must aspect or occupy the 7th house (from Moon or Lagna) simultaneously for marriage to be timed. This can include direct occupation or special aspects.",
-        "bn": "The 7th house is the house of marriage and partnerships. Both Jupiter and Saturn must aspect or occupy the 7th house (from Moon or Lagna) simultaneously for marriage to be timed. This can include direct occupation or special aspects.",
-        "kn": "The 7th house is the house of marriage and partnerships. Both Jupiter and Saturn must aspect or occupy the 7th house (from Moon or Lagna) simultaneously for marriage to be timed. This can include direct occupation or special aspects.",
+        "ta": "ஏழாம் பாவம் திருமணம் மற்றும் கூட்டாண்மைகளின் பாவம் ஆகும். திருமணம் நடைபெற, குருவும் சனியும் இரண்டும் ஒரே நேரத்தில் ஏழாம் பாவத்தை (சந்திரன் அல்லது லக்னத்திலிருந்து) பார்க்க வேண்டும் அல்லது அதில் இருக்க வேண்டும். இதில் நேரடி இருப்பு அல்லது சிறப்புப் பார்வைகள் அடங்கும்.",
+        "te": "7వ భావం వివాహం మరియు భాగస్వామ్యాలకు సంబంధించిన భావం. వివాహం సమయం రావడానికి గురు గ్రహం మరియు శని గ్రహం రెండూ ఏకకాలంలో 7వ భావాన్ని (చంద్రుని నుండి లేదా లగ్నం నుండి) చూడాలి లేదా ఆక్రమించాలి. ఇందులో ప్రత్యక్ష ఆక్రమణ లేదా ప్రత్యేక దృష్టి ఉండవచ్చు.",
+        "bn": "৭ম ভাব হল বিবাহ এবং অংশীদারিত্বের ভাব। বিবাহ সময়োপযোগী হওয়ার জন্য বৃহস্পতি এবং শনি উভয়কেই একই সাথে ৭ম ভাবকে (চন্দ্র বা লগ্ন থেকে) দৃষ্টি দিতে হবে বা দখল করতে হবে। এতে সরাসরি দখল বা বিশেষ দৃষ্টি অন্তর্ভুক্ত থাকতে পারে।",
+        "kn": "7ನೇ ಭಾವವು ವಿವಾಹ ಮತ್ತು ಪಾಲುದಾರಿಕೆಗಳ ಭಾವವಾಗಿದೆ. ವಿವಾಹವನ್ನು ಸಮಯ ಮಾಡಲು ಗುರು ಮತ್ತು ಶನಿ ಎರಡೂ ಏಕಕಾಲದಲ್ಲಿ 7ನೇ ಭಾವವನ್ನು (ಚಂದ್ರ ಅಥವಾ ಲಗ್ನದಿಂದ) ದೃಷ್ಟಿಸಬೇಕು ಅಥವಾ ಆಕ್ರಮಿಸಬೇಕು. ಇದು ನೇರ ಆಕ್ರಮಣ ಅಥವಾ ವಿಶೇಷ ದೃಷ್ಟಿಗಳನ್ನು ಒಳಗೊಂಡಿರಬಹುದು.",
         "mr": "7वाँ भाव विवाह और साझेदारी का भाव है। विवाह का समय निर्धारित होने के लिए गुरु और शनि दोनों को एक साथ 7वें भाव (चन्द्र या लग्न से) पर दृष्टि या अधिवास करना चाहिए। इसमें प्रत्यक्ष अधिवास या विशेष दृष्टि सम्मिलित है।",
-        "gu": "The 7th house is the house of marriage and partnerships. Both Jupiter and Saturn must aspect or occupy the 7th house (from Moon or Lagna) simultaneously for marriage to be timed. This can include direct occupation or special aspects.",
+        "gu": "૭મો ભાવ લગ્ન અને ભાગીદારીનો ભાવ છે. લગ્નનો સમય નક્કી કરવા માટે ગુરુ અને શનિ બંનેએ એકસાથે ૭મા ભાવને (ચંદ્ર અથવા લગ્નથી) દ્રષ્ટિ કરવી જોઈએ અથવા તેમાં સ્થાન લેવું જોઈએ. આમાં સીધો કબજો અથવા વિશેષ દ્રષ્ટિ શામેલ હોઈ શકે છે.",
         "mai": "७म भाव विवाह आ साझेदारीक भाव अछि। विवाहक समय निर्धारणक लेल गुरु आ शनि दुनू केँ एक संग ७म भाव पर दृष्टि देबय वा ओहि मे रहय पड़त (चन्द्रमा वा लग्न सँ)। एहि मे सीधा अधिभोग वा विशेष दृष्टि सेहो शामिल भऽ सकैत अछि।"
       },
       "options": [
@@ -617,44 +617,44 @@
           "hi": "5वाँ भाव",
           "mai": "५म भाव",
           "mr": "5वाँ भाव",
-          "ta": "The 5th house",
-          "te": "The 5th house",
-          "bn": "The 5th house",
-          "kn": "The 5th house",
-          "gu": "The 5th house"
+          "ta": "ஐந்தாம் பாவம்",
+          "te": "5వ భావం",
+          "bn": "৫ম ভাব",
+          "kn": "5ನೇ ಭಾವ",
+          "gu": "૫મો ભાવ"
         },
         {
           "en": "The 10th house",
           "hi": "10वाँ भाव",
           "mai": "१०म भाव",
           "mr": "10वाँ भाव",
-          "ta": "The 10th house",
-          "te": "The 10th house",
-          "bn": "The 10th house",
-          "kn": "The 10th house",
-          "gu": "The 10th house"
+          "ta": "பத்தாம் பாவம்",
+          "te": "10వ భావం",
+          "bn": "১০ম ভাব",
+          "kn": "10ನೇ ಭಾವ",
+          "gu": "૧૦મો ભાવ"
         },
         {
           "en": "The 7th house",
           "hi": "7वाँ भाव",
           "mai": "७म भाव",
           "mr": "7वाँ भाव",
-          "ta": "The 7th house",
-          "te": "The 7th house",
-          "bn": "The 7th house",
-          "kn": "The 7th house",
-          "gu": "The 7th house"
+          "ta": "ஏழாம் பாவம்",
+          "te": "7వ భావం",
+          "bn": "৭ম ভাব",
+          "kn": "7ನೇ ಭಾವ",
+          "gu": "૭મો ભાવ"
         },
         {
           "en": "The 2nd house only",
           "hi": "केवल 2रा भाव",
           "mai": "केवल २म भाव",
           "mr": "केवल 2रा भाव",
-          "ta": "The 2nd house only",
-          "te": "The 2nd house only",
-          "bn": "The 2nd house only",
-          "kn": "The 2nd house only",
-          "gu": "The 2nd house only"
+          "ta": "இரண்டாம் பாவம் மட்டும்",
+          "te": "2వ భావం మాత్రమే",
+          "bn": "শুধুমাত্র ২য় ভাব",
+          "kn": "2ನೇ ಭಾವ ಮಾತ್ರ",
+          "gu": "ફક્ત ૨જો ભાવ"
         }
       ]
     }

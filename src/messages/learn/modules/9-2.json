@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 9.1: कुण्डली की मूल बातें",
         "mai": "मॉड्यूल ९.१: जन्म कुंडलीक आधारभूत बात",
         "mr": "मॉड्यूल 9.1: कुण्डली की मूल बातें",
-        "ta": "Module 9.1: Birth Chart Basics",
-        "te": "Module 9.1: Birth Chart Basics",
-        "bn": "Module 9.1: Birth Chart Basics",
-        "kn": "Module 9.1: Birth Chart Basics",
-        "gu": "Module 9.1: Birth Chart Basics"
+        "ta": "தொகுதி 9.1: ஜாதக அடிப்படைகள்",
+        "te": "మాడ్యూల్ 9.1: జన్మ లగ్న చక్రం – ప్రాథమిక అంశాలు",
+        "bn": "মডিউল ৯.১: জন্মছকের মূল বিষয়াবলী",
+        "kn": "ಮಾಡ್ಯೂಲ್ 9.1: ಜನ್ಮ ಕುಂಡಲಿಯ ಮೂಲಭೂತ ಅಂಶಗಳು",
+        "gu": "મોડ્યુલ 9.1: જન્મ કુંડળીની મૂળભૂત બાબતો"
       },
       "href": "/learn/modules/9-1"
     },
@@ -42,11 +42,11 @@
         "hi": "मॉड्यूल 9.3: ग्रह बल",
         "mai": "मॉड्यूल ९.३: ग्रहक गरिमा",
         "mr": "मॉड्यूल 9.3: ग्रह बल",
-        "ta": "Module 9.3: Planetary Dignities",
-        "te": "Module 9.3: Planetary Dignities",
-        "bn": "Module 9.3: Planetary Dignities",
-        "kn": "Module 9.3: Planetary Dignities",
-        "gu": "Module 9.3: Planetary Dignities"
+        "ta": "தொகுதி 9.3: கிரக பலம்",
+        "te": "మాడ్యూల్ 9.3: గ్రహ బలాలు",
+        "bn": "মডিউল ৯.৩: গ্রহের মর্যাদা",
+        "kn": "ಮಾಡ್ಯೂಲ್ 9.3: ಗ್ರಹಗಳ ಸ್ಥಾನಬಲ",
+        "gu": "મોડ્યુલ 9.3: ગ્રહોનું બળ"
       },
       "href": "/learn/modules/9-3"
     },
@@ -56,11 +56,11 @@
         "hi": "सीखें: भाव",
         "mai": "सीखू: भाव",
         "mr": "सीखें: भाव",
-        "ta": "Learn: Bhavas",
-        "te": "Learn: Bhavas",
-        "bn": "Learn: Bhavas",
-        "kn": "Learn: Bhavas",
-        "gu": "Learn: Bhavas"
+        "ta": "கற்றுக்கொள்: பாவங்கள்",
+        "te": "నేర్చుకోండి: భావాలు",
+        "bn": "জানুন: ভাব",
+        "kn": "ಕಲಿಯಿರಿ: ಭಾವಗಳು",
+        "gu": "શીખો: ભાવ"
       },
       "href": "/learn/bhavas"
     }
@@ -74,11 +74,11 @@
         "hi": "कौन सा भाव विवाह और साझेदारी दर्शाता है?",
         "mai": "कोन भाव विवाह आ साझेदारीक प्रतिनिधित्व करैत अछि?",
         "mr": "कौन सा भाव विवाह और साझेदारी दर्शाता है?",
-        "ta": "Which house represents marriage and partnerships?",
-        "te": "Which house represents marriage and partnerships?",
-        "bn": "Which house represents marriage and partnerships?",
-        "kn": "Which house represents marriage and partnerships?",
-        "gu": "Which house represents marriage and partnerships?"
+        "ta": "திருமணம் மற்றும் கூட்டாண்மைகளை எந்த பாவம் குறிக்கிறது?",
+        "te": "ఏ భావం వివాహం మరియు భాగస్వామ్యాలను సూచిస్తుంది?",
+        "bn": "কোন ভাব বিবাহ এবং অংশীদারিত্বের প্রতিনিধিত্ব করে?",
+        "kn": "ಯಾವ ಭಾವವು ವಿವಾಹ ಮತ್ತು ಪಾಲುದಾರಿಕೆಗಳನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತದೆ?",
+        "gu": "કયો ભાવ લગ્ન અને ભાગીદારી દર્શાવે છે?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -86,11 +86,11 @@
         "hi": "सप्तम भाव (युवती भाव) विवाह, जीवनसाथी, साझेदारी और सभी व्यक्तिगत संबंधों पर शासन करता है। यह प्रथम भाव (आत्म) के ठीक विपरीत है, \"दूसरे\" का प्रतिनिधित्व करता है।",
         "mai": "७म भाव (युवति भाव) विवाह, जीवनसाथी, साझेदारी, आ सभ एक-से-एक संबंधक नियंत्रित करैत अछि। ई १म भाव (स्वयं) क ठीक विपरीत अछि, जे 'दोसर' क प्रतिनिधित्व करैत अछि।",
         "mr": "सप्तम भाव (युवती भाव) विवाह, जीवनसाथी, साझेदारी और सभी व्यक्तिगत संबंधों पर शासन करता है। यह प्रथम भाव (आत्म) के ठीक विपरीत है, \"दूसरे\" का प्रतिनिधित्व करता है।",
-        "ta": "The 7th house (Yuvati Bhava) governs marriage, spouse, partnerships, and all one-to-one relationships. It is directly opposite the 1st house (self), representing \"the other.\"",
-        "te": "The 7th house (Yuvati Bhava) governs marriage, spouse, partnerships, and all one-to-one relationships. It is directly opposite the 1st house (self), representing \"the other.\"",
-        "bn": "The 7th house (Yuvati Bhava) governs marriage, spouse, partnerships, and all one-to-one relationships. It is directly opposite the 1st house (self), representing \"the other.\"",
-        "kn": "The 7th house (Yuvati Bhava) governs marriage, spouse, partnerships, and all one-to-one relationships. It is directly opposite the 1st house (self), representing \"the other.\"",
-        "gu": "The 7th house (Yuvati Bhava) governs marriage, spouse, partnerships, and all one-to-one relationships. It is directly opposite the 1st house (self), representing \"the other.\""
+        "ta": "7 ஆம் பாவம் (யுவதி பாவம்) திருமணம், துணை, கூட்டாண்மைகள் மற்றும் அனைத்து ஒருவருக்கொருவர் உறவுகளையும் ஆளுகிறது. இது 1 ஆம் பாவத்திற்கு (சுயம்) நேர் எதிரானது, 'மற்றவரை' குறிக்கிறது.",
+        "te": "7వ భావం (యువతి భావం) వివాహం, జీవిత భాగస్వామి, భాగస్వామ్యాలు మరియు అన్ని ఏక-ఒక సంబంధాలను పాలిస్తుంది. ఇది 1వ భావం (స్వయం)కి నేరుగా వ్యతిరేకంగా ఉంటుంది, \"ఇతరులను\" సూచిస్తుంది.",
+        "bn": "সপ্তম ভাব (যুবতী ভাব) বিবাহ, জীবনসঙ্গী, অংশীদারিত্ব এবং সমস্ত এক-এক সম্পর্ককে নির্দেশ করে। এটি প্রথম ভাবের (স্বয়ং) সরাসরি বিপরীত, যা \"অন্যকে\" প্রতিনিধিত্ব করে।",
+        "kn": "7ನೇ ಭಾವ (ಯುವತಿ ಭಾವ) ವಿವಾಹ, ಸಂಗಾತಿ, ಪಾಲುದಾರಿಕೆಗಳು ಮತ್ತು ಎಲ್ಲಾ ಏಕ-ವ್ಯಕ್ತಿ ಸಂಬಂಧಗಳನ್ನು ನಿಯಂತ್ರಿಸುತ್ತದೆ. ಇದು 1ನೇ ಭಾವಕ್ಕೆ (ಸ್ವಯಂ) ನೇರವಾಗಿ ವಿರುದ್ಧವಾಗಿದ್ದು, \"ಇತರರನ್ನು\" ಪ್ರತಿನಿಧಿಸುತ್ತದೆ.",
+        "gu": "સાતમો ભાવ (યુવતી ભાવ) લગ્ન, જીવનસાથી, ભાગીદારી અને તમામ એક-થી-એક સંબંધોનું સંચાલન કરે છે. તે પ્રથમ ભાવ (સ્વયં) ની બરાબર વિરુદ્ધ છે, જે \"બીજા\" ને રજૂ કરે છે."
       },
       "options": [
         {
@@ -98,44 +98,44 @@
           "hi": "पंचम भाव",
           "mai": "५म भाव",
           "mr": "पंचम भाव",
-          "ta": "5th house",
-          "te": "5th house",
-          "bn": "5th house",
-          "kn": "5th house",
-          "gu": "5th house"
+          "ta": "5 ஆம் பாவம்",
+          "te": "5వ భావం",
+          "bn": "পঞ্চম ভাব",
+          "kn": "5ನೇ ಭಾವ",
+          "gu": "પાંચમો ભાવ"
         },
         {
           "en": "7th house",
           "hi": "सप्तम भाव",
           "mai": "७म भाव",
           "mr": "सप्तम भाव",
-          "ta": "7th house",
-          "te": "7th house",
-          "bn": "7th house",
-          "kn": "7th house",
-          "gu": "7th house"
+          "ta": "7 ஆம் பாவம்",
+          "te": "7వ భావం",
+          "bn": "সপ্তম ভাব",
+          "kn": "7ನೇ ಭಾವ",
+          "gu": "સાતમો ભાવ"
         },
         {
           "en": "10th house",
           "hi": "दशम भाव",
           "mai": "१०म भाव",
           "mr": "दशम भाव",
-          "ta": "10th house",
-          "te": "10th house",
-          "bn": "10th house",
-          "kn": "10th house",
-          "gu": "10th house"
+          "ta": "10 ஆம் பாவம்",
+          "te": "10వ భావం",
+          "bn": "দশম ভাব",
+          "kn": "10ನೇ ಭಾವ",
+          "gu": "દસમો ભાવ"
         },
         {
           "en": "2nd house",
           "hi": "द्वितीय भाव",
           "mai": "२म भाव",
           "mr": "द्वितीय भाव",
-          "ta": "2nd house",
-          "te": "2nd house",
-          "bn": "2nd house",
-          "kn": "2nd house",
-          "gu": "2nd house"
+          "ta": "2 ஆம் பாவம்",
+          "te": "2వ భావం",
+          "bn": "দ্বিতীয় ভাব",
+          "kn": "2ನೇ ಭಾವ",
+          "gu": "બીજો ભાવ"
         }
       ]
     },
@@ -147,11 +147,11 @@
         "hi": "केन्द्र भाव (कोणीय भाव) कौन से हैं?",
         "mai": "कोन-कोन भाव केन्द्र (कोणीय भाव) छी?",
         "mr": "केन्द्र भाव (कोणीय भाव) कौन से हैं?",
-        "ta": "Which houses are the Kendras (angular houses)?",
-        "te": "Which houses are the Kendras (angular houses)?",
-        "bn": "Which houses are the Kendras (angular houses)?",
-        "kn": "Which houses are the Kendras (angular houses)?",
-        "gu": "Which houses are the Kendras (angular houses)?"
+        "ta": "கேந்திரங்கள் (கோண பாவங்கள்) எந்த பாவங்கள்?",
+        "te": "ఏ భావాలు కేంద్రాలు (కోణ భావాలు)?",
+        "bn": "কোন ভাবগুলি কেন্দ্র (কোণ ভাব)?",
+        "kn": "ಯಾವ ಭಾವಗಳು ಕೇಂದ್ರಗಳು (ಕೋನ ಭಾವಗಳು)?",
+        "gu": "કયા ભાવ કેન્દ્ર (કોણીય ભાવ) છે?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -159,11 +159,11 @@
         "hi": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं। ये आत्म, गृह, संबंध और कर्म दर्शाते हैं  –  जीवन की संरचनात्मक नींव। केन्द्र में ग्रह शक्ति प्राप्त करते हैं।",
         "mai": "केन्द्र (१, ४, ७, १०) कुंडलीक चारिटा स्तम्भ छी। ई स्वयं, घर, संबंध, आ करियर – जीवनक संरचनात्मक आधार – क प्रतिनिधित्व करैत अछि। केन्द्र मे स्थित ग्रह शक्ति प्राप्त करैत अछि।",
         "mr": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं। ये आत्म, गृह, संबंध और कर्म दर्शाते हैं  –  जीवन की संरचनात्मक नींव। केन्द्र में ग्रह शक्ति प्राप्त करते हैं।",
-        "ta": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career  –  the structural foundation of life. Planets in Kendras gain strength.",
-        "te": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career  –  the structural foundation of life. Planets in Kendras gain strength.",
-        "bn": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career  –  the structural foundation of life. Planets in Kendras gain strength.",
-        "kn": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career  –  the structural foundation of life. Planets in Kendras gain strength.",
-        "gu": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career  –  the structural foundation of life. Planets in Kendras gain strength."
+        "ta": "கேந்திரங்கள் (1, 4, 7, 10) ஜாதகத்தின் நான்கு தூண்கள். அவை சுயம், வீடு, உறவுகள் மற்றும் தொழில் – வாழ்க்கையின் கட்டமைப்பு அடிப்படையை குறிக்கின்றன. கேந்திரங்களில் உள்ள கிரகங்கள் பலம் பெறுகின்றன.",
+        "te": "కేంద్రాలు (1, 4, 7, 10) జాతక చక్రం యొక్క నాలుగు స్తంభాలు. అవి స్వయం, ఇల్లు, సంబంధాలు మరియు వృత్తిని సూచిస్తాయి – జీవితం యొక్క నిర్మాణపరమైన పునాది. కేంద్రాలలో ఉన్న గ్రహాలు బలాన్ని పొందుతాయి.",
+        "bn": "কেন্দ্র (১, ৪, ৭, ১০) জন্মছকের চারটি স্তম্ভ। তারা স্বয়ং, গৃহ, সম্পর্ক এবং কর্মজীবনের প্রতিনিধিত্ব করে – জীবনের কাঠামোগত ভিত্তি। কেন্দ্রস্থ গ্রহরা শক্তি লাভ করে।",
+        "kn": "ಕೇಂದ್ರಗಳು (1, 4, 7, 10) ಕುಂಡಲಿಯ ನಾಲ್ಕು ಸ್ತಂಭಗಳಾಗಿವೆ. ಅವು ಸ್ವಯಂ, ಮನೆ, ಸಂಬಂಧಗಳು ಮತ್ತು ವೃತ್ತಿಯನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತವೆ – ಜೀವನದ ರಚನಾತ್ಮಕ ಅಡಿಪಾಯ. ಕೇಂದ್ರಗಳಲ್ಲಿರುವ ಗ್ರಹಗಳು ಬಲವನ್ನು ಪಡೆಯುತ್ತವೆ.",
+        "gu": "કેન્દ્ર (1, 4, 7, 10) કુંડળીના ચાર આધારસ્તંભ છે. તેઓ સ્વયં, ઘર, સંબંધો અને કારકિર્દી – જીવનનો માળખાકીય પાયો રજૂ કરે છે. કેન્દ્રમાં રહેલા ગ્રહો બળવાન બને છે."
       },
       "options": [
         {
@@ -220,11 +220,11 @@
         "hi": "त्रिकोण भाव (1, 5, 9) कुण्डली में सबसे शुभ भाव माने जाते हैं।",
         "mai": "त्रिकोण भाव (१, ५, ९) कुंडली मे सबसँ शुभ भाव मानल जाइत अछि।",
         "mr": "त्रिकोण भाव (1, 5, 9) कुण्डली में सबसे शुभ भाव माने जाते हैं।",
-        "ta": "Trikona houses (1, 5, 9) are considered the most auspicious houses in a chart.",
-        "te": "Trikona houses (1, 5, 9) are considered the most auspicious houses in a chart.",
-        "bn": "Trikona houses (1, 5, 9) are considered the most auspicious houses in a chart.",
-        "kn": "Trikona houses (1, 5, 9) are considered the most auspicious houses in a chart.",
-        "gu": "Trikona houses (1, 5, 9) are considered the most auspicious houses in a chart."
+        "ta": "திரிகோண பாவங்கள் (1, 5, 9) ஒரு ஜாதகத்தில் மிகவும் சுபமான பாவங்களாகக் கருதப்படுகின்றன.",
+        "te": "త్రికోణ భావాలు (1, 5, 9) జాతక చక్రంలో అత్యంత శుభప్రదమైన భావాలుగా పరిగణించబడతాయి.",
+        "bn": "ত্রিকোণ ভাব (১, ৫, ৯) একটি জন্মছকের সবচেয়ে শুভ ভাব হিসাবে বিবেচিত হয়।",
+        "kn": "ತ್ರಿಕೋನ ಭಾವಗಳು (1, 5, 9) ಕುಂಡಲಿಯಲ್ಲಿ ಅತ್ಯಂತ ಶುಭ ಭಾವಗಳೆಂದು ಪರಿಗಣಿಸಲಾಗಿದೆ.",
+        "gu": "ત્રિકોણ ભાવ (1, 5, 9) કુંડળીમાં સૌથી શુભ ભાવ ગણાય છે."
       },
       "correctAnswer": true,
       "explanation": {
@@ -232,11 +232,11 @@
         "hi": "त्रिकोण (1, 5, 9) धर्म  –  उद्देश्य, भाग्य और दैवी कृपा का प्रतिनिधित्व करते हैं। इनके स्वामी कुण्डली के स्वाभाविक शुभ ग्रह होते हैं। सशक्त त्रिकोण संरचना सौभाग्यशाली जीवन की पहचान है।",
         "mai": "त्रिकोण (१, ५, ९) धर्म – उद्देश्य, भाग्य, आ दैवीय कृपा – क प्रतिनिधित्व करैत अछि। हुनकर स्वामी कुंडलीक लेल स्वाभाविक शुभ ग्रह होइत छथि। एकटा मजबूत त्रिकोणक स्थिति एकटा धन्य जीवनक पहचान छी।",
         "mr": "त्रिकोण (1, 5, 9) धर्म  –  उद्देश्य, भाग्य और दैवी कृपा का प्रतिनिधित्व करते हैं। इनके स्वामी कुण्डली के स्वाभाविक शुभ ग्रह होते हैं। सशक्त त्रिकोण संरचना सौभाग्यशाली जीवन की पहचान है।",
-        "ta": "Trikonas (1, 5, 9) represent Dharma  –  purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life.",
-        "te": "Trikonas (1, 5, 9) represent Dharma  –  purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life.",
-        "bn": "Trikonas (1, 5, 9) represent Dharma  –  purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life.",
-        "kn": "Trikonas (1, 5, 9) represent Dharma  –  purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life.",
-        "gu": "Trikonas (1, 5, 9) represent Dharma  –  purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life."
+        "ta": "திரிகோணங்கள் (1, 5, 9) தர்மத்தை – நோக்கம், அதிர்ஷ்டம் மற்றும் தெய்வீக அருளைக் குறிக்கின்றன. அவற்றின் அதிபதிகள் ஜாதகத்திற்கு இயற்கையான சுப கிரகங்கள். ஒரு வலுவான திரிகோண அமைப்பு ஒரு ஆசீர்வதிக்கப்பட்ட வாழ்க்கையின் அடையாளம்.",
+        "te": "త్రికోణాలు (1, 5, 9) ధర్మాన్ని సూచిస్తాయి – ఉద్దేశ్యం, అదృష్టం మరియు దైవ కృప. వాటి అధిపతులు జాతక చక్రానికి సహజ శుభ గ్రహాలు. బలమైన త్రికోణ అమరిక ఆశీర్వదించబడిన జీవితానికి చిహ్నం.",
+        "bn": "ত্রিকোণ (১, ৫, ৯) ধর্মকে প্রতিনিধিত্ব করে – উদ্দেশ্য, সৌভাগ্য এবং ঐশ্বরিক কৃপা। তাদের অধিপতি গ্রহরা জন্মছকের জন্য স্বাভাবিক শুভ গ্রহ। একটি শক্তিশালী ত্রিকোণ বিন্যাস একটি আশীর্বাদপূর্ণ জীবনের পরিচায়ক।",
+        "kn": "ತ್ರಿಕೋನಗಳು (1, 5, 9) ಧರ್ಮವನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತವೆ – ಉದ್ದೇಶ, ಅದೃಷ್ಟ ಮತ್ತು ದೈವಿಕ ಅನುಗ್ರಹ. ಅವುಗಳ ಅಧಿಪತಿಗಳು ಕುಂಡಲಿಗೆ ನೈಸರ್ಗಿಕ ಶುಭಕಾರಕರು. ಬಲವಾದ ತ್ರಿಕೋನ ಸಂರಚನೆಯು ಆಶೀರ್ವದಿಸಿದ ಜೀವನದ ಲಕ್ಷಣವಾಗಿದೆ.",
+        "gu": "ત્રિકોણ (1, 5, 9) ધર્મ – હેતુ, સૌભાગ્ય અને દૈવી કૃપાનું પ્રતિનિધિત્વ કરે છે. તેમના સ્વામી કુંડળી માટે સ્વાભાવિક શુભ ગ્રહો છે. એક મજબૂત ત્રિકોણ રચના એક ધન્ય જીવનની ઓળખ છે."
       }
     },
     {
@@ -247,11 +247,11 @@
         "hi": "दुःस्थान भाव समूह कौन सा है?",
         "mai": "दुःस्थान भावक समूह की अछि?",
         "mr": "दुःस्थान भाव समूह कौन सा है?",
-        "ta": "What is the Dusthana group of houses?",
-        "te": "What is the Dusthana group of houses?",
-        "bn": "What is the Dusthana group of houses?",
-        "kn": "What is the Dusthana group of houses?",
-        "gu": "What is the Dusthana group of houses?"
+        "ta": "துஸ்தான பாவங்களின் குழு என்ன?",
+        "te": "దుస్థాన భావాల సమూహం అంటే ఏమిటి?",
+        "bn": "দুঃস্থান ভাবগুলির গোষ্ঠী কী?",
+        "kn": "ದುಸ್ಥಾನ ಭಾವಗಳ ಗುಂಪು ಯಾವುದು?",
+        "gu": "દુસ્થાન ભાવનો સમૂહ શું છે?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -259,11 +259,11 @@
         "hi": "दुःस्थान (6, 8, 12) चुनौतियाँ दर्शाते हैं: शत्रु/रोग (छठा), आयु/रहस्य (आठवाँ), और हानि/मोक्ष (बारहवाँ)। लेकिन ये परिवर्तन भी लाते हैं  –  आठवाँ तान्त्रिक ज्ञान दे सकता है, बारहवाँ आध्यात्मिक मुक्ति।",
         "mai": "दुःस्थान (६, ८, १२) चुनौतीक प्रतिनिधित्व करैत अछि: शत्रु/रोग (६म), दीर्घायु/रहस्य (८म), आ हानि/मोक्ष (१२म)। मुदा, ई परिवर्तन सेहो लबैत अछि – ८म भाव गूढ़ ज्ञान द सकैत अछि, १२म भाव आध्यात्मिक मोक्ष द सकैत अछि।",
         "mr": "दुःस्थान (6, 8, 12) चुनौतियाँ दर्शाते हैं: शत्रु/रोग (छठा), आयु/रहस्य (आठवाँ), और हानि/मोक्ष (बारहवाँ)। लेकिन ये परिवर्तन भी लाते हैं  –  आठवाँ तान्त्रिक ज्ञान दे सकता है, बारहवाँ आध्यात्मिक मुक्ति।",
-        "ta": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation  –  the 8th can give occult wisdom, the 12th can give spiritual liberation.",
-        "te": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation  –  the 8th can give occult wisdom, the 12th can give spiritual liberation.",
-        "bn": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation  –  the 8th can give occult wisdom, the 12th can give spiritual liberation.",
-        "kn": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation  –  the 8th can give occult wisdom, the 12th can give spiritual liberation.",
-        "gu": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation  –  the 8th can give occult wisdom, the 12th can give spiritual liberation."
+        "ta": "துஸ்தானங்கள் (6, 8, 12) சவால்களைக் குறிக்கின்றன: எதிரிகள்/நோய் (6 ஆம் பாவம்), ஆயுள்/ரகசியங்கள் (8 ஆம் பாவம்), மற்றும் இழப்புகள்/விடுதலை (12 ஆம் பாவம்). இருப்பினும், அவை மாற்றத்தையும் கொண்டு வருகின்றன – 8 ஆம் பாவம் மறைஞான அறிவையும், 12 ஆம் பாவம் ஆன்மீக விடுதலையையும் தரலாம்.",
+        "te": "దుస్థానాలు (6, 8, 12) సవాళ్లను సూచిస్తాయి: శత్రువులు/వ్యాధి (6వ), దీర్ఘాయువు/రహస్యాలు (8వ), మరియు నష్టాలు/విముక్తి (12వ). అయితే, అవి పరివర్తనను కూడా తెస్తాయి – 8వ భావం రహస్య జ్ఞానాన్ని ఇవ్వగలదు, 12వ భావం ఆధ్యాత్మిక విముక్తిని ఇవ్వగలదు.",
+        "bn": "দুঃস্থান (৬, ৮, ১২) চ্যালেঞ্জের প্রতিনিধিত্ব করে: শত্রু/রোগ (ষষ্ঠ ভাব), আয়ু/গোপন বিষয় (অষ্টম ভাব), এবং ক্ষতি/মোক্ষ (দ্বাদশ ভাব)। তবে, তারা রূপান্তরও নিয়ে আসে – অষ্টম ভাব গুপ্ত জ্ঞান দিতে পারে, দ্বাদশ ভাব আধ্যাত্মিক মুক্তি দিতে পারে।",
+        "kn": "ದುಸ್ಥಾನಗಳು (6, 8, 12) ಸವಾಲುಗಳನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತವೆ: ಶತ್ರುಗಳು/ರೋಗ (6ನೇ), ದೀರ್ಘಾಯುಷ್ಯ/ರಹಸ್ಯಗಳು (8ನೇ), ಮತ್ತು ನಷ್ಟಗಳು/ಮೋಕ್ಷ (12ನೇ). ಆದಾಗ್ಯೂ, ಅವು ರೂಪಾಂತರವನ್ನೂ ತರುತ್ತವೆ – 8ನೇ ಭಾವವು ಅತೀಂದ್ರಿಯ ಜ್ಞಾನವನ್ನು ನೀಡಬಲ್ಲದು, 12ನೇ ಭಾವವು ಆಧ್ಯಾತ್ಮಿಕ ವಿಮೋಚನೆಯನ್ನು ನೀಡಬಲ್ಲದು.",
+        "gu": "દુસ્થાન (6, 8, 12) પડકારો દર્શાવે છે: શત્રુ/રોગ (છઠ્ઠો), આયુષ્ય/રહસ્યો (આઠમો), અને નુકસાન/મુક્તિ (બારમો). જોકે, તેઓ પરિવર્તન પણ લાવે છે – આઠમો ભાવ ગુપ્ત જ્ઞાન આપી શકે છે, બારમો ભાવ આધ્યાત્મિક મુક્તિ આપી શકે છે."
       },
       "options": [
         {
@@ -320,11 +320,11 @@
         "hi": "जब त्रिकोण स्वामी केन्द्र स्वामी से युक्त होता है तो क्या होता है?",
         "mai": "की होइत अछि जखन एकटा त्रिकोणक स्वामी एकटा केन्द्रक स्वामी सँ युति करैत अछि?",
         "mr": "जब त्रिकोण स्वामी केन्द्र स्वामी से युक्त होता है तो क्या होता है?",
-        "ta": "What happens when a Trikona lord conjoins a Kendra lord?",
-        "te": "What happens when a Trikona lord conjoins a Kendra lord?",
-        "bn": "What happens when a Trikona lord conjoins a Kendra lord?",
-        "kn": "What happens when a Trikona lord conjoins a Kendra lord?",
-        "gu": "What happens when a Trikona lord conjoins a Kendra lord?"
+        "ta": "ஒரு திரிகோண அதிபதி ஒரு கேந்திர அதிபதியுடன் இணையும் போது என்ன நடக்கும்?",
+        "te": "త్రికోణ అధిపతి కేంద్ర అధిపతితో కలిసినప్పుడు ఏమి జరుగుతుంది?",
+        "bn": "কি ঘটে যখন একটি ত্রিকোণ অধিপতি একটি কেন্দ্র অধিপতির সাথে যুক্ত হয়?",
+        "kn": "ತ್ರಿಕೋನ ಅಧಿಪತಿ ಕೇಂದ್ರ ಅಧಿಪತಿಯೊಂದಿಗೆ ಸಂಯೋಗಗೊಂಡಾಗ ಏನಾಗುತ್ತದೆ?",
+        "gu": "શું થાય છે જ્યારે ત્રિકોણનો સ્વામી કેન્દ્રના સ્વામી સાથે યુતિ કરે છે?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -332,11 +332,11 @@
         "hi": "जब केन्द्र (1,4,7,10) और त्रिकोण (1,5,9) के स्वामी युति, परस्पर दृष्टि, या परिवर्तन से संबद्ध होते हैं, तो राजयोग बनता है  –  शक्ति (केन्द्र) और भाग्य (त्रिकोण) का संयोजन जो जातक को उन्नत करता है।",
         "mai": "जखन केन्द्र (१,४,७,१०) आ त्रिकोण (१,५,९) क स्वामी युति, परस्पर दृष्टि, ओ आदान-प्रदान सँ जुड़ैत छथि, तँ ओ राजा योगक निर्माण करैत अछि – शक्ति (केन्द्र) आ भाग्य (त्रिकोण) क एकटा संयोजन जे जातक क ऊपर उठाबैत अछि।",
         "mr": "जब केन्द्र (1,4,7,10) और त्रिकोण (1,5,9) के स्वामी युति, परस्पर दृष्टि, या परिवर्तन से संबद्ध होते हैं, तो राजयोग बनता है  –  शक्ति (केन्द्र) और भाग्य (त्रिकोण) का संयोजन जो जातक को उन्नत करता है।",
-        "ta": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga  –  a combination of power (Kendra) and fortune (Trikona) that elevates the native.",
-        "te": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga  –  a combination of power (Kendra) and fortune (Trikona) that elevates the native.",
-        "bn": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga  –  a combination of power (Kendra) and fortune (Trikona) that elevates the native.",
-        "kn": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga  –  a combination of power (Kendra) and fortune (Trikona) that elevates the native.",
-        "gu": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga  –  a combination of power (Kendra) and fortune (Trikona) that elevates the native."
+        "ta": "கேந்திரங்களின் (1,4,7,10) மற்றும் திரிகோணங்களின் (1,5,9) அதிபதிகள் சேர்க்கை, பரஸ்பர பார்வை அல்லது பரிவர்த்தனை மூலம் இணையும் போது, அவை ராஜ யோகத்தை உருவாக்குகின்றன – சக்தி (கேந்திரம்) மற்றும் அதிர்ஷ்டம் (திரிகோணம்) ஆகியவற்றின் கலவையாகும், இது ஜாதகரை உயர்த்துகிறது.",
+        "te": "కేంద్రాల (1,4,7,10) మరియు త్రికోణాల (1,5,9) అధిపతులు సంయోగం, పరస్పర దృష్టి లేదా మార్పిడి ద్వారా సంబంధం పెట్టుకున్నప్పుడు, అవి రాజయోగాన్ని ఏర్పరుస్తాయి – శక్తి (కేంద్రం) మరియు అదృష్టం (త్రికోణం) కలయిక, ఇది స్థానికుడిని ఉన్నత స్థితికి తీసుకువస్తుంది.",
+        "bn": "যখন কেন্দ্র (১,৪,৭,১০) এবং ত্রিকোণ (১,৫,৯) এর অধিপতিরা সংযোগ, পারস্পরিক দৃষ্টি বা স্থান বিনিময়ের মাধ্যমে যুক্ত হয়, তারা রাজযোগ গঠন করে – ক্ষমতা (কেন্দ্র) এবং সৌভাগ্য (ত্রিকোণ) এর একটি সংমিশ্রণ যা জাতককে উন্নত করে।",
+        "kn": "ಕೇಂದ್ರಗಳ (1,4,7,10) ಮತ್ತು ತ್ರಿಕೋನಗಳ (1,5,9) ಅಧಿಪತಿಗಳು ಸಂಯೋಗ, ಪರಸ್ಪರ ದೃಷ್ಟಿ ಅಥವಾ ಪರಿವರ್ತನೆಯ ಮೂಲಕ ಸಂಬಂಧಿಸಿದಾಗ, ಅವು ರಾಜಯೋಗವನ್ನು ರೂಪಿಸುತ್ತವೆ – ಶಕ್ತಿ (ಕೇಂದ್ರ) ಮತ್ತು ಅದೃಷ್ಟ (ತ್ರಿಕೋನ) ಗಳ ಸಂಯೋಜನೆ ಅದು ಜಾತಕನನ್ನು ಉನ್ನತೀಕರಿಸುತ್ತದೆ.",
+        "gu": "જ્યારે કેન્દ્ર (1,4,7,10) અને ત્રિકોણ (1,5,9) ના સ્વામીઓ યુતિ, પરસ્પર દ્રષ્ટિ અથવા પરિવર્તન દ્વારા સંબંધ બનાવે છે, ત્યારે તેઓ રાજયોગ બનાવે છે – જે શક્તિ (કેન્દ્ર) અને સૌભાગ્ય (ત્રિકોણ) નું સંયોજન છે જે જાતકને ઉન્નત કરે છે."
       },
       "options": [
         {
@@ -344,44 +344,44 @@
           "hi": "यह दोष बनाता है",
           "mai": "ई एकटा दोष (खामी) उत्पन्न करैत अछि।",
           "mr": "यह दोष बनाता है",
-          "ta": "It creates a Dosha (flaw)",
-          "te": "It creates a Dosha (flaw)",
-          "bn": "It creates a Dosha (flaw)",
-          "kn": "It creates a Dosha (flaw)",
-          "gu": "It creates a Dosha (flaw)"
+          "ta": "அது ஒரு தோஷத்தை (குறைபாடு) உருவாக்குகிறது",
+          "te": "ఇది దోషాన్ని (లోపాన్ని) సృష్టిస్తుంది",
+          "bn": "এটি একটি দোষ (ত্রুটি) সৃষ্টি করে",
+          "kn": "ಇದು ದೋಷವನ್ನು (ನ್ಯೂನತೆ) ಸೃಷ್ಟಿಸುತ್ತದೆ",
+          "gu": "તે દોષ (ખામી) બનાવે છે"
         },
         {
           "en": "It creates a Raja Yoga",
           "hi": "यह राजयोग बनाता है",
           "mai": "ई एकटा राजा योग उत्पन्न करैत अछि।",
           "mr": "यह राजयोग बनाता है",
-          "ta": "It creates a Raja Yoga",
-          "te": "It creates a Raja Yoga",
-          "bn": "It creates a Raja Yoga",
-          "kn": "It creates a Raja Yoga",
-          "gu": "It creates a Raja Yoga"
+          "ta": "அது ஒரு ராஜ யோகத்தை உருவாக்குகிறது",
+          "te": "ఇది రాజయోగాన్ని సృష్టిస్తుంది",
+          "bn": "এটি একটি রাজযোগ সৃষ্টি করে",
+          "kn": "ಇದು ರಾಜಯೋಗವನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ",
+          "gu": "તે રાજયોગ બનાવે છે"
         },
         {
           "en": "It has no special significance",
           "hi": "इसका कोई विशेष महत्व नहीं",
           "mai": "एकर कोनो विशेष महत्व नहि अछि।",
           "mr": "इसका कोई विशेष महत्व नहीं",
-          "ta": "It has no special significance",
-          "te": "It has no special significance",
-          "bn": "It has no special significance",
-          "kn": "It has no special significance",
-          "gu": "It has no special significance"
+          "ta": "அதற்கு சிறப்பு முக்கியத்துவம் இல்லை",
+          "te": "దీనికి ప్రత్యేక ప్రాముఖ్యత లేదు",
+          "bn": "এর কোন বিশেষ তাৎপর্য নেই",
+          "kn": "ಇದಕ್ಕೆ ಯಾವುದೇ ವಿಶೇಷ ಮಹತ್ವವಿಲ್ಲ",
+          "gu": "તેનો કોઈ ખાસ મહત્વ નથી"
         },
         {
           "en": "It always causes delays",
           "hi": "यह हमेशा विलम्ब करता है",
           "mai": "ई हमेशा विलम्ब उत्पन्न करैत अछि।",
           "mr": "यह हमेशा विलम्ब करता है",
-          "ta": "It always causes delays",
-          "te": "It always causes delays",
-          "bn": "It always causes delays",
-          "kn": "It always causes delays",
-          "gu": "It always causes delays"
+          "ta": "அது எப்போதும் தாமதங்களை ஏற்படுத்துகிறது",
+          "te": "ఇది ఎల్లప్పుడూ జాప్యాలను కలిగిస్తుంది",
+          "bn": "এটি সর্বদা বিলম্ব ঘটায়",
+          "kn": "ಇದು ಯಾವಾಗಲೂ ವಿಳಂಬಗಳಿಗೆ ಕಾರಣವಾಗುತ್ತದೆ",
+          "gu": "તે હંમેશા વિલંબનું કારણ બને છે"
         }
       ]
     },
@@ -393,11 +393,11 @@
         "hi": "अष्टम भाव केवल मृत्यु का सूचक है और इसकी कोई शुभ सूचकता नहीं है।",
         "mai": "८म भाव मात्र मृत्यु क दर्शाबैत अछि आ एकर कोनो सकारात्मक संकेत नहि अछि।",
         "mr": "अष्टम भाव केवल मृत्यु का सूचक है और इसकी कोई शुभ सूचकता नहीं है।",
-        "ta": "The 8th house only signifies death and has no positive significations.",
-        "te": "The 8th house only signifies death and has no positive significations.",
-        "bn": "The 8th house only signifies death and has no positive significations.",
-        "kn": "The 8th house only signifies death and has no positive significations.",
-        "gu": "The 8th house only signifies death and has no positive significations."
+        "ta": "8 ஆம் பாவம் மரணத்தை மட்டுமே குறிக்கிறது மற்றும் நேர்மறையான குறிப்புகள் இல்லை.",
+        "te": "8వ భావం మరణాన్ని మాత్రమే సూచిస్తుంది మరియు సానుకూల సూచనలు లేవు.",
+        "bn": "অষ্টম ভাব শুধুমাত্র মৃত্যুকে বোঝায় এবং এর কোন ইতিবাচক তাৎপর্য নেই।",
+        "kn": "8ನೇ ಭಾವವು ಕೇವಲ ಮರಣವನ್ನು ಸೂಚಿಸುತ್ತದೆ ಮತ್ತು ಯಾವುದೇ ಸಕಾರಾತ್ಮಕ ಸೂಚನೆಗಳನ್ನು ಹೊಂದಿಲ್ಲ.",
+        "gu": "આઠમો ભાવ ફક્ત મૃત્યુ દર્શાવે છે અને તેના કોઈ સકારાત્મક સંકેતો નથી."
       },
       "correctAnswer": false,
       "explanation": {
@@ -405,11 +405,11 @@
         "hi": "अष्टम भाव दीर्घायु, विरासत, बीमा, अनुसंधान, तान्त्रिक ज्ञान और परिवर्तन का भी सूचक है। सशक्त अष्टम भाव दीर्घ आयु, आकस्मिक लाभ और गहन आध्यात्मिक अंतर्दृष्टि दे सकता है।",
         "mai": "८म भाव दीर्घायु, विरासत, बीमा, शोध, गूढ़ ज्ञान, आ परिवर्तन क सेहो दर्शाबैत अछि। एकटा मजबूत ८म भाव दीर्घ जीवन, अचानक लाभ, आ गहन आध्यात्मिक अंतर्दृष्टि क संकेत द सकैत अछि।",
         "mr": "अष्टम भाव दीर्घायु, विरासत, बीमा, अनुसंधान, तान्त्रिक ज्ञान और परिवर्तन का भी सूचक है। सशक्त अष्टम भाव दीर्घ आयु, आकस्मिक लाभ और गहन आध्यात्मिक अंतर्दृष्टि दे सकता है।",
-        "ta": "The 8th house also signifies longevity, inheritance, insurance, research, occult knowledge, and transformation. A strong 8th house can indicate a long life, sudden gains, and deep spiritual insight.",
-        "te": "The 8th house also signifies longevity, inheritance, insurance, research, occult knowledge, and transformation. A strong 8th house can indicate a long life, sudden gains, and deep spiritual insight.",
-        "bn": "The 8th house also signifies longevity, inheritance, insurance, research, occult knowledge, and transformation. A strong 8th house can indicate a long life, sudden gains, and deep spiritual insight.",
-        "kn": "The 8th house also signifies longevity, inheritance, insurance, research, occult knowledge, and transformation. A strong 8th house can indicate a long life, sudden gains, and deep spiritual insight.",
-        "gu": "The 8th house also signifies longevity, inheritance, insurance, research, occult knowledge, and transformation. A strong 8th house can indicate a long life, sudden gains, and deep spiritual insight."
+        "ta": "8 ஆம் பாவம் மேலும் ஆயுள், பரம்பரை சொத்து, காப்பீடு, ஆராய்ச்சி, மறைஞான அறிவு மற்றும் மாற்றம் ஆகியவற்றை குறிக்கிறது. ஒரு வலுவான 8 ஆம் பாவம் நீண்ட ஆயுள், திடீர் ஆதாயங்கள் மற்றும் ஆழ்ந்த ஆன்மீக நுண்ணறிவைக் குறிக்கலாம்.",
+        "te": "8వ భావం దీర్ఘాయువు, వారసత్వం, బీమా, పరిశోధన, రహస్య జ్ఞానం మరియు పరివర్తనను కూడా సూచిస్తుంది. బలమైన 8వ భావం దీర్ఘాయువు, ఆకస్మిక లాభాలు మరియు లోతైన ఆధ్యాత్మిక అంతర్దృష్టిని సూచించగలదు.",
+        "bn": "অষ্টম ভাব আরও বোঝায় আয়ু, উত্তরাধিকার, বীমা, গবেষণা, গুপ্ত জ্ঞান এবং রূপান্তর। একটি শক্তিশালী অষ্টম ভাব দীর্ঘ জীবন, আকস্মিক লাভ এবং গভীর আধ্যাত্মিক অন্তর্দৃষ্টি নির্দেশ করতে পারে।",
+        "kn": "8ನೇ ಭಾವವು ದೀರ್ಘಾಯುಷ್ಯ, ಆನುವಂಶಿಕತೆ, ವಿಮೆ, ಸಂಶೋಧನೆ, ಅತೀಂದ್ರಿಯ ಜ್ಞಾನ ಮತ್ತು ರೂಪಾಂತರವನ್ನು ಸಹ ಸೂಚಿಸುತ್ತದೆ. ಬಲವಾದ 8ನೇ ಭಾವವು ದೀರ್ಘಾಯುಷ್ಯ, ಆಕಸ್ಮಿಕ ಲಾಭಗಳು ಮತ್ತು ಆಳವಾದ ಆಧ್ಯಾತ್ಮಿಕ ಒಳನೋಟವನ್ನು ಸೂಚಿಸಬಹುದು.",
+        "gu": "આઠમો ભાવ આયુષ્ય, વારસો, વીમો, સંશોધન, ગુપ્ત જ્ઞાન અને પરિવર્તન પણ દર્શાવે છે. એક મજબૂત આઠમો ભાવ લાંબુ આયુષ્ય, અચાનક લાભ અને ઊંડી આધ્યાત્મિક સમજણ સૂચવી શકે છે."
       }
     },
     {
@@ -420,11 +420,11 @@
         "hi": "किस भाव समूह को उपचय (वृद्धि के भाव) कहते हैं?",
         "mai": "कोन भाव समूह उपचय (वृद्धिक भाव) कहल जाइत अछि?",
         "mr": "किस भाव समूह को उपचय (वृद्धि के भाव) कहते हैं?",
-        "ta": "Which house group is called Upachaya (houses of growth)?",
-        "te": "Which house group is called Upachaya (houses of growth)?",
-        "bn": "Which house group is called Upachaya (houses of growth)?",
-        "kn": "Which house group is called Upachaya (houses of growth)?",
-        "gu": "Which house group is called Upachaya (houses of growth)?"
+        "ta": "உபச்சய (வளர்ச்சி பாவங்கள்) என்று அழைக்கப்படும் பாவக் குழு எது?",
+        "te": "ఏ భావ సమూహాన్ని ఉపచయ (వృద్ధి భావాలు) అని పిలుస్తారు?",
+        "bn": "কোন ভাব গোষ্ঠীকে উপচয় (বৃদ্ধির ভাব) বলা হয়?",
+        "kn": "ಯಾವ ಭಾವಗಳ ಗುಂಪನ್ನು ಉಪಚಯ (ಬೆಳವಣಿಗೆಯ ಭಾವಗಳು) ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ?",
+        "gu": "કયા ભાવ સમૂહને ઉપચય (વૃદ્ધિના ભાવ) કહેવાય છે?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -432,11 +432,11 @@
         "hi": "उपचय भाव (3, 6, 10, 11) वृद्धि के भाव कहलाते हैं क्योंकि प्राकृतिक पापग्रह (सूर्य, मंगल, शनि) यहाँ अच्छा प्रदर्शन करते हैं। परिणाम समय के साथ सुधरते हैं। लाभ का एकादश भाव भौतिक सफलता के लिए विशेष महत्वपूर्ण है।",
         "mai": "उपचय भाव (३, ६, १०, ११) वृद्धिक भाव कहल जाइत अछि किएक तँ स्वाभाविक पापी ग्रह (सूर्य, मंगल, शनि) एतय नीक प्रदर्शन करैत छथि। परिणाम समयक संग नीक होइत अछि। लाभक ११म भाव भौतिक सफलताक लेल विशेष रूप सँ महत्वपूर्ण अछि।",
         "mr": "उपचय भाव (3, 6, 10, 11) वृद्धि के भाव कहलाते हैं क्योंकि प्राकृतिक पापग्रह (सूर्य, मंगल, शनि) यहाँ अच्छा प्रदर्शन करते हैं। परिणाम समय के साथ सुधरते हैं। लाभ का एकादश भाव भौतिक सफलता के लिए विशेष महत्वपूर्ण है।",
-        "ta": "Upachaya houses (3, 6, 10, 11) are called growth houses because natural malefics (Sun, Mars, Saturn) perform well here. Results improve over time. The 11th house of gains is particularly important for material success.",
-        "te": "Upachaya houses (3, 6, 10, 11) are called growth houses because natural malefics (Sun, Mars, Saturn) perform well here. Results improve over time. The 11th house of gains is particularly important for material success.",
-        "bn": "Upachaya houses (3, 6, 10, 11) are called growth houses because natural malefics (Sun, Mars, Saturn) perform well here. Results improve over time. The 11th house of gains is particularly important for material success.",
-        "kn": "Upachaya houses (3, 6, 10, 11) are called growth houses because natural malefics (Sun, Mars, Saturn) perform well here. Results improve over time. The 11th house of gains is particularly important for material success.",
-        "gu": "Upachaya houses (3, 6, 10, 11) are called growth houses because natural malefics (Sun, Mars, Saturn) perform well here. Results improve over time. The 11th house of gains is particularly important for material success."
+        "ta": "உபச்சய பாவங்கள் (3, 6, 10, 11) வளர்ச்சி பாவங்கள் என்று அழைக்கப்படுகின்றன, ஏனெனில் இயற்கையான அசுப கிரகங்கள் (சூரியன், செவ்வாய், சனி) இங்கு சிறப்பாக செயல்படுகின்றன. முடிவுகள் காலப்போக்கில் மேம்படும். ஆதாயங்களின் 11 ஆம் பாவம் பொருள் வெற்றிக்கு குறிப்பாக முக்கியமானது.",
+        "te": "ఉపచయ భావాలు (3, 6, 10, 11) వృద్ధి భావాలు అని పిలుస్తారు ఎందుకంటే సహజ పాప గ్రహాలు (సూర్యుడు, అంగారకుడు, శని) ఇక్కడ బాగా పని చేస్తాయి. ఫలితాలు కాలక్రమేణా మెరుగుపడతాయి. లాభాల 11వ భావం భౌతిక విజయానికి ప్రత్యేకంగా ముఖ్యమైనది.",
+        "bn": "উপচয় ভাব (৩, ৬, ১০, ১১) বৃদ্ধির ভাব বলা হয় কারণ প্রাকৃতিক অশুভ গ্রহরা (রবি, মঙ্গল, শনি) এখানে ভালো ফল দেয়। সময় অতিবাহিত হওয়ার সাথে সাথে ফল উন্নত হয়। লাভের একাদশ ভাব পার্থিব সাফল্যের জন্য বিশেষভাবে গুরুত্বপূর্ণ।",
+        "kn": "ಉಪಚಯ ಭಾವಗಳು (3, 6, 10, 11) ಬೆಳವಣಿಗೆಯ ಭಾವಗಳು ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ ಏಕೆಂದರೆ ನೈಸರ್ಗಿಕ ಪಾಪಗ್ರಹಗಳು (ಸೂರ್ಯ, ಮಂಗಳ, ಶನಿ) ಇಲ್ಲಿ ಉತ್ತಮವಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತವೆ. ಫಲಿತಾಂಶಗಳು ಕಾಲಾನಂತರದಲ್ಲಿ ಸುಧಾರಿಸುತ್ತವೆ. ಲಾಭಗಳ 11ನೇ ಭಾವವು ಭೌತಿಕ ಯಶಸ್ಸಿಗೆ ನಿರ್ದಿಷ್ಟವಾಗಿ ಮುಖ್ಯವಾಗಿದೆ.",
+        "gu": "ઉપચય ભાવ (3, 6, 10, 11) ને વૃદ્ધિના ભાવ કહેવાય છે કારણ કે કુદરતી પાપ ગ્રહો (સૂર્ય, મંગળ, શનિ) અહીં સારું પ્રદર્શન કરે છે. પરિણામો સમય જતાં સુધરે છે. લાભનો 11મો ભાવ ભૌતિક સફળતા માટે ખાસ કરીને મહત્વપૂર્ણ છે."
       },
       "options": [
         {
@@ -493,11 +493,11 @@
         "hi": "चतुर्थ भाव माता, सम्पत्ति, वाहन और मानसिक शांति का सूचक है।",
         "mai": "४म भाव माता, संपत्ति, वाहन, आ भावनात्मक शांति क दर्शाबैत अछि।",
         "mr": "चतुर्थ भाव माता, सम्पत्ति, वाहन और मानसिक शांति का सूचक है।",
-        "ta": "The 4th house signifies mother, property, vehicles, and emotional peace.",
-        "te": "The 4th house signifies mother, property, vehicles, and emotional peace.",
-        "bn": "The 4th house signifies mother, property, vehicles, and emotional peace.",
-        "kn": "The 4th house signifies mother, property, vehicles, and emotional peace.",
-        "gu": "The 4th house signifies mother, property, vehicles, and emotional peace."
+        "ta": "4 ஆம் பாவம் தாய், சொத்து, வாகனங்கள் மற்றும் மன அமைதி ஆகியவற்றைக் குறிக்கிறது.",
+        "te": "4వ భావం తల్లి, ఆస్తి, వాహనాలు మరియు మానసిక శాంతిని సూచిస్తుంది.",
+        "bn": "চতুর্থ ভাব মা, সম্পত্তি, যানবাহন এবং মানসিক শান্তির ইঙ্গিত দেয়।",
+        "kn": "4ನೇ ಭಾವವು ತಾಯಿ, ಆಸ್ತಿ, ವಾಹನಗಳು ಮತ್ತು ಭಾವನಾತ್ಮಕ ಶಾಂತಿಯನ್ನು ಸೂಚಿಸುತ್ತದೆ.",
+        "gu": "ચોથો ભાવ માતા, સંપત્તિ, વાહનો અને ભાવનાત્મક શાંતિ દર્શાવે છે."
       },
       "correctAnswer": true,
       "explanation": {
@@ -505,11 +505,11 @@
         "hi": "चतुर्थ भाव (सुख स्थान) माता, गृह, भू-सम्पत्ति, वाहन, आन्तरिक संतुष्टि, शिक्षा और हृदय को कवर करता है। सशक्त चतुर्थ भाव पारिवारिक सुख और भावनात्मक स्थिरता देता है।",
         "mai": "४म भाव (सुख स्थान, सुखक भाव) माता, घर, भू-संपत्ति, वाहन, आंतरिक संतोष, औपचारिक शिक्षा, आ हृदय कँ शामिल करैत अछि। एकटा मजबूत ४म भाव घरेलू सुख आ भावनात्मक स्थिरता दैत अछि।",
         "mr": "चतुर्थ भाव (सुख स्थान) माता, गृह, भू-सम्पत्ति, वाहन, आन्तरिक संतुष्टि, शिक्षा और हृदय को कवर करता है। सशक्त चतुर्थ भाव पारिवारिक सुख और भावनात्मक स्थिरता देता है।",
-        "ta": "The 4th house (Sukha Sthana, house of happiness) covers mother, home, landed property, vehicles, inner contentment, formal education, and the heart. A strong 4th house gives domestic happiness and emotional stability.",
-        "te": "The 4th house (Sukha Sthana, house of happiness) covers mother, home, landed property, vehicles, inner contentment, formal education, and the heart. A strong 4th house gives domestic happiness and emotional stability.",
-        "bn": "The 4th house (Sukha Sthana, house of happiness) covers mother, home, landed property, vehicles, inner contentment, formal education, and the heart. A strong 4th house gives domestic happiness and emotional stability.",
-        "kn": "The 4th house (Sukha Sthana, house of happiness) covers mother, home, landed property, vehicles, inner contentment, formal education, and the heart. A strong 4th house gives domestic happiness and emotional stability.",
-        "gu": "The 4th house (Sukha Sthana, house of happiness) covers mother, home, landed property, vehicles, inner contentment, formal education, and the heart. A strong 4th house gives domestic happiness and emotional stability."
+        "ta": "4 ஆம் பாவம் (சுக ஸ்தானம், மகிழ்ச்சியின் பாவம்) தாய், வீடு, நிலச் சொத்து, வாகனங்கள், உள் திருப்தி, முறையான கல்வி மற்றும் இதயத்தை உள்ளடக்கியது. ஒரு வலுவான 4 ஆம் பாவம் குடும்ப மகிழ்ச்சி மற்றும் உணர்ச்சி நிலைத்தன்மையை அளிக்கிறது.",
+        "te": "4వ భావం (సుఖ స్థానం, ఆనంద భావం) తల్లి, ఇల్లు, భూమి ఆస్తి, వాహనాలు, అంతర్గత సంతృప్తి, అధికారిక విద్య మరియు హృదయాన్ని కవర్ చేస్తుంది. బలమైన 4వ భావం గృహ ఆనందం మరియు భావోద్వేగ స్థిరత్వాన్ని ఇస్తుంది.",
+        "bn": "চতুর্থ ভাব (সুখ স্থান, সুখের ভাব) মা, গৃহ, স্থাবর সম্পত্তি, যানবাহন, অভ্যন্তরীণ সন্তুষ্টি, আনুষ্ঠানিক শিক্ষা এবং হৃদয়কে বোঝায়। একটি শক্তিশালী চতুর্থ ভাব গার্হস্থ্য সুখ এবং মানসিক স্থিতিশীলতা প্রদান করে।",
+        "kn": "4ನೇ ಭಾವ (ಸುಖ ಸ್ಥಾನ, ಸಂತೋಷದ ಭಾವ) ತಾಯಿ, ಮನೆ, ಭೂಮಿ ಆಸ್ತಿ, ವಾಹನಗಳು, ಆಂತರಿಕ ಸಂತೃಪ್ತಿ, ಔಪಚಾರಿಕ ಶಿಕ್ಷಣ ಮತ್ತು ಹೃದಯವನ್ನು ಒಳಗೊಂಡಿದೆ. ಬಲವಾದ 4ನೇ ಭಾವವು ಗೃಹ ಸಂತೋಷ ಮತ್ತು ಭಾವನಾತ್ಮಕ ಸ್ಥಿರತೆಯನ್ನು ನೀಡುತ್ತದೆ.",
+        "gu": "ચોથો ભાવ (સુખ સ્થાન, સુખનો ભાવ) માતા, ઘર, જમીન-સંપત્તિ, વાહનો, આંતરિક સંતોષ, ઔપચારિક શિક્ષણ અને હૃદયને આવરી લે છે. એક મજબૂત ચોથો ભાવ ઘરેલું સુખ અને ભાવનાત્મક સ્થિરતા આપે છે."
       }
     },
     {
@@ -520,11 +520,11 @@
         "hi": "यदि सप्तम भाव का स्वामी द्वादश भाव में हो, तो यह क्या संकेत कर सकता है?",
         "mai": "जँ ७म भावक स्वामी १२म भाव मे स्थित अछि, तँ ई की संकेत द सकैत अछि?",
         "mr": "यदि सप्तम भाव का स्वामी द्वादश भाव में हो, तो यह क्या संकेत कर सकता है?",
-        "ta": "If the lord of the 7th house is placed in the 12th house, what could it indicate?",
-        "te": "If the lord of the 7th house is placed in the 12th house, what could it indicate?",
-        "bn": "If the lord of the 7th house is placed in the 12th house, what could it indicate?",
-        "kn": "If the lord of the 7th house is placed in the 12th house, what could it indicate?",
-        "gu": "If the lord of the 7th house is placed in the 12th house, what could it indicate?"
+        "ta": "7 ஆம் பாவ அதிபதி 12 ஆம் பாவத்தில் இருந்தால், அது எதைக் குறிக்கலாம்?",
+        "te": "7వ భావ అధిపతి 12వ భావంలో ఉంటే, అది ఏమి సూచించగలదు?",
+        "bn": "যদি সপ্তম ভাবের অধিপতি দ্বাদশ ভাবে স্থাপন হয়, তাহলে এটি কী নির্দেশ করতে পারে?",
+        "kn": "7ನೇ ಭಾವದ ಅಧಿಪತಿ 12ನೇ ಭಾವದಲ್ಲಿ ಇರಿಸಿದರೆ, ಅದು ಏನನ್ನು ಸೂಚಿಸಬಹುದು?",
+        "gu": "જો સાતમા ભાવનો સ્વામી બારમા ભાવમાં હોય, તો તે શું સૂચવી શકે છે?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -532,11 +532,11 @@
         "hi": "जब सप्तम स्वामी (विवाह) द्वादश (विदेश, शय्या सुख, व्यय) में जाता है, तो अक्सर विदेशी जीवनसाथी, विदेश में विवाह, या विवाह के बाद विदेश में बसने का संकेत होता है। यह आध्यात्मिक साझेदारी का भी संकेत हो सकता है।",
         "mai": "जखन ७म स्वामी (विवाह) १२म भाव (विदेशी भूमि, शयन सुख, आ हानि) मे जाइत अछि, तँ ई प्रायः विदेशी जीवनसाथी, विदेश मे विवाह, ओ विवाहक बाद विदेश मे बसबाक संकेत दैत अछि। ई आध्यात्मिक साझेदारी सेहो दर्शा सकैत अछि।",
         "mr": "जब सप्तम स्वामी (विवाह) द्वादश (विदेश, शय्या सुख, व्यय) में जाता है, तो अक्सर विदेशी जीवनसाथी, विदेश में विवाह, या विवाह के बाद विदेश में बसने का संकेत होता है। यह आध्यात्मिक साझेदारी का भी संकेत हो सकता है।",
-        "ta": "When the 7th lord (marriage) goes to the 12th (foreign lands, bed pleasures, loss), it often indicates a foreign spouse, marriage abroad, or settling in a foreign country after marriage. It can also indicate spiritual partnership.",
-        "te": "When the 7th lord (marriage) goes to the 12th (foreign lands, bed pleasures, loss), it often indicates a foreign spouse, marriage abroad, or settling in a foreign country after marriage. It can also indicate spiritual partnership.",
-        "bn": "When the 7th lord (marriage) goes to the 12th (foreign lands, bed pleasures, loss), it often indicates a foreign spouse, marriage abroad, or settling in a foreign country after marriage. It can also indicate spiritual partnership.",
-        "kn": "When the 7th lord (marriage) goes to the 12th (foreign lands, bed pleasures, loss), it often indicates a foreign spouse, marriage abroad, or settling in a foreign country after marriage. It can also indicate spiritual partnership.",
-        "gu": "When the 7th lord (marriage) goes to the 12th (foreign lands, bed pleasures, loss), it often indicates a foreign spouse, marriage abroad, or settling in a foreign country after marriage. It can also indicate spiritual partnership."
+        "ta": "7 ஆம் அதிபதி (திருமணம்) 12 ஆம் பாவத்திற்கு (வெளிநாடுகள், படுக்கை இன்பங்கள், இழப்பு) செல்லும் போது, அது பெரும்பாலும் வெளிநாட்டு துணை, வெளிநாட்டில் திருமணம் அல்லது திருமணத்திற்குப் பிறகு வெளிநாட்டில் குடியேறுவதைக் குறிக்கிறது. இது ஆன்மீக கூட்டாண்மையையும் குறிக்கலாம்.",
+        "te": "7వ అధిపతి (వివాహం) 12వ భావంలోకి (విదేశీ భూములు, శయన సుఖాలు, నష్టం) వెళ్ళినప్పుడు, అది తరచుగా విదేశీ జీవిత భాగస్వామిని, విదేశాలలో వివాహాన్ని లేదా వివాహం తర్వాత విదేశీ దేశంలో స్థిరపడటాన్ని సూచిస్తుంది. ఇది ఆధ్యాత్మిక భాగస్వామ్యాన్ని కూడా సూచించగలదు.",
+        "bn": "যখন সপ্তম অধিপতি (বিবাহ) দ্বাদশ ভাবে (বিদেশ, শয্যা সুখ, ক্ষতি) যায়, এটি প্রায়শই একজন বিদেশী জীবনসঙ্গী, বিদেশে বিবাহ, বা বিবাহের পর বিদেশে বসতি স্থাপন নির্দেশ করে। এটি আধ্যাত্মিক অংশীদারিত্বও নির্দেশ করতে পারে।",
+        "kn": "7ನೇ ಅಧಿಪತಿ (ವಿವಾಹ) 12ನೇ ಭಾವಕ್ಕೆ (ವಿದೇಶಿ ಭೂಮಿಗಳು, ಶಯನ ಸುಖ, ನಷ್ಟ) ಹೋದಾಗ, ಅದು ಸಾಮಾನ್ಯವಾಗಿ ವಿದೇಶಿ ಸಂಗಾತಿ, ವಿದೇಶದಲ್ಲಿ ವಿವಾಹ ಅಥವಾ ವಿವಾಹದ ನಂತರ ವಿದೇಶದಲ್ಲಿ ನೆಲೆಸುವುದನ್ನು ಸೂಚಿಸುತ್ತದೆ. ಇದು ಆಧ್ಯಾತ್ಮಿಕ ಪಾಲುದಾರಿಕೆಯನ್ನೂ ಸೂಚಿಸಬಹುದು.",
+        "gu": "જ્યારે સાતમા ભાવનો સ્વામી (લગ્ન) બારમા ભાવમાં (વિદેશી ભૂમિ, શય્યા સુખ, નુકસાન) જાય છે, ત્યારે તે ઘણીવાર વિદેશી જીવનસાથી, વિદેશમાં લગ્ન અથવા લગ્ન પછી વિદેશમાં સ્થાયી થવાનું સૂચવે છે. તે આધ્યાત્મિક ભાગીદારી પણ સૂચવી શકે છે."
       },
       "options": [
         {
@@ -544,44 +544,44 @@
           "hi": "शीघ्र विवाह",
           "mai": "पहिनहिं विवाह",
           "mr": "शीघ्र विवाह",
-          "ta": "Early marriage",
-          "te": "Early marriage",
-          "bn": "Early marriage",
-          "kn": "Early marriage",
-          "gu": "Early marriage"
+          "ta": "முன்கூட்டிய திருமணம்",
+          "te": "త్వరగా వివాహం",
+          "bn": "দ্রুত বিবাহ",
+          "kn": "ಶೀಘ್ರ ವಿವಾಹ",
+          "gu": "વહેલા લગ્ન"
         },
         {
           "en": "Spouse from a foreign land or settlement abroad after marriage",
           "hi": "विदेशी जीवनसाथी या विवाह के बाद विदेश में बसना",
           "mai": "विदेशी भूमि सँ जीवनसाथी ओ विवाहक बाद विदेश मे बसनाइ",
           "mr": "विदेशी जीवनसाथी या विवाह के बाद विदेश में बसना",
-          "ta": "Spouse from a foreign land or settlement abroad after marriage",
-          "te": "Spouse from a foreign land or settlement abroad after marriage",
-          "bn": "Spouse from a foreign land or settlement abroad after marriage",
-          "kn": "Spouse from a foreign land or settlement abroad after marriage",
-          "gu": "Spouse from a foreign land or settlement abroad after marriage"
+          "ta": "வெளிநாட்டு துணை அல்லது திருமணத்திற்குப் பிறகு வெளிநாட்டில் குடியேறுதல்",
+          "te": "విదేశీ దేశం నుండి జీవిత భాగస్వామి లేదా వివాహం తర్వాత విదేశాలలో స్థిరపడటం",
+          "bn": "বিদেশী জীবনসঙ্গী অথবা বিবাহের পর বিদেশে বসতি স্থাপন",
+          "kn": "ವಿದೇಶಿ ಸಂಗಾತಿ ಅಥವಾ ವಿವಾಹದ ನಂತರ ವಿದೇಶದಲ್ಲಿ ನೆಲೆಸುವುದು",
+          "gu": "વિદેશી ભૂમિનો જીવનસાથી અથવા લગ્ન પછી વિદેશમાં સ્થાયી થવું"
         },
         {
           "en": "No marriage at all",
           "hi": "विवाह बिल्कुल नहीं",
           "mai": "बिल्कुल विवाह नहि",
           "mr": "विवाह बिल्कुल नहीं",
-          "ta": "No marriage at all",
-          "te": "No marriage at all",
-          "bn": "No marriage at all",
-          "kn": "No marriage at all",
-          "gu": "No marriage at all"
+          "ta": "திருமணமே இல்லை",
+          "te": "అసలు వివాహం లేదు",
+          "bn": "একদমই বিবাহ নয়",
+          "kn": "ವಿವಾಹವೇ ಇಲ್ಲ",
+          "gu": "બિલકુલ લગ્ન નહીં"
         },
         {
           "en": "Spouse will be very wealthy",
           "hi": "जीवनसाथी बहुत धनी होगा",
           "mai": "जीवनसाथी बहुत धनी हेताह।",
           "mr": "जीवनसाथी बहुत धनी होगा",
-          "ta": "Spouse will be very wealthy",
-          "te": "Spouse will be very wealthy",
-          "bn": "Spouse will be very wealthy",
-          "kn": "Spouse will be very wealthy",
-          "gu": "Spouse will be very wealthy"
+          "ta": "துணை மிகவும் செல்வந்தராக இருப்பார்",
+          "te": "జీవిత భాగస్వామి చాలా ధనవంతుడు అవుతారు",
+          "bn": "জীবনসঙ্গী খুব ধনী হবে",
+          "kn": "ಸಂಗಾತಿಯು ಬಹಳ ಶ್ರೀಮಂತರಾಗಿರುತ್ತಾರೆ",
+          "gu": "જીવનસાથી ખૂબ ધનવાન હશે"
         }
       ]
     },
@@ -593,11 +593,11 @@
         "hi": "दशम भाव मुख्य रूप से किसका सूचक है?",
         "mai": "१०म भाव मुख्य रूप सँ दर्शाबैत अछि:",
         "mr": "दशम भाव मुख्य रूप से किसका सूचक है?",
-        "ta": "The 10th house primarily signifies:",
-        "te": "The 10th house primarily signifies:",
-        "bn": "The 10th house primarily signifies:",
-        "kn": "The 10th house primarily signifies:",
-        "gu": "The 10th house primarily signifies:"
+        "ta": "10 ஆம் பாவம் முதன்மையாக குறிக்கிறது:",
+        "te": "10వ భావం ప్రధానంగా సూచిస్తుంది:",
+        "bn": "দশম ভাব প্রধানত নির্দেশ করে:",
+        "kn": "10ನೇ ಭಾವವು ಪ್ರಧಾನವಾಗಿ ಸೂಚಿಸುತ್ತದೆ:",
+        "gu": "દસમો ભાવ મુખ્યત્વે દર્શાવે છે:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -605,11 +605,11 @@
         "hi": "दशम भाव (कर्म भाव) कुण्डली का सबसे दृश्य बिन्दु है  –  मध्यावकाश। यह कैरियर, व्यवसाय, सार्वजनिक प्रतिष्ठा, अधिकार और उन कर्मों पर शासन करता है जिनके लिए आप संसार में जाने जाते हैं।",
         "mai": "१०म भाव (कर्म भाव) कुंडलीक सबसँ दृश्यमान बिंदु छी – मध्य आकाश। ई करियर, पेशा, सार्वजनिक प्रतिष्ठा, अधिकार, आ ओहि कार्यक नियंत्रित करैत अछि जाहि सँ अहाँ संसार मे जानल जाइत छी।",
         "mr": "दशम भाव (कर्म भाव) कुण्डली का सबसे दृश्य बिन्दु है  –  मध्यावकाश। यह कैरियर, व्यवसाय, सार्वजनिक प्रतिष्ठा, अधिकार और उन कर्मों पर शासन करता है जिनके लिए आप संसार में जाने जाते हैं।",
-        "ta": "The 10th house (Karma Bhava) is the most visible point of the chart  –  the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world.",
-        "te": "The 10th house (Karma Bhava) is the most visible point of the chart  –  the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world.",
-        "bn": "The 10th house (Karma Bhava) is the most visible point of the chart  –  the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world.",
-        "kn": "The 10th house (Karma Bhava) is the most visible point of the chart  –  the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world.",
-        "gu": "The 10th house (Karma Bhava) is the most visible point of the chart  –  the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world."
+        "ta": "10 ஆம் பாவம் (கர்ம பாவம்) ஜாதகத்தின் மிகவும் வெளிப்படையான புள்ளி – மத்திய ஆகாயம். இது தொழில், பணி, பொது நற்பெயர், அதிகாரம் மற்றும் உலகில் நீங்கள் அறியப்படும் செயல்களை ஆளுகிறது.",
+        "te": "10వ భావం (కర్మ భావం) జాతక చక్రంలో అత్యంత స్పష్టమైన బిందువు – మధ్య ఆకాశం. ఇది వృత్తి, ఉద్యోగం, ప్రజా ప్రతిష్ట, అధికారం మరియు ప్రపంచంలో మీరు తెలిసిన చర్యలను పాలిస్తుంది.",
+        "bn": "দশম ভাব (কর্ম ভাব) জন্মছকের সবচেয়ে দৃশ্যমান বিন্দু – মধ্যাকাশ। এটি কর্মজীবন, পেশা, জনসম্মুখে খ্যাতি, কর্তৃত্ব এবং পৃথিবীতে আপনার পরিচিত কর্মগুলিকে নির্দেশ করে।",
+        "kn": "10ನೇ ಭಾವ (ಕರ್ಮ ಭಾವ) ಕುಂಡಲಿಯ ಅತ್ಯಂತ ಗೋಚರ ಬಿಂದುವಾಗಿದೆ – ಮಧ್ಯಗಗನ. ಇದು ವೃತ್ತಿ, ಉದ್ಯೋಗ, ಸಾರ್ವಜನಿಕ ಖ್ಯಾತಿ, ಅಧಿಕಾರ ಮತ್ತು ನೀವು ಜಗತ್ತಿನಲ್ಲಿ ಗುರುತಿಸಲ್ಪಟ್ಟಿರುವ ಕಾರ್ಯಗಳನ್ನು ನಿಯಂತ್ರಿಸುತ್ತದೆ.",
+        "gu": "દસમો ભાવ (કર્મ ભાવ) કુંડળીનો સૌથી દૃશ્યમાન બિંદુ છે – મધ્ય આકાશ. તે કારકિર્દી, વ્યવસાય, જાહેર પ્રતિષ્ઠા, સત્તા અને તમે દુનિયામાં જે કાર્યો માટે જાણીતા છો તેનું સંચાલન કરે છે."
       },
       "options": [
         {
@@ -617,44 +617,44 @@
           "hi": "संतान और शिक्षा",
           "mai": "संतान आ शिक्षा",
           "mr": "संतान और शिक्षा",
-          "ta": "Children and education",
-          "te": "Children and education",
-          "bn": "Children and education",
-          "kn": "Children and education",
-          "gu": "Children and education"
+          "ta": "குழந்தைகள் மற்றும் கல்வி",
+          "te": "పిల్లలు మరియు విద్య",
+          "bn": "সন্তান এবং শিক্ষা",
+          "kn": "ಮಕ್ಕಳು ಮತ್ತು ಶಿಕ್ಷಣ",
+          "gu": "સંતાન અને શિક્ષણ"
         },
         {
           "en": "Career, public reputation, and karma",
           "hi": "कैरियर, सार्वजनिक प्रतिष्ठा और कर्म",
           "mai": "करियर, सार्वजनिक प्रतिष्ठा, आ कर्म",
           "mr": "कैरियर, सार्वजनिक प्रतिष्ठा और कर्म",
-          "ta": "Career, public reputation, and karma",
-          "te": "Career, public reputation, and karma",
-          "bn": "Career, public reputation, and karma",
-          "kn": "Career, public reputation, and karma",
-          "gu": "Career, public reputation, and karma"
+          "ta": "தொழில், பொது நற்பெயர் மற்றும் கர்மா",
+          "te": "వృత్తి, ప్రజా ప్రతిష్ట మరియు కర్మ",
+          "bn": "কর্মজীবন, জনসম্মুখে খ্যাতি এবং কর্মফল",
+          "kn": "ವೃತ್ತಿ, ಸಾರ್ವಜನಿಕ ಖ್ಯಾತಿ ಮತ್ತು ಕರ್ಮ",
+          "gu": "કારકિર્દી, જાહેર પ્રતિષ્ઠા અને કર્મ"
         },
         {
           "en": "Marriage and partnerships",
           "hi": "विवाह और साझेदारी",
           "mai": "विवाह आ साझेदारी",
           "mr": "विवाह और साझेदारी",
-          "ta": "Marriage and partnerships",
-          "te": "Marriage and partnerships",
-          "bn": "Marriage and partnerships",
-          "kn": "Marriage and partnerships",
-          "gu": "Marriage and partnerships"
+          "ta": "திருமணம் மற்றும் கூட்டாண்மைகள்",
+          "te": "వివాహం మరియు భాగస్వామ్యాలు",
+          "bn": "বিবাহ এবং অংশীদারিত্ব",
+          "kn": "ವಿವಾಹ ಮತ್ತು ಪಾಲುದಾರಿಕೆಗಳು",
+          "gu": "લગ્ન અને ભાગીદારી"
         },
         {
           "en": "Enemies and disease",
           "hi": "शत्रु और रोग",
           "mai": "शत्रु आ रोग",
           "mr": "शत्रु और रोग",
-          "ta": "Enemies and disease",
-          "te": "Enemies and disease",
-          "bn": "Enemies and disease",
-          "kn": "Enemies and disease",
-          "gu": "Enemies and disease"
+          "ta": "எதிரிகள் மற்றும் நோய்",
+          "te": "శత్రువులు మరియు వ్యాధి",
+          "bn": "শত্রু এবং রোগ",
+          "kn": "ಶತ್ರುಗಳು ಮತ್ತು ರೋಗ",
+          "gu": "શત્રુઓ અને રોગ"
         }
       ]
     }

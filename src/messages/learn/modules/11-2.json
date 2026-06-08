@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 11-1: विंशोत्तरी दशा",
         "mai": "मॉड्यूल ११-१: विंशोत्तरी दशा",
         "mr": "मॉड्यूल 11-1: विंशोत्तरी दशा",
-        "ta": "Module 11-1: Vimshottari Dasha",
-        "te": "Module 11-1: Vimshottari Dasha",
-        "bn": "Module 11-1: Vimshottari Dasha",
-        "kn": "Module 11-1: Vimshottari Dasha",
-        "gu": "Module 11-1: Vimshottari Dasha"
+        "ta": "தொகுதி 11-1: விம்சோத்தரி தசை",
+        "te": "మాడ్యూల్ 11-1: వింశోత్తరి దశ",
+        "bn": "মডিউল ১১-১: বিংশোত্তরী দশা",
+        "kn": "ಮಾಡ್ಯೂಲ್ 11-1: ವಿಂಶೋತ್ತರಿ ದಶಾ",
+        "gu": "મોડ્યુલ 11-1: વિંશોત્તરી દશા"
       },
       "href": "/learn/modules/11-1"
     },
@@ -42,11 +42,11 @@
         "hi": "मॉड्यूल 11-3: दशा एवं गोचर आच्छादन",
         "mai": "मॉड्यूल ११-३: दशा आ गोचर अध्यारोपण",
         "mr": "मॉड्यूल 11-3: दशा एवं गोचर आच्छादन",
-        "ta": "Module 11-3: Dasha & Transit Overlay",
-        "te": "Module 11-3: Dasha & Transit Overlay",
-        "bn": "Module 11-3: Dasha & Transit Overlay",
-        "kn": "Module 11-3: Dasha & Transit Overlay",
-        "gu": "Module 11-3: Dasha & Transit Overlay"
+        "ta": "தொகுதி 11-3: தசை மற்றும் கோச்சார மேலடுக்கு",
+        "te": "మాడ్యూల్ 11-3: దశ మరియు గోచారం అతివ్యాప్తి",
+        "bn": "মডিউল ১১-৩: দশা ও গোচর সমন্বয়",
+        "kn": "ಮಾಡ್ಯೂಲ್ 11-3: ದಶಾ ಮತ್ತು ಗೋಚಾರ ಅತಿಕ್ರಮಣ",
+        "gu": "મોડ્યુલ 11-3: દશા અને ગોચરનો સંયોગ"
       },
       "href": "/learn/modules/11-3"
     },
@@ -56,11 +56,11 @@
         "hi": "दशा विस्तार",
         "mai": "दशासभक गहन अध्ययन",
         "mr": "दशा विस्तार",
-        "ta": "Dashas Deep Dive",
-        "te": "Dashas Deep Dive",
-        "bn": "Dashas Deep Dive",
-        "kn": "Dashas Deep Dive",
-        "gu": "Dashas Deep Dive"
+        "ta": "தசாக்களின் ஆழமான ஆய்வு",
+        "te": "దశలపై లోతైన విశ్లేషణ",
+        "bn": "দশা বিষয়ক গভীর আলোচনা",
+        "kn": "ದಶಾಗಳ ಆಳವಾದ ವಿಶ್ಲೇಷಣೆ",
+        "gu": "દશાઓનું ઊંડાણપૂર્વક વિશ્લેષણ"
       },
       "href": "/learn/dashas"
     }
@@ -72,24 +72,24 @@
       "question": {
         "en": "What is the total cycle length of the Yogini Dasha system?",
         "hi": "योगिनी दशा पद्धति के चक्र की कुल अवधि कितनी है?",
-        "ta": "What is the total cycle length of the Yogini Dasha system?",
-        "te": "What is the total cycle length of the Yogini Dasha system?",
-        "bn": "What is the total cycle length of the Yogini Dasha system?",
-        "kn": "What is the total cycle length of the Yogini Dasha system?",
+        "ta": "யோகினி தசா அமைப்பின் மொத்த சுழற்சி காலம் என்ன?",
+        "te": "యోగినీ దశ వ్యవస్థ యొక్క మొత్తం చక్ర కాలం ఎంత?",
+        "bn": "যোগিনী দশা পদ্ধতির মোট চক্রের দৈর্ঘ্য কত?",
+        "kn": "ಯೋಗಿನಿ ದಶಾ ಪದ್ಧತಿಯ ಒಟ್ಟು ಚಕ್ರದ ಅವಧಿ ಎಷ್ಟು?",
         "mr": "योगिनी दशा पद्धति के चक्र की कुल अवधि कितनी है?",
-        "gu": "What is the total cycle length of the Yogini Dasha system?",
+        "gu": "યોગિની દશા પ્રણાલીની કુલ ચક્ર અવધિ કેટલી છે?",
         "mai": "योगिनी दशा प्रणालीक कुल चक्रक अवधि की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The Yogini Dasha cycle totals 36 years: Mangala(1) + Pingala(2) + Dhanya(3) + Bhramari(4) + Bhadrika(5) + Ulka(6) + Siddha(7) + Sankata(8) = 36. It repeats multiple times within a lifetime, making it useful for quick confirmation.",
         "hi": "योगिनी दशा चक्र कुल 36 वर्ष है: मंगला(1) + पिंगला(2) + धन्या(3) + भ्रामरी(4) + भद्रिका(5) + उल्का(6) + सिद्धा(7) + संकटा(8) = 36। यह जीवनकाल में कई बार दोहराता है, जिससे यह शीघ्र पुष्टि के लिए उपयोगी है।",
-        "ta": "The Yogini Dasha cycle totals 36 years: Mangala(1) + Pingala(2) + Dhanya(3) + Bhramari(4) + Bhadrika(5) + Ulka(6) + Siddha(7) + Sankata(8) = 36. It repeats multiple times within a lifetime, making it useful for quick confirmation.",
-        "te": "The Yogini Dasha cycle totals 36 years: Mangala(1) + Pingala(2) + Dhanya(3) + Bhramari(4) + Bhadrika(5) + Ulka(6) + Siddha(7) + Sankata(8) = 36. It repeats multiple times within a lifetime, making it useful for quick confirmation.",
-        "bn": "The Yogini Dasha cycle totals 36 years: Mangala(1) + Pingala(2) + Dhanya(3) + Bhramari(4) + Bhadrika(5) + Ulka(6) + Siddha(7) + Sankata(8) = 36. It repeats multiple times within a lifetime, making it useful for quick confirmation.",
-        "kn": "The Yogini Dasha cycle totals 36 years: Mangala(1) + Pingala(2) + Dhanya(3) + Bhramari(4) + Bhadrika(5) + Ulka(6) + Siddha(7) + Sankata(8) = 36. It repeats multiple times within a lifetime, making it useful for quick confirmation.",
+        "ta": "யோகினி தசா சுழற்சி மொத்தம் 36 ஆண்டுகள் ஆகும்: மங்களா(1) + பிங்களா(2) + தன்யா(3) + பிரமாரி(4) + பத்ரிகா(5) + உல்கா(6) + சித்தா(7) + சங்கடா(8) = 36. இது ஒரு வாழ்நாளில் பலமுறை மீண்டும் நிகழ்கிறது, விரைவான உறுதிப்படுத்தலுக்கு இது பயனுள்ளதாக அமைகிறது.",
+        "te": "యోగినీ దశ చక్రం మొత్తం 36 సంవత్సరాలు: మంగళ (1) + పింగళ (2) + ధాన్య (3) + భ్రమరి (4) + భద్రిక (5) + ఉల్క (6) + సిద్ధ (7) + సంకట (8) = 36. ఇది జీవితకాలంలో చాలాసార్లు పునరావృతమవుతుంది, త్వరిత ధృవీకరణకు ఉపయోగపడుతుంది.",
+        "bn": "যোগিনী দশা চক্রের মোট দৈর্ঘ্য ৩৬ বছর: মঙ্গলা(১) + পিঙ্গলা(২) + ধান্যা(৩) + ভ্রমরী(৪) + ভদ্রিকা(৫) + উল্কা(৬) + সিদ্ধা(৭) + সঙ্কটা(৮) = ৩৬। এটি একটি জীবনে একাধিকবার পুনরাবৃত্ত হয়, যা দ্রুত নিশ্চিতকরণের জন্য উপযোগী।",
+        "kn": "ಯೋಗಿನಿ ದಶಾ ಚಕ್ರವು ಒಟ್ಟು 36 ವರ್ಷಗಳು: ಮಂಗಳಾ(1) + ಪಿಂಗಳಾ(2) + ಧನ್ಯಾ(3) + ಭ್ರಮರಿ(4) + ಭದ್ರಿಕಾ(5) + ಉಲ್ಕಾ(6) + ಸಿದ್ಧಾ(7) + ಸಂಕಟಾ(8) = 36. ಇದು ಜೀವನದಲ್ಲಿ ಹಲವು ಬಾರಿ ಪುನರಾವರ್ತನೆಯಾಗುತ್ತದೆ, ಇದು ತ್ವರಿತ ದೃಢೀಕರಣಕ್ಕೆ ಉಪಯುಕ್ತವಾಗಿದೆ.",
         "mr": "योगिनी दशा चक्र कुल 36 वर्ष है: मंगला(1) + पिंगला(2) + धन्या(3) + भ्रामरी(4) + भद्रिका(5) + उल्का(6) + सिद्धा(7) + संकटा(8) = 36। यह जीवनकाल में कई बार दोहराता है, जिससे यह शीघ्र पुष्टि के लिए उपयोगी है।",
-        "gu": "The Yogini Dasha cycle totals 36 years: Mangala(1) + Pingala(2) + Dhanya(3) + Bhramari(4) + Bhadrika(5) + Ulka(6) + Siddha(7) + Sankata(8) = 36. It repeats multiple times within a lifetime, making it useful for quick confirmation.",
+        "gu": "યોગિની દશા ચક્ર કુલ 36 વર્ષનું છે: મંગળા(1) + પિંગળા(2) + ધાન્યા(3) + ભ્રામરી(4) + ભદ્રિકા(5) + ઉલ્કા(6) + સિદ્ધા(7) + સંકટા(8) = 36. તે જીવનકાળ દરમિયાન ઘણી વખત પુનરાવર્તિત થાય છે, જે ઝડપી પુષ્ટિ માટે ઉપયોગી છે.",
         "mai": "योगिनी दशा चक्रक कुल ३६ वर्ष होइत अछि: मंगला(१) + पिंगला(२) + धान्या(३) + भ्रमरी(४) + भद्रिका(५) + उल्का(६) + सिद्धा(७) + संकटा(८) = ३६। ई जीवनकाल मे अनेक बेर दोहराओल जाइत अछि, जेकरा सँ ई शीघ्र पुष्टि लेल उपयोगी बनि जाइत अछि।"
       },
       "options": [
@@ -98,44 +98,44 @@
           "hi": "27 वर्ष",
           "mai": "२७ वर्ष",
           "mr": "27 वर्ष",
-          "ta": "27 years",
-          "te": "27 years",
-          "bn": "27 years",
-          "kn": "27 years",
-          "gu": "27 years"
+          "ta": "27 ஆண்டுகள்",
+          "te": "27 సంవత్సరాలు",
+          "bn": "২৭ বছর",
+          "kn": "27 ವರ್ಷಗಳು",
+          "gu": "27 વર્ષ"
         },
         {
           "en": "36 years",
           "hi": "36 वर्ष",
           "mai": "३६ वर्ष",
           "mr": "36 वर्ष",
-          "ta": "36 years",
-          "te": "36 years",
-          "bn": "36 years",
-          "kn": "36 years",
-          "gu": "36 years"
+          "ta": "36 ஆண்டுகள்",
+          "te": "36 సంవత్సరాలు",
+          "bn": "৩৬ বছর",
+          "kn": "36 ವರ್ಷಗಳು",
+          "gu": "36 વર્ષ"
         },
         {
           "en": "60 years",
           "hi": "60 वर्ष",
           "mai": "६० वर्ष",
           "mr": "60 वर्ष",
-          "ta": "60 years",
-          "te": "60 years",
-          "bn": "60 years",
-          "kn": "60 years",
-          "gu": "60 years"
+          "ta": "60 ஆண்டுகள்",
+          "te": "60 సంవత్సరాలు",
+          "bn": "৬০ বছর",
+          "kn": "60 ವರ್ಷಗಳು",
+          "gu": "60 વર્ષ"
         },
         {
           "en": "120 years",
           "hi": "120 वर्ष",
           "mai": "१२० वर्ष",
           "mr": "120 वर्ष",
-          "ta": "120 years",
-          "te": "120 years",
-          "bn": "120 years",
-          "kn": "120 years",
-          "gu": "120 years"
+          "ta": "120 ஆண்டுகள்",
+          "te": "120 సంవత్సరాలు",
+          "bn": "১২০ বছর",
+          "kn": "120 ವರ್ಷಗಳು",
+          "gu": "120 વર્ષ"
         }
       ]
     },
@@ -145,24 +145,24 @@
       "question": {
         "en": "How many Yoginis are there in the Yogini Dasha system?",
         "hi": "योगिनी दशा पद्धति में कितनी योगिनियाँ हैं?",
-        "ta": "How many Yoginis are there in the Yogini Dasha system?",
-        "te": "How many Yoginis are there in the Yogini Dasha system?",
-        "bn": "How many Yoginis are there in the Yogini Dasha system?",
-        "kn": "How many Yoginis are there in the Yogini Dasha system?",
+        "ta": "யோகினி தசா அமைப்பில் எத்தனை யோகினிகள் உள்ளன?",
+        "te": "యోగినీ దశ వ్యవస్థలో ఎన్ని యోగినులు ఉన్నాయి?",
+        "bn": "যোগিনী দশা পদ্ধতিতে কতজন যোগিনী আছেন?",
+        "kn": "ಯೋಗಿನಿ ದಶಾ ಪದ್ಧತಿಯಲ್ಲಿ ಎಷ್ಟು ಯೋಗಿನಿಗಳು ಇವೆ?",
         "mr": "योगिनी दशा पद्धति में कितनी योगिनियाँ हैं?",
-        "gu": "How many Yoginis are there in the Yogini Dasha system?",
+        "gu": "યોગિની દશા પ્રણાલીમાં કેટલી યોગિનીઓ છે?",
         "mai": "योगिनी दशा प्रणाली मे केटा योगिनीसभ अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "There are 8 Yoginis: Mangala, Pingala, Dhanya, Bhramari, Bhadrika, Ulka, Siddha, and Sankata. Each is assigned 1 through 8 years respectively, and each is linked to a specific planet.",
         "hi": "8 योगिनियाँ हैं: मंगला, पिंगला, धन्या, भ्रामरी, भद्रिका, उल्का, सिद्धा और संकटा। प्रत्येक को क्रमशः 1 से 8 वर्ष आवण्टित हैं, और प्रत्येक एक विशिष्ट ग्रह से जुड़ी है।",
-        "ta": "There are 8 Yoginis: Mangala, Pingala, Dhanya, Bhramari, Bhadrika, Ulka, Siddha, and Sankata. Each is assigned 1 through 8 years respectively, and each is linked to a specific planet.",
-        "te": "There are 8 Yoginis: Mangala, Pingala, Dhanya, Bhramari, Bhadrika, Ulka, Siddha, and Sankata. Each is assigned 1 through 8 years respectively, and each is linked to a specific planet.",
-        "bn": "There are 8 Yoginis: Mangala, Pingala, Dhanya, Bhramari, Bhadrika, Ulka, Siddha, and Sankata. Each is assigned 1 through 8 years respectively, and each is linked to a specific planet.",
-        "kn": "There are 8 Yoginis: Mangala, Pingala, Dhanya, Bhramari, Bhadrika, Ulka, Siddha, and Sankata. Each is assigned 1 through 8 years respectively, and each is linked to a specific planet.",
+        "ta": "8 யோகினிகள் உள்ளன: மங்களா, பிங்களா, தன்யா, பிரமாரி, பத்ரிகா, உல்கா, சித்தா மற்றும் சங்கடா. ஒவ்வொன்றிற்கும் முறையே 1 முதல் 8 ஆண்டுகள் ஒதுக்கப்பட்டுள்ளன, மேலும் ஒவ்வொன்றும் ஒரு குறிப்பிட்ட கிரகத்துடன் இணைக்கப்பட்டுள்ளன.",
+        "te": "8 యోగినులు ఉన్నాయి: మంగళ, పింగళ, ధాన్య, భ్రమరి, భద్రిక, ఉల్క, సిద్ధ మరియు సంకట. ప్రతి యోగినికి వరుసగా 1 నుండి 8 సంవత్సరాలు కేటాయించబడతాయి, మరియు ప్రతి యోగిని ఒక నిర్దిష్ట గ్రహంతో అనుసంధానించబడి ఉంటుంది.",
+        "bn": "৮ জন যোগিনী আছেন: মঙ্গলা, পিঙ্গলা, ধান্যা, ভ্রমরী, ভদ্রিকা, উল্কা, সিদ্ধা এবং সঙ্কটা। প্রত্যেককে যথাক্রমে ১ থেকে ৮ বছর বরাদ্দ করা হয়েছে এবং প্রত্যেকে একটি নির্দিষ্ট গ্রহের সাথে যুক্ত।",
+        "kn": "8 ಯೋಗಿನಿಗಳು ಇವೆ: ಮಂಗಳಾ, ಪಿಂಗಳಾ, ಧನ್ಯಾ, ಭ್ರಮರಿ, ಭದ್ರಿಕಾ, ಉಲ್ಕಾ, ಸಿದ್ಧಾ, ಮತ್ತು ಸಂಕಟಾ. ಪ್ರತಿಯೊಂದಕ್ಕೂ ಕ್ರಮವಾಗಿ 1 ರಿಂದ 8 ವರ್ಷಗಳನ್ನು ನಿಗದಿಪಡಿಸಲಾಗಿದೆ, ಮತ್ತು ಪ್ರತಿಯೊಂದೂ ಒಂದು ನಿರ್ದಿಷ್ಟ ಗ್ರಹಕ್ಕೆ ಸಂಬಂಧಿಸಿದೆ.",
         "mr": "8 योगिनियाँ हैं: मंगला, पिंगला, धन्या, भ्रामरी, भद्रिका, उल्का, सिद्धा और संकटा। प्रत्येक को क्रमशः 1 से 8 वर्ष आवण्टित हैं, और प्रत्येक एक विशिष्ट ग्रह से जुड़ी है।",
-        "gu": "There are 8 Yoginis: Mangala, Pingala, Dhanya, Bhramari, Bhadrika, Ulka, Siddha, and Sankata. Each is assigned 1 through 8 years respectively, and each is linked to a specific planet.",
+        "gu": "8 યોગિનીઓ છે: મંગળા, પિંગળા, ધાન્યા, ભ્રામરી, ભદ્રિકા, ઉલ્કા, સિદ્ધા અને સંકટા. દરેકને અનુક્રમે 1 થી 8 વર્ષ ફાળવવામાં આવે છે, અને દરેક ચોક્કસ ગ્રહ સાથે જોડાયેલી છે.",
         "mai": "८ टा योगिनीसभ अछि: मंगला, पिंगला, धान्या, भ्रमरी, भद्रिका, उल्का, सिद्धा, आ संकटा। प्रत्येक केँ क्रमशः १ सँ ८ वर्ष धरि देल गेल अछि, आ प्रत्येक एकटा विशिष्ट ग्रह सँ जुड़ल अछि।"
       },
       "options": [
@@ -218,24 +218,24 @@
       "question": {
         "en": "Char Dasha is a planet-based system like Vimshottari.",
         "hi": "चर दशा विंशोत्तरी की तरह ग्रह-आधारित पद्धति है।",
-        "ta": "Char Dasha is a planet-based system like Vimshottari.",
-        "te": "Char Dasha is a planet-based system like Vimshottari.",
-        "bn": "Char Dasha is a planet-based system like Vimshottari.",
-        "kn": "Char Dasha is a planet-based system like Vimshottari.",
+        "ta": "சர தசை என்பது விம்சோத்தரி போன்ற ஒரு கிரக அடிப்படையிலான அமைப்பு.",
+        "te": "చర దశ వింశోత్తరి వలె గ్రహ-ఆధారిత వ్యవస్థ.",
+        "bn": "চর দশা বিংশোত্তরী দশার মতো একটি গ্রহ-ভিত্তিক পদ্ধতি।",
+        "kn": "ಚರ ದಶಾ ವಿಂಶೋತ್ತರಿಯಂತೆ ಗ್ರಹ-ಆಧಾರಿತ ಪದ್ಧತಿಯಾಗಿದೆ.",
         "mr": "चर दशा विंशोत्तरी की तरह ग्रह-आधारित पद्धति है।",
-        "gu": "Char Dasha is a planet-based system like Vimshottari.",
+        "gu": "ચર દશા વિંશોત્તરીની જેમ ગ્રહ-આધારિત પ્રણાલી છે.",
         "mai": "चर दशा विंशोत्तरी जकाँ एकटा ग्रह-आधारित प्रणाली अछि।"
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. Char Dasha (Jaimini) is a sign-based (rashi-based) system. Each of the 12 signs gets a dasha period, unlike Vimshottari which assigns periods to 9 planets. The dasha duration for each sign is calculated based on its lord's distance from the sign.",
         "hi": "असत्य। चर दशा (जैमिनी) राशि-आधारित पद्धति है। 12 राशियों में से प्रत्येक को एक दशा काल मिलता है, विंशोत्तरी के विपरीत जो 9 ग्रहों को काल निर्दिष्ट करती है। प्रत्येक राशि की दशा अवधि उसके स्वामी की राशि से दूरी के आधार पर गणित होती है।",
-        "ta": "False. Char Dasha (Jaimini) is a sign-based (rashi-based) system. Each of the 12 signs gets a dasha period, unlike Vimshottari which assigns periods to 9 planets. The dasha duration for each sign is calculated based on its lord's distance from the sign.",
-        "te": "False. Char Dasha (Jaimini) is a sign-based (rashi-based) system. Each of the 12 signs gets a dasha period, unlike Vimshottari which assigns periods to 9 planets. The dasha duration for each sign is calculated based on its lord's distance from the sign.",
-        "bn": "False. Char Dasha (Jaimini) is a sign-based (rashi-based) system. Each of the 12 signs gets a dasha period, unlike Vimshottari which assigns periods to 9 planets. The dasha duration for each sign is calculated based on its lord's distance from the sign.",
-        "kn": "False. Char Dasha (Jaimini) is a sign-based (rashi-based) system. Each of the 12 signs gets a dasha period, unlike Vimshottari which assigns periods to 9 planets. The dasha duration for each sign is calculated based on its lord's distance from the sign.",
+        "ta": "தவறு. சர தசை (ஜைமினி) என்பது ராசி அடிப்படையிலான அமைப்பு. 12 ராசிகளில் ஒவ்வொன்றிற்கும் ஒரு தசா காலம் கிடைக்கும், 9 கிரகங்களுக்கு காலங்களை ஒதுக்கும் விம்சோத்தரிக்கு மாறாக. ஒவ்வொரு ராசியின் தசா காலமும் அதன் அதிபதி ராசியிலிருந்து உள்ள தூரத்தின் அடிப்படையில் கணக்கிடப்படுகிறது.",
+        "te": "తప్పు. చర దశ (జైమిని) రాశి-ఆధారిత వ్యవస్థ. వింశోత్తరి 9 గ్రహాలకు దశలను కేటాయించినట్లు కాకుండా, 12 రాశులలో ప్రతి రాశికి ఒక దశ కాలం ఉంటుంది. ప్రతి రాశికి దశ కాలం దాని అధిపతి రాశి నుండి ఉన్న దూరం ఆధారంగా లెక్కించబడుతుంది.",
+        "bn": "মিথ্যা। চর দশা (জৈমিনি) একটি রাশি-ভিত্তিক পদ্ধতি। ১২টি রাশির প্রত্যেকটি একটি দশা কাল পায়, বিংশোত্তরী দশার মতো নয়, যা ৯টি গ্রহকে কাল বরাদ্দ করে। প্রতিটি রাশির দশা কাল তার অধিপতির রাশি থেকে দূরত্বের উপর ভিত্তি করে গণনা করা হয়।",
+        "kn": "ತಪ್ಪು. ಚರ ದಶಾ (ಜೈಮಿನಿ) ರಾಶಿ-ಆಧಾರಿತ ಪದ್ಧತಿಯಾಗಿದೆ. 12 ರಾಶಿಗಳಲ್ಲಿ ಪ್ರತಿಯೊಂದಕ್ಕೂ ದಶಾ ಅವಧಿ ಸಿಗುತ್ತದೆ, ವಿಂಶೋತ್ತರಿಯು 9 ಗ್ರಹಗಳಿಗೆ ಅವಧಿಗಳನ್ನು ನಿಗದಿಪಡಿಸುವಂತೆ ಅಲ್ಲ. ಪ್ರತಿ ರಾಶಿಯ ದಶಾ ಅವಧಿಯನ್ನು ಅದರ ಅಧಿಪತಿಯು ರಾಶಿಯಿಂದ ಇರುವ ದೂರವನ್ನು ಆಧರಿಸಿ ಲೆಕ್ಕಹಾಕಲಾಗುತ್ತದೆ.",
         "mr": "असत्य। चर दशा (जैमिनी) राशि-आधारित पद्धति है। 12 राशियों में से प्रत्येक को एक दशा काल मिलता है, विंशोत्तरी के विपरीत जो 9 ग्रहों को काल निर्दिष्ट करती है। प्रत्येक राशि की दशा अवधि उसके स्वामी की राशि से दूरी के आधार पर गणित होती है।",
-        "gu": "False. Char Dasha (Jaimini) is a sign-based (rashi-based) system. Each of the 12 signs gets a dasha period, unlike Vimshottari which assigns periods to 9 planets. The dasha duration for each sign is calculated based on its lord's distance from the sign.",
+        "gu": "ખોટું. ચર દશા (જૈમિની) રાશિ-આધારિત પ્રણાલી છે. 12 રાશિઓમાંથી દરેકને દશા અવધિ મળે છે, વિંશોત્તરીથી વિપરીત જે 9 ગ્રહોને અવધિ ફાળવે છે. દરેક રાશિ માટે દશાની અવધિ તેના સ્વામીના રાશિથી અંતરના આધારે ગણવામાં આવે છે.",
         "mai": "गलत। चर दशा (जैमिनी) एकटा राशि-आधारित प्रणाली अछि। १२ टा राशिसभ मे सँ प्रत्येक केँ एकटा दशा अवधि भेटैत अछि, विंशोत्तरीक विपरीत जे ९ टा ग्रहसभ केँ अवधि देइत अछि। प्रत्येक राशि लेल दशाक अवधि ओकर स्वामीक राशि सँ दूरीक आधार पर गणना कएल जाइत अछि।"
       }
     },
@@ -245,24 +245,24 @@
       "question": {
         "en": "Which Yogini has the longest dasha period?",
         "hi": "किस योगिनी की दशा अवधि सबसे लम्बी है?",
-        "ta": "Which Yogini has the longest dasha period?",
-        "te": "Which Yogini has the longest dasha period?",
-        "bn": "Which Yogini has the longest dasha period?",
-        "kn": "Which Yogini has the longest dasha period?",
+        "ta": "எந்த யோகினிக்கு மிக நீண்ட தசா காலம் உள்ளது?",
+        "te": "ఏ యోగినికి ఎక్కువ దశ కాలం ఉంటుంది?",
+        "bn": "কোন যোগিনীর দশা কাল সবচেয়ে দীর্ঘ?",
+        "kn": "ಯಾವ ಯೋಗಿನಿಗೆ ಅತಿ ಉದ್ದವಾದ ದಶಾ ಅವಧಿ ಇದೆ?",
         "mr": "किस योगिनी की दशा अवधि सबसे लम्बी है?",
-        "gu": "Which Yogini has the longest dasha period?",
+        "gu": "કઈ યોગિનીનો દશા કાળ સૌથી લાંબો છે?",
         "mai": "कोन योगिनीक सभ सँ बेसी दशा अवधि अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Sankata has the longest period at 8 years. She is linked to Rahu and governs obstacles and karmic challenges. The Yogini periods ascend: Mangala(1), Pingala(2), Dhanya(3), Bhramari(4), Bhadrika(5), Ulka(6), Siddha(7), Sankata(8).",
         "hi": "संकटा 8 वर्ष की सबसे लम्बी अवधि वाली है। वह राहु से जुड़ी है और बाधाओं तथा कार्मिक चुनौतियों की शासक है। योगिनी अवधियाँ आरोही हैं: मंगला(1), पिंगला(2), धन्या(3), भ्रामरी(4), भद्रिका(5), उल्का(6), सिद्धा(7), संकटा(8)।",
-        "ta": "Sankata has the longest period at 8 years. She is linked to Rahu and governs obstacles and karmic challenges. The Yogini periods ascend: Mangala(1), Pingala(2), Dhanya(3), Bhramari(4), Bhadrika(5), Ulka(6), Siddha(7), Sankata(8).",
-        "te": "Sankata has the longest period at 8 years. She is linked to Rahu and governs obstacles and karmic challenges. The Yogini periods ascend: Mangala(1), Pingala(2), Dhanya(3), Bhramari(4), Bhadrika(5), Ulka(6), Siddha(7), Sankata(8).",
-        "bn": "Sankata has the longest period at 8 years. She is linked to Rahu and governs obstacles and karmic challenges. The Yogini periods ascend: Mangala(1), Pingala(2), Dhanya(3), Bhramari(4), Bhadrika(5), Ulka(6), Siddha(7), Sankata(8).",
-        "kn": "Sankata has the longest period at 8 years. She is linked to Rahu and governs obstacles and karmic challenges. The Yogini periods ascend: Mangala(1), Pingala(2), Dhanya(3), Bhramari(4), Bhadrika(5), Ulka(6), Siddha(7), Sankata(8).",
+        "ta": "சங்கடாவுக்கு 8 ஆண்டுகள் மிக நீண்ட காலம் உள்ளது. அவள் ராகுவுடன் இணைக்கப்பட்டு, தடைகள் மற்றும் கர்ம சவால்களை ஆளுகிறாள். யோகினி காலங்கள் ஏறுவரிசையில்: மங்களா(1), பிங்களா(2), தன்யா(3), பிரமாரி(4), பத்ரிகா(5), உல்கா(6), சித்தா(7), சங்கடா(8).",
+        "te": "సంకట యోగినికి 8 సంవత్సరాలతో ఎక్కువ కాలం ఉంటుంది. ఆమె రాహువుతో అనుసంధానించబడి, అడ్డంకులు మరియు కర్మ సంబంధిత సవాళ్లను పాలిస్తుంది. యోగినీ కాలాలు ఆరోహణ క్రమంలో ఉంటాయి: మంగళ (1), పింగళ (2), ధాన్య (3), భ్రమరి (4), భద్రిక (5), ఉల్క (6), సిద్ధ (7), సంకట (8).",
+        "bn": "সঙ্কটার দশা কাল সবচেয়ে দীর্ঘ, ৮ বছর। তিনি রাহু গ্রহের সাথে যুক্ত এবং বাধা ও কর্মফল সংক্রান্ত চ্যালেঞ্জগুলি নিয়ন্ত্রণ করেন। যোগিনী দশা কালগুলি আরোহী ক্রমে: মঙ্গলা(১), পিঙ্গলা(২), ধান্যা(৩), ভ্রমরী(৪), ভদ্রিকা(৫), উল্কা(৬), সিদ্ধা(৭), সঙ্কটা(৮)।",
+        "kn": "ಸಂಕಟಾ 8 ವರ್ಷಗಳ ಅತಿ ಉದ್ದವಾದ ಅವಧಿಯನ್ನು ಹೊಂದಿದೆ. ಅವಳು ರಾಹುವಿಗೆ ಸಂಬಂಧಿಸಿದ್ದಾಳೆ ಮತ್ತು ಅಡೆತಡೆಗಳು ಹಾಗೂ ಕರ್ಮಿಕ ಸವಾಲುಗಳನ್ನು ಆಳುತ್ತಾಳೆ. ಯೋಗಿನಿ ಅವಧಿಗಳು ಏರುತ್ತಾ ಹೋಗುತ್ತವೆ: ಮಂಗಳಾ(1), ಪಿಂಗಳಾ(2), ಧನ್ಯಾ(3), ಭ್ರಮರಿ(4), ಭದ್ರಿಕಾ(5), ಉಲ್ಕಾ(6), ಸಿದ್ಧಾ(7), ಸಂಕಟಾ(8).",
         "mr": "संकटा 8 वर्ष की सबसे लम्बी अवधि वाली है। वह राहु से जुड़ी है और बाधाओं तथा कार्मिक चुनौतियों की शासक है। योगिनी अवधियाँ आरोही हैं: मंगला(1), पिंगला(2), धन्या(3), भ्रामरी(4), भद्रिका(5), उल्का(6), सिद्धा(7), संकटा(8)।",
-        "gu": "Sankata has the longest period at 8 years. She is linked to Rahu and governs obstacles and karmic challenges. The Yogini periods ascend: Mangala(1), Pingala(2), Dhanya(3), Bhramari(4), Bhadrika(5), Ulka(6), Siddha(7), Sankata(8).",
+        "gu": "સંકટાનો કાળ 8 વર્ષનો સૌથી લાંબો છે. તે રાહુ સાથે જોડાયેલી છે અને અવરોધો તથા કર્મ સંબંધિત પડકારોનું સંચાલન કરે છે. યોગિનીના કાળ ચઢતા ક્રમમાં છે: મંગળા(1), પિંગળા(2), ધાન્યા(3), ભ્રામરી(4), ભદ્રિકા(5), ઉલ્કા(6), સિદ્ધા(7), સંકટા(8).",
         "mai": "संकटाक सभ सँ बेसी अवधि ८ वर्षक अछि। ओ राहु सँ जुड़ल छथि आ बाधासभ आ कर्मिक चुनौतीसभ केँ नियंत्रित करैत छथि। योगिनीक अवधिसभ आरोही क्रम मे अछि: मंगला(१), पिंगला(२), धान्या(३), भ्रमरी(४), भद्रिका(५), उल्का(६), सिद्धा(७), संकटा(८)।"
       },
       "options": [
@@ -271,44 +271,44 @@
           "hi": "सिद्धा (7 वर्ष)",
           "mai": "सिद्धा (७ वर्ष)",
           "mr": "सिद्धा (7 वर्ष)",
-          "ta": "Siddha (7 years)",
-          "te": "Siddha (7 years)",
-          "bn": "Siddha (7 years)",
-          "kn": "Siddha (7 years)",
-          "gu": "Siddha (7 years)"
+          "ta": "சித்தா (7 ஆண்டுகள்)",
+          "te": "సిద్ధ (7 సంవత్సరాలు)",
+          "bn": "সিদ্ধা (৭ বছর)",
+          "kn": "ಸಿದ್ಧಾ (7 ವರ್ಷಗಳು)",
+          "gu": "સિદ્ધા (7 વર્ષ)"
         },
         {
           "en": "Sankata (8 years)",
           "hi": "संकटा (8 वर्ष)",
           "mai": "संकटा (८ वर्ष)",
           "mr": "संकटा (8 वर्ष)",
-          "ta": "Sankata (8 years)",
-          "te": "Sankata (8 years)",
-          "bn": "Sankata (8 years)",
-          "kn": "Sankata (8 years)",
-          "gu": "Sankata (8 years)"
+          "ta": "சங்கடா (8 ஆண்டுகள்)",
+          "te": "సంకట (8 సంవత్సరాలు)",
+          "bn": "সঙ্কটা (৮ বছর)",
+          "kn": "ಸಂಕಟಾ (8 ವರ್ಷಗಳು)",
+          "gu": "સંકટા (8 વર્ષ)"
         },
         {
           "en": "Ulka (6 years)",
           "hi": "उल्का (6 वर्ष)",
           "mai": "उल्का (६ वर्ष)",
           "mr": "उल्का (6 वर्ष)",
-          "ta": "Ulka (6 years)",
-          "te": "Ulka (6 years)",
-          "bn": "Ulka (6 years)",
-          "kn": "Ulka (6 years)",
-          "gu": "Ulka (6 years)"
+          "ta": "உல்கா (6 ஆண்டுகள்)",
+          "te": "ఉల్క (6 సంవత్సరాలు)",
+          "bn": "উল্কা (৬ বছর)",
+          "kn": "ಉಲ್ಕಾ (6 ವರ್ಷಗಳು)",
+          "gu": "ઉલ્કા (6 વર્ષ)"
         },
         {
           "en": "Bhadrika (5 years)",
           "hi": "भद्रिका (5 वर्ष)",
           "mai": "भद्रिका (५ वर्ष)",
           "mr": "भद्रिका (5 वर्ष)",
-          "ta": "Bhadrika (5 years)",
-          "te": "Bhadrika (5 years)",
-          "bn": "Bhadrika (5 years)",
-          "kn": "Bhadrika (5 years)",
-          "gu": "Bhadrika (5 years)"
+          "ta": "பத்ரிகா (5 ஆண்டுகள்)",
+          "te": "భద్రిక (5 సంవత్సరాలు)",
+          "bn": "ভদ্রিকা (৫ বছর)",
+          "kn": "ಭದ್ರಿಕಾ (5 ವರ್ಷಗಳು)",
+          "gu": "ભદ્રિકા (5 વર્ષ)"
         }
       ]
     },
@@ -318,24 +318,24 @@
       "question": {
         "en": "In Jaimini's system, what replaces the traditional Parashari aspects (graha drishti)?",
         "hi": "जैमिनी पद्धति में पारम्परिक पाराशरी दृष्टि (ग्रह दृष्टि) के स्थान पर क्या है?",
-        "ta": "In Jaimini's system, what replaces the traditional Parashari aspects (graha drishti)?",
-        "te": "In Jaimini's system, what replaces the traditional Parashari aspects (graha drishti)?",
-        "bn": "In Jaimini's system, what replaces the traditional Parashari aspects (graha drishti)?",
-        "kn": "In Jaimini's system, what replaces the traditional Parashari aspects (graha drishti)?",
+        "ta": "ஜைமினி அமைப்பில், பாரம்பரிய பராசர பார்வைகளை (கிரக திருஷ்டி) எது மாற்றுகிறது?",
+        "te": "జైమిని వ్యవస్థలో, సాంప్రదాయ పరాశరి దృష్టి (గ్రహ దృష్టి) స్థానంలో ఏమి ఉంటుంది?",
+        "bn": "জৈমিনি পদ্ধতিতে, ঐতিহ্যবাহী পরাশরী দৃষ্টি (গ্রহ দৃষ্টি) এর পরিবর্তে কী ব্যবহৃত হয়?",
+        "kn": "ಜೈಮಿನಿ ಪದ್ಧತಿಯಲ್ಲಿ, ಸಾಂಪ್ರದಾಯಿಕ ಪರಾಶರಿ ದೃಷ್ಟಿಗಳನ್ನು (ಗ್ರಹ ದೃಷ್ಟಿ) ಯಾವುದು ಬದಲಾಯಿಸುತ್ತದೆ?",
         "mr": "जैमिनी पद्धति में पारम्परिक पाराशरी दृष्टि (ग्रह दृष्टि) के स्थान पर क्या है?",
-        "gu": "In Jaimini's system, what replaces the traditional Parashari aspects (graha drishti)?",
+        "gu": "જૈમિની પ્રણાલીમાં, પરંપરાગત પરાશરી દ્રષ્ટિ (ગ્રહ દ્રષ્ટિ) નું સ્થાન શું લે છે?",
         "mai": "जैमिनीक प्रणाली मे, पारंपरिक पाराशरी दृष्टि (ग्रह दृष्टि) कीक स्थान लैत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Jaimini uses Rashi Drishti (sign aspects) instead of planetary aspects. In this system, all planets in a sign aspect all planets in certain other signs. Movable signs aspect fixed signs (except the adjacent one), fixed signs aspect movable signs, and dual signs aspect each other.",
         "hi": "जैमिनी ग्रह दृष्टि के स्थान पर राशि दृष्टि प्रयोग करते हैं। इस पद्धति में किसी राशि के सभी ग्रह कुछ अन्य राशियों के सभी ग्रहों को देखते हैं। चर राशियाँ स्थिर राशियों को देखती हैं (निकटवर्ती को छोड़कर), स्थिर राशियाँ चर राशियों को, और द्विस्वभाव राशियाँ एक-दूसरे को।",
-        "ta": "Jaimini uses Rashi Drishti (sign aspects) instead of planetary aspects. In this system, all planets in a sign aspect all planets in certain other signs. Movable signs aspect fixed signs (except the adjacent one), fixed signs aspect movable signs, and dual signs aspect each other.",
-        "te": "Jaimini uses Rashi Drishti (sign aspects) instead of planetary aspects. In this system, all planets in a sign aspect all planets in certain other signs. Movable signs aspect fixed signs (except the adjacent one), fixed signs aspect movable signs, and dual signs aspect each other.",
-        "bn": "Jaimini uses Rashi Drishti (sign aspects) instead of planetary aspects. In this system, all planets in a sign aspect all planets in certain other signs. Movable signs aspect fixed signs (except the adjacent one), fixed signs aspect movable signs, and dual signs aspect each other.",
-        "kn": "Jaimini uses Rashi Drishti (sign aspects) instead of planetary aspects. In this system, all planets in a sign aspect all planets in certain other signs. Movable signs aspect fixed signs (except the adjacent one), fixed signs aspect movable signs, and dual signs aspect each other.",
+        "ta": "ஜைமினி கிரக பார்வைகளுக்குப் பதிலாக ராசி திருஷ்டியை (ராசி பார்வைகள்) பயன்படுத்துகிறார். இந்த அமைப்பில், ஒரு ராசியில் உள்ள அனைத்து கிரகங்களும் சில மற்ற ராசிகளில் உள்ள அனைத்து கிரகங்களையும் பார்க்கின்றன. சர ராசிகள் ஸ்திர ராசிகளைப் பார்க்கின்றன (அடுத்த ராசியைத் தவிர), ஸ்திர ராசிகள் சர ராசிகளைப் பார்க்கின்றன, மற்றும் உபய ராசிகள் ஒன்றையொன்று பார்க்கின்றன.",
+        "te": "జైమిని గ్రహ దృష్టికి బదులుగా రాశి దృష్టిని (రాశి అంశాలను) ఉపయోగిస్తుంది. ఈ వ్యవస్థలో, ఒక రాశిలోని అన్ని గ్రహాలు కొన్ని ఇతర రాశులలోని అన్ని గ్రహాలను చూస్తాయి. చర రాశులు స్థిర రాశులను (పక్కన ఉన్న రాశి తప్ప) చూస్తాయి, స్థిర రాశులు చర రాశులను చూస్తాయి, మరియు ద్విస్వభావ రాశులు ఒకదానికొకటి చూస్తాయి.",
+        "bn": "জৈমিনি গ্রহ দৃষ্টির পরিবর্তে রাশি দৃষ্টি (রাশিগত দৃষ্টি) ব্যবহার করেন। এই পদ্ধতিতে, একটি রাশিতে থাকা সমস্ত গ্রহ নির্দিষ্ট অন্যান্য রাশিতে থাকা সমস্ত গ্রহকে দৃষ্টি দেয়। চর রাশিগুলি স্থির রাশিগুলিকে (সংলগ্ন রাশি ব্যতীত) দৃষ্টি দেয়, স্থির রাশিগুলি চর রাশিগুলিকে দৃষ্টি দেয় এবং দ্বৈত রাশিগুলি একে অপরকে দৃষ্টি দেয়।",
+        "kn": "ಜೈಮಿನಿ ಗ್ರಹ ದೃಷ್ಟಿಗಳ ಬದಲಿಗೆ ರಾಶಿ ದೃಷ್ಟಿಗಳನ್ನು ಬಳಸುತ್ತದೆ. ಈ ಪದ್ಧತಿಯಲ್ಲಿ, ಒಂದು ರಾಶಿಯಲ್ಲಿರುವ ಎಲ್ಲಾ ಗ್ರಹಗಳು ಕೆಲವು ಇತರ ರಾಶಿಗಳಲ್ಲಿರುವ ಎಲ್ಲಾ ಗ್ರಹಗಳನ್ನು ದೃಷ್ಟಿಸುತ್ತವೆ. ಚರ ರಾಶಿಗಳು ಸ್ಥಿರ ರಾಶಿಗಳನ್ನು ದೃಷ್ಟಿಸುತ್ತವೆ (ಪಕ್ಕದ ರಾಶಿಯನ್ನು ಹೊರತುಪಡಿಸಿ), ಸ್ಥಿರ ರಾಶಿಗಳು ಚರ ರಾಶಿಗಳನ್ನು ದೃಷ್ಟಿಸುತ್ತವೆ, ಮತ್ತು ದ್ವಿಸ್ವಭಾವ ರಾಶಿಗಳು ಪರಸ್ಪರ ದೃಷ್ಟಿಸುತ್ತವೆ.",
         "mr": "जैमिनी ग्रह दृष्टि के स्थान पर राशि दृष्टि प्रयोग करते हैं। इस पद्धति में किसी राशि के सभी ग्रह कुछ अन्य राशियों के सभी ग्रहों को देखते हैं। चर राशियाँ स्थिर राशियों को देखती हैं (निकटवर्ती को छोड़कर), स्थिर राशियाँ चर राशियों को, और द्विस्वभाव राशियाँ एक-दूसरे को।",
-        "gu": "Jaimini uses Rashi Drishti (sign aspects) instead of planetary aspects. In this system, all planets in a sign aspect all planets in certain other signs. Movable signs aspect fixed signs (except the adjacent one), fixed signs aspect movable signs, and dual signs aspect each other.",
+        "gu": "જૈમિની ગ્રહ દ્રષ્ટિને બદલે રાશિ દ્રષ્ટિનો ઉપયોગ કરે છે. આ પ્રણાલીમાં, એક રાશિમાં રહેલા બધા ગ્રહો અમુક અન્ય રાશિઓમાં રહેલા બધા ગ્રહો પર દ્રષ્ટિ કરે છે. ચર રાશિઓ સ્થિર રાશિઓ પર દ્રષ્ટિ કરે છે (બાજુની રાશિ સિવાય), સ્થિર રાશિઓ ચર રાશિઓ પર દ્રષ્ટિ કરે છે, અને દ્વિસ્વભાવ રાશિઓ એકબીજા પર દ્રષ્ટિ કરે છે.",
         "mai": "जैमिनी ग्रह दृष्टि केँ बदला मे राशि दृष्टि (राशि दृष्टि) केँ उपयोग करैत छथि। एहि प्रणाली मे, एकटा राशि मे सभ ग्रह किछु अन्य राशिसभ मे सभ ग्रहसभ केँ देखैत अछि। चर राशिसभ स्थिर राशिसभ केँ देखैत अछि (पड़ोसी केँ छोड़ि कऽ), स्थिर राशिसभ चर राशिसभ केँ देखैत अछि, आ द्विस्वभाव राशिसभ एक दोसर केँ देखैत अछि।"
       },
       "options": [
@@ -344,44 +344,44 @@
           "hi": "कोई दृष्टि प्रयुक्त नहीं",
           "mai": "कोनो दृष्टि केँ उपयोग नहि कएल जाइत अछि",
           "mr": "कोई दृष्टि प्रयुक्त नहीं",
-          "ta": "No aspects are used",
-          "te": "No aspects are used",
-          "bn": "No aspects are used",
-          "kn": "No aspects are used",
-          "gu": "No aspects are used"
+          "ta": "பார்வைகள் எதுவும் பயன்படுத்தப்படுவதில்லை",
+          "te": "దృష్టిలు ఏవీ ఉపయోగించబడవు",
+          "bn": "কোনো দৃষ্টি ব্যবহার করা হয় না",
+          "kn": "ಯಾವುದೇ ದೃಷ್ಟಿಗಳನ್ನು ಬಳಸಲಾಗುವುದಿಲ್ಲ",
+          "gu": "કોઈ દ્રષ્ટિનો ઉપયોગ થતો નથી"
         },
         {
           "en": "Rashi Drishti (sign-based aspects)",
           "hi": "राशि दृष्टि (राशि-आधारित दृष्टि)",
           "mai": "राशि दृष्टि (राशिक दृष्टि)",
           "mr": "राशि दृष्टि (राशि-आधारित दृष्टि)",
-          "ta": "Rashi Drishti (sign-based aspects)",
-          "te": "Rashi Drishti (sign-based aspects)",
-          "bn": "Rashi Drishti (sign-based aspects)",
-          "kn": "Rashi Drishti (sign-based aspects)",
-          "gu": "Rashi Drishti (sign-based aspects)"
+          "ta": "ராசி திருஷ்டி (ராசி அடிப்படையிலான பார்வைகள்)",
+          "te": "రాశి దృష్టి (రాశి-ఆధారిత దృష్టిలు)",
+          "bn": "রাশি দৃষ্টি (রাশি-ভিত্তিক দৃষ্টি)",
+          "kn": "ರಾಶಿ ದೃಷ್ಟಿ (ರಾಶಿ-ಆಧಾರಿತ ದೃಷ್ಟಿಗಳು)",
+          "gu": "રાશિ દ્રષ્ટિ (રાશિ-આધારિત દ્રષ્ટિ)"
         },
         {
           "en": "Only conjunctions matter",
           "hi": "केवल युति महत्त्वपूर्ण है",
           "mai": "मात्र युतिसभक महत्व अछि",
           "mr": "केवल युति महत्त्वपूर्ण है",
-          "ta": "Only conjunctions matter",
-          "te": "Only conjunctions matter",
-          "bn": "Only conjunctions matter",
-          "kn": "Only conjunctions matter",
-          "gu": "Only conjunctions matter"
+          "ta": "சேர்க்கைகள் மட்டுமே முக்கியம்",
+          "te": "సంయోగాలకు మాత్రమే ప్రాముఖ్యత",
+          "bn": "শুধুমাত্র সংযোগগুলি গুরুত্বপূর্ণ",
+          "kn": "ಕೇವಲ ಯುತಿಗಳು ಮಾತ್ರ ಮುಖ್ಯ",
+          "gu": "ફક્ત યુતિ જ મહત્વની છે"
         },
         {
           "en": "Western-style orb aspects",
           "hi": "पाश्चात्य शैली की ओर्ब दृष्टि",
           "mai": "पश्चिमी शैलीक गोलाकार दृष्टि",
           "mr": "पाश्चात्य शैली की ओर्ब दृष्टि",
-          "ta": "Western-style orb aspects",
-          "te": "Western-style orb aspects",
-          "bn": "Western-style orb aspects",
-          "kn": "Western-style orb aspects",
-          "gu": "Western-style orb aspects"
+          "ta": "மேற்கத்திய பாணி கோளப் பார்வைகள்",
+          "te": "పాశ్చాత్య శైలి ఆర్బ్ దృష్టిలు",
+          "bn": "পাশ্চাত্য শৈলীর অরব দৃষ্টি",
+          "kn": "ಪಾಶ್ಚಾತ್ಯ ಶೈಲಿಯ ಆರ್ಬ್ ದೃಷ್ಟಿಗಳು",
+          "gu": "પશ્ચિમી શૈલીની ઓર્બ દ્રષ્ટિ"
         }
       ]
     },
@@ -391,24 +391,24 @@
       "question": {
         "en": "Chara Karakas in Jaimini's system are determined by planetary degree, not by natural signification.",
         "hi": "जैमिनी पद्धति में चर कारक ग्रह अंश से निर्धारित होते हैं, नैसर्गिक कारकत्व से नहीं।",
-        "ta": "Chara Karakas in Jaimini's system are determined by planetary degree, not by natural signification.",
-        "te": "Chara Karakas in Jaimini's system are determined by planetary degree, not by natural signification.",
-        "bn": "Chara Karakas in Jaimini's system are determined by planetary degree, not by natural signification.",
-        "kn": "Chara Karakas in Jaimini's system are determined by planetary degree, not by natural signification.",
+        "ta": "ஜைமினி அமைப்பில் சர காரகங்கள் கிரகத்தின் பாகை அடிப்படையில் தீர்மானிக்கப்படுகின்றன, இயற்கையான காரகத்துவத்தால் அல்ல.",
+        "te": "జైమిని వ్యవస్థలో చర కారకాలు గ్రహ డిగ్రీల ద్వారా నిర్ణయించబడతాయి, సహజ సూచనల ద్వారా కాదు.",
+        "bn": "জৈমিনি পদ্ধতিতে চর কারকগুলি গ্রহের ডিগ্রি দ্বারা নির্ধারিত হয়, স্বাভাবিক কারকতা দ্বারা নয়।",
+        "kn": "ಜೈಮಿನಿ ಪದ್ಧತಿಯಲ್ಲಿ ಚರ ಕಾರಕಗಳು ಗ್ರಹದ ಅಂಶದಿಂದ ನಿರ್ಧರಿಸಲ್ಪಡುತ್ತವೆ, ನೈಸರ್ಗಿಕ ಕಾರಕತ್ವದಿಂದ ಅಲ್ಲ.",
         "mr": "जैमिनी पद्धति में चर कारक ग्रह अंश से निर्धारित होते हैं, नैसर्गिक कारकत्व से नहीं।",
-        "gu": "Chara Karakas in Jaimini's system are determined by planetary degree, not by natural signification.",
+        "gu": "જૈમિની પ્રણાલીમાં ચર કારક ગ્રહની અંશ ડિગ્રી દ્વારા નક્કી થાય છે, કુદરતી કારકત્વ દ્વારા નહીં.",
         "mai": "जैमिनीक प्रणाली मे चर कारक ग्रहक अंश सँ निर्धारित होइत अछि, प्राकृतिक कारकत्व सँ नहि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. In Jaimini, the planet at the highest degree in any sign becomes the Atmakaraka (soul significator), the next highest becomes Amatyakaraka (career significator), and so on. These \"chara\" (variable) karakas change from chart to chart, unlike Parashara's fixed naisargika karakas.",
         "hi": "सत्य। जैमिनी में, किसी भी राशि में सर्वोच्च अंश वाला ग्रह आत्मकारक बनता है, अगला उच्चतम अमात्यकारक, इत्यादि। ये \"चर\" (परिवर्तनशील) कारक प्रत्येक कुण्डली में बदलते हैं, पराशर के स्थिर नैसर्गिक कारकों के विपरीत।",
-        "ta": "True. In Jaimini, the planet at the highest degree in any sign becomes the Atmakaraka (soul significator), the next highest becomes Amatyakaraka (career significator), and so on. These \"chara\" (variable) karakas change from chart to chart, unlike Parashara's fixed naisargika karakas.",
-        "te": "True. In Jaimini, the planet at the highest degree in any sign becomes the Atmakaraka (soul significator), the next highest becomes Amatyakaraka (career significator), and so on. These \"chara\" (variable) karakas change from chart to chart, unlike Parashara's fixed naisargika karakas.",
-        "bn": "True. In Jaimini, the planet at the highest degree in any sign becomes the Atmakaraka (soul significator), the next highest becomes Amatyakaraka (career significator), and so on. These \"chara\" (variable) karakas change from chart to chart, unlike Parashara's fixed naisargika karakas.",
-        "kn": "True. In Jaimini, the planet at the highest degree in any sign becomes the Atmakaraka (soul significator), the next highest becomes Amatyakaraka (career significator), and so on. These \"chara\" (variable) karakas change from chart to chart, unlike Parashara's fixed naisargika karakas.",
+        "ta": "உண்மை. ஜைமினியில், எந்த ராசியிலும் அதிக பாகையில் உள்ள கிரகம் ஆத்மகாரகன் (ஆன்ம காரகன்) ஆகிறது, அடுத்த அதிக பாகையில் உள்ள கிரகம் அமத்யகாரகன் (தொழில் காரகன்) ஆகிறது, மேலும் பல. இந்த \"சர\" (மாறும்) காரகங்கள் ஒவ்வொரு ஜாதகத்திற்கும் மாறுபடும், பராசரரின் நிலையான நைசர்கிக காரகங்களுக்கு மாறாக.",
+        "te": "నిజం. జైమినిలో, ఏదైనా రాశిలో అత్యధిక డిగ్రీలో ఉన్న గ్రహం ఆత్మకారకుడు (ఆత్మ సూచిక) అవుతుంది, తదుపరి అత్యధిక డిగ్రీలో ఉన్న గ్రహం అమాత్యకారకుడు (వృత్తి సూచిక) అవుతుంది, మరియు అలా కొనసాగుతుంది. పరాశరుడి స్థిర నైసర్గిక కారకాల వలె కాకుండా, ఈ \"చర\" (వేరియబుల్) కారకాలు ప్రతి జాతక చక్రానికి మారుతాయి.",
+        "bn": "সত্য। জৈমিনিতে, যেকোনো রাশিতে সর্বোচ্চ ডিগ্রিতে থাকা গ্রহটি আত্মকারক (আত্মার কারক) হয়, পরবর্তী সর্বোচ্চ ডিগ্রিযুক্ত গ্রহটি অমাত্যকারক (পেশার কারক) হয় এবং এইরকম। এই \"চর\" (পরিবর্তনশীল) কারকগুলি এক কুষ্ঠি থেকে অন্য কুষ্ঠিতে পরিবর্তিত হয়, পরাশরের স্থির নৈসর্গিক কারকগুলির মতো নয়।",
+        "kn": "ಸರಿ. ಜೈಮಿನಿಯಲ್ಲಿ, ಯಾವುದೇ ರಾಶಿಯಲ್ಲಿ ಅತಿ ಹೆಚ್ಚು ಅಂಶದಲ್ಲಿರುವ ಗ್ರಹವು ಆತ್ಮಕಾರಕ (ಆತ್ಮದ ಕಾರಕ) ಆಗುತ್ತದೆ, ಮುಂದಿನ ಅತಿ ಹೆಚ್ಚು ಅಂಶದಲ್ಲಿರುವ ಗ್ರಹವು ಅಮಾತ್ಯಕಾರಕ (ವೃತ್ತಿಯ ಕಾರಕ) ಆಗುತ್ತದೆ, ಹೀಗೆ ಮುಂದುವರಿಯುತ್ತದೆ. ಈ \"ಚರ\" (ಬದಲಾಗುವ) ಕಾರಕಗಳು ಜಾತಕದಿಂದ ಜಾತಕಕ್ಕೆ ಬದಲಾಗುತ್ತವೆ, ಪರಾಶರರ ಸ್ಥಿರ ನೈಸರ್ಗಿಕ ಕಾರಕಗಳಂತೆ ಅಲ್ಲ.",
         "mr": "सत्य। जैमिनी में, किसी भी राशि में सर्वोच्च अंश वाला ग्रह आत्मकारक बनता है, अगला उच्चतम अमात्यकारक, इत्यादि। ये \"चर\" (परिवर्तनशील) कारक प्रत्येक कुण्डली में बदलते हैं, पराशर के स्थिर नैसर्गिक कारकों के विपरीत।",
-        "gu": "True. In Jaimini, the planet at the highest degree in any sign becomes the Atmakaraka (soul significator), the next highest becomes Amatyakaraka (career significator), and so on. These \"chara\" (variable) karakas change from chart to chart, unlike Parashara's fixed naisargika karakas.",
+        "gu": "સાચું. જૈમિનીમાં, કોઈપણ રાશિમાં સૌથી વધુ અંશ ડિગ્રી પરનો ગ્રહ આત્મકારક (આત્માનો કારક) બને છે, પછીનો સૌથી વધુ અંશ ડિગ્રી પરનો ગ્રહ અમાત્યકારક (કારકિર્દીનો કારક) બને છે, અને તેથી વધુ. આ \"ચર\" (ચલિત) કારક કુંડળી પ્રમાણે બદલાય છે, પરાશરના નિશ્ચિત નૈસર્ગિક કારકોથી વિપરીત.",
         "mai": "सत्य। जैमिनी मे, कोनो राशि मे सभ सँ बेसी अंश पर रहल ग्रह आत्मकारक (आत्माक कारक) बनि जाइत अछि, दोसर सभ सँ बेसी अमात्यकारक (करियरक कारक) बनि जाइत अछि, आ एहिना। ई \"चर\" (परिवर्तनशील) कारक कुंडली सँ कुंडली मे बदलैत अछि, पाराशरक निश्चित नैसर्गिक कारकक विपरीत।"
       }
     },
@@ -418,24 +418,24 @@
       "question": {
         "en": "When should Yogini Dasha be preferred over Vimshottari?",
         "hi": "विंशोत्तरी की अपेक्षा योगिनी दशा को कब प्राथमिकता दी जानी चाहिए?",
-        "ta": "When should Yogini Dasha be preferred over Vimshottari?",
-        "te": "When should Yogini Dasha be preferred over Vimshottari?",
-        "bn": "When should Yogini Dasha be preferred over Vimshottari?",
-        "kn": "When should Yogini Dasha be preferred over Vimshottari?",
+        "ta": "விம்சோத்தரியை விட யோகினி தசை எப்போது விரும்பப்பட வேண்டும்?",
+        "te": "వింశోత్తరి కంటే యోగినీ దశకు ఎప్పుడు ప్రాధాన్యత ఇవ్వాలి?",
+        "bn": "কখন বিংশোত্তরী দশার চেয়ে যোগিনী দশা বেশি পছন্দ করা উচিত?",
+        "kn": "ವಿಂಶೋತ್ತರಿಗಿಂತ ಯೋಗಿನಿ ದಶಾವನ್ನು ಯಾವಾಗ ಆದ್ಯತೆ ನೀಡಬೇಕು?",
         "mr": "विंशोत्तरी की अपेक्षा योगिनी दशा को कब प्राथमिकता दी जानी चाहिए?",
-        "gu": "When should Yogini Dasha be preferred over Vimshottari?",
+        "gu": "વિંશોત્તરી કરતાં યોગિની દશાને ક્યારે પ્રાધાન્ય આપવું જોઈએ?",
         "mai": "विंशोत्तरीक तुलना मे योगिनी दशा केँ कहिया प्राथमिकता देल जाए चाही?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Yogini Dasha is best used as a secondary confirmation system. Its shorter 36-year cycle allows quick verification: if both Vimshottari and Yogini point to the same event timing, confidence in the prediction increases significantly.",
         "hi": "योगिनी दशा द्वितीयक पुष्टि पद्धति के रूप में सर्वोत्तम है। इसका छोटा 36-वर्षीय चक्र शीघ्र सत्यापन की अनुमति देता है: यदि विंशोत्तरी और योगिनी दोनों एक ही घटना समय की ओर इंगित करें, तो भविष्यवाणी में विश्वास काफी बढ़ जाता है।",
-        "ta": "Yogini Dasha is best used as a secondary confirmation system. Its shorter 36-year cycle allows quick verification: if both Vimshottari and Yogini point to the same event timing, confidence in the prediction increases significantly.",
-        "te": "Yogini Dasha is best used as a secondary confirmation system. Its shorter 36-year cycle allows quick verification: if both Vimshottari and Yogini point to the same event timing, confidence in the prediction increases significantly.",
-        "bn": "Yogini Dasha is best used as a secondary confirmation system. Its shorter 36-year cycle allows quick verification: if both Vimshottari and Yogini point to the same event timing, confidence in the prediction increases significantly.",
-        "kn": "Yogini Dasha is best used as a secondary confirmation system. Its shorter 36-year cycle allows quick verification: if both Vimshottari and Yogini point to the same event timing, confidence in the prediction increases significantly.",
+        "ta": "யோகினி தசை ஒரு இரண்டாம் நிலை உறுதிப்படுத்தும் அமைப்பாகப் பயன்படுத்தப்படுவது சிறந்தது. அதன் குறுகிய 36 ஆண்டு சுழற்சி விரைவான சரிபார்ப்பை அனுமதிக்கிறது: விம்சோத்தரி மற்றும் யோகினி இரண்டும் ஒரே நிகழ்வு நேரத்தைக் குறிப்பிட்டால், கணிப்பின் மீதான நம்பிக்கை கணிசமாக அதிகரிக்கிறது.",
+        "te": "యోగినీ దశను ద్వితీయ ధృవీకరణ వ్యవస్థగా ఉపయోగించడం ఉత్తమం. దీని చిన్న 36 సంవత్సరాల చక్రం త్వరిత ధృవీకరణను అనుమతిస్తుంది: వింశోత్తరి మరియు యోగినీ దశలు రెండూ ఒకే సంఘటన సమయాన్ని సూచిస్తే, అంచనాపై విశ్వాసం గణనీయంగా పెరుగుతుంది.",
+        "bn": "যোগিনী দশা একটি গৌণ নিশ্চিতকরণ পদ্ধতি হিসাবে সবচেয়ে ভালোভাবে ব্যবহৃত হয়। এর ছোট ৩৬ বছরের চক্র দ্রুত যাচাইকরণের সুযোগ দেয়: যদি বিংশোত্তরী এবং যোগিনী উভয়ই একই ঘটনার সময় নির্দেশ করে, তবে ভবিষ্যদ্বাণীর উপর আস্থা উল্লেখযোগ্যভাবে বৃদ্ধি পায়।",
+        "kn": "ಯೋಗಿನಿ ದಶಾವನ್ನು ದ್ವಿತೀಯ ದೃಢೀಕರಣ ಪದ್ಧತಿಯಾಗಿ ಬಳಸಲು ಉತ್ತಮವಾಗಿದೆ. ಅದರ ಕಡಿಮೆ 36 ವರ್ಷಗಳ ಚಕ್ರವು ತ್ವರಿತ ಪರಿಶೀಲನೆಗೆ ಅನುವು ಮಾಡಿಕೊಡುತ್ತದೆ: ವಿಂಶೋತ್ತರಿ ಮತ್ತು ಯೋಗಿನಿ ಎರಡೂ ಒಂದೇ ಘಟನೆಯ ಸಮಯವನ್ನು ಸೂಚಿಸಿದರೆ, ಭವಿಷ್ಯವಾಣಿಯ ಮೇಲಿನ ವಿಶ್ವಾಸವು ಗಮನಾರ್ಹವಾಗಿ ಹೆಚ್ಚಾಗುತ್ತದೆ.",
         "mr": "योगिनी दशा द्वितीयक पुष्टि पद्धति के रूप में सर्वोत्तम है। इसका छोटा 36-वर्षीय चक्र शीघ्र सत्यापन की अनुमति देता है: यदि विंशोत्तरी और योगिनी दोनों एक ही घटना समय की ओर इंगित करें, तो भविष्यवाणी में विश्वास काफी बढ़ जाता है।",
-        "gu": "Yogini Dasha is best used as a secondary confirmation system. Its shorter 36-year cycle allows quick verification: if both Vimshottari and Yogini point to the same event timing, confidence in the prediction increases significantly.",
+        "gu": "યોગિની દશાનો ઉપયોગ ગૌણ પુષ્ટિ પ્રણાલી તરીકે શ્રેષ્ઠ રીતે થાય છે. તેનું ટૂંકું 36 વર્ષનું ચક્ર ઝડપી ચકાસણીની મંજૂરી આપે છે: જો વિંશોત્તરી અને યોગિની બંને સમાન ઘટનાના સમય તરફ નિર્દેશ કરે, તો ભવિષ્યવાણીમાં વિશ્વાસ નોંધપાત્ર રીતે વધે છે.",
         "mai": "योगिनी दशा केँ एकटा द्वितीयक पुष्टि प्रणालीक रूप मे सभ सँ नीक उपयोग कएल जाइत अछि। एकर छोट ३६ वर्षक चक्र शीघ्र सत्यापनक अनुमति दैत अछि: यदि विंशोत्तरी आ योगिनी दुनू एकहि घटनाक समय केँ इंगित करैत अछि, तऽ भविष्यवाणी मे विश्वास उल्लेखनीय रूप सँ बढ़ि जाइत अछि।"
       },
       "options": [
@@ -444,44 +444,44 @@
           "hi": "सदैव  –  यह अधिक सटीक है",
           "mai": "हमेशा – ई बेसी सटीक अछि",
           "mr": "सदैव  –  यह अधिक सटीक है",
-          "ta": "Always  –  it is more accurate",
-          "te": "Always  –  it is more accurate",
-          "bn": "Always  –  it is more accurate",
-          "kn": "Always  –  it is more accurate",
-          "gu": "Always  –  it is more accurate"
+          "ta": "எப்போதும் – இது மிகவும் துல்லியமானது",
+          "te": "ఎల్లప్పుడూ – ఇది మరింత ఖచ్చితమైనది",
+          "bn": "সর্বদা  –  এটি বেশি নির্ভুল",
+          "kn": "ಯಾವಾಗಲೂ  –  ಇದು ಹೆಚ್ಚು ನಿಖರವಾಗಿದೆ",
+          "gu": "હંમેશા – તે વધુ સચોટ છે"
         },
         {
           "en": "Never  –  only Vimshottari is valid",
           "hi": "कभी नहीं  –  केवल विंशोत्तरी वैध है",
           "mai": "कहियो नहि – मात्र विंशोत्तरी वैध अछि",
           "mr": "कभी नहीं  –  केवल विंशोत्तरी वैध है",
-          "ta": "Never  –  only Vimshottari is valid",
-          "te": "Never  –  only Vimshottari is valid",
-          "bn": "Never  –  only Vimshottari is valid",
-          "kn": "Never  –  only Vimshottari is valid",
-          "gu": "Never  –  only Vimshottari is valid"
+          "ta": "ஒருபோதும் இல்லை – விம்சோத்தரி மட்டுமே செல்லுபடியாகும்",
+          "te": "ఎప్పుడూ కాదు – వింశోత్తరి మాత్రమే చెల్లుబాటు అవుతుంది",
+          "bn": "কখনোই নয়  –  শুধুমাত্র বিংশোত্তরী দশা বৈধ",
+          "kn": "ಎಂದಿಗೂ ಇಲ್ಲ  –  ಕೇವಲ ವಿಂಶೋತ್ತರಿ ಮಾತ್ರ ಮಾನ್ಯವಾಗಿದೆ",
+          "gu": "ક્યારેય નહીં – ફક્ત વિંશોત્તરી જ માન્ય છે"
         },
         {
           "en": "As a secondary confirmation tool alongside Vimshottari",
           "hi": "विंशोत्तरी के साथ द्वितीयक पुष्टि उपकरण के रूप में",
           "mai": "विंशोत्तरीक संग एकटा द्वितीयक पुष्टि उपकरणक रूप मे",
           "mr": "विंशोत्तरी के साथ द्वितीयक पुष्टि उपकरण के रूप में",
-          "ta": "As a secondary confirmation tool alongside Vimshottari",
-          "te": "As a secondary confirmation tool alongside Vimshottari",
-          "bn": "As a secondary confirmation tool alongside Vimshottari",
-          "kn": "As a secondary confirmation tool alongside Vimshottari",
-          "gu": "As a secondary confirmation tool alongside Vimshottari"
+          "ta": "விம்சோத்தரியுடன் ஒரு இரண்டாம் நிலை உறுதிப்படுத்தும் கருவியாக",
+          "te": "వింశోత్తరితో పాటు ద్వితీయ ధృవీకరణ సాధనంగా",
+          "bn": "বিংশোত্তরী দশার পাশাপাশি একটি গৌণ নিশ্চিতকরণ সরঞ্জাম হিসাবে",
+          "kn": "ವಿಂಶೋತ್ತರಿಯೊಂದಿಗೆ ದ್ವಿತೀಯ ದೃಢೀಕರಣ ಸಾಧನವಾಗಿ",
+          "gu": "વિંશોત્તરીની સાથે ગૌણ પુષ્ટિ સાધન તરીકે"
         },
         {
           "en": "Only for female charts",
           "hi": "केवल स्त्री कुण्डली के लिए",
           "mai": "मात्र महिलाक कुंडली लेल",
           "mr": "केवल स्त्री कुण्डली के लिए",
-          "ta": "Only for female charts",
-          "te": "Only for female charts",
-          "bn": "Only for female charts",
-          "kn": "Only for female charts",
-          "gu": "Only for female charts"
+          "ta": "பெண் ஜாதகங்களுக்கு மட்டுமே",
+          "te": "స్త్రీ జాతకాలకు మాత్రమే",
+          "bn": "শুধুমাত্র নারী কুষ্ঠির জন্য",
+          "kn": "ಸ್ತ್ರೀ ಜಾತಕಗಳಿಗೆ ಮಾತ್ರ",
+          "gu": "ફક્ત સ્ત્રીઓની કુંડળીઓ માટે"
         }
       ]
     },
@@ -491,24 +491,24 @@
       "question": {
         "en": "What principle increases prediction confidence according to this module?",
         "hi": "इस मॉड्यूल के अनुसार भविष्यवाणी में विश्वास बढ़ाने वाला सिद्धान्त कौन-सा है?",
-        "ta": "What principle increases prediction confidence according to this module?",
-        "te": "What principle increases prediction confidence according to this module?",
-        "bn": "What principle increases prediction confidence according to this module?",
-        "kn": "What principle increases prediction confidence according to this module?",
+        "ta": "இந்த தொகுதியின்படி எந்தக் கொள்கை கணிப்பு நம்பிக்கையை அதிகரிக்கிறது?",
+        "te": "ఈ మాడ్యూల్ ప్రకారం ఏ సూత్రం అంచనా విశ్వాసాన్ని పెంచుతుంది?",
+        "bn": "এই মডিউল অনুসারে কোন নীতি ভবিষ্যদ্বাণীর আস্থা বাড়ায়?",
+        "kn": "ಈ ಮಾಡ್ಯೂಲ್ ಪ್ರಕಾರ, ಯಾವ ತತ್ವವು ಭವಿಷ್ಯವಾಣಿಯ ವಿಶ್ವಾಸವನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ?",
         "mr": "इस मॉड्यूल के अनुसार भविष्यवाणी में विश्वास बढ़ाने वाला सिद्धान्त कौन-सा है?",
-        "gu": "What principle increases prediction confidence according to this module?",
+        "gu": "આ મોડ્યુલ મુજબ કયો સિદ્ધાંત ભવિષ્યવાણીનો વિશ્વાસ વધારે છે?",
         "mai": "एहि मॉड्यूलक अनुसार कोन सिद्धांत भविष्यवाणी मे विश्वास बढ़ाबैत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "\"If 3 dashas agree, the event is certain\"  –  this is the principle of convergent validation. When Vimshottari, Yogini, and Char Dasha all point to the same event in the same time window, the prediction carries very high confidence.",
         "hi": "\"यदि 3 दशाएँ सहमत हों, तो घटना निश्चित है\"  –  यह अभिसारी प्रमाणीकरण का सिद्धान्त है। जब विंशोत्तरी, योगिनी और चर दशा सभी एक ही समय-खिड़की में एक ही घटना की ओर इंगित करें, तो भविष्यवाणी अत्यधिक विश्वसनीय होती है।",
-        "ta": "\"If 3 dashas agree, the event is certain\"  –  this is the principle of convergent validation. When Vimshottari, Yogini, and Char Dasha all point to the same event in the same time window, the prediction carries very high confidence.",
-        "te": "\"If 3 dashas agree, the event is certain\"  –  this is the principle of convergent validation. When Vimshottari, Yogini, and Char Dasha all point to the same event in the same time window, the prediction carries very high confidence.",
-        "bn": "\"If 3 dashas agree, the event is certain\"  –  this is the principle of convergent validation. When Vimshottari, Yogini, and Char Dasha all point to the same event in the same time window, the prediction carries very high confidence.",
-        "kn": "\"If 3 dashas agree, the event is certain\"  –  this is the principle of convergent validation. When Vimshottari, Yogini, and Char Dasha all point to the same event in the same time window, the prediction carries very high confidence.",
+        "ta": "\"3 தசாக்கள் ஒத்துப்போனால், நிகழ்வு நிச்சயம்\" – இது ஒருமித்த சரிபார்ப்பின் கொள்கை. விம்சோத்தரி, யோகினி மற்றும் சர தசை அனைத்தும் ஒரே கால சாளரத்தில் ஒரே நிகழ்வைக் குறிக்கும் போது, கணிப்பு மிக அதிக நம்பிக்கையை அளிக்கிறது.",
+        "te": "\"3 దశలు అంగీకరిస్తే, సంఘటన ఖచ్చితం\" – ఇది కన్వర్జెంట్ వాలిడేషన్ సూత్రం. వింశోత్తరి, యోగినీ మరియు చర దశలు అన్నీ ఒకే సమయ విండోలో ఒకే సంఘటనను సూచించినప్పుడు, అంచనా చాలా అధిక విశ్వాసాన్ని కలిగి ఉంటుంది.",
+        "bn": "\"যদি ৩টি দশা একমত হয়, তবে ঘটনাটি নিশ্চিত\"  –  এটি অভিসারী বৈধতার নীতি। যখন বিংশোত্তরী, যোগিনী এবং চর দশা সবই একই সময়সীমার মধ্যে একই ঘটনার দিকে নির্দেশ করে, তখন ভবিষ্যদ্বাণীটি খুব উচ্চ আস্থা বহন করে।",
+        "kn": "\"3 ದಶಾಗಳು ಒಪ್ಪಿದರೆ, ಘಟನೆ ಖಚಿತ\"  –  ಇದು ಸಂಯೋಜಿತ ಮೌಲ್ಯೀಕರಣದ ತತ್ವವಾಗಿದೆ. ವಿಂಶೋತ್ತರಿ, ಯೋಗಿನಿ, ಮತ್ತು ಚರ ದಶಾ ಎಲ್ಲವೂ ಒಂದೇ ಸಮಯದ ಚೌಕಟ್ಟಿನಲ್ಲಿ ಒಂದೇ ಘಟನೆಯನ್ನು ಸೂಚಿಸಿದಾಗ, ಭವಿಷ್ಯವಾಣಿಯು ಅತ್ಯಂತ ಹೆಚ್ಚಿನ ವಿಶ್ವಾಸವನ್ನು ಹೊಂದಿರುತ್ತದೆ.",
         "mr": "\"यदि 3 दशाएँ सहमत हों, तो घटना निश्चित है\"  –  यह अभिसारी प्रमाणीकरण का सिद्धान्त है। जब विंशोत्तरी, योगिनी और चर दशा सभी एक ही समय-खिड़की में एक ही घटना की ओर इंगित करें, तो भविष्यवाणी अत्यधिक विश्वसनीय होती है।",
-        "gu": "\"If 3 dashas agree, the event is certain\"  –  this is the principle of convergent validation. When Vimshottari, Yogini, and Char Dasha all point to the same event in the same time window, the prediction carries very high confidence.",
+        "gu": "\"જો 3 દશાઓ સંમત થાય, તો ઘટના નિશ્ચિત છે\" – આ સંકલિત માન્યતાનો સિદ્ધાંત છે. જ્યારે વિંશોત્તરી, યોગિની અને ચર દશા ત્રણેય સમાન સમયગાળામાં સમાન ઘટના તરફ નિર્દેશ કરે છે, ત્યારે ભવિષ્યવાણી ખૂબ ઊંચો વિશ્વાસ ધરાવે છે.",
         "mai": "\"यदि ३ टा दशा सहमत होइत अछि, तऽ घटना निश्चित अछि\" – ई अभिसारी सत्यापनक सिद्धांत अछि। जखन विंशोत्तरी, योगिनी, आ चर दशा सभ एकहि समय सीमा मे एकहि घटना केँ इंगित करैत अछि, तऽ भविष्यवाणी मे बहुत बेसी विश्वास होइत अछि।"
       },
       "options": [
@@ -517,44 +517,44 @@
           "hi": "सदा केवल एक दशा पद्धति का उपयोग",
           "mai": "मात्र एकटा दशा प्रणालीक लगातार उपयोग करब",
           "mr": "सदा केवल एक दशा पद्धति का उपयोग",
-          "ta": "Using only one dasha system consistently",
-          "te": "Using only one dasha system consistently",
-          "bn": "Using only one dasha system consistently",
-          "kn": "Using only one dasha system consistently",
-          "gu": "Using only one dasha system consistently"
+          "ta": "ஒரே ஒரு தசா அமைப்பை தொடர்ந்து பயன்படுத்துதல்",
+          "te": "ఒకే దశ వ్యవస్థను స్థిరంగా ఉపయోగించడం",
+          "bn": "শুধুমাত্র একটি দশা পদ্ধতি ধারাবাহিকভাবে ব্যবহার করা",
+          "kn": "ಕೇವಲ ಒಂದು ದಶಾ ಪದ್ಧತಿಯನ್ನು ಸ್ಥಿರವಾಗಿ ಬಳಸುವುದು",
+          "gu": "ફક્ત એક જ દશા પ્રણાલીનો સતત ઉપયોગ કરવો"
         },
         {
           "en": "If 3 dashas agree, the event is certain",
           "hi": "यदि 3 दशाएँ सहमत हों, तो घटना निश्चित है",
           "mai": "यदि ३ टा दशा सहमत होइत अछि, तऽ घटना निश्चित अछि",
           "mr": "यदि 3 दशाएँ सहमत हों, तो घटना निश्चित है",
-          "ta": "If 3 dashas agree, the event is certain",
-          "te": "If 3 dashas agree, the event is certain",
-          "bn": "If 3 dashas agree, the event is certain",
-          "kn": "If 3 dashas agree, the event is certain",
-          "gu": "If 3 dashas agree, the event is certain"
+          "ta": "3 தசாக்கள் ஒத்துப்போனால், நிகழ்வு நிச்சயம்",
+          "te": "3 దశలు అంగీకరిస్తే, సంఘటన ఖచ్చితం",
+          "bn": "যদি ৩টি দশা একমত হয়, তবে ঘটনাটি নিশ্চিত",
+          "kn": "3 ದಶಾಗಳು ಒಪ್ಪಿದರೆ, ಘಟನೆ ಖಚಿತ",
+          "gu": "જો 3 દશાઓ સંમત થાય, તો ઘટના નિશ્ચિત છે"
         },
         {
           "en": "Only planetary transits matter",
           "hi": "केवल ग्रह गोचर महत्त्वपूर्ण हैं",
           "mai": "मात्र ग्रह गोचरक महत्व अछि",
           "mr": "केवल ग्रह गोचर महत्त्वपूर्ण हैं",
-          "ta": "Only planetary transits matter",
-          "te": "Only planetary transits matter",
-          "bn": "Only planetary transits matter",
-          "kn": "Only planetary transits matter",
-          "gu": "Only planetary transits matter"
+          "ta": "கிரக கோச்சாரங்கள் மட்டுமே முக்கியம்",
+          "te": "గ్రహ గోచారాలు మాత్రమే ముఖ్యమైనవి",
+          "bn": "শুধুমাত্র গ্রহের গোচরগুলি গুরুত্বপূর্ণ",
+          "kn": "ಕೇವಲ ಗ್ರಹಗಳ ಗೋಚಾರಗಳು ಮಾತ್ರ ಮುಖ್ಯ",
+          "gu": "ફક્ત ગ્રહ ગોચર જ મહત્વનું છે"
         },
         {
           "en": "Birth time rectification eliminates the need for multiple systems",
           "hi": "जन्म समय शोधन से बहु-पद्धति की आवश्यकता समाप्त हो जाती है",
           "mai": "जन्म समयक शुद्धिकरण अनेक प्रणालीक आवश्यकता केँ समाप्त करैत अछि",
           "mr": "जन्म समय शोधन से बहु-पद्धति की आवश्यकता समाप्त हो जाती है",
-          "ta": "Birth time rectification eliminates the need for multiple systems",
-          "te": "Birth time rectification eliminates the need for multiple systems",
-          "bn": "Birth time rectification eliminates the need for multiple systems",
-          "kn": "Birth time rectification eliminates the need for multiple systems",
-          "gu": "Birth time rectification eliminates the need for multiple systems"
+          "ta": "பிறப்பு நேர திருத்தம் பல அமைப்புகளின் தேவையை நீக்குகிறது",
+          "te": "జన్మ సమయ సవరణ బహుళ వ్యవస్థల అవసరాన్ని తొలగిస్తుంది",
+          "bn": "জন্মসময় সংশোধন একাধিক পদ্ধতির প্রয়োজনীয়তা দূর করে",
+          "kn": "ಜನ್ಮ ಸಮಯದ ಶುದ್ಧೀಕರಣವು ಬಹು ಪದ್ಧತಿಗಳ ಅಗತ್ಯವನ್ನು ನಿವಾರಿಸುತ್ತದೆ",
+          "gu": "જન્મ સમય સુધારણા બહુવિધ પ્રણાલીઓની જરૂરિયાતને દૂર કરે છે"
         }
       ]
     },
@@ -564,24 +564,24 @@
       "question": {
         "en": "In Char Dasha, the dasha duration for each sign is always the same (10 years per sign).",
         "hi": "चर दशा में प्रत्येक राशि की दशा अवधि सदा समान (10 वर्ष प्रति राशि) होती है।",
-        "ta": "In Char Dasha, the dasha duration for each sign is always the same (10 years per sign).",
-        "te": "In Char Dasha, the dasha duration for each sign is always the same (10 years per sign).",
-        "bn": "In Char Dasha, the dasha duration for each sign is always the same (10 years per sign).",
-        "kn": "In Char Dasha, the dasha duration for each sign is always the same (10 years per sign).",
+        "ta": "சர தசாவில், ஒவ்வொரு ராசியின் தசா காலமும் எப்போதும் ஒரே மாதிரியாக இருக்கும் (ஒரு ராசிக்கு 10 ஆண்டுகள்).",
+        "te": "చర దశలో, ప్రతి రాశికి దశ కాలం ఎల్లప్పుడూ ఒకే విధంగా ఉంటుంది (ప్రతి రాశికి 10 సంవత్సరాలు).",
+        "bn": "চর দশায়, প্রতিটি রাশির দশা কাল সর্বদা একই (প্রতি রাশিতে ১০ বছর)।",
+        "kn": "ಚರ ದಶಾದಲ್ಲಿ, ಪ್ರತಿ ರಾಶಿಯ ದಶಾ ಅವಧಿಯು ಯಾವಾಗಲೂ ಒಂದೇ ಆಗಿರುತ್ತದೆ (ಪ್ರತಿ ರಾಶಿಗೆ 10 ವರ್ಷಗಳು).",
         "mr": "चर दशा में प्रत्येक राशि की दशा अवधि सदा समान (10 वर्ष प्रति राशि) होती है।",
-        "gu": "In Char Dasha, the dasha duration for each sign is always the same (10 years per sign).",
+        "gu": "ચર દશામાં, દરેક રાશિ માટે દશાની અવધિ હંમેશા સમાન હોય છે (પ્રતિ રાશિ 10 વર્ષ).",
         "mai": "चर दशा मे, प्रत्येक राशि लेल दशाक अवधि हमेशा समान होइत अछि (प्रति राशि १० वर्ष)।"
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. In Char Dasha, each sign gets a variable duration (1 to 12 years) based on its lord's distance from the sign. The calculation involves counting signs from the sign to its lord, applying certain rules for odd and even signs. This makes each chart's Char Dasha sequence unique.",
         "hi": "असत्य। चर दशा में प्रत्येक राशि को उसके स्वामी की राशि से दूरी के आधार पर परिवर्तनशील अवधि (1 से 12 वर्ष) मिलती है। गणना में राशि से उसके स्वामी तक राशि गिनना शामिल है, विषम और सम राशियों के लिए विशेष नियम लगाकर। यह प्रत्येक कुण्डली का चर दशा क्रम अद्वितीय बनाता है।",
-        "ta": "False. In Char Dasha, each sign gets a variable duration (1 to 12 years) based on its lord's distance from the sign. The calculation involves counting signs from the sign to its lord, applying certain rules for odd and even signs. This makes each chart's Char Dasha sequence unique.",
-        "te": "False. In Char Dasha, each sign gets a variable duration (1 to 12 years) based on its lord's distance from the sign. The calculation involves counting signs from the sign to its lord, applying certain rules for odd and even signs. This makes each chart's Char Dasha sequence unique.",
-        "bn": "False. In Char Dasha, each sign gets a variable duration (1 to 12 years) based on its lord's distance from the sign. The calculation involves counting signs from the sign to its lord, applying certain rules for odd and even signs. This makes each chart's Char Dasha sequence unique.",
-        "kn": "False. In Char Dasha, each sign gets a variable duration (1 to 12 years) based on its lord's distance from the sign. The calculation involves counting signs from the sign to its lord, applying certain rules for odd and even signs. This makes each chart's Char Dasha sequence unique.",
+        "ta": "தவறு. சர தசாவில், ஒவ்வொரு ராசிக்கும் அதன் அதிபதி ராசியிலிருந்து உள்ள தூரத்தின் அடிப்படையில் மாறுபட்ட காலம் (1 முதல் 12 ஆண்டுகள்) கிடைக்கும். கணக்கீடு ராசியிலிருந்து அதன் அதிபதி வரை ராசிகளைக் கணக்கிடுவதையும், ஒற்றை மற்றும் இரட்டை ராசிகளுக்கான சில விதிகளைப் பயன்படுத்துவதையும் உள்ளடக்கியது. இது ஒவ்வொரு ஜாதகத்தின் சர தசா வரிசையையும் தனித்துவமாக்குகிறது.",
+        "te": "తప్పు. చర దశలో, ప్రతి రాశికి దాని అధిపతి రాశి నుండి ఉన్న దూరం ఆధారంగా వేరియబుల్ కాలం (1 నుండి 12 సంవత్సరాలు) లభిస్తుంది. ఈ లెక్కింపులో రాశి నుండి దాని అధిపతి వరకు రాశులను లెక్కించడం, బేసి మరియు సరి రాశులకు కొన్ని నియమాలను వర్తింపజేయడం ఉంటుంది. ఇది ప్రతి జాతక చక్రం యొక్క చర దశ క్రమాన్ని ప్రత్యేకంగా చేస్తుంది.",
+        "bn": "মিথ্যা। চর দশায়, প্রতিটি রাশি একটি পরিবর্তনশীল কাল (১ থেকে ১২ বছর) পায় তার অধিপতির রাশি থেকে দূরত্বের উপর ভিত্তি করে। গণনায় রাশি থেকে তার অধিপতি পর্যন্ত রাশি গণনা করা হয় এবং বিজোড় ও জোড় রাশির জন্য নির্দিষ্ট নিয়ম প্রয়োগ করা হয়। এটি প্রতিটি কুষ্ঠির চর দশা ক্রমকে অনন্য করে তোলে।",
+        "kn": "ತಪ್ಪು. ಚರ ದಶಾದಲ್ಲಿ, ಪ್ರತಿ ರಾಶಿಯು ಬದಲಾಗುವ ಅವಧಿಯನ್ನು (1 ರಿಂದ 12 ವರ್ಷಗಳು) ಪಡೆಯುತ್ತದೆ, ಅದರ ಅಧಿಪತಿಯು ರಾಶಿಯಿಂದ ಇರುವ ದೂರವನ್ನು ಆಧರಿಸಿ. ಲೆಕ್ಕಾಚಾರವು ರಾಶಿಯಿಂದ ಅದರ ಅಧಿಪತಿಯವರೆಗೆ ರಾಶಿಗಳನ್ನು ಎಣಿಸುವುದನ್ನು ಒಳಗೊಂಡಿರುತ್ತದೆ, ಬೆಸ ಮತ್ತು ಸಮ ರಾಶಿಗಳಿಗೆ ಕೆಲವು ನಿಯಮಗಳನ್ನು ಅನ್ವಯಿಸುತ್ತದೆ. ಇದು ಪ್ರತಿ ಜಾತಕದ ಚರ ದಶಾ ಅನುಕ್ರಮವನ್ನು ಅನನ್ಯವಾಗಿಸುತ್ತದೆ.",
         "mr": "असत्य। चर दशा में प्रत्येक राशि को उसके स्वामी की राशि से दूरी के आधार पर परिवर्तनशील अवधि (1 से 12 वर्ष) मिलती है। गणना में राशि से उसके स्वामी तक राशि गिनना शामिल है, विषम और सम राशियों के लिए विशेष नियम लगाकर। यह प्रत्येक कुण्डली का चर दशा क्रम अद्वितीय बनाता है।",
-        "gu": "False. In Char Dasha, each sign gets a variable duration (1 to 12 years) based on its lord's distance from the sign. The calculation involves counting signs from the sign to its lord, applying certain rules for odd and even signs. This makes each chart's Char Dasha sequence unique.",
+        "gu": "ખોટું. ચર દશામાં, દરેક રાશિને ચલિત અવધિ (1 થી 12 વર્ષ) મળે છે તેના સ્વામીના રાશિથી અંતરના આધારે. ગણતરીમાં રાશિથી તેના સ્વામી સુધી રાશિઓની ગણતરી શામેલ છે, ઓડ અને ઇવન રાશિઓ માટે ચોક્કસ નિયમો લાગુ કરીને. આ દરેક કુંડળીની ચર દશા અનુક્રમને અનન્ય બનાવે છે.",
         "mai": "गलत। चर दशा मे, प्रत्येक राशि केँ एकटा परिवर्तनशील अवधि (१ सँ १२ वर्ष) भेटैत अछि, ओकर स्वामीक राशि सँ दूरीक आधार पर। गणना मे राशि सँ ओकर स्वामी धरि राशिसभ केँ गिनब शामिल अछि, विषम आ सम राशिसभ लेल किछु नियम लागू करब। ई प्रत्येक कुंडलीक चर दशा क्रम केँ अद्वितीय बनाबैत अछि।"
       }
     },
@@ -591,24 +591,24 @@
       "question": {
         "en": "Char Dasha is most useful for which type of analysis?",
         "hi": "चर दशा किस प्रकार के विश्लेषण के लिए सर्वाधिक उपयोगी है?",
-        "ta": "Char Dasha is most useful for which type of analysis?",
-        "te": "Char Dasha is most useful for which type of analysis?",
-        "bn": "Char Dasha is most useful for which type of analysis?",
-        "kn": "Char Dasha is most useful for which type of analysis?",
+        "ta": "சர தசை எந்த வகையான பகுப்பாய்விற்கு மிகவும் பயனுள்ளது?",
+        "te": "చర దశ ఏ రకమైన విశ్లేషణకు అత్యంత ఉపయోగకరంగా ఉంటుంది?",
+        "bn": "চর দশা কোন ধরনের বিশ্লেষণের জন্য সবচেয়ে উপযোগী?",
+        "kn": "ಚರ ದಶಾ ಯಾವ ರೀತಿಯ ವಿಶ್ಲೇಷಣೆಗೆ ಹೆಚ್ಚು ಉಪಯುಕ್ತವಾಗಿದೆ?",
         "mr": "चर दशा किस प्रकार के विश्लेषण के लिए सर्वाधिक उपयोगी है?",
-        "gu": "Char Dasha is most useful for which type of analysis?",
+        "gu": "ચર દશા કયા પ્રકારના વિશ્લેષણ માટે સૌથી વધુ ઉપયોગી છે?",
         "mai": "चर दशा कोन प्रकारक विश्लेषण लेल सभ सँ बेसी उपयोगी अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Char Dasha excels at event-based analysis because it activates signs (houses), not individual planets. When a particular sign's dasha runs, ALL planets in that sign and the houses it represents become active simultaneously, making it easier to pinpoint concrete life events.",
         "hi": "चर दशा घटना-आधारित विश्लेषण में उत्कृष्ट है क्योंकि यह राशियों (भावों) को सक्रिय करती है, व्यक्तिगत ग्रहों को नहीं। जब किसी विशेष राशि की दशा चलती है, उस राशि के सभी ग्रह और वह जिन भावों का प्रतिनिधित्व करती है, एक साथ सक्रिय हो जाते हैं, जिससे ठोस जीवन घटनाओं का निर्धारण सरल हो जाता है।",
-        "ta": "Char Dasha excels at event-based analysis because it activates signs (houses), not individual planets. When a particular sign's dasha runs, ALL planets in that sign and the houses it represents become active simultaneously, making it easier to pinpoint concrete life events.",
-        "te": "Char Dasha excels at event-based analysis because it activates signs (houses), not individual planets. When a particular sign's dasha runs, ALL planets in that sign and the houses it represents become active simultaneously, making it easier to pinpoint concrete life events.",
-        "bn": "Char Dasha excels at event-based analysis because it activates signs (houses), not individual planets. When a particular sign's dasha runs, ALL planets in that sign and the houses it represents become active simultaneously, making it easier to pinpoint concrete life events.",
-        "kn": "Char Dasha excels at event-based analysis because it activates signs (houses), not individual planets. When a particular sign's dasha runs, ALL planets in that sign and the houses it represents become active simultaneously, making it easier to pinpoint concrete life events.",
+        "ta": "சர தசை நிகழ்வு அடிப்படையிலான பகுப்பாய்வில் சிறந்து விளங்குகிறது, ஏனெனில் இது தனிப்பட்ட கிரகங்களை அல்ல, ராசிகளை (பாவங்களை) செயல்படுத்துகிறது. ஒரு குறிப்பிட்ட ராசியின் தசை நடக்கும்போது, அந்த ராசியில் உள்ள அனைத்து கிரகங்களும் மற்றும் அது குறிக்கும் பாவங்களும் ஒரே நேரத்தில் செயல்படுகின்றன, இது குறிப்பிட்ட வாழ்க்கை நிகழ்வுகளை துல்லியமாக கண்டறிவதை எளிதாக்குகிறது.",
+        "te": "చర దశ సంఘటన-ఆధారిత విశ్లేషణలో రాణించింది, ఎందుకంటే ఇది రాశులను (భావాలను) సక్రియం చేస్తుంది, వ్యక్తిగత గ్రహాలను కాదు. ఒక నిర్దిష్ట రాశి యొక్క దశ నడుస్తున్నప్పుడు, ఆ రాశిలోని అన్ని గ్రహాలు మరియు అది సూచించే భావాలు ఏకకాలంలో సక్రియం అవుతాయి, ఇది నిర్దిష్ట జీవిత సంఘటనలను గుర్తించడాన్ని సులభతరం చేస్తుంది.",
+        "bn": "চর দশা ঘটনা-ভিত্তিক বিশ্লেষণে শ্রেষ্ঠ কারণ এটি রাশি (ভাব) সক্রিয় করে, স্বতন্ত্র গ্রহ নয়। যখন একটি নির্দিষ্ট রাশির দশা চলে, তখন সেই রাশিতে থাকা সমস্ত গ্রহ এবং এটি যে ভাবগুলিকে প্রতিনিধিত্ব করে, সেগুলি একই সাথে সক্রিয় হয়ে ওঠে, যা সুনির্দিষ্ট জীবনের ঘটনাগুলি চিহ্নিত করা সহজ করে তোলে।",
+        "kn": "ಚರ ದಶಾ ಘಟನೆ-ಆಧಾರಿತ ವಿಶ್ಲೇಷಣೆಯಲ್ಲಿ ಉತ್ತಮವಾಗಿದೆ ಏಕೆಂದರೆ ಇದು ರಾಶಿಗಳನ್ನು (ಭಾವಗಳನ್ನು) ಸಕ್ರಿಯಗೊಳಿಸುತ್ತದೆ, ವೈಯಕ್ತಿಕ ಗ್ರಹಗಳನ್ನಲ್ಲ. ಒಂದು ನಿರ್ದಿಷ್ಟ ರಾಶಿಯ ದಶಾ ನಡೆಯುವಾಗ, ಆ ರಾಶಿಯಲ್ಲಿರುವ ಎಲ್ಲಾ ಗ್ರಹಗಳು ಮತ್ತು ಅದು ಪ್ರತಿನಿಧಿಸುವ ಭಾವಗಳು ಏಕಕಾಲದಲ್ಲಿ ಸಕ್ರಿಯವಾಗುತ್ತವೆ, ಇದು ನಿರ್ದಿಷ್ಟ ಜೀವನ ಘಟನೆಗಳನ್ನು ನಿಖರವಾಗಿ ಗುರುತಿಸಲು ಸುಲಭವಾಗಿಸುತ್ತದೆ.",
         "mr": "चर दशा घटना-आधारित विश्लेषण में उत्कृष्ट है क्योंकि यह राशियों (भावों) को सक्रिय करती है, व्यक्तिगत ग्रहों को नहीं। जब किसी विशेष राशि की दशा चलती है, उस राशि के सभी ग्रह और वह जिन भावों का प्रतिनिधित्व करती है, एक साथ सक्रिय हो जाते हैं, जिससे ठोस जीवन घटनाओं का निर्धारण सरल हो जाता है।",
-        "gu": "Char Dasha excels at event-based analysis because it activates signs (houses), not individual planets. When a particular sign's dasha runs, ALL planets in that sign and the houses it represents become active simultaneously, making it easier to pinpoint concrete life events.",
+        "gu": "ચર દશા ઘટના-આધારિત વિશ્લેષણમાં ઉત્કૃષ્ટ છે કારણ કે તે રાશિઓ (ભાવ) ને સક્રિય કરે છે, વ્યક્તિગત ગ્રહોને નહીં. જ્યારે કોઈ ચોક્કસ રાશિની દશા ચાલે છે, ત્યારે તે રાશિમાં રહેલા બધા ગ્રહો અને તે જે ભાવોનું પ્રતિનિધિત્વ કરે છે તે એકસાથે સક્રિય થાય છે, જેનાથી ચોક્કસ જીવન ઘટનાઓને ઓળખવી સરળ બને છે.",
         "mai": "चर दशा घटना-आधारित विश्लेषण मे उत्कृष्ट अछि कारण ई राशिसभ (भावसभ) केँ सक्रिय करैत अछि, व्यक्तिगत ग्रहसभ केँ नहि। जखन एकटा विशिष्ट राशिक दशा चलैत अछि, तऽ ओहि राशि मे सभ ग्रह आ ओहि द्वारा प्रतिनिधित्व कएल गेल भावसभ एक संग सक्रिय भऽ जाइत अछि, जेकरा सँ ठोस जीवन घटनासभ केँ इंगित करब आसान भऽ जाइत अछि।"
       },
       "options": [
@@ -617,44 +617,44 @@
           "hi": "व्यक्तित्व आकलन",
           "mai": "व्यक्तित्व मूल्यांकन",
           "mr": "व्यक्तित्व आकलन",
-          "ta": "Personality assessment",
-          "te": "Personality assessment",
-          "bn": "Personality assessment",
-          "kn": "Personality assessment",
-          "gu": "Personality assessment"
+          "ta": "ஆளுமை மதிப்பீடு",
+          "te": "వ్యక్తిత్వ అంచనా",
+          "bn": "ব্যক্তিত্ব মূল্যায়ন",
+          "kn": "ವ್ಯಕ್ತಿತ್ವ ಮೌಲ್ಯಮಾಪನ",
+          "gu": "વ્યક્તિત્વ મૂલ્યાંકન"
         },
         {
           "en": "Event-based prediction and timing",
           "hi": "घटना-आधारित भविष्यवाणी और समय-निर्धारण",
           "mai": "घटना-आधारित भविष्यवाणी आ समय निर्धारण",
           "mr": "घटना-आधारित भविष्यवाणी और समय-निर्धारण",
-          "ta": "Event-based prediction and timing",
-          "te": "Event-based prediction and timing",
-          "bn": "Event-based prediction and timing",
-          "kn": "Event-based prediction and timing",
-          "gu": "Event-based prediction and timing"
+          "ta": "நிகழ்வு அடிப்படையிலான கணிப்பு மற்றும் நேரம்",
+          "te": "సంఘటన-ఆధారిత అంచనా మరియు సమయం",
+          "bn": "ঘটনা-ভিত্তিক ভবিষ্যদ্বাণী এবং সময় নির্ধারণ",
+          "kn": "ಘಟನೆ-ಆಧಾರಿತ ಭವಿಷ್ಯವಾಣಿ ಮತ್ತು ಸಮಯ ನಿರ್ಧಾರ",
+          "gu": "ઘટના-આધારિત ભવિષ્યવાણી અને સમય નિર્ધારણ"
         },
         {
           "en": "Gemstone recommendation",
           "hi": "रत्न संस्तुति",
           "mai": "रत्नक सिफारिश",
           "mr": "रत्न संस्तुति",
-          "ta": "Gemstone recommendation",
-          "te": "Gemstone recommendation",
-          "bn": "Gemstone recommendation",
-          "kn": "Gemstone recommendation",
-          "gu": "Gemstone recommendation"
+          "ta": "ரத்தினக் கல் பரிந்துரை",
+          "te": "రత్న సిఫార్సు",
+          "bn": "রত্নপাথর সুপারিশ",
+          "kn": "ರತ್ನಗಳ ಶಿಫಾರಸು",
+          "gu": "રત્ન ભલામણ"
         },
         {
           "en": "Naming ceremony",
           "hi": "नामकरण संस्कार",
           "mai": "नामकरण संस्कार",
           "mr": "नामकरण संस्कार",
-          "ta": "Naming ceremony",
-          "te": "Naming ceremony",
-          "bn": "Naming ceremony",
-          "kn": "Naming ceremony",
-          "gu": "Naming ceremony"
+          "ta": "பெயர் சூட்டு விழா",
+          "te": "నామకరణ వేడుక",
+          "bn": "নামকরণ অনুষ্ঠান",
+          "kn": "ನಾಮಕರಣ ಸಮಾರಂಭ",
+          "gu": "નામકરણ સમારોહ"
         }
       ]
     }

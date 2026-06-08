@@ -1,9 +1,10 @@
 import { setRequestLocale } from 'next-intl/server';
-import { NAKSHATRA_PADA_PROFILES, type NakshatraPadaProfile } from '@/lib/constants/nakshatra-pada-profiles';
+import { NAKSHATRA_PADA_PROFILES, type NakshatraPadaProfile } from '@/lib/constants/nakshatra-pada-profiles-with-overlay';
 import { getNakshatraPadaExtras } from '@/lib/constants/nakshatra-pada-extras';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
+import { getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -53,7 +54,12 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
   const navamshaRashi = RASHIS[profile.navamshaSign - 1];
   const navamshaName = tl(navamshaRashi?.name, locale) || `Sign ${profile.navamshaSign}`;
   const isHi = locale === 'hi' || locale === 'sa';
-  const hf = { fontFamily: isHi ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' };
+  // Locale-aware font selection — covers all 9 visible locales' scripts
+  // (Tamil / Telugu / Bengali / Kannada / Gujarati / Devanagari-for-
+  // hi+mr+mai+sa). Previously the page only switched on hi/sa and
+  // fell back to the Latin font for the regional scripts. Gemini PR #555.
+  const hf = getHeadingFont(locale);
+  const bf = getBodyFont(locale);
   const elemColor = ELEMENT_COLORS[profile.element] || 'text-gold-light bg-gold-primary/10 border-gold-primary/20';
 
   const articleLD = {
@@ -115,10 +121,10 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
       {(() => {
         const extras = getNakshatraPadaExtras(parsed.nakshatraId, parsed.pada);
         const sections = [
-          { icon: Star, title: isHi ? 'व्यक्तित्व' : 'Personality', body: isHi ? profile.personality.hi : profile.personality.en },
-          { icon: Briefcase, title: isHi ? 'करियर' : 'Career', body: isHi ? profile.career.hi : profile.career.en },
-          { icon: Heart, title: isHi ? 'सम्बन्ध' : 'Relationships', body: isHi ? profile.relationships.hi : profile.relationships.en },
-          { icon: Activity, title: isHi ? 'स्वास्थ्य' : 'Health', body: isHi ? profile.health.hi : profile.health.en },
+          { icon: Star, title: isHi ? 'व्यक्तित्व' : 'Personality', body: tl(profile.personality, locale) },
+          { icon: Briefcase, title: isHi ? 'करियर' : 'Career', body: tl(profile.career, locale) },
+          { icon: Heart, title: isHi ? 'सम्बन्ध' : 'Relationships', body: tl(profile.relationships, locale) },
+          { icon: Activity, title: isHi ? 'स्वास्थ्य' : 'Health', body: tl(profile.health, locale) },
         ];
         if (extras) {
           sections.push(
@@ -133,7 +139,7 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
             <section.icon className="w-5 h-5 text-gold-primary" />
             <h2 className="text-lg font-semibold text-gold-light" style={hf}>{section.title}</h2>
           </div>
-          <p className="text-text-primary leading-relaxed">{section.body}</p>
+          <p className="text-text-primary leading-relaxed" style={bf}>{section.body}</p>
         </div>
       ))}
 

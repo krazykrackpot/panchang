@@ -1,8 +1,9 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { NAKSHATRA_PADA_PROFILES } from '@/lib/constants/nakshatra-pada-profiles';
+import { NAKSHATRA_PADA_PROFILES } from '@/lib/constants/nakshatra-pada-profiles-with-overlay';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { tl } from '@/lib/utils/trilingual';
+import { buildIndexableHreflang } from '@/lib/seo/hreflang';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
@@ -27,12 +28,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const nakData = NAKSHATRAS[parsed.nakshatraId - 1];
   const nakName = tl(nakData?.name, locale) || NAK_SLUGS[parsed.nakshatraId - 1];
   const title = `${nakName} Pada ${parsed.pada}  –  ${profile.syllable} | Vedic Nakshatra Analysis`;
-  const desc = profile.personality.en.slice(0, 155);
+  // Locale-aware description — fans into the overlay-supplied locale
+  // strings post-PR shipping this. Fallback to en if a locale-specific
+  // personality string is missing.
+  const desc = tl(profile.personality, locale).slice(0, 155);
   const route = `/learn/nakshatra-pada/${slug}`;
   return {
     title,
     description: desc,
-    alternates: { canonical: `${BASE_URL}/${locale}${route}`, languages: { en: `${BASE_URL}/en${route}`, hi: `${BASE_URL}/hi${route}`, 'x-default': `${BASE_URL}/en${route}` } },
+    alternates: {
+      canonical: `${BASE_URL}/${locale}${route}`,
+      // hreflang now fans out to every visible locale whose overlay is
+      // populated (central policy via buildIndexableHreflang); previous
+      // map was hardcoded en+hi from the bilingual era.
+      languages: buildIndexableHreflang(route),
+    },
     openGraph: { title, description: desc, url: `${BASE_URL}/${locale}${route}`, type: 'article' },
   };
 }

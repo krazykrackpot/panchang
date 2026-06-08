@@ -135,24 +135,20 @@ export default function LearnBhavaChalitPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
             <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/15 rounded-xl p-4 text-center">
               <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-                {locale === 'hi' ? 'राशि कुण्डली (D1)' : 'Rashi Chart (D1)'}
+                {tx('rashiChartD1')}
               </div>
               <div className="text-3xl mb-2">&#x25A6;</div>
-              <div className="text-text-secondary text-sm">
-                {locale === 'hi'
-                  ? 'प्रत्येक राशि = एक भाव\nसरल, राशि सीमाओं पर आधारित'
-                  : 'Each sign = one house\nSimple, based on sign boundaries'}
+              <div className="text-text-secondary text-sm whitespace-pre-line">
+                {tx('rashiChartDesc')}
               </div>
             </div>
             <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-emerald-500/20 rounded-xl p-4 text-center">
               <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">
-                {locale === 'hi' ? 'भाव चलित' : 'Bhava Chalit'}
+                {tx('bhavaChalit')}
               </div>
               <div className="text-3xl mb-2">&#x25CE;</div>
-              <div className="text-text-secondary text-sm">
-                {locale === 'hi'
-                  ? 'लग्न अंश = भाव 1 का मध्य\nअंश-आधारित, 30° चाप'
-                  : 'Ascendant degree = House 1 midpoint\nDegree-based, 30° arcs'}
+              <div className="text-text-secondary text-sm whitespace-pre-line">
+                {tx('bhavaChalitDesc')}
               </div>
             </div>
           </div>
@@ -174,7 +170,7 @@ export default function LearnBhavaChalitPage() {
         </WhyItMatters>
         <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-amber-500/20 rounded-xl p-4">
           <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-2">
-            {locale === 'hi' ? 'उदाहरण' : 'Example'}
+            {tx('exampleLabel')}
           </div>
           <p className="text-text-secondary text-sm leading-relaxed">
             {tx('whyMattersExample')}
@@ -246,7 +242,7 @@ export default function LearnBhavaChalitPage() {
         </div>
         <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4">
           <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">
-            {locale === 'hi' ? 'व्यावहारिक सहमति' : 'Practical Consensus'}
+            {tx('practicalConsensus')}
           </div>
           <p className="text-text-secondary text-sm leading-relaxed">
             {tx('debateConsensus')}

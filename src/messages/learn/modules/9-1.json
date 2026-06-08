@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 9.2: भाव",
         "mai": "मॉड्यूल ९.२: भाव (भावस)",
         "mr": "मॉड्यूल 9.2: भाव",
-        "ta": "Module 9.2: Houses (Bhavas)",
-        "te": "Module 9.2: Houses (Bhavas)",
-        "bn": "Module 9.2: Houses (Bhavas)",
-        "kn": "Module 9.2: Houses (Bhavas)",
-        "gu": "Module 9.2: Houses (Bhavas)"
+        "ta": "தொகுதி 9.2: பாவங்கள் (பாவம்)",
+        "te": "మాడ్యూల్ 9.2: భావాలు (భావాలు)",
+        "bn": "মডিউল ৯.২: ভাব (ভাবসমূহ)",
+        "kn": "ಮಾಡ್ಯೂಲ್ 9.2: ಭಾವಗಳು",
+        "gu": "મોડ્યુલ 9.2: ભાવ (ભાવો)"
       },
       "href": "/learn/modules/9-2"
     },
@@ -42,11 +42,11 @@
         "hi": "मॉड्यूल 9.3: ग्रह बल",
         "mai": "मॉड्यूल ९.३: ग्रहीय बल",
         "mr": "मॉड्यूल 9.3: ग्रह बल",
-        "ta": "Module 9.3: Planetary Dignities",
-        "te": "Module 9.3: Planetary Dignities",
-        "bn": "Module 9.3: Planetary Dignities",
-        "kn": "Module 9.3: Planetary Dignities",
-        "gu": "Module 9.3: Planetary Dignities"
+        "ta": "தொகுதி 9.3: கிரக பலம்",
+        "te": "మాడ్యూల్ 9.3: గ్రహ బలాలు",
+        "bn": "মডিউল ৯.৩: গ্রহের মর্যাদা",
+        "kn": "ಮಾಡ್ಯೂಲ್ 9.3: ಗ್ರಹಗಳ ಬಲಗಳು",
+        "gu": "મોડ્યુલ 9.3: ગ્રહ બળ"
       },
       "href": "/learn/modules/9-3"
     },
@@ -56,11 +56,11 @@
         "hi": "मॉड्यूल 9.4: व्याख्या ढाँचा",
         "mai": "मॉड्यूल ९.४: व्याख्याक ढाँचा",
         "mr": "मॉड्यूल 9.4: व्याख्या ढाँचा",
-        "ta": "Module 9.4: Interpretation Framework",
-        "te": "Module 9.4: Interpretation Framework",
-        "bn": "Module 9.4: Interpretation Framework",
-        "kn": "Module 9.4: Interpretation Framework",
-        "gu": "Module 9.4: Interpretation Framework"
+        "ta": "தொகுதி 9.4: பலன் கூறும் கட்டமைப்பு",
+        "te": "మాడ్యూల్ 9.4: విశ్లేషణ విధానం",
+        "bn": "মডিউল ৯.৪: ব্যাখ্যার কাঠামো",
+        "kn": "ಮಾಡ್ಯೂಲ್ 9.4: ವ್ಯಾಖ್ಯಾನ ಚೌಕಟ್ಟು",
+        "gu": "મોડ્યુલ 9.4: અર્થઘટન માળખું"
       },
       "href": "/learn/modules/9-4"
     },
@@ -70,11 +70,11 @@
         "hi": "सीखें: कुण्डली",
         "mai": "सीखू: कुंडली",
         "mr": "सीखें: कुण्डली",
-        "ta": "Learn: Kundali",
-        "te": "Learn: Kundali",
-        "bn": "Learn: Kundali",
-        "kn": "Learn: Kundali",
-        "gu": "Learn: Kundali"
+        "ta": "கற்றுக்கொள்ளுங்கள்: குண்டலி",
+        "te": "నేర్చుకోండి: కుండలి",
+        "bn": "শিখুন: কুণ্ডলী",
+        "kn": "ಕಲಿಯಿರಿ: ಕುಂಡಲಿ",
+        "gu": "શીખો: કુંડળી"
       },
       "href": "/learn/kundali"
     },
@@ -84,11 +84,11 @@
         "hi": "कुण्डली बनाएँ",
         "mai": "कुंडली बनाबू",
         "mr": "कुण्डली बनाएँ",
-        "ta": "Generate Kundali",
-        "te": "Generate Kundali",
-        "bn": "Generate Kundali",
-        "kn": "Generate Kundali",
-        "gu": "Generate Kundali"
+        "ta": "குண்டலி உருவாக்கு",
+        "te": "కుండలిని రూపొందించండి",
+        "bn": "কুণ্ডলী তৈরি করুন",
+        "kn": "ಕುಂಡಲಿ ರಚಿಸಿ",
+        "gu": "કુંડળી બનાવો"
       },
       "href": "/kundali"
     }
@@ -102,11 +102,11 @@
         "hi": "कुण्डली (जन्म पत्रिका) क्या दर्शाती है?",
         "mai": "एकटा कुंडली (जन्म कुंडली) की देखाबैत अछि?",
         "mr": "कुण्डली (जन्म पत्रिका) क्या दर्शाती है?",
-        "ta": "What does a Kundali (birth chart) represent?",
-        "te": "What does a Kundali (birth chart) represent?",
-        "bn": "What does a Kundali (birth chart) represent?",
-        "kn": "What does a Kundali (birth chart) represent?",
-        "gu": "What does a Kundali (birth chart) represent?"
+        "ta": "குண்டலி (பிறப்பு ஜாதகம்) எதைக் குறிக்கிறது?",
+        "te": "కుండలి (జనన చార్ట్) దేనిని సూచిస్తుంది?",
+        "bn": "একটি কুণ্ডলী (জন্মছক) কী বোঝায়?",
+        "kn": "ಕುಂಡಲಿ (ಜನ್ಮ ಜಾತಕ) ಏನನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತದೆ?",
+        "gu": "કુંડળી (જન્મ કુંડળી) શું દર્શાવે છે?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -114,11 +114,11 @@
         "hi": "कुण्डली एक सटीक खगोलीय नक्शा है जो जन्मस्थान से जन्म के सटीक क्षण में सभी नौ वैदिक ग्रहों, 12 भावों और 12 राशियों को दर्शाती है।",
         "mai": "एकटा कुंडली जन्मक ठीक क्षण मे जन्म स्थान सँ देखायल सभ नौ वैदिक ग्रह, १२ भाव आ १२ राशि देखाबैत एकटा सटीक खगोलीय नक्शा अछि।",
         "mr": "कुण्डली एक सटीक खगोलीय नक्शा है जो जन्मस्थान से जन्म के सटीक क्षण में सभी नौ वैदिक ग्रहों, 12 भावों और 12 राशियों को दर्शाती है।",
-        "ta": "A Kundali is a precise astronomical map showing all nine Vedic planets, 12 houses, and 12 signs as they appeared from the birthplace at the exact moment of birth.",
-        "te": "A Kundali is a precise astronomical map showing all nine Vedic planets, 12 houses, and 12 signs as they appeared from the birthplace at the exact moment of birth.",
-        "bn": "A Kundali is a precise astronomical map showing all nine Vedic planets, 12 houses, and 12 signs as they appeared from the birthplace at the exact moment of birth.",
-        "kn": "A Kundali is a precise astronomical map showing all nine Vedic planets, 12 houses, and 12 signs as they appeared from the birthplace at the exact moment of birth.",
-        "gu": "A Kundali is a precise astronomical map showing all nine Vedic planets, 12 houses, and 12 signs as they appeared from the birthplace at the exact moment of birth."
+        "ta": "ஒரு குண்டலி என்பது, பிறந்த இடத்திலிருந்து, பிறந்த சரியான நேரத்தில் ஒன்பது வேத கிரகங்கள், 12 பாவங்கள் மற்றும் 12 ராசிகள் எவ்வாறு தோன்றின என்பதைக் காட்டும் ஒரு துல்லியமான வானியல் வரைபடம் ஆகும்.",
+        "te": "కుండలి అనేది పుట్టిన ప్రదేశం నుండి పుట్టిన ఖచ్చితమైన సమయంలో తొమ్మిది వైదిక గ్రహాలు, 12 భావాలు మరియు 12 రాశులు ఎలా కనిపించాయో చూపే ఖచ్చితమైన ఖగోళ పటం.",
+        "bn": "একটি কুণ্ডলী হল একটি সুনির্দিষ্ট জ্যোতির্বিজ্ঞানীয় মানচিত্র যা নবগ্রহ, ১২টি ভাব এবং ১২টি রাশিকে দেখায়, যা জন্মস্থান থেকে ঠিক জন্মমুহূর্তে দেখা গিয়েছিল।",
+        "kn": "ಕುಂಡಲಿಯು ನಿಖರವಾದ ಖಗೋಳ ನಕ್ಷೆಯಾಗಿದ್ದು, ಜನ್ಮಸ್ಥಳದಿಂದ ನಿಖರವಾದ ಜನ್ಮ ಕ್ಷಣದಲ್ಲಿ ಎಲ್ಲಾ ಒಂಬತ್ತು ವೈದಿಕ ಗ್ರಹಗಳು, 12 ಭಾವಗಳು ಮತ್ತು 12 ರಾಶಿಗಳು ಹೇಗೆ ಕಾಣಿಸಿಕೊಂಡವು ಎಂಬುದನ್ನು ತೋರಿಸುತ್ತದೆ.",
+        "gu": "કુંડળી એ એક ચોક્કસ ખગોળીય નકશો છે જે નવ વૈદિક ગ્રહો, 12 ભાવ અને 12 રાશિઓ દર્શાવે છે, જે જન્મના ચોક્કસ સમયે જન્મસ્થળ પરથી દેખાતા હતા."
       },
       "options": [
         {
@@ -126,44 +126,44 @@
           "hi": "प्रतीकों की यादृच्छिक व्यवस्था",
           "mai": "प्रतीकक एकटा यादृच्छिक व्यवस्था",
           "mr": "प्रतीकों की यादृच्छिक व्यवस्था",
-          "ta": "A random arrangement of symbols",
-          "te": "A random arrangement of symbols",
-          "bn": "A random arrangement of symbols",
-          "kn": "A random arrangement of symbols",
-          "gu": "A random arrangement of symbols"
+          "ta": "சின்னங்களின் ஒரு சீரற்ற அமைப்பு",
+          "te": "చిహ్నాల యాదృచ్ఛిక అమరిక",
+          "bn": "প্রতীকগুলির একটি এলোমেলো বিন্যাস",
+          "kn": "ಚಿಹ್ನೆಗಳ ಯಾದೃಚ್ಛಿಕ ಜೋಡಣೆ",
+          "gu": "પ્રતીકોની એક રેન્ડમ ગોઠવણી"
         },
         {
           "en": "A map of the sky at the exact moment and place of birth",
           "hi": "जन्म के सटीक समय और स्थान पर आकाश का नक्शा",
           "mai": "जन्म क्षण आ स्थान पर आकाशक एकटा नक्शा",
           "mr": "जन्म के सटीक समय और स्थान पर आकाश का नक्शा",
-          "ta": "A map of the sky at the exact moment and place of birth",
-          "te": "A map of the sky at the exact moment and place of birth",
-          "bn": "A map of the sky at the exact moment and place of birth",
-          "kn": "A map of the sky at the exact moment and place of birth",
-          "gu": "A map of the sky at the exact moment and place of birth"
+          "ta": "பிறந்த சரியான நேரத்திலும் இடத்திலும் வானத்தின் ஒரு வரைபடம்",
+          "te": "పుట్టిన ఖచ్చితమైన సమయం మరియు ప్రదేశంలో ఆకాశ పటం",
+          "bn": "জন্মমুহূর্ত ও জন্মস্থানের আকাশের একটি মানচিত্র",
+          "kn": "ನಿಖರವಾದ ಜನ್ಮ ಕ್ಷಣ ಮತ್ತು ಸ್ಥಳದಲ್ಲಿ ಆಕಾಶದ ನಕ್ಷೆ",
+          "gu": "જન્મના ચોક્કસ સમય અને સ્થળ પર આકાશનો નકશો"
         },
         {
           "en": "Only the position of the Sun",
           "hi": "केवल सूर्य की स्थिति",
           "mai": "मात्र सूर्यक स्थिति",
           "mr": "केवल सूर्य की स्थिति",
-          "ta": "Only the position of the Sun",
-          "te": "Only the position of the Sun",
-          "bn": "Only the position of the Sun",
-          "kn": "Only the position of the Sun",
-          "gu": "Only the position of the Sun"
+          "ta": "சூரியனின் நிலை மட்டுமே",
+          "te": "సూర్యుని స్థానం మాత్రమే",
+          "bn": "শুধুমাত্র সূর্যের অবস্থান",
+          "kn": "ಕೇವಲ ಸೂರ್ಯನ ಸ್ಥಾನ",
+          "gu": "ફક્ત સૂર્યની સ્થિતિ"
         },
         {
           "en": "A Western zodiac horoscope",
           "hi": "पाश्चात्य राशिफल",
           "mai": "एकटा पश्चिमी राशिचक्रक कुंडली",
           "mr": "पाश्चात्य राशिफल",
-          "ta": "A Western zodiac horoscope",
-          "te": "A Western zodiac horoscope",
-          "bn": "A Western zodiac horoscope",
-          "kn": "A Western zodiac horoscope",
-          "gu": "A Western zodiac horoscope"
+          "ta": "ஒரு மேற்கத்திய ராசி பலன்",
+          "te": "పాశ్చాత్య రాశిచక్ర జాతకం",
+          "bn": "একটি পাশ্চাত্য রাশিচক্রের কোষ্ঠী",
+          "kn": "ಪಾಶ್ಚಾತ್ಯ ರಾಶಿಚಕ್ರದ ಜಾತಕ",
+          "gu": "પશ્ચિમી રાશિચક્રની કુંડળી"
         }
       ]
     },
@@ -175,11 +175,11 @@
         "hi": "लग्न राशि कितनी बार बदलती है?",
         "mai": "लग्न (उदय) राशि केतेक बेर बदलैत अछि?",
         "mr": "लग्न राशि कितनी बार बदलती है?",
-        "ta": "How often does the Lagna (Ascendant) sign change?",
-        "te": "How often does the Lagna (Ascendant) sign change?",
-        "bn": "How often does the Lagna (Ascendant) sign change?",
-        "kn": "How often does the Lagna (Ascendant) sign change?",
-        "gu": "How often does the Lagna (Ascendant) sign change?"
+        "ta": "லக்ன ராசி எவ்வளவு அடிக்கடி மாறுகிறது?",
+        "te": "లగ్నం (ఆరోహణ) రాశి ఎంత తరచుగా మారుతుంది?",
+        "bn": "লগ্ন রাশি কত ঘন ঘন পরিবর্তিত হয়?",
+        "kn": "ಲಗ್ನ (ಆರೋಹಣ) ರಾಶಿ ಎಷ್ಟು ಬಾರಿ ಬದಲಾಗುತ್ತದೆ?",
+        "gu": "લગ્ન (લગ્ન રાશિ) કેટલી વાર બદલાય છે?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -187,11 +187,11 @@
         "hi": "24 घंटों में 12 राशियाँ उदय होती हैं, इसलिए प्रत्येक राशि पूर्वी क्षितिज पर लगभग 2 घंटे रहती है (हालाँकि यह अक्षांश और राशि के अनुसार बदलता है)।",
         "mai": "२४ घंटा मे १२ राशि उदय होइत अछि, तेँ प्रत्येक राशि लगभग २ घंटा धरि पूर्वी क्षितिज पर रहैत अछि (मुदा ई अक्षांश आ राशिक अनुसार भिन्न होइत अछि)।",
         "mr": "24 घंटों में 12 राशियाँ उदय होती हैं, इसलिए प्रत्येक राशि पूर्वी क्षितिज पर लगभग 2 घंटे रहती है (हालाँकि यह अक्षांश और राशि के अनुसार बदलता है)।",
-        "ta": "There are 12 signs rising over 24 hours, so each sign occupies the eastern horizon for roughly 2 hours (though this varies by latitude and sign).",
-        "te": "There are 12 signs rising over 24 hours, so each sign occupies the eastern horizon for roughly 2 hours (though this varies by latitude and sign).",
-        "bn": "There are 12 signs rising over 24 hours, so each sign occupies the eastern horizon for roughly 2 hours (though this varies by latitude and sign).",
-        "kn": "There are 12 signs rising over 24 hours, so each sign occupies the eastern horizon for roughly 2 hours (though this varies by latitude and sign).",
-        "gu": "There are 12 signs rising over 24 hours, so each sign occupies the eastern horizon for roughly 2 hours (though this varies by latitude and sign)."
+        "ta": "24 மணி நேரத்தில் 12 ராசிகள் உதயமாகின்றன, எனவே ஒவ்வொரு ராசியும் சுமார் 2 மணி நேரம் கிழக்கு அடிவானத்தில் இருக்கும் (இது அட்சரேகை மற்றும் ராசிக்கு ஏற்ப மாறுபடும் என்றாலும்).",
+        "te": "24 గంటలలో 12 రాశులు ఉదయిస్తాయి, కాబట్టి ప్రతి రాశి తూర్పు క్షితిజంలో సుమారు 2 గంటలు ఉంటుంది (ఇది అక్షాంశం మరియు రాశిని బట్టి మారుతుంది).",
+        "bn": "২৪ ঘণ্টায় ১২টি রাশি উদিত হয়, তাই প্রতিটি রাশি প্রায় ২ ঘণ্টা ধরে পূর্ব দিগন্তে থাকে (যদিও এটি অক্ষাংশ এবং রাশিভেদে পরিবর্তিত হয়)।",
+        "kn": "24 ಗಂಟೆಗಳಲ್ಲಿ 12 ರಾಶಿಗಳು ಉದಯಿಸುತ್ತವೆ, ಆದ್ದರಿಂದ ಪ್ರತಿ ರಾಶಿಯು ಪೂರ್ವ ಕ್ಷಿತಿಜದಲ್ಲಿ ಸುಮಾರು 2 ಗಂಟೆಗಳ ಕಾಲ ಇರುತ್ತದೆ (ಇದು ಅಕ್ಷಾಂಶ ಮತ್ತು ರಾಶಿಗೆ ಅನುಗುಣವಾಗಿ ಬದಲಾಗುತ್ತದೆ).",
+        "gu": "24 કલાકમાં 12 રાશિઓ ઉદય પામે છે, તેથી દરેક રાશિ પૂર્વીય ક્ષિતિજ પર આશરે 2 કલાક સુધી રહે છે (જોકે આ અક્ષાંશ અને રાશિ પ્રમાણે બદલાય છે)."
       },
       "options": [
         {
@@ -199,44 +199,44 @@
           "hi": "दिन में एक बार",
           "mai": "दिन मे एक बेर",
           "mr": "दिन में एक बार",
-          "ta": "Once a day",
-          "te": "Once a day",
-          "bn": "Once a day",
-          "kn": "Once a day",
-          "gu": "Once a day"
+          "ta": "ஒரு நாளைக்கு ஒரு முறை",
+          "te": "రోజుకు ఒకసారి",
+          "bn": "দিনে একবার",
+          "kn": "ದಿನಕ್ಕೊಮ್ಮೆ",
+          "gu": "દિવસમાં એકવાર"
         },
         {
           "en": "Once a month",
           "hi": "महीने में एक बार",
           "mai": "मास मे एक बेर",
           "mr": "महीने में एक बार",
-          "ta": "Once a month",
-          "te": "Once a month",
-          "bn": "Once a month",
-          "kn": "Once a month",
-          "gu": "Once a month"
+          "ta": "ஒரு மாதத்திற்கு ஒரு முறை",
+          "te": "నెలకు ఒకసారి",
+          "bn": "মাসে একবার",
+          "kn": "ತಿಂಗಳಿಗೊಮ್ಮೆ",
+          "gu": "મહિનામાં એકવાર"
         },
         {
           "en": "Approximately every 2 hours",
           "hi": "लगभग हर 2 घंटे",
           "mai": "लगभग प्रत्येक २ घंटा पर",
           "mr": "लगभग हर 2 घंटे",
-          "ta": "Approximately every 2 hours",
-          "te": "Approximately every 2 hours",
-          "bn": "Approximately every 2 hours",
-          "kn": "Approximately every 2 hours",
-          "gu": "Approximately every 2 hours"
+          "ta": "தோராயமாக ஒவ்வொரு 2 மணி நேரத்திற்கும்",
+          "te": "సుమారు ప్రతి 2 గంటలకు",
+          "bn": "প্রায় প্রতি ২ ঘণ্টায়",
+          "kn": "ಸರಿಸುಮಾರು ಪ್ರತಿ 2 ಗಂಟೆಗಳಿಗೊಮ್ಮೆ",
+          "gu": "આશરે દર 2 કલાકે"
         },
         {
           "en": "Once a year",
           "hi": "साल में एक बार",
           "mai": "वर्ष मे एक बेर",
           "mr": "साल में एक बार",
-          "ta": "Once a year",
-          "te": "Once a year",
-          "bn": "Once a year",
-          "kn": "Once a year",
-          "gu": "Once a year"
+          "ta": "ஒரு வருடத்திற்கு ஒரு முறை",
+          "te": "సంవత్సరానికి ఒకసారి",
+          "bn": "বছরে একবার",
+          "kn": "ವರ್ಷಕ್ಕೊಮ್ಮೆ",
+          "gu": "વર્ષમાં એકવાર"
         }
       ]
     },
@@ -248,11 +248,11 @@
         "hi": "उत्तर भारतीय कुण्डली शैली में लग्न हमेशा शीर्ष हीरे में रखा जाता है।",
         "mai": "उत्तर भारतीय कुंडली शैली मे, लग्न (उदय) हमेशा ऊपरी हीरा मे राखल जाइत अछि।",
         "mr": "उत्तर भारतीय कुण्डली शैली में लग्न हमेशा शीर्ष हीरे में रखा जाता है।",
-        "ta": "In the North Indian chart style, the Ascendant (Lagna) is always placed in the top diamond.",
-        "te": "In the North Indian chart style, the Ascendant (Lagna) is always placed in the top diamond.",
-        "bn": "In the North Indian chart style, the Ascendant (Lagna) is always placed in the top diamond.",
-        "kn": "In the North Indian chart style, the Ascendant (Lagna) is always placed in the top diamond.",
-        "gu": "In the North Indian chart style, the Ascendant (Lagna) is always placed in the top diamond."
+        "ta": "வட இந்திய ஜாதக முறையில், லக்னம் எப்போதும் மேல் வைரத்தில் வைக்கப்படுகிறது.",
+        "te": "ఉత్తర భారత చార్ట్ శైలిలో, ఆరోహణ (లగ్నం) ఎల్లప్పుడూ పై వజ్రంలో ఉంచబడుతుంది.",
+        "bn": "উত্তর ভারতীয় কুণ্ডলী শৈলীতে, লগ্ন (Ascendant) সর্বদা উপরের হীরকাকৃতি ঘরে স্থাপন করা হয়।",
+        "kn": "ಉತ್ತರ ಭಾರತೀಯ ಜಾತಕ ಶೈಲಿಯಲ್ಲಿ, ಆರೋಹಣ (ಲಗ್ನ) ಯಾವಾಗಲೂ ಮೇಲಿನ ವಜ್ರದಲ್ಲಿ ಇರಿಸಲಾಗುತ್ತದೆ.",
+        "gu": "ઉત્તર ભારતીય કુંડળી શૈલીમાં, લગ્ન (લગ્ન ભાવ) હંમેશા ઉપરના હીરામાં મૂકવામાં આવે છે."
       },
       "correctAnswer": true,
       "explanation": {
@@ -260,11 +260,11 @@
         "hi": "उत्तर भारतीय हीरा कुण्डली में, शीर्ष हीरा हमेशा प्रथम भाव (लग्न) दर्शाता है। भाव स्थिर होते हैं और राशियाँ लग्न राशि के अनुसार घूमती हैं।",
         "mai": "उत्तर भारतीय हीरा कुंडली मे, ऊपरी हीरा हमेशा पहिल भाव (लग्न) कें प्रतिनिधित्व करैत अछि। भाव स्थिर रहैत अछि आ राशि लग्न राशिक आधार पर घुमैत अछि।",
         "mr": "उत्तर भारतीय हीरा कुण्डली में, शीर्ष हीरा हमेशा प्रथम भाव (लग्न) दर्शाता है। भाव स्थिर होते हैं और राशियाँ लग्न राशि के अनुसार घूमती हैं।",
-        "ta": "In the North Indian diamond chart, the top diamond always represents the 1st house (Lagna). The houses are fixed and signs rotate based on the Ascendant sign.",
-        "te": "In the North Indian diamond chart, the top diamond always represents the 1st house (Lagna). The houses are fixed and signs rotate based on the Ascendant sign.",
-        "bn": "In the North Indian diamond chart, the top diamond always represents the 1st house (Lagna). The houses are fixed and signs rotate based on the Ascendant sign.",
-        "kn": "In the North Indian diamond chart, the top diamond always represents the 1st house (Lagna). The houses are fixed and signs rotate based on the Ascendant sign.",
-        "gu": "In the North Indian diamond chart, the top diamond always represents the 1st house (Lagna). The houses are fixed and signs rotate based on the Ascendant sign."
+        "ta": "வட இந்திய வைர ஜாதகத்தில், மேல் வைரம் எப்போதும் 1 ஆம் பாவம் (லக்னம்) குறிக்கிறது. பாவங்கள் நிலையானவை மற்றும் ராசிகள் லக்ன ராசியின் அடிப்படையில் சுழலும்.",
+        "te": "ఉత్తర భారత వజ్ర చార్ట్‌లో, పై వజ్రం ఎల్లప్పుడూ 1వ భావాన్ని (లగ్నం) సూచిస్తుంది. భావాలు స్థిరంగా ఉంటాయి మరియు రాశులు ఆరోహణ రాశి ఆధారంగా తిరుగుతాయి.",
+        "bn": "উত্তর ভারতীয় হীরকাকৃতি কুণ্ডলীতে, উপরের হীরকাকৃতি ঘরটি সর্বদা ১ম ভাব (লগ্ন) নির্দেশ করে। ভাবগুলি স্থির থাকে এবং লগ্ন রাশি অনুসারে রাশিগুলি আবর্তিত হয়।",
+        "kn": "ಉತ್ತರ ಭಾರತೀಯ ವಜ್ರ ಜಾತಕದಲ್ಲಿ, ಮೇಲಿನ ವಜ್ರವು ಯಾವಾಗಲೂ 1ನೇ ಭಾವವನ್ನು (ಲಗ್ನ) ಪ್ರತಿನಿಧಿಸುತ್ತದೆ. ಭಾವಗಳು ಸ್ಥಿರವಾಗಿರುತ್ತವೆ ಮತ್ತು ರಾಶಿಗಳು ಆರೋಹಣ ರಾಶಿಯ ಆಧಾರದ ಮೇಲೆ ತಿರುಗುತ್ತವೆ.",
+        "gu": "ઉત્તર ભારતીય હીરા આકારની કુંડળીમાં, ઉપરનો હીરો હંમેશા પ્રથમ ભાવ (લગ્ન) દર્શાવે છે. ભાવ નિશ્ચિત હોય છે અને રાશિઓ લગ્ન રાશિના આધારે ફરે છે."
       }
     },
     {
@@ -275,11 +275,11 @@
         "hi": "दक्षिण भारतीय कुण्डली में क्या स्थिर रहता है?",
         "mai": "दक्षिण भारतीय कुंडली मे, की स्थिर रहैत अछि?",
         "mr": "दक्षिण भारतीय कुण्डली में क्या स्थिर रहता है?",
-        "ta": "In a South Indian chart, what remains fixed?",
-        "te": "In a South Indian chart, what remains fixed?",
-        "bn": "In a South Indian chart, what remains fixed?",
-        "kn": "In a South Indian chart, what remains fixed?",
-        "gu": "In a South Indian chart, what remains fixed?"
+        "ta": "ஒரு தென் இந்திய ஜாதகத்தில், எது நிலையாக இருக்கும்?",
+        "te": "దక్షిణ భారత చార్ట్‌లో, ఏది స్థిరంగా ఉంటుంది?",
+        "bn": "দক্ষিণ ভারতীয় কুণ্ডলীতে, কী স্থির থাকে?",
+        "kn": "ದಕ್ಷಿಣ ಭಾರತೀಯ ಜಾತಕದಲ್ಲಿ, ಯಾವುದು ಸ್ಥಿರವಾಗಿರುತ್ತದೆ?",
+        "gu": "દક્ષિણ ભારતીય કુંડળીમાં, શું નિશ્ચિત રહે છે?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -287,11 +287,11 @@
         "hi": "दक्षिण भारतीय ग्रिड कुण्डली में 12 राशियाँ हमेशा समान बक्से में रहती हैं। भाव लग्न राशि के अनुसार घूमते हैं। यह उत्तर भारतीय शैली के विपरीत है।",
         "mai": "दक्षिण भारतीय ग्रिड कुंडली मे, १२ राशि हमेशा एकहि बॉक्सक स्थिति मे रहैत अछि। भाव (भावस) लग्न राशिक आधार पर घुमैत अछि। ई उत्तर भारतीय शैलीक विपरीत अछि।",
         "mr": "दक्षिण भारतीय ग्रिड कुण्डली में 12 राशियाँ हमेशा समान बक्से में रहती हैं। भाव लग्न राशि के अनुसार घूमते हैं। यह उत्तर भारतीय शैली के विपरीत है।",
-        "ta": "In the South Indian grid chart, the 12 signs always occupy the same box positions. The houses (bhavas) rotate based on the Ascendant sign. This is the opposite of the North Indian style.",
-        "te": "In the South Indian grid chart, the 12 signs always occupy the same box positions. The houses (bhavas) rotate based on the Ascendant sign. This is the opposite of the North Indian style.",
-        "bn": "In the South Indian grid chart, the 12 signs always occupy the same box positions. The houses (bhavas) rotate based on the Ascendant sign. This is the opposite of the North Indian style.",
-        "kn": "In the South Indian grid chart, the 12 signs always occupy the same box positions. The houses (bhavas) rotate based on the Ascendant sign. This is the opposite of the North Indian style.",
-        "gu": "In the South Indian grid chart, the 12 signs always occupy the same box positions. The houses (bhavas) rotate based on the Ascendant sign. This is the opposite of the North Indian style."
+        "ta": "தென் இந்திய கட்ட ஜாதகத்தில், 12 ராசிகள் எப்போதும் ஒரே கட்ட நிலைகளை ஆக்கிரமிக்கின்றன. பாவங்கள் (பாவம்) லக்ன ராசியின் அடிப்படையில் சுழலும். இது வட இந்திய முறைக்கு எதிரானது.",
+        "te": "దక్షిణ భారత గ్రిడ్ చార్ట్‌లో, 12 రాశులు ఎల్లప్పుడూ ఒకే పెట్టె స్థానాలను ఆక్రమిస్తాయి. భావాలు (భావాలు) లగ్న రాశి ఆధారంగా తిరుగుతాయి. ఇది ఉత్తర భారత శైలికి విరుద్ధం.",
+        "bn": "দক্ষিণ ভারতীয় গ্রিড কুণ্ডলীতে, ১২টি রাশি সর্বদা একই ঘরের অবস্থান দখল করে। ভাবগুলি (ভাব) লগ্ন রাশি অনুসারে আবর্তিত হয়। এটি উত্তর ভারতীয় শৈলীর বিপরীত।",
+        "kn": "ದಕ್ಷಿಣ ಭಾರತೀಯ ಗ್ರಿಡ್ ಜಾತಕದಲ್ಲಿ, 12 ರಾಶಿಗಳು ಯಾವಾಗಲೂ ಒಂದೇ ಪೆಟ್ಟಿಗೆಯ ಸ್ಥಾನಗಳನ್ನು ಆಕ್ರಮಿಸುತ್ತವೆ. ಭಾವಗಳು (ಭಾವಸ್) ಆರೋಹಣ ರಾಶಿಯ ಆಧಾರದ ಮೇಲೆ ತಿರುಗುತ್ತವೆ. ಇದು ಉತ್ತರ ಭಾರತೀಯ ಶೈಲಿಯ ವಿರುದ್ಧವಾಗಿದೆ.",
+        "gu": "દક્ષિણ ભારતીય ગ્રીડ કુંડળીમાં, 12 રાશિઓ હંમેશા સમાન બોક્સની સ્થિતિમાં રહે છે. ભાવ (ભાવો) લગ્ન રાશિના આધારે ફરે છે. આ ઉત્તર ભારતીય શૈલીથી વિપરીત છે."
       },
       "options": [
         {
@@ -299,44 +299,44 @@
           "hi": "भाव घूमते हैं",
           "mai": "भाव घुमैत अछि",
           "mr": "भाव घूमते हैं",
-          "ta": "The houses rotate",
-          "te": "The houses rotate",
-          "bn": "The houses rotate",
-          "kn": "The houses rotate",
-          "gu": "The houses rotate"
+          "ta": "பாவங்கள் சுழலும்",
+          "te": "భావాలు తిరుగుతాయి",
+          "bn": "ভাবগুলি আবর্তিত হয়",
+          "kn": "ಭಾವಗಳು ತಿರುಗುತ್ತವೆ",
+          "gu": "ભાવ ફરે છે"
         },
         {
           "en": "The signs are fixed in position, houses rotate",
           "hi": "राशियाँ स्थिर रहती हैं, भाव घूमते हैं",
           "mai": "राशि स्थिति मे स्थिर रहैत अछि, भाव घुमैत अछि",
           "mr": "राशियाँ स्थिर रहती हैं, भाव घूमते हैं",
-          "ta": "The signs are fixed in position, houses rotate",
-          "te": "The signs are fixed in position, houses rotate",
-          "bn": "The signs are fixed in position, houses rotate",
-          "kn": "The signs are fixed in position, houses rotate",
-          "gu": "The signs are fixed in position, houses rotate"
+          "ta": "ராசிகள் நிலையில் நிலையானவை, பாவங்கள் சுழலும்",
+          "te": "రాశులు స్థానంలో స్థిరంగా ఉంటాయి, భావాలు తిరుగుతాయి",
+          "bn": "রাশিগুলি অবস্থানে স্থির থাকে, ভাবগুলি আবর্তিত হয়",
+          "kn": "ರಾಶಿಗಳು ಸ್ಥಾನದಲ್ಲಿ ಸ್ಥಿರವಾಗಿರುತ್ತವೆ, ಭಾವಗಳು ತಿರುಗುತ್ತವೆ",
+          "gu": "રાશિઓ સ્થિતિમાં નિશ્ચિત હોય છે, ભાવ ફરે છે"
         },
         {
           "en": "Nothing is fixed",
           "hi": "कुछ भी स्थिर नहीं",
           "mai": "किछुओ स्थिर नहि अछि",
           "mr": "कुछ भी स्थिर नहीं",
-          "ta": "Nothing is fixed",
-          "te": "Nothing is fixed",
-          "bn": "Nothing is fixed",
-          "kn": "Nothing is fixed",
-          "gu": "Nothing is fixed"
+          "ta": "எதுவும் நிலையானது அல்ல",
+          "te": "ఏదీ స్థిరంగా ఉండదు",
+          "bn": "কিছুই স্থির থাকে না",
+          "kn": "ಏನೂ ಸ್ಥಿರವಾಗಿಲ್ಲ",
+          "gu": "કંઈપણ નિશ્ચિત નથી"
         },
         {
           "en": "Only the Moon position is fixed",
           "hi": "केवल चन्द्र स्थिति स्थिर है",
           "mai": "मात्र चन्द्रमाक स्थिति स्थिर अछि",
           "mr": "केवल चन्द्र स्थिति स्थिर है",
-          "ta": "Only the Moon position is fixed",
-          "te": "Only the Moon position is fixed",
-          "bn": "Only the Moon position is fixed",
-          "kn": "Only the Moon position is fixed",
-          "gu": "Only the Moon position is fixed"
+          "ta": "சந்திரனின் நிலை மட்டுமே நிலையானது",
+          "te": "చంద్రుని స్థానం మాత్రమే స్థిరంగా ఉంటుంది",
+          "bn": "শুধুমাত্র চন্দ্রের অবস্থান স্থির থাকে",
+          "kn": "ಕೇವಲ ಚಂದ್ರನ ಸ್ಥಾನ ಸ್ಥಿರವಾಗಿದೆ",
+          "gu": "ફક્ત ચંદ્રની સ્થિતિ નિશ્ચિત હોય છે"
         }
       ]
     },
@@ -348,11 +348,11 @@
         "hi": "जन्म समय में 4 मिनट की त्रुटि लग्न को लगभग 1 अंश विस्थापित करती है।",
         "mai": "जन्म समय मे ४ मिनटक त्रुटि लग्न कें लगभग १ डिग्री सँ खसका दैत अछि।",
         "mr": "जन्म समय में 4 मिनट की त्रुटि लग्न को लगभग 1 अंश विस्थापित करती है।",
-        "ta": "A 4-minute error in birth time shifts the Lagna by approximately 1 degree.",
-        "te": "A 4-minute error in birth time shifts the Lagna by approximately 1 degree.",
-        "bn": "A 4-minute error in birth time shifts the Lagna by approximately 1 degree.",
-        "kn": "A 4-minute error in birth time shifts the Lagna by approximately 1 degree.",
-        "gu": "A 4-minute error in birth time shifts the Lagna by approximately 1 degree."
+        "ta": "பிறந்த நேரத்தில் 4 நிமிட பிழை லக்னத்தை தோராயமாக 1 டிகிரி மாற்றுகிறது.",
+        "te": "జనన సమయంలో 4 నిమిషాల లోపం లగ్నాన్ని సుమారు 1 డిగ్రీ మారుస్తుంది.",
+        "bn": "জন্মসময়ে ৪ মিনিটের ত্রুটি লগ্নকে প্রায় ১ ডিগ্রি স্থানান্তরিত করে।",
+        "kn": "ಜನ್ಮ ಸಮಯದ 4 ನಿಮಿಷಗಳ ದೋಷವು ಲಗ್ನವನ್ನು ಸರಿಸುಮಾರು 1 ಡಿಗ್ರಿಯಷ್ಟು ಬದಲಾಯಿಸುತ್ತದೆ.",
+        "gu": "જન્મ સમયમાં 4 મિનિટની ભૂલ લગ્નને આશરે 1 અંશ ખસેડે છે."
       },
       "correctAnswer": true,
       "explanation": {
@@ -360,11 +360,11 @@
         "hi": "लग्न लगभग 24 घंटों में 360 अंश पार करता है, अर्थात हर 4 मिनट में लगभग 1 अंश। इसीलिए ज्योतिष में जन्म समय की सटीकता अत्यंत महत्वपूर्ण है।",
         "mai": "लग्न लगभग २४ घंटा मे ३६० डिग्री सँ गुजरैत अछि, तेँ लगभग प्रत्येक ४ मिनट मे १ डिग्री। एही लेल ज्योतिष मे जन्म समयक सटीकता महत्वपूर्ण अछि।",
         "mr": "लग्न लगभग 24 घंटों में 360 अंश पार करता है, अर्थात हर 4 मिनट में लगभग 1 अंश। इसीलिए ज्योतिष में जन्म समय की सटीकता अत्यंत महत्वपूर्ण है।",
-        "ta": "The Ascendant moves through 360 degrees in about 24 hours, so roughly 1 degree every 4 minutes. This is why birth time accuracy is critical in Jyotish.",
-        "te": "The Ascendant moves through 360 degrees in about 24 hours, so roughly 1 degree every 4 minutes. This is why birth time accuracy is critical in Jyotish.",
-        "bn": "The Ascendant moves through 360 degrees in about 24 hours, so roughly 1 degree every 4 minutes. This is why birth time accuracy is critical in Jyotish.",
-        "kn": "The Ascendant moves through 360 degrees in about 24 hours, so roughly 1 degree every 4 minutes. This is why birth time accuracy is critical in Jyotish.",
-        "gu": "The Ascendant moves through 360 degrees in about 24 hours, so roughly 1 degree every 4 minutes. This is why birth time accuracy is critical in Jyotish."
+        "ta": "லக்னம் சுமார் 24 மணி நேரத்தில் 360 டிகிரி நகர்கிறது, எனவே தோராயமாக ஒவ்வொரு 4 நிமிடங்களுக்கும் 1 டிகிரி. அதனால்தான் ஜோதிடத்தில் பிறந்த நேரத்தின் துல்லியம் மிகவும் முக்கியமானது.",
+        "te": "ఆరోహణ 24 గంటలలో సుమారు 360 డిగ్రీలు కదులుతుంది, కాబట్టి ప్రతి 4 నిమిషాలకు సుమారు 1 డిగ్రీ. అందుకే జ్యోతిష్యంలో జనన సమయ ఖచ్చితత్వం చాలా ముఖ్యం.",
+        "bn": "লগ্ন প্রায় ২৪ ঘণ্টায় ৩৬০ ডিগ্রি অতিক্রম করে, তাই প্রতি ৪ মিনিটে প্রায় ১ ডিগ্রি। এই কারণেই জ্যোতিষে জন্মসময়ের নির্ভুলতা অত্যন্ত গুরুত্বপূর্ণ।",
+        "kn": "ಆರೋಹಣವು ಸುಮಾರು 24 ಗಂಟೆಗಳಲ್ಲಿ 360 ಡಿಗ್ರಿಗಳ ಮೂಲಕ ಚಲಿಸುತ್ತದೆ, ಆದ್ದರಿಂದ ಸರಿಸುಮಾರು ಪ್ರತಿ 4 ನಿಮಿಷಗಳಿಗೆ 1 ಡಿಗ್ರಿ. ಇದಕ್ಕಾಗಿಯೇ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಜನ್ಮ ಸಮಯದ ನಿಖರತೆ ನಿರ್ಣಾಯಕವಾಗಿದೆ.",
+        "gu": "લગ્ન આશરે 24 કલાકમાં 360 અંશ ફરે છે, તેથી દર 4 મિનિટે આશરે 1 અંશ. આ જ કારણ છે કે જ્યોતિષમાં જન્મ સમયની ચોકસાઈ અત્યંત મહત્વપૂર્ણ છે."
       }
     },
     {
@@ -375,11 +375,11 @@
         "hi": "कुण्डली में कितने भाव होते हैं?",
         "mai": "एकटा कुंडली मे केतेक भाव होइत अछि?",
         "mr": "कुण्डली में कितने भाव होते हैं?",
-        "ta": "How many houses does a Kundali contain?",
-        "te": "How many houses does a Kundali contain?",
-        "bn": "How many houses does a Kundali contain?",
-        "kn": "How many houses does a Kundali contain?",
-        "gu": "How many houses does a Kundali contain?"
+        "ta": "ஒரு குண்டலியில் எத்தனை பாவங்கள் உள்ளன?",
+        "te": "కుండలిలో ఎన్ని భావాలు ఉంటాయి?",
+        "bn": "একটি কুণ্ডলীতে কয়টি ভাব থাকে?",
+        "kn": "ಕುಂಡಲಿಯು ಎಷ್ಟು ಭಾವಗಳನ್ನು ಒಳಗೊಂಡಿದೆ?",
+        "gu": "કુંડળીમાં કેટલા ભાવ હોય છે?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -387,11 +387,11 @@
         "hi": "कुण्डली में हमेशा 12 भाव होते हैं, प्रत्येक जीवन के एक अलग क्षेत्र का प्रतिनिधित्व करता है। 12 भाव राशिचक्र की 12 राशियों से संबंधित हैं।",
         "mai": "एकटा कुंडली मे हमेशा १२ भाव (भावस) होइत अछि, प्रत्येक जीवनक एकटा भिन्न क्षेत्रक प्रतिनिधित्व करैत अछि। १२ भाव राशिचक्रक १२ राशि सँ मेल खाबैत अछि।",
         "mr": "कुण्डली में हमेशा 12 भाव होते हैं, प्रत्येक जीवन के एक अलग क्षेत्र का प्रतिनिधित्व करता है। 12 भाव राशिचक्र की 12 राशियों से संबंधित हैं।",
-        "ta": "A Kundali always has 12 houses (bhavas), each representing a different area of life. The 12 houses correspond to the 12 signs of the zodiac.",
-        "te": "A Kundali always has 12 houses (bhavas), each representing a different area of life. The 12 houses correspond to the 12 signs of the zodiac.",
-        "bn": "A Kundali always has 12 houses (bhavas), each representing a different area of life. The 12 houses correspond to the 12 signs of the zodiac.",
-        "kn": "A Kundali always has 12 houses (bhavas), each representing a different area of life. The 12 houses correspond to the 12 signs of the zodiac.",
-        "gu": "A Kundali always has 12 houses (bhavas), each representing a different area of life. The 12 houses correspond to the 12 signs of the zodiac."
+        "ta": "ஒரு குண்டலியில் எப்போதும் 12 பாவங்கள் (பாவம்) இருக்கும், ஒவ்வொன்றும் வாழ்க்கையின் வெவ்வேறு பகுதியைக் குறிக்கிறது. 12 பாவங்கள் 12 ராசிகளுக்கு ஒத்திருக்கும்.",
+        "te": "కుండలిలో ఎల్లప్పుడూ 12 భావాలు (భావాలు) ఉంటాయి, ప్రతి ఒక్కటి జీవితంలోని విభిన్న ప్రాంతాన్ని సూచిస్తుంది. 12 భావాలు రాశిచక్రంలోని 12 రాశులకు అనుగుణంగా ఉంటాయి.",
+        "bn": "একটি কুণ্ডলীতে সর্বদা ১২টি ভাব থাকে, যার প্রতিটি জীবনের একটি ভিন্ন ক্ষেত্রকে প্রতিনিধিত্ব করে। ১২টি ভাব রাশিচক্রের ১২টি রাশির সাথে সঙ্গতিপূর্ণ।",
+        "kn": "ಕುಂಡಲಿಯು ಯಾವಾಗಲೂ 12 ಭಾವಗಳನ್ನು (ಭಾವಸ್) ಹೊಂದಿರುತ್ತದೆ, ಪ್ರತಿಯೊಂದೂ ಜೀವನದ ವಿಭಿನ್ನ ಕ್ಷೇತ್ರವನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತದೆ. 12 ಭಾವಗಳು ರಾಶಿಚಕ್ರದ 12 ರಾಶಿಗಳಿಗೆ ಅನುಗುಣವಾಗಿರುತ್ತವೆ.",
+        "gu": "કુંડળીમાં હંમેશા 12 ભાવ (ભાવો) હોય છે, દરેક જીવનના જુદા જુદા ક્ષેત્રનું પ્રતિનિધિત્વ કરે છે. 12 ભાવ રાશિચક્રની 12 રાશિઓને અનુરૂપ હોય છે."
       },
       "options": [
         {
@@ -399,11 +399,11 @@
           "hi": "9 (प्रति ग्रह एक)",
           "mai": "९ (प्रत्येक ग्रहक लेल एकटा)",
           "mr": "9 (प्रति ग्रह एक)",
-          "ta": "9 (one per planet)",
-          "te": "9 (one per planet)",
-          "bn": "9 (one per planet)",
-          "kn": "9 (one per planet)",
-          "gu": "9 (one per planet)"
+          "ta": "9 (ஒரு கிரகத்திற்கு ஒன்று)",
+          "te": "9 (ప్రతి గ్రహానికి ఒకటి)",
+          "bn": "৯টি (প্রতি গ্রহের জন্য একটি)",
+          "kn": "9 (ಪ್ರತಿ ಗ್ರಹಕ್ಕೆ ಒಂದು)",
+          "gu": "9 (પ્રતિ ગ્રહ એક)"
         },
         {
           "en": "12",
@@ -421,11 +421,11 @@
           "hi": "27 (प्रति नक्षत्र एक)",
           "mai": "२७ (प्रत्येक नक्षत्रक लेल एकटा)",
           "mr": "27 (प्रति नक्षत्र एक)",
-          "ta": "27 (one per Nakshatra)",
-          "te": "27 (one per Nakshatra)",
-          "bn": "27 (one per Nakshatra)",
-          "kn": "27 (one per Nakshatra)",
-          "gu": "27 (one per Nakshatra)"
+          "ta": "27 (ஒரு நட்சத்திரத்திற்கு ஒன்று)",
+          "te": "27 (ప్రతి నక్షత్రానికి ఒకటి)",
+          "bn": "২৭টি (প্রতি নক্ষত্রের জন্য একটি)",
+          "kn": "27 (ಪ್ರತಿ ನಕ್ಷತ್ರಕ್ಕೆ ಒಂದು)",
+          "gu": "27 (પ્રતિ નક્ષત્ર એક)"
         },
         {
           "en": "7",
@@ -448,11 +448,11 @@
         "hi": "कुण्डली केवल सूर्य और चन्द्र की स्थिति पर विचार करती है।",
         "mai": "कुंडली मात्र सूर्य आ चन्द्रमाक स्थिति पर विचार करैत अछि।",
         "mr": "कुण्डली केवल सूर्य और चन्द्र की स्थिति पर विचार करती है।",
-        "ta": "The Kundali only considers the Sun and Moon positions.",
-        "te": "The Kundali only considers the Sun and Moon positions.",
-        "bn": "The Kundali only considers the Sun and Moon positions.",
-        "kn": "The Kundali only considers the Sun and Moon positions.",
-        "gu": "The Kundali only considers the Sun and Moon positions."
+        "ta": "குண்டலி சூரியன் மற்றும் சந்திரன் நிலைகளை மட்டுமே கருதுகிறது.",
+        "te": "కుండలి సూర్య మరియు చంద్ర స్థానాలను మాత్రమే పరిగణిస్తుంది.",
+        "bn": "কুণ্ডলী শুধুমাত্র সূর্য ও চন্দ্রের অবস্থান বিবেচনা করে।",
+        "kn": "ಕುಂಡಲಿಯು ಕೇವಲ ಸೂರ್ಯ ಮತ್ತು ಚಂದ್ರನ ಸ್ಥಾನಗಳನ್ನು ಪರಿಗಣಿಸುತ್ತದೆ.",
+        "gu": "કુંડળી ફક્ત સૂર્ય અને ચંદ્રની સ્થિતિને ધ્યાનમાં લે છે."
       },
       "correctAnswer": false,
       "explanation": {
@@ -460,11 +460,11 @@
         "hi": "कुण्डली सभी 9 वैदिक ग्रहों का मानचित्रण करती है: सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र, शनि, राहु और केतु। प्रत्येक ग्रह समग्र पठन में योगदान करता है।",
         "mai": "एकटा कुंडली सभ ९ वैदिक ग्रहक नक्शा बनाबैत अछि: सूर्य, चन्द्रमा, मंगल, बुध, बृहस्पति, शुक्र, शनि, राहु, आ केतु। प्रत्येक ग्रह समग्र पठन मे योगदान करैत अछि।",
         "mr": "कुण्डली सभी 9 वैदिक ग्रहों का मानचित्रण करती है: सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र, शनि, राहु और केतु। प्रत्येक ग्रह समग्र पठन में योगदान करता है।",
-        "ta": "A Kundali maps all 9 Vedic grahas: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, and Ketu. Each planet contributes to the overall reading.",
-        "te": "A Kundali maps all 9 Vedic grahas: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, and Ketu. Each planet contributes to the overall reading.",
-        "bn": "A Kundali maps all 9 Vedic grahas: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, and Ketu. Each planet contributes to the overall reading.",
-        "kn": "A Kundali maps all 9 Vedic grahas: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, and Ketu. Each planet contributes to the overall reading.",
-        "gu": "A Kundali maps all 9 Vedic grahas: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, and Ketu. Each planet contributes to the overall reading."
+        "ta": "ஒரு குண்டலி அனைத்து 9 வேத கிரகங்களையும் வரைபடமாக்குகிறது: சூரியன், சந்திரன், செவ்வாய், புதன், குரு, சுக்கிரன், சனி, ராகு மற்றும் கேது. ஒவ்வொரு கிரகமும் ஒட்டுமொத்த பலனுக்கு பங்களிக்கிறது.",
+        "te": "కుండలి 9 వైదిక గ్రహాలను మ్యాప్ చేస్తుంది: సూర్యుడు, చంద్రుడు, అంగారకుడు, బుధుడు, గురుడు, శుక్రుడు, శని, రాహువు మరియు కేతువు. ప్రతి గ్రహం మొత్తం పఠనానికి దోహదపడుతుంది.",
+        "bn": "একটি কুণ্ডলী নবগ্রহের (বৈদিক গ্রহ) অবস্থান দেখায়: সূর্য, চন্দ্র, মঙ্গল, বুধ, বৃহস্পতি, শুক্র, শনি, রাহু এবং কেতু। প্রতিটি গ্রহ সামগ্রিক পাঠে অবদান রাখে।",
+        "kn": "ಕುಂಡಲಿಯು ಎಲ್ಲಾ 9 ವೈದಿಕ ಗ್ರಹಗಳನ್ನು ನಕ್ಷೆ ಮಾಡುತ್ತದೆ: ಸೂರ್ಯ, ಚಂದ್ರ, ಮಂಗಳ, ಬುಧ, ಗುರು, ಶುಕ್ರ, ಶನಿ, ರಾಹು ಮತ್ತು ಕೇತು. ಪ್ರತಿ ಗ್ರಹವು ಒಟ್ಟಾರೆ ಓದುವಿಕೆಗೆ ಕೊಡುಗೆ ನೀಡುತ್ತದೆ.",
+        "gu": "કુંડળી તમામ 9 વૈદિક ગ્રહોનું નિરૂપણ કરે છે: સૂર્ય, ચંદ્ર, મંગળ, બુધ, ગુરુ, શુક્ર, શનિ, રાહુ અને કેતુ. દરેક ગ્રહ એકંદર વાંચનમાં ફાળો આપે છે."
       }
     },
     {
@@ -475,11 +475,11 @@
         "hi": "कुण्डली के लिए जन्म का सटीक क्षण क्यों महत्वपूर्ण है?",
         "mai": "एकटा कुंडलीक लेल जन्मक ठीक क्षण किएक महत्वपूर्ण अछि?",
         "mr": "कुण्डली के लिए जन्म का सटीक क्षण क्यों महत्वपूर्ण है?",
-        "ta": "Why is the exact moment of birth important for a Kundali?",
-        "te": "Why is the exact moment of birth important for a Kundali?",
-        "bn": "Why is the exact moment of birth important for a Kundali?",
-        "kn": "Why is the exact moment of birth important for a Kundali?",
-        "gu": "Why is the exact moment of birth important for a Kundali?"
+        "ta": "ஒரு குண்டலிக்கு பிறந்த சரியான நேரம் ஏன் முக்கியம்?",
+        "te": "కుండలికి పుట్టిన ఖచ్చితమైన సమయం ఎందుకు ముఖ్యం?",
+        "bn": "একটি কুণ্ডলীর জন্য সঠিক জন্মমুহূর্ত কেন গুরুত্বপূর্ণ?",
+        "kn": "ಕುಂಡಲಿಗೆ ನಿಖರವಾದ ಜನ್ಮ ಕ್ಷಣ ಏಕೆ ಮುಖ್ಯ?",
+        "gu": "કુંડળી માટે જન્મનો ચોક્કસ સમય શા માટે મહત્વપૂર્ણ છે?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -487,11 +487,11 @@
         "hi": "जन्म का क्षण लग्न निर्धारित करता है, जो पूरी कुण्डली की नींव है। यह प्रथम भाव तय करता है और निर्धारित करता है कि कौन सी राशि और ग्रह किस जीवन क्षेत्र पर शासन करते हैं।",
         "mai": "जन्मक क्षण लग्न (उदय) कें निर्धारित करैत अछि, जे पूरा कुंडलीक आधार अछि। ई पहिल भाव कें निर्धारित करैत अछि आ कोन राशि आ ग्रह जीवनक प्रत्येक क्षेत्र पर शासन करैत अछि, सेहो निर्धारित करैत अछि।",
         "mr": "जन्म का क्षण लग्न निर्धारित करता है, जो पूरी कुण्डली की नींव है। यह प्रथम भाव तय करता है और निर्धारित करता है कि कौन सी राशि और ग्रह किस जीवन क्षेत्र पर शासन करते हैं।",
-        "ta": "The birth moment determines the Lagna (Ascendant), which is the foundation of the entire chart. It sets the 1st house and determines which sign and planets govern each life area.",
-        "te": "The birth moment determines the Lagna (Ascendant), which is the foundation of the entire chart. It sets the 1st house and determines which sign and planets govern each life area.",
-        "bn": "The birth moment determines the Lagna (Ascendant), which is the foundation of the entire chart. It sets the 1st house and determines which sign and planets govern each life area.",
-        "kn": "The birth moment determines the Lagna (Ascendant), which is the foundation of the entire chart. It sets the 1st house and determines which sign and planets govern each life area.",
-        "gu": "The birth moment determines the Lagna (Ascendant), which is the foundation of the entire chart. It sets the 1st house and determines which sign and planets govern each life area."
+        "ta": "பிறந்த நேரம் லக்னத்தை (உதய லக்னம்) தீர்மானிக்கிறது, இது முழு ஜாதகத்தின் அடிப்படையாகும். இது 1 ஆம் பாவத்தை அமைக்கிறது மற்றும் ஒவ்வொரு வாழ்க்கை பகுதியையும் எந்த ராசி மற்றும் கிரகங்கள் ஆளுகின்றன என்பதை தீர்மானிக்கிறது.",
+        "te": "జనన సమయం లగ్నాన్ని (ఆరోహణ) నిర్ణయిస్తుంది, ఇది మొత్తం చార్ట్‌కు పునాది. ఇది 1వ భావాన్ని నిర్దేశిస్తుంది మరియు ఏ రాశి మరియు గ్రహాలు ప్రతి జీవిత ప్రాంతాన్ని పాలిస్తాయో నిర్ణయిస్తుంది.",
+        "bn": "জন্মমুহূর্ত লগ্ন (Ascendant) নির্ধারণ করে, যা সমগ্র কুণ্ডলীর ভিত্তি। এটি ১ম ভাব নির্ধারণ করে এবং কোন রাশি ও গ্রহ জীবনের প্রতিটি ক্ষেত্রকে শাসন করে তা স্থির করে।",
+        "kn": "ಜನ್ಮ ಕ್ಷಣವು ಲಗ್ನವನ್ನು (ಆರೋಹಣ) ನಿರ್ಧರಿಸುತ್ತದೆ, ಇದು ಸಂಪೂರ್ಣ ಜಾತಕದ ಅಡಿಪಾಯವಾಗಿದೆ. ಇದು 1ನೇ ಭಾವವನ್ನು ನಿಗದಿಪಡಿಸುತ್ತದೆ ಮತ್ತು ಯಾವ ರಾಶಿ ಮತ್ತು ಗ್ರಹಗಳು ಪ್ರತಿ ಜೀವನ ಕ್ಷೇತ್ರವನ್ನು ಆಳುತ್ತವೆ ಎಂಬುದನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ.",
+        "gu": "જન્મનો સમય લગ્ન (લગ્ન ભાવ) નક્કી કરે છે, જે સમગ્ર કુંડળીનો પાયો છે. તે પ્રથમ ભાવ નક્કી કરે છે અને કઈ રાશિ અને ગ્રહો જીવનના દરેક ક્ષેત્રનું સંચાલન કરે છે તે નક્કી કરે છે."
       },
       "options": [
         {
@@ -499,44 +499,44 @@
           "hi": "यह केवल सूर्य राशि निर्धारित करता है",
           "mai": "ई मात्र सूर्य राशि कें निर्धारित करैत अछि।",
           "mr": "यह केवल सूर्य राशि निर्धारित करता है",
-          "ta": "It determines the Sun sign only",
-          "te": "It determines the Sun sign only",
-          "bn": "It determines the Sun sign only",
-          "kn": "It determines the Sun sign only",
-          "gu": "It determines the Sun sign only"
+          "ta": "இது சூரிய ராசியை மட்டுமே தீர்மானிக்கிறது",
+          "te": "ఇది సూర్య రాశిని మాత్రమే నిర్ణయిస్తుంది",
+          "bn": "এটি শুধুমাত্র সূর্য রাশি নির্ধারণ করে",
+          "kn": "ಇದು ಕೇವಲ ಸೂರ್ಯ ರಾಶಿಯನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ",
+          "gu": "તે ફક્ત સૂર્ય રાશિ નક્કી કરે છે"
         },
         {
           "en": "It fixes the Lagna, which determines all house numbering and planet-house relationships",
           "hi": "यह लग्न तय करता है, जो सभी भाव क्रमांकन और ग्रह-भाव संबंध निर्धारित करता है",
           "mai": "ई लग्न कें स्थिर करैत अछि, जे सभ भावक संख्या आ ग्रह-भावक संबंध कें निर्धारित करैत अछि।",
           "mr": "यह लग्न तय करता है, जो सभी भाव क्रमांकन और ग्रह-भाव संबंध निर्धारित करता है",
-          "ta": "It fixes the Lagna, which determines all house numbering and planet-house relationships",
-          "te": "It fixes the Lagna, which determines all house numbering and planet-house relationships",
-          "bn": "It fixes the Lagna, which determines all house numbering and planet-house relationships",
-          "kn": "It fixes the Lagna, which determines all house numbering and planet-house relationships",
-          "gu": "It fixes the Lagna, which determines all house numbering and planet-house relationships"
+          "ta": "இது லக்னத்தை நிலைநிறுத்துகிறது, இது அனைத்து பாவம் எண்களையும் மற்றும் கிரக-பாவம் உறவுகளையும் தீர்மானிக்கிறது.",
+          "te": "ఇది లగ్నాన్ని స్థిరపరుస్తుంది, ఇది అన్ని భావాల సంఖ్యను మరియు గ్రహ-భావ సంబంధాలను నిర్ణయిస్తుంది",
+          "bn": "এটি লগ্নকে স্থির করে, যা সমস্ত ভাব সংখ্যায়ন এবং গ্রহ-ভাব সম্পর্ক নির্ধারণ করে",
+          "kn": "ಇದು ಲಗ್ನವನ್ನು ನಿಗದಿಪಡಿಸುತ್ತದೆ, ಇದು ಎಲ್ಲಾ ಭಾವಗಳ ಸಂಖ್ಯೆಗಳನ್ನು ಮತ್ತು ಗ್ರಹ-ಭಾವ ಸಂಬಂಧಗಳನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ",
+          "gu": "તે લગ્નને નિશ્ચિત કરે છે, જે તમામ ભાવ ક્રમાંકન અને ગ્રહ-ભાવ સંબંધો નક્કી કરે છે"
         },
         {
           "en": "It is only a tradition with no astronomical basis",
           "hi": "यह केवल परम्परा है जिसका कोई खगोलीय आधार नहीं",
           "mai": "ई कोनो खगोलीय आधार बिना मात्र एकटा परंपरा अछि।",
           "mr": "यह केवल परम्परा है जिसका कोई खगोलीय आधार नहीं",
-          "ta": "It is only a tradition with no astronomical basis",
-          "te": "It is only a tradition with no astronomical basis",
-          "bn": "It is only a tradition with no astronomical basis",
-          "kn": "It is only a tradition with no astronomical basis",
-          "gu": "It is only a tradition with no astronomical basis"
+          "ta": "இது வானியல் அடிப்படை இல்லாத ஒரு பாரம்பரியம் மட்டுமே",
+          "te": "ఇది ఖగోళ ఆధారాలు లేని ఒక సంప్రదాయం మాత్రమే",
+          "bn": "এটি শুধুমাত্র একটি ঐতিহ্য যার কোনো জ্যোতির্বিজ্ঞানীয় ভিত্তি নেই",
+          "kn": "ಇದು ಯಾವುದೇ ಖಗೋಳ ಆಧಾರವಿಲ್ಲದ ಕೇವಲ ಸಂಪ್ರದಾಯ",
+          "gu": "તે ફક્ત એક પરંપરા છે જેનો કોઈ ખગોળીય આધાર નથી"
         },
         {
           "en": "Birth time does not matter",
           "hi": "जन्म समय का कोई महत्व नहीं",
           "mai": "जन्म समय मायने नहि रखैत अछि।",
           "mr": "जन्म समय का कोई महत्व नहीं",
-          "ta": "Birth time does not matter",
-          "te": "Birth time does not matter",
-          "bn": "Birth time does not matter",
-          "kn": "Birth time does not matter",
-          "gu": "Birth time does not matter"
+          "ta": "பிறந்த நேரம் ஒரு பொருட்டல்ல",
+          "te": "జనన సమయం ముఖ్యం కాదు",
+          "bn": "জন্মসময় গুরুত্বপূর্ণ নয়",
+          "kn": "ಜನ್ಮ ಸಮಯ ಮುಖ್ಯವಲ್ಲ",
+          "gu": "જન્મ સમય મહત્વનો નથી"
         }
       ]
     },
@@ -548,11 +548,11 @@
         "hi": "उत्तर भारतीय और दक्षिण भारतीय कुण्डली शैलियों में अलग-अलग ज्योतिषीय जानकारी होती है।",
         "mai": "उत्तर भारतीय आ दक्षिण भारतीय कुंडली शैली मे भिन्न ज्योतिषीय जानकारी होइत अछि।",
         "mr": "उत्तर भारतीय और दक्षिण भारतीय कुण्डली शैलियों में अलग-अलग ज्योतिषीय जानकारी होती है।",
-        "ta": "North Indian and South Indian chart styles contain different astrological information.",
-        "te": "North Indian and South Indian chart styles contain different astrological information.",
-        "bn": "North Indian and South Indian chart styles contain different astrological information.",
-        "kn": "North Indian and South Indian chart styles contain different astrological information.",
-        "gu": "North Indian and South Indian chart styles contain different astrological information."
+        "ta": "வட இந்திய மற்றும் தென் இந்திய ஜாதக முறைகள் வெவ்வேறு ஜோதிட தகவல்களைக் கொண்டுள்ளன.",
+        "te": "ఉత్తర భారత మరియు దక్షిణ భారత చార్ట్ శైలులు విభిన్న జ్యోతిష్య సమాచారాన్ని కలిగి ఉంటాయి.",
+        "bn": "উত্তর ভারতীয় এবং দক্ষিণ ভারতীয় কুণ্ডলী শৈলীতে ভিন্ন জ্যোতিষশাস্ত্রীয় তথ্য থাকে।",
+        "kn": "ಉತ್ತರ ಭಾರತೀಯ ಮತ್ತು ದಕ್ಷಿಣ ಭಾರತೀಯ ಜಾತಕ ಶೈಲಿಗಳು ವಿಭಿನ್ನ ಜ್ಯೋತಿಷ್ಯ ಮಾಹಿತಿಯನ್ನು ಒಳಗೊಂಡಿವೆ.",
+        "gu": "ઉત્તર ભારતીય અને દક્ષિણ ભારતીય કુંડળી શૈલીઓ જુદી જુદી જ્યોતિષીય માહિતી ધરાવે છે."
       },
       "correctAnswer": false,
       "explanation": {
@@ -560,11 +560,11 @@
         "hi": "दोनों शैलियों में समान खगोलीय डेटा होता है। ये केवल अलग-अलग दृश्य प्रस्तुतियाँ हैं। उत्तर भारतीय में भाव स्थिर होते हैं, दक्षिण भारतीय में राशियाँ। जानकारी और व्याख्या समान रहती है।",
         "mai": "दुनू शैली मे समान खगोलीय डेटा होइत अछि। ओ मात्र भिन्न दृश्य प्रतिनिधित्व अछि। उत्तर भारतीय भाव कें स्थिर करैत अछि, दक्षिण भारतीय राशि कें स्थिर करैत अछि। जानकारी आ व्याख्या समान अछि।",
         "mr": "दोनों शैलियों में समान खगोलीय डेटा होता है। ये केवल अलग-अलग दृश्य प्रस्तुतियाँ हैं। उत्तर भारतीय में भाव स्थिर होते हैं, दक्षिण भारतीय में राशियाँ। जानकारी और व्याख्या समान रहती है।",
-        "ta": "Both styles contain identical astronomical data. They are simply different visual representations. North Indian fixes houses, South Indian fixes signs. The information and interpretations are the same.",
-        "te": "Both styles contain identical astronomical data. They are simply different visual representations. North Indian fixes houses, South Indian fixes signs. The information and interpretations are the same.",
-        "bn": "Both styles contain identical astronomical data. They are simply different visual representations. North Indian fixes houses, South Indian fixes signs. The information and interpretations are the same.",
-        "kn": "Both styles contain identical astronomical data. They are simply different visual representations. North Indian fixes houses, South Indian fixes signs. The information and interpretations are the same.",
-        "gu": "Both styles contain identical astronomical data. They are simply different visual representations. North Indian fixes houses, South Indian fixes signs. The information and interpretations are the same."
+        "ta": "இரண்டு முறைகளும் ஒரே மாதிரியான வானியல் தரவுகளைக் கொண்டுள்ளன. அவை வெறுமனே வெவ்வேறு காட்சி பிரதிநிதித்துவங்கள். வட இந்திய முறை பாவங்களை நிலைநிறுத்துகிறது, தென் இந்திய முறை ராசிகளை நிலைநிறுத்துகிறது. தகவல்களும் பலன்களும் ஒரே மாதிரியானவை.",
+        "te": "రెండు శైలులు ఒకే విధమైన ఖగోళ డేటాను కలిగి ఉంటాయి. అవి కేవలం విభిన్న దృశ్య ప్రాతినిధ్యాలు. ఉత్తర భారత శైలి భావాలను స్థిరపరుస్తుంది, దక్షిణ భారత శైలి రాశులను స్థిరపరుస్తుంది. సమాచారం మరియు వివరణలు ఒకే విధంగా ఉంటాయి.",
+        "bn": "উভয় শৈলীতে অভিন্ন জ্যোতির্বিজ্ঞানীয় তথ্য থাকে। এগুলি কেবল ভিন্ন ভিজ্যুয়াল উপস্থাপনা। উত্তর ভারতীয় শৈলীতে ভাবগুলি স্থির থাকে, দক্ষিণ ভারতীয় শৈলীতে রাশিগুলি স্থির থাকে। তথ্য এবং ব্যাখ্যা একই।",
+        "kn": "ಎರಡೂ ಶೈಲಿಗಳು ಒಂದೇ ರೀತಿಯ ಖಗೋಳ ಡೇಟಾವನ್ನು ಒಳಗೊಂಡಿವೆ. ಅವು ಕೇವಲ ವಿಭಿನ್ನ ದೃಶ್ಯ ನಿರೂಪಣೆಗಳು. ಉತ್ತರ ಭಾರತೀಯವು ಭಾವಗಳನ್ನು ಸ್ಥಿರಗೊಳಿಸುತ್ತದೆ, ದಕ್ಷಿಣ ಭಾರತೀಯವು ರಾಶಿಗಳನ್ನು ಸ್ಥಿರಗೊಳಿಸುತ್ತದೆ. ಮಾಹಿತಿ ಮತ್ತು ವ್ಯಾಖ್ಯಾನಗಳು ಒಂದೇ ಆಗಿರುತ್ತವೆ.",
+        "gu": "બંને શૈલીઓમાં સમાન ખગોળીય ડેટા હોય છે. તે ફક્ત જુદા જુદા દ્રશ્ય રજૂઆતો છે. ઉત્તર ભારતીયમાં ભાવ નિશ્ચિત હોય છે, દક્ષિણ ભારતીયમાં રાશિઓ નિશ્ચિત હોય છે. માહિતી અને અર્થઘટન સમાન હોય છે."
       }
     },
     {
@@ -575,11 +575,11 @@
         "hi": "कुण्डली निर्माण नियमों का प्राथमिक शास्त्रीय ग्रंथ कौन सा है?",
         "mai": "कुंडली निर्माणक नियमक लेल कोनटा शास्त्रीय ग्रंथ प्राथमिक स्रोत अछि?",
         "mr": "कुण्डली निर्माण नियमों का प्राथमिक शास्त्रीय ग्रंथ कौन सा है?",
-        "ta": "Which classical text is the primary source for Kundali construction rules?",
-        "te": "Which classical text is the primary source for Kundali construction rules?",
-        "bn": "Which classical text is the primary source for Kundali construction rules?",
-        "kn": "Which classical text is the primary source for Kundali construction rules?",
-        "gu": "Which classical text is the primary source for Kundali construction rules?"
+        "ta": "குண்டலி கட்டுமான விதிகளுக்கு எந்த கிளாசிக்கல் நூல் முதன்மை ஆதாரம்?",
+        "te": "కుండలి నిర్మాణ నియమాలకు ఏ శాస్త్రీయ గ్రంథం ప్రాథమిక మూలం?",
+        "bn": "কুণ্ডলী নির্মাণের নিয়মের জন্য কোন শাস্ত্রীয় গ্রন্থটি প্রাথমিক উৎস?",
+        "kn": "ಕುಂಡಲಿ ನಿರ್ಮಾಣ ನಿಯಮಗಳಿಗೆ ಯಾವ ಶಾಸ್ತ್ರೀಯ ಗ್ರಂಥವು ಪ್ರಾಥಮಿಕ ಮೂಲವಾಗಿದೆ?",
+        "gu": "કુંડળી નિર્માણના નિયમો માટે કયો શાસ્ત્રીય ગ્રંથ પ્રાથમિક સ્ત્રોત છે?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -587,11 +587,11 @@
         "hi": "ऋषि पराशर द्वारा रचित BPHS पाराशरी ज्योतिष का मूलभूत ग्रंथ है। इसमें कुण्डली निर्माण, भाव सूचकता, ग्रह बल, दशा और योग व्यवस्थित रूप से वर्णित हैं।",
         "mai": "ऋषि पराशर द्वारा BPHS पराशरी ज्योतिष कें आधारभूत ग्रंथ अछि। ई व्यवस्थित रूप सँ कुंडली निर्माण, भावक महत्व, ग्रहीय बल, दशा, आ योग कें कवर करैत अछि।",
         "mr": "ऋषि पराशर द्वारा रचित BPHS पाराशरी ज्योतिष का मूलभूत ग्रंथ है। इसमें कुण्डली निर्माण, भाव सूचकता, ग्रह बल, दशा और योग व्यवस्थित रूप से वर्णित हैं।",
-        "ta": "BPHS by Sage Parashara is the foundational text of Parashari Jyotish. It systematically covers chart construction, house significations, planetary dignities, dashas, and yogas.",
-        "te": "BPHS by Sage Parashara is the foundational text of Parashari Jyotish. It systematically covers chart construction, house significations, planetary dignities, dashas, and yogas.",
-        "bn": "BPHS by Sage Parashara is the foundational text of Parashari Jyotish. It systematically covers chart construction, house significations, planetary dignities, dashas, and yogas.",
-        "kn": "BPHS by Sage Parashara is the foundational text of Parashari Jyotish. It systematically covers chart construction, house significations, planetary dignities, dashas, and yogas.",
-        "gu": "BPHS by Sage Parashara is the foundational text of Parashari Jyotish. It systematically covers chart construction, house significations, planetary dignities, dashas, and yogas."
+        "ta": "பராசர முனிவரின் பிருஹத் பராசர ஹோரா சாஸ்திரம் (BPHS) பராசரி ஜோதிடத்தின் அடிப்படை நூல். இது ஜாதக கட்டுமானம், பாவம் குறிப்புகள், கிரக பலம், தசாக்கள் மற்றும் யோகங்கள் ஆகியவற்றை முறையாக உள்ளடக்கியது.",
+        "te": "పరాశర మహర్షి రచించిన BPHS పరాశరి జ్యోతిష్యానికి మూల గ్రంథం. ఇది చార్ట్ నిర్మాణం, భావ సూచనలు, గ్రహ బలాలు, దశలు మరియు యోగాలను క్రమబద్ధంగా కవర్ చేస్తుంది.",
+        "bn": "ঋষি পরাশরের BPHS হল পরাশরী জ্যোতিষের মৌলিক গ্রন্থ। এটি কুণ্ডলী নির্মাণ, ভাবফল, গ্রহের মর্যাদা, দশা এবং যোগগুলিকে পদ্ধতিগতভাবে কভার করে।",
+        "kn": "ಪರಾಶರ ಮಹರ್ಷಿಯ BPHS ಪರಾಶರಿ ಜ್ಯೋತಿಷ್ಯದ ಮೂಲಭೂತ ಗ್ರಂಥವಾಗಿದೆ. ಇದು ಜಾತಕ ನಿರ್ಮಾಣ, ಭಾವಗಳ ಮಹತ್ವಗಳು, ಗ್ರಹಗಳ ಬಲಗಳು, ದಶಾ ಮತ್ತು ಯೋಗಗಳನ್ನು ವ್ಯವಸ್ಥಿತವಾಗಿ ಒಳಗೊಂಡಿದೆ.",
+        "gu": "ઋષિ પરાશર દ્વારા રચિત BPHS પરાશરી જ્યોતિષનો મૂળભૂત ગ્રંથ છે. તે કુંડળી નિર્માણ, ભાવના મહત્વ, ગ્રહ બળ, દશા અને યોગોને વ્યવસ્થિત રીતે આવરી લે છે."
       },
       "options": [
         {
@@ -599,33 +599,33 @@
           "hi": "ऋग्वेद",
           "mai": "ऋग्वेद",
           "mr": "ऋग्वेद",
-          "ta": "Rig Veda",
-          "te": "Rig Veda",
-          "bn": "Rig Veda",
-          "kn": "Rig Veda",
-          "gu": "Rig Veda"
+          "ta": "ரிக் வேதம்",
+          "te": "ఋగ్వేదం",
+          "bn": "ঋগ্বেদ",
+          "kn": "ಋಗ್ವೇದ",
+          "gu": "ઋગ્વેદ"
         },
         {
           "en": "Brihat Parashara Hora Shastra (BPHS)",
           "hi": "बृहत् पराशर होरा शास्त्र (BPHS)",
           "mai": "बृहत् पाराशर होरा शास्त्र (बीपीएचएस)",
           "mr": "बृहत् पराशर होरा शास्त्र (BPHS)",
-          "ta": "Brihat Parashara Hora Shastra (BPHS)",
-          "te": "Brihat Parashara Hora Shastra (BPHS)",
-          "bn": "Brihat Parashara Hora Shastra (BPHS)",
-          "kn": "Brihat Parashara Hora Shastra (BPHS)",
-          "gu": "Brihat Parashara Hora Shastra (BPHS)"
+          "ta": "பிருஹத் பராசர ஹோரா சாஸ்திரம் (BPHS)",
+          "te": "బృహత్ పరాశర హోరా శాస్త్రం (BPHS)",
+          "bn": "বৃহৎ পরাশর হোরা শাস্ত্র (BPHS)",
+          "kn": "ಬೃಹತ್ ಪರಾಶರ ಹೋರಾ ಶಾಸ್ತ್ರ (BPHS)",
+          "gu": "બૃહત્ પરાશર હોરા શાસ્ત્ર (BPHS)"
         },
         {
           "en": "Arthashastra",
           "hi": "अर्थशास्त्र",
           "mai": "अर्थशास्त्र",
           "mr": "अर्थशास्त्र",
-          "ta": "Arthashastra",
-          "te": "Arthashastra",
-          "bn": "Arthashastra",
-          "kn": "Arthashastra",
-          "gu": "Arthashastra"
+          "ta": "அர்த்தசாஸ்திரம்",
+          "te": "అర్థశాస్త్రం",
+          "bn": "অর্থশাস্ত্র",
+          "kn": "ಅರ್ಥಶಾಸ್ತ್ರ",
+          "gu": "અર્થશાસ્ત્ર"
         },
         {
           "en": "Manusmriti",
@@ -648,11 +648,11 @@
         "hi": "कौन सा भाव विवाह और साझेदारी को नियन्त्रित करता है?",
         "mai": "विवाह आ साझेदारी पर कोन भाव शासन करैत अछि?",
         "mr": "कौन सा भाव विवाह और साझेदारी को नियन्त्रित करता है?",
-        "ta": "Which house governs marriage and partnerships?",
-        "te": "Which house governs marriage and partnerships?",
-        "bn": "Which house governs marriage and partnerships?",
-        "kn": "Which house governs marriage and partnerships?",
-        "gu": "Which house governs marriage and partnerships?"
+        "ta": "எந்த பாவம் திருமணம் மற்றும் கூட்டாண்மைகளை ஆளுகிறது?",
+        "te": "ఏ భావం వివాహం మరియు భాగస్వామ్యాలను పాలిస్తుంది?",
+        "bn": "কোন ভাব বিবাহ এবং অংশীদারিত্বকে শাসন করে?",
+        "kn": "ಯಾವ ಭಾವವು ವಿವಾಹ ಮತ್ತು ಪಾಲುದಾರಿಕೆಗಳನ್ನು ಆಳುತ್ತದೆ?",
+        "gu": "કયો ભાવ લગ્ન અને ભાગીદારીનું સંચાલન કરે છે?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -672,44 +672,44 @@
           "hi": "पाँचवाँ भाव",
           "mai": "५म भाव",
           "mr": "पाँचवाँ भाव",
-          "ta": "5th house",
-          "te": "5th house",
-          "bn": "5th house",
-          "kn": "5th house",
-          "gu": "5th house"
+          "ta": "5 ஆம் பாவம்",
+          "te": "5వ భావం",
+          "bn": "৫ম ভাব",
+          "kn": "5ನೇ ಭಾವ",
+          "gu": "પાંચમો ભાવ"
         },
         {
           "en": "10th house",
           "hi": "दसवाँ भाव",
           "mai": "१०म भाव",
           "mr": "दसवाँ भाव",
-          "ta": "10th house",
-          "te": "10th house",
-          "bn": "10th house",
-          "kn": "10th house",
-          "gu": "10th house"
+          "ta": "10 ஆம் பாவம்",
+          "te": "10వ భావం",
+          "bn": "১০ম ভাব",
+          "kn": "10ನೇ ಭಾವ",
+          "gu": "દસમો ભાવ"
         },
         {
           "en": "7th house",
           "hi": "सातवाँ भाव",
           "mai": "७म भाव",
           "mr": "सातवाँ भाव",
-          "ta": "7th house",
-          "te": "7th house",
-          "bn": "7th house",
-          "kn": "7th house",
-          "gu": "7th house"
+          "ta": "7 ஆம் பாவம்",
+          "te": "7వ భావం",
+          "bn": "৭ম ভাব",
+          "kn": "7ನೇ ಭಾವ",
+          "gu": "સાતમો ભાવ"
         },
         {
           "en": "2nd house",
           "hi": "दूसरा भाव",
           "mai": "२म भाव",
           "mr": "दूसरा भाव",
-          "ta": "2nd house",
-          "te": "2nd house",
-          "bn": "2nd house",
-          "kn": "2nd house",
-          "gu": "2nd house"
+          "ta": "2 ஆம் பாவம்",
+          "te": "2వ భావం",
+          "bn": "২য় ভাব",
+          "kn": "2ನೇ ಭಾವ",
+          "gu": "બીજો ભાવ"
         }
       ]
     },
@@ -794,11 +794,11 @@
         "hi": "यदि वृषभ लग्न है, तो वृश्चिक सातवाँ भाव बनता है।",
         "mai": "जँ वृषभ लग्न अछि, तँ वृश्चिक सप्तम भाव होइत अछि।",
         "mr": "यदि वृषभ लग्न है, तो वृश्चिक सातवाँ भाव बनता है।",
-        "ta": "If Taurus is the Lagna, then Scorpio becomes the 7th house.",
-        "te": "If Taurus is the Lagna, then Scorpio becomes the 7th house.",
-        "bn": "If Taurus is the Lagna, then Scorpio becomes the 7th house.",
-        "kn": "If Taurus is the Lagna, then Scorpio becomes the 7th house.",
-        "gu": "If Taurus is the Lagna, then Scorpio becomes the 7th house."
+        "ta": "ரிஷபம் லக்னமாக இருந்தால், விருச்சிகம் 7 ஆம் பாவம் ஆகிறது.",
+        "te": "వృషభం లగ్నం అయితే, వృశ్చికం 7వ భావం అవుతుంది.",
+        "bn": "যদি বৃষ রাশি লগ্ন হয়, তাহলে বৃশ্চিক রাশি ৭ম ভাব হয়।",
+        "kn": "ವೃಷಭ ರಾಶಿಯು ಲಗ್ನವಾಗಿದ್ದರೆ, ಆಗ ವೃಶ್ಚಿಕ ರಾಶಿಯು 7ನೇ ಭಾವವಾಗುತ್ತದೆ.",
+        "gu": "જો વૃષભ લગ્ન હોય, તો વૃશ્ચિક સાતમો ભાવ બને છે."
       },
       "correctAnswer": true,
       "explanation": {

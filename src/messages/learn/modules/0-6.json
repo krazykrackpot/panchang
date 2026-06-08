@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 1-1: क्रान्तिवृत्त और अंश",
         "mai": "मॉड्यूल १-१: क्रान्तिवृत्त आ अंश",
         "mr": "मॉड्यूल 1-1: क्रान्तिवृत्त और अंश",
-        "ta": "Module 1-1: The Ecliptic & Degrees",
-        "te": "Module 1-1: The Ecliptic & Degrees",
-        "bn": "Module 1-1: The Ecliptic & Degrees",
-        "kn": "Module 1-1: The Ecliptic & Degrees",
-        "gu": "Module 1-1: The Ecliptic & Degrees"
+        "ta": "தொகுதி 1-1: சூரியபாதை மற்றும் பாகைகள்",
+        "te": "మాడ్యూల్ 1-1: క్రాంతివృత్తం & డిగ్రీలు",
+        "bn": "মডিউল ১-১: ক্রান্তিবৃত্ত ও ডিগ্রী",
+        "kn": "ಮಾಡ್ಯೂಲ್ 1-1: ಕ್ರಾಂತಿ ವೃತ್ತ ಮತ್ತು ಅಂಶಗಳು",
+        "gu": "મોડ્યુલ ૧-૧: ક્રાંતિવૃત અને અંશ"
       },
       "href": "/learn/modules/1-1"
     },
@@ -42,11 +42,11 @@
         "hi": "दैनिक पंचांग",
         "mai": "दैनिक पञ्चाङ्ग",
         "mr": "दैनिक पंचांग",
-        "ta": "Daily Panchang",
-        "te": "Daily Panchang",
-        "bn": "Daily Panchang",
-        "kn": "Daily Panchang",
-        "gu": "Daily Panchang"
+        "ta": "தினசரி பஞ்சாங்கம்",
+        "te": "రోజువారీ పంచాంగం",
+        "bn": "দৈনিক পঞ্চাঙ্গ",
+        "kn": "ದೈನಂದಿನ ಪಂಚಾಂಗ",
+        "gu": "દૈનિક પંચાંગ"
       },
       "href": "/panchang"
     },
@@ -56,11 +56,11 @@
         "hi": "कुण्डली बनाएँ",
         "mai": "कुण्डली बनाउ",
         "mr": "कुण्डली बनाएँ",
-        "ta": "Generate Kundali",
-        "te": "Generate Kundali",
-        "bn": "Generate Kundali",
-        "kn": "Generate Kundali",
-        "gu": "Generate Kundali"
+        "ta": "ஜாதகம் உருவாக்கு",
+        "te": "కుండలిని రూపొందించండి",
+        "bn": "কুণ্ডলী তৈরি করুন",
+        "kn": "ಕುಂಡಲಿ ರಚಿಸಿ",
+        "gu": "કુંડળી બનાવો"
       },
       "href": "/kundali"
     },
@@ -70,11 +70,11 @@
         "hi": "संकल्प जनक",
         "mai": "सङ्कल्प जनरेटर",
         "mr": "संकल्प जनक",
-        "ta": "Sankalpa Generator",
-        "te": "Sankalpa Generator",
-        "bn": "Sankalpa Generator",
-        "kn": "Sankalpa Generator",
-        "gu": "Sankalpa Generator"
+        "ta": "சங்கல்பம் உருவாக்கி",
+        "te": "సంకల్ప జనరేటర్",
+        "bn": "সংকল্প জেনারেটর",
+        "kn": "ಸಂಕಲ್ಪ ಜನರೇಟರ್",
+        "gu": "સંકલ્પ જનરેટર"
       },
       "href": "/sankalpa"
     },
@@ -84,11 +84,11 @@
         "hi": "मुहूर्त AI",
         "mai": "मुहूर्त एआई",
         "mr": "मुहूर्त AI",
-        "ta": "Muhurta AI",
-        "te": "Muhurta AI",
-        "bn": "Muhurta AI",
-        "kn": "Muhurta AI",
-        "gu": "Muhurta AI"
+        "ta": "முகூர்த்தம் AI",
+        "te": "ముహూర్త AI",
+        "bn": "মুহূর্ত এআই",
+        "kn": "ಮುಹೂರ್ತ AI",
+        "gu": "મુહૂર્ત AI"
       },
       "href": "/muhurta-ai"
     }
@@ -100,12 +100,12 @@
       "question": {
         "en": "What is the astronomical basis of Ekadashi fasting (11th tithi)?",
         "hi": "एकादशी व्रत (11वीं तिथि) का खगोलीय आधार क्या है?",
-        "ta": "What is the astronomical basis of Ekadashi fasting (11th tithi)?",
-        "te": "What is the astronomical basis of Ekadashi fasting (11th tithi)?",
-        "bn": "What is the astronomical basis of Ekadashi fasting (11th tithi)?",
-        "kn": "What is the astronomical basis of Ekadashi fasting (11th tithi)?",
+        "ta": "ஏகாதசி விரதத்தின் (11வது திதி) வானியல் அடிப்படை என்ன?",
+        "te": "ఏకాదశి ఉపవాసానికి (11వ తిథి) ఖగోళ ఆధారం ఏమిటి?",
+        "bn": "একাদশীর উপবাসের (১১শ তিথি) জ্যোতির্বিজ্ঞানের ভিত্তি কী?",
+        "kn": "ಏಕಾದಶಿ ಉಪವಾಸದ (೧೧ನೇ ತಿಥಿ) ಖಗೋಳ ಆಧಾರವೇನು?",
         "mr": "एकादशी व्रत (11वीं तिथि) का खगोलीय आधार क्या है?",
-        "gu": "What is the astronomical basis of Ekadashi fasting (11th tithi)?",
+        "gu": "એકાદશી ઉપવાસ (૧૧મી તિથિ) નો ખગોળીય આધાર શું છે?",
         "mai": "एकादशी व्रत (११म तिथि) कऽ खगोलीय आधार की अछि?"
       },
       "options": [
@@ -114,56 +114,56 @@
           "hi": "सूर्य सबसे तेज होता है",
           "mai": "सूर्य अपन सबसँ बेसी चमकीला अछि",
           "mr": "सूर्य सबसे तेज होता है",
-          "ta": "The Sun is at its brightest",
-          "te": "The Sun is at its brightest",
-          "bn": "The Sun is at its brightest",
-          "kn": "The Sun is at its brightest",
-          "gu": "The Sun is at its brightest"
+          "ta": "சூரியன் மிகவும் பிரகாசமாக உள்ளது",
+          "te": "సూర్యుడు అత్యంత ప్రకాశవంతంగా ఉంటాడు",
+          "bn": "সূর্য তার উজ্জ্বলতম অবস্থায় থাকে",
+          "kn": "ಸೂರ್ಯನು ಅತ್ಯಂತ ಪ್ರಕಾಶಮಾನವಾಗಿರುತ್ತಾನೆ",
+          "gu": "સૂર્ય તેની સૌથી તેજસ્વી અવસ્થામાં હોય છે"
         },
         {
           "en": "Moon-Sun elongation is 120°-132°, affecting tidal forces",
           "hi": "चन्द्र-सूर्य कोण 120°-132° होता है, ज्वारीय बलों को प्रभावित करता है",
           "mai": "चन्द्र-सूर्य दीर्घीकरण १२०°-१३२° अछि, जे ज्वारीय बल पर असर करैत अछि",
           "mr": "चन्द्र-सूर्य कोण 120°-132° होता है, ज्वारीय बलों को प्रभावित करता है",
-          "ta": "Moon-Sun elongation is 120°-132°, affecting tidal forces",
-          "te": "Moon-Sun elongation is 120°-132°, affecting tidal forces",
-          "bn": "Moon-Sun elongation is 120°-132°, affecting tidal forces",
-          "kn": "Moon-Sun elongation is 120°-132°, affecting tidal forces",
-          "gu": "Moon-Sun elongation is 120°-132°, affecting tidal forces"
+          "ta": "சந்திரன்-சூரியன் நீட்சி 120°-132° ஆக உள்ளது, இது அலை விசைகளை பாதிக்கிறது",
+          "te": "చంద్ర-సూర్య విస్తరణ 120°-132° ఉంటుంది, ఇది ఆటుపోట్ల శక్తులను ప్రభావితం చేస్తుంది",
+          "bn": "চন্দ্র-সূর্য দীর্ঘায়ন ১২০°-১৩২° হয়, যা জোয়ার-ভাটার শক্তিকে প্রভাবিত করে",
+          "kn": "ಚಂದ್ರ-ಸೂರ್ಯರ ಅಂತರವು ೧೨೦°-೧೩೨° ಆಗಿರುತ್ತದೆ, ಇದು ಉಬ್ಬರವಿಳಿತದ ಶಕ್ತಿಗಳ ಮೇಲೆ ಪರಿಣಾಮ ಬೀರುತ್ತದೆ",
+          "gu": "ચંદ્ર-સૂર્યનું વિસ્તરણ ૧૨૦°-૧૩૨° હોય છે, જે ભરતી-ઓટના બળોને અસર કરે છે"
         },
         {
           "en": "Mars is in opposition",
           "hi": "मंगल प्रतियोग में होता है",
           "mai": "मङ्गल सम्मुख अछि",
           "mr": "मंगल प्रतियोग में होता है",
-          "ta": "Mars is in opposition",
-          "te": "Mars is in opposition",
-          "bn": "Mars is in opposition",
-          "kn": "Mars is in opposition",
-          "gu": "Mars is in opposition"
+          "ta": "செவ்வாய் எதிரெதிர் நிலையில் உள்ளது",
+          "te": "అంగారక గ్రహం వ్యతిరేక స్థానంలో ఉంటుంది",
+          "bn": "মঙ্গল গ্রহ বিপরীত অবস্থানে থাকে",
+          "kn": "ಮಂಗಳ ಗ್ರಹವು ಪ್ರತಿರೋಧದಲ್ಲಿದೆ",
+          "gu": "મંગળ પ્રતિયુતિમાં હોય છે"
         },
         {
           "en": "An eclipse is occurring",
           "hi": "ग्रहण हो रहा होता है",
           "mai": "ग्रहण भऽ रहल अछि",
           "mr": "ग्रहण हो रहा होता है",
-          "ta": "An eclipse is occurring",
-          "te": "An eclipse is occurring",
-          "bn": "An eclipse is occurring",
-          "kn": "An eclipse is occurring",
-          "gu": "An eclipse is occurring"
+          "ta": "ஒரு கிரகணம் நிகழ்கிறது",
+          "te": "గ్రహణం సంభవిస్తోంది",
+          "bn": "একটি গ্রহণ ঘটছে",
+          "kn": "ಗ್ರಹಣ ಸಂಭವಿಸುತ್ತಿದೆ",
+          "gu": "ગ્રહણ થઈ રહ્યું છે"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "On Ekadashi, the Moon-Sun elongation is between 120°-132°. The Moon's gravitational pull on Earth's water is at a specific phase. Ayurveda links this to digestive changes, recommending fasting.",
         "hi": "एकादशी पर चन्द्र-सूर्य कोण 120°-132° के बीच होता है। पृथ्वी के जल पर चन्द्रमा का गुरुत्वाकर्षण एक विशेष चरण में होता है। आयुर्वेद इसे पाचन परिवर्तनों से जोड़ता है और उपवास की सलाह देता है।",
-        "ta": "On Ekadashi, the Moon-Sun elongation is between 120°-132°. The Moon's gravitational pull on Earth's water is at a specific phase. Ayurveda links this to digestive changes, recommending fasting.",
-        "te": "On Ekadashi, the Moon-Sun elongation is between 120°-132°. The Moon's gravitational pull on Earth's water is at a specific phase. Ayurveda links this to digestive changes, recommending fasting.",
-        "bn": "On Ekadashi, the Moon-Sun elongation is between 120°-132°. The Moon's gravitational pull on Earth's water is at a specific phase. Ayurveda links this to digestive changes, recommending fasting.",
-        "kn": "On Ekadashi, the Moon-Sun elongation is between 120°-132°. The Moon's gravitational pull on Earth's water is at a specific phase. Ayurveda links this to digestive changes, recommending fasting.",
+        "ta": "ஏகாதசியன்று, சந்திரன்-சூரியன் நீட்சி 120°-132° க்கு இடையில் இருக்கும். பூமியின் நீர்நிலைகள் மீது சந்திரனின் ஈர்ப்பு விசை ஒரு குறிப்பிட்ட கட்டத்தில் இருக்கும். ஆயுர்வேதம் இதை செரிமான மாற்றங்களுடன் தொடர்புபடுத்துகிறது, விரதத்தை பரிந்துரைக்கிறது.",
+        "te": "ఏకాదశి నాడు, చంద్ర-సూర్య విస్తరణ 120°-132° మధ్య ఉంటుంది. భూమిపై చంద్రుని గురుత్వాకర్షణ శక్తి ఒక నిర్దిష్ట దశలో ఉంటుంది. ఆయుర్వేదం దీనిని జీర్ణక్రియ మార్పులతో ముడిపెట్టి, ఉపవాసాన్ని సిఫార్సు చేస్తుంది.",
+        "bn": "একাদশীতে, চন্দ্র-সূর্য দীর্ঘায়ন ১২০°-১৩২° এর মধ্যে থাকে। পৃথিবীর জলের উপর চন্দ্রের মহাকর্ষীয় টান একটি নির্দিষ্ট দশায় থাকে। আয়ুর্বেদ এটিকে হজম সংক্রান্ত পরিবর্তনের সাথে যুক্ত করে উপবাসের পরামর্শ দেয়।",
+        "kn": "ಏಕಾದಶಿಯಂದು, ಚಂದ್ರ-ಸೂರ್ಯರ ಅಂತರವು ೧೨೦°-೧೩೨° ರ ನಡುವೆ ಇರುತ್ತದೆ. ಭೂಮಿಯ ನೀರಿನ ಮೇಲೆ ಚಂದ್ರನ ಗುರುತ್ವಾಕರ್ಷಣೆಯು ಒಂದು ನಿರ್ದಿಷ್ಟ ಹಂತದಲ್ಲಿರುತ್ತದೆ. ಆಯುರ್ವೇದವು ಇದನ್ನು ಜೀರ್ಣಕಾರಿ ಬದಲಾವಣೆಗಳಿಗೆ ಜೋಡಿಸುತ್ತದೆ, ಉಪವಾಸವನ್ನು ಶಿಫಾರಸು ಮಾಡುತ್ತದೆ.",
         "mr": "एकादशी पर चन्द्र-सूर्य कोण 120°-132° के बीच होता है। पृथ्वी के जल पर चन्द्रमा का गुरुत्वाकर्षण एक विशेष चरण में होता है। आयुर्वेद इसे पाचन परिवर्तनों से जोड़ता है और उपवास की सलाह देता है।",
-        "gu": "On Ekadashi, the Moon-Sun elongation is between 120°-132°. The Moon's gravitational pull on Earth's water is at a specific phase. Ayurveda links this to digestive changes, recommending fasting.",
+        "gu": "એકાદશીના દિવસે, ચંદ્ર-સૂર્યનું વિસ્તરણ ૧૨૦°-૧૩૨° ની વચ્ચે હોય છે. પૃથ્વીના પાણી પર ચંદ્રનું ગુરુત્વાકર્ષણ બળ એક ચોક્કસ તબક્કામાં હોય છે. આયુર્વેદ આને પાચન સંબંધી ફેરફારો સાથે જોડે છે, અને ઉપવાસની ભલામણ કરે છે.",
         "mai": "एकादशी पर, चन्द्र-सूर्य दीर्घीकरण १२०°-१३२° कऽ बीच मे अछि। पृथ्वी कऽ जल पर चन्द्रमा कऽ गुरुत्वाकर्षण बल एकटा विशिष्ट चरण मे अछि। आयुर्वेद एकरा पाचन सम्बन्धी परिवर्तन सँ जोड़ैत अछि, व्रत कऽ सिफारिश करैत अछि।"
       }
     },
@@ -173,24 +173,24 @@
       "question": {
         "en": "Aryabhata correctly explained in 499 CE that the Moon shines by reflected sunlight and eclipses are caused by Earth's shadow.",
         "hi": "आर्यभट ने 499 ई. में सही ढंग से समझाया कि चन्द्रमा परावर्तित सूर्य प्रकाश से चमकता है और ग्रहण पृथ्वी की छाया से होते हैं।",
-        "ta": "Aryabhata correctly explained in 499 CE that the Moon shines by reflected sunlight and eclipses are caused by Earth's shadow.",
-        "te": "Aryabhata correctly explained in 499 CE that the Moon shines by reflected sunlight and eclipses are caused by Earth's shadow.",
-        "bn": "Aryabhata correctly explained in 499 CE that the Moon shines by reflected sunlight and eclipses are caused by Earth's shadow.",
-        "kn": "Aryabhata correctly explained in 499 CE that the Moon shines by reflected sunlight and eclipses are caused by Earth's shadow.",
+        "ta": "ஆரியபட்டர் கி.பி. 499 இல், சந்திரன் பிரதிபலித்த சூரிய ஒளியால் பிரகாசிக்கிறது என்றும், கிரகணங்கள் பூமியின் நிழலால் ஏற்படுகின்றன என்றும் சரியாக விளக்கினார்.",
+        "te": "చంద్రుడు ప్రతిబింబించిన సూర్యకాంతి ద్వారా ప్రకాశిస్తాడని మరియు గ్రహణాలు భూమి నీడ వల్ల సంభవిస్తాయని ఆర్యభట 499 CEలో సరిగ్గా వివరించారు.",
+        "bn": "আর্যভট্ট ৪৯৯ খ্রিস্টাব্দে সঠিকভাবে ব্যাখ্যা করেছিলেন যে চাঁদ প্রতিফলিত সূর্যালোক দ্বারা আলোকিত হয় এবং গ্রহণগুলি পৃথিবীর ছায়ার কারণে ঘটে।",
+        "kn": "ಆರ್ಯಭಟನು ೪೯೯ CE ನಲ್ಲಿ ಚಂದ್ರನು ಪ್ರತಿಫಲಿತ ಸೂರ್ಯನ ಬೆಳಕಿನಿಂದ ಹೊಳೆಯುತ್ತಾನೆ ಮತ್ತು ಗ್ರಹಣಗಳು ಭೂಮಿಯ ನೆರಳಿನಿಂದ ಉಂಟಾಗುತ್ತವೆ ಎಂದು ಸರಿಯಾಗಿ ವಿವರಿಸಿದನು.",
         "mr": "आर्यभट ने 499 ई. में सही ढंग से समझाया कि चन्द्रमा परावर्तित सूर्य प्रकाश से चमकता है और ग्रहण पृथ्वी की छाया से होते हैं।",
-        "gu": "Aryabhata correctly explained in 499 CE that the Moon shines by reflected sunlight and eclipses are caused by Earth's shadow.",
+        "gu": "આર્યભટ્ટે ૪૯૯ ઈ.સ. માં યોગ્ય રીતે સમજાવ્યું હતું કે ચંદ્ર પરાવર્તિત સૂર્યપ્રકાશથી ચમકે છે અને ગ્રહણ પૃથ્વીના પડછાયાને કારણે થાય છે.",
         "mai": "आर्यभट ४९९ ईस्वी मे सही ढंग सँ समझाओलनि जे चन्द्रमा परावर्तित सूर्यक प्रकाश सँ चमकैत अछि आ ग्रहण पृथ्वी कऽ छाया कऽ कारण होइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Aryabhata wrote in his Aryabhatiya (499 CE) that the Moon and planets shine by reflected sunlight, and that eclipses are caused by Earth's shadow on the Moon (lunar) or Moon's shadow on Earth (solar)  –  while Europe was in the Dark Ages.",
         "hi": "सत्य। आर्यभट ने अपनी आर्यभटीय (499 ई.) में लिखा कि चन्द्रमा और ग्रह परावर्तित सूर्य प्रकाश से चमकते हैं, और ग्रहण पृथ्वी की छाया (चन्द्र ग्रहण) या चन्द्रमा की छाया (सूर्य ग्रहण) से होते हैं  –  जब यूरोप अन्धकार युग में था।",
-        "ta": "True. Aryabhata wrote in his Aryabhatiya (499 CE) that the Moon and planets shine by reflected sunlight, and that eclipses are caused by Earth's shadow on the Moon (lunar) or Moon's shadow on Earth (solar)  –  while Europe was in the Dark Ages.",
-        "te": "True. Aryabhata wrote in his Aryabhatiya (499 CE) that the Moon and planets shine by reflected sunlight, and that eclipses are caused by Earth's shadow on the Moon (lunar) or Moon's shadow on Earth (solar)  –  while Europe was in the Dark Ages.",
-        "bn": "True. Aryabhata wrote in his Aryabhatiya (499 CE) that the Moon and planets shine by reflected sunlight, and that eclipses are caused by Earth's shadow on the Moon (lunar) or Moon's shadow on Earth (solar)  –  while Europe was in the Dark Ages.",
-        "kn": "True. Aryabhata wrote in his Aryabhatiya (499 CE) that the Moon and planets shine by reflected sunlight, and that eclipses are caused by Earth's shadow on the Moon (lunar) or Moon's shadow on Earth (solar)  –  while Europe was in the Dark Ages.",
+        "ta": "உண்மை. ஆரியபட்டர் தனது ஆரியபட்டியா (கி.பி. 499) நூலில், சந்திரன் மற்றும் கிரகங்கள் பிரதிபலித்த சூரிய ஒளியால் பிரகாசிக்கின்றன என்றும், கிரகணங்கள் பூமியின் நிழல் சந்திரனில் விழுவதாலோ (சந்திர கிரகணம்) அல்லது சந்திரனின் நிழல் பூமியில் விழுவதாலோ (சூரிய கிரகணம்) ஏற்படுகின்றன என்றும் எழுதினார் – ஐரோப்பா இருண்ட காலங்களில் இருந்தபோது.",
+        "te": "నిజం. ఆర్యభట తన ఆర్యభట్టీయం (499 CE)లో చంద్రుడు మరియు గ్రహాలు ప్రతిబింబించిన సూర్యకాంతి ద్వారా ప్రకాశిస్తాయని, మరియు గ్రహణాలు చంద్రునిపై భూమి నీడ (చంద్రగ్రహణం) లేదా భూమిపై చంద్రుని నీడ (సూర్యగ్రహణం) వల్ల సంభవిస్తాయని రాశారు – ఐరోపా చీకటి యుగాలలో ఉన్నప్పుడు.",
+        "bn": "সত্য। আর্যভট্ট তাঁর আর্যভট্টীয় (৪৯৯ খ্রিস্টাব্দ) গ্রন্থে লিখেছেন যে চাঁদ এবং গ্রহগুলি প্রতিফলিত সূর্যালোক দ্বারা আলোকিত হয়, এবং গ্রহণগুলি চাঁদের উপর পৃথিবীর ছায়া (চন্দ্রগ্রহণ) বা পৃথিবীর উপর চাঁদের ছায়া (সূর্যগ্রহণ) দ্বারা ঘটে – যখন ইউরোপ অন্ধকার যুগে ছিল।",
+        "kn": "ನಿಜ. ಆರ್ಯಭಟನು ತನ್ನ ಆರ್ಯಭಟೀಯ (೪೯೯ CE) ದಲ್ಲಿ ಚಂದ್ರ ಮತ್ತು ಗ್ರಹಗಳು ಪ್ರತಿಫಲಿತ ಸೂರ್ಯನ ಬೆಳಕಿನಿಂದ ಹೊಳೆಯುತ್ತವೆ ಮತ್ತು ಗ್ರಹಣಗಳು ಚಂದ್ರನ ಮೇಲೆ ಭೂಮಿಯ ನೆರಳಿನಿಂದ (ಚಂದ್ರ ಗ್ರಹಣ) ಅಥವಾ ಭೂಮಿಯ ಮೇಲೆ ಚಂದ್ರನ ನೆರಳಿನಿಂದ (ಸೂರ್ಯ ಗ್ರಹಣ) ಉಂಟಾಗುತ್ತವೆ ಎಂದು ಬರೆದಿದ್ದಾನೆ – ಯುರೋಪ್ ಕತ್ತಲ ಯುಗದಲ್ಲಿದ್ದಾಗ.",
         "mr": "सत्य। आर्यभट ने अपनी आर्यभटीय (499 ई.) में लिखा कि चन्द्रमा और ग्रह परावर्तित सूर्य प्रकाश से चमकते हैं, और ग्रहण पृथ्वी की छाया (चन्द्र ग्रहण) या चन्द्रमा की छाया (सूर्य ग्रहण) से होते हैं  –  जब यूरोप अन्धकार युग में था।",
-        "gu": "True. Aryabhata wrote in his Aryabhatiya (499 CE) that the Moon and planets shine by reflected sunlight, and that eclipses are caused by Earth's shadow on the Moon (lunar) or Moon's shadow on Earth (solar)  –  while Europe was in the Dark Ages.",
+        "gu": "સાચું. આર્યભટ્ટે તેમના આર્યભટ્ટિય (૪૯૯ ઈ.સ.) માં લખ્યું હતું કે ચંદ્ર અને ગ્રહો પરાવર્તિત સૂર્યપ્રકાશથી ચમકે છે, અને ગ્રહણ પૃથ્વીના ચંદ્ર પરના પડછાયા (ચંદ્રગ્રહણ) અથવા ચંદ્રના પૃથ્વી પરના પડછાયા (સૂર્યગ્રહણ) ને કારણે થાય છે – જ્યારે યુરોપ અંધકાર યુગમાં હતું.",
         "mai": "सत्य। आर्यभट अपन आर्यभटीय (४९९ ईस्वी) मे लिखलनि जे चन्द्रमा आ ग्रह परावर्तित सूर्यक प्रकाश सँ चमकैत अछि, आ ग्रहण चन्द्रमा पर पृथ्वी कऽ छाया (चन्द्र ग्रहण) वा पृथ्वी पर चन्द्रमा कऽ छाया (सूर्य ग्रहण) कऽ कारण होइत अछि – जखन कि यूरोप मे अन्धकार युग छल।"
       }
     },
@@ -200,24 +200,24 @@
       "question": {
         "en": "Why is Hanuman worshipped specifically on Tuesday (Mangalavara)?",
         "hi": "हनुमान की पूजा विशेष रूप से मंगलवार (मंगलवार) को क्यों होती है?",
-        "ta": "Why is Hanuman worshipped specifically on Tuesday (Mangalavara)?",
-        "te": "Why is Hanuman worshipped specifically on Tuesday (Mangalavara)?",
-        "bn": "Why is Hanuman worshipped specifically on Tuesday (Mangalavara)?",
-        "kn": "Why is Hanuman worshipped specifically on Tuesday (Mangalavara)?",
+        "ta": "அனுமன் ஏன் குறிப்பாக செவ்வாய்க்கிழமை (மங்கலவாரம்) அன்று வணங்கப்படுகிறார்?",
+        "te": "మంగళవారం (మంగళవార) నాడు హనుమంతుడిని ప్రత్యేకంగా ఎందుకు పూజిస్తారు?",
+        "bn": "কেন হনুমানকে বিশেষভাবে মঙ্গলবার (মঙ্গলবারে) পূজা করা হয়?",
+        "kn": "ಹನುಮಂತನನ್ನು ಮಂಗಳವಾರದಂದು (ಮಂಗಳವಾರ) ನಿರ್ದಿಷ್ಟವಾಗಿ ಏಕೆ ಪೂಜಿಸಲಾಗುತ್ತದೆ?",
         "mr": "हनुमान की पूजा विशेष रूप से मंगलवार (मंगलवार) को क्यों होती है?",
-        "gu": "Why is Hanuman worshipped specifically on Tuesday (Mangalavara)?",
+        "gu": "હનુમાનજીની પૂજા ખાસ કરીને મંગળવારે (મંગળવાર) શા માટે કરવામાં આવે છે?",
         "mai": "हनुमान कऽ पूजा विशेष रूप सँ मङ्गलवार (मङ्गलवार) कऽ की लेल कएल जाइत अछि?"
       },
       "options": [
         {
           "en": "It's a random tradition with no astrological basis",
           "hi": "यह बिना ज्योतिषीय आधार की यादृच्छिक परम्परा है",
-          "ta": "It's a random tradition with no astrological basis",
-          "te": "It's a random tradition with no astrological basis",
-          "bn": "It's a random tradition with no astrological basis",
-          "kn": "It's a random tradition with no astrological basis",
+          "ta": "இது ஜோதிட அடிப்படை இல்லாத ஒரு தற்செயலான பாரம்பரியம்",
+          "te": "ఇది ఖగోళ శాస్త్ర ఆధారం లేని యాదృచ్ఛిక సంప్రదాయం",
+          "bn": "এটি একটি এলোমেলো ঐতিহ্য যার কোনো জ্যোতিষশাস্ত্রীয় ভিত্তি নেই",
+          "kn": "ಇದು ಯಾವುದೇ ಜ್ಯೋತಿಷ್ಯ ಆಧಾರವಿಲ್ಲದ ಯಾದೃಚ್ಛಿಕ ಸಂಪ್ರದಾಯವಾಗಿದೆ",
           "mr": "यह बिना ज्योतिषीय आधार की यादृच्छिक परम्परा है",
-          "gu": "It's a random tradition with no astrological basis",
+          "gu": "તે એક રેન્ડમ પરંપરા છે જેને કોઈ જ્યોતિષીય આધાર નથી",
           "mai": "ई एकटा यादृच्छिक परम्परा अछि जकर कोनो ज्योतिषीय आधार नहि अछि।"
         },
         {
@@ -225,45 +225,45 @@
           "hi": "मंगलवार मंगल-दिवस है; मंगल साहस और युद्ध का शासक है; हनुमान योद्धा-देवता हैं",
           "mai": "मङ्गलवार मङ्गल कऽ दिन अछि; मङ्गल साहस आ युद्ध पर शासन करैत अछि; हनुमान योद्धा-देवता छथि।",
           "mr": "मंगलवार मंगल-दिवस है; मंगल साहस और युद्ध का शासक है; हनुमान योद्धा-देवता हैं",
-          "ta": "Tuesday is Mars-day; Mars rules courage and warfare; Hanuman is the warrior-deity",
-          "te": "Tuesday is Mars-day; Mars rules courage and warfare; Hanuman is the warrior-deity",
-          "bn": "Tuesday is Mars-day; Mars rules courage and warfare; Hanuman is the warrior-deity",
-          "kn": "Tuesday is Mars-day; Mars rules courage and warfare; Hanuman is the warrior-deity",
-          "gu": "Tuesday is Mars-day; Mars rules courage and warfare; Hanuman is the warrior-deity"
+          "ta": "செவ்வாய்க்கிழமை என்பது செவ்வாய் கிரகத்தின் நாள்; செவ்வாய் கிரகம் தைரியத்தையும் போரையும் ஆளுகிறது; அனுமன் போர்வீரர் தெய்வம்.",
+          "te": "మంగళవారం అంగారక గ్రహం యొక్క రోజు; అంగారకుడు ధైర్యం మరియు యుద్ధాన్ని పాలిస్తాడు; హనుమంతుడు యోధ-దేవత",
+          "bn": "মঙ্গলবার মঙ্গল গ্রহের দিন; মঙ্গল সাহস ও যুদ্ধ শাসন করে; হনুমান হলেন যোদ্ধা-দেবতা",
+          "kn": "ಮಂಗಳವಾರವು ಮಂಗಳ ಗ್ರಹದ ದಿನ; ಮಂಗಳವು ಧೈರ್ಯ ಮತ್ತು ಯುದ್ಧವನ್ನು ಆಳುತ್ತದೆ; ಹನುಮಂತನು ಯೋಧ-ದೇವತೆ",
+          "gu": "મંગળવાર એ મંગળનો દિવસ છે; મંગળ હિંમત અને યુદ્ધનું શાસન કરે છે; હનુમાનજી યોદ્ધા-દેવતા છે"
         },
         {
           "en": "Hanuman was born on a Tuesday",
           "hi": "हनुमान का जन्म मंगलवार को हुआ था",
           "mai": "हनुमान कऽ जन्म मङ्गलवार कऽ भेल छल।",
           "mr": "हनुमान का जन्म मंगलवार को हुआ था",
-          "ta": "Hanuman was born on a Tuesday",
-          "te": "Hanuman was born on a Tuesday",
-          "bn": "Hanuman was born on a Tuesday",
-          "kn": "Hanuman was born on a Tuesday",
-          "gu": "Hanuman was born on a Tuesday"
+          "ta": "அனுமன் ஒரு செவ்வாய்க்கிழமை அன்று பிறந்தார்",
+          "te": "హనుమంతుడు మంగళవారం నాడు జన్మించాడు",
+          "bn": "হনুমান মঙ্গলবারে জন্মগ্রহণ করেছিলেন",
+          "kn": "ಹನುಮಂತನು ಮಂಗಳವಾರದಂದು ಜನಿಸಿದನು",
+          "gu": "હનુમાનજીનો જન્મ મંગળવારે થયો હતો"
         },
         {
           "en": "The Moon is strongest on Tuesdays",
           "hi": "मंगलवार को चन्द्रमा सबसे बलवान होता है",
           "mai": "चन्द्रमा मङ्गलवार कऽ सबसँ बेसी बलवान होइत अछि।",
           "mr": "मंगलवार को चन्द्रमा सबसे बलवान होता है",
-          "ta": "The Moon is strongest on Tuesdays",
-          "te": "The Moon is strongest on Tuesdays",
-          "bn": "The Moon is strongest on Tuesdays",
-          "kn": "The Moon is strongest on Tuesdays",
-          "gu": "The Moon is strongest on Tuesdays"
+          "ta": "சந்திரன் செவ்வாய்க்கிழமைகளில் மிகவும் வலிமையாக இருக்கும்",
+          "te": "చంద్ర గ్రహం మంగళవారాల్లో అత్యంత బలంగా ఉంటుంది",
+          "bn": "মঙ্গলবার চাঁদ সবচেয়ে শক্তিশালী থাকে",
+          "kn": "ಮಂಗಳವಾರದಂದು ಚಂದ್ರನು ಅತ್ಯಂತ ಬಲಶಾಲಿಯಾಗಿರುತ್ತಾನೆ",
+          "gu": "ચંદ્ર મંગળવારે સૌથી બળવાન હોય છે"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "Mangalavara (Tuesday) is ruled by Mars (Mangala), the planet of courage, energy, and conflict. Hanuman embodies Mars qualities  –  strength, valor, devotion. Worshipping Hanuman on Mars-day = invoking Mars energy through the warrior-deity.",
         "hi": "मंगलवार मंगल ग्रह द्वारा शासित है, जो साहस, ऊर्जा और संघर्ष का ग्रह है। हनुमान मंगल गुणों के मूर्तिमान रूप हैं  –  बल, पराक्रम, भक्ति। मंगल-दिवस पर हनुमान पूजा = योद्धा-देवता के माध्यम से मंगल ऊर्जा का आह्वान।",
-        "ta": "Mangalavara (Tuesday) is ruled by Mars (Mangala), the planet of courage, energy, and conflict. Hanuman embodies Mars qualities  –  strength, valor, devotion. Worshipping Hanuman on Mars-day = invoking Mars energy through the warrior-deity.",
-        "te": "Mangalavara (Tuesday) is ruled by Mars (Mangala), the planet of courage, energy, and conflict. Hanuman embodies Mars qualities  –  strength, valor, devotion. Worshipping Hanuman on Mars-day = invoking Mars energy through the warrior-deity.",
-        "bn": "Mangalavara (Tuesday) is ruled by Mars (Mangala), the planet of courage, energy, and conflict. Hanuman embodies Mars qualities  –  strength, valor, devotion. Worshipping Hanuman on Mars-day = invoking Mars energy through the warrior-deity.",
-        "kn": "Mangalavara (Tuesday) is ruled by Mars (Mangala), the planet of courage, energy, and conflict. Hanuman embodies Mars qualities  –  strength, valor, devotion. Worshipping Hanuman on Mars-day = invoking Mars energy through the warrior-deity.",
+        "ta": "மங்கலவாரம் (செவ்வாய்க்கிழமை) செவ்வாய் (மங்கலன்) கிரகத்தால் ஆளப்படுகிறது, இது தைரியம், ஆற்றல் மற்றும் மோதலின் கிரகம். அனுமன் செவ்வாய் கிரகத்தின் குணங்களான – வலிமை, வீரம், பக்தி ஆகியவற்றை உள்ளடக்கியவர். செவ்வாய் கிரகத்தின் நாளில் அனுமனை வணங்குவது = போர்வீரர் தெய்வம் மூலம் செவ்வாய் கிரக ஆற்றலை வரவழைப்பதாகும்.",
+        "te": "మంగళవారం (మంగళవార) అంగారక గ్రహం (మంగళ)చే పాలించబడుతుంది, ఇది ధైర్యం, శక్తి మరియు సంఘర్షణకు గ్రహం. హనుమంతుడు అంగారక గ్రహం యొక్క లక్షణాలను – బలం, పరాక్రమం, భక్తి – కలిగి ఉంటాడు. మంగళవారం నాడు హనుమంతుడిని పూజించడం అంటే యోధ-దేవత ద్వారా అంగారక గ్రహ శక్తిని ఆహ్వానించడం.",
+        "bn": "মঙ্গলবার (মঙ্গলবারে) মঙ্গল (গ্রহ) দ্বারা শাসিত হয়, যা সাহস, শক্তি এবং সংঘাতের গ্রহ। হনুমান মঙ্গলের গুণাবলী – শক্তি, বীরত্ব, ভক্তি – মূর্ত করেন। মঙ্গলবারে হনুমানের পূজা করা = যোদ্ধা-দেবতার মাধ্যমে মঙ্গলের শক্তিকে আহ্বান করা।",
+        "kn": "ಮಂಗಳವಾರವು ಮಂಗಳ ಗ್ರಹದಿಂದ ಆಳಲ್ಪಡುತ್ತದೆ, ಇದು ಧೈರ್ಯ, ಶಕ್ತಿ ಮತ್ತು ಸಂಘರ್ಷದ ಗ್ರಹ. ಹನುಮಂತನು ಮಂಗಳನ ಗುಣಗಳನ್ನು – ಶಕ್ತಿ, ಶೌರ್ಯ, ಭಕ್ತಿ – ಮೈಗೂಡಿಸಿಕೊಂಡಿದ್ದಾನೆ. ಮಂಗಳವಾರದಂದು ಹನುಮಂತನನ್ನು ಪೂಜಿಸುವುದು = ಯೋಧ-ದೇವತೆಯ ಮೂಲಕ ಮಂಗಳನ ಶಕ್ತಿಯನ್ನು ಆವಾಹಿಸುವುದು.",
         "mr": "मंगलवार मंगल ग्रह द्वारा शासित है, जो साहस, ऊर्जा और संघर्ष का ग्रह है। हनुमान मंगल गुणों के मूर्तिमान रूप हैं  –  बल, पराक्रम, भक्ति। मंगल-दिवस पर हनुमान पूजा = योद्धा-देवता के माध्यम से मंगल ऊर्जा का आह्वान।",
-        "gu": "Mangalavara (Tuesday) is ruled by Mars (Mangala), the planet of courage, energy, and conflict. Hanuman embodies Mars qualities  –  strength, valor, devotion. Worshipping Hanuman on Mars-day = invoking Mars energy through the warrior-deity.",
+        "gu": "મંગળવાર (મંગળવાર) મંગળ (ગ્રહ) દ્વારા શાસિત છે, જે હિંમત, ઊર્જા અને સંઘર્ષનો ગ્રહ છે. હનુમાનજી મંગળના ગુણોને મૂર્તિમંત કરે છે – શક્તિ, પરાક્રમ, ભક્તિ. મંગળવારે હનુમાનજીની પૂજા કરવી = યોદ્ધા-દેવતા દ્વારા મંગળની ઊર્જાનું આહ્વાન કરવું.",
         "mai": "मङ्गलवार (मङ्गलवार) मङ्गल (मङ्गल) द्वारा शासित अछि, जे साहस, ऊर्जा आ सङ्घर्ष कऽ ग्रह छथि। हनुमान मङ्गल कऽ गुण – शक्ति, वीरता, भक्ति – कऽ प्रतीक छथि। मङ्गल कऽ दिन हनुमान कऽ पूजा करब = योद्धा-देवता कऽ माध्यम सँ मङ्गल ऊर्जा कऽ आह्वान करब।"
       }
     },
@@ -273,12 +273,12 @@
       "question": {
         "en": "What does the Sankalpa before a puja essentially declare?",
         "hi": "पूजा से पहले संकल्प मूलतः क्या घोषित करता है?",
-        "ta": "What does the Sankalpa before a puja essentially declare?",
-        "te": "What does the Sankalpa before a puja essentially declare?",
-        "bn": "What does the Sankalpa before a puja essentially declare?",
-        "kn": "What does the Sankalpa before a puja essentially declare?",
+        "ta": "ஒரு பூஜை செய்வதற்கு முன் சங்கல்பம் அடிப்படையில் என்ன அறிவிக்கிறது?",
+        "te": "పూజకు ముందు సంకల్పం ముఖ్యంగా ఏమి ప్రకటిస్తుంది?",
+        "bn": "পূজার আগে সংকল্প মূলত কী ঘোষণা করে?",
+        "kn": "ಪೂಜೆಯ ಮೊದಲು ಸಂಕಲ್ಪವು ಮೂಲತಃ ಏನನ್ನು ಘೋಷಿಸುತ್ತದೆ?",
         "mr": "पूजा से पहले संकल्प मूलतः क्या घोषित करता है?",
-        "gu": "What does the Sankalpa before a puja essentially declare?",
+        "gu": "પૂજા પહેલાંનો સંકલ્પ મૂળભૂત રીતે શું જાહેર કરે છે?",
         "mai": "पूजा सँ पहिने कऽ सङ्कल्प मूल रूप सँ की घोषणा करैत अछि?"
       },
       "options": [
@@ -287,56 +287,56 @@
           "hi": "दान की राशि",
           "mai": "अर्पित कएल जा रहल दान कऽ राशि",
           "mr": "दान की राशि",
-          "ta": "The amount of donation being offered",
-          "te": "The amount of donation being offered",
-          "bn": "The amount of donation being offered",
-          "kn": "The amount of donation being offered",
-          "gu": "The amount of donation being offered"
+          "ta": "வழங்கப்படும் காணிக்கை தொகை",
+          "te": "సమర్పించబడుతున్న విరాళం మొత్తం",
+          "bn": "প্রদত্ত দানের পরিমাণ",
+          "kn": "ಅರ್ಪಿಸಲಾಗುತ್ತಿರುವ ದಾನದ ಮೊತ್ತ",
+          "gu": "અર્પણ કરવામાં આવતા દાનની રકમ"
         },
         {
           "en": "A cosmic timestamp  –  the exact astronomical moment of the vow",
           "hi": "एक ब्रह्माण्डीय समय-चिह्न  –  प्रतिज्ञा का सटीक खगोलीय क्षण",
           "mai": "एकटा ब्रह्माण्डीय टाइमस्टैम्प – सङ्कल्प कऽ सटीक खगोलीय क्षण",
           "mr": "एक ब्रह्माण्डीय समय-चिह्न  –  प्रतिज्ञा का सटीक खगोलीय क्षण",
-          "ta": "A cosmic timestamp  –  the exact astronomical moment of the vow",
-          "te": "A cosmic timestamp  –  the exact astronomical moment of the vow",
-          "bn": "A cosmic timestamp  –  the exact astronomical moment of the vow",
-          "kn": "A cosmic timestamp  –  the exact astronomical moment of the vow",
-          "gu": "A cosmic timestamp  –  the exact astronomical moment of the vow"
+          "ta": "ஒரு பிரபஞ்ச கால முத்திரை – சபதத்தின் சரியான வானியல் தருணம்",
+          "te": "ఒక ఖగోళ సమయ ముద్ర – ప్రమాణం యొక్క ఖచ్చితమైన ఖగోళ క్షణం",
+          "bn": "একটি মহাজাগতিক টাইমস্ট্যাম্প – প্রতিজ্ঞার সঠিক জ্যোতির্বিজ্ঞানের মুহূর্ত",
+          "kn": "ಒಂದು ಕಾಸ್ಮಿಕ್ ಸಮಯದ ಗುರುತು – ಪ್ರತಿಜ್ಞೆಯ ನಿಖರವಾದ ಖಗೋಳ ಕ್ಷಣ",
+          "gu": "એક બ્રહ્માંડીય સમય સ્ટેમ્પ – પ્રતિજ્ઞાનો ચોક્કસ ખગોળીય ક્ષણ"
         },
         {
           "en": "The names of attending family members",
           "hi": "उपस्थित परिवार के सदस्यों के नाम",
           "mai": "उपस्थित परिवारक सदस्यक नाम",
           "mr": "उपस्थित परिवार के सदस्यों के नाम",
-          "ta": "The names of attending family members",
-          "te": "The names of attending family members",
-          "bn": "The names of attending family members",
-          "kn": "The names of attending family members",
-          "gu": "The names of attending family members"
+          "ta": "கலந்துகொள்ளும் குடும்ப உறுப்பினர்களின் பெயர்கள்",
+          "te": "హాజరైన కుటుంబ సభ్యుల పేర్లు",
+          "bn": "উপস্থিত পরিবারের সদস্যদের নাম",
+          "kn": "ಹಾಜರಿರುವ ಕುಟುಂಬ ಸದಸ್ಯರ ಹೆಸರುಗಳು",
+          "gu": "હાજર રહેલા પરિવારના સભ્યોના નામ"
         },
         {
           "en": "A prayer for forgiveness of sins",
           "hi": "पापों की क्षमा की प्रार्थना",
           "mai": "पाप कऽ क्षमा लेल एकटा प्रार्थना",
           "mr": "पापों की क्षमा की प्रार्थना",
-          "ta": "A prayer for forgiveness of sins",
-          "te": "A prayer for forgiveness of sins",
-          "bn": "A prayer for forgiveness of sins",
-          "kn": "A prayer for forgiveness of sins",
-          "gu": "A prayer for forgiveness of sins"
+          "ta": "பாவ மன்னிப்புக்கான ஒரு பிரார்த்தனை",
+          "te": "పాప క్షమాపణ కోసం ప్రార్థన",
+          "bn": "পাপের ক্ষমার জন্য একটি প্রার্থনা",
+          "kn": "ಪಾಪಗಳ ಕ್ಷಮೆಗಾಗಿ ಪ್ರಾರ್ಥನೆ",
+          "gu": "પાપોની ક્ષમા માટેની પ્રાર્થના"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "A Sankalpa states the samvatsara, ayana, ritu, masa, paksha, tithi, vara, and nakshatra  –  literally declaring \"at THIS precise astronomical moment, I make this vow.\" It is a cosmic timestamp for your intention.",
         "hi": "संकल्प में सम्वत्सर, अयन, ऋतु, मास, पक्ष, तिथि, वार और नक्षत्र कहा जाता है  –  शाब्दिक रूप से \"इस सटीक खगोलीय क्षण पर, मैं यह प्रतिज्ञा करता हूँ।\" यह आपके संकल्प का ब्रह्माण्डीय समय-चिह्न है।",
-        "ta": "A Sankalpa states the samvatsara, ayana, ritu, masa, paksha, tithi, vara, and nakshatra  –  literally declaring \"at THIS precise astronomical moment, I make this vow.\" It is a cosmic timestamp for your intention.",
-        "te": "A Sankalpa states the samvatsara, ayana, ritu, masa, paksha, tithi, vara, and nakshatra  –  literally declaring \"at THIS precise astronomical moment, I make this vow.\" It is a cosmic timestamp for your intention.",
-        "bn": "A Sankalpa states the samvatsara, ayana, ritu, masa, paksha, tithi, vara, and nakshatra  –  literally declaring \"at THIS precise astronomical moment, I make this vow.\" It is a cosmic timestamp for your intention.",
-        "kn": "A Sankalpa states the samvatsara, ayana, ritu, masa, paksha, tithi, vara, and nakshatra  –  literally declaring \"at THIS precise astronomical moment, I make this vow.\" It is a cosmic timestamp for your intention.",
+        "ta": "ஒரு சங்கல்பம் சம்வத்ஸரம், அயனம், ரிது, மாதம், பக்ஷம், திதி, வாரம் மற்றும் நட்சத்திரம் ஆகியவற்றை குறிப்பிடுகிறது – அதாவது \"இந்த துல்லியமான வானியல் தருணத்தில், நான் இந்த சபதத்தை செய்கிறேன்\" என்று அறிவிக்கிறது. இது உங்கள் நோக்கத்திற்கான ஒரு பிரபஞ்ச கால முத்திரை.",
+        "te": "ఒక సంకల్పం సంవత్సర, అయన, ఋతువు, మాసం, పక్షం, తిథి, వారం మరియు నక్షత్రాన్ని తెలియజేస్తుంది – అక్షరాలా \"ఈ ఖచ్చితమైన ఖగోళ క్షణంలో, నేను ఈ ప్రమాణం చేస్తున్నాను\" అని ప్రకటిస్తుంది. ఇది మీ సంకల్పానికి ఒక ఖగోళ సమయ ముద్ర.",
+        "bn": "একটি সংকল্পে সংবৎসর, অয়ন, ঋতু, মাস, পক্ষ, তিথি, বার এবং নক্ষত্র উল্লেখ করা হয় – আক্ষরিক অর্থে ঘোষণা করে যে \"এই সুনির্দিষ্ট জ্যোতির্বিজ্ঞানের মুহূর্তে, আমি এই প্রতিজ্ঞা করছি।\" এটি আপনার অভিপ্রায়ের জন্য একটি মহাজাগতিক টাইমস্ট্যাম্প।",
+        "kn": "ಸಂಕಲ್ಪವು ಸಂವತ್ಸರ, ಅಯನ, ಋತು, ಮಾಸ, ಪಕ್ಷ, ತಿಥಿ, ವಾರ ಮತ್ತು ನಕ್ಷತ್ರವನ್ನು ಹೇಳುತ್ತದೆ – ಅಕ್ಷರಶಃ \"ಈ ನಿಖರವಾದ ಖಗೋಳ ಕ್ಷಣದಲ್ಲಿ, ನಾನು ಈ ಪ್ರತಿಜ್ಞೆಯನ್ನು ಮಾಡುತ್ತೇನೆ\" ಎಂದು ಘೋಷಿಸುತ್ತದೆ. ಇದು ನಿಮ್ಮ ಉದ್ದೇಶಕ್ಕಾಗಿ ಒಂದು ಕಾಸ್ಮಿಕ್ ಸಮಯದ ಗುರುತು.",
         "mr": "संकल्प में सम्वत्सर, अयन, ऋतु, मास, पक्ष, तिथि, वार और नक्षत्र कहा जाता है  –  शाब्दिक रूप से \"इस सटीक खगोलीय क्षण पर, मैं यह प्रतिज्ञा करता हूँ।\" यह आपके संकल्प का ब्रह्माण्डीय समय-चिह्न है।",
-        "gu": "A Sankalpa states the samvatsara, ayana, ritu, masa, paksha, tithi, vara, and nakshatra  –  literally declaring \"at THIS precise astronomical moment, I make this vow.\" It is a cosmic timestamp for your intention.",
+        "gu": "સંકલ્પ સંવત્સર, અયન, ઋતુ, માસ, પક્ષ, તિથિ, વાર અને નક્ષત્ર જણાવે છે – શાબ્દિક રીતે જાહેર કરે છે કે \"આ ચોક્કસ ખગોળીય ક્ષણે, હું આ પ્રતિજ્ઞા કરું છું.\" તે તમારા ઇરાદા માટે એક બ્રહ્માંડીય સમય સ્ટેમ્પ છે.",
         "mai": "एकटा सङ्कल्प संवत्सर, अयन, ऋतु, मास, पक्ष, तिथि, वार, आ नक्षत्र बताबैत अछि – शाब्दिक रूप सँ घोषणा करैत अछि जे \"ई सटीक खगोलीय क्षण मे, हम ई सङ्कल्प करैत छी।\" ई अहाँ कऽ इरादा लेल एकटा ब्रह्माण्डीय टाइमस्टैम्प अछि।"
       }
     },
@@ -346,24 +346,24 @@
       "question": {
         "en": "The Surya Siddhanta describes a time unit called \"truti\" which equals approximately 29.6 microseconds.",
         "hi": "सूर्य सिद्धान्त \"त्रुटि\" नामक समय इकाई का वर्णन करता है जो लगभग 29.6 माइक्रोसेकण्ड के बराबर है।",
-        "ta": "The Surya Siddhanta describes a time unit called \"truti\" which equals approximately 29.6 microseconds.",
-        "te": "The Surya Siddhanta describes a time unit called \"truti\" which equals approximately 29.6 microseconds.",
-        "bn": "The Surya Siddhanta describes a time unit called \"truti\" which equals approximately 29.6 microseconds.",
-        "kn": "The Surya Siddhanta describes a time unit called \"truti\" which equals approximately 29.6 microseconds.",
+        "ta": "சூரிய சித்தாந்தம் \"த்ருதி\" எனப்படும் ஒரு கால அலகை விவரிக்கிறது, இது தோராயமாக 29.6 மைக்ரோ வினாடிகளுக்கு சமம்.",
+        "te": "సూర్య సిద్ధాంతం \"త్రుటి\" అని పిలువబడే ఒక కాలమానాన్ని వివరిస్తుంది, ఇది సుమారు 29.6 మైక్రోసెకన్లకు సమానం.",
+        "bn": "সূর্য সিদ্ধান্ত \"ত্রুটি\" নামক একটি সময় একক বর্ণনা করে যা প্রায় ২৯.৬ মাইক্রোসেকেন্ডের সমান।",
+        "kn": "ಸೂರ್ಯ ಸಿದ್ಧಾಂತವು \"ತ್ರೂಟಿ\" ಎಂಬ ಕಾಲಮಾನವನ್ನು ವಿವರಿಸುತ್ತದೆ, ಇದು ಸರಿಸುಮಾರು ೨೯.೬ ಮೈಕ್ರೋಸೆಕೆಂಡುಗಳಿಗೆ ಸಮಾನವಾಗಿರುತ್ತದೆ.",
         "mr": "सूर्य सिद्धान्त \"त्रुटि\" नामक समय इकाई का वर्णन करता है जो लगभग 29.6 माइक्रोसेकण्ड के बराबर है।",
-        "gu": "The Surya Siddhanta describes a time unit called \"truti\" which equals approximately 29.6 microseconds.",
+        "gu": "સૂર્ય સિદ્ધાંત \"ત્રુટિ\" નામનો એક સમય એકમ વર્ણવે છે જે આશરે ૨૯.૬ માઇક્રોસેકન્ડ બરાબર છે.",
         "mai": "सूर्य सिद्धान्त \"त्रुटि\" नामक एकटा समय इकाई कऽ वर्णन करैत अछि जे लगभग २९.६ माइक्रोसेकेन्ड कऽ बराबर अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. The Surya Siddhanta describes time from the truti (29.6 microseconds) up to the kalpa (4.32 billion years  –  remarkably close to Earth's actual age of 4.54 billion years). This scale of thinking was unique to Indian civilization.",
         "hi": "सत्य। सूर्य सिद्धान्त त्रुटि (29.6 माइक्रोसेकण्ड) से कल्प (4.32 अरब वर्ष  –  पृथ्वी की वास्तविक आयु 4.54 अरब वर्ष के उल्लेखनीय रूप से निकट) तक समय का वर्णन करता है। विचार का यह पैमाना भारतीय सभ्यता की विशेषता था।",
-        "ta": "True. The Surya Siddhanta describes time from the truti (29.6 microseconds) up to the kalpa (4.32 billion years  –  remarkably close to Earth's actual age of 4.54 billion years). This scale of thinking was unique to Indian civilization.",
-        "te": "True. The Surya Siddhanta describes time from the truti (29.6 microseconds) up to the kalpa (4.32 billion years  –  remarkably close to Earth's actual age of 4.54 billion years). This scale of thinking was unique to Indian civilization.",
-        "bn": "True. The Surya Siddhanta describes time from the truti (29.6 microseconds) up to the kalpa (4.32 billion years  –  remarkably close to Earth's actual age of 4.54 billion years). This scale of thinking was unique to Indian civilization.",
-        "kn": "True. The Surya Siddhanta describes time from the truti (29.6 microseconds) up to the kalpa (4.32 billion years  –  remarkably close to Earth's actual age of 4.54 billion years). This scale of thinking was unique to Indian civilization.",
+        "ta": "உண்மை. சூரிய சித்தாந்தம் த்ருதி (29.6 மைக்ரோ வினாடிகள்) முதல் கல்பம் (4.32 பில்லியன் ஆண்டுகள் – இது பூமியின் உண்மையான வயதான 4.54 பில்லியன் ஆண்டுகளுக்கு வியக்கத்தக்க வகையில் நெருக்கமாக உள்ளது) வரையிலான காலத்தை விவரிக்கிறது. இந்த அளவிலான சிந்தனை இந்திய நாகரிகத்திற்கு தனித்துவமானது.",
+        "te": "నిజం. సూర్య సిద్ధాంతం త్రుటి (29.6 మైక్రోసెకన్లు) నుండి కల్పం (4.32 బిలియన్ సంవత్సరాలు – భూమి యొక్క వాస్తవ వయస్సు 4.54 బిలియన్ సంవత్సరాలకు ఆశ్చర్యకరంగా దగ్గరగా ఉంటుంది) వరకు కాలాన్ని వివరిస్తుంది. ఈ ఆలోచనా విధానం భారతీయ నాగరికతకు ప్రత్యేకమైనది.",
+        "bn": "সত্য। সূর্য সিদ্ধান্ত ত্রুটি (২৯.৬ মাইক্রোসেকেন্ড) থেকে কল্প (৪.৩২ বিলিয়ন বছর – যা পৃথিবীর প্রকৃত বয়স ৪.৫৪ বিলিয়ন বছরের সাথে আশ্চর্যজনকভাবে কাছাকাছি) পর্যন্ত সময়ের বর্ণনা করে। এই ধরনের চিন্তাভাবনা ভারতীয় সভ্যতার জন্য অনন্য ছিল।",
+        "kn": "ನಿಜ. ಸೂರ್ಯ ಸಿದ್ಧಾಂತವು ತ್ರೂಟಿ (೨೯.೬ ಮೈಕ್ರೋಸೆಕೆಂಡುಗಳು) ಯಿಂದ ಕಲ್ಪ (೪.೩೨ ಶತಕೋಟಿ ವರ್ಷಗಳು – ಭೂಮಿಯ ನಿಜವಾದ ವಯಸ್ಸಾದ ೪.೫೪ ಶತಕೋಟಿ ವರ್ಷಗಳಿಗೆ ಗಮನಾರ್ಹವಾಗಿ ಹತ್ತಿರ) ವರೆಗಿನ ಸಮಯವನ್ನು ವಿವರಿಸುತ್ತದೆ. ಈ ಚಿಂತನೆಯ ಪ್ರಮಾಣವು ಭಾರತೀಯ ನಾಗರಿಕತೆಗೆ ವಿಶಿಷ್ಟವಾಗಿತ್ತು.",
         "mr": "सत्य। सूर्य सिद्धान्त त्रुटि (29.6 माइक्रोसेकण्ड) से कल्प (4.32 अरब वर्ष  –  पृथ्वी की वास्तविक आयु 4.54 अरब वर्ष के उल्लेखनीय रूप से निकट) तक समय का वर्णन करता है। विचार का यह पैमाना भारतीय सभ्यता की विशेषता था।",
-        "gu": "True. The Surya Siddhanta describes time from the truti (29.6 microseconds) up to the kalpa (4.32 billion years  –  remarkably close to Earth's actual age of 4.54 billion years). This scale of thinking was unique to Indian civilization.",
+        "gu": "સાચું. સૂર્ય સિદ્ધાંત ત્રુટિ (૨૯.૬ માઇક્રોસેકન્ડ) થી લઈને કલ્પ (૪.૩૨ અબજ વર્ષ – જે પૃથ્વીની વાસ્તવિક ઉંમર ૪.૫૪ અબજ વર્ષની ખૂબ નજીક છે) સુધીના સમયનું વર્ણન કરે છે. વિચારવાની આ પદ્ધતિ ભારતીય સંસ્કૃતિ માટે અનન્ય હતી.",
         "mai": "सत्य। सूर्य सिद्धान्त त्रुटि (२९.६ माइक्रोसेकेन्ड) सँ लऽ कऽ कल्प (४.३२ अरब वर्ष – जे पृथ्वी कऽ वास्तविक आयु ४.५४ अरब वर्ष कऽ उल्लेखनीय रूप सँ निकट अछि) धरि कऽ समय कऽ वर्णन करैत अछि। सोच कऽ ई पैमाना भारतीय सभ्यता कऽ लेल अद्वितीय छल।"
       }
     },
@@ -373,24 +373,24 @@
       "question": {
         "en": "What astronomical condition is required for a good marriage muhurta?",
         "hi": "शुभ विवाह मुहूर्त के लिए कौन-सी खगोलीय शर्त आवश्यक है?",
-        "ta": "What astronomical condition is required for a good marriage muhurta?",
-        "te": "What astronomical condition is required for a good marriage muhurta?",
-        "bn": "What astronomical condition is required for a good marriage muhurta?",
-        "kn": "What astronomical condition is required for a good marriage muhurta?",
+        "ta": "ஒரு நல்ல திருமண முகூர்த்தத்திற்கு என்ன வானியல் நிலை தேவைப்படுகிறது?",
+        "te": "మంచి వివాహ ముహూర్తానికి ఏ ఖగోళ పరిస్థితి అవసరం?",
+        "bn": "একটি শুভ বিবাহ মুহূর্তের জন্য কী জ্যোতির্বিজ্ঞানের অবস্থা প্রয়োজন?",
+        "kn": "ಒಳ್ಳೆಯ ವಿವಾಹ ಮುಹೂರ್ತಕ್ಕೆ ಯಾವ ಖಗೋಳ ಸ್ಥಿತಿ ಅಗತ್ಯವಿದೆ?",
         "mr": "शुभ विवाह मुहूर्त के लिए कौन-सी खगोलीय शर्त आवश्यक है?",
-        "gu": "What astronomical condition is required for a good marriage muhurta?",
+        "gu": "સારા લગ્ન મુહૂર્ત માટે કઈ ખગોળીય સ્થિતિ જરૂરી છે?",
         "mai": "कोनो नीक विवाह मुहूर्त लेल कोन खगोलीय स्थिति आवश्यक अछि?"
       },
       "options": [
         {
           "en": "Only the bride's birth chart matters",
           "hi": "केवल वधू की जन्म कुण्डली महत्त्वपूर्ण है",
-          "ta": "Only the bride's birth chart matters",
-          "te": "Only the bride's birth chart matters",
-          "bn": "Only the bride's birth chart matters",
-          "kn": "Only the bride's birth chart matters",
+          "ta": "மணப்பெண்ணின் ஜாதகம் மட்டுமே முக்கியம்",
+          "te": "వధువు యొక్క జన్మ కుండలి మాత్రమే ముఖ్యం",
+          "bn": "শুধুমাত্র কনের জন্ম কুণ্ডলী গুরুত্বপূর্ণ",
+          "kn": "ವಧುವಿನ ಜನ್ಮ ಕುಂಡಲಿ ಮಾತ್ರ ಮುಖ್ಯ",
           "mr": "केवल वधू की जन्म कुण्डली महत्त्वपूर्ण है",
-          "gu": "Only the bride's birth chart matters",
+          "gu": "ફક્ત કન્યાની જન્મકુંડળી મહત્વની છે",
           "mai": "मात्र कन्या कऽ जन्म कुण्डली मायने रखैत अछि।"
         },
         {
@@ -398,45 +398,45 @@
           "hi": "सौम्य नक्षत्र में चन्द्रमा, शुक्र अस्त नहीं, गुरु की 7वें भाव पर दृष्टि, राहु काल नहीं",
           "mai": "चन्द्रमा सौम्य नक्षत्र मे, शुक्र अस्त नहि, बृहस्पति ७म भाव कऽ देखैत होय, कोनो राहु काल नहि।",
           "mr": "सौम्य नक्षत्र में चन्द्रमा, शुक्र अस्त नहीं, गुरु की 7वें भाव पर दृष्टि, राहु काल नहीं",
-          "ta": "Moon in gentle nakshatra, Venus not combust, Jupiter aspecting 7th house, no Rahu Kaal",
-          "te": "Moon in gentle nakshatra, Venus not combust, Jupiter aspecting 7th house, no Rahu Kaal",
-          "bn": "Moon in gentle nakshatra, Venus not combust, Jupiter aspecting 7th house, no Rahu Kaal",
-          "kn": "Moon in gentle nakshatra, Venus not combust, Jupiter aspecting 7th house, no Rahu Kaal",
-          "gu": "Moon in gentle nakshatra, Venus not combust, Jupiter aspecting 7th house, no Rahu Kaal"
+          "ta": "சந்திரன் மென்மையான நட்சத்திரத்தில், சுக்கிரன் அஸ்தமனம் ஆகாமல், குரு 7வது பாவத்தை பார்ப்பது, ராகு காலம் இல்லாமல்",
+          "te": "చంద్రుడు సౌమ్య నక్షత్రంలో, శుక్రుడు అస్తంగత్వం చెందకుండా, గురు గ్రహం 7వ భావాన్ని చూస్తూ, రాహు కాలం లేకుండా",
+          "bn": "চন্দ্র মৃদু নক্ষত্রে, শুক্র অস্ত না যাওয়া, বৃহস্পতি ৭ম ভাবকে দৃষ্টি দেওয়া, রাহু কাল না থাকা",
+          "kn": "ಚಂದ್ರನು ಸೌಮ್ಯ ನಕ್ಷತ್ರದಲ್ಲಿ, ಶುಕ್ರನು ಅಸ್ತಂಗತನಾಗಿರಬಾರದು, ಗುರುವು ೭ನೇ ಭಾವವನ್ನು ನೋಡಬೇಕು, ರಾಹು ಕಾಲ ಇರಬಾರದು",
+          "gu": "ચંદ્ર સૌમ્ય નક્ષત્રમાં, શુક્ર અસ્ત ન હોય, ગુરુ ૭મા ભાવને જોતો હોય, કોઈ રાહુ કાળ ન હોય"
         },
         {
           "en": "It must be a Sunday",
           "hi": "रविवार होना चाहिए",
           "mai": "ई एकटा रवि दिन होयबाक चाही।",
           "mr": "रविवार होना चाहिए",
-          "ta": "It must be a Sunday",
-          "te": "It must be a Sunday",
-          "bn": "It must be a Sunday",
-          "kn": "It must be a Sunday",
-          "gu": "It must be a Sunday"
+          "ta": "அது ஒரு ஞாயிற்றுக்கிழமையாக இருக்க வேண்டும்",
+          "te": "అది ఆదివారం అయి ఉండాలి",
+          "bn": "এটি রবিবার হতে হবে",
+          "kn": "ಅದು ಭಾನುವಾರವಾಗಿರಬೇಕು",
+          "gu": "તે રવિવાર હોવો જોઈએ"
         },
         {
           "en": "All planets must be in one sign",
           "hi": "सभी ग्रह एक राशि में होने चाहिए",
           "mai": "सभ ग्रह एकटा राशि मे होयबाक चाही।",
           "mr": "सभी ग्रह एक राशि में होने चाहिए",
-          "ta": "All planets must be in one sign",
-          "te": "All planets must be in one sign",
-          "bn": "All planets must be in one sign",
-          "kn": "All planets must be in one sign",
-          "gu": "All planets must be in one sign"
+          "ta": "அனைத்து கிரகங்களும் ஒரே ராசியில் இருக்க வேண்டும்",
+          "te": "అన్ని గ్రహాలు ఒకే రాశిలో ఉండాలి",
+          "bn": "সমস্ত গ্রহ একটি রাশিতে থাকতে হবে",
+          "kn": "ಎಲ್ಲಾ ಗ್ರಹಗಳು ಒಂದೇ ರಾಶಿಯಲ್ಲಿರಬೇಕು",
+          "gu": "બધા ગ્રહો એક રાશિમાં હોવા જોઈએ"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "A marriage muhurta requires multiple astronomical conditions: Moon in a gentle nakshatra (like Rohini or Revati), Venus visible (not combust by Sun proximity), Jupiter aspecting the 7th house of marriage, and the time should not fall in Rahu Kaal.",
         "hi": "विवाह मुहूर्त के लिए अनेक खगोलीय शर्तें चाहिए: सौम्य नक्षत्र (जैसे रोहिणी या रेवती) में चन्द्रमा, शुक्र दृश्य (सूर्य की निकटता से अस्त नहीं), गुरु की विवाह के 7वें भाव पर दृष्टि, और राहु काल में न हो।",
-        "ta": "A marriage muhurta requires multiple astronomical conditions: Moon in a gentle nakshatra (like Rohini or Revati), Venus visible (not combust by Sun proximity), Jupiter aspecting the 7th house of marriage, and the time should not fall in Rahu Kaal.",
-        "te": "A marriage muhurta requires multiple astronomical conditions: Moon in a gentle nakshatra (like Rohini or Revati), Venus visible (not combust by Sun proximity), Jupiter aspecting the 7th house of marriage, and the time should not fall in Rahu Kaal.",
-        "bn": "A marriage muhurta requires multiple astronomical conditions: Moon in a gentle nakshatra (like Rohini or Revati), Venus visible (not combust by Sun proximity), Jupiter aspecting the 7th house of marriage, and the time should not fall in Rahu Kaal.",
-        "kn": "A marriage muhurta requires multiple astronomical conditions: Moon in a gentle nakshatra (like Rohini or Revati), Venus visible (not combust by Sun proximity), Jupiter aspecting the 7th house of marriage, and the time should not fall in Rahu Kaal.",
+        "ta": "ஒரு திருமண முகூர்த்தத்திற்கு பல வானியல் நிலைமைகள் தேவை: சந்திரன் ஒரு மென்மையான நட்சத்திரத்தில் (ரோகிணி அல்லது ரேவதி போன்றவை), சுக்கிரன் தெரியும் நிலையில் (சூரியனுக்கு அருகில் அஸ்தமனம் ஆகாமல்), குரு திருமணத்தின் 7வது பாவத்தை பார்ப்பது, மற்றும் நேரம் ராகு காலத்தில் வரக்கூடாது.",
+        "te": "వివాహ ముహూర్తానికి అనేక ఖగోళ పరిస్థితులు అవసరం: చంద్రుడు సౌమ్య నక్షత్రంలో (రోహిణి లేదా రేవతి వంటివి), శుక్రుడు కనిపించేలా (సూర్యుని సామీప్యం వల్ల అస్తంగత్వం చెందకుండా), గురు గ్రహం వివాహానికి సంబంధించిన 7వ భావాన్ని చూస్తూ, మరియు సమయం రాహు కాలంలో పడకూడదు.",
+        "bn": "একটি বিবাহ মুহূর্তের জন্য একাধিক জ্যোতির্বিজ্ঞানের শর্ত প্রয়োজন: চন্দ্র একটি মৃদু নক্ষত্রে (যেমন রোহিণী বা রেবতী), শুক্র দৃশ্যমান (সূর্যের সান্নিধ্যে অস্ত না যাওয়া), বৃহস্পতি বিবাহের ৭ম ভাবকে দৃষ্টি দেওয়া, এবং সময়টি রাহু কালের মধ্যে পড়া উচিত নয়।",
+        "kn": "ವಿವಾಹ ಮುಹೂರ್ತಕ್ಕೆ ಅನೇಕ ಖಗೋಳ ಸ್ಥಿತಿಗಳು ಬೇಕಾಗುತ್ತವೆ: ಚಂದ್ರನು ಸೌಮ್ಯ ನಕ್ಷತ್ರದಲ್ಲಿ (ರೋಹಿಣಿ ಅಥವಾ ರೇವತಿಯಂತಹ), ಶುಕ್ರನು ಗೋಚರಿಸಬೇಕು (ಸೂರ್ಯನ ಸಾಮೀಪ್ಯದಿಂದ ಅಸ್ತಂಗತನಾಗಿರಬಾರದು), ಗುರುವು ವಿವಾಹದ ೭ನೇ ಭಾವವನ್ನು ನೋಡಬೇಕು, ಮತ್ತು ಸಮಯವು ರಾಹು ಕಾಲದಲ್ಲಿ ಬೀಳಬಾರದು.",
         "mr": "विवाह मुहूर्त के लिए अनेक खगोलीय शर्तें चाहिए: सौम्य नक्षत्र (जैसे रोहिणी या रेवती) में चन्द्रमा, शुक्र दृश्य (सूर्य की निकटता से अस्त नहीं), गुरु की विवाह के 7वें भाव पर दृष्टि, और राहु काल में न हो।",
-        "gu": "A marriage muhurta requires multiple astronomical conditions: Moon in a gentle nakshatra (like Rohini or Revati), Venus visible (not combust by Sun proximity), Jupiter aspecting the 7th house of marriage, and the time should not fall in Rahu Kaal.",
+        "gu": "લગ્ન મુહૂર્ત માટે ઘણી ખગોળીય પરિસ્થિતિઓ જરૂરી છે: ચંદ્ર સૌમ્ય નક્ષત્રમાં (જેમ કે રોહિણી અથવા રેવતી), શુક્ર દૃશ્યમાન (સૂર્યની નિકટતાથી અસ્ત ન હોય), ગુરુ લગ્નના ૭મા ભાવને જોતો હોય, અને સમય રાહુ કાળમાં ન આવવો જોઈએ.",
         "mai": "एकटा विवाह मुहूर्त कऽ लेल अनेक खगोलीय स्थिति आवश्यक अछि: चन्द्रमा एकटा सौम्य नक्षत्र मे (जेना रोहिणी वा रेवती), शुक्र दृश्यमान (सूर्य कऽ निकटता सँ अस्त नहि), बृहस्पति विवाह कऽ ७म भाव कऽ देखैत होय, आ समय राहु काल मे नहि पड़यबाक चाही।"
       }
     },
@@ -446,12 +446,12 @@
       "question": {
         "en": "On Purnima (full moon), the Moon is:",
         "hi": "पूर्णिमा पर चन्द्रमा:",
-        "ta": "On Purnima (full moon), the Moon is:",
-        "te": "On Purnima (full moon), the Moon is:",
-        "bn": "On Purnima (full moon), the Moon is:",
-        "kn": "On Purnima (full moon), the Moon is:",
+        "ta": "பௌர்ணமியன்று (முழு நிலவு), சந்திரன்:",
+        "te": "పౌర్ణమి (పూర్ణ చంద్రుడు) నాడు, చంద్రుడు ఉంటాడు:",
+        "bn": "পূর্ণিমাতে (পূর্ণিমা চাঁদ), চন্দ্র থাকে:",
+        "kn": "ಪೂರ್ಣಿಮೆಯಂದು (ಹುಣ್ಣಿಮೆ), ಚಂದ್ರನು ಹೀಗಿರುತ್ತಾನೆ:",
         "mr": "पूर्णिमा पर चन्द्रमा:",
-        "gu": "On Purnima (full moon), the Moon is:",
+        "gu": "પૂર્ણિમાના દિવસે (પૂર્ણ ચંદ્ર), ચંદ્ર હોય છે:",
         "mai": "पूर्णिमा (पूर्ण चन्द्रमा) पर, चन्द्रमा अछि:"
       },
       "options": [
@@ -460,56 +460,56 @@
           "hi": "सूर्य के साथ (युति में)",
           "mai": "सूर्य कऽ सङ्ग (बगल मे)",
           "mr": "सूर्य के साथ (युति में)",
-          "ta": "Conjunct (next to) the Sun",
-          "te": "Conjunct (next to) the Sun",
-          "bn": "Conjunct (next to) the Sun",
-          "kn": "Conjunct (next to) the Sun",
-          "gu": "Conjunct (next to) the Sun"
+          "ta": "சூரியனுடன் இணைந்த நிலையில் (அருகில்)",
+          "te": "సూర్యునితో కలసి (పక్కన)",
+          "bn": "সূর্যের সাথে যুক্ত (পাশে)",
+          "kn": "ಸೂರ್ಯನೊಂದಿಗೆ ಸಂಯೋಗದಲ್ಲಿ (ಪಕ್ಕದಲ್ಲಿ)",
+          "gu": "સૂર્ય સાથે યુતિમાં (બાજુમાં)"
         },
         {
           "en": "Directly opposite the Sun",
           "hi": "सूर्य के ठीक विपरीत",
           "mai": "सूर्य कऽ ठीक विपरीत",
           "mr": "सूर्य के ठीक विपरीत",
-          "ta": "Directly opposite the Sun",
-          "te": "Directly opposite the Sun",
-          "bn": "Directly opposite the Sun",
-          "kn": "Directly opposite the Sun",
-          "gu": "Directly opposite the Sun"
+          "ta": "சூரியனுக்கு நேர் எதிரே",
+          "te": "సూర్యునికి నేరుగా వ్యతిరేకంగా",
+          "bn": "সূর্যের ঠিক বিপরীত দিকে",
+          "kn": "ಸೂರ್ಯನಿಗೆ ನೇರವಾಗಿ ವಿರುದ್ಧವಾಗಿ",
+          "gu": "સૂર્યની બરાબર વિરુદ્ધ દિશામાં"
         },
         {
           "en": "90° from the Sun",
           "hi": "सूर्य से 90° पर",
           "mai": "सूर्य सँ ९०° पर",
           "mr": "सूर्य से 90° पर",
-          "ta": "90° from the Sun",
-          "te": "90° from the Sun",
-          "bn": "90° from the Sun",
-          "kn": "90° from the Sun",
-          "gu": "90° from the Sun"
+          "ta": "சூரியனில் இருந்து 90°",
+          "te": "సూర్యుని నుండి 90°",
+          "bn": "সূর্য থেকে ৯০° দূরে",
+          "kn": "ಸೂರ್ಯನಿಂದ ೯೦° ದೂರದಲ್ಲಿ",
+          "gu": "સૂર્યથી ૯૦° દૂર"
         },
         {
           "en": "At its closest to Earth",
           "hi": "पृथ्वी के सबसे निकट",
           "mai": "पृथ्वी कऽ सबसँ निकट",
           "mr": "पृथ्वी के सबसे निकट",
-          "ta": "At its closest to Earth",
-          "te": "At its closest to Earth",
-          "bn": "At its closest to Earth",
-          "kn": "At its closest to Earth",
-          "gu": "At its closest to Earth"
+          "ta": "பூமிக்கு மிக அருகில்",
+          "te": "భూమికి అత్యంత దగ్గరగా",
+          "bn": "পৃথিবীর সবচেয়ে কাছে",
+          "kn": "ಭೂಮಿಗೆ ಅತ್ಯಂತ ಹತ್ತಿರದಲ್ಲಿ",
+          "gu": "પૃથ્વીની સૌથી નજીક"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "On Purnima, the Moon is directly opposite the Sun (180° elongation). Maximum reflected light reaches Earth. Tidal forces peak. Vedic thought considers the mind (manas) most active at this time.",
         "hi": "पूर्णिमा पर चन्द्रमा सूर्य के ठीक विपरीत (180° कोण) होता है। अधिकतम परावर्तित प्रकाश पृथ्वी पर आता है। ज्वारीय बल चरम पर होते हैं। वैदिक विचार में इस समय मन (मानस) सर्वाधिक सक्रिय माना जाता है।",
-        "ta": "On Purnima, the Moon is directly opposite the Sun (180° elongation). Maximum reflected light reaches Earth. Tidal forces peak. Vedic thought considers the mind (manas) most active at this time.",
-        "te": "On Purnima, the Moon is directly opposite the Sun (180° elongation). Maximum reflected light reaches Earth. Tidal forces peak. Vedic thought considers the mind (manas) most active at this time.",
-        "bn": "On Purnima, the Moon is directly opposite the Sun (180° elongation). Maximum reflected light reaches Earth. Tidal forces peak. Vedic thought considers the mind (manas) most active at this time.",
-        "kn": "On Purnima, the Moon is directly opposite the Sun (180° elongation). Maximum reflected light reaches Earth. Tidal forces peak. Vedic thought considers the mind (manas) most active at this time.",
+        "ta": "பௌர்ணமியன்று, சந்திரன் சூரியனுக்கு நேர் எதிரே (180° நீட்சி) இருக்கும். அதிகபட்ச பிரதிபலித்த ஒளி பூமியை அடைகிறது. அலை விசைகள் உச்சத்தை அடைகின்றன. வேத சிந்தனை இந்த நேரத்தில் மனம் (மனஸ்) மிகவும் சுறுசுறுப்பாக இருப்பதாக கருதுகிறது.",
+        "te": "పౌర్ణమి నాడు, చంద్రుడు సూర్యునికి నేరుగా వ్యతిరేకంగా ఉంటాడు (180° విస్తరణ). గరిష్ట ప్రతిబింబించిన కాంతి భూమిని చేరుతుంది. ఆటుపోట్ల శక్తులు గరిష్ట స్థాయికి చేరుకుంటాయి. వేద ఆలోచన ఈ సమయంలో మనస్సు (మానస్) అత్యంత చురుకుగా ఉంటుందని భావిస్తుంది.",
+        "bn": "পূর্ণিমাতে, চন্দ্র সূর্যের ঠিক বিপরীত দিকে থাকে (১৮০° দীর্ঘায়ন)। সর্বাধিক প্রতিফলিত আলো পৃথিবীতে পৌঁছায়। জোয়ার-ভাটার শক্তি সর্বোচ্চ হয়। বৈদিক চিন্তাধারা এই সময়ে মনকে (মানস) সবচেয়ে সক্রিয় বলে মনে করে।",
+        "kn": "ಪೂರ್ಣಿಮೆಯಂದು, ಚಂದ್ರನು ಸೂರ್ಯನಿಗೆ ನೇರವಾಗಿ ವಿರುದ್ಧವಾಗಿರುತ್ತಾನೆ (೧೮೦° ಅಂತರ). ಗರಿಷ್ಠ ಪ್ರತಿಫಲಿತ ಬೆಳಕು ಭೂಮಿಯನ್ನು ತಲುಕುತ್ತದೆ. ಉಬ್ಬರವಿಳಿತದ ಶಕ್ತಿಗಳು ಗರಿಷ್ಠ ಮಟ್ಟದಲ್ಲಿರುತ್ತವೆ. ವೈದಿಕ ಚಿಂತನೆಯು ಈ ಸಮಯದಲ್ಲಿ ಮನಸ್ಸು (ಮಾನಸ) ಅತ್ಯಂತ ಸಕ್ರಿಯವಾಗಿರುತ್ತದೆ ಎಂದು ಪರಿಗಣಿಸುತ್ತದೆ.",
         "mr": "पूर्णिमा पर चन्द्रमा सूर्य के ठीक विपरीत (180° कोण) होता है। अधिकतम परावर्तित प्रकाश पृथ्वी पर आता है। ज्वारीय बल चरम पर होते हैं। वैदिक विचार में इस समय मन (मानस) सर्वाधिक सक्रिय माना जाता है।",
-        "gu": "On Purnima, the Moon is directly opposite the Sun (180° elongation). Maximum reflected light reaches Earth. Tidal forces peak. Vedic thought considers the mind (manas) most active at this time.",
+        "gu": "પૂર્ણિમાના દિવસે, ચંદ્ર સૂર્યની બરાબર વિરુદ્ધ દિશામાં હોય છે (૧૮૦° વિસ્તરણ). મહત્તમ પરાવર્તિત પ્રકાશ પૃથ્વી પર પહોંચે છે. ભરતી-ઓટના બળો ચરમસીમાએ હોય છે. વૈદિક વિચાર મુજબ આ સમયે મન (માનસ) સૌથી વધુ સક્રિય હોય છે.",
         "mai": "पूर्णिमा पर, चन्द्रमा सूर्य कऽ ठीक विपरीत (१८०° दीर्घीकरण) होइत अछि। अधिकतम परावर्तित प्रकाश पृथ्वी धरि पहुँचैत अछि। ज्वारीय बल चरम पर होइत अछि। वैदिक विचार एहि समय मन (मानस) कऽ सबसँ बेसी सक्रिय मानैत अछि।"
       }
     },
@@ -519,24 +519,24 @@
       "question": {
         "en": "Amavasya (new moon) is traditionally associated with ancestor remembrance (Pitru Tarpana) because the Moon is invisible  –  conjunct with the Sun.",
         "hi": "अमावस्या (अमावस) पारम्परिक रूप से पितृ तर्पण से जुड़ी है क्योंकि चन्द्रमा अदृश्य होता है  –  सूर्य के साथ युति में।",
-        "ta": "Amavasya (new moon) is traditionally associated with ancestor remembrance (Pitru Tarpana) because the Moon is invisible  –  conjunct with the Sun.",
-        "te": "Amavasya (new moon) is traditionally associated with ancestor remembrance (Pitru Tarpana) because the Moon is invisible  –  conjunct with the Sun.",
-        "bn": "Amavasya (new moon) is traditionally associated with ancestor remembrance (Pitru Tarpana) because the Moon is invisible  –  conjunct with the Sun.",
-        "kn": "Amavasya (new moon) is traditionally associated with ancestor remembrance (Pitru Tarpana) because the Moon is invisible  –  conjunct with the Sun.",
+        "ta": "அமாவாசை (அமாவாசை நிலவு) பாரம்பரியமாக மூதாதையர் நினைவோடு (பித்ரு தர்ப்பணம்) தொடர்புடையது, ஏனெனில் சந்திரன் கண்ணுக்குத் தெரியாதது – சூரியனுடன் இணைந்த நிலையில் இருக்கும்.",
+        "te": "అమావాస్య (అమావాస్య చంద్రుడు) సాంప్రదాయకంగా పితృ తర్పణం (పితృ తర్పణ)తో ముడిపడి ఉంటుంది, ఎందుకంటే చంద్రుడు కనిపించడు – సూర్యునితో కలసి ఉంటాడు.",
+        "bn": "অমাবস্যা (অমাবস্যার চাঁদ) ঐতিহ্যগতভাবে পূর্বপুরুষদের স্মরণ (পিতৃ তর্পণ) এর সাথে যুক্ত কারণ চন্দ্র অদৃশ্য থাকে – সূর্যের সাথে যুক্ত।",
+        "kn": "ಅಮಾವಾಸ್ಯೆಯು (ಅಮಾವಾಸ್ಯೆ) ಸಾಂಪ್ರದಾಯಿಕವಾಗಿ ಪೂರ್ವಜರ ಸ್ಮರಣೆಗೆ (ಪಿತೃ ತರ್ಪಣ) ಸಂಬಂಧಿಸಿದೆ, ಏಕೆಂದರೆ ಚಂದ್ರನು ಅಗೋಚರನಾಗಿರುತ್ತಾನೆ – ಸೂರ್ಯನೊಂದಿಗೆ ಸಂಯೋಗದಲ್ಲಿ.",
         "mr": "अमावस्या (अमावस) पारम्परिक रूप से पितृ तर्पण से जुड़ी है क्योंकि चन्द्रमा अदृश्य होता है  –  सूर्य के साथ युति में।",
-        "gu": "Amavasya (new moon) is traditionally associated with ancestor remembrance (Pitru Tarpana) because the Moon is invisible  –  conjunct with the Sun.",
+        "gu": "અમાવસ્યા (નવો ચંદ્ર) પરંપરાગત રીતે પૂર્વજોના સ્મરણ (પિતૃ તર્પણ) સાથે સંકળાયેલી છે કારણ કે ચંદ્ર અદૃશ્ય હોય છે – સૂર્ય સાથે યુતિમાં હોય છે.",
         "mai": "अमावस्या (नव चन्द्रमा) परम्परागत रूप सँ पूर्वज स्मरण (पितृ तर्पण) सँ जुड़ल अछि कारण चन्द्रमा अदृश्य होइत अछि – सूर्य कऽ सङ्ग।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. On Amavasya, the Moon is conjunct the Sun (0° elongation) and invisible. This \"darkest\" time is associated with ancestor remembrance. The astronomical alignment is precise; the cultural meaning layers onto the observable phenomenon.",
         "hi": "सत्य। अमावस्या पर चन्द्रमा सूर्य के साथ युति (0° कोण) में और अदृश्य होता है। यह \"सबसे अँधेरा\" समय पितृ स्मरण से जुड़ा है। खगोलीय संरेखण सटीक है; सांस्कृतिक अर्थ प्रेक्षणीय घटना पर आधारित है।",
-        "ta": "True. On Amavasya, the Moon is conjunct the Sun (0° elongation) and invisible. This \"darkest\" time is associated with ancestor remembrance. The astronomical alignment is precise; the cultural meaning layers onto the observable phenomenon.",
-        "te": "True. On Amavasya, the Moon is conjunct the Sun (0° elongation) and invisible. This \"darkest\" time is associated with ancestor remembrance. The astronomical alignment is precise; the cultural meaning layers onto the observable phenomenon.",
-        "bn": "True. On Amavasya, the Moon is conjunct the Sun (0° elongation) and invisible. This \"darkest\" time is associated with ancestor remembrance. The astronomical alignment is precise; the cultural meaning layers onto the observable phenomenon.",
-        "kn": "True. On Amavasya, the Moon is conjunct the Sun (0° elongation) and invisible. This \"darkest\" time is associated with ancestor remembrance. The astronomical alignment is precise; the cultural meaning layers onto the observable phenomenon.",
+        "ta": "உண்மை. அமாவாசையன்று, சந்திரன் சூரியனுடன் இணைந்த நிலையில் (0° நீட்சி) மற்றும் கண்ணுக்குத் தெரியாததாக இருக்கும். இந்த \"இருண்ட\" நேரம் மூதாதையர் நினைவோடு தொடர்புடையது. வானியல் சீரமைப்பு துல்லியமானது; கலாச்சார அர்த்தம் காணக்கூடிய நிகழ்வின் மீது அடுக்கப்பட்டுள்ளது.",
+        "te": "నిజం. అమావాస్య నాడు, చంద్రుడు సూర్యునితో కలసి (0° విస్తరణ) మరియు కనిపించడు. ఈ \"అత్యంత చీకటి\" సమయం పితృ తర్పణంతో ముడిపడి ఉంటుంది. ఖగోళ అమరిక ఖచ్చితమైనది; సాంస్కృతిక అర్థం గమనించదగిన దృగ్విషయంపై పొరలుగా ఉంటుంది.",
+        "bn": "সত্য। অমাবস্যায়, চন্দ্র সূর্যের সাথে যুক্ত (০° দীর্ঘায়ন) এবং অদৃশ্য থাকে। এই \"অন্ধকারতম\" সময়টি পূর্বপুরুষদের স্মরণের সাথে যুক্ত। জ্যোতির্বিজ্ঞানের বিন্যাস সুনির্দিষ্ট; সাংস্কৃতিক অর্থ পর্যবেক্ষণযোগ্য ঘটনার উপর স্তরবদ্ধ হয়।",
+        "kn": "ನಿಜ. ಅಮಾವಾಸ್ಯೆಯಂದು, ಚಂದ್ರನು ಸೂರ್ಯನೊಂದಿಗೆ ಸಂಯೋಗದಲ್ಲಿರುತ್ತಾನೆ (೦° ಅಂತರ) ಮತ್ತು ಅಗೋಚರನಾಗಿರುತ್ತಾನೆ. ಈ \"ಅತ್ಯಂತ ಕರಾಳ\" ಸಮಯವು ಪೂರ್ವಜರ ಸ್ಮರಣೆಗೆ ಸಂಬಂಧಿಸಿದೆ. ಖಗೋಳ ಜೋಡಣೆಯು ನಿಖರವಾಗಿದೆ; ಸಾಂಸ್ಕೃತಿಕ ಅರ್ಥವು ಗೋಚರಿಸುವ ವಿದ್ಯಮಾನದ ಮೇಲೆ ಪದರಗಳನ್ನು ಹೊಂದಿರುತ್ತದೆ.",
         "mr": "सत्य। अमावस्या पर चन्द्रमा सूर्य के साथ युति (0° कोण) में और अदृश्य होता है। यह \"सबसे अँधेरा\" समय पितृ स्मरण से जुड़ा है। खगोलीय संरेखण सटीक है; सांस्कृतिक अर्थ प्रेक्षणीय घटना पर आधारित है।",
-        "gu": "True. On Amavasya, the Moon is conjunct the Sun (0° elongation) and invisible. This \"darkest\" time is associated with ancestor remembrance. The astronomical alignment is precise; the cultural meaning layers onto the observable phenomenon.",
+        "gu": "સાચું. અમાવસ્યાના દિવસે, ચંદ્ર સૂર્ય સાથે યુતિમાં હોય છે (૦° વિસ્તરણ) અને અદૃશ્ય હોય છે. આ \"સૌથી અંધકારમય\" સમય પૂર્વજોના સ્મરણ સાથે સંકળાયેલો છે. ખગોળીય સંરેખણ ચોક્કસ હોય છે; સાંસ્કૃતિક અર્થ અવલોકન કરી શકાય તેવી ઘટના પર આધારિત છે.",
         "mai": "सत्य। अमावस्या पर, चन्द्रमा सूर्य कऽ सङ्ग (०° दीर्घीकरण) आ अदृश्य होइत अछि। ई \"सबसँ अँधियारी\" समय पूर्वज स्मरण सँ जुड़ल अछि। खगोलीय संरेखण सटीक अछि; सांस्कृतिक अर्थ अवलोकन योग्य घटना पर परत चढ़ैत अछि।"
       }
     },
@@ -546,12 +546,12 @@
       "question": {
         "en": "The Surya Siddhanta's \"kalpa\" (4.32 billion years) is remarkably close to:",
         "hi": "सूर्य सिद्धान्त का \"कल्प\" (4.32 अरब वर्ष) किसके उल्लेखनीय रूप से निकट है?",
-        "ta": "The Surya Siddhanta's \"kalpa\" (4.32 billion years) is remarkably close to:",
-        "te": "The Surya Siddhanta's \"kalpa\" (4.32 billion years) is remarkably close to:",
-        "bn": "The Surya Siddhanta's \"kalpa\" (4.32 billion years) is remarkably close to:",
-        "kn": "The Surya Siddhanta's \"kalpa\" (4.32 billion years) is remarkably close to:",
+        "ta": "சூரிய சித்தாந்தத்தின் \"கல்பம்\" (4.32 பில்லியன் ஆண்டுகள்) வியக்கத்தக்க வகையில் நெருக்கமாக உள்ளது:",
+        "te": "సూర్య సిద్ధాంతం యొక్క \"కల్పం\" (4.32 బిలియన్ సంవత్సరాలు) ఆశ్చర్యకరంగా దగ్గరగా ఉంటుంది:",
+        "bn": "সূর্য সিদ্ধান্তের \"কল্প\" (৪.৩২ বিলিয়ন বছর) আশ্চর্যজনকভাবে এর কাছাকাছি:",
+        "kn": "ಸೂರ್ಯ ಸಿದ್ಧಾಂತದ \"ಕಲ್ಪ\" (೪.೩೨ ಶತಕೋಟಿ ವರ್ಷಗಳು) ಗಮನಾರ್ಹವಾಗಿ ಹತ್ತಿರದಲ್ಲಿದೆ:",
         "mr": "सूर्य सिद्धान्त का \"कल्प\" (4.32 अरब वर्ष) किसके उल्लेखनीय रूप से निकट है?",
-        "gu": "The Surya Siddhanta's \"kalpa\" (4.32 billion years) is remarkably close to:",
+        "gu": "સૂર્ય સિદ્ધાંતનો \"કલ્પ\" (૪.૩૨ અબજ વર્ષ) નોંધપાત્ર રીતે નજીક છે:",
         "mai": "सूर्य सिद्धान्त कऽ \"कल्प\" (४.३२ अरब वर्ष) उल्लेखनीय रूप सँ निकट अछि:"
       },
       "options": [
@@ -560,21 +560,21 @@
           "hi": "चन्द्रमा की आयु (4.5 अरब वर्ष)",
           "mai": "चन्द्रमा कऽ आयु (४.५ अरब वर्ष)",
           "mr": "चन्द्रमा की आयु (4.5 अरब वर्ष)",
-          "ta": "The age of the Moon (4.5 billion years)",
-          "te": "The age of the Moon (4.5 billion years)",
-          "bn": "The age of the Moon (4.5 billion years)",
-          "kn": "The age of the Moon (4.5 billion years)",
-          "gu": "The age of the Moon (4.5 billion years)"
+          "ta": "சந்திரனின் வயது (4.5 பில்லியன் ஆண்டுகள்)",
+          "te": "చంద్రుని వయస్సు (4.5 బిలియన్ సంవత్సరాలు)",
+          "bn": "চাঁদের বয়স (৪.৫ বিলিয়ন বছর)",
+          "kn": "ಚಂದ್ರನ ವಯಸ್ಸು (೪.೫ ಶತಕೋಟಿ ವರ್ಷಗಳು)",
+          "gu": "ચંદ્રની ઉંમર (૪.૫ અબજ વર્ષ)"
         },
         {
           "en": "Earth's actual age (4.54 billion years)",
           "hi": "पृथ्वी की वास्तविक आयु (4.54 अरब वर्ष)",
-          "ta": "Earth's actual age (4.54 billion years)",
-          "te": "Earth's actual age (4.54 billion years)",
-          "bn": "Earth's actual age (4.54 billion years)",
-          "kn": "Earth's actual age (4.54 billion years)",
+          "ta": "பூமியின் உண்மையான வயது (4.54 பில்லியன் ஆண்டுகள்)",
+          "te": "భూమి యొక్క వాస్తవ వయస్సు (4.54 బిలియన్ సంవత్సరాలు)",
+          "bn": "পৃথিবীর প্রকৃত বয়স (৪.৫৪ বিলিয়ন বছর)",
+          "kn": "ಭೂಮಿಯ ನಿಜವಾದ ವಯಸ್ಸು (೪.೫೪ ಶತಕೋಟಿ ವರ್ಷಗಳು)",
           "mr": "पृथ्वी की वास्तविक आयु (4.54 अरब वर्ष)",
-          "gu": "Earth's actual age (4.54 billion years)",
+          "gu": "પૃથ્વીની વાસ્તવિક ઉંમર (૪.૫૪ અબજ વર્ષ)",
           "mai": "पृथ्वी कऽ वास्तविक आयु (४.५४ अरब वर्ष)"
         },
         {
@@ -582,21 +582,21 @@
           "hi": "ब्रह्माण्ड की आयु (13.8 अरब वर्ष)",
           "mai": "ब्रह्माण्ड कऽ आयु (१३.८ अरब वर्ष)",
           "mr": "ब्रह्माण्ड की आयु (13.8 अरब वर्ष)",
-          "ta": "The age of the Universe (13.8 billion years)",
-          "te": "The age of the Universe (13.8 billion years)",
-          "bn": "The age of the Universe (13.8 billion years)",
-          "kn": "The age of the Universe (13.8 billion years)",
-          "gu": "The age of the Universe (13.8 billion years)"
+          "ta": "பிரபஞ்சத்தின் வயது (13.8 பில்லியன் ஆண்டுகள்)",
+          "te": "విశ్వం యొక్క వయస్సు (13.8 బిలియన్ సంవత్సరాలు)",
+          "bn": "মহাবিশ্বের বয়স (১৩.৮ বিলিয়ন বছর)",
+          "kn": "ವಿಶ್ವದ ವಯಸ್ಸು (೧೩.೮ ಶತಕೋಟಿ ವರ್ಷಗಳು)",
+          "gu": "બ્રહ્માંડની ઉંમર (૧૩.૮ અબજ વર્ષ)"
         },
         {
           "en": "The Sun's expected lifespan (10 billion years)",
           "hi": "सूर्य की अपेक्षित आयु (10 अरब वर्ष)",
-          "ta": "The Sun's expected lifespan (10 billion years)",
-          "te": "The Sun's expected lifespan (10 billion years)",
-          "bn": "The Sun's expected lifespan (10 billion years)",
-          "kn": "The Sun's expected lifespan (10 billion years)",
+          "ta": "சூரியனின் எதிர்பார்க்கப்படும் ஆயுட்காலம் (10 பில்லியன் ஆண்டுகள்)",
+          "te": "సూర్యుని ఆశించిన జీవితకాలం (10 బిలియన్ సంవత్సరాలు)",
+          "bn": "সূর্যের প্রত্যাশিত জীবনকাল (১০ বিলিয়ন বছর)",
+          "kn": "ಸೂರ್ಯನ ನಿರೀಕ್ಷಿತ ಜೀವಿತಾವಧಿ (೧೦ ಶತಕೋಟಿ ವರ್ಷಗಳು)",
           "mr": "सूर्य की अपेक्षित आयु (10 अरब वर्ष)",
-          "gu": "The Sun's expected lifespan (10 billion years)",
+          "gu": "સૂર્યનું અપેક્ષિત આયુષ્ય (૧૦ અબજ વર્ષ)",
           "mai": "सूर्य कऽ अपेक्षित जीवनकाल (१० अरब वर्ष)"
         }
       ],
@@ -604,12 +604,12 @@
       "explanation": {
         "en": "The kalpa of 4.32 billion years is remarkably close to Earth's scientifically determined age of 4.54 billion years. This scale of cosmic thinking  –  from microseconds to billions of years  –  was unique to Indian astronomical tradition.",
         "hi": "कल्प (4.32 अरब वर्ष) पृथ्वी की वैज्ञानिक रूप से निर्धारित आयु 4.54 अरब वर्ष के उल्लेखनीय रूप से निकट है। माइक्रोसेकण्ड से अरबों वर्षों तक ब्रह्माण्डीय चिन्तन का यह पैमाना भारतीय खगोलीय परम्परा की विशेषता थी।",
-        "ta": "The kalpa of 4.32 billion years is remarkably close to Earth's scientifically determined age of 4.54 billion years. This scale of cosmic thinking  –  from microseconds to billions of years  –  was unique to Indian astronomical tradition.",
-        "te": "The kalpa of 4.32 billion years is remarkably close to Earth's scientifically determined age of 4.54 billion years. This scale of cosmic thinking  –  from microseconds to billions of years  –  was unique to Indian astronomical tradition.",
-        "bn": "The kalpa of 4.32 billion years is remarkably close to Earth's scientifically determined age of 4.54 billion years. This scale of cosmic thinking  –  from microseconds to billions of years  –  was unique to Indian astronomical tradition.",
-        "kn": "The kalpa of 4.32 billion years is remarkably close to Earth's scientifically determined age of 4.54 billion years. This scale of cosmic thinking  –  from microseconds to billions of years  –  was unique to Indian astronomical tradition.",
+        "ta": "4.32 பில்லியன் ஆண்டுகள் கொண்ட கல்பம், பூமியின் அறிவியல் பூர்வமாக நிர்ணயிக்கப்பட்ட வயதான 4.54 பில்லியன் ஆண்டுகளுக்கு வியக்கத்தக்க வகையில் நெருக்கமாக உள்ளது. மைக்ரோ வினாடிகள் முதல் பில்லியன் ஆண்டுகள் வரையிலான இந்த பிரபஞ்ச சிந்தனை இந்திய வானியல் பாரம்பரியத்திற்கு தனித்துவமானது.",
+        "te": "4.32 బిలియన్ సంవత్సరాల కల్పం భూమి యొక్క శాస్త్రీయంగా నిర్ణయించబడిన 4.54 బిలియన్ సంవత్సరాల వయస్సుకి ఆశ్చర్యకరంగా దగ్గరగా ఉంటుంది. ఈ ఖగోళ ఆలోచనా విధానం – మైక్రోసెకన్ల నుండి బిలియన్ల సంవత్సరాల వరకు – భారతీయ ఖగోళ సంప్రదాయానికి ప్రత్యేకమైనది.",
+        "bn": "৪.৩২ বিলিয়ন বছরের কল্প পৃথিবীর বৈজ্ঞানিকভাবে নির্ধারিত ৪.৫৪ বিলিয়ন বছরের বয়সের সাথে আশ্চর্যজনকভাবে কাছাকাছি। এই মহাজাগতিক চিন্তাভাবনার পরিধি – মাইক্রোসেকেন্ড থেকে বিলিয়ন বছর পর্যন্ত – ভারতীয় জ্যোতির্বিজ্ঞানের ঐতিহ্যের জন্য অনন্য ছিল।",
+        "kn": "೪.೩೨ ಶತಕೋಟಿ ವರ್ಷಗಳ ಕಲ್ಪವು ಭೂಮಿಯ ವೈಜ್ಞಾನಿಕವಾಗಿ ನಿರ್ಧರಿಸಿದ ೪.೫೪ ಶತಕೋಟಿ ವರ್ಷಗಳ ವಯಸ್ಸಿಗೆ ಗಮನಾರ್ಹವಾಗಿ ಹತ್ತಿರದಲ್ಲಿದೆ. ಮೈಕ್ರೋಸೆಕೆಂಡುಗಳಿಂದ ಶತಕೋಟಿ ವರ್ಷಗಳವರೆಗಿನ ಈ ಕಾಸ್ಮಿಕ್ ಚಿಂತನೆಯ ಪ್ರಮಾಣವು ಭಾರತೀಯ ಖಗೋಳ ಸಂಪ್ರದಾಯಕ್ಕೆ ವಿಶಿಷ್ಟವಾಗಿತ್ತು.",
         "mr": "कल्प (4.32 अरब वर्ष) पृथ्वी की वैज्ञानिक रूप से निर्धारित आयु 4.54 अरब वर्ष के उल्लेखनीय रूप से निकट है। माइक्रोसेकण्ड से अरबों वर्षों तक ब्रह्माण्डीय चिन्तन का यह पैमाना भारतीय खगोलीय परम्परा की विशेषता थी।",
-        "gu": "The kalpa of 4.32 billion years is remarkably close to Earth's scientifically determined age of 4.54 billion years. This scale of cosmic thinking  –  from microseconds to billions of years  –  was unique to Indian astronomical tradition.",
+        "gu": "૪.૩૨ અબજ વર્ષનો કલ્પ પૃથ્વીની વૈજ્ઞાનિક રીતે નિર્ધારિત ૪.૫૪ અબજ વર્ષની ઉંમરની નોંધપાત્ર રીતે નજીક છે. બ્રહ્માંડીય વિચારસરણીનો આ વ્યાપ – માઇક્રોસેકન્ડથી લઈને અબજો વર્ષો સુધી – ભારતીય ખગોળીય પરંપરા માટે અનન્ય હતો.",
         "mai": "४.३२ अरब वर्ष कऽ कल्प पृथ्वी कऽ वैज्ञानिक रूप सँ निर्धारित ४.५४ अरब वर्ष कऽ आयु कऽ उल्लेखनीय रूप सँ निकट अछि। ब्रह्माण्डीय सोच कऽ ई पैमाना – माइक्रोसेकेन्ड सँ लऽ कऽ अरबों वर्ष धरि – भारतीय खगोलीय परम्परा कऽ लेल अद्वितीय छल।"
       }
     },
@@ -619,12 +619,12 @@
       "question": {
         "en": "Saturday (Shanivara) is associated with visits to Shani temples because:",
         "hi": "शनिवार (शनिवार) शनि मन्दिर दर्शन से जुड़ा है क्योंकि:",
-        "ta": "Saturday (Shanivara) is associated with visits to Shani temples because:",
-        "te": "Saturday (Shanivara) is associated with visits to Shani temples because:",
-        "bn": "Saturday (Shanivara) is associated with visits to Shani temples because:",
-        "kn": "Saturday (Shanivara) is associated with visits to Shani temples because:",
+        "ta": "சனிக்கிழமை (சனிவாரம்) சனி கோவில்களுக்கு செல்வதோடு தொடர்புடையது, ஏனெனில்:",
+        "te": "శనివారం (శనివార) శని దేవాలయాల సందర్శనలతో ముడిపడి ఉంటుంది ఎందుకంటే:",
+        "bn": "শনিবার (শনিবার) শনি মন্দিরে পরিদর্শনের সাথে যুক্ত কারণ:",
+        "kn": "ಶನಿವಾರವು (ಶನಿವಾರ) ಶನಿ ದೇವಾಲಯಗಳಿಗೆ ಭೇಟಿ ನೀಡುವುದರೊಂದಿಗೆ ಸಂಬಂಧಿಸಿದೆ ಏಕೆಂದರೆ:",
         "mr": "शनिवार (शनिवार) शनि मन्दिर दर्शन से जुड़ा है क्योंकि:",
-        "gu": "Saturday (Shanivara) is associated with visits to Shani temples because:",
+        "gu": "શનિવાર (શનિવાર) શનિ મંદિરોની મુલાકાત સાથે સંકળાયેલો છે કારણ કે:",
         "mai": "शनिवार (शनिवार) शनि मन्दिर मे दर्शन सँ जुड़ल अछि कारण:"
       },
       "options": [
@@ -633,21 +633,21 @@
           "hi": "शनि केवल शनिवार को दिखता है",
           "mai": "शनि मात्र शनिवार कऽ दृश्यमान होइत अछि।",
           "mr": "शनि केवल शनिवार को दिखता है",
-          "ta": "Saturn is visible only on Saturdays",
-          "te": "Saturn is visible only on Saturdays",
-          "bn": "Saturn is visible only on Saturdays",
-          "kn": "Saturn is visible only on Saturdays",
-          "gu": "Saturn is visible only on Saturdays"
+          "ta": "சனி கிரகம் சனிக்கிழமைகளில் மட்டுமே தெரியும்",
+          "te": "శని గ్రహం శనివారాల్లో మాత్రమే కనిపిస్తుంది",
+          "bn": "শনি শুধুমাত্র শনিবারেই দৃশ্যমান হয়",
+          "kn": "ಶನಿ ಗ್ರಹವು ಶನಿವಾರದಂದು ಮಾತ್ರ ಗೋಚರಿಸುತ್ತದೆ",
+          "gu": "શનિ ફક્ત શનિવારે જ દૃશ્યમાન હોય છે"
         },
         {
           "en": "Saturn rules discipline, karma, and hardship  –  Saturday worship acknowledges Saturn's lessons",
           "hi": "शनि अनुशासन, कर्म और कठिनाई का शासक है  –  शनिवार की पूजा शनि के पाठों को स्वीकार करती है",
-          "ta": "Saturn rules discipline, karma, and hardship  –  Saturday worship acknowledges Saturn's lessons",
-          "te": "Saturn rules discipline, karma, and hardship  –  Saturday worship acknowledges Saturn's lessons",
-          "bn": "Saturn rules discipline, karma, and hardship  –  Saturday worship acknowledges Saturn's lessons",
-          "kn": "Saturn rules discipline, karma, and hardship  –  Saturday worship acknowledges Saturn's lessons",
+          "ta": "சனி கிரகம் ஒழுக்கம், கர்மா மற்றும் கஷ்டங்களை ஆளுகிறது – சனிக்கிழமை வழிபாடு சனியின் பாடங்களை அங்கீகரிக்கிறது",
+          "te": "శని గ్రహం క్రమశిక్షణ, కర్మ మరియు కష్టాలను పాలిస్తుంది – శనివారం పూజ శని యొక్క పాఠాలను గుర్తిస్తుంది",
+          "bn": "শনি শৃঙ্খলা, কর্ম এবং কঠোরতা শাসন করে – শনিবারের পূজা শনির শিক্ষাকে স্বীকার করে",
+          "kn": "ಶನಿ ಗ್ರಹವು ಶಿಸ್ತು, ಕರ್ಮ ಮತ್ತು ಕಷ್ಟವನ್ನು ಆಳುತ್ತದೆ – ಶನಿವಾರದ ಪೂಜೆಯು ಶನಿಯ ಪಾಠಗಳನ್ನು ಗುರುತಿಸುತ್ತದೆ",
           "mr": "शनि अनुशासन, कर्म और कठिनाई का शासक है  –  शनिवार की पूजा शनि के पाठों को स्वीकार करती है",
-          "gu": "Saturn rules discipline, karma, and hardship  –  Saturday worship acknowledges Saturn's lessons",
+          "gu": "શનિ શિસ્ત, કર્મ અને મુશ્કેલીઓનું શાસન કરે છે – શનિવારની પૂજા શનિના પાઠોને સ્વીકારે છે",
           "mai": "शनि अनुशासन, कर्म आ कठिनाई पर शासन करैत अछि – शनिवार कऽ पूजा शनि कऽ शिक्षा कऽ स्वीकार करैत अछि।"
         },
         {
@@ -655,34 +655,34 @@
           "hi": "मन्दिर केवल शनिवार को खुलते हैं",
           "mai": "मन्दिर मात्र शनिवार कऽ खुजल रहैत अछि।",
           "mr": "मन्दिर केवल शनिवार को खुलते हैं",
-          "ta": "Temples are only open on Saturdays",
-          "te": "Temples are only open on Saturdays",
-          "bn": "Temples are only open on Saturdays",
-          "kn": "Temples are only open on Saturdays",
-          "gu": "Temples are only open on Saturdays"
+          "ta": "கோவில்கள் சனிக்கிழமைகளில் மட்டுமே திறந்திருக்கும்",
+          "te": "దేవాలయాలు శనివారాల్లో మాత్రమే తెరిచి ఉంటాయి",
+          "bn": "মন্দিরগুলি শুধুমাত্র শনিবারেই খোলা থাকে",
+          "kn": "ದೇವಾಲಯಗಳು ಶನಿವಾರದಂದು ಮಾತ್ರ ತೆರೆದಿರುತ್ತವೆ",
+          "gu": "મંદિરો ફક્ત શનિવારે જ ખુલ્લા હોય છે"
         },
         {
           "en": "It is the only day without Rahu Kaal",
           "hi": "यह बिना राहु काल का एकमात्र दिन है",
           "mai": "ई एकमात्र दिन अछि बिना राहु काल कऽ।",
           "mr": "यह बिना राहु काल का एकमात्र दिन है",
-          "ta": "It is the only day without Rahu Kaal",
-          "te": "It is the only day without Rahu Kaal",
-          "bn": "It is the only day without Rahu Kaal",
-          "kn": "It is the only day without Rahu Kaal",
-          "gu": "It is the only day without Rahu Kaal"
+          "ta": "இது ராகு காலம் இல்லாத ஒரே நாள்",
+          "te": "రాహు కాలం లేని ఏకైక రోజు ఇది",
+          "bn": "এটি রাহু কাল ছাড়া একমাত্র দিন",
+          "kn": "ಇದು ರಾಹು ಕಾಲವಿಲ್ಲದ ಏಕೈಕ ದಿನ",
+          "gu": "તે રાહુ કાળ વિનાનો એકમાત્ર દિવસ છે"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "Shanivara (Saturday) is Saturn's day. Saturn governs discipline, karma, perseverance, and life's hardships. Visiting Shani temples on Saturday is a way of acknowledging and working with Saturn's lessons  –  not avoiding them.",
         "hi": "शनिवार शनि का दिन है। शनि अनुशासन, कर्म, धैर्य और जीवन की कठिनाइयों का शासक है। शनिवार को शनि मन्दिर जाना शनि के पाठों को स्वीकार करने और उनके साथ कार्य करने का तरीका है  –  उनसे बचने का नहीं।",
-        "ta": "Shanivara (Saturday) is Saturn's day. Saturn governs discipline, karma, perseverance, and life's hardships. Visiting Shani temples on Saturday is a way of acknowledging and working with Saturn's lessons  –  not avoiding them.",
-        "te": "Shanivara (Saturday) is Saturn's day. Saturn governs discipline, karma, perseverance, and life's hardships. Visiting Shani temples on Saturday is a way of acknowledging and working with Saturn's lessons  –  not avoiding them.",
-        "bn": "Shanivara (Saturday) is Saturn's day. Saturn governs discipline, karma, perseverance, and life's hardships. Visiting Shani temples on Saturday is a way of acknowledging and working with Saturn's lessons  –  not avoiding them.",
-        "kn": "Shanivara (Saturday) is Saturn's day. Saturn governs discipline, karma, perseverance, and life's hardships. Visiting Shani temples on Saturday is a way of acknowledging and working with Saturn's lessons  –  not avoiding them.",
+        "ta": "சனிவாரம் (சனிக்கிழமை) சனியின் நாள். சனி கிரகம் ஒழுக்கம், கர்மா, விடாமுயற்சி மற்றும் வாழ்க்கையின் கஷ்டங்களை ஆளுகிறது. சனிக்கிழமையன்று சனி கோவில்களுக்கு செல்வது சனியின் பாடங்களை அங்கீகரித்து அதனுடன் செயல்படும் ஒரு வழியாகும் – அவற்றை தவிர்ப்பதல்ல.",
+        "te": "శనివార (శనివారం) శని గ్రహం యొక్క రోజు. శని గ్రహం క్రమశిక్షణ, కర్మ, పట్టుదల మరియు జీవిత కష్టాలను పాలిస్తుంది. శనివారం నాడు శని దేవాలయాలను సందర్శించడం అనేది శని యొక్క పాఠాలను గుర్తించి, వాటితో పనిచేయడానికి ఒక మార్గం – వాటిని నివారించడం కాదు.",
+        "bn": "শনিবার (শনিবার) শনির দিন। শনি শৃঙ্খলা, কর্ম, অধ্যবসায় এবং জীবনের কঠোরতা নিয়ন্ত্রণ করে। শনিবারে শনি মন্দির পরিদর্শন করা শনির শিক্ষাকে স্বীকার করার এবং সেগুলির সাথে কাজ করার একটি উপায় – এগুলি এড়িয়ে যাওয়া নয়।",
+        "kn": "ಶನಿವಾರವು (ಶನಿವಾರ) ಶನಿ ಗ್ರಹದ ದಿನ. ಶನಿ ಗ್ರಹವು ಶಿಸ್ತು, ಕರ್ಮ, ಪರಿಶ್ರಮ ಮತ್ತು ಜೀವನದ ಕಷ್ಟಗಳನ್ನು ಆಳುತ್ತದೆ. ಶನಿವಾರದಂದು ಶನಿ ದೇವಾಲಯಗಳಿಗೆ ಭೇಟಿ ನೀಡುವುದು ಶನಿಯ ಪಾಠಗಳನ್ನು ಗುರುತಿಸುವ ಮತ್ತು ಅವುಗಳೊಂದಿಗೆ ಕೆಲಸ ಮಾಡುವ ಒಂದು ಮಾರ್ಗವಾಗಿದೆ – ಅವುಗಳನ್ನು ತಪ್ಪಿಸುವುದಲ್ಲ.",
         "mr": "शनिवार शनि का दिन है। शनि अनुशासन, कर्म, धैर्य और जीवन की कठिनाइयों का शासक है। शनिवार को शनि मन्दिर जाना शनि के पाठों को स्वीकार करने और उनके साथ कार्य करने का तरीका है  –  उनसे बचने का नहीं।",
-        "gu": "Shanivara (Saturday) is Saturn's day. Saturn governs discipline, karma, perseverance, and life's hardships. Visiting Shani temples on Saturday is a way of acknowledging and working with Saturn's lessons  –  not avoiding them.",
+        "gu": "શનિવાર (શનિવાર) શનિનો દિવસ છે. શનિ શિસ્ત, કર્મ, દ્રઢતા અને જીવનની મુશ્કેલીઓનું સંચાલન કરે છે. શનિવારે શનિ મંદિરોની મુલાકાત લેવી એ શનિના પાઠોને સ્વીકારવાની અને તેની સાથે કામ કરવાની એક રીત છે – તેમને ટાળવાની નહીં.",
         "mai": "शनिवार (शनिवार) शनि कऽ दिन अछि। शनि अनुशासन, कर्म, लगन आ जीवन कऽ कठिनाई पर शासन करैत अछि। शनिवार कऽ शनि मन्दिर मे दर्शन करब शनि कऽ शिक्षा कऽ स्वीकार करबाक आ ओकरा सङ्ग काज करबाक एकटा तरीका अछि – ओकरा सँ बचबाक नहि।"
       }
     }
@@ -691,252 +691,252 @@
     "en": "Here's something that might surprise you: every Hindu ritual your grandparents perform has an astronomical calculation running underneath it. When your mother lights a lamp at sunset during Diwali, she's marking the exact solar position on Kartik Amavasya. When a pandit picks your wedding date, he's solving a multi-variable optimization problem across 7 astronomical parameters. When you fast on Ekadashi, you're responding to a specific Moon-Sun angular relationship. None of this is random tradition \\u2014 it's applied astronomy.",
     "hi": "यह बात आपको चौंका सकती है: आपके दादा-दादी जो भी हिन्दू कर्मकाण्ड करते हैं, उसके नीचे एक खगोलीय गणना चल रही है। जब आपकी माँ दिवाली पर सूर्यास्त में दीप जलाती हैं, वे कार्तिक अमावस्या पर सटीक सौर स्थिति चिह्नित कर रही हैं। जब पण्डित आपकी शादी की तारीख चुनता है, वह 7 खगोलीय मापदण्डों पर बहु-चर अनुकूलन समस्या हल कर रहा है। जब आप एकादशी का व्रत रखते हैं, आप एक विशिष्ट चन्द्र-सूर्य कोणीय सम्बन्ध पर प्रतिक्रिया दे रहे हैं। इनमें कुछ भी यादृच्छिक परम्परा नहीं है  –  यह व्यावहारिक खगोलशास्त्र है।",
     "mai": "एतय किछु अछि जे अहाँकेँ आश्चर्यचकित क' सकैत अछि: अहाँक दादा-दादी जे प्रत्येक हिन्दू अनुष्ठान करैत छथि, ओकर नीचाँ एकटा खगोलीय गणना चलैत रहैत अछि। जखन अहाँक माय दीपावलीक समय साँझमे दीप जराबैत छथि, ओ कार्तिक अमावस्या पर सूर्यक सटीक स्थिति केँ चिह्नित करैत छथि। जखन कोनो पंडित अहाँक विवाहक तिथि चुनैत छथि, ओ 7 खगोलीय मापदंड पर एकटा बहु-चर अनुकूलन समस्या केँ हल करैत छथि। जखन अहाँ एकादशी पर उपवास करैत छी, अहाँ एकटा विशिष्ट चन्द्रमा-सूर्य कोणीय संबंध पर प्रतिक्रिया द' रहल छी। ई सभ कोनो यादृच्छिक परंपरा नहि अछि — ई अनुप्रयुक्त खगोल विज्ञान अछि।",
-    "mr": "Here's something that might surprise you: every Hindu ritual your grandparents perform has an astronomical calculation running underneath it. When your mother lights a lamp at sunset during Diwali, she's marking the exact solar position on Kartik Amavasya. When a pandit picks your wedding date, he's solving a multi-variable optimization problem across 7 astronomical parameters. When you fast on Ekadashi, you're responding to a specific Moon-Sun angular relationship. None of this is random tradition \\u2014 it's applied astronomy."
+    "mr": "तुम्हाला कदाचित आश्चर्य वाटेल अशी एक गोष्ट आहे: तुमचे आजोबा-आजी जे प्रत्येक हिंदू विधी करतात, त्यामागे खगोलशास्त्रीय गणना असते. जेव्हा तुमची आई दिवाळीत सूर्यास्ताच्या वेळी दिवा लावते, तेव्हा ती कार्तिक अमावस्येच्या दिवशीची सूर्याची नेमकी स्थिती दर्शवते. जेव्हा पंडित तुमच्या लग्नाची तारीख निवडतो, तेव्हा तो ७ खगोलशास्त्रीय मापदंडांवर आधारित अनेक चलांची ऑप्टिमायझेशन समस्या सोडवत असतो. जेव्हा तुम्ही एकादशीला उपवास करता, तेव्हा तुम्ही चंद्र-सूर्याच्या विशिष्ट कोनीय संबंधाला प्रतिसाद देत असता. यापैकी काहीही केवळ यादृच्छिक परंपरा नाही — हे उपयोजित खगोलशास्त्र आहे."
   },
   "everyHinduRitualHasAn": {
     "en": "Every Hindu Ritual Has an Astronomical Basis",
     "hi": "प्रत्येक हिन्दू कर्मकाण्ड का खगोलीय आधार है",
     "mai": "प्रत्येक हिन्दू अनुष्ठानक एकटा खगोलीय आधार अछि",
-    "mr": "Every Hindu Ritual Has an Astronomical Basis"
+    "mr": "प्रत्येक हिंदू विधीला खगोलशास्त्रीय आधार आहे"
   },
   "everWonderedWhyFastSpecifically": {
     "en": "Ever wondered why fast specifically on Ekadashi? Why worship on Purnima? Why Tarpana on Amavasya? Behind all these lies precise astronomical mathematics.",
     "hi": "आपने कभी सोचा है कि एकादशी पर ही उपवास क्यों? पूर्णिमा पर ही पूजा क्यों? अमावस्या पर ही तर्पण क्यों? इन सबके पीछे सटीक खगोलीय गणित है।",
     "mai": "की कहियो सोचलहुँ जे एकादशी पर विशेष रूप सँ उपवास किएक? पूर्णिमा पर पूजा किएक? अमावस्या पर तर्पण किएक? ई सभक पाछू सटीक खगोलीय गणित अछि।",
-    "mr": "Ever wondered why fast specifically on Ekadashi? Why worship on Purnima? Why Tarpana on Amavasya? Behind all these lies precise astronomical mathematics."
+    "mr": "एकादशीलाच उपवास का करतात? पौर्णिमेला पूजा का करतात? अमावस्येला तर्पण का करतात? असा विचार कधी केला आहे का? या सर्वांमागे अचूक खगोलशास्त्रीय गणित आहे."
   },
   "ekadashiFasting11thTithi": {
     "en": "Ekadashi Fasting (11th Tithi)",
     "hi": "एकादशी व्रत (11वीं तिथि)",
     "mai": "एकादशी उपवास (११म तिथि)",
-    "mr": "Ekadashi Fasting (11th Tithi)"
+    "mr": "एकादशी उपवास (११ वी तिथी)"
   },
   "whenMoonSunElongationReaches": {
     "en": "When Moon-Sun elongation reaches 120\\u00B0-132\\u00B0, the Moon's gravitational pull on Earth's water is at a specific phase. Ayurveda links this to digestive changes \\u2014 fasting helps. Whether you accept the mechanism or not, the timing is astronomically precise.",
     "hi": "जब चन्द्र-सूर्य कोण 120°-132° होता है, चन्द्रमा का गुरुत्वाकर्षण पृथ्वी के जल पर एक विशेष चरण में होता है। आयुर्वेद इसे पाचन परिवर्तनों से जोड़ता है  –  उपवास सहायक होता है। तन्त्र स्वीकार करें या न करें, समय खगोलीय रूप से सटीक है।",
     "mai": "जखन चन्द्रमा-सूर्यक दीर्घीकरण १२०°-१३२° धरि पहुँचैत अछि, तखन पृथ्वीक जल पर चन्द्रमाक गुरुत्वाकर्षण खिंचाव एकटा विशिष्ट चरणमे रहैत अछि। आयुर्वेद एकरा पाचन परिवर्तन सँ जोड़ैत अछि — उपवास सहायक होइत अछि। अहाँ एहि तंत्र केँ स्वीकार करब वा नहि, मुदा समय खगोलीय रूप सँ सटीक अछि।",
-    "mr": "When Moon-Sun elongation reaches 120\\u00B0-132\\u00B0, the Moon's gravitational pull on Earth's water is at a specific phase. Ayurveda links this to digestive changes \\u2014 fasting helps. Whether you accept the mechanism or not, the timing is astronomically precise."
+    "mr": "जेव्हा चंद्र-सूर्याचे एलॉन्गेशन १२०\\u00B0-१३२\\u00B0 पर्यंत पोहोचते, तेव्हा पृथ्वीवरील पाण्यावर चंद्राचे गुरुत्वाकर्षण विशिष्ट टप्प्यावर असते. आयुर्वेद याचा संबंध पचनसंस्थेतील बदलांशी जोडतो — उपवास मदत करतो. तुम्ही ही यंत्रणा स्वीकारता किंवा नाही, पण वेळ खगोलशास्त्रीयदृष्ट्या अचूक आहे."
   },
   "modernChronobiologyU2014TheStudy": {
     "en": "Modern chronobiology \\u2014 the study of how biological processes relate to time cycles \\u2014 earned the 2017 Nobel Prize in Physiology/Medicine. The researchers (Hall, Rosbash, Young) proved that every cell has a molecular clock synchronized to external cycles. The Ekadashi fasting tradition essentially says: \"At this specific point in the lunar cycle (120\\u00B0-132\\u00B0 Moon-Sun elongation), your digestive system operates differently \\u2014 so fast.\" Whether this specific claim holds up to clinical trials is untested, but the FRAMEWORK \\u2014 that biological rhythms correlate with celestial cycles \\u2014 is now Nobel-winning science.",
     "hi": "आधुनिक कालजीवविज्ञान (chronobiology)  –  जैविक प्रक्रियाओं और समय चक्रों के सम्बन्ध का अध्ययन  –  ने 2017 में चिकित्सा/शरीरविज्ञान का नोबेल पुरस्कार जीता। शोधकर्ताओं (हॉल, रोसबैश, यंग) ने सिद्ध किया कि हर कोशिका में बाहरी चक्रों से समन्वित एक आणविक घड़ी है। एकादशी व्रत परम्परा मूलतः कहती है: \"चन्द्र चक्र के इस विशिष्ट बिन्दु पर (120°-132° चन्द्र-सूर्य कोण), आपका पाचन तन्त्र भिन्न रूप से काम करता है  –  इसलिए उपवास करें।\" यह विशिष्ट दावा चिकित्सकीय परीक्षणों में अपरीक्षित है, लेकिन ढाँचा  –  कि जैविक लय ब्रह्माण्डीय चक्रों से सम्बद्ध हैं  –  अब नोबेल पुरस्कार विजेता विज्ञान है।",
     "mai": "आधुनिक क्रोनोबायोलॉजी — जैविक प्रक्रियासभ समय चक्र सँ कोना संबंधित अछि, एकर अध्ययन — केँ २०१७ मे फिजियोलॉजी/मेडिसिनमे नोबेल पुरस्कार भेटल छल। शोधकर्तासभ (हॉल, रोसबैश, यंग) ई सिद्ध केलनि जे प्रत्येक कोशिकाक एकटा आणविक घड़ी होइत अछि जे बाहरी चक्र सँ सिंक्रनाइज़ होइत अछि। एकादशी उपवास परंपरा मूल रूप सँ कहैत अछि: \"चन्द्रमा चक्रक एहि विशिष्ट बिंदु पर (१२०°-१३२° चन्द्रमा-सूर्य दीर्घीकरण), अहाँक पाचन तंत्र भिन्न रूप सँ काज करैत अछि — ताहि लेल उपवास करू।\" ई विशिष्ट दावा नैदानिक ​​परीक्षणमे खरा उतरैत अछि वा नहि, ई अप्रमाणित अछि, मुदा ढाँचा — जे जैविक लय आकाशीय चक्र सँ संबंधित अछि — आब नोबेल पुरस्कार विजेता विज्ञान अछि।",
-    "mr": "Modern chronobiology \\u2014 the study of how biological processes relate to time cycles \\u2014 earned the 2017 Nobel Prize in Physiology/Medicine. The researchers (Hall, Rosbash, Young) proved that every cell has a molecular clock synchronized to external cycles. The Ekadashi fasting tradition essentially says: \"At this specific point in the lunar cycle (120\\u00B0-132\\u00B0 Moon-Sun elongation), your digestive system operates differently \\u2014 so fast.\" Whether this specific claim holds up to clinical trials is untested, but the FRAMEWORK \\u2014 that biological rhythms correlate with celestial cycles \\u2014 is now Nobel-winning science."
+    "mr": "आधुनिक क्रोनोबायोलॉजी — जैविक प्रक्रियांचा वेळेच्या चक्रांशी कसा संबंध आहे याचा अभ्यास — याला २०१७ चे शरीरविज्ञान/वैद्यकशास्त्रातील नोबेल पारितोषिक मिळाले. संशोधकांनी (हॉल, रॉसबॅश, यंग) सिद्ध केले की प्रत्येक पेशीमध्ये बाह्य चक्रांशी समक्रमित (synchronized) असलेले एक आण्विक घड्याळ (molecular clock) असते. एकादशी उपवासाची परंपरा मूलतः असे म्हणते: \"चंद्र चक्राच्या या विशिष्ट टप्प्यावर (१२०\\u00B0-१३२\\u00B0 चंद्र-सूर्य एलॉन्गेशन), तुमची पचनसंस्था वेगळ्या पद्धतीने कार्य करते — म्हणून उपवास करा.\" हा विशिष्ट दावा क्लिनिकल चाचण्यांमध्ये टिकतो की नाही हे तपासले गेले नाही, परंतु जैविक लय आणि खगोलीय चक्रांचा संबंध आहे हे 'फ्रेमवर्क' आता नोबेल-विजेते विज्ञान आहे."
   },
   "purnimaFullMoonWorship": {
     "en": "Purnima (Full Moon) Worship",
     "hi": "पूर्णिमा पूजा",
     "mai": "पूर्णिमा (पूर्ण चन्द्रमा) पूजा",
-    "mr": "Purnima (Full Moon) Worship"
+    "mr": "पौर्णिमा (पूर्ण चंद्र) पूजा"
   },
   "theMoonIsDirectlyOpposite": {
     "en": "The Moon is directly opposite the Sun \\u2014 180\\u00B0 elongation. Maximum reflected light. Tidal forces peak. In Vedic thought, the mind (manas) is most active \\u2014 ideal for meditation and devotion.",
     "hi": "चन्द्रमा सूर्य के ठीक विपरीत  –  180° कोण। अधिकतम परावर्तित प्रकाश। ज्वारीय बल चरम पर। वैदिक विचार में मन (मानस) सर्वाधिक सक्रिय  –  ध्यान और भक्ति के लिए आदर्श समय।",
     "mai": "चन्द्रमा सूर्यक ठीक विपरीत अछि — १८०° दीर्घीकरण। अधिकतम परावर्तित प्रकाश। ज्वारीय बल चरम पर। वैदिक विचारमे, मन (मानस) सबसँ बेसी सक्रिय रहैत अछि — ध्यान आ भक्ति लेल आदर्श।",
-    "mr": "The Moon is directly opposite the Sun \\u2014 180\\u00B0 elongation. Maximum reflected light. Tidal forces peak. In Vedic thought, the mind (manas) is most active \\u2014 ideal for meditation and devotion."
+    "mr": "चंद्र सूर्याच्या अगदी विरुद्ध असतो — १८०\\u00B0 एलॉन्गेशन. परावर्तित प्रकाश कमाल असतो. भरती-ओहोटीची शक्ती शिखरावर असते. वैदिक विचारानुसार, मन (मानस) सर्वात सक्रिय असते — ध्यान आणि भक्तीसाठी आदर्श."
   },
   "amavasyaNewMoonTarpana": {
     "en": "Amavasya (New Moon) Tarpana",
     "hi": "अमावस्या तर्पण",
     "mai": "अमावस्या (नव चन्द्रमा) तर्पण",
-    "mr": "Amavasya (New Moon) Tarpana"
+    "mr": "अमावस्या (नवीन चंद्र) तर्पण"
   },
   "moonConjunctSunU2014Invisible": {
     "en": "Moon conjunct Sun \\u2014 invisible. The \"darkest\" time. Traditionally associated with ancestor remembrance (Pitru Tarpana). The astronomical alignment is real; the cultural meaning layers onto it.",
     "hi": "चन्द्रमा सूर्य के साथ युति में  –  अदृश्य। \"सबसे अँधेरा\" समय। पारम्परिक रूप से पितृ स्मरण (पितृ तर्पण) से जुड़ा। खगोलीय संरेखण वास्तविक है; सांस्कृतिक अर्थ उस पर आधारित है।",
     "mai": "चन्द्रमा सूर्यक संग — अदृश्य। सबसँ \"अन्हार\" समय। पारंपरिक रूप सँ पितृ स्मरण (पितृ तर्पण) सँ संबंधित। खगोलीय संरेखण वास्तविक अछि; सांस्कृतिक अर्थ एकरा पर परत चढ़बैत अछि।",
-    "mr": "Moon conjunct Sun \\u2014 invisible. The \"darkest\" time. Traditionally associated with ancestor remembrance (Pitru Tarpana). The astronomical alignment is real; the cultural meaning layers onto it."
+    "mr": "चंद्र सूर्याशी युती करतो — अदृश्य. सर्वात \"अंधारी\" वेळ. परंपरेनुसार पूर्वजांच्या स्मरणार्थ (पितृ तर्पण) संबंधित. खगोलशास्त्रीय संरेखन (alignment) वास्तविक आहे; सांस्कृतिक अर्थ त्यावर आधारित आहे."
   },
   "keyHistoricalFact": {
     "en": "Key Historical Fact",
     "hi": "रोचक तथ्य",
     "mai": "मुख्य ऐतिहासिक तथ्य",
-    "mr": "Key Historical Fact"
+    "mr": "महत्त्वाची ऐतिहासिक वस्तुस्थिती"
   },
   "aryabhataCorrectlyExplainedThatThe": {
     "en": "Aryabhata correctly explained that the Moon shines by REFLECTED sunlight (not self-luminous), and that eclipses are caused by Earth's shadow (not Rahu swallowing the Moon). He wrote this in 499 CE \\u2014 while Europe was in the Dark Ages. He then reconciled this with the Rahu-Ketu mythological framework as a teaching tool.",
     "hi": "आर्यभट ने सही ढंग से समझाया कि चन्द्रमा परावर्तित सूर्य प्रकाश से चमकता है (स्वयं प्रकाशमान नहीं), और ग्रहण पृथ्वी की छाया से होते हैं (राहु चन्द्रमा को निगलने से नहीं)। उन्होंने यह 499 ई. में लिखा  –  जब यूरोप अन्धकार युग में था। फिर उन्होंने राहु-केतु पौराणिक ढाँचे को शिक्षण उपकरण के रूप में समन्वित किया।",
     "mai": "आर्यभट्ट सही ढंग सँ समझाओलनि जे चन्द्रमा परावर्तित सूर्यक प्रकाश सँ चमकैत अछि (स्वयं प्रकाशित नहि), आ ग्रहण पृथ्वीक छायाक कारण होइत अछि (राहु चन्द्रमा केँ निगलि नहि जाइत अछि)। ओ ई ४९९ ईस्वी मे लिखने छलाह — जखन यूरोपमे अन्हार युग चलि रहल छल। ओ एकरा राहु-केतु पौराणिक ढाँचाक संग एकटा शिक्षण उपकरणक रूपमे सामंजस्य स्थापित केलनि।",
-    "mr": "Aryabhata correctly explained that the Moon shines by REFLECTED sunlight (not self-luminous), and that eclipses are caused by Earth's shadow (not Rahu swallowing the Moon). He wrote this in 499 CE \\u2014 while Europe was in the Dark Ages. He then reconciled this with the Rahu-Ketu mythological framework as a teaching tool."
+    "mr": "आर्यभटाने योग्यरित्या स्पष्ट केले की चंद्र परावर्तित सूर्यप्रकाशाने चमकतो (स्वयं-प्रकाशित नाही), आणि ग्रहणे पृथ्वीच्या सावलीमुळे होतात (राहूने चंद्र गिळल्यामुळे नाही). त्याने हे ४९९ CE मध्ये लिहिले — जेव्हा युरोप अंधाऱ्या युगात होता. नंतर त्याने हे राहू-केतूच्या पौराणिक चौकटीशी एक शिकवण्याचे साधन म्हणून जुळवून घेतले."
   },
   "whySpecificDaysAndTimes": {
     "en": "Why Specific Days and Times Matter",
     "hi": "विशेष दिन और समय क्यों महत्त्वपूर्ण हैं",
     "mai": "विशिष्ट दिन आ समय किएक महत्वपूर्ण अछि",
-    "mr": "Why Specific Days and Times Matter"
+    "mr": "विशिष्ट दिवस आणि वेळा का महत्त्वाच्या आहेत"
   },
   "tuesdayMarsDayMangalavara": {
     "en": "Tuesday  –  Mars-Day (Mangalavara)",
     "hi": "मंगलवार  –  मंगल-दिवस",
     "mai": "मंगलवार – मंगल-दिन (मंगलवार)",
-    "mr": "Tuesday  –  Mars-Day (Mangalavara)"
+    "mr": "मंगळवार  –  मंगळ-दिवस (मंगळवार)"
   },
   "marsRulesCourageConflictSurgery": {
     "en": "Mars rules courage, conflict, surgery. Hanuman worship on Tuesday = invoking Mars energy through the warrior-deity. Hanuman embodies strength, valor, and unwavering devotion \\u2014 exactly the qualities Mars represents.",
     "hi": "मंगल साहस, संघर्ष, शल्य चिकित्सा का शासक है। मंगलवार को हनुमान पूजा = योद्धा-देवता के माध्यम से मंगल ऊर्जा का आह्वान। हनुमान बल, पराक्रम और अटल भक्ति के प्रतीक हैं  –  ठीक वही गुण जो मंगल ग्रह प्रतिनिधित्व करता है।",
     "mai": "मंगल साहस, संघर्ष, शल्य चिकित्सा पर शासन करैत अछि। मंगलवार केँ हनुमान पूजा = योद्धा-देवताक माध्यम सँ मंगलक ऊर्जा केँ आह्वान करब। हनुमान शक्ति, वीरता, आ अटूट भक्ति केँ मूर्त रूप दैत छथि — ठीक ओहि गुणसभकेँ जे मंगल प्रतिनिधित्व करैत अछि।",
-    "mr": "Mars rules courage, conflict, surgery. Hanuman worship on Tuesday = invoking Mars energy through the warrior-deity. Hanuman embodies strength, valor, and unwavering devotion \\u2014 exactly the qualities Mars represents."
+    "mr": "मंगळ धैर्य, संघर्ष, शस्त्रक्रिया नियंत्रित करतो. मंगळवारी हनुमानाची पूजा = योद्धा-देवतेद्वारे मंगळाची ऊर्जा आवाहन करणे. हनुमान शक्ती, शौर्य आणि अटूट भक्तीचे प्रतीक आहे — नेमके तेच गुण जे मंगळ दर्शवतो."
   },
   "saturdaySaturnDayShanivara": {
     "en": "Saturday  –  Saturn-Day (Shanivara)",
     "hi": "शनिवार  –  शनि-दिवस",
     "mai": "शनिवार – शनि-दिन (शनिवार)",
-    "mr": "Saturday  –  Saturn-Day (Shanivara)"
+    "mr": "शनिवार  –  शनी-दिवस (शनिवार)"
   },
   "saturnRulesDisciplineKarmaHardship": {
     "en": "Saturn rules discipline, karma, hardship. Shani temple visits on Saturday = acknowledging Saturn's lessons. Not fear, but respect \\u2014 like respecting a tough teacher who taught you the most.",
     "hi": "शनि अनुशासन, कर्म, कठिनाई का शासक है। शनि मन्दिर दर्शन = शनि के पाठों को स्वीकार करना। यह भय नहीं, सम्मान है  –  ठीक वैसे जैसे कठोर शिक्षक का सम्मान करते हैं जिसने आपको सबसे अधिक सिखाया।",
     "mai": "शनि अनुशासन, कर्म, कठिनाई पर शासन करैत अछि। शनिवार केँ शनि मंदिरक यात्रा = शनिक पाठ केँ स्वीकार करब। डर नहि, मुदा सम्मान — जेना एकटा कठोर शिक्षकक सम्मान करब जे अहाँकेँ सबसँ बेसी सिखाओलनि।",
-    "mr": "Saturn rules discipline, karma, hardship. Shani temple visits on Saturday = acknowledging Saturn's lessons. Not fear, but respect \\u2014 like respecting a tough teacher who taught you the most."
+    "mr": "शनी शिस्त, कर्म, आणि अडचणी नियंत्रित करतो. शनिवारी शनी मंदिरात जाणे = शनीच्या शिकवणींना मान्यता देणे. भीती नाही, तर आदर — जसे तुम्हाला खूप काही शिकवणाऱ्या कठोर शिक्षकाचा आदर करणे."
   },
   "thinkAboutItYouAlready": {
     "en": "Think about it: you already practice planetary awareness without realizing it. You call it \"Monday blues\" (Moon-day = emotional, reflective). You say \"TGIF\" because Friday (Venus-day = Shukravara) feels lighter, more social. \"Saturday night\" (Saturn-day = discipline relaxes) is when you let loose. The planetary hour system that created our weekday names is EXACTLY the Hora system in Jyotish. You've been doing applied Jyotish your whole life \\u2014 you just didn't know the Sanskrit terms.",
     "hi": "सोचिए: आप पहले से बिना जाने ग्रह जागरूकता का अभ्यास करते हैं। आप \"Monday blues\" कहते हैं (Moon-day = भावनात्मक, चिन्तनशील)। आप \"TGIF\" कहते हैं क्योंकि Friday (Venus-day = शुक्रवार) हल्का, अधिक सामाजिक लगता है। \"Saturday night\" (Saturn-day = अनुशासन ढीला) में आप छुट्टी मनाते हैं। सप्ताह के दिनों के नाम बनाने वाली ग्रह होरा पद्धति ठीक वही होरा पद्धति है जो ज्योतिष में है। आप जीवन भर व्यावहारिक ज्योतिष करते रहे हैं  –  बस संस्कृत शब्द नहीं जानते थे।",
     "mai": "एकर बारेमे सोचू: अहाँ बिना एहसास केने ग्रहीय जागरूकताक अभ्यास पहिने सँ करैत छी। अहाँ एकरा \"सोमवारक उदासी\" कहैत छी (चन्द्रमा-दिन = भावनात्मक, चिंतनशील)। अहाँ \"TGIF\" कहैत छी किएक त शुक्रवार (शुक्र-दिन = शुक्रावर) हल्का, बेसी सामाजिक लगैत अछि। \"शनिचरक राति\" (शनि-दिन = अनुशासन शिथिल होइत अछि) ओहि समय होइत अछि जखन अहाँ मुक्त होइत छी। ग्रहीय घंटा प्रणाली जे हमर सप्ताहक दिनक नाम बनौलक, ओ ज्योतिषमे होरा प्रणालीक ठीक ओहिना अछि। अहाँ अपन पूरा जीवन अनुप्रयुक्त ज्योतिष करैत रहल छी — अहाँकेँ बस संस्कृतक शब्द नहि बुझल छल।",
-    "mr": "Think about it: you already practice planetary awareness without realizing it. You call it \"Monday blues\" (Moon-day = emotional, reflective). You say \"TGIF\" because Friday (Venus-day = Shukravara) feels lighter, more social. \"Saturday night\" (Saturn-day = discipline relaxes) is when you let loose. The planetary hour system that created our weekday names is EXACTLY the Hora system in Jyotish. You've been doing applied Jyotish your whole life \\u2014 you just didn't know the Sanskrit terms."
+    "mr": "विचार करा: तुम्हाला माहीत नसतानाही तुम्ही आधीच ग्रहांची जाणीव ठेवता. तुम्ही याला \"सोमवारची उदासी\" (चंद्र-दिवस = भावनिक, चिंतनशील) म्हणता. तुम्ही \"TGIF\" म्हणता कारण शुक्रवार (शुक्र-दिवस = शुक्रवार) हलका, अधिक सामाजिक वाटतो. \"शनिवारची रात्र\" (शनी-दिवस = शिस्त शिथिल होते) ही अशी वेळ असते जेव्हा तुम्ही मोकळेपणाने वागता. आपल्या आठवड्याच्या दिवसांची नावे तयार करणारी ग्रहीय तास प्रणाली ही ज्योतिषशास्त्रातील होरा प्रणालीच आहे. तुम्ही आयुष्यभर उपयोजित ज्योतिष करत आहात — तुम्हाला फक्त संस्कृत संज्ञा माहीत नव्हत्या."
   },
   "marriageMuhurtaNotArbitrary": {
     "en": "Marriage Muhurta  –  Not Arbitrary",
     "hi": "विवाह मुहूर्त  –  मनमाना नहीं",
     "mai": "विवाह मुहूर्त – मनमाना नहि",
-    "mr": "Marriage Muhurta  –  Not Arbitrary"
+    "mr": "विवाह मुहूर्त  –  यादृच्छिक नाही"
   },
   "aGoodMarriageMuhurtaRequires": {
     "en": "A good marriage muhurta requires: Moon in a gentle nakshatra, Venus not combust (sufficiently far from Sun), Jupiter aspecting the 7th house, no Rahu Kaal. These are computable astronomical conditions \\u2014 not superstition, mathematics.",
     "hi": "शुभ विवाह मुहूर्त के लिए आवश्यक: सौम्य नक्षत्र में चन्द्रमा, शुक्र अस्त नहीं (सूर्य से पर्याप्त दूर), गुरु की 7वें भाव पर दृष्टि, राहु काल में नहीं। ये गणनीय खगोलीय शर्तें हैं  –  अन्धविश्वास नहीं, गणित है।",
     "mai": "एकटा नीक विवाह मुहूर्त लेल आवश्यक अछि: चन्द्रमा एकटा सौम्य नक्षत्रमे, शुक्र अस्त नहि होय (सूर्य सँ पर्याप्त दूर), बृहस्पति ७म भावकेँ देखैत होय, कोनो राहु काल नहि होय। ई गणना योग्य खगोलीय स्थिति अछि — अंधविश्वास नहि, गणित।",
-    "mr": "A good marriage muhurta requires: Moon in a gentle nakshatra, Venus not combust (sufficiently far from Sun), Jupiter aspecting the 7th house, no Rahu Kaal. These are computable astronomical conditions \\u2014 not superstition, mathematics."
+    "mr": "चांगल्या विवाह मुहूर्तासाठी आवश्यक आहे: चंद्र सौम्य नक्षत्रात असावा, शुक्र अस्तंगत नसावा (सूर्यापासून पुरेसा दूर), गुरुची सातव्या स्थानावर दृष्टी असावी, राहू काळ नसावा. या गणना करण्यायोग्य खगोलशास्त्रीय अटी आहेत — अंधश्रद्धा नाही, गणित आहे."
   },
   "sankalpaACosmicTimestamp": {
     "en": "Sankalpa  –  A Cosmic Timestamp",
     "hi": "संकल्प  –  ब्रह्माण्डीय समय-चिह्न",
     "mai": "संकल्प – एकटा ब्रह्मांडीय टाइमस्टैम्प",
-    "mr": "Sankalpa  –  A Cosmic Timestamp"
+    "mr": "संकल्प  –  एक वैश्विक टाइमस्टॅम्प"
   },
   "theSankalpaBeforeEveryPuja": {
     "en": "The Sankalpa before every puja states: samvatsara, ayana, ritu, masa, paksha, tithi, vara, nakshatra. You're literally declaring \"at THIS precise astronomical moment, I make this vow.\" Our Sankalpa Generator computes all of this automatically.",
     "hi": "प्रत्येक पूजा से पहले संकल्प में कहा जाता है: सम्वत्सर, अयन, ऋतु, मास, पक्ष, तिथि, वार, नक्षत्र। आप शाब्दिक रूप से घोषणा कर रहे हैं \"इस सटीक खगोलीय क्षण पर, मैं यह प्रतिज्ञा करता हूँ।\" हमारा संकल्प जनक यह सब स्वचालित रूप से गणित करता है।",
     "mai": "प्रत्येक पूजा सँ पहिनेक संकल्पमे कहल जाइत अछि: संवत्सर, अयन, ऋतु, मास, पक्ष, तिथि, वार, नक्षत्र। अहाँ शाब्दिक रूप सँ घोषणा क' रहल छी जे \"एहि सटीक खगोलीय क्षणमे, हम ई प्रतिज्ञा करैत छी।\" हमर संकल्प जेनरेटर ई सभ अपने आप गणना करैत अछि।",
-    "mr": "The Sankalpa before every puja states: samvatsara, ayana, ritu, masa, paksha, tithi, vara, nakshatra. You're literally declaring \"at THIS precise astronomical moment, I make this vow.\" Our Sankalpa Generator computes all of this automatically."
+    "mr": "प्रत्येक पूजेपूर्वीचा संकल्प सांगतो: संवत्सर, अयन, ऋतू, मास, पक्ष, तिथी, वार, नक्षत्र. तुम्ही अक्षरशः असे घोषित करत आहात की \"या अचूक खगोलशास्त्रीय क्षणी, मी हे व्रत करतो.\" आमचे संकल्प जनरेटर हे सर्व आपोआप गणना करते."
   },
   "theSuryaSiddhantaDescribesTime": {
     "en": "The Surya Siddhanta describes time divisions from the \"truti\" (29.6 microseconds) to the \"kalpa\" (4.32 billion years \\u2014 remarkably close to Earth's actual age of 4.54 billion years). From microseconds to billions of years \\u2014 this scale of thinking was unique to Indian civilization.",
     "hi": "सूर्य सिद्धान्त \"त्रुटि\" (29.6 माइक्रोसेकण्ड) से \"कल्प\" (4.32 अरब वर्ष  –  पृथ्वी की वास्तविक आयु 4.54 अरब वर्ष के उल्लेखनीय रूप से निकट) तक समय विभाजन का वर्णन करता है। माइक्रोसेकण्ड से अरबों वर्षों तक  –  विचार का यह पैमाना भारतीय सभ्यता की विशेषता था।",
     "mai": "सूर्य सिद्धांत \"त्रुटि\" (२९.६ माइक्रोसेकंड) सँ ल' क' \"कल्प\" (४.३२ अरब वर्ष — पृथ्वीक वास्तविक आयु ४.५४ अरब वर्षक उल्लेखनीय रूप सँ नजदीक) धरिक समय विभाजनक वर्णन करैत अछि। माइक्रोसेकंड सँ अरबों वर्ष धरि — सोचक ई पैमाना भारतीय सभ्यताक लेल अद्वितीय छल।",
-    "mr": "The Surya Siddhanta describes time divisions from the \"truti\" (29.6 microseconds) to the \"kalpa\" (4.32 billion years \\u2014 remarkably close to Earth's actual age of 4.54 billion years). From microseconds to billions of years \\u2014 this scale of thinking was unique to Indian civilization."
+    "mr": "सूर्य सिद्धांत \"त्रुटी\" (२९.६ मायक्रोसेकंद) पासून \"कल्प\" (४.३२ अब्ज वर्षे — पृथ्वीच्या वास्तविक वय ४.५४ अब्ज वर्षांच्या लक्षणीयरीत्या जवळ) पर्यंतच्या वेळेच्या विभागांचे वर्णन करतो. मायक्रोसेकंदपासून अब्जावधी वर्षांपर्यंत — विचार करण्याची ही व्याप्ती भारतीय संस्कृतीसाठी अद्वितीय होती."
   },
   "howOurAppConnectsIt": {
     "en": "How Our App Connects It All",
     "hi": "हमारा ऐप यह सब कैसे जोड़ता है",
     "mai": "हमर ऐप ई सभ केँ कोना जोड़ैत अछि",
-    "mr": "How Our App Connects It All"
+    "mr": "आमचे ॲप हे सर्व कसे जोडते"
   },
   "nowYouKnowThatRituals": {
     "en": "Now you know that rituals and astronomy are inseparable. Every feature of our app is built on this connection:",
     "hi": "अब आप जानते हैं कि कर्मकाण्ड और खगोलशास्त्र अभिन्न हैं। हमारे ऐप की प्रत्येक सुविधा इसी सम्बन्ध पर आधारित है:",
     "mai": "आब अहाँकेँ बुझल अछि जे अनुष्ठान आ खगोल विज्ञान अविभाज्य अछि। हमर ऐपक प्रत्येक विशेषता एहि संबंध पर बनल अछि:",
-    "mr": "Now you know that rituals and astronomy are inseparable. Every feature of our app is built on this connection:"
+    "mr": "आता तुम्हाला माहीत आहे की विधी आणि खगोलशास्त्र अविभाज्य आहेत. आमच्या ॲपमधील प्रत्येक वैशिष्ट्य या संबंधावर आधारित आहे:"
   },
   "dailyPanchangU2192KnowThe": {
     "en": "• Daily Panchang \\u2192 know the cosmic weather for today",
     "hi": "• दैनिक पंचांग → आज का ब्रह्माण्डीय मौसम जानें",
     "mai": "• दैनिक पंचांग → आइ लेल ब्रह्मांडीय मौसम जानू",
-    "mr": "• Daily Panchang \\u2192 know the cosmic weather for today"
+    "mr": "• दैनिक पंचांग \\u2192 आजचे वैश्विक हवामान जाणून घ्या"
   },
   "festivalCalendarU2192WhenTo": {
     "en": "• Festival Calendar \\u2192 when to celebrate, with astronomical reasons",
     "hi": "• त्योहार कैलेंडर → कब मनाएँ, खगोलीय कारणों सहित",
     "mai": "• त्योहार कैलेंडर → कहिया मनाबी, खगोलीय कारणसभक संग",
-    "mr": "• Festival Calendar \\u2192 when to celebrate, with astronomical reasons"
+    "mr": "• उत्सव कॅलेंडर \\u2192 कधी उत्सव साजरा करायचा, खगोलशास्त्रीय कारणांसह"
   },
   "pujaVidhiU2192StepBy": {
     "en": "• Puja Vidhi \\u2192 step-by-step worship guides with mantras",
     "hi": "• पूजा विधि → मन्त्रों सहित चरण-दर-चरण पूजा मार्गदर्शिका",
     "mai": "• पूजा विधि → मंत्रसभक संग चरण-दर-चरण पूजा मार्गदर्शक",
-    "mr": "• Puja Vidhi \\u2192 step-by-step worship guides with mantras"
+    "mr": "• पूजा विधी \\u2192 मंत्रांसह चरण-दर-चरण पूजा मार्गदर्शक"
   },
   "sankalpaGeneratorU2192YourPersonalized": {
     "en": "• Sankalpa Generator \\u2192 your personalized cosmic timestamp for any puja",
     "hi": "• संकल्प जनक → किसी भी पूजा के लिए आपका व्यक्तिगत ब्रह्माण्डीय समय-चिह्न",
     "mai": "• संकल्प जेनरेटर → कोनो पूजा लेल अहाँक व्यक्तिगत ब्रह्मांडीय टाइमस्टैम्प",
-    "mr": "• Sankalpa Generator \\u2192 your personalized cosmic timestamp for any puja"
+    "mr": "• संकल्प जनरेटर \\u2192 कोणत्याही पूजेसाठी तुमचा वैयक्तिक वैश्विक टाइमस्टॅम्प"
   },
   "muhurtaAiU2192FindThe": {
     "en": "• Muhurta AI \\u2192 find the best time for any activity, scored 0-100",
     "hi": "• मुहूर्त AI → किसी भी कार्य के लिए सर्वोत्तम समय, 0-100 अंकित",
     "mai": "• मुहूर्त एआई → कोनो गतिविधि लेल सबसँ नीक समय खोजू, ०-१०० अंकक संग",
-    "mr": "• Muhurta AI \\u2192 find the best time for any activity, scored 0-100"
+    "mr": "• मुहूर्त एआय \\u2192 कोणत्याही कार्यासाठी सर्वोत्तम वेळ शोधा, ०-१०० गुणांसह"
   },
   "kundaliU2192YourPersonalCosmic": {
     "en": "• Kundali \\u2192 your personal cosmic map",
     "hi": "• कुण्डली → आपका व्यक्तिगत ब्रह्माण्डीय मानचित्र",
     "mai": "• कुंडली → अहाँक व्यक्तिगत ब्रह्मांडीय नक्शा",
-    "mr": "• Kundali \\u2192 your personal cosmic map"
+    "mr": "• कुंडली \\u2192 तुमचा वैयक्तिक वैश्विक नकाशा"
   },
   "learnJyotishU2192UnderstandThe": {
     "en": "• Learn Jyotish \\u2192 understand the science behind all of it",
     "hi": "• ज्योतिष सीखें → इन सबके पीछे का विज्ञान समझें",
     "mai": "• ज्योतिष सीखू → एहि सभक पाछूक विज्ञान केँ बुझू",
-    "mr": "• Learn Jyotish \\u2192 understand the science behind all of it"
+    "mr": "• ज्योतिष शिका \\u2192 या सर्वांमागील विज्ञान समजून घ्या"
   },
   "hereSTheBeautifulThing": {
     "en": "Here's the beautiful thing about Jyotish: you don't have to believe in destiny to find it useful. Use the Panchang as a mindful daily check-in. Use your Kundali as a framework for self-reflection. Use Muhurta as a decision-support tool. Use the Sankalpa as a moment of intention-setting before anything important. The astronomical calculations are exact science. The interpretive layer is cultural wisdom. Take what resonates, leave what doesn't \\u2014 but at least understand what your grandparents knew before dismissing it.",
     "hi": "ज्योतिष की सुन्दरता यह है: आपको भाग्य में विश्वास करने की आवश्यकता नहीं कि यह उपयोगी हो। पंचांग को एक सचेत दैनिक जाँच के रूप में उपयोग करें। अपनी कुण्डली को आत्म-चिन्तन के ढाँचे के रूप में। मुहूर्त को निर्णय-सहायता उपकरण के रूप में। संकल्प को किसी भी महत्त्वपूर्ण कार्य से पहले संकल्प-स्थापना के क्षण के रूप। खगोलीय गणनाएँ सटीक विज्ञान हैं। व्याख्या की परत सांस्कृतिक ज्ञान है। जो गूँजे वह लें, जो न गूँजे छोड़ दें  –  लेकिन कम से कम समझें कि आपके दादा-दादी क्या जानते थे, उसे खारिज करने से पहले।",
     "mai": "ज्योतिषक बारेमे ई सुन्दर बात अछि: एकरा उपयोगी पाबय लेल अहाँकेँ भाग्यमे विश्वास करबाक आवश्यकता नहि अछि। पंचांग केँ एकटा सचेत दैनिक चेक-इनक रूपमे उपयोग करू। अपन कुंडली केँ आत्म-चिंतनक लेल एकटा ढाँचाक रूपमे उपयोग करू। मुहूर्त केँ निर्णय-समर्थन उपकरणक रूपमे उपयोग करू। कोनो महत्वपूर्ण काज सँ पहिने संकल्प केँ इरादा-निर्धारणक क्षणक रूपमे उपयोग करू। खगोलीय गणनासभ सटीक विज्ञान अछि। व्याख्यात्मक परत सांस्कृतिक ज्ञान अछि। जे अहाँकेँ नीक लगैत अछि, ओकरा राखू, जे नहि लगैत अछि, ओकरा छोड़ि दिअ — मुदा कम सँ कम ई बुझू जे अहाँक दादा-दादी एकरा खारिज करबा सँ पहिने की जनैत छलाह।",
-    "mr": "Here's the beautiful thing about Jyotish: you don't have to believe in destiny to find it useful. Use the Panchang as a mindful daily check-in. Use your Kundali as a framework for self-reflection. Use Muhurta as a decision-support tool. Use the Sankalpa as a moment of intention-setting before anything important. The astronomical calculations are exact science. The interpretive layer is cultural wisdom. Take what resonates, leave what doesn't \\u2014 but at least understand what your grandparents knew before dismissing it."
+    "mr": "ज्योतिषशास्त्राबद्दलची सुंदर गोष्ट अशी आहे: ते उपयुक्त वाटण्यासाठी तुम्हाला नशिबावर विश्वास ठेवण्याची गरज नाही. पंचांगाचा उपयोग जागरूक दैनंदिन तपासणीसाठी करा. तुमच्या कुंडलीचा उपयोग आत्म-चिंतनासाठी एक चौकट म्हणून करा. मुहूर्ताचा उपयोग निर्णय-समर्थन साधन म्हणून करा. कोणत्याही महत्त्वाच्या गोष्टीपूर्वी संकल्पचा उपयोग हेतू निश्चित करण्याच्या क्षणासाठी करा. खगोलशास्त्रीय गणना हे अचूक विज्ञान आहे. अर्थ लावण्याचा स्तर सांस्कृतिक शहाणपण आहे. जे तुम्हाला पटते ते घ्या, जे पटत नाही ते सोडून द्या — पण किमान तुमचे आजोबा-आजी काय जाणत होते, ते दुर्लक्षित करण्यापूर्वी समजून घ्या."
   },
   "foundationsComplete": {
     "en": "Foundations Complete!",
     "hi": "आधार पूर्ण!",
     "mai": "आधार पूर्ण भेल!",
-    "mr": "Foundations Complete!"
+    "mr": "पाया पूर्ण!"
   },
   "youNowKnow": {
     "en": "You now know:",
     "hi": "अब आप जानते हैं:",
     "mai": "आब अहाँ जानैत छी:",
-    "mr": "You now know:"
+    "mr": "तुम्हाला आता माहीत आहे:"
   },
   "u2713WhatJyotishIsAnd": {
     "en": "\\u2713 What Jyotish IS (and isn't)",
     "hi": "\\u2713 ज्योतिष क्या है (और क्या नहीं)",
     "mai": "✓ ज्योतिष की अछि (आ की नहि)",
-    "mr": "\\u2713 What Jyotish IS (and isn't)"
+    "mr": "\\u2713 ज्योतिष काय आहे (आणि काय नाही)"
   },
   "u2713HowTheHinduCalendar": {
     "en": "\\u2713 How the Hindu calendar works",
     "hi": "\\u2713 हिन्दू कैलेंडर कैसे काम करता है",
     "mai": "✓ हिन्दू कैलेंडर कोना काज करैत अछि",
-    "mr": "\\u2713 How the Hindu calendar works"
+    "mr": "\\u2713 हिंदू कॅलेंडर कसे कार्य करते"
   },
   "u2713YourRashiAndNakshatra": {
     "en": "\\u2713 Your rashi and nakshatra",
     "hi": "\\u2713 आपकी राशि और नक्षत्र",
     "mai": "✓ अहाँक राशि आ नक्षत्र",
-    "mr": "\\u2713 Your rashi and nakshatra"
+    "mr": "\\u2713 तुमची रास आणि नक्षत्र"
   },
   "u2713HowToReadA": {
     "en": "\\u2713 How to read a Panchang",
     "hi": "\\u2713 पंचांग कैसे पढ़ें",
     "mai": "✓ पंचांग केँ कोना पढ़ब",
-    "mr": "\\u2713 How to read a Panchang"
+    "mr": "\\u2713 पंचांग कसे वाचावे"
   },
   "u2713WhatAKundaliShows": {
     "en": "\\u2713 What a Kundali shows",
     "hi": "\\u2713 कुण्डली क्या दिखाती है",
     "mai": "✓ कुंडली की देखाबैत अछि",
-    "mr": "\\u2713 What a Kundali shows"
+    "mr": "\\u2713 कुंडली काय दर्शवते"
   },
   "u2713WhyRitualsHaveAstronomical": {
     "en": "\\u2713 Why rituals have astronomical timing",
     "hi": "\\u2713 कर्मकाण्डों का खगोलीय समय क्यों है",
     "mai": "✓ अनुष्ठानसभमे खगोलीय समय किएक होइत अछि",
-    "mr": "\\u2713 Why rituals have astronomical timing"
+    "mr": "\\u2713 विधींना खगोलशास्त्रीय वेळ का असते"
   },
   "nextModule11Starts": {
     "en": "Next: Module 1-1 starts the deeper technical journey \\u2014 the ecliptic, degrees, and how we measure the sky.",
     "hi": "अगला: मॉड्यूल 1-1 गहरी तकनीकी यात्रा आरम्भ करता है  –  क्रान्तिवृत्त, अंश, और हम आकाश कैसे मापते हैं।",
     "mai": "अगिला: मॉड्यूल १-१ गहिर तकनीकी यात्रा शुरू करैत अछि — क्रांतिवृत्त, डिग्री, आ हम आकाश केँ कोना मापैत छी।",
-    "mr": "Next: Module 1-1 starts the deeper technical journey \\u2014 the ecliptic, degrees, and how we measure the sky."
+    "mr": "पुढे: मॉड्यूल १-१ सखोल तांत्रिक प्रवास सुरू करते — क्रांतिवृत्त, अंश आणि आपण आकाश कसे मोजतो."
   }
 }

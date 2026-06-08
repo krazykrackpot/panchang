@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities';
+import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities-with-overlay';
+import { tl } from '@/lib/utils/trilingual';
+import type { Locale } from '@/types/panchang';
 import { computePersonalMuhurta, type PersonalMuhurta } from '@/lib/personalization/personal-muhurta';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 
@@ -53,6 +55,7 @@ export default function NakshatraActivityGuide({ nakshatraId, moonSignId, locale
   if (!activity) return null;
 
   const isHi = locale === 'hi';
+  const loc = locale as Locale;
 
   return (
     <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-violet-500/20 p-5 sm:p-6">
@@ -68,7 +71,7 @@ export default function NakshatraActivityGuide({ nakshatraId, moonSignId, locale
             {isHi ? 'नक्षत्र मार्गदर्शन' : 'Nakshatra Activity Guide'}
           </h3>
           <p className="text-gold-light text-lg font-bold leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? activity.theme.hi : activity.theme.en}
+            {tl(activity.theme, loc)}
           </p>
         </div>
       </div>
@@ -84,7 +87,7 @@ export default function NakshatraActivityGuide({ nakshatraId, moonSignId, locale
                   key={i}
                   className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/20"
                 >
-                  {isHi ? item.hi : item.en}
+                  {tl(item, loc)}
                 </span>
               ))}
             </div>
@@ -100,7 +103,7 @@ export default function NakshatraActivityGuide({ nakshatraId, moonSignId, locale
                   key={i}
                   className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium text-red-300 bg-red-500/10 border border-red-500/20"
                 >
-                  {isHi ? item.hi : item.en}
+                  {tl(item, loc)}
                 </span>
               ))}
             </div>

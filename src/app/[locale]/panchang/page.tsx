@@ -13,7 +13,7 @@ import { headers } from 'next/headers';
 import { Link } from '@/lib/i18n/navigation';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
-import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities';
+import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities-with-overlay';
 import { getLatestVideo } from '@/lib/youtube/latest-video';
 import { MapPin } from 'lucide-react';
 import { getCitiesByTier } from '@/lib/constants/cities-extended';

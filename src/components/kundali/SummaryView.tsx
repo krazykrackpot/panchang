@@ -28,6 +28,10 @@ import { getDomainConfig } from '@/lib/kundali/domain-synthesis/config';
 import type { KundaliData } from '@/types/kundali';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
+import {
+  pickKundaliSummaryLabel as SL,
+  formatKundaliSummaryLabel,
+} from '@/lib/content/kundali-summary-labels';
 
 const KeyDatesTimeline = dynamic(() => import('./KeyDatesTimeline'), { ssr: false });
 const PersonalMonthCalendar = dynamic(() => import('./PersonalMonthCalendar'), { ssr: false });
@@ -190,7 +194,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
   }, [tip.strengthOverview, presentYogas.length, presentDoshas.length]);
 
   const vitalityColor = vitalityScore >= 7 ? 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10' : vitalityScore >= 5 ? 'text-gold-light border-gold-primary/30 bg-gold-primary/10' : 'text-amber-400 border-amber-500/30 bg-amber-500/10';
-  const vitalityLabel = vitalityScore >= 7 ? (isHi ? 'सशक्त' : 'Strong') : vitalityScore >= 5 ? (isHi ? 'संतुलित' : 'Balanced') : (isHi ? 'चुनौतीपूर्ण' : 'Challenging');
+  const vitalityLabel = vitalityScore >= 7 ? SL('vitalityStrong', locale) : vitalityScore >= 5 ? SL('vitalityBalanced', locale) : SL('vitalityChallenging', locale);
 
   // ── Improvement #2: Quick Stats ──
   const strongestPlanet = useMemo(() => {
@@ -257,7 +261,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           <div className="flex items-center gap-3">
             <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-sm font-bold ${vitalityColor}`}>
               <Sparkles size={14} />
-              {isHi ? 'कुण्डली जीवनशक्ति' : 'Chart Vitality'}: {vitalityScore} / 10  –  {vitalityLabel}
+              {SL('vitalityLabel', locale)}: {vitalityScore} / 10  –  {vitalityLabel}
             </span>
           </div>
 
@@ -310,16 +314,16 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
                 }`}
               >
                 <span className="text-[10px] uppercase tracking-wider font-semibold">
-                  {isHi ? 'भाव अर्थ' : 'House Meanings'}
+                  {SL('houseMeanings', locale)}
                 </span>
-                <span className="text-[10px] opacity-70">{showHouseMeanings ? (isHi ? 'चालू' : 'ON') : (isHi ? 'बंद' : 'OFF')}</span>
+                <span className="text-[10px] opacity-70">{showHouseMeanings ? SL('toggleOn', locale) : SL('toggleOff', locale)}</span>
               </button>
             </div>
           )}
           {chartStyle === 'south' ? (
             <ChartSouth
               data={kundali.chart}
-              title={isHi ? 'जन्म कुण्डली' : 'Birth Chart'}
+              title={SL('chartTitle', locale)}
               size={380}
               planets={kundali.planets}
               selectedPlanetId={drishtiSelectedPlanetId}
@@ -329,7 +333,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           ) : (
             <ChartNorth
               data={kundali.chart}
-              title={isHi ? 'जन्म कुण्डली' : 'Birth Chart'}
+              title={SL('chartTitle', locale)}
               size={380}
               planets={kundali.planets}
               selectedPlanetId={drishtiSelectedPlanetId}
@@ -365,7 +369,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all text-xs"
         >
           <Shield size={14} />
-          {isHi ? 'तकनीकी विश्लेषण देखें  –  चार्ट, ग्रह, भाव, अष्टकवर्ग' : 'View Technical Analysis  –  Charts, Planets, Houses, Ashtakavarga'}
+          {SL('viewTechAnalysis', locale)}
         </button>
       )}
 
@@ -373,35 +377,35 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
       <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs px-4 py-2.5 rounded-xl bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/8">
         {tip.personality.lagna.title && (
           <>
-            <span className="text-gold-dark">{isHi ? 'लग्न' : 'Lagna'}:</span>
+            <span className="text-gold-dark">{SL('lagnaLabel', locale)}:</span>
             <span className="text-gold-light font-semibold">{tip.personality.lagna.title}</span>
             <span className="text-text-secondary/40">·</span>
           </>
         )}
         {tip.personality.moonSign.title && (
           <>
-            <span className="text-gold-dark">{isHi ? 'चन्द्र' : 'Moon'}:</span>
+            <span className="text-gold-dark">{SL('moonLabel', locale)}:</span>
             <span className="text-gold-light font-semibold">{tip.personality.moonSign.title}</span>
             <span className="text-text-secondary/40">·</span>
           </>
         )}
         {tip.dashaInsight.currentMaha && (
           <>
-            <span className="text-gold-dark">{isHi ? 'दशा' : 'Dasha'}:</span>
+            <span className="text-gold-dark">{SL('dashaLabel', locale)}:</span>
             <span className="text-gold-light font-semibold">{tip.dashaInsight.currentMaha}</span>
             <span className="text-text-secondary/40">·</span>
           </>
         )}
         {tip.lifeStage?.age && (
           <>
-            <span className="text-gold-dark">{isHi ? 'आयु' : 'Age'}:</span>
+            <span className="text-gold-dark">{SL('ageLabel', locale)}:</span>
             <span className="text-gold-light font-semibold">{tip.lifeStage.age}</span>
             <span className="text-text-secondary/40">·</span>
           </>
         )}
         {strongestPlanet && (
           <>
-            <span className="text-gold-dark">{isHi ? 'सबसे बलवान' : 'Strongest'}:</span>
+            <span className="text-gold-dark">{SL('strongestLabel', locale)}:</span>
             <span className="text-gold-light font-semibold">{strongestPlanet}</span>
           </>
         )}
@@ -415,7 +419,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           <Sparkles size={16} className="text-gold-primary flex-shrink-0" />
           <p className="text-text-secondary text-xs leading-relaxed" style={isHi ? bodyFont : undefined}>
             <span className="text-gold-light font-semibold">
-              {tip.lifeStage.stage.charAt(0).toUpperCase() + tip.lifeStage.stage.slice(1).replace('_', ' ')} {isHi ? 'अवस्था' : 'Phase'} &bull; {isHi ? `आयु ${tip.lifeStage.age}` : `Age ${tip.lifeStage.age}`}
+              {tip.lifeStage.stage.charAt(0).toUpperCase() + tip.lifeStage.stage.slice(1).replace('_', ' ')} {SL('phaseSuffix', locale)} &bull; {formatKundaliSummaryLabel('ageTemplate', locale, { AGE: String(tip.lifeStage.age) })}
             </span>
             {'  –  '}{tip.lifeStage.headline}
           </p>
@@ -432,7 +436,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
       {/* ═══ SECTION 2: Who You Are  –  Personality ═══ */}
       <section>
         <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
-          {isHi ? 'आप कौन हैं' : 'Who You Are'}
+          {SL('whoYouAre', locale)}
         </h2>
         <div className="grid sm:grid-cols-3 gap-3">
           {[tip.personality.lagna, tip.personality.moonSign, tip.personality.sunSign].map((block, i) => (
@@ -449,7 +453,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
         {tip.personality.currentRelevance && (
           <div className="mt-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] border-l-2 border-gold-dark/40 px-4 py-3">
             <span className="text-xs text-gold-dark font-semibold uppercase tracking-widest">
-              {isHi ? 'आपके लिए अभी' : 'What This Means for You Now'}
+              {SL('whatMeansNow', locale)}
             </span>
             <p className="text-text-primary text-sm leading-relaxed mt-1" style={isHi ? bodyFont : undefined}>
               {tip.personality.currentRelevance}
@@ -463,7 +467,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
       {/* ═══ SECTION 3: Planetary Strengths (lighter/subtle  –  Improvement #10) ═══ */}
       <section className="rounded-2xl bg-gradient-to-br from-[#1a1040]/20 via-[#0a0e27]/40 to-[#0a0e27] border border-white/5 p-5 sm:p-6">
         <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
-          {isHi ? 'आपकी ग्रहीय शक्ति' : 'Your Planetary Strengths'}
+          {SL('yourPlanetaryStrengths', locale)}
         </h2>
         <div className="space-y-2">
           {tip.strengthOverview.map((planet) => (
@@ -501,7 +505,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
         >
           {showPlanetDetails ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
           <BookOpen size={14} />
-          {isHi ? 'विस्तृत ग्रह विश्लेषण देखें' : 'See detailed planet-by-planet analysis'}
+          {SL('seePlanetByPlanet', locale)}
         </button>
         {showPlanetDetails && (
           <div className="mt-3 space-y-3">
@@ -523,7 +527,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
       {/* ═══ SECTION 4: Yogas & Doshas (lighter/subtle  –  Improvement #10) ═══ */}
       <section className="rounded-2xl bg-gradient-to-br from-[#1a1040]/20 via-[#0a0e27]/40 to-[#0a0e27] border border-white/5 p-5 sm:p-6">
         <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
-          {isHi ? 'आपकी कुण्डली क्या वहन करती है' : 'What Your Chart Carries'}
+          {SL('whatChartCarries', locale)}
         </h2>
 
         {/* Yogas */}
@@ -531,7 +535,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           <div className="mb-4">
             <h3 className="text-sm text-gold-dark font-semibold uppercase tracking-widest mb-3 flex items-center gap-2">
               <TrendingUp size={14} />
-              {isHi ? `योग (${presentYogas.length} सक्रिय)` : `Yogas (${presentYogas.length} active)`}
+              {formatKundaliSummaryLabel('yogasHeadingTemplate', locale, { COUNT: String(presentYogas.length) })}
             </h3>
             <div className="space-y-2">
               {(showAllYogas ? presentYogas : topYogas).map((yoga, i) => (
@@ -545,8 +549,8 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
               >
                 {showAllYogas ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                 {showAllYogas
-                  ? (isHi ? 'कम दिखाएँ' : 'Show less')
-                  : (isHi ? `सभी ${presentYogas.length} योग देखें` : `See all ${presentYogas.length} yogas`)}
+                  ? SL('showLess', locale)
+                  : formatKundaliSummaryLabel('seeAllYogasTemplate', locale, { COUNT: String(presentYogas.length) })}
               </button>
             )}
           </div>
@@ -557,7 +561,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           <div>
             <h3 className="text-sm text-gold-dark font-semibold uppercase tracking-widest mb-3 flex items-center gap-2">
               <AlertTriangle size={14} />
-              {isHi ? 'दोष' : 'Doshas'}
+              {SL('doshasHeading', locale)}
             </h3>
             <div className="space-y-2">
               {(showAllDoshas ? presentDoshas : presentDoshas.slice(0, 3)).map((dosha, i) => (
@@ -570,7 +574,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
                 className="mt-2 flex items-center gap-1 text-xs text-gold-dark hover:text-gold-light transition-colors"
               >
                 {showAllDoshas ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-                {showAllDoshas ? (isHi ? 'कम दिखाएँ' : 'Show less') : (isHi ? 'सभी दोष देखें' : 'See all doshas')}
+                {showAllDoshas ? SL('showLess', locale) : SL('seeAllDoshas', locale)}
               </button>
             )}
           </div>
@@ -581,7 +585,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
 
       {/* ═══ SECTION 5: Life Domains  –  the core reading (stronger bg  –  Improvement #10) ═══ */}
       <section className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 sm:p-6">
-        <CollapsibleSection title={isHi ? 'आपके जीवन क्षेत्र' : 'Your Life Domains'} defaultOpen={true} headingFont={headingFont}>
+        <CollapsibleSection title={SL('yourLifeDomains', locale)} defaultOpen={true} headingFont={headingFont}>
 
         {/* Technical analysis link — top */}
         {onTechnical && (
@@ -590,7 +594,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
             className="w-full mb-4 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all text-xs"
           >
             <Shield size={14} />
-            {isHi ? 'तकनीकी चार्ट विश्लेषण' : 'Advanced Technical Chart Analysis'}
+            {SL('techAnalysisHeading', locale)}
           </button>
         )}
 
@@ -642,7 +646,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
         {crossDomainConnections.length > 0 && (
           <div className="mt-5 pt-4 border-t border-gold-primary/10">
             <h3 className="text-sm text-gold-dark font-semibold uppercase tracking-widest mb-3">
-              {isHi ? 'आपके क्षेत्र कैसे जुड़ते हैं' : 'How Your Domains Connect'}
+              {SL('domainsConnect', locale)}
             </h3>
             <div className="flex flex-wrap gap-2">
               {crossDomainConnections.map((conn, i) => {
@@ -670,7 +674,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
             className="w-full mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all text-xs"
           >
             <Shield size={14} />
-            {isHi ? 'तकनीकी चार्ट विश्लेषण' : 'Advanced Technical Chart Analysis'}
+            {SL('techAnalysisHeading', locale)}
           </button>
         )}
 
@@ -680,7 +684,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
       {/* ═══ YOUR PERSONAL MONTH  –  color-coded daily quality ═══ */}
       {kundali && (
         <section className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/35 via-[#1a1040]/45 to-[#0a0e27] border border-gold-primary/12 p-5 sm:p-6">
-          <CollapsibleSection title={isHi ? 'आपका व्यक्तिगत मास' : 'Your Personal Month'} defaultOpen={false} headingFont={headingFont}>
+          <CollapsibleSection title={SL('personalMonth', locale)} defaultOpen={false} headingFont={headingFont}>
           <PersonalMonthCalendar
             snapshot={{
               moonSign: kundali.planets.find(p => p.planet.id === 1)?.sign || 1,
@@ -705,7 +709,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
       {/* ═══ SECTION 6: Where You Are Now (stronger bg  –  Improvement #10) ═══ */}
       {/* Key dates are rendered INSIDE SummaryCurrentPeriod via its keyDates prop (Improvement #4) */}
       <section className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 sm:p-6">
-        <CollapsibleSection title={isHi ? 'आप अभी कहाँ हैं' : 'Where You Are Now'} defaultOpen={true} headingFont={headingFont}>
+        <CollapsibleSection title={SL('whereYouAreNow', locale)} defaultOpen={true} headingFont={headingFont}>
         <SummaryCurrentPeriod
           dashaInsight={tip.dashaInsight}
           yearPredictions={tip.yearPredictions}
@@ -721,7 +725,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
 
       {/* ═══ SECTION 7: What You Can Do  –  Remedies ═══ */}
       <section>
-        <CollapsibleSection title={isHi ? 'आप क्या कर सकते हैं' : 'What You Can Do'} defaultOpen={false} headingFont={headingFont}>
+        <CollapsibleSection title={SL('whatYouCanDo', locale)} defaultOpen={false} headingFont={headingFont}>
         <SummaryRemedies
           remedies={tip.remedies}
           domains={personalReading?.domains || []}
@@ -735,7 +739,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
       {personalReading && sortedDomains.length > 0 && (
         <section className="rounded-2xl bg-gradient-to-br from-emerald-900/20 via-[#1a1040]/40 to-[#0a0e27] border border-emerald-500/15 p-5 sm:p-6">
           <h2 className="text-lg text-emerald-400 font-bold mb-4" style={headingFont}>
-            {isHi ? 'आपकी 3 मुख्य बातें' : 'Your 3 Key Takeaways'}
+            {SL('yourKeyTakeaways', locale)}
           </h2>
           <div className="space-y-3">
             {/* Takeaway 1: Current period insight */}
@@ -799,14 +803,14 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all text-sm"
         >
           <Printer size={16} />
-          {isHi ? 'प्रिंट करें' : 'Print'}
+          {SL('printBtn', locale)}
         </button>
         <button
           onClick={handleShare}
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all text-sm"
         >
           {copied ? <Check size={16} className="text-emerald-400" /> : <Link2 size={16} />}
-          {copied ? (isHi ? 'कॉपी हुआ!' : 'Copied!') : (isHi ? 'लिंक साझा करें' : 'Share Link')}
+          {copied ? SL('copied', locale) : SL('copyLink', locale)}
         </button>
       </div>
 
@@ -818,7 +822,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all text-sm"
           >
             <Shield size={16} />
-            {isHi ? 'तकनीकी विश्लेषण देखें  –  चार्ट, ग्रह, भाव, अष्टकवर्ग' : 'View Technical Analysis  –  Charts, Planets, Houses, Ashtakavarga'}
+            {SL('viewTechAnalysis', locale)}
           </button>
         </div>
       )}
@@ -840,7 +844,7 @@ function YogaCard({ yoga, locale, isHi, bodyFont }: { yoga: YogaInsight; locale:
           <span className={`text-xs font-semibold ${strengthColor}`}>{yoga.strength}</span>
           {yoga.ageRelevance && yoga.ageRelevance > 1.2 && (
             <span className="text-[10px] bg-gold-primary/15 text-gold-light px-1.5 py-0.5 rounded-full">
-              {isHi ? 'अभी प्रासंगिक' : 'Relevant now'}
+              {SL('relevantNow', locale)}
             </span>
           )}
         </div>
@@ -881,7 +885,7 @@ function DoshaCard({ dosha, locale, isHi, bodyFont }: { dosha: DoshaInsight; loc
       <p className="text-text-secondary text-xs mt-1" style={isHi ? bodyFont : undefined}>{dosha.description}</p>
       {expanded && dosha.cancellationConditions && dosha.cancellationConditions.length > 0 && (
         <div className="mt-2 border-t border-white/5 pt-2 space-y-1">
-          <span className="text-xs text-gold-dark font-semibold">{isHi ? 'रद्दीकरण शर्तें:' : 'Cancellation conditions:'}</span>
+          <span className="text-xs text-gold-dark font-semibold">{SL('cancellationConditions', locale)}</span>
           {dosha.cancellationConditions.map((cc, i) => (
             <div key={i} className="flex items-center gap-2 text-xs">
               <span className={cc.met ? 'text-emerald-400' : 'text-text-secondary'}>{cc.met ? '✓' : '✗'}</span>

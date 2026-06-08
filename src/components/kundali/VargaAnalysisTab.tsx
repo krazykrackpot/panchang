@@ -8,6 +8,7 @@ import { lt } from '@/lib/learn/translations';
 import KMSG from '@/messages/pages/kundali-inline.json';
 import { RASHIS } from '@/lib/constants/rashis';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { pickVargaLabel as VL, formatVargaLabel } from '@/lib/content/kundali-varga-labels';
 import { generateVargaTippanni } from '@/lib/tippanni/varga-tippanni';
 import type { KundaliData } from '@/types/kundali';
 import type { Locale, LocaleText } from '@/types/panchang';
@@ -145,11 +146,11 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
                       {pd && (
                         <div className="rounded-xl bg-white/[0.02] border border-gold-primary/10 p-4">
                           <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-                            {isHi ? 'वादा बनाम वितरण' : 'Promise vs Delivery'}
+                            {VL('promiseVsDelivery', locale)}
                           </div>
                           <div className="grid grid-cols-2 gap-4 mb-3">
                             <div>
-                              <div className="text-text-secondary text-[10px] mb-1">{isHi ? 'D1 वादा' : 'D1 Promise'}</div>
+                              <div className="text-text-secondary text-[10px] mb-1">{VL('d1Promise', locale)}</div>
                               <div className="flex items-center gap-2">
                                 <div className="flex-1 h-2 rounded-full bg-white/5 overflow-hidden">
                                   <div className="h-full rounded-full bg-gradient-to-r from-blue-600 to-blue-400" style={{ width: `${pd.d1Promise}%` }} />
@@ -158,7 +159,7 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
                               </div>
                             </div>
                             <div>
-                              <div className="text-text-secondary text-[10px] mb-1">{isHi ? selectedInsight.chart + ' वितरण' : selectedInsight.chart + ' Delivery'}</div>
+                              <div className="text-text-secondary text-[10px] mb-1">{selectedInsight.chart} {VL('deliverySuffix', locale)}</div>
                               <div className="flex items-center gap-2">
                                 <div className="flex-1 h-2 rounded-full bg-white/5 overflow-hidden">
                                   <div className="h-full rounded-full bg-gradient-to-r from-emerald-600 to-emerald-400" style={{ width: `${pd.dxxDelivery}%` }} />
@@ -177,7 +178,7 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
                       {cc.dignityShifts.length > 0 && (
                         <div className="rounded-xl bg-white/[0.02] border border-gold-primary/10 p-4">
                           <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-                            {isHi ? 'D1 → ' + selectedInsight.chart + ' बल परिवर्तन' : 'D1 → ' + selectedInsight.chart + ' Dignity Shifts'}
+                            {formatVargaLabel('dignityShiftsTemplate', locale, { CHART: selectedInsight.chart })}
                           </div>
                           <div className="space-y-2">
                             {cc.dignityShifts.slice(0, 5).map((ds, idx) => {
@@ -202,7 +203,7 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
                       {cc.yogasInChart.length > 0 && (
                         <div className="rounded-xl bg-white/[0.02] border border-gold-primary/10 p-4">
                           <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-                            {isHi ? 'इस चार्ट में योग' : 'Yogas in ' + selectedInsight.chart}
+                            {formatVargaLabel('yogasInChartTemplate', locale, { CHART: selectedInsight.chart })}
                           </div>
                           <div className="flex flex-wrap gap-2">
                             {cc.yogasInChart.map((y, idx) => (
@@ -219,7 +220,7 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
                       {cc.dispositorChain.chain.length > 1 && (
                         <div className="rounded-xl bg-white/[0.02] border border-gold-primary/10 p-4">
                           <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-                            {isHi ? 'अधिपति शृंखला' : 'Dispositor Chain'}
+                            {VL('dispositorChain', locale)}
                           </div>
                           <div className="flex items-center gap-1.5 text-xs text-text-secondary flex-wrap">
                             {cc.dispositorChain.chain.map((node, idx) => (
@@ -710,7 +711,7 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
             {/* Life Quality Verdicts */}
             <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6">
               <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
-                {isHi ? 'जीवन क्षेत्र निदान' : 'Life Area Verdicts'}
+                {VL('lifeAreaVerdicts', locale)}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-5">
                 {keyVargaInsights.map((vi, idx) => {
@@ -746,7 +747,7 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
               {/* Overall Synthesis */}
               <div className="rounded-xl bg-gold-primary/[0.04] border border-gold-primary/12 p-4">
                 <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2" style={headingFont}>
-                  {isHi ? 'समग्र संश्लेषण' : 'Overall Synthesis'}
+                  {VL('overallSynthesis', locale)}
                 </div>
                 <p className="text-text-secondary/85 text-xs leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   {isHi
@@ -760,10 +761,10 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
             {weakPlanetRemedies.length > 0 && (
               <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 p-6">
                 <h3 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
-                  {isHi ? 'वर्ग-आधारित उपाय' : 'Varga-Based Remedial Guidance'}
+                  {VL('vargaRemedialGuidance', locale)}
                 </h3>
                 <p className="text-text-secondary/70 text-xs text-center mb-4" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {isHi ? 'दुर्बल वर्ग स्थितियों के लिए विशिष्ट उपाय' : 'Specific remedies for weak varga placements'}
+                  {VL('weakPlacementsSubtitle', locale)}
                 </p>
                 <div className="space-y-3">
                   {weakPlanetRemedies.map((wr, idx) => {
@@ -773,7 +774,10 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
                       <div key={idx} className="rounded-xl border border-amber-500/15 bg-amber-500/[0.03] p-4">
                         <div className="flex items-center gap-2 mb-2">
                           <span className="text-amber-300 font-bold text-sm" style={headingFont}>{wr.planetName}</span>
-                          <span className="text-text-secondary/70 text-xs">{isHi ? 'नीच' : 'debilitated'} {isHi ? 'में' : 'in'} {wr.varga}</span>
+                          {/* `debilitatedIn` is "<adj>, <preposition>" — split so we render
+                              the adjective, a space, the preposition, a space, then the
+                              chart name. (Hindi: "नीच में", Tamil: "நீசம் இல்", etc.) */}
+                          <span className="text-text-secondary/70 text-xs">{VL('debilitatedIn', locale).split(',').map(s => s.trim()).join(' ')} {wr.varga}</span>
                         </div>
                         {domainAdvice && (
                           <p className="text-text-secondary/80 text-xs leading-relaxed mb-2" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
@@ -783,7 +787,7 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
                         {remedy && (
                           <div className="p-2.5 rounded-lg bg-gold-primary/[0.04] border border-gold-primary/10">
                             <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-1">
-                              {isHi ? 'अनुशंसित उपाय' : 'Recommended Remedies'}
+                              {VL('recommendedRemedies', locale)}
                             </div>
                             <p className="text-gold-light/80 text-xs leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                               {isHi ? remedy.hi : remedy.en}
@@ -800,7 +804,7 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
             {/* Self-assessment questions for varga analysis */}
             <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 p-5">
               <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3" style={headingFont}>
-                {isHi ? 'आत्म-परीक्षण प्रश्न' : 'Self-Assessment Questions'}
+                {VL('selfAssessmentQuestions', locale)}
               </div>
               <div className="space-y-2.5">
                 {keyVargaInsights.find(v => v.chart === 'D9') && (

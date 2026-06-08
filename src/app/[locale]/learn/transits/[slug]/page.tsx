@@ -15,6 +15,57 @@ import { notFound, useParams } from 'next/navigation';
 import Link from 'next/link';
 import type { Locale } from '@/types/panchang';
 
+// Chrome labels per locale. en+hi authored consistently with the
+// rest of the project; ta/te/bn/gu/kn/mai/mr arrive via the
+// pre-commit Gemini overlay sync. Hindi serves as the canonical
+// fallback for Maithili and Marathi (Devanagari sister languages)
+// until the sync fills their own entries.
+const CHROME: Record<string, Record<string, string>> = {
+  en: {
+    published: 'Published',
+    keyThemes: 'Key Themes',
+    howAffectsYou: 'How This Transit Affects You',
+    findMoonSign: 'Find your Moon sign (Chandra Rashi) below. Transit effects are read from the Moon sign, not the ascendant.',
+    yourSign: 'YOUR SIGN',
+    dosAndDonts: "Dos & Don'ts",
+    remedy: 'Remedy: ',
+    keyDates: 'Key Dates',
+    retroHeading: 'Retrograde Period  –  What to Know',
+    viewTimeline: 'View Transit Timeline',
+    generateKundali: 'Generate Your Kundali',
+  },
+  hi: {
+    published: 'प्रकाशित',
+    keyThemes: 'प्रमुख विषय',
+    howAffectsYou: 'आपकी चन्द्र राशि पर प्रभाव',
+    findMoonSign: 'नीचे अपनी चन्द्र राशि खोजें। गोचर फल चन्द्र राशि से पढ़ा जाता है, लग्न से नहीं।',
+    yourSign: 'आपकी राशि',
+    dosAndDonts: 'क्या करें और क्या न करें',
+    remedy: 'उपाय: ',
+    keyDates: 'महत्वपूर्ण तिथियाँ',
+    retroHeading: 'वक्री गुरु  –  ध्यान दें',
+    viewTimeline: 'गोचर टाइमलाइन देखें',
+    generateKundali: 'अपनी कुण्डली बनाएँ',
+  },
+};
+const c = (key: string, locale: string) => CHROME[locale]?.[key] ?? CHROME.en[key];
+
+const INTL_LOCALE_TAGS: Record<string, string> = {
+  en: 'en-US', hi: 'hi-IN', ta: 'ta-IN', te: 'te-IN',
+  bn: 'bn-IN', gu: 'gu-IN', kn: 'kn-IN', mai: 'mai-IN', mr: 'mr-IN',
+};
+
+// Render the ordinal house suffix per locale. EN uses 1st/2nd/3rd/Nth;
+// Devanagari locales use वाँ भाव. Others fall back to EN until proper
+// suffix tables are added — better than a wrong Hindi suffix.
+function houseSuffix(house: number, locale: string): string {
+  if (locale === 'hi' || locale === 'mai' || locale === 'mr' || locale === 'sa') return 'वाँ भाव';
+  if (house === 1) return 'st house';
+  if (house === 2) return 'nd house';
+  if (house === 3) return 'rd house';
+  return 'th house';
+}
+
 const PLANET_COLORS: Record<number, string> = {
   0: '#FF9500', 1: '#C0C0C0', 2: '#F87171', 3: '#50C878',
   4: '#FFD700', 5: '#FF69B4', 6: '#6B8DD6', 7: '#B8860B', 8: '#808080',
@@ -73,8 +124,8 @@ export default function TransitArticlePage() {
           {tl(article.duration, locale)}
         </p>
         <p className="text-text-secondary/60 text-xs">
-          {locale === 'hi' ? 'प्रकाशित' : 'Published'}{' '}
-          {new Date(article.publishDate).toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-US', {
+          {c('published', locale)}{' '}
+          {new Date(article.publishDate).toLocaleDateString(INTL_LOCALE_TAGS[locale] ?? 'en-US', {
             day: 'numeric', month: 'long', year: 'numeric',
           })}
         </p>
@@ -108,7 +159,7 @@ export default function TransitArticlePage() {
       >
         <h2 className="text-xl font-bold text-gold-gradient mb-4" style={headingFont}>
           <Sparkles className="inline-block w-5 h-5 mr-2 -mt-0.5 text-gold-primary" />
-          {locale === 'hi' ? 'प्रमुख विषय' : 'Key Themes'}
+          {c('keyThemes', locale)}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {article.generalThemes.map((theme, i) => (
@@ -132,12 +183,10 @@ export default function TransitArticlePage() {
         className="mb-10"
       >
         <h2 className="text-xl font-bold text-gold-gradient mb-2" style={headingFont}>
-          {locale === 'hi' ? 'आपकी चन्द्र राशि पर प्रभाव' : 'How This Transit Affects You'}
+          {c('howAffectsYou', locale)}
         </h2>
         <p className="text-text-secondary text-xs mb-6" style={bodyFont}>
-          {locale === 'hi'
-            ? 'नीचे अपनी चन्द्र राशि खोजें। गोचर फल चन्द्र राशि से पढ़ा जाता है, लग्न से नहीं।'
-            : 'Find your Moon sign (Chandra Rashi) below. Transit effects are read from the Moon sign, not the ascendant.'}
+          {c('findMoonSign', locale)}
         </p>
 
         <div className="space-y-2">
@@ -168,11 +217,11 @@ export default function TransitArticlePage() {
                         {rashi ? tl(rashi.name, locale) : ''}
                       </span>
                       <span className="text-[10px] px-2 py-0.5 rounded-full bg-gold-primary/10 text-gold-dark font-semibold">
-                        {effect.house}{locale === 'hi' ? 'वाँ भाव' : effect.house === 1 ? 'st house' : effect.house === 2 ? 'nd house' : effect.house === 3 ? 'rd house' : 'th house'}
+                        {effect.house}{houseSuffix(effect.house, locale)}
                       </span>
                       {isUserSign && (
                         <span className="text-[9px] px-2 py-0.5 rounded-full bg-gold-primary/20 text-gold-light font-bold">
-                          {locale === 'hi' ? 'आपकी राशि' : 'YOUR SIGN'}
+                          {c('yourSign', locale)}
                         </span>
                       )}
                     </div>
@@ -204,7 +253,7 @@ export default function TransitArticlePage() {
                     {/* Dos and Don'ts */}
                     <div className="bg-bg-primary/30 border border-gold-primary/8 rounded-lg p-4 mb-3">
                       <h4 className="text-xs font-bold text-gold-light mb-2 uppercase tracking-wider">
-                        {locale === 'hi' ? 'क्या करें और क्या न करें' : 'Dos & Don\'ts'}
+                        {c('dosAndDonts', locale)}
                       </h4>
                       <ul className="space-y-1.5">
                         {effect.dosAndDonts.map((item, i) => {
@@ -228,7 +277,7 @@ export default function TransitArticlePage() {
                     {/* Remedy */}
                     <div className="bg-[#6366f1]/6 border border-[#6366f1]/15 rounded-lg p-3">
                       <p className="text-xs text-[#c4b5fd] leading-relaxed" style={bodyFont}>
-                        <strong className="text-[#e0d4ff]">{locale === 'hi' ? 'उपाय: ' : 'Remedy: '}</strong>
+                        <strong className="text-[#e0d4ff]">{c('remedy', locale)}</strong>
                         {tl(effect.remedy, locale)}
                       </p>
                     </div>
@@ -249,7 +298,7 @@ export default function TransitArticlePage() {
       >
         <h2 className="text-xl font-bold text-gold-gradient mb-4" style={headingFont}>
           <Calendar className="inline-block w-5 h-5 mr-2 -mt-0.5 text-gold-primary" />
-          {locale === 'hi' ? 'महत्वपूर्ण तिथियाँ' : 'Key Dates'}
+          {c('keyDates', locale)}
         </h2>
         <div className="relative pl-8">
           <div
@@ -258,7 +307,7 @@ export default function TransitArticlePage() {
           />
           {article.keyDates.map((kd, i) => {
             const dateObj = new Date(kd.date + 'T12:00:00Z');
-            const dateStr = dateObj.toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-US', {
+            const dateStr = dateObj.toLocaleDateString(INTL_LOCALE_TAGS[locale] ?? 'en-US', {
               day: 'numeric', month: 'short', timeZone: 'UTC',
             });
             const isPast = kd.date < new Date().toISOString().split('T')[0];
@@ -286,7 +335,7 @@ export default function TransitArticlePage() {
           className="bg-amber-500/6 border border-amber-500/20 rounded-2xl p-5 mb-10"
         >
           <h3 className="text-sm font-bold text-amber-400 mb-2" style={headingFont}>
-            {locale === 'hi' ? 'वक्री गुरु  –  ध्यान दें' : 'Retrograde Period  –  What to Know'}
+            {c('retroHeading', locale)}
           </h3>
           <p className="text-xs text-text-primary/70 leading-relaxed" style={bodyFont}>
             {tl(article.retrogradeNote, locale)}
@@ -301,13 +350,13 @@ export default function TransitArticlePage() {
           className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-sm font-semibold hover:bg-gold-primary/20 transition-colors"
         >
           <BookOpen className="w-4 h-4" />
-          {locale === 'hi' ? 'गोचर टाइमलाइन देखें' : 'View Transit Timeline'}
+          {c('viewTimeline', locale)}
         </Link>
         <Link
           href={`/${locale}/kundali`}
           className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-sm font-semibold hover:bg-gold-primary/20 transition-colors"
         >
-          {locale === 'hi' ? 'अपनी कुण्डली बनाएँ' : 'Generate Your Kundali'}
+          {c('generateKundali', locale)}
         </Link>
       </div>
     </div>

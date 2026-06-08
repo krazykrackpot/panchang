@@ -361,10 +361,25 @@ function StatCard({
 
 // ── Helpers ─────────────────────────────────────────────────────────────────────
 
+// BCP 47 mapping for `Intl.DateTimeFormat`. Most regional Indic locales
+// fall back to en-IN if their BCP 47 tag isn't recognized; we still
+// try the locale's own tag first so node 22+'s expanded ICU data works.
+const INTL_LOCALE_TAGS: Record<string, string> = {
+  en: 'en-US',
+  hi: 'hi-IN',
+  ta: 'ta-IN',
+  te: 'te-IN',
+  bn: 'bn-IN',
+  gu: 'gu-IN',
+  kn: 'kn-IN',
+  mai: 'mai-IN',
+  mr: 'mr-IN',
+};
+
 function formatDate(isoStr: string, locale: string): string {
   try {
     const d = new Date(isoStr);
-    const loc = locale === 'hi' ? 'hi-IN' : locale === 'ta' ? 'ta-IN' : locale === 'bn' ? 'bn-IN' : 'en-US';
+    const loc = INTL_LOCALE_TAGS[locale] ?? 'en-US';
     return d.toLocaleDateString(loc, { month: 'short', day: 'numeric' });
   } catch {
     return isoStr.slice(0, 10);

@@ -852,10 +852,10 @@ export default async function TeluguCalendarPage({
                     {isTe ? "తెలుగు" : "Telugu"}
                   </th>
                   <th className="text-left px-4 py-2 text-gold-light font-semibold">
-                    {isTe ? "ప్రారంభం" : isHi ? "प्रारम्भ" : "Start"}
+                    {RC('rangeStart', locale)}
                   </th>
                   <th className="text-left px-4 py-2 text-gold-light font-semibold">
-                    {isTe ? "ముగింపు" : isHi ? "समाप्ति" : "End"}
+                    {RC('rangeEnd', locale)}
                   </th>
                 </tr>
               </thead>
@@ -900,10 +900,10 @@ export default async function TeluguCalendarPage({
                     {isTe ? "తెలుగు" : "Telugu"}
                   </th>
                   <th className="text-left px-4 py-2 text-gold-light font-semibold">
-                    {isTe ? "ప్రారంభం" : isHi ? "प्रारम्भ" : "Start"}
+                    {RC('rangeStart', locale)}
                   </th>
                   <th className="text-left px-4 py-2 text-gold-light font-semibold">
-                    {isTe ? "ముగింపు" : isHi ? "समाप्ति" : "End"}
+                    {RC('rangeEnd', locale)}
                   </th>
                 </tr>
               </thead>
@@ -975,16 +975,16 @@ export default async function TeluguCalendarPage({
               <thead>
                 <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {isTe ? "పండుగ" : isHi ? "त्योहार" : "Festival"}
+                    {RC('colFestival', locale)}
                   </th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {isTe ? "తేదీ" : isHi ? "दिनांक" : "Date"}
+                    {RC('colDate', locale)}
                   </th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {isTe ? "తిథి" : isHi ? "तिथि" : "Tithi"}
+                    {RC('colTithi', locale)}
                   </th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {isTe ? "నక్షత్రం" : isHi ? "नक्षत्र" : "Nakshatra"}
+                    {RC('colNakshatra', locale)}
                   </th>
                 </tr>
               </thead>
@@ -1034,16 +1034,16 @@ export default async function TeluguCalendarPage({
               <thead>
                 <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {isTe ? "పండుగ" : isHi ? "त्योहार" : "Festival"}
+                    {RC('colFestival', locale)}
                   </th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {isTe ? "తేదీ" : isHi ? "दिनांक" : "Date"}
+                    {RC('colDate', locale)}
                   </th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {isTe ? "తిథి" : isHi ? "तिथि" : "Tithi"}
+                    {RC('colTithi', locale)}
                   </th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {isTe ? "నక్షత్రం" : isHi ? "नक्षत्र" : "Nakshatra"}
+                    {RC('colNakshatra', locale)}
                   </th>
                 </tr>
               </thead>

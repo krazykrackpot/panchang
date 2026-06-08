@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { PLANET_HOUSE_VERSES } from '@/lib/constants/planet-in-house-verses';
+import { PLANET_HOUSE_VERSES } from '@/lib/constants/planet-in-house-verses-with-overlay';
 import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 import { BASE_URL } from '@/lib/seo/base-url';
@@ -62,8 +62,14 @@ export async function generateMetadata({
     ? `${planetName} ${suffix} भाव में  –  बृहत् पाराशर होराशास्त्र | Dekho Panchang`
     : `${planetName} in the ${suffix} House  –  BPHS Vedic Astrology | Dekho Panchang`;
 
-  const descText = verse
-    ? (isHi ? (verse.interpretation.hi ?? verse.interpretation.en) : verse.interpretation.en)
+  // Locale-aware description — falls through to en for non-en/hi locales
+  // not yet in the overlay. As planet-in-house-verses-with-overlay.ts
+  // fills the 7 regional locales (PR shipping this), the `verse.interpretation`
+  // LocaleText carries the locale's translation; tl() handles fallback
+  // for any locale still missing.
+  const interp = verse?.interpretation as Record<string, string> | undefined;
+  const descText = interp
+    ? (interp[locale] ?? interp.en)
     : `${planet.en} in the ${suffix} house  –  classical verse and modern interpretation from Brihat Parashara Hora Shastra.`;
   const description = descText.slice(0, 160);
 

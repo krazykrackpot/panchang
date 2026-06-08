@@ -35,6 +35,14 @@ const LABELS = {
     en: 'Nirjala Ekadashi (Jyeshtha Shukla) is the most powerful  –  fasting without even water on this single day equals the merit of all 24 Ekadashis combined.',
     hi: 'निर्जला एकादशी (ज्येष्ठ शुक्ल) सबसे शक्तिशाली है  –  केवल इस एक दिन बिना जल के व्रत रखना सभी 24 एकादशियों के पुण्य के बराबर है।',
   } as LocaleText,
+  // Hero ribbon + quick stats chrome — moved out of inline ternaries.
+  // The other 7 locales arrive via the pre-commit Gemini overlay sync
+  // (chore #589) on the next i18n-batch.
+  vishnuVrata: { en: 'Vishnu Vrata', hi: 'विष्णु व्रत' } as LocaleText,
+  ekadashisCount: { en: 'Ekadashis', hi: 'एकादशियाँ' } as LocaleText,
+  monthsCount: { en: 'Months', hi: 'मास' } as LocaleText,
+  perMonth: { en: 'Per Month', hi: 'प्रति मास' } as LocaleText,
+  adhikPrefix: { en: 'Adhik ', hi: 'अधिक ' } as LocaleText,
 } as const;
 
 // Month display order for the calendar
@@ -68,8 +76,7 @@ function monthLabel(bucketKey: string, locale: string): string {
   const base = isAdhik ? bucketKey.slice('adhik:'.length) : bucketKey;
   const baseLabel = tl(MONTH_LABELS[base] || { en: base }, locale);
   if (!isAdhik) return baseLabel;
-  const prefix = locale === 'hi' ? 'अधिक ' : 'Adhik ';
-  return `${prefix}${baseLabel}`;
+  return `${tl(LABELS.adhikPrefix, locale)}${baseLabel}`;
 }
 
 interface EkadashiCard {
@@ -309,7 +316,7 @@ export default async function EkadashiPage({ params }: { params: Promise<{ local
               <path d="M0 10 Q10 0 20 10 Q30 20 40 10" fill="none" stroke="currentColor" strokeWidth="1.5" />
             </svg>
             <span className="text-gold-primary/50 text-xs tracking-[0.3em] uppercase font-medium">
-              {locale === 'hi' ? 'विष्णु व्रत' : 'Vishnu Vrata'}
+              {tl(LABELS.vishnuVrata, locale)}
             </span>
             <svg viewBox="0 0 40 20" className="w-10 h-5 text-gold-primary/40 scale-x-[-1]">
               <path d="M0 10 Q10 0 20 10 Q30 20 40 10" fill="none" stroke="currentColor" strokeWidth="1.5" />
@@ -327,17 +334,17 @@ export default async function EkadashiPage({ params }: { params: Promise<{ local
           <div className="flex items-center justify-center gap-6 sm:gap-8 mt-8">
             <div className="flex flex-col items-center">
               <span className="text-3xl font-bold text-gold-primary">{ekadashis.length}</span>
-              <span className="text-xs text-text-secondary mt-0.5">{locale === 'hi' ? 'एकादशियाँ' : 'Ekadashis'}</span>
+              <span className="text-xs text-text-secondary mt-0.5">{tl(LABELS.ekadashisCount, locale)}</span>
             </div>
             <div className="w-px h-10 bg-gold-primary/20" />
             <div className="flex flex-col items-center">
               <span className="text-3xl font-bold text-gold-primary">12</span>
-              <span className="text-xs text-text-secondary mt-0.5">{locale === 'hi' ? 'मास' : 'Months'}</span>
+              <span className="text-xs text-text-secondary mt-0.5">{tl(LABELS.monthsCount, locale)}</span>
             </div>
             <div className="w-px h-10 bg-gold-primary/20" />
             <div className="flex flex-col items-center">
               <span className="text-3xl font-bold text-gold-primary">2</span>
-              <span className="text-xs text-text-secondary mt-0.5">{locale === 'hi' ? 'प्रति मास' : 'Per Month'}</span>
+              <span className="text-xs text-text-secondary mt-0.5">{tl(LABELS.perMonth, locale)}</span>
             </div>
           </div>
         </div>

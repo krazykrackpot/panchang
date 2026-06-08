@@ -5,10 +5,10 @@
     "ta": "ஆயுர்வேதம் + ஜோதிடம்",
     "bn": "আয়ুর্বেদ + জ্যোতিষ",
     "mai": "आयुर्वेद आ ज्योतिष",
-    "te": "Ayurveda + Jyotish",
-    "gu": "Ayurveda + Jyotish",
-    "kn": "Ayurveda + Jyotish",
-    "mr": "Ayurveda + Jyotish"
+    "te": "ఆయుర్వేదం + జ్యోతిష్యం",
+    "gu": "આયુર્વેદ + જ્યોતિષ",
+    "kn": "ಆಯುರ್ವೇದ + ಜ್ಯೋತಿಷ್ಯ",
+    "mr": "आयुर्वेद + ज्योतिष"
   },
   "title": {
     "en": "Ayurveda & Jyotish: The Twin Vedic Sciences",
@@ -16,10 +16,10 @@
     "ta": "ஆயுர்வேதமும் ஜோதிடமும்: இரட்டை வேத அறிவியல்கள்",
     "bn": "আয়ুর্বেদ ও জ্যোতিষ: যুগ্ম বৈদিক বিদ্যা",
     "mai": "आयुर्वेद आ ज्योतिष: जुड़वाँ वैदिक विज्ञान",
-    "te": "Ayurveda & Jyotish: The Twin Vedic Sciences",
-    "gu": "Ayurveda & Jyotish: The Twin Vedic Sciences",
-    "kn": "Ayurveda & Jyotish: The Twin Vedic Sciences",
-    "mr": "Ayurveda & Jyotish: The Twin Vedic Sciences"
+    "te": "ఆయుర్వేదం & జ్యోతిష్యం: వేదాల జంట విజ్ఞాన శాస్త్రాలు",
+    "gu": "આયુર્વેદ અને જ્યોતિષ: વેદની જોડિયા વિદ્યાઓ",
+    "kn": "ಆಯುರ್ವೇದ ಮತ್ತು ಜ್ಯೋತಿಷ್ಯ: ಅವಳಿ ವೈದಿಕ ವಿಜ್ಞಾನಗಳು",
+    "mr": "आयुर्वेद आणि ज्योतिष: वेदांच्या जुळ्या विद्या"
   },
   "subtitle": {
     "en": "How Vedic Astrology maps your Ayurvedic constitution, disease vulnerability, and the optimal timing for healing.",
@@ -27,10 +27,10 @@
     "ta": "வேத ஜோதிடம் உங்கள் ஆயுர்வேத உடலமைப்பு, நோய் பாதிப்பு மற்றும் சிகிச்சைக்கான சிறந்த நேரத்தை எவ்வாறு வரையறுக்கிறது.",
     "bn": "বৈদিক জ্যোতিষ কীভাবে আপনার আয়ুর্বেদিক প্রকৃতি, রোগ সংবেদনশীলতা ও চিকিৎসার সর্বোত্তম সময় নির্ধারণ করে।",
     "mai": "केना वैदिक ज्योतिष अहाँक आयुर्वेदिक प्रकृति, रोगक संवेदनशीलता आ उपचारक लेल उपयुक्त समय दर्शाबैत अछि।",
-    "te": "How Vedic Astrology maps your Ayurvedic constitution, disease vulnerability, and the optimal timing for healing.",
-    "gu": "How Vedic Astrology maps your Ayurvedic constitution, disease vulnerability, and the optimal timing for healing.",
-    "kn": "How Vedic Astrology maps your Ayurvedic constitution, disease vulnerability, and the optimal timing for healing.",
-    "mr": "How Vedic Astrology maps your Ayurvedic constitution, disease vulnerability, and the optimal timing for healing."
+    "te": "వేద జ్యోతిష్యం మీ ఆయుర్వేద ప్రకృతిని, రోగ సంభావ్యతను మరియు చికిత్సకు సరైన సమయాన్ని ఎలా నిర్ధారిస్తుందో.",
+    "gu": "વૈદિક જ્યોતિષ તમારી આયુર્વેદિક પ્રકૃતિ, રોગ સંવેદનશીલતા અને ઉપચાર માટેનો શ્રેષ્ઠ સમય કેવી રીતે દર્શાવે છે.",
+    "kn": "ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯವು ನಿಮ್ಮ ಆಯುರ್ವೇದ ಸಂವಿಧಾನ, ರೋಗದ ದುರ್ಬಲತೆ ಮತ್ತು ಚಿಕಿತ್ಸೆಗೆ ಸೂಕ್ತ ಸಮಯವನ್ನು ಹೇಗೆ ನಕ್ಷೆ ಮಾಡುತ್ತದೆ.",
+    "mr": "वैदिक ज्योतिष तुमची आयुर्वेदिक प्रकृती, रोगाची संवेदनशीलता आणि उपचारासाठी योग्य वेळ कशी निश्चित करते."
   },
   "sec1Title": {
     "en": "Two Sister Sciences",
@@ -38,10 +38,10 @@
     "ta": "இரு சகோதர அறிவியல்கள்",
     "bn": "দুই সহোদরা বিদ্যা",
     "mai": "दू भगिनी विज्ञान",
-    "te": "Two Sister Sciences",
-    "gu": "Two Sister Sciences",
-    "kn": "Two Sister Sciences",
-    "mr": "Two Sister Sciences"
+    "te": "రెండు సహోదర విజ్ఞాన శాస్త్రాలు",
+    "gu": "બે સહયોગી વિદ્યાઓ",
+    "kn": "ಎರಡು ಸಹೋದರಿ ವಿಜ್ಞಾನಗಳು",
+    "mr": "दोन भगिनी विद्या"
   },
   "sec1P1": {
     "en": "Ayurveda (the science of life) and Jyotish (the science of light) are both Vedangas  –  limbs of the Vedas. They emerge from the same knowledge system: the Vedas prescribe dharma, Jyotish reveals its timing, and Ayurveda maintains the body that must perform it.",
@@ -49,10 +49,10 @@
     "ta": "ஆயுர்வேதம் (வாழ்க்கையின் அறிவியல்) மற்றும் ஜோதிடம் (ஒளியின் அறிவியல்) இரண்டும் வேதாங்கங்கள் ஆகும்.",
     "bn": "আয়ুর্বেদ (জীবনের বিজ্ঞান) ও জ্যোতিষ (আলোর বিজ্ঞান) দুটিই বেদাঙ্গ  –  বেদের অঙ্গ।",
     "mai": "आयुर्वेद (जीवनक विज्ञान) आ ज्योतिष (प्रकाशक विज्ञान) दुनू वेदांग – वेदक अंग अछि। ई सब एकहि ज्ञान प्रणाली सँ उत्पन्न होइत अछि: वेद धर्मक विधान करैत अछि, ज्योतिष एकर समयक खुलासा करैत अछि, आ आयुर्वेद शरीरक रखरखाव करैत अछि जेकरा ई करबाक अछि।",
-    "te": "Ayurveda (the science of life) and Jyotish (the science of light) are both Vedangas  –  limbs of the Vedas. They emerge from the same knowledge system: the Vedas prescribe dharma, Jyotish reveals its timing, and Ayurveda maintains the body that must perform it.",
-    "gu": "Ayurveda (the science of life) and Jyotish (the science of light) are both Vedangas  –  limbs of the Vedas. They emerge from the same knowledge system: the Vedas prescribe dharma, Jyotish reveals its timing, and Ayurveda maintains the body that must perform it.",
-    "kn": "Ayurveda (the science of life) and Jyotish (the science of light) are both Vedangas  –  limbs of the Vedas. They emerge from the same knowledge system: the Vedas prescribe dharma, Jyotish reveals its timing, and Ayurveda maintains the body that must perform it.",
-    "mr": "Ayurveda (the science of life) and Jyotish (the science of light) are both Vedangas  –  limbs of the Vedas. They emerge from the same knowledge system: the Vedas prescribe dharma, Jyotish reveals its timing, and Ayurveda maintains the body that must perform it."
+    "te": "ఆయుర్వేదం (జీవన శాస్త్రం) మరియు జ్యోతిష్యం (కాంతి శాస్త్రం) రెండూ వేదాంగాలు – వేదాల భాగాలు. అవి ఒకే జ్ఞాన వ్యవస్థ నుండి ఉద్భవించాయి: వేదాలు ధర్మాన్ని నిర్దేశిస్తాయి, జ్యోతిష్యం దాని సమయాన్ని వెల్లడిస్తుంది, మరియు ఆయుర్వేదం దానిని నిర్వహించాల్సిన శరీరాన్ని కాపాడుతుంది.",
+    "gu": "આયુર્વેદ (જીવનનું વિજ્ઞાન) અને જ્યોતિષ (પ્રકાશનું વિજ્ઞાન) બંને વેદાંગ છે – વેદોના અંગ. તેઓ એક જ જ્ઞાન પ્રણાલીમાંથી ઉદ્ભવે છે: વેદ ધર્મનું નિર્ધારણ કરે છે, જ્યોતિષ તેનો સમય દર્શાવે છે, અને આયુર્વેદ તે શરીરનું રક્ષણ કરે છે જેણે તેનું પાલન કરવું જોઈએ.",
+    "kn": "ಆಯುರ್ವೇದ (ಜೀವನದ ವಿಜ್ಞಾನ) ಮತ್ತು ಜ್ಯೋತಿಷ್ಯ (ಬೆಳಕಿನ ವಿಜ್ಞಾನ) ಎರಡೂ ವೇದಾಂಗಗಳು – ವೇದಗಳ ಅಂಗಗಳು. ಅವು ಒಂದೇ ಜ್ಞಾನ ವ್ಯವಸ್ಥೆಯಿಂದ ಹೊರಹೊಮ್ಮುತ್ತವೆ: ವೇದಗಳು ಧರ್ಮವನ್ನು ಸೂಚಿಸುತ್ತವೆ, ಜ್ಯೋತಿಷ್ಯವು ಅದರ ಸಮಯವನ್ನು ಬಹಿರಂಗಪಡಿಸುತ್ತದೆ ಮತ್ತು ಆಯುರ್ವೇದವು ಅದನ್ನು ನಿರ್ವಹಿಸಬೇಕಾದ ದೇಹವನ್ನು ನಿರ್ವಹಿಸುತ್ತದೆ.",
+    "mr": "आयुर्वेद (जीवनाचे विज्ञान) आणि ज्योतिष (प्रकाशाचे विज्ञान) दोन्ही वेदांग आहेत – वेदांचे अंग. ते एकाच ज्ञान प्रणालीतून उदयास आले आहेत: वेद धर्माचे नियम सांगतात, ज्योतिष त्याची वेळ प्रकट करते आणि आयुर्वेद त्या शरीराचे रक्षण करते ज्याला ते (धर्म) आचरणात आणायचे आहे."
   },
   "sec1P2": {
     "en": "The Charaka Samhita (c. 300 BCE) explicitly references planetary influences on health, while the Brihat Parashara Hora Shastra (BPHS) devotes an entire chapter to medical astrology (Rogadhyaya). Sushruta, the father of surgery, recommended auspicious nakshatras for surgical procedures. These were never separate disciplines  –  they were designed to work together.",
@@ -60,10 +60,10 @@
     "ta": "சரக சம்ஹிதா கிரக தாக்கங்களை குறிப்பிடுகிறது, பிருஹத் பராசர ஹோரா சாஸ்திரம் மருத்துவ ஜோதிடத்திற்கு முழு அத்தியாயம் அர்ப்பணிக்கிறது.",
     "bn": "চরক সংহিতা স্বাস্থ্যে গ্রহ প্রভাবের উল্লেখ করে, বৃহৎ পরাশর হোরা শাস্ত্র চিকিৎসা জ্যোতিষে একটি সম্পূর্ণ অধ্যায় উৎসর্গ করে।",
     "mai": "चरक संहिता (लगभग ३०० ईसा पूर्व) स्पष्ट रूप सँ स्वास्थ्य पर ग्रहीय प्रभावक संदर्भित करैत अछि, जखन कि बृहत् पाराशर होरा शास्त्र (बीपीएचएस) चिकित्सा ज्योतिष (रोगाध्याय) केँ एकटा पूरा अध्याय समर्पित करैत अछि। सुश्रुत, शल्य चिकित्साक जनक, शल्य चिकित्सा प्रक्रियाक लेल शुभ नक्षत्रक सिफारिश केलनि। ई सब कहियो अलग अनुशासन नहि छल – ई सब एक सङ्ग काज करबाक लेल बनाओल गेल छल।",
-    "te": "The Charaka Samhita (c. 300 BCE) explicitly references planetary influences on health, while the Brihat Parashara Hora Shastra (BPHS) devotes an entire chapter to medical astrology (Rogadhyaya). Sushruta, the father of surgery, recommended auspicious nakshatras for surgical procedures. These were never separate disciplines  –  they were designed to work together.",
-    "gu": "The Charaka Samhita (c. 300 BCE) explicitly references planetary influences on health, while the Brihat Parashara Hora Shastra (BPHS) devotes an entire chapter to medical astrology (Rogadhyaya). Sushruta, the father of surgery, recommended auspicious nakshatras for surgical procedures. These were never separate disciplines  –  they were designed to work together.",
-    "kn": "The Charaka Samhita (c. 300 BCE) explicitly references planetary influences on health, while the Brihat Parashara Hora Shastra (BPHS) devotes an entire chapter to medical astrology (Rogadhyaya). Sushruta, the father of surgery, recommended auspicious nakshatras for surgical procedures. These were never separate disciplines  –  they were designed to work together.",
-    "mr": "The Charaka Samhita (c. 300 BCE) explicitly references planetary influences on health, while the Brihat Parashara Hora Shastra (BPHS) devotes an entire chapter to medical astrology (Rogadhyaya). Sushruta, the father of surgery, recommended auspicious nakshatras for surgical procedures. These were never separate disciplines  –  they were designed to work together."
+    "te": "చరక సంహిత (సుమారు 300 BCE) ఆరోగ్యముపై గ్రహ ప్రభావాలను స్పష్టంగా సూచిస్తుంది, అయితే బృహత్ పరాశర హోరా శాస్త్రం (BPHS) వైద్య జ్యోతిష్యానికి ఒక పూర్తి అధ్యాయాన్ని (రోగాధ్యాయం) అంకితం చేస్తుంది. శస్త్రచికిత్స పితామహుడైన సుశ్రుతుడు శస్త్రచికిత్సా ప్రక్రియలకు శుభ నక్షత్రాలను సిఫార్సు చేశాడు. ఇవి ఎప్పుడూ వేర్వేరు విభాగాలు కావు – అవి కలిసి పనిచేయడానికి రూపొందించబడ్డాయి.",
+    "gu": "ચરક સંહિતા (આશરે 300 ઈસા પૂર્વે) સ્પષ્ટપણે સ્વાસ્થ્ય પર ગ્રહોના પ્રભાવનો ઉલ્લેખ કરે છે, જ્યારે બૃહત્ પરાશર હોરા શાસ્ત્ર (BPHS) ચિકિત્સા જ્યોતિષને એક સંપૂર્ણ અધ્યાય (રોગાધ્યાય) સમર્પિત કરે છે. શલ્યચિકિત્સાના પિતા સુશ્રુતે શસ્ત્રક્રિયા માટે શુભ નક્ષત્રોની ભલામણ કરી હતી. આ ક્યારેય અલગ વિદ્યાશાખાઓ નહોતી – તે એકસાથે કાર્ય કરવા માટે રચાયેલી હતી.",
+    "kn": "ಚರಕ ಸಂಹಿತೆ (ಸುಮಾರು 300 BCE) ಆರೋಗ್ಯದ ಮೇಲೆ ಗ್ರಹಗಳ ಪ್ರಭಾವಗಳನ್ನು ಸ್ಪಷ್ಟವಾಗಿ ಉಲ್ಲೇಖಿಸುತ್ತದೆ, ಆದರೆ ಬೃಹತ್ ಪರಾಶರ ಹೋರಾ ಶಾಸ್ತ್ರ (BPHS) ವೈದ್ಯಕೀಯ ಜ್ಯೋತಿಷ್ಯಕ್ಕೆ (ರೋಗಾಧ್ಯಾಯ) ಒಂದು ಸಂಪೂರ್ಣ ಅಧ್ಯಾಯವನ್ನು ಮೀಸಲಿಟ್ಟಿದೆ. ಶಸ್ತ್ರಚಿಕಿತ್ಸೆಯ ಪಿತಾಮಹ ಸುಶ್ರುತರು ಶಸ್ತ್ರಚಿಕಿತ್ಸಾ ಕಾರ್ಯವಿಧಾನಗಳಿಗೆ ಶುಭ ನಕ್ಷತ್ರಗಳನ್ನು ಶಿಫಾರಸು ಮಾಡಿದರು. ಇವು ಎಂದಿಗೂ ಪ್ರತ್ಯೇಕ ವಿಭಾಗಗಳಾಗಿರಲಿಲ್ಲ – ಅವು ಒಟ್ಟಾಗಿ ಕೆಲಸ ಮಾಡಲು ವಿನ್ಯಾಸಗೊಳಿಸಲ್ಪಟ್ಟಿದ್ದವು.",
+    "mr": "चरक संहिता (इ.स.पूर्व ३०० च्या सुमारास) आरोग्यावर ग्रहांच्या प्रभावाचा स्पष्टपणे उल्लेख करते, तर बृहत् पराशर होरा शास्त्र (BPHS) वैद्यकीय ज्योतिषासाठी (रोगाध्याय) एक संपूर्ण अध्याय समर्पित करते. शस्त्रक्रियेचे जनक सुश्रुत यांनी शस्त्रक्रियेसाठी शुभ नक्षत्रांची शिफारस केली होती. हे कधीही स्वतंत्र विषय नव्हते – ते एकत्र काम करण्यासाठीच तयार केले गेले होते."
   },
   "sec1P3": {
     "en": "Why should a Jyotishi understand Ayurveda? Because predicting a Saturn dasha health crisis without knowing whether the native is Vata-dominant (and therefore highly susceptible to Saturn's cold, dry, nervous energy) is only half the picture. Conversely, an Ayurvedic practitioner who understands dasha timing can anticipate which dosha will flare up years before it manifests.",
@@ -71,10 +71,10 @@
     "ta": "ஒரு ஜோதிடர் ஏன் ஆயுர்வேதத்தைப் புரிந்துகொள்ள வேண்டும்? ஏனெனில் சனி தசா ஆரோக்கிய நெருக்கடியை கணிப்பது பாதி படம் மட்டுமே.",
     "bn": "একজন জ্যোতিষীর আয়ুর্বেদ কেন বোঝা উচিত? কারণ শনি দশায় স্বাস্থ্য সংকটের পূর্বাভাস দেওয়া মাত্র অর্ধেক ছবি।",
     "mai": "की लेल एकटा ज्योतिषी केँ आयुर्वेद बुझबाक चाही? किएक तँ शनि दशाक स्वास्थ्य संकटक भविष्यवाणी करब बिना जनने कि जातक वात-प्रधान अछि (आ एहि लेल शनि केर ठंढा, सूखल, तंत्रिका ऊर्जाक प्रति अत्यधिक संवेदनशील) मात्र आधा चित्र अछि। एकर विपरीत, एकटा आयुर्वेदिक चिकित्सक जे दशाक समय बुझैत अछि, अनुमान लगा सकैत अछि जे कोन दोष एकर प्रकट भेलाक कतेको साल पहिने भड़क उठत।",
-    "te": "Why should a Jyotishi understand Ayurveda? Because predicting a Saturn dasha health crisis without knowing whether the native is Vata-dominant (and therefore highly susceptible to Saturn's cold, dry, nervous energy) is only half the picture. Conversely, an Ayurvedic practitioner who understands dasha timing can anticipate which dosha will flare up years before it manifests.",
-    "gu": "Why should a Jyotishi understand Ayurveda? Because predicting a Saturn dasha health crisis without knowing whether the native is Vata-dominant (and therefore highly susceptible to Saturn's cold, dry, nervous energy) is only half the picture. Conversely, an Ayurvedic practitioner who understands dasha timing can anticipate which dosha will flare up years before it manifests.",
-    "kn": "Why should a Jyotishi understand Ayurveda? Because predicting a Saturn dasha health crisis without knowing whether the native is Vata-dominant (and therefore highly susceptible to Saturn's cold, dry, nervous energy) is only half the picture. Conversely, an Ayurvedic practitioner who understands dasha timing can anticipate which dosha will flare up years before it manifests.",
-    "mr": "Why should a Jyotishi understand Ayurveda? Because predicting a Saturn dasha health crisis without knowing whether the native is Vata-dominant (and therefore highly susceptible to Saturn's cold, dry, nervous energy) is only half the picture. Conversely, an Ayurvedic practitioner who understands dasha timing can anticipate which dosha will flare up years before it manifests."
+    "te": "ఒక జ్యోతిషి ఆయుర్వేదాన్ని ఎందుకు అర్థం చేసుకోవాలి? ఎందుకంటే శని దశలో ఆరోగ్య సంక్షోభాన్ని అంచనా వేయడం, జాతకుడు వాత-ప్రధానమైనవాడా (మరియు అందువల్ల శని యొక్క చల్లని, పొడి, నాడీ శక్తికి అత్యంత సున్నితమైనవాడా) అని తెలియకుండా, సగం చిత్రాన్ని మాత్రమే చూసినట్లు అవుతుంది. దీనికి విరుద్ధంగా, దశ సమయాన్ని అర్థం చేసుకున్న ఆయుర్వేద అభ్యాసకుడు ఏ దోషం సంవత్సరాల ముందుగానే వ్యక్తమవుతుందో ఊహించగలడు.",
+    "gu": "એક જ્યોતિષીએ આયુર્વેદ શા માટે સમજવું જોઈએ? કારણ કે શનિ દશામાં સ્વાસ્થ્ય સંકટની ભવિષ્યવાણી કરવી, તે જાણ્યા વિના કે જાતક વાત-પ્રધાન છે (અને તેથી શનિની ઠંડી, સૂકી, નર્વસ ઊર્જા પ્રત્યે અત્યંત સંવેદનશીલ છે), તે માત્ર અડધું ચિત્ર છે. તેનાથી વિપરીત, એક આયુર્વેદિક ચિકિત્સક જે દશાના સમયને સમજે છે, તે કયા દોષ વર્ષો પહેલા પ્રગટ થશે તેની અપેક્ષા રાખી શકે છે.",
+    "kn": "ಜ್ಯೋತಿಷಿಯು ಆಯುರ್ವೇದವನ್ನು ಏಕೆ ಅರ್ಥಮಾಡಿಕೊಳ್ಳಬೇಕು? ಏಕೆಂದರೆ, ಸ್ಥಳೀಯರು ವಾತ-ಪ್ರಧಾನರಾಗಿದ್ದಾರೆಯೇ (ಮತ್ತು ಆದ್ದರಿಂದ ಶನಿಯ ಶೀತ, ಶುಷ್ಕ, ನರ ಶಕ್ತಿಗೆ ಹೆಚ್ಚು ಒಳಗಾಗುತ್ತಾರೆಯೇ) ಎಂದು ತಿಳಿಯದೆ ಶನಿ ದಶಾ ಆರೋಗ್ಯ ಬಿಕ್ಕಟ್ಟನ್ನು ಊಹಿಸುವುದು ಅರ್ಧ ಚಿತ್ರ ಮಾತ್ರ. ಇದಕ್ಕೆ ವಿರುದ್ಧವಾಗಿ, ದಶಾ ಸಮಯವನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವ ಆಯುರ್ವೇದ ವೈದ್ಯರು ಯಾವ ದೋಷವು ಪ್ರಕಟವಾಗುವ ವರ್ಷಗಳ ಮೊದಲೇ ಭುಗಿಲೆಳುತ್ತದೆ ಎಂದು ನಿರೀಕ್ಷಿಸಬಹುದು.",
+    "mr": "एका ज्योतिषाने आयुर्वेदाचे ज्ञान का असावे? कारण, शनि दशेत येणाऱ्या आरोग्य संकटाची भविष्यवाणी करताना, जातक वात-प्रधान आहे की नाही (आणि त्यामुळे शनीच्या थंड, कोरड्या, चिंताजनक ऊर्जेला अत्यंत संवेदनशील आहे) हे माहीत नसणे म्हणजे अर्धेच चित्र पाहण्यासारखे आहे. याउलट, दशा काळाचे ज्ञान असलेला आयुर्वेदिक चिकित्सक, कोणता दोष प्रकट होण्यापूर्वीच तो अनेक वर्षांपूर्वीच वाढू शकतो याचा अंदाज लावू शकतो."
   },
   "sec2Title": {
     "en": "Prakriti (Constitution) from the Birth Chart",
@@ -82,10 +82,10 @@
     "ta": "ஜாதகத்திலிருந்து பிரகிருதி (உடலமைப்பு)",
     "bn": "জন্ম কুণ্ডলী থেকে প্রকৃতি নির্ধারণ",
     "mai": "प्रकृति (शारीरिक गठन) जन्म कुंडली सँ",
-    "te": "Prakriti (Constitution) from the Birth Chart",
-    "gu": "Prakriti (Constitution) from the Birth Chart",
-    "kn": "Prakriti (Constitution) from the Birth Chart",
-    "mr": "Prakriti (Constitution) from the Birth Chart"
+    "te": "జన్మ కుండలి నుండి ప్రకృతి (శరీర తత్వం) నిర్ధారణ",
+    "gu": "જન્મ કુંડળી પરથી પ્રકૃતિ (બંધારણ) નિર્ધારણ",
+    "kn": "ಜನ್ಮ ಕುಂಡಲಿಯಿಂದ ಪ್ರಕೃತಿ (ಸಂವಿಧಾನ) ನಿರ್ಧಾರ",
+    "mr": "जन्मकुंडलीवरून प्रकृती (संविधान) निर्धारण"
   },
   "sec2Intro": {
     "en": "Every planet carries a dosha signature. The relative strength of these planets in your chart determines your Ayurvedic constitution (Prakriti).",
@@ -93,10 +93,10 @@
     "ta": "ஒவ்வொரு கிரகமும் ஒரு தோஷ அடையாளத்தைக் கொண்டுள்ளது.",
     "bn": "প্রতিটি গ্রহে একটি দোষের চিহ্ন থাকে।",
     "mai": "प्रत्येक ग्रह एकटा दोष हस्ताक्षर लऽ जाइत अछि। अहाँक कुंडली मे ई ग्रहक सापेक्षिक शक्ति अहाँक आयुर्वेदिक प्रकृति (प्रकृति) निर्धारित करैत अछि।",
-    "te": "Every planet carries a dosha signature. The relative strength of these planets in your chart determines your Ayurvedic constitution (Prakriti).",
-    "gu": "Every planet carries a dosha signature. The relative strength of these planets in your chart determines your Ayurvedic constitution (Prakriti).",
-    "kn": "Every planet carries a dosha signature. The relative strength of these planets in your chart determines your Ayurvedic constitution (Prakriti).",
-    "mr": "Every planet carries a dosha signature. The relative strength of these planets in your chart determines your Ayurvedic constitution (Prakriti)."
+    "te": "ప్రతి గ్రహం ఒక దోష లక్షణాన్ని కలిగి ఉంటుంది. మీ చార్టులో ఈ గ్రహాల సాపేక్ష బలం మీ ఆయుర్వేద ప్రకృతిని (శరీర తత్వాన్ని) నిర్ణయిస్తుంది.",
+    "gu": "દરેક ગ્રહ એક દોષની ઓળખ ધરાવે છે. તમારી કુંડળીમાં આ ગ્રહોની સાપેક્ષ શક્તિ તમારી આયુર્વેદિક પ્રકૃતિ (પ્રકૃતિ) નક્કી કરે છે.",
+    "kn": "ಪ್ರತಿಯೊಂದು ಗ್ರಹವೂ ಒಂದು ದೋಷದ ಸಹಿಯನ್ನು ಹೊಂದಿರುತ್ತದೆ. ನಿಮ್ಮ ಜಾತಕದಲ್ಲಿ ಈ ಗ್ರಹಗಳ ಸಾಪೇಕ್ಷ ಬಲವು ನಿಮ್ಮ ಆಯುರ್ವೇದ ಸಂವಿಧಾನವನ್ನು (ಪ್ರಕೃತಿ) ನಿರ್ಧರಿಸುತ್ತದೆ.",
+    "mr": "प्रत्येक ग्रहात एक दोष-चिन्ह असते. तुमच्या कुंडलीतील या ग्रहांची सापेक्ष शक्ती तुमची आयुर्वेदिक प्रकृती (संविधान) निश्चित करते."
   },
   "doshaVata": {
     "en": "Vata",
@@ -104,10 +104,10 @@
     "ta": "வாதம்",
     "bn": "বাত",
     "mai": "वात",
-    "te": "Vata",
-    "gu": "Vata",
-    "kn": "Vata",
-    "mr": "Vata"
+    "te": "వాత",
+    "gu": "વાત",
+    "kn": "ವಾತ",
+    "mr": "वात"
   },
   "doshaPitta": {
     "en": "Pitta",
@@ -115,10 +115,10 @@
     "ta": "பித்தம்",
     "bn": "পিত্ত",
     "mai": "पित्त",
-    "te": "Pitta",
-    "gu": "Pitta",
-    "kn": "Pitta",
-    "mr": "Pitta"
+    "te": "పిత్త",
+    "gu": "પિત્ત",
+    "kn": "ಪಿತ್ತ",
+    "mr": "पित्त"
   },
   "doshaKapha": {
     "en": "Kapha",
@@ -126,10 +126,10 @@
     "ta": "கபம்",
     "bn": "কফ",
     "mai": "कफ",
-    "te": "Kapha",
-    "gu": "Kapha",
-    "kn": "Kapha",
-    "mr": "Kapha"
+    "te": "కఫ",
+    "gu": "કફ",
+    "kn": "ಕಫ",
+    "mr": "कफ"
   },
   "doshaTri": {
     "en": "Tridoshic",
@@ -137,10 +137,10 @@
     "ta": "திரிதோஷம்",
     "bn": "ত্রিদোষ",
     "mai": "त्रिदोषिक",
-    "te": "Tridoshic",
-    "gu": "Tridoshic",
-    "kn": "Tridoshic",
-    "mr": "Tridoshic"
+    "te": "త్రిదోష",
+    "gu": "ત્રિદોષજ",
+    "kn": "ತ್ರಿದೋಷ",
+    "mr": "त्रिदोषज"
   },
   "thPlanet": {
     "en": "Planet",
@@ -148,10 +148,10 @@
     "ta": "கிரகம்",
     "bn": "গ্রহ",
     "mai": "ग्रह",
-    "te": "Planet",
-    "gu": "Planet",
-    "kn": "Planet",
-    "mr": "Planet"
+    "te": "గ్రహం",
+    "gu": "ગ્રહ",
+    "kn": "ಗ್ರಹ",
+    "mr": "ग्रह"
   },
   "thDosha": {
     "en": "Dosha",
@@ -159,10 +159,10 @@
     "ta": "தோஷம்",
     "bn": "দোষ",
     "mai": "दोष",
-    "te": "Dosha",
-    "gu": "Dosha",
-    "kn": "Dosha",
-    "mr": "Dosha"
+    "te": "దోషం",
+    "gu": "દોષ",
+    "kn": "ದೋಷ",
+    "mr": "दोष"
   },
   "thElement": {
     "en": "Elements",
@@ -170,10 +170,10 @@
     "ta": "தத்துவம்",
     "bn": "তত্ত্ব",
     "mai": "तत्व",
-    "te": "Elements",
-    "gu": "Elements",
-    "kn": "Elements",
-    "mr": "Elements"
+    "te": "తత్వాలు",
+    "gu": "તત્ત્વ",
+    "kn": "ತತ್ವಗಳು",
+    "mr": "तत्त्वे"
   },
   "thSignature": {
     "en": "Health Signature",
@@ -181,10 +181,10 @@
     "ta": "ஆரோக்கிய அடையாளம்",
     "bn": "স্বাস্থ্য চিহ্ন",
     "mai": "स्वास्थ्य हस्ताक्षर",
-    "te": "Health Signature",
-    "gu": "Health Signature",
-    "kn": "Health Signature",
-    "mr": "Health Signature"
+    "te": "ఆరోగ్య లక్షణం",
+    "gu": "સ્વાસ્થ્ય ઓળખ",
+    "kn": "ಆರೋಗ್ಯ ಸಹಿ",
+    "mr": "आरोग्य वैशिष्ट्य"
   },
   "saturn": {
     "en": "Saturn",
@@ -192,10 +192,10 @@
     "ta": "சனி",
     "bn": "শনি",
     "mai": "शनि",
-    "te": "Saturn",
-    "gu": "Saturn",
-    "kn": "Saturn",
-    "mr": "Saturn"
+    "te": "శని",
+    "gu": "શનિ",
+    "kn": "ಶನಿ",
+    "mr": "शनी"
   },
   "saturnDosha": {
     "en": "Vata",
@@ -203,10 +203,10 @@
     "ta": "வாதம்",
     "bn": "বাত",
     "mai": "वात",
-    "te": "Vata",
-    "gu": "Vata",
-    "kn": "Vata",
-    "mr": "Vata"
+    "te": "వాత",
+    "gu": "વાત",
+    "kn": "ವಾತ",
+    "mr": "वात"
   },
   "saturnElement": {
     "en": "Air + Ether",
@@ -214,10 +214,10 @@
     "ta": "காற்று + ஆகாயம்",
     "bn": "বায়ু + আকাশ",
     "mai": "वायु आ आकाश",
-    "te": "Air + Ether",
-    "gu": "Air + Ether",
-    "kn": "Air + Ether",
-    "mr": "Air + Ether"
+    "te": "వాయువు + ఆకాశం",
+    "gu": "વાયુ + આકાશ",
+    "kn": "ವಾಯು + ಆಕಾಶ",
+    "mr": "वायु + आकाश"
   },
   "saturnSig": {
     "en": "Cold, dry, slow. Chronic pain, joint degeneration, nervous exhaustion, depression, constipation.",
@@ -225,10 +225,10 @@
     "ta": "குளிர், வறண்ட, மெதுவான. நாள்பட்ட வலி, மூட்டு சிதைவு.",
     "bn": "ঠান্ডা, শুষ্ক, ধীর। দীর্ঘস্থায়ী ব্যথা, জয়েন্ট ক্ষয়।",
     "mai": "ठंढा, सूखल, धीमा। दीर्घकालिक दर्द, जोड़क क्षय, तंत्रिका थकावट, अवसाद, कब्ज।",
-    "te": "Cold, dry, slow. Chronic pain, joint degeneration, nervous exhaustion, depression, constipation.",
-    "gu": "Cold, dry, slow. Chronic pain, joint degeneration, nervous exhaustion, depression, constipation.",
-    "kn": "Cold, dry, slow. Chronic pain, joint degeneration, nervous exhaustion, depression, constipation.",
-    "mr": "Cold, dry, slow. Chronic pain, joint degeneration, nervous exhaustion, depression, constipation."
+    "te": "చల్లని, పొడి, నెమ్మది. దీర్ఘకాలిక నొప్పి, కీళ్ల క్షీణత, నాడీ అలసట, డిప్రెషన్, మలబద్ధకం.",
+    "gu": "ઠંડો, સૂકો, ધીમો. દીર્ઘકાલીન પીડા, સાંધાનો ઘસારો, ચેતાતંત્રની થકાવટ, ડિપ્રેશન, કબજિયાત.",
+    "kn": "ಶೀತ, ಶುಷ್ಕ, ನಿಧಾನ. ದೀರ್ಘಕಾಲದ ನೋವು, ಕೀಲುಗಳ ಕ್ಷೀಣತೆ, ನರ ದೌರ್ಬಲ್ಯ, ಖಿನ್ನತೆ, ಮಲಬದ್ಧತೆ.",
+    "mr": "थंड, कोरडा, मंद. दीर्घकाळ टिकणारे दुखणे, सांध्यांची झीज, मज्जातंतूंचा थकवा, नैराश्य, बद्धकोष्ठता."
   },
   "rahu": {
     "en": "Rahu",
@@ -236,10 +236,10 @@
     "ta": "ராகு",
     "bn": "রাহু",
     "mai": "राहु",
-    "te": "Rahu",
-    "gu": "Rahu",
-    "kn": "Rahu",
-    "mr": "Rahu"
+    "te": "రాహువు",
+    "gu": "રાહુ",
+    "kn": "ರಾಹು",
+    "mr": "राहु"
   },
   "rahuDosha": {
     "en": "Vata",
@@ -247,10 +247,10 @@
     "ta": "வாதம்",
     "bn": "বাত",
     "mai": "वात",
-    "te": "Vata",
-    "gu": "Vata",
-    "kn": "Vata",
-    "mr": "Vata"
+    "te": "వాత",
+    "gu": "વાત",
+    "kn": "ವಾತ",
+    "mr": "वात"
   },
   "rahuElement": {
     "en": "Air + Ether",
@@ -258,10 +258,10 @@
     "ta": "காற்று + ஆகாயம்",
     "bn": "বায়ু + আকাশ",
     "mai": "वायु आ आकाश",
-    "te": "Air + Ether",
-    "gu": "Air + Ether",
-    "kn": "Air + Ether",
-    "mr": "Air + Ether"
+    "te": "వాయువు + ఆకాశం",
+    "gu": "વાયુ + આકાશ",
+    "kn": "ವಾಯು + ಆಕಾಶ",
+    "mr": "वायु + आकाश"
   },
   "rahuSig": {
     "en": "Erratic, toxic, confusing. Mysterious illnesses, poisoning, phobias, anxiety disorders, addiction.",
@@ -269,10 +269,10 @@
     "ta": "ஒழுங்கற்ற, நச்சு. மர்ம நோய்கள், விஷம், பயம்.",
     "bn": "অনিয়মিত, বিষাক্ত। রহস্যময় রোগ, বিষক্রিয়া, ভয়।",
     "mai": "अनियमित, विषाक्त, भ्रामक। रहस्यमय बीमारी, विषपान, फोबिया, चिंता विकार, लत।",
-    "te": "Erratic, toxic, confusing. Mysterious illnesses, poisoning, phobias, anxiety disorders, addiction.",
-    "gu": "Erratic, toxic, confusing. Mysterious illnesses, poisoning, phobias, anxiety disorders, addiction.",
-    "kn": "Erratic, toxic, confusing. Mysterious illnesses, poisoning, phobias, anxiety disorders, addiction.",
-    "mr": "Erratic, toxic, confusing. Mysterious illnesses, poisoning, phobias, anxiety disorders, addiction."
+    "te": "అస్థిర, విషపూరిత, గందరగోళం. రహస్యమైన వ్యాధులు, విషప్రయోగం, భయాలు, ఆందోళన రుగ్మతలు, వ్యసనం.",
+    "gu": "અનિયમિત, ઝેરી, ભ્રામક. રહસ્યમય રોગો, ઝેર, ફોબિયા, ચિંતાના વિકારો, વ્યસન.",
+    "kn": "ಅನಿಯಮಿತ, ವಿಷಕಾರಿ, ಗೊಂದಲಮಯ. ನಿಗೂಢ ರೋಗಗಳು, ವಿಷಪೂರಿತ, ಭಯಗಳು, ಆತಂಕದ ಅಸ್ವಸ್ಥತೆಗಳು, ವ್ಯಸನ.",
+    "mr": "अनियमित, विषारी, गोंधळात टाकणारा. रहस्यमय आजार, विषबाधा, भीती, चिंता विकार, व्यसन."
   },
   "sun": {
     "en": "Sun",
@@ -280,10 +280,10 @@
     "ta": "சூரியன்",
     "bn": "সূর্য",
     "mai": "सूर्य",
-    "te": "Sun",
-    "gu": "Sun",
-    "kn": "Sun",
-    "mr": "Sun"
+    "te": "సూర్యుడు",
+    "gu": "સૂર્ય",
+    "kn": "ಸೂರ್ಯ",
+    "mr": "सूर्य"
   },
   "sunDosha": {
     "en": "Pitta",
@@ -291,10 +291,10 @@
     "ta": "பித்தம்",
     "bn": "পিত্ত",
     "mai": "पित्त",
-    "te": "Pitta",
-    "gu": "Pitta",
-    "kn": "Pitta",
-    "mr": "Pitta"
+    "te": "పిత్త",
+    "gu": "પિત્ત",
+    "kn": "ಪಿತ್ತ",
+    "mr": "पित्त"
   },
   "sunElement": {
     "en": "Fire + Water",
@@ -302,10 +302,10 @@
     "ta": "நெருப்பு + நீர்",
     "bn": "অগ্নি + জল",
     "mai": "अग्नि आ जल",
-    "te": "Fire + Water",
-    "gu": "Fire + Water",
-    "kn": "Fire + Water",
-    "mr": "Fire + Water"
+    "te": "అగ్ని + జలం",
+    "gu": "અગ્નિ + જળ",
+    "kn": "ಅಗ್ನಿ + ಜಲ",
+    "mr": "अग्नी + जल"
   },
   "sunSig": {
     "en": "Hot, sharp, penetrating. Fevers, inflammation, heart disease, eye disorders, pitta-type headaches.",
@@ -313,10 +313,10 @@
     "ta": "சூடு, கூர்மை. காய்ச்சல், வீக்கம், இதய நோய்.",
     "bn": "গরম, তীক্ষ্ণ। জ্বর, প্রদাহ, হৃদরোগ, চোখের রোগ।",
     "mai": "गरम, तीक्ष्ण, भेदनशील। ज्वर, सूजन, हृदय रोग, आँखि केर विकार, पित्त-प्रकारक सिरदर्द।",
-    "te": "Hot, sharp, penetrating. Fevers, inflammation, heart disease, eye disorders, pitta-type headaches.",
-    "gu": "Hot, sharp, penetrating. Fevers, inflammation, heart disease, eye disorders, pitta-type headaches.",
-    "kn": "Hot, sharp, penetrating. Fevers, inflammation, heart disease, eye disorders, pitta-type headaches.",
-    "mr": "Hot, sharp, penetrating. Fevers, inflammation, heart disease, eye disorders, pitta-type headaches."
+    "te": "వేడి, పదునైన, చొచ్చుకుపోయే. జ్వరాలు, వాపు, గుండె జబ్బులు, కంటి రుగ్మతలు, పిత్త-రకం తలనొప్పి.",
+    "gu": "ગરમ, તીક્ષ્ણ, ભેદક. તાવ, સોજો, હૃદય રોગ, નેત્ર વિકારો, પિત્ત-પ્રકારના માથાનો દુખાવો.",
+    "kn": "ಬಿಸಿ, ತೀಕ್ಷ್ಣ, ಭೇದಕ. ಜ್ವರ, ಉರಿಯೂತ, ಹೃದ್ರೋಗ, ಕಣ್ಣಿನ ಅಸ್ವಸ್ಥತೆಗಳು, ಪಿತ್ತ-ರೀತಿಯ ತಲೆನೋವು.",
+    "mr": "गरम, तीक्ष्ण, भेदक. ताप, दाह, हृदयविकार, डोळ्यांचे विकार, पित्त-प्रकारची डोकेदुखी."
   },
   "mars": {
     "en": "Mars",
@@ -324,10 +324,10 @@
     "ta": "செவ்வாய்",
     "bn": "মঙ্গল",
     "mai": "मंगल",
-    "te": "Mars",
-    "gu": "Mars",
-    "kn": "Mars",
-    "mr": "Mars"
+    "te": "కుజుడు",
+    "gu": "મંગળ",
+    "kn": "ಮಂಗಳ",
+    "mr": "मंगळ"
   },
   "marsDosha": {
     "en": "Pitta",
@@ -335,10 +335,10 @@
     "ta": "பித்தம்",
     "bn": "পিত্ত",
     "mai": "पित्त",
-    "te": "Pitta",
-    "gu": "Pitta",
-    "kn": "Pitta",
-    "mr": "Pitta"
+    "te": "పిత్త",
+    "gu": "પિત્ત",
+    "kn": "ಪಿತ್ತ",
+    "mr": "पित्त"
   },
   "marsElement": {
     "en": "Fire + Water",
@@ -346,10 +346,10 @@
     "ta": "நெருப்பு + நீர்",
     "bn": "অগ্নি + জল",
     "mai": "अग्नि आ जल",
-    "te": "Fire + Water",
-    "gu": "Fire + Water",
-    "kn": "Fire + Water",
-    "mr": "Fire + Water"
+    "te": "అగ్ని + జలం",
+    "gu": "અગ્નિ + જળ",
+    "kn": "ಅಗ್ನಿ + ಜಲ",
+    "mr": "अग्नी + जल"
   },
   "marsSig": {
     "en": "Intense, surgical, combustive. Accidents, surgeries, blood disorders, ulcers, burns, acute fevers.",
@@ -357,10 +357,10 @@
     "ta": "தீவிரமான, அறுவை. விபத்துகள், அறுவை சிகிச்சை, இரத்த கோளாறுகள்.",
     "bn": "তীব্র, শল্য। দুর্ঘটনা, রক্ত বিকার, আলসার।",
     "mai": "तीव्र, शल्य चिकित्साक, दाहक। दुर्घटना, शल्य चिकित्सा, रक्त विकार, अल्सर, जलन, तीव्र ज्वर।",
-    "te": "Intense, surgical, combustive. Accidents, surgeries, blood disorders, ulcers, burns, acute fevers.",
-    "gu": "Intense, surgical, combustive. Accidents, surgeries, blood disorders, ulcers, burns, acute fevers.",
-    "kn": "Intense, surgical, combustive. Accidents, surgeries, blood disorders, ulcers, burns, acute fevers.",
-    "mr": "Intense, surgical, combustive. Accidents, surgeries, blood disorders, ulcers, burns, acute fevers."
+    "te": "తీవ్రమైన, శస్త్రచికిత్సా, దహన. ప్రమాదాలు, శస్త్రచికిత్సలు, రక్త రుగ్మతలు, అల్సర్లు, కాలిన గాయాలు, తీవ్రమైన జ్వరాలు.",
+    "gu": "તીવ્ર, શસ્ત્રક્રિયા સંબંધિત, દાહક. અકસ્માતો, શસ્ત્રક્રિયાઓ, રક્ત વિકારો, અલ્સર, દાઝવું, તીવ્ર તાવ.",
+    "kn": "ತೀವ್ರ, ಶಸ್ತ್ರಚಿಕಿತ್ಸಕ, ದಹನಕಾರಿ. ಅಪಘಾತಗಳು, ಶಸ್ತ್ರಚಿಕಿತ್ಸೆಗಳು, ರಕ್ತದ ಅಸ್ವಸ್ಥತೆಗಳು, ಹುಣ್ಣುಗಳು, ಸುಟ್ಟಗಾಯಗಳು, ತೀವ್ರ ಜ್ವರಗಳು.",
+    "mr": "तीव्र, शस्त्रक्रियेसारखा, दाहक. अपघात, शस्त्रक्रिया, रक्ताचे विकार, अल्सर, भाजणे, तीव्र ताप."
   },
   "ketu": {
     "en": "Ketu",
@@ -368,10 +368,10 @@
     "ta": "கேது",
     "bn": "কেতু",
     "mai": "केतु",
-    "te": "Ketu",
-    "gu": "Ketu",
-    "kn": "Ketu",
-    "mr": "Ketu"
+    "te": "కేతువు",
+    "gu": "કેતુ",
+    "kn": "ಕೇತು",
+    "mr": "केतु"
   },
   "ketuDosha": {
     "en": "Pitta",
@@ -379,10 +379,10 @@
     "ta": "பித்தம்",
     "bn": "পিত্ত",
     "mai": "पित्त",
-    "te": "Pitta",
-    "gu": "Pitta",
-    "kn": "Pitta",
-    "mr": "Pitta"
+    "te": "పిత్త",
+    "gu": "પિત્ત",
+    "kn": "ಪಿತ್ತ",
+    "mr": "पित्त"
   },
   "ketuElement": {
     "en": "Fire + Water",
@@ -390,10 +390,10 @@
     "ta": "நெருப்பு + நீர்",
     "bn": "অগ্নি + জল",
     "mai": "अग्नि आ जल",
-    "te": "Fire + Water",
-    "gu": "Fire + Water",
-    "kn": "Fire + Water",
-    "mr": "Fire + Water"
+    "te": "అగ్ని + జలం",
+    "gu": "અગ્નિ + જળ",
+    "kn": "ಅಗ್ನಿ + ಜಲ",
+    "mr": "अग्नी + जल"
   },
   "ketuSig": {
     "en": "Piercing, sudden, karmic. Unexplained fevers, skin eruptions, neurological issues, muscular dystrophy.",
@@ -401,10 +401,10 @@
     "ta": "துளையிடும், திடீர். விவரிக்க முடியாத காய்ச்சல், தோல் வெடிப்பு.",
     "bn": "ছিদ্রকারী, আকস্মিক। অজ্ঞাত জ্বর, চর্ম বিস্ফোরণ।",
     "mai": "भेदनशील, अचानक, कर्मिक। अस्पष्टीकृत ज्वर, त्वचाक विस्फोट, तंत्रिका संबंधी समस्या, मांसपेशीय दुर्विकास।",
-    "te": "Piercing, sudden, karmic. Unexplained fevers, skin eruptions, neurological issues, muscular dystrophy.",
-    "gu": "Piercing, sudden, karmic. Unexplained fevers, skin eruptions, neurological issues, muscular dystrophy.",
-    "kn": "Piercing, sudden, karmic. Unexplained fevers, skin eruptions, neurological issues, muscular dystrophy.",
-    "mr": "Piercing, sudden, karmic. Unexplained fevers, skin eruptions, neurological issues, muscular dystrophy."
+    "te": "చొచ్చుకుపోయే, ఆకస్మిక, కర్మ సంబంధిత. వివరించలేని జ్వరాలు, చర్మ దద్దుర్లు, నాడీ సమస్యలు, కండరాల క్షీణత.",
+    "gu": "વેધક, અચાનક, કર્મ સંબંધિત. અસ્પષ્ટ તાવ, ચામડીના ફોલ્લીઓ, ન્યુરોલોજીકલ સમસ્યાઓ, મસ્ક્યુલર ડિસ્ટ્રોફી.",
+    "kn": "ಭೇದಿಸುವ, ಹಠಾತ್, ಕರ್ಮಿಕ. ವಿವರಿಸಲಾಗದ ಜ್ವರಗಳು, ಚರ್ಮದ ಸ್ಫೋಟಗಳು, ನರವೈಜ್ಞಾನಿಕ ಸಮಸ್ಯೆಗಳು, ಸ್ನಾಯು ಕ್ಷೀಣತೆ.",
+    "mr": "भेदक, अचानक, कर्म-संबंधित. अज्ञात ताप, त्वचेवर पुरळ, न्यूरोलॉजिकल समस्या, स्नायूंचा क्षय."
   },
   "moon": {
     "en": "Moon",
@@ -412,10 +412,10 @@
     "ta": "சந்திரன்",
     "bn": "চন্দ্র",
     "mai": "चन्द्रमा",
-    "te": "Moon",
-    "gu": "Moon",
-    "kn": "Moon",
-    "mr": "Moon"
+    "te": "చంద్రుడు",
+    "gu": "ચંદ્ર",
+    "kn": "ಚಂದ್ರ",
+    "mr": "चंद्र"
   },
   "moonDosha": {
     "en": "Kapha",
@@ -423,10 +423,10 @@
     "ta": "கபம்",
     "bn": "কফ",
     "mai": "कफ",
-    "te": "Kapha",
-    "gu": "Kapha",
-    "kn": "Kapha",
-    "mr": "Kapha"
+    "te": "కఫ",
+    "gu": "કફ",
+    "kn": "ಕಫ",
+    "mr": "कफ"
   },
   "moonElement": {
     "en": "Earth + Water",
@@ -434,10 +434,10 @@
     "ta": "நிலம் + நீர்",
     "bn": "পৃথিবী + জল",
     "mai": "पृथ्वी आ जल",
-    "te": "Earth + Water",
-    "gu": "Earth + Water",
-    "kn": "Earth + Water",
-    "mr": "Earth + Water"
+    "te": "పృథ్వి + జలం",
+    "gu": "પૃથ્વી + જળ",
+    "kn": "ಪೃಥ್ವಿ + ಜಲ",
+    "mr": "पृथ्वी + जल"
   },
   "moonSig": {
     "en": "Cool, moist, nurturing. Water retention, respiratory congestion, emotional eating, lymphatic sluggishness.",
@@ -445,10 +445,10 @@
     "ta": "குளிர், ஈரமான. நீர் தேக்கம், சுவாச நெரிசல்.",
     "bn": "শীতল, আর্দ্র। জল ধারণ, শ্বাসকষ্ট।",
     "mai": "शीतल, नम, पोषण करयवला। जल प्रतिधारण, श्वसनक भीड़, भावनात्मक भोजन, लसीकाक सुस्ती।",
-    "te": "Cool, moist, nurturing. Water retention, respiratory congestion, emotional eating, lymphatic sluggishness.",
-    "gu": "Cool, moist, nurturing. Water retention, respiratory congestion, emotional eating, lymphatic sluggishness.",
-    "kn": "Cool, moist, nurturing. Water retention, respiratory congestion, emotional eating, lymphatic sluggishness.",
-    "mr": "Cool, moist, nurturing. Water retention, respiratory congestion, emotional eating, lymphatic sluggishness."
+    "te": "చల్లని, తేమ, పోషణ. నీరు నిలుపుదల, శ్వాసకోశ రద్దీ, భావోద్వేగ భోజనం, శోషరస మందగమనం.",
+    "gu": "ઠંડો, ભેજવાળો, પોષણ આપનાર. જળ જાળવણી, શ્વસન અવરોધ, ભાવનાત્મક ખાનપાન, લસિકા તંત્રની સુસ્તી.",
+    "kn": "ಶೀತ, ತೇವಾಂಶ, ಪೋಷಕ. ನೀರಿನ ಧಾರಣ, ಉಸಿರಾಟದ ದಟ್ಟಣೆ, ಭಾವನಾತ್ಮಕ ಆಹಾರ ಸೇವನೆ, ದುಗ್ಧರಸದ ನಿಧಾನತೆ.",
+    "mr": "थंड, ओलसर, पोषण करणारा. पाणी साठणे, श्वसनमार्गात अडथळा, भावनिक खाणे, लसीका प्रणालीची मंदता."
   },
   "jupiter": {
     "en": "Jupiter",
@@ -456,10 +456,10 @@
     "ta": "குரு",
     "bn": "বৃহস্পতি",
     "mai": "गुरु",
-    "te": "Jupiter",
-    "gu": "Jupiter",
-    "kn": "Jupiter",
-    "mr": "Jupiter"
+    "te": "గురువు",
+    "gu": "બૃહસ્પતિ",
+    "kn": "ಬೃಹಸ್ಪತಿ",
+    "mr": "गुरु"
   },
   "jupiterDosha": {
     "en": "Kapha",
@@ -467,10 +467,10 @@
     "ta": "கபம்",
     "bn": "কফ",
     "mai": "कफ",
-    "te": "Kapha",
-    "gu": "Kapha",
-    "kn": "Kapha",
-    "mr": "Kapha"
+    "te": "కఫ",
+    "gu": "કફ",
+    "kn": "ಕಫ",
+    "mr": "कफ"
   },
   "jupiterElement": {
     "en": "Earth + Water",
@@ -478,10 +478,10 @@
     "ta": "நிலம் + நீர்",
     "bn": "পৃথিবী + জল",
     "mai": "पृथ्वी आ जल",
-    "te": "Earth + Water",
-    "gu": "Earth + Water",
-    "kn": "Earth + Water",
-    "mr": "Earth + Water"
+    "te": "పృథ్వి + జలం",
+    "gu": "પૃથ્વી + જળ",
+    "kn": "ಪೃಥ್ವಿ + ಜಲ",
+    "mr": "पृथ्वी + जल"
   },
   "jupiterSig": {
     "en": "Heavy, expansive, sweet. Obesity, diabetes, liver enlargement, cholesterol, tumour growth.",
@@ -489,10 +489,10 @@
     "ta": "கனமான, விரிவான. உடல் பருமன், நீரிழிவு, கல்லீரல் வீக்கம்.",
     "bn": "ভারী, বিস্তৃত। স্থূলতা, ডায়াবেটিস, যকৃৎ বৃদ্ধি।",
     "mai": "भारी, विस्तृत, मीठ। मोटापा, मधुमेह, यकृत वृद्धि, कोलेस्ट्रॉल, ट्यूमरक वृद्धि।",
-    "te": "Heavy, expansive, sweet. Obesity, diabetes, liver enlargement, cholesterol, tumour growth.",
-    "gu": "Heavy, expansive, sweet. Obesity, diabetes, liver enlargement, cholesterol, tumour growth.",
-    "kn": "Heavy, expansive, sweet. Obesity, diabetes, liver enlargement, cholesterol, tumour growth.",
-    "mr": "Heavy, expansive, sweet. Obesity, diabetes, liver enlargement, cholesterol, tumour growth."
+    "te": "బరువైన, విస్తరించే, తీపి. ఊబకాయం, మధుమేహం, కాలేయ విస్తరణ, కొలెస్ట్రాల్, కణితి పెరుగుదల.",
+    "gu": "ભારે, વિસ્તૃત, મધુર. સ્થૂળતા, ડાયાબિટીસ, યકૃત વૃદ્ધિ, કોલેસ્ટ્રોલ, ગાંઠનો વિકાસ.",
+    "kn": "ಭಾರೀ, ವಿಸ್ತಾರವಾದ, ಸಿಹಿ. ಬೊಜ್ಜು, ಮಧುಮೇಹ, ಯಕೃತ್ತಿನ ಹಿಗ್ಗುವಿಕೆ, ಕೊಲೆಸ್ಟ್ರಾಲ್, ಗೆಡ್ಡೆಯ ಬೆಳವಣಿಗೆ.",
+    "mr": "जड, विस्तारणारा, गोड. लठ्ठपणा, मधुमेह, यकृताची वाढ, कोलेस्ट्रॉल, गाठींची वाढ."
   },
   "venus": {
     "en": "Venus",
@@ -500,10 +500,10 @@
     "ta": "சுக்கிரன்",
     "bn": "শুক্র",
     "mai": "शुक्र",
-    "te": "Venus",
-    "gu": "Venus",
-    "kn": "Venus",
-    "mr": "Venus"
+    "te": "శుక్రుడు",
+    "gu": "શુક્ર",
+    "kn": "ಶುಕ್ರ",
+    "mr": "शुक्र"
   },
   "venusDosha": {
     "en": "Kapha",
@@ -511,10 +511,10 @@
     "ta": "கபம்",
     "bn": "কফ",
     "mai": "कफ",
-    "te": "Kapha",
-    "gu": "Kapha",
-    "kn": "Kapha",
-    "mr": "Kapha"
+    "te": "కఫ",
+    "gu": "કફ",
+    "kn": "ಕಫ",
+    "mr": "कफ"
   },
   "venusElement": {
     "en": "Earth + Water",
@@ -522,10 +522,10 @@
     "ta": "நிலம் + நீர்",
     "bn": "পৃথিবী + জল",
     "mai": "पृथ्वी आ जल",
-    "te": "Earth + Water",
-    "gu": "Earth + Water",
-    "kn": "Earth + Water",
-    "mr": "Earth + Water"
+    "te": "పృథ్వి + జలం",
+    "gu": "પૃથ્વી + જળ",
+    "kn": "ಪೃಥ್ವಿ + ಜಲ",
+    "mr": "पृथ्वी + जल"
   },
   "venusSig": {
     "en": "Sweet, luxuriant, reproductive. Urogenital disorders, kidney stones, sexual diseases, hormonal imbalances.",
@@ -533,10 +533,10 @@
     "ta": "இனிமையான, ஆடம்பரமான. சிறுநீரக கற்கள், ஹார்மோன் சமநிலையின்மை.",
     "bn": "মধুর, বিলাসী। মূত্র-জনন বিকার, কিডনি পাথর।",
     "mai": "मीठ, विलासी, प्रजननशील। मूत्रजननांग विकार, गुर्दाक पथरी, यौन रोग, हार्मोनल असंतुलन।",
-    "te": "Sweet, luxuriant, reproductive. Urogenital disorders, kidney stones, sexual diseases, hormonal imbalances.",
-    "gu": "Sweet, luxuriant, reproductive. Urogenital disorders, kidney stones, sexual diseases, hormonal imbalances.",
-    "kn": "Sweet, luxuriant, reproductive. Urogenital disorders, kidney stones, sexual diseases, hormonal imbalances.",
-    "mr": "Sweet, luxuriant, reproductive. Urogenital disorders, kidney stones, sexual diseases, hormonal imbalances."
+    "te": "తీపి, విలాసవంతమైన, పునరుత్పత్తి. మూత్రపిండ-జననేంద్రియ రుగ్మతలు, మూత్రపిండ రాళ్లు, లైంగిక వ్యాధులు, హార్మోన్ల అసమతుల్యత.",
+    "gu": "મધુર, વૈભવી, પ્રજનન સંબંધિત. મૂત્ર-જનન વિકારો, કિડની સ્ટોન, જાતીય રોગો, હોર્મોનલ અસંતુલન.",
+    "kn": "ಸಿಹಿ, ಐಷಾರಾಮಿ, ಸಂತಾನೋತ್ಪತ್ತಿ. ಮೂತ್ರಜನಕಾಂಗದ ಅಸ್ವಸ್ಥತೆಗಳು, ಮೂತ್ರಪಿಂಡದ ಕಲ್ಲುಗಳು, ಲೈಂಗಿಕ ರೋಗಗಳು, ಹಾರ್ಮೋನುಗಳ ಅಸಮತೋಲನ.",
+    "mr": "गोड, विलासी, प्रजननक्षम. मूत्र-जनन विकार, मूत्रपिंडातील खडे, लैंगिक रोग, हार्मोनल असंतुलन."
   },
   "mercury": {
     "en": "Mercury",
@@ -544,10 +544,10 @@
     "ta": "புதன்",
     "bn": "বুধ",
     "mai": "बुध",
-    "te": "Mercury",
-    "gu": "Mercury",
-    "kn": "Mercury",
-    "mr": "Mercury"
+    "te": "బుధుడు",
+    "gu": "બુધ",
+    "kn": "ಬುಧ",
+    "mr": "बुध"
   },
   "mercuryDosha": {
     "en": "Tridoshic",
@@ -555,10 +555,10 @@
     "ta": "திரிதோஷம்",
     "bn": "ত্রিদোষ",
     "mai": "त्रिदोषिक",
-    "te": "Tridoshic",
-    "gu": "Tridoshic",
-    "kn": "Tridoshic",
-    "mr": "Tridoshic"
+    "te": "త్రిదోష",
+    "gu": "ત્રિદોષજ",
+    "kn": "ತ್ರಿದೋಷ",
+    "mr": "त्रिदोषज"
   },
   "mercuryElement": {
     "en": "Earth + Air + Fire",
@@ -566,10 +566,10 @@
     "ta": "நிலம் + காற்று + நெருப்பு",
     "bn": "পৃথিবী + বায়ু + অগ্নি",
     "mai": "पृथ्वी आ वायु आ अग्नि",
-    "te": "Earth + Air + Fire",
-    "gu": "Earth + Air + Fire",
-    "kn": "Earth + Air + Fire",
-    "mr": "Earth + Air + Fire"
+    "te": "పృథ్వి + వాయువు + అగ్ని",
+    "gu": "પૃથ્વી + વાયુ + અગ્નિ",
+    "kn": "ಪೃಥ್ವಿ + ವಾಯು + ಅಗ್ನಿ",
+    "mr": "पृथ्वी + वायु + अग्नी"
   },
   "mercurySig": {
     "en": "Adaptive, nervous, communicative. Adapts to its sign/conjunction lord's dosha. Skin allergies, speech issues, nervous tics.",
@@ -577,10 +577,10 @@
     "ta": "தகவமைப்பு, நரம்பு. ராசி/இணைவின் கிரகத்தின் தோஷத்தை ஏற்கிறது.",
     "bn": "অভিযোজনশীল, স্নায়বিক। রাশি/যুতির স্বামীর দোষ গ্রহণ করে।",
     "mai": "अनुकूलनीय, तंत्रिका संबंधी, संचारी। अपन राशि/युति स्वामीक दोषक अनुकूल होइत अछि। त्वचाक एलर्जी, भाषणक समस्या, तंत्रिका टिक।",
-    "te": "Adaptive, nervous, communicative. Adapts to its sign/conjunction lord's dosha. Skin allergies, speech issues, nervous tics.",
-    "gu": "Adaptive, nervous, communicative. Adapts to its sign/conjunction lord's dosha. Skin allergies, speech issues, nervous tics.",
-    "kn": "Adaptive, nervous, communicative. Adapts to its sign/conjunction lord's dosha. Skin allergies, speech issues, nervous tics.",
-    "mr": "Adaptive, nervous, communicative. Adapts to its sign/conjunction lord's dosha. Skin allergies, speech issues, nervous tics."
+    "te": "అనుకూల, నాడీ, సంభాషణాత్మక. దాని రాశి/యుతి అధిపతి దోషానికి అనుగుణంగా ఉంటుంది. చర్మ అలెర్జీలు, వాక్ సమస్యలు, నాడీ సంబంధిత కదలికలు.",
+    "gu": "અનુકૂલનશીલ, ચેતાતંત્ર સંબંધિત, સંવાદાત્મક. તેની રાશિ/યુતિના સ્વામીના દોષને અપનાવે છે. ચામડીની એલર્જી, વાણીની સમસ્યાઓ, ચેતાતંત્રના આંચકા.",
+    "kn": "ಹೊಂದಿಕೊಳ್ಳುವ, ನರ, ಸಂವಹನಕಾರಿ. ತನ್ನ ರಾಶಿ/ಸಂಯೋಗ ಅಧಿಪತಿಯ ದೋಷಕ್ಕೆ ಹೊಂದಿಕೊಳ್ಳುತ್ತದೆ. ಚರ್ಮದ ಅಲರ್ಜಿಗಳು, ಮಾತಿನ ಸಮಸ್ಯೆಗಳು, ನರಗಳ ಸೆಳೆತ.",
+    "mr": "अनुकूलनशील, चिंताग्रस्त, संवाद साधणारा. आपल्या राशी/युती स्वामीच्या दोषानुसार जुळवून घेतो. त्वचेची ॲलर्जी, बोलण्याचे विकार, मज्जातंतूंचे झटके."
   },
   "sec2Step": {
     "en": "Determining Prakriti: Step-by-Step",
@@ -588,10 +588,10 @@
     "ta": "பிரகிருதி நிர்ணயம்: படிப்படியாக",
     "bn": "প্রকৃতি নির্ধারণ: ধাপে ধাপে",
     "mai": "प्रकृति निर्धारण: चरण-दर-चरण",
-    "te": "Determining Prakriti: Step-by-Step",
-    "gu": "Determining Prakriti: Step-by-Step",
-    "kn": "Determining Prakriti: Step-by-Step",
-    "mr": "Determining Prakriti: Step-by-Step"
+    "te": "ప్రకృతి నిర్ధారణ: దశలవారీగా",
+    "gu": "પ્રકૃતિ નિર્ધારણ: ક્રમશઃ",
+    "kn": "ಪ್ರಕೃತಿ ನಿರ್ಧಾರ: ಹಂತ-ಹಂತವಾಗಿ",
+    "mr": "प्रकृती निर्धारण: टप्प्याटप्प्याने"
   },
   "step1": {
     "en": "Step 1: Check the Lagna Lord",
@@ -599,10 +599,10 @@
     "ta": "படி 1: லக்ன அதிபதியை சரிபார்க்கவும்",
     "bn": "ধাপ ১: লগ্ন স্বামী পরীক্ষা",
     "mai": "चरण १: लग्न स्वामीक जाँच करू",
-    "te": "Step 1: Check the Lagna Lord",
-    "gu": "Step 1: Check the Lagna Lord",
-    "kn": "Step 1: Check the Lagna Lord",
-    "mr": "Step 1: Check the Lagna Lord"
+    "te": "దశ 1: లగ్నాధిపతిని తనిఖీ చేయండి",
+    "gu": "પગલું 1: લગ્ન સ્વામીની તપાસ કરો",
+    "kn": "ಹಂತ 1: ಲಗ್ನ ಅಧಿಪತಿಯನ್ನು ಪರಿಶೀಲಿಸಿ",
+    "mr": "पायरी १: लग्न स्वामी तपासा"
   },
   "step1Desc": {
     "en": "Identify which planet rules your Ascendant and check its dosha nature. If Aries Lagna, Mars (Pitta) is your constitutional anchor. If Taurus Lagna, Venus (Kapha) sets the foundation.",
@@ -610,10 +610,10 @@
     "ta": "உங்கள் லக்னத்தின் அதிபதி எந்த கிரகம் என்று கண்டறியுங்கள்.",
     "bn": "আপনার লগ্নের স্বামী কোন গ্রহ তা চিহ্নিত করুন।",
     "mai": "पहचान करू जे कोन ग्रह अहाँक लग्नक स्वामी अछि आ एकर दोष प्रकृति जाँच करू। यदि मेष लग्न अछि, मंगल (पित्त) अहाँक संवैधानिक आधार अछि। यदि वृषभ लग्न अछि, शुक्र (कफ) आधार स्थापित करैत अछि।",
-    "te": "Identify which planet rules your Ascendant and check its dosha nature. If Aries Lagna, Mars (Pitta) is your constitutional anchor. If Taurus Lagna, Venus (Kapha) sets the foundation.",
-    "gu": "Identify which planet rules your Ascendant and check its dosha nature. If Aries Lagna, Mars (Pitta) is your constitutional anchor. If Taurus Lagna, Venus (Kapha) sets the foundation.",
-    "kn": "Identify which planet rules your Ascendant and check its dosha nature. If Aries Lagna, Mars (Pitta) is your constitutional anchor. If Taurus Lagna, Venus (Kapha) sets the foundation.",
-    "mr": "Identify which planet rules your Ascendant and check its dosha nature. If Aries Lagna, Mars (Pitta) is your constitutional anchor. If Taurus Lagna, Venus (Kapha) sets the foundation."
+    "te": "మీ లగ్నాన్ని ఏ గ్రహం పాలిస్తుందో గుర్తించి, దాని దోష స్వభావాన్ని తనిఖీ చేయండి. మేష లగ్నం అయితే, కుజుడు (పిత్త) మీ శరీర తత్వానికి మూలం. వృషభ లగ్నం అయితే, శుక్రుడు (కఫ) పునాదిని నిర్మిస్తాడు.",
+    "gu": "ઓળખો કે કયો ગ્રહ તમારા લગ્નનો સ્વામી છે અને તેની દોષ પ્રકૃતિ તપાસો. જો મેષ લગ્ન હોય, તો મંગળ (પિત્ત) તમારો બંધારણીય આધાર છે. જો વૃષભ લગ્ન હોય, તો શુક્ર (કફ) પાયો નાખે છે.",
+    "kn": "ನಿಮ್ಮ ಲಗ್ನವನ್ನು ಯಾವ ಗ್ರಹ ಆಳುತ್ತದೆ ಎಂಬುದನ್ನು ಗುರುತಿಸಿ ಮತ್ತು ಅದರ ದೋಷದ ಸ್ವರೂಪವನ್ನು ಪರಿಶೀಲಿಸಿ. ಮೇಷ ಲಗ್ನವಾಗಿದ್ದರೆ, ಮಂಗಳ (ಪಿತ್ತ) ನಿಮ್ಮ ಸಂವಿಧಾನಾತ್ಮಕ ಆಧಾರವಾಗಿದೆ. ವೃಷಭ ಲಗ್ನವಾಗಿದ್ದರೆ, ಶುಕ್ರ (ಕಫ) ಅಡಿಪಾಯವನ್ನು ಹಾಕುತ್ತದೆ.",
+    "mr": "तुमच्या लग्नाचा स्वामी कोणता ग्रह आहे ते ओळखा आणि त्याची दोष प्रकृती तपासा. जर मेष लग्न असेल, तर मंगळ (पित्त) तुमचा संवैधानिक आधार आहे. जर वृषभ लग्न असेल, तर शुक्र (कफ) पाया घालतो."
   },
   "step2": {
     "en": "Step 2: Examine the Moon Sign & Nakshatra",
@@ -621,10 +621,10 @@
     "ta": "படி 2: சந்திர ராசி & நட்சத்திரம் ஆராயுங்கள்",
     "bn": "ধাপ ২: চন্দ্র রাশি ও নক্ষত্র পরীক্ষা",
     "mai": "चरण २: चन्द्रमाक राशि आ नक्षत्रक जाँच करू",
-    "te": "Step 2: Examine the Moon Sign & Nakshatra",
-    "gu": "Step 2: Examine the Moon Sign & Nakshatra",
-    "kn": "Step 2: Examine the Moon Sign & Nakshatra",
-    "mr": "Step 2: Examine the Moon Sign & Nakshatra"
+    "te": "దశ 2: చంద్ర రాశి & నక్షత్రాన్ని పరిశీలించండి",
+    "gu": "પગલું 2: ચંદ્ર રાશિ અને નક્ષત્રની તપાસ કરો",
+    "kn": "ಹಂತ 2: ಚಂದ್ರ ರಾಶಿ ಮತ್ತು ನಕ್ಷತ್ರವನ್ನು ಪರಿಶೀಲಿಸಿ",
+    "mr": "पायरी २: चंद्र रास आणि नक्षत्र तपासा"
   },
   "step2Desc": {
     "en": "Moon's sign tells the emotional dosha. Moon in a fire sign (Aries/Leo/Sagittarius) adds Pitta to the mix. The nakshatra lord refines further  –  Ashwini (ruled by Ketu) adds a Pitta edge even in Aries.",
@@ -632,10 +632,10 @@
     "ta": "சந்திரனின் ராசி உணர்வுரீதியான தோஷத்தை கூறுகிறது.",
     "bn": "চন্দ্রের রাশি আবেগপূর্ণ দোষ বলে।",
     "mai": "चन्द्रमाक राशि भावनात्मक दोष बताबैत अछि। अग्निक राशि मे चन्द्रमा (मेष/सिंह/धनु) मिश्रण मे पित्त जोड़ैत अछि। नक्षत्र स्वामी आगाँ परिष्कृत करैत अछि – अश्विनी (केतु द्वारा शासित) मेष मे सेहो पित्तक प्रभाव जोड़ैत अछि।",
-    "te": "Moon's sign tells the emotional dosha. Moon in a fire sign (Aries/Leo/Sagittarius) adds Pitta to the mix. The nakshatra lord refines further  –  Ashwini (ruled by Ketu) adds a Pitta edge even in Aries.",
-    "gu": "Moon's sign tells the emotional dosha. Moon in a fire sign (Aries/Leo/Sagittarius) adds Pitta to the mix. The nakshatra lord refines further  –  Ashwini (ruled by Ketu) adds a Pitta edge even in Aries.",
-    "kn": "Moon's sign tells the emotional dosha. Moon in a fire sign (Aries/Leo/Sagittarius) adds Pitta to the mix. The nakshatra lord refines further  –  Ashwini (ruled by Ketu) adds a Pitta edge even in Aries.",
-    "mr": "Moon's sign tells the emotional dosha. Moon in a fire sign (Aries/Leo/Sagittarius) adds Pitta to the mix. The nakshatra lord refines further  –  Ashwini (ruled by Ketu) adds a Pitta edge even in Aries."
+    "te": "చంద్రుని రాశి భావోద్వేగ దోషాన్ని తెలియజేస్తుంది. అగ్ని రాశిలో చంద్రుడు (మేషం/సింహం/ధనుస్సు) మిశ్రమానికి పిత్తాన్ని జోడిస్తుంది. నక్షత్రాధిపతి మరింత శుద్ధి చేస్తుంది – అశ్విని (కేతువుచే పాలించబడుతుంది) మేషంలో కూడా పిత్త ప్రభావాన్ని పెంచుతుంది.",
+    "gu": "ચંદ્રની રાશિ ભાવનાત્મક દોષ દર્શાવે છે. અગ્નિ રાશિમાં ચંદ્ર (મેષ/સિંહ/ધનુ) મિશ્રણમાં પિત્ત ઉમેરે છે. નક્ષત્ર સ્વામી વધુ સૂક્ષ્મતા લાવે છે – અશ્વિની (કેતુ દ્વારા શાસિત) મેષમાં પણ પિત્તનો પ્રભાવ ઉમેરે છે.",
+    "kn": "ಚಂದ್ರನ ರಾಶಿ ಭಾವನಾತ್ಮಕ ದೋಷವನ್ನು ಹೇಳುತ್ತದೆ. ಅಗ್ನಿ ರಾಶಿಯಲ್ಲಿ ಚಂದ್ರ (ಮೇಷ/ಸಿಂಹ/ಧನು) ಮಿಶ್ರಣಕ್ಕೆ ಪಿತ್ತವನ್ನು ಸೇರಿಸುತ್ತದೆ. ನಕ್ಷತ್ರ ಅಧಿಪತಿಯು ಮತ್ತಷ್ಟು ಪರಿಷ್ಕರಿಸುತ್ತದೆ – ಅಶ್ವಿನಿ (ಕೇತುವಿನಿಂದ ಆಳಲ್ಪಟ್ಟಿದೆ) ಮೇಷ ರಾಶಿಯಲ್ಲಿಯೂ ಪಿತ್ತದ ಅಂಚನ್ನು ಸೇರಿಸುತ್ತದೆ.",
+    "mr": "चंद्राची रास भावनिक दोष सांगते. अग्नी राशीत चंद्र (मेष/सिंह/धनु) मिश्रणात पित्त वाढवतो. नक्षत्राचा स्वामी याला आणखी परिष्कृत करतो – अश्विनी (केतू शासित) मेषेतही पित्ताचा प्रभाव वाढवतो."
   },
   "step3": {
     "en": "Step 3: Find the Strongest Planet (Shadbala)",
@@ -643,10 +643,10 @@
     "ta": "படி 3: வலிமையான கிரகம் (ஷட்பலம்)",
     "bn": "ধাপ ৩: সবচেয়ে শক্তিশালী গ্রহ (ষড্বল)",
     "mai": "चरण ३: सबसँ शक्तिशाली ग्रह (षड्बल) पता लगाउ",
-    "te": "Step 3: Find the Strongest Planet (Shadbala)",
-    "gu": "Step 3: Find the Strongest Planet (Shadbala)",
-    "kn": "Step 3: Find the Strongest Planet (Shadbala)",
-    "mr": "Step 3: Find the Strongest Planet (Shadbala)"
+    "te": "దశ 3: బలమైన గ్రహాన్ని కనుగొనండి (షడ్బలం)",
+    "gu": "પગલું 3: સૌથી શક્તિશાળી ગ્રહ શોધો (ષડ્બળ)",
+    "kn": "ಹಂತ 3: ಬಲವಾದ ಗ್ರಹವನ್ನು ಹುಡುಕಿ (ಷಡ್ಬಲ)",
+    "mr": "पायरी ३: सर्वात बलवान ग्रह शोधा (षड्बल)"
   },
   "step3Desc": {
     "en": "The planet with the highest Shadbala score acts as the dominant constitutional influence. If Saturn leads in Shadbala, expect strong Vata tendencies regardless of the lagna.",
@@ -654,10 +654,10 @@
     "ta": "அதிக ஷட்பல மதிப்பெண் கொண்ட கிரகம் ஆதிக்க தாக்கமாக செயல்படும்.",
     "bn": "সর্বোচ্চ ষড্বল স্কোরের গ্রহ প্রধান প্রভাব হিসেবে কাজ করে।",
     "mai": "सबसँ बेसी षड्बल अंक वला ग्रह प्रमुख संवैधानिक प्रभावक रूप मे काज करैत अछि। यदि शनि षड्बल मे आगू अछि, तँ लग्न सँ निरपेक्ष प्रबल वात प्रवृत्ति केर अपेक्षा करू।",
-    "te": "The planet with the highest Shadbala score acts as the dominant constitutional influence. If Saturn leads in Shadbala, expect strong Vata tendencies regardless of the lagna.",
-    "gu": "The planet with the highest Shadbala score acts as the dominant constitutional influence. If Saturn leads in Shadbala, expect strong Vata tendencies regardless of the lagna.",
-    "kn": "The planet with the highest Shadbala score acts as the dominant constitutional influence. If Saturn leads in Shadbala, expect strong Vata tendencies regardless of the lagna.",
-    "mr": "The planet with the highest Shadbala score acts as the dominant constitutional influence. If Saturn leads in Shadbala, expect strong Vata tendencies regardless of the lagna."
+    "te": "అత్యధిక షడ్బల స్కోరు ఉన్న గ్రహం ప్రధాన శరీర తత్వ ప్రభావాన్ని చూపుతుంది. శని షడ్బలంలో ముందుంటే, లగ్నంతో సంబంధం లేకుండా బలమైన వాత ప్రవృత్తులను ఆశించవచ్చు.",
+    "gu": "સૌથી વધુ ષડ્બળ અંક ધરાવતો ગ્રહ પ્રબળ બંધારણીય પ્રભાવ તરીકે કાર્ય કરે છે. જો શનિ ષડ્બળમાં અગ્રણી હોય, તો લગ્નને ધ્યાનમાં લીધા વિના મજબૂત વાત પ્રવૃત્તિઓની અપેક્ષા રાખો.",
+    "kn": "ಅತ್ಯಧಿಕ ಷಡ್ಬಲ ಅಂಕವನ್ನು ಹೊಂದಿರುವ ಗ್ರಹವು ಪ್ರಬಲ ಸಂವಿಧಾನಾತ್ಮಕ ಪ್ರಭಾವವಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ. ಶನಿಯು ಷಡ್ಬಲದಲ್ಲಿ ಮುನ್ನಡೆಯುತ್ತಿದ್ದರೆ, ಲಗ್ನವನ್ನು ಲೆಕ್ಕಿಸದೆ ಬಲವಾದ ವಾತ ಪ್ರವೃತ್ತಿಗಳನ್ನು ನಿರೀಕ್ಷಿಸಿ.",
+    "mr": "सर्वाधिक षड्बल गुण असलेला ग्रह प्रमुख संवैधानिक प्रभाव म्हणून कार्य करतो. जर शनी षड्बलात आघाडीवर असेल, तर लग्नाची पर्वा न करता तीव्र वात प्रवृत्ती अपेक्षित आहे."
   },
   "step4": {
     "en": "Step 4: Synthesise",
@@ -665,10 +665,10 @@
     "ta": "படி 4: ஒருங்கிணைக்கவும்",
     "bn": "ধাপ ৪: সমন্বয়",
     "mai": "चरण ४: संश्लेषित करू",
-    "te": "Step 4: Synthesise",
-    "gu": "Step 4: Synthesise",
-    "kn": "Step 4: Synthesise",
-    "mr": "Step 4: Synthesise"
+    "te": "దశ 4: సమన్వయం చేయండి",
+    "gu": "પગલું 4: સંશ્લેષણ કરો",
+    "kn": "ಹಂತ 4: ಸಂಶ್ಲೇಷಿಸಿ",
+    "mr": "पायरी ४: संश्लेषण करा"
   },
   "step4Desc": {
     "en": "Count the dosha points from all three sources. If 2 of 3 point to Pitta, you are Pitta-dominant. If Lagna says Kapha but Moon and Shadbala say Pitta, you are Pitta-Kapha (Pitta primary, Kapha secondary).",
@@ -676,10 +676,10 @@
     "ta": "மூன்று ஆதாரங்களிலிருந்தும் தோஷ புள்ளிகளை எண்ணுங்கள்.",
     "bn": "তিনটি উৎস থেকে দোষ পয়েন্ট গণনা করুন।",
     "mai": "सभ तीन स्रोतसँ दोषक बिन्दु सभक गणना करू। यदि तीन मे सँ २ टा पित्त दिस इशारा करैत अछि, तँ अहाँ पित्त-प्रधान छी। यदि लग्न कफ कहैत अछि मुदा चन्द्रमा आ षड्बल पित्त कहैत अछि, तँ अहाँ पित्त-कफ छी (पित्त मुख्य, कफ गौण)।",
-    "te": "Count the dosha points from all three sources. If 2 of 3 point to Pitta, you are Pitta-dominant. If Lagna says Kapha but Moon and Shadbala say Pitta, you are Pitta-Kapha (Pitta primary, Kapha secondary).",
-    "gu": "Count the dosha points from all three sources. If 2 of 3 point to Pitta, you are Pitta-dominant. If Lagna says Kapha but Moon and Shadbala say Pitta, you are Pitta-Kapha (Pitta primary, Kapha secondary).",
-    "kn": "Count the dosha points from all three sources. If 2 of 3 point to Pitta, you are Pitta-dominant. If Lagna says Kapha but Moon and Shadbala say Pitta, you are Pitta-Kapha (Pitta primary, Kapha secondary).",
-    "mr": "Count the dosha points from all three sources. If 2 of 3 point to Pitta, you are Pitta-dominant. If Lagna says Kapha but Moon and Shadbala say Pitta, you are Pitta-Kapha (Pitta primary, Kapha secondary)."
+    "te": "మూడు వనరుల నుండి దోష పాయింట్లను లెక్కించండి. 3లో 2 పిత్తాన్ని సూచిస్తే, మీరు పిత్త-ప్రధానమైనవారు. లగ్నం కఫ అని, చంద్రుడు మరియు షడ్బలం పిత్త అని చెబితే, మీరు పిత్త-కఫ (పిత్త ప్రాథమిక, కఫ ద్వితీయ) అవుతారు.",
+    "gu": "ત્રણેય સ્ત્રોતોમાંથી દોષના મુદ્દાઓ ગણો. જો 3 માંથી 2 પિત્ત તરફ નિર્દેશ કરે છે, તો તમે પિત્ત-પ્રધાન છો. જો લગ્ન કફ કહે છે પરંતુ ચંદ્ર અને ષડ્બળ પિત્ત કહે છે, તો તમે પિત્ત-કફ (પિત્ત પ્રાથમિક, કફ ગૌણ) છો.",
+    "kn": "ಮೂರು ಮೂಲಗಳಿಂದ ದೋಷ ಅಂಕಗಳನ್ನು ಎಣಿಸಿ. 3 ರಲ್ಲಿ 2 ಪಿತ್ತವನ್ನು ಸೂಚಿಸಿದರೆ, ನೀವು ಪಿತ್ತ-ಪ್ರಧಾನರು. ಲಗ್ನವು ಕಫ ಎಂದು ಹೇಳಿದರೆ ಆದರೆ ಚಂದ್ರ ಮತ್ತು ಷಡ್ಬಲವು ಪಿತ್ತ ಎಂದು ಹೇಳಿದರೆ, ನೀವು ಪಿತ್ತ-ಕಫ (ಪಿತ್ತ ಪ್ರಾಥಮಿಕ, ಕಫ ದ್ವಿತೀಯಕ).",
+    "mr": "तिन्ही स्रोतांकडून दोष गुण मोजा. जर ३ पैकी २ पित्ताकडे निर्देश करत असतील, तर तुम्ही पित्त-प्रधान आहात. जर लग्न कफ सांगत असेल पण चंद्र आणि षड्बल पित्त सांगत असतील, तर तुम्ही पित्त-कफ (पित्त प्राथमिक, कफ द्वितीयक) आहात."
   },
   "exampleTitle": {
     "en": "Worked Example",
@@ -687,10 +687,10 @@
     "ta": "விளக்க உதாரணம்",
     "bn": "উদাহরণ",
     "mai": "काज कएल उदाहरण",
-    "te": "Worked Example",
-    "gu": "Worked Example",
-    "kn": "Worked Example",
-    "mr": "Worked Example"
+    "te": "ఉదాహరణ",
+    "gu": "ઉદાહરણ",
+    "kn": "ಉದಾಹರಣೆ",
+    "mr": "उदाहरण"
   },
   "exampleText": {
     "en": "A native with Scorpio Lagna (Mars = Pitta), Moon in Taurus (= Kapha sign, but nakshatra Rohini ruled by Moon = Kapha), and Saturn highest in Shadbala (= Vata). Result: Pitta (Lagna) + Kapha (Moon) + Vata (Shadbala) = Tridoshic with Pitta-Kapha dominant, Vata secondary. This person has strong digestion (Pitta) and solid build (Kapha), but will face Vata crises during Saturn dashas.",
@@ -698,10 +698,10 @@
     "ta": "விருச்சிக லக்னம் (செவ்வாய் = பித்தம்), ரிஷபத்தில் சந்திரன் (= கபம்), சனி ஷட்பலத்தில் உயர்ந்தது (= வாதம்). முடிவு: பித்த-கப ஆதிக்கம்.",
     "bn": "বৃশ্চিক লগ্ন (মঙ্গল = পিত্ত), বৃষে চন্দ্র (= কফ), শনি ষড্বলে সর্বোচ্চ (= বাত)। ফল: পিত্ত-কফ প্রধান।",
     "mai": "वृश्चिक लग्नक एकटा जातक (मंगल = पित्त), वृषभ मे चन्द्रमा (= कफ राशि, मुदा चन्द्रमा द्वारा शासित रोहिणी नक्षत्र = कफ), आ षड्बल मे शनि सबसँ बेसी (= वात)। परिणाम: पित्त (लग्न) + कफ (चन्द्रमा) + वात (षड्बल) = त्रिदोषी जाहिमे पित्त-कफ प्रधान, वात गौण। ई व्यक्ति केँ मजबूत पाचन (पित्त) आ ठोस शरीर (कफ) अछि, मुदा शनि दशाक समय वात संकटक सामना करत।",
-    "te": "A native with Scorpio Lagna (Mars = Pitta), Moon in Taurus (= Kapha sign, but nakshatra Rohini ruled by Moon = Kapha), and Saturn highest in Shadbala (= Vata). Result: Pitta (Lagna) + Kapha (Moon) + Vata (Shadbala) = Tridoshic with Pitta-Kapha dominant, Vata secondary. This person has strong digestion (Pitta) and solid build (Kapha), but will face Vata crises during Saturn dashas.",
-    "gu": "A native with Scorpio Lagna (Mars = Pitta), Moon in Taurus (= Kapha sign, but nakshatra Rohini ruled by Moon = Kapha), and Saturn highest in Shadbala (= Vata). Result: Pitta (Lagna) + Kapha (Moon) + Vata (Shadbala) = Tridoshic with Pitta-Kapha dominant, Vata secondary. This person has strong digestion (Pitta) and solid build (Kapha), but will face Vata crises during Saturn dashas.",
-    "kn": "A native with Scorpio Lagna (Mars = Pitta), Moon in Taurus (= Kapha sign, but nakshatra Rohini ruled by Moon = Kapha), and Saturn highest in Shadbala (= Vata). Result: Pitta (Lagna) + Kapha (Moon) + Vata (Shadbala) = Tridoshic with Pitta-Kapha dominant, Vata secondary. This person has strong digestion (Pitta) and solid build (Kapha), but will face Vata crises during Saturn dashas.",
-    "mr": "A native with Scorpio Lagna (Mars = Pitta), Moon in Taurus (= Kapha sign, but nakshatra Rohini ruled by Moon = Kapha), and Saturn highest in Shadbala (= Vata). Result: Pitta (Lagna) + Kapha (Moon) + Vata (Shadbala) = Tridoshic with Pitta-Kapha dominant, Vata secondary. This person has strong digestion (Pitta) and solid build (Kapha), but will face Vata crises during Saturn dashas."
+    "te": "వృశ్చిక లగ్నం (కుజుడు = పిత్త), వృషభంలో చంద్రుడు (= కఫ రాశి, కానీ రోహిణి నక్షత్రం చంద్రునిచే పాలించబడుతుంది = కఫ), మరియు షడ్బలంలో శని అత్యధికంగా ఉన్న జాతకుడు (= వాత). ఫలితం: పిత్త (లగ్నం) + కఫ (చంద్రుడు) + వాత (షడ్బలం) = త్రిదోష, పిత్త-కఫ ప్రధానంగా, వాత ద్వితీయంగా. ఈ వ్యక్తికి బలమైన జీర్ణశక్తి (పిత్త) మరియు దృఢమైన శరీరం (కఫ) ఉంటుంది, కానీ శని దశలలో వాత సంక్షోభాలను ఎదుర్కొంటారు.",
+    "gu": "વૃશ્ચિક લગ્ન (મંગળ = પિત્ત), વૃષભમાં ચંદ્ર (= કફ રાશિ, પરંતુ રોહિણી નક્ષત્ર ચંદ્ર દ્વારા શાસિત = કફ), અને ષડ્બળમાં શનિ સર્વોચ્ચ (= વાત) ધરાવતો જાતક. પરિણામ: પિત્ત (લગ્ન) + કફ (ચંદ્ર) + વાત (ષડ્બળ) = ત્રિદોષજ જેમાં પિત્ત-કફ પ્રબળ, વાત ગૌણ. આ વ્યક્તિનું પાચન મજબૂત (પિત્ત) અને શરીર સુદૃઢ (કફ) છે, પરંતુ શનિની દશા દરમિયાન વાત સંકટનો સામનો કરશે.",
+    "kn": "ವೃಶ್ಚಿಕ ಲಗ್ನ (ಮಂಗಳ = ಪಿತ್ತ), ವೃಷಭದಲ್ಲಿ ಚಂದ್ರ (= ಕಫ ರಾಶಿ, ಆದರೆ ರೋಹಿಣಿ ನಕ್ಷತ್ರ ಚಂದ್ರನಿಂದ ಆಳಲ್ಪಟ್ಟಿದೆ = ಕಫ), ಮತ್ತು ಷಡ್ಬಲದಲ್ಲಿ ಶನಿ ಅತ್ಯಧಿಕ (= ವಾತ) ಹೊಂದಿರುವ ಸ್ಥಳೀಯರು. ಫಲಿತಾಂಶ: ಪಿತ್ತ (ಲಗ್ನ) + ಕಫ (ಚಂದ್ರ) + ವಾತ (ಷಡ್ಬಲ) = ಪಿತ್ತ-ಕಫ ಪ್ರಧಾನ, ವಾತ ದ್ವಿತೀಯಕದೊಂದಿಗೆ ತ್ರಿದೋಷ. ಈ ವ್ಯಕ್ತಿಯು ಬಲವಾದ ಜೀರ್ಣಕ್ರಿಯೆ (ಪಿತ್ತ) ಮತ್ತು ದೃಢವಾದ ದೇಹ ರಚನೆ (ಕಫ) ಹೊಂದಿದ್ದಾರೆ, ಆದರೆ ಶನಿ ದಶೆಗಳಲ್ಲಿ ವಾತ ಬಿಕ್ಕಟ್ಟುಗಳನ್ನು ಎದುರಿಸುತ್ತಾರೆ.",
+    "mr": "वृश्चिक लग्न (मंगळ = पित्त), वृषभ राशीत चंद्र (= कफ रास, पण रोहिणी नक्षत्र चंद्राच्या अधिपत्याखाली = कफ), आणि षड्बलात शनी सर्वोच्च (= वात) असलेला जातक. परिणाम: पित्त (लग्न) + कफ (चंद्र) + वात (षड्बल) = त्रिदोषज, ज्यात पित्त-कफ प्रधान आणि वात द्वितीयक. या व्यक्तीचे पचन मजबूत (पित्त) आणि शरीर सुदृढ (कफ) आहे, परंतु शनीच्या दशेत त्याला वात-संकटांचा सामना करावा लागेल."
   },
   "sec3Title": {
     "en": "Kala Purusha: The Cosmic Body Map",
@@ -709,10 +709,10 @@
     "ta": "கால புருஷன்: பிரபஞ்ச உடல் வரைபடம்",
     "bn": "কাল পুরুষ: মহাজাগতিক দেহ মানচিত্র",
     "mai": "काल पुरुष: ब्रह्मांडीय शरीरक नक्शा",
-    "te": "Kala Purusha: The Cosmic Body Map",
-    "gu": "Kala Purusha: The Cosmic Body Map",
-    "kn": "Kala Purusha: The Cosmic Body Map",
-    "mr": "Kala Purusha: The Cosmic Body Map"
+    "te": "కాల పురుషుడు: విశ్వ శరీర పటం",
+    "gu": "કાળ પુરુષ: બ્રહ્માંડીય દેહ નકશો",
+    "kn": "ಕಾಲ ಪುರುಷ: ಬ್ರಹ್ಮಾಂಡದ ದೇಹ ನಕ್ಷೆ",
+    "mr": "काल पुरुष: वैश्विक देह नकाशा"
   },
   "sec3Intro": {
     "en": "In Vedic thought, the zodiac IS a body  –  the Kala Purusha (Time Person). Each sign maps to a body region from head (Aries) to feet (Pisces). Each house in your chart inherits this mapping, creating your personal vulnerability map.",
@@ -720,10 +720,10 @@
     "ta": "வேத சிந்தனையில், ராசி மண்டலம் ஒரு உடல்  –  கால புருஷன்.",
     "bn": "বৈদিক দৃষ্টিতে, রাশিচক্র নিজেই একটি দেহ  –  কাল পুরুষ।",
     "mai": "वैदिक विचार मे, राशिचक्र एकटा शरीर अछि – काल पुरुष (समय पुरुष)। प्रत्येक राशि माथ (मेष) सँ पैर (मीन) धरि शरीरक एकटा क्षेत्र सँ जुड़ल अछि। अहाँक कुण्डली मे प्रत्येक भाव ई मैपिंग केँ अपनाबैत अछि, अहाँक व्यक्तिगत भेद्यताक नक्शा बनबैत अछि।",
-    "te": "In Vedic thought, the zodiac IS a body  –  the Kala Purusha (Time Person). Each sign maps to a body region from head (Aries) to feet (Pisces). Each house in your chart inherits this mapping, creating your personal vulnerability map.",
-    "gu": "In Vedic thought, the zodiac IS a body  –  the Kala Purusha (Time Person). Each sign maps to a body region from head (Aries) to feet (Pisces). Each house in your chart inherits this mapping, creating your personal vulnerability map.",
-    "kn": "In Vedic thought, the zodiac IS a body  –  the Kala Purusha (Time Person). Each sign maps to a body region from head (Aries) to feet (Pisces). Each house in your chart inherits this mapping, creating your personal vulnerability map.",
-    "mr": "In Vedic thought, the zodiac IS a body  –  the Kala Purusha (Time Person). Each sign maps to a body region from head (Aries) to feet (Pisces). Each house in your chart inherits this mapping, creating your personal vulnerability map."
+    "te": "వైదిక ఆలోచనలో, రాశిచక్రం ఒక శరీరం – కాల పురుషుడు (కాలపు వ్యక్తి). ప్రతి రాశి తల (మేషం) నుండి పాదాల (మీనం) వరకు ఒక శరీర ప్రాంతానికి మ్యాప్ చేయబడుతుంది. మీ చార్టులోని ప్రతి భావం ఈ మ్యాపింగ్‌ను వారసత్వంగా పొంది, మీ వ్యక్తిగత బలహీనత పటాన్ని సృష్టిస్తుంది.",
+    "gu": "વૈદિક વિચારમાં, રાશિચક્ર પોતે એક શરીર છે – કાળ પુરુષ (સમય પુરુષ). દરેક રાશિ માથા (મેષ) થી પગ (મીન) સુધીના શરીરના પ્રદેશ સાથે સંકળાયેલી છે. તમારી કુંડળીમાં દરેક ભાવ આ મેપિંગને વારસામાં મેળવે છે, જે તમારો વ્યક્તિગત સંવેદનશીલતા નકશો બનાવે છે.",
+    "kn": "ವೈದಿಕ ಚಿಂತನೆಯಲ್ಲಿ, ರಾಶಿಚಕ್ರವು ಒಂದು ದೇಹ – ಕಾಲ ಪುರುಷ (ಕಾಲದ ವ್ಯಕ್ತಿ). ಪ್ರತಿ ರಾಶಿಯು ತಲೆಯಿಂದ (ಮೇಷ) ಪಾದಗಳವರೆಗೆ (ಮೀನ) ದೇಹದ ಪ್ರದೇಶಕ್ಕೆ ನಕ್ಷೆ ಮಾಡುತ್ತದೆ. ನಿಮ್ಮ ಜಾತಕದಲ್ಲಿನ ಪ್ರತಿಯೊಂದು ಭಾವವೂ ಈ ನಕ್ಷೆಯನ್ನು ಆನುವಂಶಿಕವಾಗಿ ಪಡೆಯುತ್ತದೆ, ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ದುರ್ಬಲತೆಯ ನಕ್ಷೆಯನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ.",
+    "mr": "वैदिक विचारानुसार, राशीचक्र हे स्वतःच एक शरीर आहे – काल पुरुष. प्रत्येक रास डोक्यापासून (मेष) पायांपर्यंत (मीन) शरीराच्या एका विशिष्ट भागाशी संबंधित आहे. तुमच्या कुंडलीतील प्रत्येक भाव हे नियोजन वारसाहक्काने घेतो, ज्यामुळे तुमचा वैयक्तिक संवेदनशीलता नकाशा तयार होतो."
   },
   "houseNum": {
     "en": "House",
@@ -731,10 +731,10 @@
     "ta": "பாவம்",
     "bn": "ভাব",
     "mai": "भाव",
-    "te": "House",
-    "gu": "House",
-    "kn": "House",
-    "mr": "House"
+    "te": "భావం",
+    "gu": "ભાવ",
+    "kn": "ಭಾವ",
+    "mr": "भाव"
   },
   "signCol": {
     "en": "Sign",
@@ -742,10 +742,10 @@
     "ta": "ராசி",
     "bn": "রাশি",
     "mai": "राशि",
-    "te": "Sign",
-    "gu": "Sign",
-    "kn": "Sign",
-    "mr": "Sign"
+    "te": "రాశి",
+    "gu": "રાશિ",
+    "kn": "ರಾಶಿ",
+    "mr": "रास"
   },
   "bodyRegion": {
     "en": "Body Region",
@@ -753,10 +753,10 @@
     "ta": "உடல் பகுதி",
     "bn": "শরীর অঞ্চল",
     "mai": "शरीरक क्षेत्र",
-    "te": "Body Region",
-    "gu": "Body Region",
-    "kn": "Body Region",
-    "mr": "Body Region"
+    "te": "శరీర ప్రాంతం",
+    "gu": "શરીર પ્રદેશ",
+    "kn": "ದೇಹದ ಪ್ರದೇಶ",
+    "mr": "शरीराचा भाग"
   },
   "house1Sign": {
     "en": "Aries",
@@ -764,10 +764,10 @@
     "ta": "மேஷம்",
     "bn": "মেষ",
     "mai": "मेष",
-    "te": "Aries",
-    "gu": "Aries",
-    "kn": "Aries",
-    "mr": "Aries"
+    "te": "మేషం",
+    "gu": "મેષ",
+    "kn": "ಮೇಷ",
+    "mr": "मेष"
   },
   "house1Body": {
     "en": "Head, brain, skull, face",
@@ -775,10 +775,10 @@
     "ta": "தலை, மூளை, மண்டை ஓடு, முகம்",
     "bn": "মাথা, মস্তিষ্ক, খুলি, মুখ",
     "mai": "माथ, मस्तिष्क, कपाल, मुँह",
-    "te": "Head, brain, skull, face",
-    "gu": "Head, brain, skull, face",
-    "kn": "Head, brain, skull, face",
-    "mr": "Head, brain, skull, face"
+    "te": "తల, మెదడు, పుర్రె, ముఖం",
+    "gu": "માથું, મગજ, ખોપરી, ચહેરો",
+    "kn": "ತಲೆ, ಮೆದುಳು, ತಲೆಬುರುಡೆ, ಮುಖ",
+    "mr": "डोके, मेंदू, कवटी, चेहरा"
   },
   "house2Sign": {
     "en": "Taurus",
@@ -786,10 +786,10 @@
     "ta": "ரிஷபம்",
     "bn": "বৃষ",
     "mai": "वृष",
-    "te": "Taurus",
-    "gu": "Taurus",
-    "kn": "Taurus",
-    "mr": "Taurus"
+    "te": "వృషభం",
+    "gu": "વૃષભ",
+    "kn": "ವೃಷಭ",
+    "mr": "वृषभ"
   },
   "house2Body": {
     "en": "Face, throat, neck, right eye",
@@ -797,10 +797,10 @@
     "ta": "முகம், தொண்டை, கழுத்து, வலது கண்",
     "bn": "মুখ, গলা, ঘাড়, ডান চোখ",
     "mai": "मुँह, गला, गर्दन, दाहिन आँखि",
-    "te": "Face, throat, neck, right eye",
-    "gu": "Face, throat, neck, right eye",
-    "kn": "Face, throat, neck, right eye",
-    "mr": "Face, throat, neck, right eye"
+    "te": "ముఖం, గొంతు, మెడ, కుడి కన్ను",
+    "gu": "ચહેરો, ગળું, ગરદન, જમણી આંખ",
+    "kn": "ಮುಖ, ಗಂಟಲು, ಕುತ್ತಿಗೆ, ಬಲ ಕಣ್ಣು",
+    "mr": "चेहरा, घसा, मान, उजवा डोळा"
   },
   "house3Sign": {
     "en": "Gemini",
@@ -808,10 +808,10 @@
     "ta": "மிதுனம்",
     "bn": "মিথুন",
     "mai": "मिथुन",
-    "te": "Gemini",
-    "gu": "Gemini",
-    "kn": "Gemini",
-    "mr": "Gemini"
+    "te": "మిథునం",
+    "gu": "મિથુન",
+    "kn": "ಮಿಥುನ",
+    "mr": "मिथुन"
   },
   "house3Body": {
     "en": "Arms, shoulders, hands, lungs, upper chest",
@@ -819,10 +819,10 @@
     "ta": "கைகள், தோள்கள், நுரையீரல்",
     "bn": "বাহু, কাঁধ, হাত, ফুসফুস",
     "mai": "बाँहि, कान्ह, हाथ, फेफड़ा, ऊपरी छाती",
-    "te": "Arms, shoulders, hands, lungs, upper chest",
-    "gu": "Arms, shoulders, hands, lungs, upper chest",
-    "kn": "Arms, shoulders, hands, lungs, upper chest",
-    "mr": "Arms, shoulders, hands, lungs, upper chest"
+    "te": "చేతులు, భుజాలు, ఊపిరితిత్తులు, పై ఛాతీ",
+    "gu": "બાહુ, ખભા, હાથ, ફેફસાં, ઉપલું છાતી",
+    "kn": "ಭುಜಗಳು, ಭುಜಗಳು, ಕೈಗಳು, ಶ್ವಾಸಕೋಶಗಳು, ಮೇಲಿನ ಎದೆ",
+    "mr": "हात, खांदे, फुफ्फुसे, छातीचा वरचा भाग"
   },
   "house4Sign": {
     "en": "Cancer",
@@ -830,10 +830,10 @@
     "ta": "கடகம்",
     "bn": "কর্কট",
     "mai": "कर्क",
-    "te": "Cancer",
-    "gu": "Cancer",
-    "kn": "Cancer",
-    "mr": "Cancer"
+    "te": "కర్కాటకం",
+    "gu": "કર્ક",
+    "kn": "ಕರ್ಕ",
+    "mr": "कर्क"
   },
   "house4Body": {
     "en": "Chest, breasts, heart, lungs, stomach",
@@ -841,10 +841,10 @@
     "ta": "மார்பு, இதயம், நுரையீரல், வயிறு",
     "bn": "বুক, স্তন, হৃদয়, পেট",
     "mai": "छाती, स्तन, हृदय, फेफड़ा, पेट",
-    "te": "Chest, breasts, heart, lungs, stomach",
-    "gu": "Chest, breasts, heart, lungs, stomach",
-    "kn": "Chest, breasts, heart, lungs, stomach",
-    "mr": "Chest, breasts, heart, lungs, stomach"
+    "te": "ఛాతీ, రొమ్ములు, గుండె, ఊపిరితిత్తులు, కడుపు",
+    "gu": "છાતી, સ્તન, હૃદય, ફેફસાં, પેટ",
+    "kn": "ಎದೆ, ಸ್ತನಗಳು, ಹೃದಯ, ಶ್ವಾಸಕೋಶಗಳು, ಹೊಟ್ಟೆ",
+    "mr": "छाती, स्तन, हृदय, फुफ्फुसे, पोट"
   },
   "house5Sign": {
     "en": "Leo",
@@ -852,10 +852,10 @@
     "ta": "சிம்மம்",
     "bn": "সিংহ",
     "mai": "सिंह",
-    "te": "Leo",
-    "gu": "Leo",
-    "kn": "Leo",
-    "mr": "Leo"
+    "te": "సింహం",
+    "gu": "સિંહ",
+    "kn": "ಸಿಂಹ",
+    "mr": "सिंह"
   },
   "house5Body": {
     "en": "Heart, upper back, spine, stomach",
@@ -863,10 +863,10 @@
     "ta": "இதயம், மேல் முதுகு, முதுகெலும்பு",
     "bn": "হৃদয়, উপরের পিঠ, মেরুদণ্ড",
     "mai": "हृदय, ऊपरी पीठ, रीढ़क हड्डी, पेट",
-    "te": "Heart, upper back, spine, stomach",
-    "gu": "Heart, upper back, spine, stomach",
-    "kn": "Heart, upper back, spine, stomach",
-    "mr": "Heart, upper back, spine, stomach"
+    "te": "గుండె, పై వీపు, వెన్నెముక, కడుపు",
+    "gu": "હૃદય, ઉપલી પીઠ, કરોડરજ્જુ, પેટ",
+    "kn": "ಹೃದಯ, ಮೇಲಿನ ಬೆನ್ನು, ಬೆನ್ನುಮೂಳೆ, ಹೊಟ್ಟೆ",
+    "mr": "हृदय, पाठीचा वरचा भाग, पाठीचा कणा, पोट"
   },
   "house6Sign": {
     "en": "Virgo",
@@ -874,10 +874,10 @@
     "ta": "கன்னி",
     "bn": "কন্যা",
     "mai": "कन्या",
-    "te": "Virgo",
-    "gu": "Virgo",
-    "kn": "Virgo",
-    "mr": "Virgo"
+    "te": "కన్య",
+    "gu": "કન્યા",
+    "kn": "ಕನ್ಯಾ",
+    "mr": "कन्या"
   },
   "house6Body": {
     "en": "Intestines, digestive system, lower abdomen",
@@ -885,10 +885,10 @@
     "ta": "குடல், செரிமான மண்டலம்",
     "bn": "অন্ত্র, পাচন তন্ত্র",
     "mai": "आँत, पाचन तंत्र, निचला पेट",
-    "te": "Intestines, digestive system, lower abdomen",
-    "gu": "Intestines, digestive system, lower abdomen",
-    "kn": "Intestines, digestive system, lower abdomen",
-    "mr": "Intestines, digestive system, lower abdomen"
+    "te": "పేగులు, జీర్ణవ్యవస్థ, దిగువ ఉదరం",
+    "gu": "આંતરડા, પાચનતંત્ર, નીચલું પેટ",
+    "kn": "ಕರುಳುಗಳು, ಜೀರ್ಣಾಂಗ ವ್ಯವಸ್ಥೆ, ಕೆಳಗಿನ ಹೊಟ್ಟೆ",
+    "mr": "आतडे, पचनसंस्था, पोटाचा खालचा भाग"
   },
   "house7Sign": {
     "en": "Libra",
@@ -896,10 +896,10 @@
     "ta": "துலாம்",
     "bn": "তুলা",
     "mai": "तुला",
-    "te": "Libra",
-    "gu": "Libra",
-    "kn": "Libra",
-    "mr": "Libra"
+    "te": "తుల",
+    "gu": "તુલા",
+    "kn": "ತುಲಾ",
+    "mr": "तूळ"
   },
   "house7Body": {
     "en": "Kidneys, lower back, ovaries, bladder",
@@ -907,10 +907,10 @@
     "ta": "சிறுநீரகங்கள், கீழ் முதுகு",
     "bn": "কিডনি, কোমর, ডিম্বাশয়",
     "mai": "गुर्दा, निचला पीठ, अंडाशय, मूत्राशय",
-    "te": "Kidneys, lower back, ovaries, bladder",
-    "gu": "Kidneys, lower back, ovaries, bladder",
-    "kn": "Kidneys, lower back, ovaries, bladder",
-    "mr": "Kidneys, lower back, ovaries, bladder"
+    "te": "మూత్రపిండాలు, దిగువ వీపు, అండాశయాలు, మూత్రాశయం",
+    "gu": "કિડની, નીચલી પીઠ, અંડાશય, મૂત્રાશય",
+    "kn": "ಮೂತ್ರಪಿಂಡಗಳು, ಕೆಳಗಿನ ಬೆನ್ನು, ಅಂಡಾಶಯಗಳು, ಮೂತ್ರಕೋಶ",
+    "mr": "मूत्रपिंड, पाठीचा खालचा भाग, अंडाशय, मूत्राशय"
   },
   "house8Sign": {
     "en": "Scorpio",
@@ -918,10 +918,10 @@
     "ta": "விருச்சிகம்",
     "bn": "বৃশ্চিক",
     "mai": "वृश्चिक",
-    "te": "Scorpio",
-    "gu": "Scorpio",
-    "kn": "Scorpio",
-    "mr": "Scorpio"
+    "te": "వృశ్చికం",
+    "gu": "વૃશ્ચિક",
+    "kn": "ವೃಶ್ಚಿಕ",
+    "mr": "वृश्चिक"
   },
   "house8Body": {
     "en": "Reproductive organs, colon, chronic diseases",
@@ -929,10 +929,10 @@
     "ta": "இனப்பெருக்க உறுப்புகள், பெருங்குடல்",
     "bn": "প্রজনন অঙ্গ, বৃহদন্ত্র",
     "mai": "प्रजनन अंग, कोलन, दीर्घकालिक रोग",
-    "te": "Reproductive organs, colon, chronic diseases",
-    "gu": "Reproductive organs, colon, chronic diseases",
-    "kn": "Reproductive organs, colon, chronic diseases",
-    "mr": "Reproductive organs, colon, chronic diseases"
+    "te": "పునరుత్పత్తి అవయవాలు, పెద్దప్రేగు, దీర్ఘకాలిక వ్యాధులు",
+    "gu": "પ્રજનન અંગો, મોટું આંતરડું, દીર્ઘકાલીન રોગો",
+    "kn": "ಸಂತಾನೋತ್ಪತ್ತಿ ಅಂಗಗಳು, ದೊಡ್ಡ ಕರುಳು, ದೀರ್ಘಕಾಲದ ರೋಗಗಳು",
+    "mr": "प्रजनन अवयव, मोठे आतडे, दीर्घकालीन रोग"
   },
   "house9Sign": {
     "en": "Sagittarius",
@@ -940,10 +940,10 @@
     "ta": "தனுசு",
     "bn": "ধনু",
     "mai": "धनु",
-    "te": "Sagittarius",
-    "gu": "Sagittarius",
-    "kn": "Sagittarius",
-    "mr": "Sagittarius"
+    "te": "ధనుస్సు",
+    "gu": "ધનુ",
+    "kn": "ಧನು",
+    "mr": "धनु"
   },
   "house9Body": {
     "en": "Hips, thighs, liver, sciatic nerve",
@@ -951,10 +951,10 @@
     "ta": "இடுப்பு, தொடைகள், கல்லீரல்",
     "bn": "কোমর, উরু, যকৃৎ",
     "mai": "कूल्हि, जाँघ, यकृत, कटिस्नायु",
-    "te": "Hips, thighs, liver, sciatic nerve",
-    "gu": "Hips, thighs, liver, sciatic nerve",
-    "kn": "Hips, thighs, liver, sciatic nerve",
-    "mr": "Hips, thighs, liver, sciatic nerve"
+    "te": "తుంటి, తొడలు, కాలేయం, సయాటిక్ నరం",
+    "gu": "નિતંબ, જાંઘ, યકૃત, સાયટિક ચેતા",
+    "kn": "ಸೊಂಟ, ತೊಡೆಗಳು, ಯಕೃತ್ತು, ಸಿಯಾಟಿಕ್ ನರ",
+    "mr": "कंबर, मांड्या, यकृत, सायटिका नस"
   },
   "house10Sign": {
     "en": "Capricorn",
@@ -962,10 +962,10 @@
     "ta": "மகரம்",
     "bn": "মকর",
     "mai": "मकर",
-    "te": "Capricorn",
-    "gu": "Capricorn",
-    "kn": "Capricorn",
-    "mr": "Capricorn"
+    "te": "మకరం",
+    "gu": "મકર",
+    "kn": "ಮಕರ",
+    "mr": "मकर"
   },
   "house10Body": {
     "en": "Knees, joints, bones, skin",
@@ -973,10 +973,10 @@
     "ta": "முழங்கால்கள், மூட்டுகள், எலும்புகள்",
     "bn": "হাঁটু, জয়েন্ট, হাড়",
     "mai": "ठेहुन, जोड़, हड्डी, चमड़ा",
-    "te": "Knees, joints, bones, skin",
-    "gu": "Knees, joints, bones, skin",
-    "kn": "Knees, joints, bones, skin",
-    "mr": "Knees, joints, bones, skin"
+    "te": "మోకాళ్లు, కీళ్ళు, ఎముకలు, చర్మం",
+    "gu": "ઘૂંટણ, સાંધા, હાડકાં, ત્વચા",
+    "kn": "ಮೊಣಕಾಲುಗಳು, ಕೀಲುಗಳು, ಮೂಳೆಗಳು, ಚರ್ಮ",
+    "mr": "गुडघे, सांधे, हाडे, त्वचा"
   },
   "house11Sign": {
     "en": "Aquarius",
@@ -984,10 +984,10 @@
     "ta": "கும்பம்",
     "bn": "কুম্ভ",
     "mai": "कुंभ",
-    "te": "Aquarius",
-    "gu": "Aquarius",
-    "kn": "Aquarius",
-    "mr": "Aquarius"
+    "te": "కుంభం",
+    "gu": "કુંભ",
+    "kn": "ಕುಂಭ",
+    "mr": "कुंभ"
   },
   "house11Body": {
     "en": "Calves, shins, ankles, circulatory system",
@@ -995,10 +995,10 @@
     "ta": "கால் தசைகள், கணுக்கால்கள், ரத்த ஓட்டம்",
     "bn": "পায়ের পেশী, গোড়ালি, রক্ত সঞ্চালন",
     "mai": "पिण्डली, पिंडलीक हड्डी, टखना, संचार प्रणाली",
-    "te": "Calves, shins, ankles, circulatory system",
-    "gu": "Calves, shins, ankles, circulatory system",
-    "kn": "Calves, shins, ankles, circulatory system",
-    "mr": "Calves, shins, ankles, circulatory system"
+    "te": "పిక్కలు, మోకాళ్ల కింది భాగం, చీలమండలు, రక్త ప్రసరణ వ్యవస్థ",
+    "gu": "પિંડીઓ, શિન્સ, ઘૂંટીઓ, રુધિરાભિસરણ તંત્ર",
+    "kn": "ಕರುಗಳು, ಶೀನ್ಗಳು, ಪಾದದ ಕೀಲುಗಳು, ರಕ್ತಪರಿಚಲನಾ ವ್ಯವಸ್ಥೆ",
+    "mr": "पोटऱ्या, नडगी, घोटे, रक्ताभिसरण संस्था"
   },
   "house12Sign": {
     "en": "Pisces",
@@ -1006,10 +1006,10 @@
     "ta": "மீனம்",
     "bn": "মীন",
     "mai": "मीन",
-    "te": "Pisces",
-    "gu": "Pisces",
-    "kn": "Pisces",
-    "mr": "Pisces"
+    "te": "మీనం",
+    "gu": "મીન",
+    "kn": "ಮೀನ",
+    "mr": "मीन"
   },
   "house12Body": {
     "en": "Feet, toes, lymphatic system, left eye",
@@ -1017,10 +1017,10 @@
     "ta": "பாதங்கள், விரல்கள், நிணநீர் மண்டலம்",
     "bn": "পা, আঙুল, লসিকা তন্ত্র",
     "mai": "पैर, पैरक अंगुरी, लसीका प्रणाली, बामा आँखि",
-    "te": "Feet, toes, lymphatic system, left eye",
-    "gu": "Feet, toes, lymphatic system, left eye",
-    "kn": "Feet, toes, lymphatic system, left eye",
-    "mr": "Feet, toes, lymphatic system, left eye"
+    "te": "పాదాలు, కాలి వేళ్ళు, శోషరస వ్యవస్థ, ఎడమ కన్ను",
+    "gu": "પગ, અંગૂઠા, લસિકા તંત્ર, ડાબી આંખ",
+    "kn": "ಪಾದಗಳು, ಕಾಲ್ಬೆರಳುಗಳು, ದುಗ್ಧರಸ ವ್ಯವಸ್ಥೆ, ಎಡ ಕಣ್ಣು",
+    "mr": "पाय, पायाची बोटे, लसीका प्रणाली, डावा डोळा"
   },
   "planetRulerships": {
     "en": "Planetary Anatomical Rulerships",
@@ -1028,10 +1028,10 @@
     "ta": "கிரகங்களின் உடற்கூறு ஆட்சி",
     "bn": "গ্রহের শারীরিক অধিপত্য",
     "mai": "ग्रहीय शारीरिक शासन",
-    "te": "Planetary Anatomical Rulerships",
-    "gu": "Planetary Anatomical Rulerships",
-    "kn": "Planetary Anatomical Rulerships",
-    "mr": "Planetary Anatomical Rulerships"
+    "te": "గ్రహాల శరీర నిర్మాణ సంబంధిత పాలనలు",
+    "gu": "ગ્રહોનું શારીરિક અધિપત્ય",
+    "kn": "ಗ್ರಹಗಳ ಅಂಗರಚನಾ ಆಧಿಪತ್ಯಗಳು",
+    "mr": "ग्रहांचे शारीरिक अधिपत्य"
   },
   "sunAnatomy": {
     "en": "Sun: Heart, right eye, bones, vitality, bile",
@@ -1039,10 +1039,10 @@
     "ta": "சூரியன்: இதயம், வலது கண், எலும்புகள்",
     "bn": "সূর্য: হৃদয়, ডান চোখ, হাড়",
     "mai": "सूर्य: हृदय, दाहिन आँखि, हड्डी, जीवन शक्ति, पित्त",
-    "te": "Sun: Heart, right eye, bones, vitality, bile",
-    "gu": "Sun: Heart, right eye, bones, vitality, bile",
-    "kn": "Sun: Heart, right eye, bones, vitality, bile",
-    "mr": "Sun: Heart, right eye, bones, vitality, bile"
+    "te": "సూర్యుడు: గుండె, కుడి కన్ను, ఎముకలు, ప్రాణశక్తి, పిత్తం",
+    "gu": "સૂર્ય: હૃદય, જમણી આંખ, હાડકાં, પ્રાણશક્તિ, પિત્ત",
+    "kn": "ಸೂರ್ಯ: ಹೃದಯ, ಬಲ ಕಣ್ಣು, ಮೂಳೆಗಳು, ಚೈತನ್ಯ, ಪಿತ್ತ",
+    "mr": "सूर्य: हृदय, उजवा डोळा, हाडे, जीवनशक्ती, पित्त"
   },
   "moonAnatomy": {
     "en": "Moon: Mind, left eye, blood, fluids, breasts, stomach",
@@ -1050,10 +1050,10 @@
     "ta": "சந்திரன்: மனம், இடது கண், இரத்தம், வயிறு",
     "bn": "চন্দ্র: মন, বাম চোখ, রক্ত, পেট",
     "mai": "चन्द्रमा: मन, बामा आँखि, रक्त, तरल पदार्थ, स्तन, पेट",
-    "te": "Moon: Mind, left eye, blood, fluids, breasts, stomach",
-    "gu": "Moon: Mind, left eye, blood, fluids, breasts, stomach",
-    "kn": "Moon: Mind, left eye, blood, fluids, breasts, stomach",
-    "mr": "Moon: Mind, left eye, blood, fluids, breasts, stomach"
+    "te": "చంద్రుడు: మనస్సు, ఎడమ కన్ను, రక్తం, ద్రవాలు, రొమ్ములు, కడుపు",
+    "gu": "ચંદ્ર: મન, ડાબી આંખ, રક્ત, પ્રવાહી, સ્તન, પેટ",
+    "kn": "ಚಂದ್ರ: ಮನಸ್ಸು, ಎಡ ಕಣ್ಣು, ರಕ್ತ, ದ್ರವಗಳು, ಸ್ತನಗಳು, ಹೊಟ್ಟೆ",
+    "mr": "चंद्र: मन, डावा डोळा, रक्त, द्रव, स्तन, पोट"
   },
   "marsAnatomy": {
     "en": "Mars: Muscles, red blood cells, marrow, adrenals, male reproductive",
@@ -1061,10 +1061,10 @@
     "ta": "செவ்வாய்: தசைகள், சிவப்பு இரத்த அணுக்கள்",
     "bn": "মঙ্গল: পেশী, লাল রক্তকণিকা, মজ্জা",
     "mai": "मंगल: मांसपेशी, लाल रक्त कोशिका, मज्जा, अधिवृक्क, पुरुष प्रजनन",
-    "te": "Mars: Muscles, red blood cells, marrow, adrenals, male reproductive",
-    "gu": "Mars: Muscles, red blood cells, marrow, adrenals, male reproductive",
-    "kn": "Mars: Muscles, red blood cells, marrow, adrenals, male reproductive",
-    "mr": "Mars: Muscles, red blood cells, marrow, adrenals, male reproductive"
+    "te": "కుజుడు: కండరాలు, ఎర్ర రక్త కణాలు, మజ్జ, అడ్రినల్స్, పురుష పునరుత్పత్తి",
+    "gu": "મંગળ: સ્નાયુઓ, લાલ રક્તકણો, મજ્જા, એડ્રિનલ ગ્રંથિ, પુરુષ પ્રજનન અંગો",
+    "kn": "ಮಂಗಳ: ಸ್ನಾಯುಗಳು, ಕೆಂಪು ರಕ್ತ ಕಣಗಳು, ಮಜ್ಜೆ, ಅಡ್ರಿನಲ್ ಗ್ರಂಥಿಗಳು, ಪುರುಷ ಸಂತಾನೋತ್ಪತ್ತಿ",
+    "mr": "मंगळ: स्नायू, लाल रक्तपेशी, मज्जा, अधिवृक्क ग्रंथी, पुरुष प्रजनन अवयव"
   },
   "mercuryAnatomy": {
     "en": "Mercury: Nervous system, skin, speech, lungs, intestines",
@@ -1072,10 +1072,10 @@
     "ta": "புதன்: நரம்பு மண்டலம், தோல், பேச்சு",
     "bn": "বুধ: স্নায়ুতন্ত্র, ত্বক, বাক্, ফুসফুস",
     "mai": "बुध: तंत्रिका तंत्र, चमड़ा, वाणी, फेफड़ा, आँत",
-    "te": "Mercury: Nervous system, skin, speech, lungs, intestines",
-    "gu": "Mercury: Nervous system, skin, speech, lungs, intestines",
-    "kn": "Mercury: Nervous system, skin, speech, lungs, intestines",
-    "mr": "Mercury: Nervous system, skin, speech, lungs, intestines"
+    "te": "బుధుడు: నాడీ వ్యవస్థ, చర్మం, వాక్కు, ఊపిరితిత్తులు, పేగులు",
+    "gu": "બુધ: ચેતાતંત્ર, ત્વચા, વાણી, ફેફસાં, આંતરડા",
+    "kn": "ಬುಧ: ನರಮಂಡಲ, ಚರ್ಮ, ಮಾತು, ಶ್ವಾಸಕೋಶಗಳು, ಕರುಳುಗಳು",
+    "mr": "बुध: मज्जासंस्था, त्वचा, वाणी, फुफ्फुसे, आतडे"
   },
   "jupiterAnatomy": {
     "en": "Jupiter: Liver, fat tissue, arterial system, pancreas, ears",
@@ -1083,10 +1083,10 @@
     "ta": "குரு: கல்லீரல், கொழுப்பு திசு, தமனி மண்டலம்",
     "bn": "বৃহস্পতি: যকৃৎ, চর্বি কলা, ধমনী তন্ত্র",
     "mai": "बृहस्पति: यकृत, वसा ऊतक, धमनी प्रणाली, अग्नाशय, कान",
-    "te": "Jupiter: Liver, fat tissue, arterial system, pancreas, ears",
-    "gu": "Jupiter: Liver, fat tissue, arterial system, pancreas, ears",
-    "kn": "Jupiter: Liver, fat tissue, arterial system, pancreas, ears",
-    "mr": "Jupiter: Liver, fat tissue, arterial system, pancreas, ears"
+    "te": "గురువు: కాలేయం, కొవ్వు కణజాలం, ధమనుల వ్యవస్థ, ప్యాంక్రియాస్, చెవులు",
+    "gu": "બૃહસ્પતિ: યકૃત, ચરબીયુક્ત પેશી, ધમની તંત્ર, સ્વાદુપિંડ, કાન",
+    "kn": "ಬೃಹಸ್ಪತಿ: ಯಕೃತ್ತು, ಕೊಬ್ಬಿನ ಅಂಗಾಂಶ, ಅಪಧಮನಿ ವ್ಯವಸ್ಥೆ, ಮೇದೋಜೀರಕ ಗ್ರಂಥಿ, ಕಿವಿಗಳು",
+    "mr": "गुरु: यकृत, चरबीयुक्त ऊतक, धमनी संस्था, स्वादुपिंड, कान"
   },
   "venusAnatomy": {
     "en": "Venus: Kidneys, reproductive system, throat, hormones, semen",
@@ -1094,10 +1094,10 @@
     "ta": "சுக்கிரன்: சிறுநீரகங்கள், இனப்பெருக்க மண்டலம்",
     "bn": "শুক্র: কিডনি, প্রজনন তন্ত্র, গলা",
     "mai": "शुक्र: गुर्दा, प्रजनन प्रणाली, गला, हार्मोन, वीर्य",
-    "te": "Venus: Kidneys, reproductive system, throat, hormones, semen",
-    "gu": "Venus: Kidneys, reproductive system, throat, hormones, semen",
-    "kn": "Venus: Kidneys, reproductive system, throat, hormones, semen",
-    "mr": "Venus: Kidneys, reproductive system, throat, hormones, semen"
+    "te": "శుక్రుడు: మూత్రపిండాలు, పునరుత్పత్తి వ్యవస్థ, గొంతు, హార్మోన్లు, శుక్రం",
+    "gu": "શુક્ર: કિડની, પ્રજનન તંત્ર, ગળું, હોર્મોન્સ, વીર્ય",
+    "kn": "ಶುಕ್ರ: ಮೂತ್ರಪಿಂಡಗಳು, ಸಂತಾನೋತ್ಪತ್ತಿ ವ್ಯವಸ್ಥೆ, ಗಂಟಲು, ಹಾರ್ಮೋನುಗಳು, ವೀರ್ಯ",
+    "mr": "शुक्र: मूत्रपिंड, प्रजनन संस्था, घसा, हार्मोन्स, वीर्य"
   },
   "saturnAnatomy": {
     "en": "Saturn: Teeth, nails, hair, joints, tendons, chronic conditions",
@@ -1105,10 +1105,10 @@
     "ta": "சனி: பற்கள், நகங்கள், மூட்டுகள்",
     "bn": "শনি: দাঁত, নখ, চুল, জয়েন্ট",
     "mai": "शनि: दाँत, नख, केश, जोड़, कण्डरा, दीर्घकालिक स्थिति",
-    "te": "Saturn: Teeth, nails, hair, joints, tendons, chronic conditions",
-    "gu": "Saturn: Teeth, nails, hair, joints, tendons, chronic conditions",
-    "kn": "Saturn: Teeth, nails, hair, joints, tendons, chronic conditions",
-    "mr": "Saturn: Teeth, nails, hair, joints, tendons, chronic conditions"
+    "te": "శని: దంతాలు, గోర్లు, వెంట్రుకలు, కీళ్ళు, స్నాయువులు, దీర్ఘకాలిక పరిస్థితులు",
+    "gu": "શનિ: દાંત, નખ, વાળ, સાંધા, કંડરા, દીર્ઘકાલીન સ્થિતિઓ",
+    "kn": "ಶನಿ: ಹಲ್ಲುಗಳು, ಉಗುರುಗಳು, ಕೂದಲು, ಕೀಲುಗಳು, ಸ್ನಾಯುರಜ್ಜುಗಳು, ದೀರ್ಘಕಾಲದ ಪರಿಸ್ಥಿತಿಗಳು",
+    "mr": "शनी: दात, नखे, केस, सांधे, स्नायूबंध, दीर्घकालीन स्थिती"
   },
   "sec4Title": {
     "en": "Disease Prediction from the Chart",
@@ -1116,10 +1116,10 @@
     "ta": "ஜாதகத்திலிருந்து நோய் கணிப்பு",
     "bn": "কুণ্ডলী থেকে রোগ পূর্বাভাস",
     "mai": "कुण्डलीसँ रोगक भविष्यवाणी",
-    "te": "Disease Prediction from the Chart",
-    "gu": "Disease Prediction from the Chart",
-    "kn": "Disease Prediction from the Chart",
-    "mr": "Disease Prediction from the Chart"
+    "te": "జాతకం నుండి వ్యాధి అంచనా",
+    "gu": "કુંડળી પરથી રોગની ભવિષ્યવાણી",
+    "kn": "ಜಾತಕದಿಂದ ರೋಗ ಭವಿಷ್ಯ",
+    "mr": "कुंडलीवरून रोग-भविष्यवाणी"
   },
   "sec4Intro": {
     "en": "Three houses form the 'Dusthana Triad' of health in Jyotish:",
@@ -1127,10 +1127,10 @@
     "ta": "மூன்று பாவங்கள் ஜோதிடத்தில் ஆரோக்கியத்தின் 'துஷ்டான திரயம்' ஆகும்:",
     "bn": "তিনটি ভাব জ্যোতিষে স্বাস্থ্যের 'দুস্থান ত্রয়' গঠন করে:",
     "mai": "ज्योतिष मे स्वास्थ्यक 'दुःस्थान त्रय' तीन भाव बनबैत अछि:",
-    "te": "Three houses form the 'Dusthana Triad' of health in Jyotish:",
-    "gu": "Three houses form the 'Dusthana Triad' of health in Jyotish:",
-    "kn": "Three houses form the 'Dusthana Triad' of health in Jyotish:",
-    "mr": "Three houses form the 'Dusthana Triad' of health in Jyotish:"
+    "te": "జ్యోతిష్య శాస్త్రంలో మూడు భావాలు ఆరోగ్యానికి 'దుస్థాన త్రయం'గా ఏర్పడతాయి:",
+    "gu": "જ્યોતિષમાં ત્રણ ભાવ સ્વાસ્થ્યના 'દુસ્થાન ત્રય' બનાવે છે:",
+    "kn": "ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ಮೂರು ಭಾವಗಳು ಆರೋಗ್ಯದ 'ದುಸ್ಥಾನ ತ್ರಯ'ವನ್ನು ರೂಪಿಸುತ್ತವೆ:",
+    "mr": "ज्योतिषशास्त्रात तीन भाव आरोग्याचे 'दुस्थान त्रय' बनवतात:"
   },
   "house6Role": {
     "en": "6th House (Ari Bhava)  –  Disease, daily health habits, immune response, acute illness",
@@ -1138,10 +1138,10 @@
     "ta": "6வது பாவம்  –  நோய், நாள்தோறும் ஆரோக்கியம், நோயெதிர்ப்பு",
     "bn": "৬ষ্ঠ ভাব  –  রোগ, দৈনিক স্বাস্থ্য, রোগ প্রতিরোধ",
     "mai": "छठा भाव (अरि भाव) – रोग, दैनिक स्वास्थ्यक आदत, प्रतिरक्षा प्रतिक्रिया, तीव्र बीमारी",
-    "te": "6th House (Ari Bhava)  –  Disease, daily health habits, immune response, acute illness",
-    "gu": "6th House (Ari Bhava)  –  Disease, daily health habits, immune response, acute illness",
-    "kn": "6th House (Ari Bhava)  –  Disease, daily health habits, immune response, acute illness",
-    "mr": "6th House (Ari Bhava)  –  Disease, daily health habits, immune response, acute illness"
+    "te": "6వ భావం (అరి భావం) – వ్యాధి, రోజువారీ ఆరోగ్య అలవాట్లు, రోగనిరోధక ప్రతిస్పందన, తీవ్రమైన అనారోగ్యం",
+    "gu": "છઠ્ઠો ભાવ (અરિ ભાવ) – રોગ, દૈનિક સ્વાસ્થ્યની આદતો, રોગપ્રતિકારક શક્તિ, તીવ્ર રોગ",
+    "kn": "6ನೇ ಭಾವ (ಅರಿ ಭಾವ) – ರೋಗ, ದೈನಂದಿನ ಆರೋಗ್ಯ ಅಭ್ಯಾಸಗಳು, ರೋಗನಿರೋಧಕ ಪ್ರತಿಕ್ರಿಯೆ, ತೀವ್ರ ಅನಾರೋಗ್ಯ",
+    "mr": "६वा भाव (अरि भाव) – रोग, दैनंदिन आरोग्य सवयी, रोगप्रतिकारशक्ती, तीव्र आजार"
   },
   "house8Role": {
     "en": "8th House (Randhra Bhava)  –  Chronic illness, surgery, longevity, transformation",
@@ -1149,10 +1149,10 @@
     "ta": "8வது பாவம்  –  நாள்பட்ட நோய், அறுவை சிகிச்சை, ஆயுள்",
     "bn": "৮ম ভাব  –  দীর্ঘস্থায়ী রোগ, শল্যচিকিৎসা, আয়ু",
     "mai": "आठम भाव (रंध्र भाव) – दीर्घकालिक बीमारी, शल्य चिकित्सा, दीर्घायु, परिवर्तन",
-    "te": "8th House (Randhra Bhava)  –  Chronic illness, surgery, longevity, transformation",
-    "gu": "8th House (Randhra Bhava)  –  Chronic illness, surgery, longevity, transformation",
-    "kn": "8th House (Randhra Bhava)  –  Chronic illness, surgery, longevity, transformation",
-    "mr": "8th House (Randhra Bhava)  –  Chronic illness, surgery, longevity, transformation"
+    "te": "8వ భావం (రంధ్ర భావం) – దీర్ఘకాలిక అనారోగ్యం, శస్త్రచికిత్స, దీర్ఘాయువు, పరివర్తన",
+    "gu": "આઠમો ભાવ (રંધ્ર ભાવ) – દીર્ઘકાલીન રોગ, શસ્ત્રક્રિયા, દીર્ઘાયુષ્ય, પરિવર્તન",
+    "kn": "8ನೇ ಭಾವ (ರಂಧ್ರ ಭಾವ) – ದೀರ್ಘಕಾಲದ ಅನಾರೋಗ್ಯ, ಶಸ್ತ್ರಚಿಕಿತ್ಸೆ, ದೀರ್ಘಾಯುಷ್ಯ, ರೂಪಾಂತರ",
+    "mr": "८वा भाव (रंध्र भाव) – दीर्घकालीन आजार, शस्त्रक्रिया, दीर्घायुष्य, परिवर्तन"
   },
   "house12Role": {
     "en": "12th House (Vyaya Bhava)  –  Hospitalisation, convalescence, loss of vitality, bed pleasures",
@@ -1160,10 +1160,10 @@
     "ta": "12வது பாவம்  –  மருத்துவமனை சேர்க்கை, உயிர் சக்தி இழப்பு",
     "bn": "১২শ ভাব  –  হাসপাতালে ভর্তি, প্রাণশক্তি ক্ষয়",
     "mai": "बारहम् भाव (व्यय भाव) – अस्पताल मे भर्ती, स्वास्थ्य लाभ, जीवन शक्तिक हानि, शय्या सुख",
-    "te": "12th House (Vyaya Bhava)  –  Hospitalisation, convalescence, loss of vitality, bed pleasures",
-    "gu": "12th House (Vyaya Bhava)  –  Hospitalisation, convalescence, loss of vitality, bed pleasures",
-    "kn": "12th House (Vyaya Bhava)  –  Hospitalisation, convalescence, loss of vitality, bed pleasures",
-    "mr": "12th House (Vyaya Bhava)  –  Hospitalisation, convalescence, loss of vitality, bed pleasures"
+    "te": "12వ భావం (వ్యయ భావం) – ఆసుపత్రిలో చేరడం, కోలుకోవడం, జీవశక్తి కోల్పోవడం, శయన సుఖాలు",
+    "gu": "બારમો ભાવ (વ્યય ભાવ) – હોસ્પિટલાઇઝેશન, સ્વાસ્થ્ય લાભ, પ્રાણશક્તિનો ઘટાડો, શયન સુખ",
+    "kn": "12ನೇ ಭಾವ (ವ್ಯಯ ಭಾವ) – ಆಸ್ಪತ್ರೆಗೆ ದಾಖಲಾತಿ, ಚೇತರಿಕೆ, ಚೈತನ್ಯದ ನಷ್ಟ, ಹಾಸಿಗೆಯ ಸುಖಗಳು",
+    "mr": "१२वा भाव (व्यय भाव) – रुग्णालयात दाखल होणे, आरोग्यलाभ, जीवनशक्तीचा ऱ्हास, शय्यासुख"
   },
   "sec4Lords": {
     "en": "The lords of these houses (6L, 8L, 12L) carry disease karma. When they conjoin, aspect, or exchange with health-significant planets, specific vulnerabilities activate. Malefic aspects (Saturn, Mars, Rahu) on these houses intensify the problem. Benefic aspects (Jupiter, Venus) provide resilience.",
@@ -1171,10 +1171,10 @@
     "ta": "இந்த பாவ அதிபதிகள் நோய் கர்மாவைக் கொண்டுள்ளனர்.",
     "bn": "এই ভাবের স্বামীরা রোগ কর্ম বহন করে।",
     "mai": "ई भाव सभक स्वामी (6L, 8L, 12L) रोग कर्म लऽ जाइत अछि। जखन ओ सभ युति करैत अछि, दृष्टि दैत अछि, वा स्वास्थ्यक लेल महत्वपूर्ण ग्रह सभक संग आदान-प्रदान करैत अछि, तँ विशिष्ट भेद्यता सक्रिय भऽ जाइत अछि। ई भाव सभ पर क्रूर दृष्टिसभ (शनि, मंगल, राहु) समस्या केँ तीव्र करैत अछि। शुभ दृष्टिसभ (बृहस्पति, शुक्र) लचीलापन प्रदान करैत अछि।",
-    "te": "The lords of these houses (6L, 8L, 12L) carry disease karma. When they conjoin, aspect, or exchange with health-significant planets, specific vulnerabilities activate. Malefic aspects (Saturn, Mars, Rahu) on these houses intensify the problem. Benefic aspects (Jupiter, Venus) provide resilience.",
-    "gu": "The lords of these houses (6L, 8L, 12L) carry disease karma. When they conjoin, aspect, or exchange with health-significant planets, specific vulnerabilities activate. Malefic aspects (Saturn, Mars, Rahu) on these houses intensify the problem. Benefic aspects (Jupiter, Venus) provide resilience.",
-    "kn": "The lords of these houses (6L, 8L, 12L) carry disease karma. When they conjoin, aspect, or exchange with health-significant planets, specific vulnerabilities activate. Malefic aspects (Saturn, Mars, Rahu) on these houses intensify the problem. Benefic aspects (Jupiter, Venus) provide resilience.",
-    "mr": "The lords of these houses (6L, 8L, 12L) carry disease karma. When they conjoin, aspect, or exchange with health-significant planets, specific vulnerabilities activate. Malefic aspects (Saturn, Mars, Rahu) on these houses intensify the problem. Benefic aspects (Jupiter, Venus) provide resilience."
+    "te": "ఈ భావాల అధిపతులు (6వ అధిపతి, 8వ అధిపతి, 12వ అధిపతి) వ్యాధి కర్మను కలిగి ఉంటారు. అవి ఆరోగ్యానికి ముఖ్యమైన గ్రహాలతో కలిసినప్పుడు, దృష్టి సారించినప్పుడు లేదా మార్పిడి చేసుకున్నప్పుడు, నిర్దిష్ట బలహీనతలు సక్రియం అవుతాయి. ఈ భావాలపై పాప గ్రహాల దృష్టి (శని, కుజుడు, రాహువు) సమస్యను తీవ్రతరం చేస్తుంది. శుభ గ్రహాల దృష్టి (గురువు, శుక్రుడు) స్థితిస్థాపకతను అందిస్తుంది.",
+    "gu": "આ ભાવોના સ્વામી (6લ, 8લ, 12લ) રોગ કર્મ ધરાવે છે. જ્યારે તેઓ સ્વાસ્થ્ય-મહત્વપૂર્ણ ગ્રહો સાથે યુતિ, દ્રષ્ટિ અથવા પરિવર્તન કરે છે, ત્યારે ચોક્કસ સંવેદનશીલતાઓ સક્રિય થાય છે. આ ભાવો પર પાપી દ્રષ્ટિ (શનિ, મંગળ, રાહુ) સમસ્યાને તીવ્ર બનાવે છે. શુભ દ્રષ્ટિ (બૃહસ્પતિ, શુક્ર) સ્થિતિસ્થાપકતા પ્રદાન કરે છે.",
+    "kn": "ಈ ಭಾವಗಳ ಅಧಿಪತಿಗಳು (6L, 8L, 12L) ರೋಗ ಕರ್ಮವನ್ನು ಹೊಂದಿರುತ್ತಾರೆ. ಅವರು ಆರೋಗ್ಯ-ಮಹತ್ವದ ಗ್ರಹಗಳೊಂದಿಗೆ ಸಂಯೋಗ, ದೃಷ್ಟಿ ಅಥವಾ ವಿನಿಮಯ ಮಾಡಿದಾಗ, ನಿರ್ದಿಷ್ಟ ದುರ್ಬಲತೆಗಳು ಸಕ್ರಿಯಗೊಳ್ಳುತ್ತವೆ. ಈ ಭಾವಗಳ ಮೇಲೆ ಪಾಪ ಗ್ರಹಗಳ ದೃಷ್ಟಿಗಳು (ಶನಿ, ಮಂಗಳ, ರಾಹು) ಸಮಸ್ಯೆಯನ್ನು ತೀವ್ರಗೊಳಿಸುತ್ತವೆ. ಶುಭ ಗ್ರಹಗಳ ದೃಷ್ಟಿಗಳು (ಬೃಹಸ್ಪತಿ, ಶುಕ್ರ) ಸ್ಥಿತಿಸ್ಥಾಪಕತ್ವವನ್ನು ಒದಗಿಸುತ್ತವೆ.",
+    "mr": "या भावांचे स्वामी (६L, ८L, १२L) रोग-कर्म धारण करतात. जेव्हा ते आरोग्य-महत्त्वाच्या ग्रहांशी युती करतात, दृष्टी देतात किंवा परिवर्तन करतात, तेव्हा विशिष्ट संवेदनशीलता सक्रिय होते. या भावांवर अशुभ ग्रहांची दृष्टी (शनी, मंगळ, राहु) समस्या अधिक तीव्र करते. शुभ ग्रहांची दृष्टी (गुरु, शुक्र) लवचिकता प्रदान करते."
   },
   "sec4Dasha": {
     "en": "Disease manifests not randomly, but at specific dasha periods. The dasha of 6L, 8L, or 12L  –  or the dasha of a planet afflicting these houses  –  creates the timing window for health events.",
@@ -1182,10 +1182,10 @@
     "ta": "நோய் குறிப்பிட்ட தசா காலங்களில் வெளிப்படுகிறது.",
     "bn": "রোগ নির্দিষ্ট দশা কালে প্রকাশিত হয়।",
     "mai": "रोग यादृच्छिक रूपसँ प्रकट नहि होइत अछि, मुदा विशिष्ट दशा काल मे। 6L, 8L, वा 12L क दशा – वा ई भाव सभ केँ पीड़ित करय वला ग्रहक दशा – स्वास्थ्य घटनाक लेल समयक खिड़की बनबैत अछि।",
-    "te": "Disease manifests not randomly, but at specific dasha periods. The dasha of 6L, 8L, or 12L  –  or the dasha of a planet afflicting these houses  –  creates the timing window for health events.",
-    "gu": "Disease manifests not randomly, but at specific dasha periods. The dasha of 6L, 8L, or 12L  –  or the dasha of a planet afflicting these houses  –  creates the timing window for health events.",
-    "kn": "Disease manifests not randomly, but at specific dasha periods. The dasha of 6L, 8L, or 12L  –  or the dasha of a planet afflicting these houses  –  creates the timing window for health events.",
-    "mr": "Disease manifests not randomly, but at specific dasha periods. The dasha of 6L, 8L, or 12L  –  or the dasha of a planet afflicting these houses  –  creates the timing window for health events."
+    "te": "వ్యాధి యాదృచ్ఛికంగా కాకుండా, నిర్దిష్ట దశ కాలాలలో వ్యక్తమవుతుంది. 6వ అధిపతి, 8వ అధిపతి లేదా 12వ అధిపతి దశ – లేదా ఈ భావాలను పీడిస్తున్న గ్రహం యొక్క దశ – ఆరోగ్య సంఘటనలకు సమయ విండోను సృష్టిస్తుంది.",
+    "gu": "રોગ અવ્યવસ્થિત રીતે નહીં, પરંતુ ચોક્કસ દશા કાળમાં પ્રગટ થાય છે. 6લ, 8લ, અથવા 12લની દશા – અથવા આ ભાવોને પીડિત કરતા ગ્રહની દશા – સ્વાસ્થ્ય ઘટનાઓ માટે સમયની વિન્ડો બનાવે છે.",
+    "kn": "ರೋಗವು ಯಾದೃಚ್ಛಿಕವಾಗಿ ಪ್ರಕಟವಾಗುವುದಿಲ್ಲ, ಆದರೆ ನಿರ್ದಿಷ್ಟ ದಶಾ ಅವಧಿಗಳಲ್ಲಿ. 6L, 8L, ಅಥವಾ 12L ನ ದಶಾ – ಅಥವಾ ಈ ಭಾವಗಳನ್ನು ಪೀಡಿಸುವ ಗ್ರಹದ ದಶಾ – ಆರೋಗ್ಯ ಘಟನೆಗಳಿಗೆ ಸಮಯದ ಕಿಟಕಿಯನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ.",
+    "mr": "रोग यादृच्छिकपणे नव्हे, तर विशिष्ट दशा काळात प्रकट होतो. ६L, ८L, किंवा १२L ची दशा – किंवा या भावांना पीडा देणाऱ्या ग्रहाची दशा – आरोग्य घटनांसाठी योग्य वेळ निर्माण करते."
   },
   "sec5Title": {
     "en": "Dasha Periods & Health Windows",
@@ -1193,10 +1193,10 @@
     "ta": "தசா காலங்கள் & ஆரோக்கிய சாளரங்கள்",
     "bn": "দশা কাল ও স্বাস্থ্য সময়কাল",
     "mai": "दशा काल ओ स्वास्थ्यक खिड़की",
-    "te": "Dasha Periods & Health Windows",
-    "gu": "Dasha Periods & Health Windows",
-    "kn": "Dasha Periods & Health Windows",
-    "mr": "Dasha Periods & Health Windows"
+    "te": "దశ కాలాలు & ఆరోగ్య విండోలు",
+    "gu": "દશા કાળ અને સ્વાસ્થ્ય વિન્ડો",
+    "kn": "ದಶಾ ಅವಧಿಗಳು ಮತ್ತು ಆರೋಗ್ಯದ ಕಿಟಕಿಗಳು",
+    "mr": "दशा काळ आणि आरोग्याच्या संधी"
   },
   "sec5Intro": {
     "en": "Each planetary dasha activates its associated dosha in the body. Understanding this lets you prepare dietary, lifestyle, and herbal remedies BEFORE a dasha begins.",
@@ -1204,10 +1204,10 @@
     "ta": "ஒவ்வொரு கிரக தசாவும் உடலில் அதனுடன் தொடர்புடைய தோஷத்தை செயல்படுத்துகிறது.",
     "bn": "প্রতিটি গ্রহ দশা শরীরে তার সংশ্লিষ্ট দোষ সক্রিয় করে।",
     "mai": "प्रत्येक ग्रहीय दशा शरीर मे अपन संबंधित दोष केँ सक्रिय करैत अछि। ई बुझलासँ अहाँ केँ एकटा दशा शुरू हेबा सँ पहिने आहार, जीवनशैली, आ हर्बल उपचारक तैयारी करबा मे मदद मिलैत अछि।",
-    "te": "Each planetary dasha activates its associated dosha in the body. Understanding this lets you prepare dietary, lifestyle, and herbal remedies BEFORE a dasha begins.",
-    "gu": "Each planetary dasha activates its associated dosha in the body. Understanding this lets you prepare dietary, lifestyle, and herbal remedies BEFORE a dasha begins.",
-    "kn": "Each planetary dasha activates its associated dosha in the body. Understanding this lets you prepare dietary, lifestyle, and herbal remedies BEFORE a dasha begins.",
-    "mr": "Each planetary dasha activates its associated dosha in the body. Understanding this lets you prepare dietary, lifestyle, and herbal remedies BEFORE a dasha begins."
+    "te": "ప్రతి గ్రహ దశ శరీరంలో దాని సంబంధిత దోషాన్ని సక్రియం చేస్తుంది. దీనిని అర్థం చేసుకోవడం ద్వారా, దశ ప్రారంభమయ్యే ముందు మీరు ఆహారం, జీవనశైలి మరియు మూలికా నివారణలను సిద్ధం చేసుకోవచ్చు.",
+    "gu": "દરેક ગ્રહની દશા શરીરમાં તેના સંબંધિત દોષને સક્રિય કરે છે. આને સમજવાથી તમે દશા શરૂ થાય તે પહેલાં આહાર, જીવનશૈલી અને હર્બલ ઉપચારો તૈયાર કરી શકો છો.",
+    "kn": "ಪ್ರತಿಯೊಂದು ಗ್ರಹ ದಶಾವು ದೇಹದಲ್ಲಿ ತನ್ನ ಸಂಬಂಧಿತ ದೋಷವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುತ್ತದೆ. ಇದನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವುದು ದಶಾ ಪ್ರಾರಂಭವಾಗುವ ಮೊದಲು ಆಹಾರ, ಜೀವನಶೈಲಿ ಮತ್ತು ಗಿಡಮೂಲಿಕೆ ಪರಿಹಾರಗಳನ್ನು ಸಿದ್ಧಪಡಿಸಲು ನಿಮಗೆ ಅನುವು ಮಾಡಿಕೊಡುತ್ತದೆ.",
+    "mr": "प्रत्येक ग्रहाची दशा शरीरातील संबंधित दोषाला सक्रिय करते. हे समजून घेतल्यास दशा सुरू होण्यापूर्वीच तुम्ही आहार, जीवनशैली आणि औषधी वनस्पतींचे उपाय तयार करू शकता."
   },
   "saturnDasha": {
     "en": "Saturn Dasha (19 years)",
@@ -1215,10 +1215,10 @@
     "ta": "சனி தசா (19 ஆண்டுகள்)",
     "bn": "শনি দশা (১৯ বছর)",
     "mai": "शनि दशा (१९ वर्ष)",
-    "te": "Saturn Dasha (19 years)",
-    "gu": "Saturn Dasha (19 years)",
-    "kn": "Saturn Dasha (19 years)",
-    "mr": "Saturn Dasha (19 years)"
+    "te": "శని దశ (19 సంవత్సరాలు)",
+    "gu": "શનિ દશા (19 વર્ષ)",
+    "kn": "ಶನಿ ದಶಾ (19 ವರ್ಷಗಳು)",
+    "mr": "शनी दशा (१९ वर्षे)"
   },
   "saturnDashaDesc": {
     "en": "Vata aggravation: joint pain, arthritis, nervous exhaustion, constipation, dry skin, depression. Cold and dry qualities dominate. Remedy: warm oil massage (Abhyanga), heavy nourishing foods, Ashwagandha, regularity in routine.",
@@ -1226,10 +1226,10 @@
     "ta": "வாத மோசமாதல்: மூட்டு வலி, ஆர்த்ரிடிஸ், மலச்சிக்கல். தீர்வு: எண்ணெய் மசாஜ், அஸ்வகந்தா.",
     "bn": "বাত বৃদ্ধি: জয়েন্ট ব্যথা, বাত, কোষ্ঠকাঠিন্য। প্রতিকার: তেল মালিশ, অশ্বগন্ধা।",
     "mai": "वातक वृद्धि: जोड़ मे दर्द, गठिया, तंत्रिकाक थकावट, कब्ज, सुखल चमड़ा, अवसाद। ठंढा आ सुखल गुण प्रधान होइत अछि। उपचार: गरम तेलक मालिश (अभ्यंग), भारी पौष्टिक भोजन, अश्वगंधा, दिनचर्या मे नियमितता।",
-    "te": "Vata aggravation: joint pain, arthritis, nervous exhaustion, constipation, dry skin, depression. Cold and dry qualities dominate. Remedy: warm oil massage (Abhyanga), heavy nourishing foods, Ashwagandha, regularity in routine.",
-    "gu": "Vata aggravation: joint pain, arthritis, nervous exhaustion, constipation, dry skin, depression. Cold and dry qualities dominate. Remedy: warm oil massage (Abhyanga), heavy nourishing foods, Ashwagandha, regularity in routine.",
-    "kn": "Vata aggravation: joint pain, arthritis, nervous exhaustion, constipation, dry skin, depression. Cold and dry qualities dominate. Remedy: warm oil massage (Abhyanga), heavy nourishing foods, Ashwagandha, regularity in routine.",
-    "mr": "Vata aggravation: joint pain, arthritis, nervous exhaustion, constipation, dry skin, depression. Cold and dry qualities dominate. Remedy: warm oil massage (Abhyanga), heavy nourishing foods, Ashwagandha, regularity in routine."
+    "te": "వాత ప్రకోపం: కీళ్ల నొప్పి, ఆర్థరైటిస్, నాడీ అలసట, మలబద్ధకం, పొడి చర్మం, డిప్రెషన్. చల్లని మరియు పొడి గుణాలు ఆధిపత్యం వహిస్తాయి. నివారణ: వెచ్చని నూనె మసాజ్ (అభ్యంగం), బరువైన పోషక ఆహారాలు, అశ్వగంధ, దినచర్యలో క్రమబద్ధత.",
+    "gu": "વાત પ્રકોપ: સાંધાનો દુખાવો, સંધિવા, ચેતાતંત્રની થકાવટ, કબજિયાત, સૂકી ત્વચા, ડિપ્રેશન. ઠંડા અને સૂકા ગુણો પ્રબળ હોય છે. ઉપાય: ગરમ તેલ માલિશ (અભયંગ), ભારે પૌષ્ટિક ખોરાક, અશ્વગંધા, દિનચર્યામાં નિયમિતતા.",
+    "kn": "ವಾತದ ಉಲ್ಬಣ: ಕೀಲು ನೋವು, ಸಂಧಿವಾತ, ನರ ದೌರ್ಬಲ್ಯ, ಮಲಬದ್ಧತೆ, ಒಣ ಚರ್ಮ, ಖಿನ್ನತೆ. ಶೀತ ಮತ್ತು ಶುಷ್ಕ ಗುಣಗಳು ಪ್ರಬಲವಾಗಿರುತ್ತವೆ. ಪರಿಹಾರ: ಬೆಚ್ಚಗಿನ ಎಣ್ಣೆ ಮಸಾಜ್ (ಅಭ್ಯಂಗ), ಭಾರೀ ಪೌಷ್ಟಿಕ ಆಹಾರಗಳು, ಅಶ್ವಗಂಧ, ದಿನಚರಿಯಲ್ಲಿ ನಿಯಮಿತತೆ.",
+    "mr": "वात प्रकोप: सांधेदुखी, संधिवात, मज्जातंतूंचा थकवा, बद्धकोष्ठता, कोरडी त्वचा, नैराश्य. थंड आणि कोरडे गुणधर्म प्रभावी होतात. उपाय: कोमट तेलाची मालिश (अभ्यंग), जड पौष्टिक पदार्थ, अश्वगंधा, दिनचर्येत नियमितता."
   },
   "marsDasha": {
     "en": "Mars Dasha (7 years)",
@@ -1237,10 +1237,10 @@
     "ta": "செவ்வாய் தசா (7 ஆண்டுகள்)",
     "bn": "মঙ্গল দশা (৭ বছর)",
     "mai": "मंगल दशा (७ वर्ष)",
-    "te": "Mars Dasha (7 years)",
-    "gu": "Mars Dasha (7 years)",
-    "kn": "Mars Dasha (7 years)",
-    "mr": "Mars Dasha (7 years)"
+    "te": "కుజ దశ (7 సంవత్సరాలు)",
+    "gu": "મંગળ દશા (7 વર્ષ)",
+    "kn": "ಮಂಗಳ ದಶಾ (7 ವರ್ಷಗಳು)",
+    "mr": "मंगळ दशा (७ वर्षे)"
   },
   "marsDashaDesc": {
     "en": "Pitta inflammation: fevers, skin rashes, ulcers, accidents, blood pressure spikes, liver heat. Hot and sharp qualities dominate. Remedy: cooling foods (coconut, coriander), Shatavari, Aloe vera, avoid excess chilli and fried food.",
@@ -1248,10 +1248,10 @@
     "ta": "பித்த அழற்சி: காய்ச்சல், தோல் தடிப்பு, அல்சர். தீர்வு: குளிர்ச்சியான உணவு, சதாவரி.",
     "bn": "পিত্ত প্রদাহ: জ্বর, চর্ম ফুসকুড়ি, আলসার। প্রতিকার: শীতল খাদ্য, শতমূলী।",
     "mai": "पित्तक सूजन: ज्वर, चमड़ा पर दाना, अल्सर, दुर्घटना, रक्तचाप मे वृद्धि, यकृतक गर्मी। गरम आ तीक्ष्ण गुण प्रधान होइत अछि। उपचार: ठंढा करय वला भोजन (नारियल, धनिया), शतावरी, घृतकुमारी, बेसी मिर्च आ तेलक भोजन सँ बचू।",
-    "te": "Pitta inflammation: fevers, skin rashes, ulcers, accidents, blood pressure spikes, liver heat. Hot and sharp qualities dominate. Remedy: cooling foods (coconut, coriander), Shatavari, Aloe vera, avoid excess chilli and fried food.",
-    "gu": "Pitta inflammation: fevers, skin rashes, ulcers, accidents, blood pressure spikes, liver heat. Hot and sharp qualities dominate. Remedy: cooling foods (coconut, coriander), Shatavari, Aloe vera, avoid excess chilli and fried food.",
-    "kn": "Pitta inflammation: fevers, skin rashes, ulcers, accidents, blood pressure spikes, liver heat. Hot and sharp qualities dominate. Remedy: cooling foods (coconut, coriander), Shatavari, Aloe vera, avoid excess chilli and fried food.",
-    "mr": "Pitta inflammation: fevers, skin rashes, ulcers, accidents, blood pressure spikes, liver heat. Hot and sharp qualities dominate. Remedy: cooling foods (coconut, coriander), Shatavari, Aloe vera, avoid excess chilli and fried food."
+    "te": "పిత్త వాపు: జ్వరాలు, చర్మ దద్దుర్లు, అల్సర్లు, ప్రమాదాలు, రక్తపోటు పెరుగుదల, కాలేయ వేడి. వేడి మరియు పదునైన గుణాలు ఆధిపత్యం వహిస్తాయి. నివారణ: చల్లబరిచే ఆహారాలు (కొబ్బరి, కొత్తిమీర), శతావరి, కలబంద, అధిక మిరపకాయలు మరియు వేయించిన ఆహారాన్ని నివారించండి.",
+    "gu": "પિત્ત પ્રદાહ: તાવ, ચામડીના ફોલ્લીઓ, અલ્સર, અકસ્માતો, બ્લડ પ્રેશરનો વધારો, યકૃતની ગરમી. ગરમ અને તીક્ષ્ણ ગુણો પ્રબળ હોય છે. ઉપાય: ઠંડા ખોરાક (નાળિયેર, ધાણા), શતાવરી, કુંવારપાઠું, વધુ પડતા મરચાં અને તળેલા ખોરાક ટાળો.",
+    "kn": "ಪಿತ್ತದ ಉರಿಯೂತ: ಜ್ವರ, ಚರ್ಮದ ದದ್ದುಗಳು, ಹುಣ್ಣುಗಳು, ಅಪಘಾತಗಳು, ರಕ್ತದೊತ್ತಡದ ಏರಿಕೆ, ಯಕೃತ್ತಿನ ಉಷ್ಣತೆ. ಬಿಸಿ ಮತ್ತು ತೀಕ್ಷ್ಣ ಗುಣಗಳು ಪ್ರಬಲವಾಗಿರುತ್ತವೆ. ಪರಿಹಾರ: ತಂಪಾಗಿಸುವ ಆಹಾರಗಳು (ತೆಂಗಿನಕಾಯಿ, ಕೊತ್ತಂಬರಿ), ಶತಾವರಿ, ಅಲೋವೆರಾ, ಅತಿಯಾದ ಮೆಣಸಿನಕಾಯಿ ಮತ್ತು ಕರಿದ ಆಹಾರವನ್ನು ತಪ್ಪಿಸಿ.",
+    "mr": "पित्त प्रदाह: ताप, त्वचेवर पुरळ, अल्सर, अपघात, रक्तदाब वाढणे, यकृतातील उष्णता. गरम आणि तीक्ष्ण गुणधर्म प्रभावी होतात. उपाय: थंड पदार्थ (नारळ, कोथिंबीर), शतावरी, कोरफड, जास्त मिरची आणि तळलेले पदार्थ टाळा."
   },
   "moonDasha": {
     "en": "Moon Dasha (10 years)",
@@ -1259,10 +1259,10 @@
     "ta": "சந்திர தசா (10 ஆண்டுகள்)",
     "bn": "চন্দ্র দশা (১০ বছর)",
     "mai": "चन्द्रमा दशा (१० वर्ष)",
-    "te": "Moon Dasha (10 years)",
-    "gu": "Moon Dasha (10 years)",
-    "kn": "Moon Dasha (10 years)",
-    "mr": "Moon Dasha (10 years)"
+    "te": "చంద్ర దశ (10 సంవత్సరాలు)",
+    "gu": "ચંદ્ર દશા (10 વર્ષ)",
+    "kn": "ಚಂದ್ರ ದಶಾ (10 ವರ್ಷಗಳು)",
+    "mr": "चंद्र दशा (१० वर्षे)"
   },
   "moonDashaDesc": {
     "en": "Kapha accumulation: weight gain, water retention, sinus congestion, lethargy, emotional eating, thyroid issues. Heavy and moist qualities dominate. Remedy: dry fasting on Ekadashi, Trikatu (ginger-pepper-pippali), vigorous exercise, early rising.",
@@ -1270,10 +1270,10 @@
     "ta": "கப திரட்சி: எடை அதிகரிப்பு, நீர் தேக்கம், சோம்பல். தீர்வு: ஏகாதசி விரதம், திரிகடு.",
     "bn": "কফ সঞ্চয়: ওজন বৃদ্ধি, জল ধারণ, অলসতা। প্রতিকার: একাদশী ব্রত, ত্রিকটু।",
     "mai": "कफक संचय: वजन मे वृद्धि, जल प्रतिधारण, साइनसक भीड़, सुस्ती, भावनात्मक भोजन, थायराइडक समस्या। भारी आ नम गुण प्रधान होइत अछि। उपचार: एकादशी पर निर्जल उपवास, त्रिकटु (अदरक-मरिच-पिप्पली), जोरदार व्यायाम, सबेर उठब।",
-    "te": "Kapha accumulation: weight gain, water retention, sinus congestion, lethargy, emotional eating, thyroid issues. Heavy and moist qualities dominate. Remedy: dry fasting on Ekadashi, Trikatu (ginger-pepper-pippali), vigorous exercise, early rising.",
-    "gu": "Kapha accumulation: weight gain, water retention, sinus congestion, lethargy, emotional eating, thyroid issues. Heavy and moist qualities dominate. Remedy: dry fasting on Ekadashi, Trikatu (ginger-pepper-pippali), vigorous exercise, early rising.",
-    "kn": "Kapha accumulation: weight gain, water retention, sinus congestion, lethargy, emotional eating, thyroid issues. Heavy and moist qualities dominate. Remedy: dry fasting on Ekadashi, Trikatu (ginger-pepper-pippali), vigorous exercise, early rising.",
-    "mr": "Kapha accumulation: weight gain, water retention, sinus congestion, lethargy, emotional eating, thyroid issues. Heavy and moist qualities dominate. Remedy: dry fasting on Ekadashi, Trikatu (ginger-pepper-pippali), vigorous exercise, early rising."
+    "te": "కఫ సంచయం: బరువు పెరుగుట, నీరు నిలుపుదల, సైనస్ రద్దీ, నిస్సత్తువ, భావోద్వేగ భోజనం, థైరాయిడ్ సమస్యలు. బరువైన మరియు తేమ గుణాలు ఆధిపత్యం వహిస్తాయి. నివారణ: ఏకాదశి నాడు ఉపవాసం, త్రికటు (అల్లం-మిరియాలు-పిప్పలి), తీవ్రమైన వ్యాయామం, త్వరగా నిద్రలేవడం.",
+    "gu": "કફ સંચય: વજન વધારો, જળ જાળવણી, સાઇનસ ભીડ, સુસ્તી, ભાવનાત્મક ખાનપાન, થાઇરોઇડ સમસ્યાઓ. ભારે અને ભેજવાળા ગુણો પ્રબળ હોય છે. ઉપાય: એકાદશી પર સૂકો ઉપવાસ, ત્રિકટુ (આદુ-મરી-પીપળી), સઘન વ્યાયામ, વહેલા ઉઠવું.",
+    "kn": "ಕಫದ ಸಂಗ್ರಹ: ತೂಕ ಹೆಚ್ಚಳ, ನೀರಿನ ಧಾರಣ, ಸೈನಸ್ ದಟ್ಟಣೆ, ಆಲಸ್ಯ, ಭಾವನಾತ್ಮಕ ಆಹಾರ ಸೇವನೆ, ಥೈರಾಯ್ಡ್ ಸಮಸ್ಯೆಗಳು. ಭಾರೀ ಮತ್ತು ತೇವಾಂಶದ ಗುಣಗಳು ಪ್ರಬಲವಾಗಿರುತ್ತವೆ. ಪರಿಹಾರ: ಏಕಾದಶಿಯಂದು ಒಣ ಉಪವಾಸ, ತ್ರಿಕಟು (ಶುಂಠಿ-ಮೆಣಸು-ಪಿಪ್ಪಲಿ), vigorous ವ್ಯಾಯಾಮ, ಬೇಗ ಏಳುವುದು.",
+    "mr": "कफ संचय: वजन वाढणे, पाणी साठणे, सायनसचा अडथळा, आळस, भावनिक खाणे, थायरॉईडच्या समस्या. जड आणि ओलसर गुणधर्म प्रभावी होतात. उपाय: एकादशीला कोरडा उपवास, त्रिकटू (आले-मिरी-पिंपळी), जोरदार व्यायाम, लवकर उठणे."
   },
   "jupiterDasha": {
     "en": "Jupiter Dasha (16 years)",
@@ -1281,10 +1281,10 @@
     "ta": "குரு தசா (16 ஆண்டுகள்)",
     "bn": "বৃহস্পতি দশা (১৬ বছর)",
     "mai": "बृहस्पति दशा (१६ वर्ष)",
-    "te": "Jupiter Dasha (16 years)",
-    "gu": "Jupiter Dasha (16 years)",
-    "kn": "Jupiter Dasha (16 years)",
-    "mr": "Jupiter Dasha (16 years)"
+    "te": "గురు దశ (16 సంవత్సరాలు)",
+    "gu": "બૃહસ્પતિ દશા (16 વર્ષ)",
+    "kn": "ಬೃಹಸ್ಪತಿ ದಶಾ (16 ವರ್ಷಗಳು)",
+    "mr": "गुरु दशा (१६ वर्षे)"
   },
   "jupiterDashaDesc": {
     "en": "Kapha expansion: liver enlargement, diabetes, obesity, high cholesterol, benign growths. Remedy: Guduchi (Tinospora), turmeric, bitter foods, intermittent fasting.",
@@ -1292,10 +1292,10 @@
     "ta": "கப விரிவாக்கம்: கல்லீரல் வீக்கம், நீரிழிவு, உடல் பருமன். தீர்வு: குடூச்சி, மஞ்சள்.",
     "bn": "কফ সম্প্রসারণ: যকৃৎ বৃদ্ধি, ডায়াবেটিস, স্থূলতা। প্রতিকার: গুডুচী, হলুদ।",
     "mai": "कफक विस्तार: यकृतक वृद्धि, मधुमेह, मोटापा, उच्च कोलेस्ट्रॉल, सौम्य वृद्धि। उपचार: गुडुची (टिनोस्पोरा), हल्दी, तीत भोजन, रुक-रुक कय उपवास।",
-    "te": "Kapha expansion: liver enlargement, diabetes, obesity, high cholesterol, benign growths. Remedy: Guduchi (Tinospora), turmeric, bitter foods, intermittent fasting.",
-    "gu": "Kapha expansion: liver enlargement, diabetes, obesity, high cholesterol, benign growths. Remedy: Guduchi (Tinospora), turmeric, bitter foods, intermittent fasting.",
-    "kn": "Kapha expansion: liver enlargement, diabetes, obesity, high cholesterol, benign growths. Remedy: Guduchi (Tinospora), turmeric, bitter foods, intermittent fasting.",
-    "mr": "Kapha expansion: liver enlargement, diabetes, obesity, high cholesterol, benign growths. Remedy: Guduchi (Tinospora), turmeric, bitter foods, intermittent fasting."
+    "te": "కఫ విస్తరణ: కాలేయ విస్తరణ, మధుమేహం, ఊబకాయం, అధిక కొలెస్ట్రాల్, నిరపాయమైన పెరుగుదలలు. నివారణ: గుడూచి (తిప్పతీగ), పసుపు, చేదు ఆహారాలు, మధ్యంతర ఉపవాసం.",
+    "gu": "કફ વિસ્તરણ: યકૃત વૃદ્ધિ, ડાયાબિટીસ, સ્થૂળતા, ઉચ્ચ કોલેસ્ટ્રોલ, સૌમ્ય વૃદ્ધિ. ઉપાય: ગુડુચી (ગળો), હળદર, કડવા ખોરાક, આંતરરાષ્ટ્રીય ઉપવાસ.",
+    "kn": "ಕಫದ ವಿಸ್ತರಣೆ: ಯಕೃತ್ತಿನ ಹಿಗ್ಗುವಿಕೆ, ಮಧುಮೇಹ, ಬೊಜ್ಜು, ಅಧಿಕ ಕೊಲೆಸ್ಟ್ರಾಲ್, ಸೌಮ್ಯ ಬೆಳವಣಿಗೆಗಳು. ಪರಿಹಾರ: ಗುಡೂಚಿ (ಟಿನ್ನೋಸ್ಪೊರಾ), ಅರಿಶಿನ, ಕಹಿ ಆಹಾರಗಳು, ಮಧ್ಯಂತರ ಉಪವಾಸ.",
+    "mr": "कफ विस्तार: यकृताची वाढ, मधुमेह, लठ्ठपणा, उच्च कोलेस्ट्रॉल, सौम्य गाठी. उपाय: गुडुची (टिनोस्पोरा), हळद, कडू पदार्थ, अधूनमधून उपवास."
   },
   "venusRahuDasha": {
     "en": "Venus/Rahu/Ketu Dashas",
@@ -1303,10 +1303,10 @@
     "ta": "சுக்கிர/ராகு/கேது தசா",
     "bn": "শুক্র/রাহু/কেতু দশা",
     "mai": "शुक्र/राहु/केतु दशा",
-    "te": "Venus/Rahu/Ketu Dashas",
-    "gu": "Venus/Rahu/Ketu Dashas",
-    "kn": "Venus/Rahu/Ketu Dashas",
-    "mr": "Venus/Rahu/Ketu Dashas"
+    "te": "శుక్ర/రాహు/కేతు దశలు",
+    "gu": "શુક્ર/રાહુ/કેતુ દશા",
+    "kn": "ಶುಕ್ರ/ರಾಹು/ಕೇತು ದಶೆಗಳು",
+    "mr": "शुक्र/राहु/केतु दशा"
   },
   "venusRahuDashaDesc": {
     "en": "Venus (20y): reproductive/urogenital issues, kidney stones, hormonal swings. Rahu (18y): mysterious illness, toxins, anxiety disorders, addiction risk. Ketu (7y): sudden fevers, muscular issues, spiritual crises manifesting physically.",
@@ -1314,10 +1314,10 @@
     "ta": "சுக்கிரன் (20வ): இனப்பெருக்க பிரச்சனைகள்.",
     "bn": "শুক্র (২০বছর): প্রজনন সমস্যা। রাহু (১৮বছর): রহস্যময় রোগ।",
     "mai": "शुक्र (२० वर्ष): प्रजनन/मूत्रजननांगक समस्या, गुर्दाक पथरी, हार्मोनल उतार-चढ़ाव। राहु (१८ वर्ष): रहस्यमय बीमारी, विष, चिंता विकार, लतक खतरा। केतु (७ वर्ष): अचानक ज्वर, मांसपेशीक समस्या, शारीरिक रूपसँ प्रकट होइत आध्यात्मिक संकट।",
-    "te": "Venus (20y): reproductive/urogenital issues, kidney stones, hormonal swings. Rahu (18y): mysterious illness, toxins, anxiety disorders, addiction risk. Ketu (7y): sudden fevers, muscular issues, spiritual crises manifesting physically.",
-    "gu": "Venus (20y): reproductive/urogenital issues, kidney stones, hormonal swings. Rahu (18y): mysterious illness, toxins, anxiety disorders, addiction risk. Ketu (7y): sudden fevers, muscular issues, spiritual crises manifesting physically.",
-    "kn": "Venus (20y): reproductive/urogenital issues, kidney stones, hormonal swings. Rahu (18y): mysterious illness, toxins, anxiety disorders, addiction risk. Ketu (7y): sudden fevers, muscular issues, spiritual crises manifesting physically.",
-    "mr": "Venus (20y): reproductive/urogenital issues, kidney stones, hormonal swings. Rahu (18y): mysterious illness, toxins, anxiety disorders, addiction risk. Ketu (7y): sudden fevers, muscular issues, spiritual crises manifesting physically."
+    "te": "శుక్రుడు (20 సం): పునరుత్పత్తి/మూత్రపిండ-జననేంద్రియ సమస్యలు, మూత్రపిండ రాళ్లు, హార్మోన్ల హెచ్చుతగ్గులు. రాహువు (18 సం): రహస్యమైన వ్యాధులు, విషాలు, ఆందోళన రుగ్మతలు, వ్యసన ప్రమాదం. కేతువు (7 సం): ఆకస్మిక జ్వరాలు, కండరాల సమస్యలు, శారీరకంగా వ్యక్తమయ్యే ఆధ్యాత్మిక సంక్షోభాలు.",
+    "gu": "શુક્ર (20વર્ષ): પ્રજનન/મૂત્ર-જનન સમસ્યાઓ, કિડની સ્ટોન, હોર્મોનલ વધઘટ. રાહુ (18વર્ષ): રહસ્યમય બીમારી, ઝેર, ચિંતાના વિકારો, વ્યસનનું જોખમ. કેતુ (7વર્ષ): અચાનક તાવ, સ્નાયુ સંબંધિત સમસ્યાઓ, શારીરિક રીતે પ્રગટ થતી આધ્યાત્મિક સંકટ.",
+    "kn": "ಶುಕ್ರ (20ವ): ಸಂತಾನೋತ್ಪತ್ತಿ/ಮೂತ್ರಜನಕಾಂಗದ ಸಮಸ್ಯೆಗಳು, ಮೂತ್ರಪಿಂಡದ ಕಲ್ಲುಗಳು, ಹಾರ್ಮೋನುಗಳ ಏರಿಳಿತಗಳು. ರಾಹು (18ವ): ನಿಗೂಢ ಅನಾರೋಗ್ಯ, ವಿಷಗಳು, ಆತಂಕದ ಅಸ್ವಸ್ಥತೆಗಳು, ವ್ಯಸನದ ಅಪಾಯ. ಕೇತು (7ವ): ಹಠಾತ್ ಜ್ವರಗಳು, ಸ್ನಾಯು ಸಮಸ್ಯೆಗಳು, ದೈಹಿಕವಾಗಿ ಪ್ರಕಟವಾಗುವ ಆಧ್ಯಾತ್ಮಿಕ ಬಿಕ್ಕಟ್ಟುಗಳು.",
+    "mr": "शुक्र (२० वर्षे): प्रजनन/मूत्र-जनन समस्या, मूत्रपिंडातील खडे, हार्मोनल चढ-उतार. राहु (१८ वर्षे): रहस्यमय आजार, विषारी द्रव्ये, चिंता विकार, व्यसनाधीनतेचा धोका. केतु (७ वर्षे): अचानक ताप, स्नायूंच्या समस्या, शारीरिकरित्या प्रकट होणारी आध्यात्मिक संकटे."
   },
   "sec6Title": {
     "en": "Ritu (Seasonal Cycles) & Dosha",
@@ -1325,10 +1325,10 @@
     "ta": "ருது (பருவ சுழற்சி) & தோஷம்",
     "bn": "ঋতু (মৌসুমী চক্র) ও দোষ",
     "mai": "ऋतु (मौसमी चक्र) आ दोष",
-    "te": "Ritu (Seasonal Cycles) & Dosha",
-    "gu": "Ritu (Seasonal Cycles) & Dosha",
-    "kn": "Ritu (Seasonal Cycles) & Dosha",
-    "mr": "Ritu (Seasonal Cycles) & Dosha"
+    "te": "ఋతువులు (ఋతు చక్రాలు) & దోషం",
+    "gu": "ઋતુ (મોસમી ચક્ર) અને દોષ",
+    "kn": "ಋತು (ಋತುಮಾನದ ಚಕ್ರಗಳು) ಮತ್ತು ದೋಷ",
+    "mr": "ऋतू (हंगामी चक्र) आणि दोष"
   },
   "sec6Intro": {
     "en": "The Vedic year has 6 Ritus (seasons), each with a distinct dosha pattern. Ayurveda says doshas accumulate (sanchaya), aggravate (prakopa), and pacify (prashama) across seasons  –  exactly mirroring the planetary transits that govern them.",
@@ -1336,10 +1336,10 @@
     "ta": "வேத ஆண்டில் 6 ருதுக்கள் உள்ளன, ஒவ்வொன்றிலும் ஒரு தனித்துவமான தோஷ வடிவம் உள்ளது.",
     "bn": "বৈদিক বছরে ৬টি ঋতু আছে, প্রতিটিতে একটি স্বতন্ত্র দোষ প্যাটার্ন আছে।",
     "mai": "वैदिक वर्ष मे ६ ऋतु (मौसम) होइत अछि, प्रत्येकक एकटा विशिष्ट दोष पैटर्न होइत अछि। आयुर्वेद कहैत अछि जे दोष संचय (sanchaya) होइत अछि, प्रकोपित (prakopa) होइत अछि आ शांत (prashama) होइत अछि मौसम भरि – ठीक ओहिना प्रतिबिंबित करैत अछि जे ग्रह गोचर ओकरा नियंत्रित करैत अछि।",
-    "te": "The Vedic year has 6 Ritus (seasons), each with a distinct dosha pattern. Ayurveda says doshas accumulate (sanchaya), aggravate (prakopa), and pacify (prashama) across seasons  –  exactly mirroring the planetary transits that govern them.",
-    "gu": "The Vedic year has 6 Ritus (seasons), each with a distinct dosha pattern. Ayurveda says doshas accumulate (sanchaya), aggravate (prakopa), and pacify (prashama) across seasons  –  exactly mirroring the planetary transits that govern them.",
-    "kn": "The Vedic year has 6 Ritus (seasons), each with a distinct dosha pattern. Ayurveda says doshas accumulate (sanchaya), aggravate (prakopa), and pacify (prashama) across seasons  –  exactly mirroring the planetary transits that govern them.",
-    "mr": "The Vedic year has 6 Ritus (seasons), each with a distinct dosha pattern. Ayurveda says doshas accumulate (sanchaya), aggravate (prakopa), and pacify (prashama) across seasons  –  exactly mirroring the planetary transits that govern them."
+    "te": "వైదిక సంవత్సరంలో 6 ఋతువులు (కాలాలు) ఉన్నాయి, ప్రతి ఒక్కటి విభిన్న దోష నమూనాతో ఉంటుంది. ఆయుర్వేదం ప్రకారం దోషాలు ఋతువుల అంతటా సంచయం (పోగుపడటం), ప్రకోపం (తీవ్రతరం కావడం) మరియు ప్రశమనం (శాంతించడం) చెందుతాయి – వాటిని పాలించే గ్రహ సంచారాలను సరిగ్గా ప్రతిబింబిస్తాయి.",
+    "gu": "વૈદિક વર્ષમાં 6 ઋતુઓ છે, દરેક એક વિશિષ્ટ દોષ પેટર્ન ધરાવે છે. આયુર્વેદ કહે છે કે દોષ ઋતુઓ દરમિયાન સંચય (સંચય), પ્રકોપ (પ્રકોપ) અને પ્રશમન (પ્રશમન) પામે છે – જે તેમને સંચાલિત કરતા ગ્રહોના ગોચરને બરાબર પ્રતિબિંબિત કરે છે.",
+    "kn": "ವೈದಿಕ ವರ್ಷದಲ್ಲಿ 6 ಋತುಗಳು (ಋತುಮಾನಗಳು) ಇವೆ, ಪ್ರತಿಯೊಂದೂ ವಿಭಿನ್ನ ದೋಷ ಮಾದರಿಯನ್ನು ಹೊಂದಿದೆ. ಆಯುರ್ವೇದವು ದೋಷಗಳು ಋತುಗಳಲ್ಲಿ ಸಂಗ್ರಹವಾಗುತ್ತವೆ (ಸಂಚಯ), ಉಲ್ಬಣಗೊಳ್ಳುತ್ತವೆ (ಪ್ರಕೋಪ) ಮತ್ತು ಶಾಂತವಾಗುತ್ತವೆ (ಪ್ರಶಮ) ಎಂದು ಹೇಳುತ್ತದೆ – ಅವುಗಳನ್ನು ನಿಯಂತ್ರಿಸುವ ಗ್ರಹಗಳ ಸಂಚಾರವನ್ನು ನಿಖರವಾಗಿ ಪ್ರತಿಬಿಂಬಿಸುತ್ತದೆ.",
+    "mr": "वैदिक वर्षात ६ ऋतू (हंगाम) आहेत, प्रत्येकाची स्वतःची विशिष्ट दोष पद्धत आहे. आयुर्वेद सांगते की दोष हंगामांमध्ये संचय (संचय), प्रकोप (प्रकोप) आणि प्रशमन (प्रशमन) करतात – जे ग्रहांच्या गोचर गतीचे तंतोतंत प्रतिबिंब आहे."
   },
   "rituCol": {
     "en": "Ritu",
@@ -1347,10 +1347,10 @@
     "ta": "ருது",
     "bn": "ঋতু",
     "mai": "ऋतु",
-    "te": "Ritu",
-    "gu": "Ritu",
-    "kn": "Ritu",
-    "mr": "Ritu"
+    "te": "ఋతువు",
+    "gu": "ઋતુ",
+    "kn": "ಋತು",
+    "mr": "ऋतू"
   },
   "monthsCol": {
     "en": "Hindu Months",
@@ -1358,10 +1358,10 @@
     "ta": "இந்து மாதங்கள்",
     "bn": "হিন্দু মাস",
     "mai": "हिन्दू मास",
-    "te": "Hindu Months",
-    "gu": "Hindu Months",
-    "kn": "Hindu Months",
-    "mr": "Hindu Months"
+    "te": "హిందూ మాసాలు",
+    "gu": "હિંદુ માસ",
+    "kn": "ಹಿಂದೂ ಮಾಸಗಳು",
+    "mr": "हिंदू महिने"
   },
   "gregCol": {
     "en": "Approx. Gregorian",
@@ -1369,10 +1369,10 @@
     "ta": "தோராய கிரிகோரியன்",
     "bn": "আনুমানিক গ্রেগরিয়ান",
     "mai": "लगभग ग्रेगोरियन",
-    "te": "Approx. Gregorian",
-    "gu": "Approx. Gregorian",
-    "kn": "Approx. Gregorian",
-    "mr": "Approx. Gregorian"
+    "te": "సుమారు గ్రెగోరియన్",
+    "gu": "આશરે ગ્રેગોરિયન",
+    "kn": "ಅಂದಾಜು ಗ್ರೆಗೋರಿಯನ್",
+    "mr": "अंदाजे ग्रेगोरियन"
   },
   "doshaAction": {
     "en": "Dosha Action",
@@ -1380,10 +1380,10 @@
     "ta": "தோஷ செயல்",
     "bn": "দোষ ক্রিয়া",
     "mai": "दोषक क्रिया",
-    "te": "Dosha Action",
-    "gu": "Dosha Action",
-    "kn": "Dosha Action",
-    "mr": "Dosha Action"
+    "te": "దోష చర్య",
+    "gu": "દોષ ક્રિયા",
+    "kn": "ದೋಷ ಕ್ರಿಯೆ",
+    "mr": "दोष क्रिया"
   },
   "vasanta": {
     "en": "Vasanta (Spring)",
@@ -1391,10 +1391,10 @@
     "ta": "வசந்தம் (வசந்தகாலம்)",
     "bn": "বসন্ত",
     "mai": "वसंत (बसंत)",
-    "te": "Vasanta (Spring)",
-    "gu": "Vasanta (Spring)",
-    "kn": "Vasanta (Spring)",
-    "mr": "Vasanta (Spring)"
+    "te": "వసంత (వసంత ఋతువు)",
+    "gu": "વસંત (વસંત)",
+    "kn": "ವಸಂತ (ವಸಂತಕಾಲ)",
+    "mr": "वसंत (वसंत ऋतू)"
   },
   "vasantaMonths": {
     "en": "Chaitra-Vaishakha",
@@ -1402,10 +1402,10 @@
     "ta": "சித்திரை-வைகாசி",
     "bn": "চৈত্র-বৈশাখ",
     "mai": "चैत्र-वैशाख",
-    "te": "Chaitra-Vaishakha",
-    "gu": "Chaitra-Vaishakha",
-    "kn": "Chaitra-Vaishakha",
-    "mr": "Chaitra-Vaishakha"
+    "te": "చైత్ర-వైశాఖ",
+    "gu": "ચૈત્ર-વૈશાખ",
+    "kn": "ಚೈತ್ರ-ವೈಶಾಖ",
+    "mr": "चैत्र-वैशाख"
   },
   "vasantaGreg": {
     "en": "Mar-May",
@@ -1413,10 +1413,10 @@
     "ta": "மார்ச்-மே",
     "bn": "মার্চ-মে",
     "mai": "मार्च-मई",
-    "te": "Mar-May",
-    "gu": "Mar-May",
-    "kn": "Mar-May",
-    "mr": "Mar-May"
+    "te": "మార్చి-మే",
+    "gu": "માર્ચ-મે",
+    "kn": "ಮಾರ್ಚ್-ಮೇ",
+    "mr": "मार्च-मे"
   },
   "vasantaDosha": {
     "en": "Kapha pacification (prashama). Best time to detox accumulated winter Kapha.",
@@ -1424,10 +1424,10 @@
     "ta": "கப சமநிலை. குளிர்காலத்தில் சேகரித்த கபத்தை நீக்க சிறந்த நேரம்.",
     "bn": "কফ প্রশমন। শীতকালীন কফ নিষ্কাশনের শ্রেষ্ঠ সময়।",
     "mai": "कफ शमन (प्रशम)। जमा भेल जाड़क कफ केँ डिटॉक्स करबाक लेल सबसँ नीक समय।",
-    "te": "Kapha pacification (prashama). Best time to detox accumulated winter Kapha.",
-    "gu": "Kapha pacification (prashama). Best time to detox accumulated winter Kapha.",
-    "kn": "Kapha pacification (prashama). Best time to detox accumulated winter Kapha.",
-    "mr": "Kapha pacification (prashama). Best time to detox accumulated winter Kapha."
+    "te": "కఫ ప్రశమనం (శాంతించడం). శీతాకాలంలో పేరుకుపోయిన కఫాన్ని నిర్విషీకరణ చేయడానికి ఉత్తమ సమయం.",
+    "gu": "કફ પ્રશમન (પ્રશમન). શિયાળામાં સંચિત કફને ડિટોક્સ કરવાનો શ્રેષ્ઠ સમય.",
+    "kn": "ಕಫ ಶಾಂತಗೊಳಿಸುವಿಕೆ (ಪ್ರಶಮ). ಸಂಗ್ರಹವಾದ ಚಳಿಗಾಲದ ಕಫವನ್ನು ನಿರ್ವಿಷಗೊಳಿಸಲು ಉತ್ತಮ ಸಮಯ.",
+    "mr": "कफ प्रशमन (प्रशम). हिवाळ्यात साचलेला कफ बाहेर काढण्यासाठी सर्वोत्तम वेळ."
   },
   "grishma": {
     "en": "Grishma (Summer)",
@@ -1435,10 +1435,10 @@
     "ta": "கிரீஷ்மம் (கோடை)",
     "bn": "গ্রীষ্ম",
     "mai": "ग्रीष्म (गरमी)",
-    "te": "Grishma (Summer)",
-    "gu": "Grishma (Summer)",
-    "kn": "Grishma (Summer)",
-    "mr": "Grishma (Summer)"
+    "te": "గ్రీష్మ (వేసవి)",
+    "gu": "ગ્રીષ્મ (ઉનાળો)",
+    "kn": "ಗ್ರೀಷ್ಮ (ಬೇಸಿಗೆ)",
+    "mr": "ग्रीष्म (उन्हाळा)"
   },
   "grishmaMonths": {
     "en": "Jyeshtha-Ashadha",
@@ -1446,10 +1446,10 @@
     "ta": "ஆனி-ஆடி",
     "bn": "জ্যৈষ্ঠ-আষাঢ়",
     "mai": "ज्येष्ठ-आषाढ़",
-    "te": "Jyeshtha-Ashadha",
-    "gu": "Jyeshtha-Ashadha",
-    "kn": "Jyeshtha-Ashadha",
-    "mr": "Jyeshtha-Ashadha"
+    "te": "జ్యేష్ఠ-ఆషాఢ",
+    "gu": "જ્યેષ્ઠ-આષાઢ",
+    "kn": "ಜ್ಯೇಷ್ಠ-ಆಷಾಢ",
+    "mr": "ज्येष्ठ-आषाढ"
   },
   "grishmaGreg": {
     "en": "May-Jul",
@@ -1457,10 +1457,10 @@
     "ta": "மே-ஜூலை",
     "bn": "মে-জুলাই",
     "mai": "मई-जुलाई",
-    "te": "May-Jul",
-    "gu": "May-Jul",
-    "kn": "May-Jul",
-    "mr": "May-Jul"
+    "te": "మే-జూలై",
+    "gu": "મે-જુલાઈ",
+    "kn": "ಮೇ-ಜುಲೈ",
+    "mr": "मे-जुलै"
   },
   "grishmaDosha": {
     "en": "Vata accumulation (sanchaya). Pitta begins to build. Sun dries the body, aggravating air element.",
@@ -1468,10 +1468,10 @@
     "ta": "வாத சேகரிப்பு. பித்தம் கூட ஆரம்பிக்கிறது.",
     "bn": "বাত সঞ্চয়। পিত্ত বাড়তে শুরু করে।",
     "mai": "वात संचय (sanchaya)। पित्त बनय लागैत अछि। सूर्य शरीर केँ सुखा दैत अछि, वायु तत्व केँ बढ़ाबैत अछि।",
-    "te": "Vata accumulation (sanchaya). Pitta begins to build. Sun dries the body, aggravating air element.",
-    "gu": "Vata accumulation (sanchaya). Pitta begins to build. Sun dries the body, aggravating air element.",
-    "kn": "Vata accumulation (sanchaya). Pitta begins to build. Sun dries the body, aggravating air element.",
-    "mr": "Vata accumulation (sanchaya). Pitta begins to build. Sun dries the body, aggravating air element."
+    "te": "వాత సంచయం (పోగుపడటం). పిత్తం పెరగడం ప్రారంభమవుతుంది. సూర్యుడు శరీరాన్ని పొడిగా చేసి, వాయు తత్వాన్ని తీవ్రతరం చేస్తాడు.",
+    "gu": "વાત સંચય (સંચય). પિત્ત બનવાનું શરૂ થાય છે. સૂર્ય શરીરને સૂકવે છે, વાયુ તત્વને વધારે છે.",
+    "kn": "ವಾತ ಸಂಗ್ರಹ (ಸಂಚಯ). ಪಿತ್ತವು ಹೆಚ್ಚಾಗಲು ಪ್ರಾರಂಭಿಸುತ್ತದೆ. ಸೂರ್ಯನು ದೇಹವನ್ನು ಒಣಗಿಸುತ್ತದೆ, ವಾಯು ತತ್ವವನ್ನು ಉಲ್ಬಣಗೊಳಿಸುತ್ತದೆ.",
+    "mr": "वात संचय (संचय). पित्त वाढू लागते. सूर्य शरीराला कोरडे करतो, ज्यामुळे वायु तत्त्व वाढते."
   },
   "varsha": {
     "en": "Varsha (Monsoon)",
@@ -1479,10 +1479,10 @@
     "ta": "வர்ஷம் (மழைக்காலம்)",
     "bn": "বর্ষা",
     "mai": "वर्षा (मानसून)",
-    "te": "Varsha (Monsoon)",
-    "gu": "Varsha (Monsoon)",
-    "kn": "Varsha (Monsoon)",
-    "mr": "Varsha (Monsoon)"
+    "te": "వర్ష (వర్షాకాలం)",
+    "gu": "વર્ષા (ચોમાસું)",
+    "kn": "ವರ್ಷಾ (ಮಳೆಗಾಲ)",
+    "mr": "वर्षा (पावसाळा)"
   },
   "varshaMonths": {
     "en": "Shravana-Bhadrapada",
@@ -1490,10 +1490,10 @@
     "ta": "ஆவணி-புரட்டாசி",
     "bn": "শ্রাবণ-ভাদ্র",
     "mai": "श्रावण-भाद्रपद",
-    "te": "Shravana-Bhadrapada",
-    "gu": "Shravana-Bhadrapada",
-    "kn": "Shravana-Bhadrapada",
-    "mr": "Shravana-Bhadrapada"
+    "te": "శ్రావణ-భాద్రపద",
+    "gu": "શ્રાવણ-ભાદ્રપદ",
+    "kn": "ಶ್ರಾವಣ-ಭಾದ್ರಪದ",
+    "mr": "श्रावण-भाद्रपद"
   },
   "varshaGreg": {
     "en": "Jul-Sep",
@@ -1501,10 +1501,10 @@
     "ta": "ஜூலை-செப்டம்பர்",
     "bn": "জুলাই-সেপ্টেম্বর",
     "mai": "जुलाई-सितंबर",
-    "te": "Jul-Sep",
-    "gu": "Jul-Sep",
-    "kn": "Jul-Sep",
-    "mr": "Jul-Sep"
+    "te": "జూలై-సెప్టెంబర్",
+    "gu": "જુલાઈ-સપ્ટેમ્બર",
+    "kn": "ಜುಲೈ-ಸೆಪ್ಟೆಂಬರ್",
+    "mr": "जुलै-सप्टेंबर"
   },
   "varshaDosha": {
     "en": "Vata aggravation (prakopa). Digestive fire weakens. Most illness occurs now. Ideal for Panchakarma.",
@@ -1512,10 +1512,10 @@
     "ta": "வாத மோசமாதல். செரிமான தீ வலுவிழக்கும். பஞ்சகர்மாவுக்கு சிறந்தது.",
     "bn": "বাত প্রকোপ। পাচক অগ্নি দুর্বল। পঞ্চকর্মের জন্য আদর্শ।",
     "mai": "वात प्रकोप (prakopa)। पाचन अग्नि कमजोर भऽ जाइत अछि। एखन बेसी बीमारी होइत अछि। पंचकर्म के लेल आदर्श।",
-    "te": "Vata aggravation (prakopa). Digestive fire weakens. Most illness occurs now. Ideal for Panchakarma.",
-    "gu": "Vata aggravation (prakopa). Digestive fire weakens. Most illness occurs now. Ideal for Panchakarma.",
-    "kn": "Vata aggravation (prakopa). Digestive fire weakens. Most illness occurs now. Ideal for Panchakarma.",
-    "mr": "Vata aggravation (prakopa). Digestive fire weakens. Most illness occurs now. Ideal for Panchakarma."
+    "te": "వాత ప్రకోపం (తీవ్రతరం కావడం). జీర్ణశక్తి బలహీనపడుతుంది. చాలా వ్యాధులు ఇప్పుడు సంభవిస్తాయి. పంచకర్మకు అనువైనది.",
+    "gu": "વાત પ્રકોપ (પ્રકોપ). પાચન અગ્નિ નબળી પડે છે. મોટાભાગની બીમારીઓ હવે થાય છે. પંચકર્મ માટે આદર્શ.",
+    "kn": "ವಾತದ ಉಲ್ಬಣ (ಪ್ರಕೋಪ). ಜೀರ್ಣಾಂಗ ಅಗ್ನಿ ದುರ್ಬಲಗೊಳ್ಳುತ್ತದೆ. ಹೆಚ್ಚಿನ ರೋಗಗಳು ಈಗ ಸಂಭವಿಸುತ್ತವೆ. ಪಂಚಕರ್ಮಕ್ಕೆ ಸೂಕ್ತ.",
+    "mr": "वात प्रकोप (प्रकोप). पाचक अग्नी कमकुवत होते. बहुतेक आजार याच काळात होतात. पंचकर्मासाठी आदर्श."
   },
   "sharad": {
     "en": "Sharad (Autumn)",
@@ -1523,10 +1523,10 @@
     "ta": "சரத் (இலையுதிர்காலம்)",
     "bn": "শরৎ",
     "mai": "शरद (शरद)",
-    "te": "Sharad (Autumn)",
-    "gu": "Sharad (Autumn)",
-    "kn": "Sharad (Autumn)",
-    "mr": "Sharad (Autumn)"
+    "te": "శరద్ (శరదృతువు)",
+    "gu": "શરદ (શરદ)",
+    "kn": "ಶರದ್ (ಶರತ್ಕಾಲ)",
+    "mr": "शरद (शरद ऋतू)"
   },
   "sharadMonths": {
     "en": "Ashvina-Kartika",
@@ -1534,10 +1534,10 @@
     "ta": "ஐப்பசி-கார்த்திகை",
     "bn": "আশ্বিন-কার্তিক",
     "mai": "आश्विन-कार्तिक",
-    "te": "Ashvina-Kartika",
-    "gu": "Ashvina-Kartika",
-    "kn": "Ashvina-Kartika",
-    "mr": "Ashvina-Kartika"
+    "te": "ఆశ్విన-కార్తీక",
+    "gu": "આશ્વિન-કાર્તિક",
+    "kn": "ಆಶ್ವಿನ-ಕಾರ್ತಿಕ",
+    "mr": "आश्विन-कार्तिक"
   },
   "sharadGreg": {
     "en": "Sep-Nov",
@@ -1545,10 +1545,10 @@
     "ta": "செப்-நவ",
     "bn": "সেপ্টেম্বর-নভেম্বর",
     "mai": "सितंबर-नवंबर",
-    "te": "Sep-Nov",
-    "gu": "Sep-Nov",
-    "kn": "Sep-Nov",
-    "mr": "Sep-Nov"
+    "te": "సెప్టెంబర్-నవంబర్",
+    "gu": "સપ્ટેમ્બર-નવેમ્બર",
+    "kn": "ಸೆಪ್ಟೆಂಬರ್-ನವೆಂಬರ್",
+    "mr": "सप्टेंबर-नोव्हेंबर"
   },
   "sharadDosha": {
     "en": "Pitta aggravation (prakopa). Heat stored in summer releases. Fevers, skin issues, acid reflux peak.",
@@ -1556,10 +1556,10 @@
     "ta": "பித்த மோசமாதல். கோடையில் சேமித்த வெப்பம் வெளிவரும்.",
     "bn": "পিত্ত প্রকোপ। গ্রীষ্মে সঞ্চিত তাপ বের হয়।",
     "mai": "पित्त प्रकोप (prakopa)। गर्मी मे जमा भेल गर्मी निकलय लागैत अछि। ज्वर, त्वचा संबंधी समस्या, एसिड रिफ्लक्स चरम पर पहुँचैत अछि।",
-    "te": "Pitta aggravation (prakopa). Heat stored in summer releases. Fevers, skin issues, acid reflux peak.",
-    "gu": "Pitta aggravation (prakopa). Heat stored in summer releases. Fevers, skin issues, acid reflux peak.",
-    "kn": "Pitta aggravation (prakopa). Heat stored in summer releases. Fevers, skin issues, acid reflux peak.",
-    "mr": "Pitta aggravation (prakopa). Heat stored in summer releases. Fevers, skin issues, acid reflux peak."
+    "te": "పిత్త ప్రకోపం (తీవ్రతరం కావడం). వేసవిలో నిల్వ ఉన్న వేడి విడుదల అవుతుంది. జ్వరాలు, చర్మ సమస్యలు, యాసిడ్ రిఫ్లక్స్ గరిష్ట స్థాయికి చేరుకుంటాయి.",
+    "gu": "પિત્ત પ્રકોપ (પ્રકોપ). ઉનાળામાં સંગ્રહિત ગરમી મુક્ત થાય છે. તાવ, ચામડીની સમસ્યાઓ, એસિડ રિફ્લક્સ ચરમસીમાએ પહોંચે છે.",
+    "kn": "ಪಿತ್ತದ ಉಲ್ಬಣ (ಪ್ರಕೋಪ). ಬೇಸಿಗೆಯಲ್ಲಿ ಸಂಗ್ರಹವಾದ ಉಷ್ಣತೆ ಬಿಡುಗಡೆಯಾಗುತ್ತದೆ. ಜ್ವರಗಳು, ಚರ್ಮದ ಸಮಸ್ಯೆಗಳು, ಆಸಿಡ್ ರಿಫ್ಲಕ್ಸ್ ಉತ್ತುಂಗಕ್ಕೇರುತ್ತವೆ.",
+    "mr": "पित्त प्रकोप (प्रकोप). उन्हाळ्यात साठलेली उष्णता बाहेर पडते. ताप, त्वचेच्या समस्या, ॲसिड रिफ्लक्स या काळात वाढतात."
   },
   "hemanta": {
     "en": "Hemanta (Early Winter)",
@@ -1567,10 +1567,10 @@
     "ta": "ஹேமந்தம் (முன்பனிக்காலம்)",
     "bn": "হেমন্ত",
     "mai": "हेमंत (प्रारंभिक जाड़)",
-    "te": "Hemanta (Early Winter)",
-    "gu": "Hemanta (Early Winter)",
-    "kn": "Hemanta (Early Winter)",
-    "mr": "Hemanta (Early Winter)"
+    "te": "హేమంత (తొలి శీతాకాలం)",
+    "gu": "હેમંત (પ્રારંભિક શિયાળો)",
+    "kn": "ಹೇಮಂತ (ಆರಂಭಿಕ ಚಳಿಗಾಲ)",
+    "mr": "हेमंत (पूर्व-हिवाळा)"
   },
   "hemantaMonths": {
     "en": "Margashirsha-Pausha",
@@ -1578,10 +1578,10 @@
     "ta": "மார்கழி-தை",
     "bn": "অগ্রহায়ণ-পৌষ",
     "mai": "मार्गशीर्ष-पौष",
-    "te": "Margashirsha-Pausha",
-    "gu": "Margashirsha-Pausha",
-    "kn": "Margashirsha-Pausha",
-    "mr": "Margashirsha-Pausha"
+    "te": "మార్గశిర-పుష్య",
+    "gu": "માર્ગશીર્ષ-પૌષ",
+    "kn": "ಮಾರ್ಗಶೀರ್ಷ-ಪೌಷ",
+    "mr": "मार्गशीर्ष-पौष"
   },
   "hemantaGreg": {
     "en": "Nov-Jan",
@@ -1589,10 +1589,10 @@
     "ta": "நவ-ஜன",
     "bn": "নভেম্বর-জানুয়ারি",
     "mai": "नवंबर-जनवरी",
-    "te": "Nov-Jan",
-    "gu": "Nov-Jan",
-    "kn": "Nov-Jan",
-    "mr": "Nov-Jan"
+    "te": "నవంబర్-జనవరి",
+    "gu": "નવેમ્બર-જાન્યુઆરી",
+    "kn": "ನವೆಂಬರ್-ಜನವರಿ",
+    "mr": "नोव्हेंबर-जानेवारी"
   },
   "hemantaDosha": {
     "en": "Kapha accumulation (sanchaya). Digestive fire strongest  –  eat heavier foods. Pitta pacification.",
@@ -1600,10 +1600,10 @@
     "ta": "கப சேகரிப்பு. செரிமான தீ வலிமையான  –  கனமான உணவு உண்ணவும்.",
     "bn": "কফ সঞ্চয়। পাচক অগ্নি সবচেয়ে শক্তিশালী।",
     "mai": "कफ संचय (sanchaya)। पाचन अग्नि सबसँ प्रबल होइत अछि – बेसी भारी भोजन खाउ। पित्त शमन।",
-    "te": "Kapha accumulation (sanchaya). Digestive fire strongest  –  eat heavier foods. Pitta pacification.",
-    "gu": "Kapha accumulation (sanchaya). Digestive fire strongest  –  eat heavier foods. Pitta pacification.",
-    "kn": "Kapha accumulation (sanchaya). Digestive fire strongest  –  eat heavier foods. Pitta pacification.",
-    "mr": "Kapha accumulation (sanchaya). Digestive fire strongest  –  eat heavier foods. Pitta pacification."
+    "te": "కఫ సంచయం (పోగుపడటం). జీర్ణశక్తి అత్యంత బలంగా ఉంటుంది – బరువైన ఆహారాలు తినండి. పిత్త ప్రశమనం.",
+    "gu": "કફ સંચય (સંચય). પાચન અગ્નિ સૌથી મજબૂત – ભારે ખોરાક ખાઓ. પિત્ત પ્રશમન.",
+    "kn": "ಕಫ ಸಂಗ್ರಹ (ಸಂಚಯ). ಜೀರ್ಣಾಂಗ ಅಗ್ನಿ ಪ್ರಬಲವಾಗಿರುತ್ತದೆ – ಭಾರೀ ಆಹಾರಗಳನ್ನು ಸೇವಿಸಿ. ಪಿತ್ತ ಶಾಂತಗೊಳಿಸುವಿಕೆ.",
+    "mr": "कफ संचय (संचय). पाचक अग्नी सर्वात मजबूत असते – जड पदार्थ खा. पित्त प्रशमन."
   },
   "shishira": {
     "en": "Shishira (Late Winter)",
@@ -1611,10 +1611,10 @@
     "ta": "சிசிரம் (பின்பனிக்காலம்)",
     "bn": "শিশির",
     "mai": "शिशिर (अंतिम जाड़)",
-    "te": "Shishira (Late Winter)",
-    "gu": "Shishira (Late Winter)",
-    "kn": "Shishira (Late Winter)",
-    "mr": "Shishira (Late Winter)"
+    "te": "శిశిర (చివరి శీతాకాలం)",
+    "gu": "શિશિર (અંતિમ શિયાળો)",
+    "kn": "ಶಿಶಿರ (ಅಂತಿಮ ಚಳಿಗಾಲ)",
+    "mr": "शिशिर (उत्तर-हिवाळा)"
   },
   "shishiraMonths": {
     "en": "Magha-Phalguna",
@@ -1622,10 +1622,10 @@
     "ta": "மாசி-பங்குனி",
     "bn": "মাঘ-ফাল্গুন",
     "mai": "माघ-फाल्गुन",
-    "te": "Magha-Phalguna",
-    "gu": "Magha-Phalguna",
-    "kn": "Magha-Phalguna",
-    "mr": "Magha-Phalguna"
+    "te": "మాఘ-ఫాల్గుణ",
+    "gu": "માઘ-ફાલ્ગુન",
+    "kn": "ಮಾಘ-ಫಾಲ್ಗುಣ",
+    "mr": "माघ-फाल्गुन"
   },
   "shishiraGreg": {
     "en": "Jan-Mar",
@@ -1633,10 +1633,10 @@
     "ta": "ஜன-மார்ச்",
     "bn": "জানুয়ারি-মার্চ",
     "mai": "जनवरी-मार्च",
-    "te": "Jan-Mar",
-    "gu": "Jan-Mar",
-    "kn": "Jan-Mar",
-    "mr": "Jan-Mar"
+    "te": "జనవరి-మార్చి",
+    "gu": "જાન્યુઆરી-માર્ચ",
+    "kn": "ಜನವರಿ-ಮಾರ್ಚ್",
+    "mr": "जानेवारी-मार्च"
   },
   "shishiraDosha": {
     "en": "Kapha aggravation (prakopa). Congestion, colds, heaviness peak. Begin Kapha-reducing diet and exercise.",
@@ -1644,10 +1644,10 @@
     "ta": "கப மோசமாதல். சளி, சலதோஷம் உச்சம்.",
     "bn": "কফ প্রকোপ। সর্দি, ভারীভাব চরমে।",
     "mai": "कफ प्रकोप (prakopa)। जमाव, सर्दी, भारीपन चरम पर पहुँचैत अछि। कफ कम करयवला आहार आ व्यायाम शुरू करू।",
-    "te": "Kapha aggravation (prakopa). Congestion, colds, heaviness peak. Begin Kapha-reducing diet and exercise.",
-    "gu": "Kapha aggravation (prakopa). Congestion, colds, heaviness peak. Begin Kapha-reducing diet and exercise.",
-    "kn": "Kapha aggravation (prakopa). Congestion, colds, heaviness peak. Begin Kapha-reducing diet and exercise.",
-    "mr": "Kapha aggravation (prakopa). Congestion, colds, heaviness peak. Begin Kapha-reducing diet and exercise."
+    "te": "కఫ ప్రకోపం (తీవ్రతరం కావడం). రద్దీ, జలుబు, బరువు పెరగడం గరిష్ట స్థాయికి చేరుకుంటాయి. కఫాన్ని తగ్గించే ఆహారం మరియు వ్యాయామం ప్రారంభించండి.",
+    "gu": "કફ પ્રકોપ (પ્રકોપ). ભીડ, શરદી, ભારેપણું ચરમસીમાએ પહોંચે છે. કફ ઘટાડતો આહાર અને વ્યાયામ શરૂ કરો.",
+    "kn": "ಕಫದ ಉಲ್ಬಣ (ಪ್ರಕೋಪ). ದಟ್ಟಣೆ, ಶೀತಗಳು, ಭಾರೀತನ ಉತ್ತುಂಗಕ್ಕೇರುತ್ತವೆ. ಕಫ-ಕಡಿಮೆಗೊಳಿಸುವ ಆಹಾರ ಮತ್ತು ವ್ಯಾಯಾಮವನ್ನು ಪ್ರಾರಂಭಿಸಿ.",
+    "mr": "कफ प्रकोप (प्रकोप). कफ, सर्दी, जडपणा या काळात वाढतो. कफ कमी करणारा आहार आणि व्यायाम सुरू करा."
   },
   "dinacharya": {
     "en": "Dinacharya by Planetary Hora",
@@ -1655,10 +1655,10 @@
     "ta": "கிரக ஹோரா மூலம் தினசரி",
     "bn": "গ্রহ হোরা অনুসারে দিনচর্যা",
     "mai": "दिनचर्या ग्रह होरा द्वारा",
-    "te": "Dinacharya by Planetary Hora",
-    "gu": "Dinacharya by Planetary Hora",
-    "kn": "Dinacharya by Planetary Hora",
-    "mr": "Dinacharya by Planetary Hora"
+    "te": "గ్రహ హోరా ద్వారా దినచర్య",
+    "gu": "ગ્રહ હોરા દ્વારા દિનચર્યા",
+    "kn": "ಗ್ರಹ ಹೋರಾ ಮೂಲಕ ದಿನಚರ್ಯೆ",
+    "mr": "ग्रह होरेनुसार दिनचर्या"
   },
   "dinacharyaDesc": {
     "en": "Each hora (planetary hour) is ruled by a planet whose dosha quality determines the ideal activity: Sun hora for exercise (Pitta-boosting), Moon hora for rest and hydration (Kapha-soothing), Saturn hora for fasting or oil massage (Vata-grounding), Jupiter hora for meditation (Kapha-balancing).",
@@ -1666,10 +1666,10 @@
     "ta": "ஒவ்வொரு ஹோராவும் ஒரு கிரகத்தால் ஆளப்படுகிறது.",
     "bn": "প্রতিটি হোরা একটি গ্রহ দ্বারা শাসিত।",
     "mai": "प्रत्येक होरा (ग्रहक घंटा) एकटा ग्रह द्वारा शासित होइत अछि जाहि दोष गुण आदर्श गतिविधि केँ निर्धारित करैत अछि: सूर्य होरा व्यायाम के लेल (पित्त बढ़ाबयवला), चंद्र होरा आराम आ हाइड्रेशन के लेल (कफ शांत करयवला), शनि होरा उपवास वा तेल मालिश के लेल (वात केँ स्थिर करयवला), बृहस्पति होरा ध्यान के लेल (कफ संतुलित करयवला)।",
-    "te": "Each hora (planetary hour) is ruled by a planet whose dosha quality determines the ideal activity: Sun hora for exercise (Pitta-boosting), Moon hora for rest and hydration (Kapha-soothing), Saturn hora for fasting or oil massage (Vata-grounding), Jupiter hora for meditation (Kapha-balancing).",
-    "gu": "Each hora (planetary hour) is ruled by a planet whose dosha quality determines the ideal activity: Sun hora for exercise (Pitta-boosting), Moon hora for rest and hydration (Kapha-soothing), Saturn hora for fasting or oil massage (Vata-grounding), Jupiter hora for meditation (Kapha-balancing).",
-    "kn": "Each hora (planetary hour) is ruled by a planet whose dosha quality determines the ideal activity: Sun hora for exercise (Pitta-boosting), Moon hora for rest and hydration (Kapha-soothing), Saturn hora for fasting or oil massage (Vata-grounding), Jupiter hora for meditation (Kapha-balancing).",
-    "mr": "Each hora (planetary hour) is ruled by a planet whose dosha quality determines the ideal activity: Sun hora for exercise (Pitta-boosting), Moon hora for rest and hydration (Kapha-soothing), Saturn hora for fasting or oil massage (Vata-grounding), Jupiter hora for meditation (Kapha-balancing)."
+    "te": "ప్రతి హోరా (గ్రహ గంట) ఒక గ్రహం ద్వారా పాలించబడుతుంది, దాని దోష గుణం ఆదర్శ కార్యకలాపాన్ని నిర్ణయిస్తుంది: వ్యాయామం కోసం సూర్య హోరా (పిత్తాన్ని పెంచుతుంది), విశ్రాంతి మరియు హైడ్రేషన్ కోసం చంద్ర హోరా (కఫాన్ని శాంతపరుస్తుంది), ఉపవాసం లేదా నూనె మసాజ్ కోసం శని హోరా (వాతాన్ని స్థిరీకరిస్తుంది), ధ్యానం కోసం గురు హోరా (కఫాన్ని సమతుల్యం చేస్తుంది).",
+    "gu": "દરેક હોરા (ગ્રહ કલાક) એક ગ્રહ દ્વારા શાસિત હોય છે, જેની દોષ ગુણવત્તા આદર્શ પ્રવૃત્તિ નક્કી કરે છે: સૂર્ય હોરા વ્યાયામ માટે (પિત્ત-વર્ધક), ચંદ્ર હોરા આરામ અને હાઇડ્રેશન માટે (કફ-શામક), શનિ હોરા ઉપવાસ અથવા તેલ માલિશ માટે (વાત-સ્થિર કરનાર), બૃહસ્પતિ હોરા ધ્યાન માટે (કફ-સંતુલિત કરનાર).",
+    "kn": "ಪ್ರತಿಯೊಂದು ಹೋರಾ (ಗ್ರಹದ ಗಂಟೆ) ಒಂದು ಗ್ರಹದಿಂದ ಆಳಲ್ಪಡುತ್ತದೆ, ಅದರ ದೋಷದ ಗುಣಮಟ್ಟವು ಆದರ್ಶ ಚಟುವಟಿಕೆಯನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ: ವ್ಯಾಯಾಮಕ್ಕಾಗಿ ಸೂರ್ಯ ಹೋರಾ (ಪಿತ್ತ-ವರ್ಧಕ), ವಿಶ್ರಾಂತಿ ಮತ್ತು ಜಲಸಂಚಯನಕ್ಕಾಗಿ ಚಂದ್ರ ಹೋರಾ (ಕಫ-ಶಮನಕಾರಿ), ಉಪವಾಸ ಅಥವಾ ತೈಲ ಮಸಾಜ್‌ಗಾಗಿ ಶನಿ ಹೋರಾ (ವಾತ-ನೆಲೆಗೊಳಿಸುವ), ಧ್ಯಾನಕ್ಕಾಗಿ ಬೃಹಸ್ಪತಿ ಹೋರಾ (ಕಫ-ಸಮತೋಲನ).",
+    "mr": "प्रत्येक होरा (ग्रह तास) एका ग्रहाद्वारे शासित असतो, ज्याची दोष गुणवत्ता आदर्श क्रियाकलाप निश्चित करते: व्यायामासाठी सूर्य होरा (पित्त वाढवणारा), विश्रांती आणि हायड्रेशनसाठी चंद्र होरा (कफ शांत करणारा), उपवास किंवा तेल मालिशसाठी शनी होरा (वात स्थिर करणारा), ध्यानासाठी गुरु होरा (कफ संतुलित करणारा)."
   },
   "sec7Title": {
     "en": "Remedial Integration",
@@ -1677,10 +1677,10 @@
     "ta": "சிகிச்சை ஒருங்கிணைப்பு",
     "bn": "প্রতিকারমূলক সমন্বয়",
     "mai": "उपचारात्मक एकीकरण",
-    "te": "Remedial Integration",
-    "gu": "Remedial Integration",
-    "kn": "Remedial Integration",
-    "mr": "Remedial Integration"
+    "te": "పరిహార సమన్వయం",
+    "gu": "ઉપચારાત્મક સંકલન",
+    "kn": "ಪರಿಹಾರಾತ್ಮಕ ಏಕೀಕರಣ",
+    "mr": "उपचारात्मक एकत्रीकरण"
   },
   "sec7Intro": {
     "en": "Jyotish remedies and Ayurvedic treatments complement each other beautifully when used together:",
@@ -1688,10 +1688,10 @@
     "ta": "ஜோதிட தீர்வுகளும் ஆயுர்வேத சிகிச்சைகளும் ஒன்றையொன்று பூர்த்தி செய்கின்றன:",
     "bn": "জ্যোতিষ প্রতিকার ও আয়ুর্বেদিক চিকিৎসা একসাথে ব্যবহারে পরিপূরক:",
     "mai": "ज्योतिषीय उपाय आ आयुर्वेदिक उपचार एक दोसरक सुंदर पूरक होइत अछि जखन एक संग उपयोग कएल जाइत अछि:",
-    "te": "Jyotish remedies and Ayurvedic treatments complement each other beautifully when used together:",
-    "gu": "Jyotish remedies and Ayurvedic treatments complement each other beautifully when used together:",
-    "kn": "Jyotish remedies and Ayurvedic treatments complement each other beautifully when used together:",
-    "mr": "Jyotish remedies and Ayurvedic treatments complement each other beautifully when used together:"
+    "te": "జ్యోతిష్య పరిహారాలు మరియు ఆయుర్వేద చికిత్సలు కలిసి ఉపయోగించినప్పుడు ఒకదానికొకటి చక్కగా పూరకంగా ఉంటాయి:",
+    "gu": "જ્યોતિષ ઉપચારો અને આયુર્વેદિક ચિકિત્સા એકસાથે ઉપયોગમાં લેવાય ત્યારે એકબીજાના પૂરક બને છે:",
+    "kn": "ಜ್ಯೋತಿಷ್ಯ ಪರಿಹಾರಗಳು ಮತ್ತು ಆಯುರ್ವೇದ ಚಿಕಿತ್ಸೆಗಳು ಒಟ್ಟಾಗಿ ಬಳಸಿದಾಗ ಪರಸ್ಪರ ಸುಂದರವಾಗಿ ಪೂರಕವಾಗಿರುತ್ತವೆ:",
+    "mr": "ज्योतिषीय उपाय आणि आयुर्वेदिक उपचार एकत्र वापरल्यास एकमेकांना उत्तम प्रकारे पूरक ठरतात:"
   },
   "gemsTitle": {
     "en": "Planetary Gems & Ayurvedic Properties",
@@ -1699,10 +1699,10 @@
     "ta": "கிரக ரத்தினங்கள் & ஆயுர்வேத குணங்கள்",
     "bn": "গ্রহ রত্ন ও আয়ুর্বেদিক গুণ",
     "mai": "ग्रह रत्न आ आयुर्वेदिक गुण",
-    "te": "Planetary Gems & Ayurvedic Properties",
-    "gu": "Planetary Gems & Ayurvedic Properties",
-    "kn": "Planetary Gems & Ayurvedic Properties",
-    "mr": "Planetary Gems & Ayurvedic Properties"
+    "te": "గ్రహ రత్నాలు & ఆయుర్వేద గుణాలు",
+    "gu": "ગ્રહોના રત્નો અને આયુર્વેદિક ગુણધર્મો",
+    "kn": "ಗ್ರಹ ರತ್ನಗಳು ಮತ್ತು ಆಯುರ್ವೇದ ಗುಣಗಳು",
+    "mr": "ग्रह रत्न आणि आयुर्वेदिक गुणधर्म"
   },
   "herbsTitle": {
     "en": "Planet-Herb Correspondences",
@@ -1710,10 +1710,10 @@
     "ta": "கிரக-மூலிகை தொடர்புகள்",
     "bn": "গ্রহ-ভেষজ সম্পর্ক",
     "mai": "ग्रह-जड़ी बूटी पत्राचार",
-    "te": "Planet-Herb Correspondences",
-    "gu": "Planet-Herb Correspondences",
-    "kn": "Planet-Herb Correspondences",
-    "mr": "Planet-Herb Correspondences"
+    "te": "గ్రహ-మూలికా సంబంధాలు",
+    "gu": "ગ્રહ-ઔષધિ સંબંધો",
+    "kn": "ಗ್ರಹ-ಗಿಡಮೂಲಿಕೆಗಳ ಸಂಬಂಧಗಳು",
+    "mr": "ग्रह-वनस्पती संबंध"
   },
   "fastingTitle": {
     "en": "Vara Fasting  –  Ayurvedic Rationale",
@@ -1721,10 +1721,10 @@
     "ta": "வார விரதம்  –  ஆயுர்வேத காரணம்",
     "bn": "বার ব্রত  –  আয়ুর্বেদিক যুক্তি",
     "mai": "वार उपवास – आयुर्वेदिक तर्क",
-    "te": "Vara Fasting  –  Ayurvedic Rationale",
-    "gu": "Vara Fasting  –  Ayurvedic Rationale",
-    "kn": "Vara Fasting  –  Ayurvedic Rationale",
-    "mr": "Vara Fasting  –  Ayurvedic Rationale"
+    "te": "వార ఉపవాసం – ఆయుర్వేద హేతువు",
+    "gu": "વાર ઉપવાસ – આયુર્વેદિક તર્ક",
+    "kn": "ವಾರ ಉಪವಾಸ – ಆಯುರ್ವೇದ ತರ್ಕ",
+    "mr": "वारानुसार उपवास – आयुर्वेदिक तर्क"
   },
   "yogaTitle": {
     "en": "Yoga Asanas for Planetary Strengthening",
@@ -1732,10 +1732,10 @@
     "ta": "கிரக வலிமைக்கான யோகாசனங்கள்",
     "bn": "গ্রহ শক্তির জন্য যোগাসন",
     "mai": "योग आसन ग्रह केँ मजबूत करबाक लेल",
-    "te": "Yoga Asanas for Planetary Strengthening",
-    "gu": "Yoga Asanas for Planetary Strengthening",
-    "kn": "Yoga Asanas for Planetary Strengthening",
-    "mr": "Yoga Asanas for Planetary Strengthening"
+    "te": "గ్రహ బలవర్ధనానికి యోగాసనాలు",
+    "gu": "ગ્રહોને મજબૂત કરવા માટે યોગાસનો",
+    "kn": "ಗ್ರಹ ಬಲವರ್ಧನೆಗಾಗಿ ಯೋಗಾಸನಗಳು",
+    "mr": "ग्रह बळकटीसाठी योगासने"
   },
   "gemSun": {
     "en": "Ruby (Manikya): Increases digestive fire, strengthens heart, balances Pitta positively.",
@@ -1743,10 +1743,10 @@
     "ta": "மாணிக்கம்: செரிமான தீயை அதிகரிக்கிறது, இதயத்தை வலிமையாக்குகிறது.",
     "bn": "মানিক্য: পাচক অগ্নি বাড়ায়, হৃদয় মজবুত করে।",
     "mai": "माणिक्य (माणिक्य): पाचन अग्नि केँ बढ़ाबैत अछि, हृदय केँ मजबूत करैत अछि, पित्त केँ सकारात्मक रूप सँ संतुलित करैत अछि।",
-    "te": "Ruby (Manikya): Increases digestive fire, strengthens heart, balances Pitta positively.",
-    "gu": "Ruby (Manikya): Increases digestive fire, strengthens heart, balances Pitta positively.",
-    "kn": "Ruby (Manikya): Increases digestive fire, strengthens heart, balances Pitta positively.",
-    "mr": "Ruby (Manikya): Increases digestive fire, strengthens heart, balances Pitta positively."
+    "te": "కెంపు (మాణిక్యం): జీర్ణశక్తిని పెంచుతుంది, గుండెను బలపరుస్తుంది, పిత్తాన్ని సానుకూలంగా సమతుల్యం చేస్తుంది.",
+    "gu": "માણિક (માણિક્ય): પાચન અગ્નિ વધારે છે, હૃદયને મજબૂત કરે છે, પિત્તને સકારાત્મક રીતે સંતુલિત કરે છે.",
+    "kn": "ಮಾಣಿಕ್ಯ (ಮಾಣಿಕ್ಯ): ಜೀರ್ಣಾಂಗ ಅಗ್ನಿಯನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ, ಹೃದಯವನ್ನು ಬಲಪಡಿಸುತ್ತದೆ, ಪಿತ್ತವನ್ನು ಸಕಾರಾತ್ಮಕವಾಗಿ ಸಮತೋಲನಗೊಳಿಸುತ್ತದೆ.",
+    "mr": "माणिक (माणिक्य): पाचक अग्नी वाढवते, हृदय मजबूत करते, पित्त सकारात्मकपणे संतुलित करते."
   },
   "gemMoon": {
     "en": "Pearl (Moti): Cools Pitta, calms mind, improves sleep and hormonal balance.",
@@ -1754,10 +1754,10 @@
     "ta": "முத்து: பித்தத்தை குளிர்விக்கிறது, மனதை அமைதிப்படுத்துகிறது.",
     "bn": "মুক্তা: পিত্ত শীতল করে, মন শান্ত করে।",
     "mai": "मोती (मोती): पित्त केँ ठंडा करैत अछि, मन केँ शांत करैत अछि, नींद आ हार्मोनल संतुलन मे सुधार करैत अछि।",
-    "te": "Pearl (Moti): Cools Pitta, calms mind, improves sleep and hormonal balance.",
-    "gu": "Pearl (Moti): Cools Pitta, calms mind, improves sleep and hormonal balance.",
-    "kn": "Pearl (Moti): Cools Pitta, calms mind, improves sleep and hormonal balance.",
-    "mr": "Pearl (Moti): Cools Pitta, calms mind, improves sleep and hormonal balance."
+    "te": "ముత్యం (మోతీ): పిత్తాన్ని చల్లబరుస్తుంది, మనస్సును ప్రశాంతపరుస్తుంది, నిద్ర మరియు హార్మోన్ల సమతుల్యతను మెరుగుపరుస్తుంది.",
+    "gu": "મોતી: પિત્તને શાંત કરે છે, મનને શાંત પાડે છે, ઊંઘ અને હોર્મોનલ સંતુલન સુધારે છે.",
+    "kn": "ಮುತ್ತು (ಮೋತಿ): ಪಿತ್ತವನ್ನು ತಂಪಾಗಿಸುತ್ತದೆ, ಮನಸ್ಸನ್ನು ಶಾಂತಗೊಳಿಸುತ್ತದೆ, ನಿದ್ರೆ ಮತ್ತು ಹಾರ್ಮೋನುಗಳ ಸಮತೋಲನವನ್ನು ಸುಧಾರಿಸುತ್ತದೆ.",
+    "mr": "मोती: पित्त शांत करते, मन शांत करते, झोप आणि हार्मोनल संतुलन सुधारते."
   },
   "gemMars": {
     "en": "Red Coral (Moonga): Strengthens blood, boosts immunity, channels Mars energy constructively.",
@@ -1765,10 +1765,10 @@
     "ta": "சிவப்பு பவளம்: இரத்தத்தை வலிமையாக்குகிறது.",
     "bn": "লাল প্রবাল: রক্ত মজবুত করে, রোগ প্রতিরোধ বাড়ায়।",
     "mai": "लाल मूंगा (मूंगा): रक्त केँ मजबूत करैत अछि, रोग प्रतिरोधक क्षमता बढ़ाबैत अछि, मंगलक ऊर्जा केँ रचनात्मक रूप सँ प्रसारित करैत अछि।",
-    "te": "Red Coral (Moonga): Strengthens blood, boosts immunity, channels Mars energy constructively.",
-    "gu": "Red Coral (Moonga): Strengthens blood, boosts immunity, channels Mars energy constructively.",
-    "kn": "Red Coral (Moonga): Strengthens blood, boosts immunity, channels Mars energy constructively.",
-    "mr": "Red Coral (Moonga): Strengthens blood, boosts immunity, channels Mars energy constructively."
+    "te": "ఎర్ర పగడం (మూంగా): రక్తాన్ని బలపరుస్తుంది, రోగనిరోధక శక్తిని పెంచుతుంది, కుజుని శక్తిని నిర్మాణాత్మకంగా మళ్లిస్తుంది.",
+    "gu": "લાલ પરવાળું (મૂંગા): રક્તને મજબૂત કરે છે, રોગપ્રતિકારક શક્તિ વધારે છે, મંગળની ઊર્જાને રચનાત્મક રીતે દિશામાન કરે છે.",
+    "kn": "ಕೆಂಪು ಹವಳ (ಮೂಂಗಾ): ರಕ್ತವನ್ನು ಬಲಪಡಿಸುತ್ತದೆ, ರೋಗನಿರೋಧಕ ಶಕ್ತಿಯನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ, ಮಂಗಳ ಶಕ್ತಿಯನ್ನು ರಚನಾತ್ಮಕವಾಗಿ ನಿರ್ದೇಶಿಸುತ್ತದೆ.",
+    "mr": "पोवळे (मुंगा): रक्त मजबूत करते, रोगप्रतिकारशक्ती वाढवते, मंगळाची ऊर्जा रचनात्मकपणे वापरते."
   },
   "gemJupiter": {
     "en": "Yellow Sapphire (Pukhraj): Regulates liver, reduces excess Kapha, enhances wisdom.",
@@ -1776,10 +1776,10 @@
     "ta": "புஷ்பராகம்: கல்லீரலை ஒழுங்குபடுத்துகிறது.",
     "bn": "পুখরাজ: যকৃৎ নিয়ন্ত্রণ করে, অতিরিক্ত কফ কমায়।",
     "mai": "पीला पुखराज (पुखराज): यकृत केँ नियंत्रित करैत अछि, अतिरिक्त कफ केँ कम करैत अछि, ज्ञान बढ़ाबैत अछि।",
-    "te": "Yellow Sapphire (Pukhraj): Regulates liver, reduces excess Kapha, enhances wisdom.",
-    "gu": "Yellow Sapphire (Pukhraj): Regulates liver, reduces excess Kapha, enhances wisdom.",
-    "kn": "Yellow Sapphire (Pukhraj): Regulates liver, reduces excess Kapha, enhances wisdom.",
-    "mr": "Yellow Sapphire (Pukhraj): Regulates liver, reduces excess Kapha, enhances wisdom."
+    "te": "పుష్యరాగం (పుఖరాజ్): కాలేయాన్ని నియంత్రిస్తుంది, అధిక కఫాన్ని తగ్గిస్తుంది, జ్ఞానాన్ని పెంచుతుంది.",
+    "gu": "પુખરાજ: યકૃતને નિયંત્રિત કરે છે, વધારાનો કફ ઘટાડે છે, શાણપણ વધારે છે.",
+    "kn": "ಹಳದಿ ನೀಲಮಣಿ (ಪುಷ್ಯರಾಗ): ಯಕೃತ್ತನ್ನು ನಿಯಂತ್ರಿಸುತ್ತದೆ, ಹೆಚ್ಚುವರಿ ಕಫವನ್ನು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ, ಬುದ್ಧಿವಂತಿಕೆಯನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ.",
+    "mr": "पुखराज: यकृत नियंत्रित करते, अतिरिक्त कफ कमी करते, ज्ञान वाढवते."
   },
   "herbSaturn": {
     "en": "Saturn: Ashwagandha  –  adaptogen, grounds Vata, builds Ojas (vitality), reduces cortisol.",
@@ -1787,10 +1787,10 @@
     "ta": "சனி: அஸ்வகந்தா  –  தகவமைப்பு, வாதத்தை நிலநிறுத்துகிறது.",
     "bn": "শনি: অশ্বগন্ধা  –  অ্যাডাপ্টোজেন, বাত শান্ত করে।",
     "mai": "शनि: अश्वगंधा – एडाप्टोजेन, वात केँ स्थिर करैत अछि, ओज (जीवन शक्ति) केँ निर्माण करैत अछि, कोर्टिसोल केँ कम करैत अछि।",
-    "te": "Saturn: Ashwagandha  –  adaptogen, grounds Vata, builds Ojas (vitality), reduces cortisol.",
-    "gu": "Saturn: Ashwagandha  –  adaptogen, grounds Vata, builds Ojas (vitality), reduces cortisol.",
-    "kn": "Saturn: Ashwagandha  –  adaptogen, grounds Vata, builds Ojas (vitality), reduces cortisol.",
-    "mr": "Saturn: Ashwagandha  –  adaptogen, grounds Vata, builds Ojas (vitality), reduces cortisol."
+    "te": "శని: అశ్వగంధ – అడాప్టోజెన్, వాతాన్ని స్థిరీకరిస్తుంది, ఓజస్సును (జీవశక్తిని) పెంచుతుంది, కార్టిసాల్‌ను తగ్గిస్తుంది.",
+    "gu": "શનિ: અશ્વગંધા – એડેપ્ટોજન, વાતને સ્થિર કરે છે, ઓજસ (પ્રાણશક્તિ) બનાવે છે, કોર્ટિસોલ ઘટાડે છે.",
+    "kn": "ಶನಿ: ಅಶ್ವಗಂಧ – ಅಡಾಪ್ಟೋಜೆನ್, ವಾತವನ್ನು ನೆಲಸಮಗೊಳಿಸುತ್ತದೆ, ಓಜಸ್ (ಚೈತನ್ಯ) ನಿರ್ಮಿಸುತ್ತದೆ, ಕಾರ್ಟಿಸೋಲ್ ಅನ್ನು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ.",
+    "mr": "शनी: अश्वगंधा – ॲडाप्टोजेन, वात शांत करते, ओजस (जीवनशक्ती) वाढवते, कोर्टिसोल कमी करते."
   },
   "herbMoon": {
     "en": "Moon: Brahmi  –  nootropic, cools the mind, improves memory and sleep quality.",
@@ -1798,10 +1798,10 @@
     "ta": "சந்திரன்: பிராமி  –  நியூட்ரோபிக், மனதை குளிர்விக்கிறது.",
     "bn": "চন্দ্র: ব্রাহ্মী  –  নূট্রোপিক, মন শীতল করে।",
     "mai": "चंद्रमा: ब्राह्मी – नूट्रोपिक, मन केँ ठंडा करैत अछि, स्मरण शक्ति आ नींदक गुणवत्ता मे सुधार करैत अछि।",
-    "te": "Moon: Brahmi  –  nootropic, cools the mind, improves memory and sleep quality.",
-    "gu": "Moon: Brahmi  –  nootropic, cools the mind, improves memory and sleep quality.",
-    "kn": "Moon: Brahmi  –  nootropic, cools the mind, improves memory and sleep quality.",
-    "mr": "Moon: Brahmi  –  nootropic, cools the mind, improves memory and sleep quality."
+    "te": "చంద్రుడు: బ్రాహ్మి – నూట్రోపిక్, మనస్సును చల్లబరుస్తుంది, జ్ఞాపకశక్తి మరియు నిద్ర నాణ్యతను మెరుగుపరుస్తుంది.",
+    "gu": "ચંદ્ર: બ્રાહ્મી – નૂટ્રોપિક, મનને શાંત કરે છે, યાદશક્તિ અને ઊંઘની ગુણવત્તા સુધારે છે.",
+    "kn": "ಚಂದ್ರ: ಬ್ರಾಹ್ಮಿ – ನೂಟ್ರೋಪಿಕ್, ಮನಸ್ಸನ್ನು ತಂಪಾಗಿಸುತ್ತದೆ, ಸ್ಮರಣೆ ಮತ್ತು ನಿದ್ರೆಯ ಗುಣಮಟ್ಟವನ್ನು ಸುಧಾರಿಸುತ್ತದೆ.",
+    "mr": "चंद्र: ब्राह्मी – नूट्रोपिक, मन शांत करते, स्मरणशक्ती आणि झोपेची गुणवत्ता सुधारते."
   },
   "herbMars": {
     "en": "Mars: Shatavari  –  cools Pitta fire, nourishes blood, supports reproductive health.",
@@ -1809,10 +1809,10 @@
     "ta": "செவ்வாய்: சதாவரி  –  பித்தத்தை குளிர்விக்கிறது.",
     "bn": "মঙ্গল: শতমূলী  –  পিত্ত অগ্নি শীতল করে।",
     "mai": "मंगल: शतावरी – पित्त अग्नि केँ ठंडा करैत अछि, रक्त केँ पोषण दैत अछि, प्रजनन स्वास्थ्य केँ समर्थन करैत अछि।",
-    "te": "Mars: Shatavari  –  cools Pitta fire, nourishes blood, supports reproductive health.",
-    "gu": "Mars: Shatavari  –  cools Pitta fire, nourishes blood, supports reproductive health.",
-    "kn": "Mars: Shatavari  –  cools Pitta fire, nourishes blood, supports reproductive health.",
-    "mr": "Mars: Shatavari  –  cools Pitta fire, nourishes blood, supports reproductive health."
+    "te": "కుజుడు: శతావరి – పిత్త అగ్నిని చల్లబరుస్తుంది, రక్తాన్ని పోషిస్తుంది, పునరుత్పత్తి ఆరోగ్యాన్ని బలపరుస్తుంది.",
+    "gu": "મંગળ: શતાવરી – પિત્ત અગ્નિને શાંત કરે છે, રક્તનું પોષણ કરે છે, પ્રજનન સ્વાસ્થ્યને ટેકો આપે છે.",
+    "kn": "ಮಂಗಳ: ಶತಾವರಿ – ಪಿತ್ತದ ಅಗ್ನಿಯನ್ನು ತಂಪಾಗಿಸುತ್ತದೆ, ರಕ್ತವನ್ನು ಪೋಷಿಸುತ್ತದೆ, ಸಂತಾನೋತ್ಪತ್ತಿ ಆರೋಗ್ಯವನ್ನು ಬೆಂಬಲಿಸುತ್ತದೆ.",
+    "mr": "मंगळ: शतावरी – पित्त अग्नी शांत करते, रक्ताचे पोषण करते, प्रजनन आरोग्यास मदत करते."
   },
   "herbSun": {
     "en": "Sun: Amalaki (Amla)  –  rejuvenative, supports eyes and heart, balances all three doshas.",
@@ -1820,10 +1820,10 @@
     "ta": "சூரியன்: நெல்லிக்காய்  –  புத்துயிரூட்டும், கண்கள் மற்றும் இதயத்திற்கு உதவுகிறது.",
     "bn": "সূর্য: আমলকী  –  পুনর্জীবনকারী, চোখ ও হৃদয়ে সহায়ক।",
     "mai": "सूर्य: आमलकी (आँवला) – कायाकल्प करयवला, आँखि आ हृदय केँ समर्थन करैत अछि, तीनों दोष केँ संतुलित करैत अछि।",
-    "te": "Sun: Amalaki (Amla)  –  rejuvenative, supports eyes and heart, balances all three doshas.",
-    "gu": "Sun: Amalaki (Amla)  –  rejuvenative, supports eyes and heart, balances all three doshas.",
-    "kn": "Sun: Amalaki (Amla)  –  rejuvenative, supports eyes and heart, balances all three doshas.",
-    "mr": "Sun: Amalaki (Amla)  –  rejuvenative, supports eyes and heart, balances all three doshas."
+    "te": "సూర్యుడు: ఆమ్లకి (ఉసిరి) – పునరుజ్జీవనం, కళ్ళు మరియు గుండెకు మద్దతు ఇస్తుంది, మూడు దోషాలను సమతుల్యం చేస్తుంది.",
+    "gu": "સૂર્ય: આમલકી (આમળા) – કાયાકલ્પ કરનાર, આંખો અને હૃદયને ટેકો આપે છે, ત્રણેય દોષોને સંતુલિત કરે છે.",
+    "kn": "ಸೂರ್ಯ: ಆಮಲಕಿ (ನೆಲ್ಲಿಕಾಯಿ) – ಪುನರ್ಯೌವನಕಾರಿ, ಕಣ್ಣು ಮತ್ತು ಹೃದಯವನ್ನು ಬೆಂಬಲಿಸುತ್ತದೆ, ಮೂರು ದೋಷಗಳನ್ನು ಸಮತೋಲನಗೊಳಿಸುತ್ತದೆ.",
+    "mr": "सूर्य: आवळा (आमलकी) – कायाकल्प करणारा, डोळे आणि हृदयाला आधार देतो, तिन्ही दोषांना संतुलित करतो."
   },
   "herbJupiter": {
     "en": "Jupiter: Guduchi (Giloy)  –  immunomodulator, liver protectant, reduces excess Kapha.",
@@ -1831,10 +1831,10 @@
     "ta": "குரு: குடூச்சி  –  நோயெதிர்ப்பு ஒழுங்குபடுத்தி, கல்லீரல் பாதுகாப்பு.",
     "bn": "বৃহস্পতি: গুডুচী  –  রোগ প্রতিরোধ নিয়ন্ত্রক, যকৃৎ রক্ষক।",
     "mai": "बृहस्पति: गुडूची (गिलोय) – इम्यूनोमोड्यूलेटर, यकृत संरक्षक, अतिरिक्त कफ केँ कम करैत अछि।",
-    "te": "Jupiter: Guduchi (Giloy)  –  immunomodulator, liver protectant, reduces excess Kapha.",
-    "gu": "Jupiter: Guduchi (Giloy)  –  immunomodulator, liver protectant, reduces excess Kapha.",
-    "kn": "Jupiter: Guduchi (Giloy)  –  immunomodulator, liver protectant, reduces excess Kapha.",
-    "mr": "Jupiter: Guduchi (Giloy)  –  immunomodulator, liver protectant, reduces excess Kapha."
+    "te": "గురువు: గుడూచి (తిప్పతీగ) – ఇమ్యునోమోడ్యులేటర్, కాలేయ రక్షకం, అధిక కఫాన్ని తగ్గిస్తుంది.",
+    "gu": "બૃહસ્પતિ: ગુડુચી (ગળો) – ઇમ્યુનોમોડ્યુલેટર, યકૃત રક્ષક, વધારાનો કફ ઘટાડે છે.",
+    "kn": "ಬೃಹಸ್ಪತಿ: ಗುಡೂಚಿ (ಗಿಲೋಯ್) – ಇಮ್ಯುನೊಮಾಡ್ಯುಲೇಟರ್, ಯಕೃತ್ತು ರಕ್ಷಕ, ಹೆಚ್ಚುವರಿ ಕಫವನ್ನು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ.",
+    "mr": "गुरु: गुडुची (गिलोय) – रोगप्रतिकारशक्ती नियामक, यकृत संरक्षक, अतिरिक्त कफ कमी करते."
   },
   "fastMonday": {
     "en": "Monday (Somavar) fast: Reduces Kapha (Moon). Lightens the digestive system. Milk/fruit diet.",
@@ -1842,10 +1842,10 @@
     "ta": "திங்கள் விரதம்: கபத்தை (சந்திரன்) குறைக்கிறது.",
     "bn": "সোমবার ব্রত: কফ (চন্দ্র) কমায়।",
     "mai": "सोमवार (सोमवार) उपवास: कफ (चंद्रमा) केँ कम करैत अछि। पाचन तंत्र केँ हल्का करैत अछि। दूध/फलक आहार।",
-    "te": "Monday (Somavar) fast: Reduces Kapha (Moon). Lightens the digestive system. Milk/fruit diet.",
-    "gu": "Monday (Somavar) fast: Reduces Kapha (Moon). Lightens the digestive system. Milk/fruit diet.",
-    "kn": "Monday (Somavar) fast: Reduces Kapha (Moon). Lightens the digestive system. Milk/fruit diet.",
-    "mr": "Monday (Somavar) fast: Reduces Kapha (Moon). Lightens the digestive system. Milk/fruit diet."
+    "te": "సోమవారం (సోమవార్) ఉపవాసం: కఫాన్ని (చంద్రుడు) తగ్గిస్తుంది. జీర్ణవ్యవస్థను తేలికపరుస్తుంది. పాలు/పండ్ల ఆహారం.",
+    "gu": "સોમવાર (સોમવાર) ઉપવાસ: કફ (ચંદ્ર) ઘટાડે છે. પાચનતંત્રને હળવું કરે છે. દૂધ/ફળ આહાર.",
+    "kn": "ಸೋಮವಾರ (ಸೋಮವಾರ) ಉಪವಾಸ: ಕಫವನ್ನು (ಚಂದ್ರ) ಕಡಿಮೆ ಮಾಡುತ್ತದೆ. ಜೀರ್ಣಾಂಗ ವ್ಯವಸ್ಥೆಯನ್ನು ಹಗುರಗೊಳಿಸುತ್ತದೆ. ಹಾಲು/ಹಣ್ಣಿನ ಆಹಾರ.",
+    "mr": "सोमवार (सोमवार) उपवास: कफ (चंद्र) कमी करतो. पचनसंस्था हलकी करतो. दूध/फळ आहार."
   },
   "fastTuesday": {
     "en": "Tuesday (Mangalvar) fast: Cools Pitta (Mars). Reduces blood heat and inflammation. Red lentil diet.",
@@ -1853,10 +1853,10 @@
     "ta": "செவ்வாய் விரதம்: பித்தத்தை (செவ்வாய்) குளிர்விக்கிறது.",
     "bn": "মঙ্গলবার ব্রত: পিত্ত (মঙ্গল) শীতল করে।",
     "mai": "मंगलवार (मंगलवार) उपवास: पित्त (मंगल) केँ ठंडा करैत अछि। रक्तक गर्मी आ सूजन केँ कम करैत अछि। लाल दालक आहार।",
-    "te": "Tuesday (Mangalvar) fast: Cools Pitta (Mars). Reduces blood heat and inflammation. Red lentil diet.",
-    "gu": "Tuesday (Mangalvar) fast: Cools Pitta (Mars). Reduces blood heat and inflammation. Red lentil diet.",
-    "kn": "Tuesday (Mangalvar) fast: Cools Pitta (Mars). Reduces blood heat and inflammation. Red lentil diet.",
-    "mr": "Tuesday (Mangalvar) fast: Cools Pitta (Mars). Reduces blood heat and inflammation. Red lentil diet."
+    "te": "మంగళవారం (మంగళవార్) ఉపవాసం: పిత్తాన్ని (కుజుడు) చల్లబరుస్తుంది. రక్త వేడి మరియు వాపును తగ్గిస్తుంది. ఎర్ర కందిపప్పు ఆహారం.",
+    "gu": "મંગળવાર (મંગળવાર) ઉપવાસ: પિત્ત (મંગળ) ને શાંત કરે છે. રક્તની ગરમી અને સોજો ઘટાડે છે. લાલ દાળનો આહાર.",
+    "kn": "ಮಂಗಳವಾರ (ಮಂಗಳವಾರ) ಉಪವಾಸ: ಪಿತ್ತವನ್ನು (ಮಂಗಳ) ತಂಪಾಗಿಸುತ್ತದೆ. ರಕ್ತದ ಉಷ್ಣತೆ ಮತ್ತು ಉರಿಯೂತವನ್ನು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ. ಕೆಂಪು ಮಸೂರ ಆಹಾರ.",
+    "mr": "मंगळवार (मंगळवार) उपवास: पित्त (मंगळ) शांत करतो. रक्तातील उष्णता आणि दाह कमी करतो. लाल मसूर आहार."
   },
   "fastSaturday": {
     "en": "Saturday (Shanivar) fast: Grounds Vata (Saturn). Sesame oil internally. Heavy, warm foods after fast.",
@@ -1864,10 +1864,10 @@
     "ta": "சனிக்கிழமை விரதம்: வாதத்தை (சனி) நிலநிறுத்துகிறது.",
     "bn": "শনিবার ব্রত: বাত (শনি) শান্ত করে।",
     "mai": "शनिवार (शनिवार) उपवास: वात (शनि) केँ स्थिर करैत अछि। तिलक तेल आंतरिक रूप सँ। उपवासक बाद भारी, गरम भोजन।",
-    "te": "Saturday (Shanivar) fast: Grounds Vata (Saturn). Sesame oil internally. Heavy, warm foods after fast.",
-    "gu": "Saturday (Shanivar) fast: Grounds Vata (Saturn). Sesame oil internally. Heavy, warm foods after fast.",
-    "kn": "Saturday (Shanivar) fast: Grounds Vata (Saturn). Sesame oil internally. Heavy, warm foods after fast.",
-    "mr": "Saturday (Shanivar) fast: Grounds Vata (Saturn). Sesame oil internally. Heavy, warm foods after fast."
+    "te": "శనివారం (శనివార్) ఉపవాసం: వాతాన్ని (శని) స్థిరీకరిస్తుంది. నువ్వుల నూనెను లోపలికి తీసుకోవడం. ఉపవాసం తర్వాత బరువైన, వెచ్చని ఆహారాలు.",
+    "gu": "શનિવાર (શનિવાર) ઉપવાસ: વાત (શનિ) ને સ્થિર કરે છે. તલનું તેલ આંતરિક રીતે. ઉપવાસ પછી ભારે, ગરમ ખોરાક.",
+    "kn": "ಶನಿವಾರ (ಶನಿವಾರ) ಉಪವಾಸ: ವಾತವನ್ನು (ಶನಿ) ನೆಲಸಮಗೊಳಿಸುತ್ತದೆ. ಆಂತರಿಕವಾಗಿ ಎಳ್ಳೆಣ್ಣೆ. ಉಪವಾಸದ ನಂತರ ಭಾರೀ, ಬೆಚ್ಚಗಿನ ಆಹಾರಗಳು.",
+    "mr": "शनिवार (शनिवार) उपवास: वात (शनी) स्थिर करतो. तिळाचे तेल आतून घ्यावे. उपवासानंतर जड, गरम पदार्थ खावेत."
   },
   "fastThursday": {
     "en": "Thursday (Guruvar) fast: Balances Jupiter/Kapha. Yellow foods (turmeric rice, chickpeas). Promotes wisdom.",
@@ -1875,10 +1875,10 @@
     "ta": "வியாழக்கிழமை விரதம்: குரு/கப சமநிலை.",
     "bn": "বৃহস্পতিবার ব্রত: বৃহস্পতি/কফ সমতুল্য।",
     "mai": "गुरुवार (गुरुवार) उपवास: बृहस्पति/कफ केँ संतुलित करैत अछि। पीला भोजन (हल्दीक भात, चना)। ज्ञान बढ़ाबैत अछि।",
-    "te": "Thursday (Guruvar) fast: Balances Jupiter/Kapha. Yellow foods (turmeric rice, chickpeas). Promotes wisdom.",
-    "gu": "Thursday (Guruvar) fast: Balances Jupiter/Kapha. Yellow foods (turmeric rice, chickpeas). Promotes wisdom.",
-    "kn": "Thursday (Guruvar) fast: Balances Jupiter/Kapha. Yellow foods (turmeric rice, chickpeas). Promotes wisdom.",
-    "mr": "Thursday (Guruvar) fast: Balances Jupiter/Kapha. Yellow foods (turmeric rice, chickpeas). Promotes wisdom."
+    "te": "గురువారం (గురువార్) ఉపవాసం: గురువు/కఫాన్ని సమతుల్యం చేస్తుంది. పసుపు రంగు ఆహారాలు (పసుపు అన్నం, శనగలు). జ్ఞానాన్ని ప్రోత్సహిస్తుంది.",
+    "gu": "ગુરુવાર (ગુરુવાર) ઉપવાસ: બૃહસ્પતિ/કફને સંતુલિત કરે છે. પીળા ખોરાક (હળદર ભાત, ચણા). શાણપણને પ્રોત્સાહન આપે છે.",
+    "kn": "ಗುರುವಾರ (ಗುರುವಾರ) ಉಪವಾಸ: ಬೃಹಸ್ಪತಿ/ಕಫವನ್ನು ಸಮತೋಲನಗೊಳಿಸುತ್ತದೆ. ಹಳದಿ ಆಹಾರಗಳು (ಅರಿಶಿನ ಅನ್ನ, ಕಡಲೆ). ಬುದ್ಧಿವಂತಿಕೆಯನ್ನು ಉತ್ತೇಜಿಸುತ್ತದೆ.",
+    "mr": "गुरुवार (गुरुवार) उपवास: गुरु/कफ संतुलित करतो. पिवळे पदार्थ (हळद भात, चणे). ज्ञान वाढवतो."
   },
   "yogaSun": {
     "en": "Sun: Surya Namaskar  –  activates Pitta, strengthens heart, builds vitality.",
@@ -1886,10 +1886,10 @@
     "ta": "சூரியன்: சூர்ய நமஸ்காரம்  –  பித்தத்தை செயல்படுத்துகிறது.",
     "bn": "সূর্য: সূর্য নমস্কার  –  পিত্ত সক্রিয়, হৃদয় মজবুত।",
     "mai": "सूर्य: सूर्य नमस्कार – पित्त केँ सक्रिय करैत अछि, हृदय केँ मजबूत करैत अछि, जीवन शक्ति केँ निर्माण करैत अछि।",
-    "te": "Sun: Surya Namaskar  –  activates Pitta, strengthens heart, builds vitality.",
-    "gu": "Sun: Surya Namaskar  –  activates Pitta, strengthens heart, builds vitality.",
-    "kn": "Sun: Surya Namaskar  –  activates Pitta, strengthens heart, builds vitality.",
-    "mr": "Sun: Surya Namaskar  –  activates Pitta, strengthens heart, builds vitality."
+    "te": "సూర్యుడు: సూర్య నమస్కారం – పిత్తాన్ని సక్రియం చేస్తుంది, గుండెను బలపరుస్తుంది, జీవశక్తిని పెంచుతుంది.",
+    "gu": "સૂર્ય: સૂર્ય નમસ્કાર – પિત્તને સક્રિય કરે છે, હૃદયને મજબૂત કરે છે, પ્રાણશક્તિ બનાવે છે.",
+    "kn": "ಸೂರ್ಯ: ಸೂರ್ಯ ನಮಸ್ಕಾರ – ಪಿತ್ತವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುತ್ತದೆ, ಹೃದಯವನ್ನು ಬಲಪಡಿಸುತ್ತದೆ, ಚೈತನ್ಯವನ್ನು ನಿರ್ಮಿಸುತ್ತದೆ.",
+    "mr": "सूर्य: सूर्यनमस्कार – पित्त सक्रिय करतो, हृदय मजबूत करतो, जीवनशक्ती वाढवतो."
   },
   "yogaMoon": {
     "en": "Moon: Chandra Namaskar  –  cools Pitta, soothes emotions, enhances fluidity.",
@@ -1897,10 +1897,10 @@
     "ta": "சந்திரன்: சந்திர நமஸ்காரம்  –  பித்தத்தை குளிர்விக்கிறது.",
     "bn": "চন্দ্র: চন্দ্র নমস্কার  –  পিত্ত শীতল করে।",
     "mai": "चंद्रमा: चंद्र नमस्कार – पित्त केँ ठंडा करैत अछि, भावना केँ शांत करैत अछि, तरलता बढ़ाबैत अछि।",
-    "te": "Moon: Chandra Namaskar  –  cools Pitta, soothes emotions, enhances fluidity.",
-    "gu": "Moon: Chandra Namaskar  –  cools Pitta, soothes emotions, enhances fluidity.",
-    "kn": "Moon: Chandra Namaskar  –  cools Pitta, soothes emotions, enhances fluidity.",
-    "mr": "Moon: Chandra Namaskar  –  cools Pitta, soothes emotions, enhances fluidity."
+    "te": "చంద్రుడు: చంద్ర నమస్కారం – పిత్తాన్ని చల్లబరుస్తుంది, భావోద్వేగాలను శాంతపరుస్తుంది, ద్రవత్వాన్ని పెంచుతుంది.",
+    "gu": "ચંદ્ર: ચંદ્ર નમસ્કાર – પિત્તને શાંત કરે છે, લાગણીઓને શાંત પાડે છે, પ્રવાહીતા વધારે છે.",
+    "kn": "ಚಂದ್ರ: ಚಂದ್ರ ನಮಸ್ಕಾರ – ಪಿತ್ತವನ್ನು ತಂಪಾಗಿಸುತ್ತದೆ, ಭಾವನೆಗಳನ್ನು ಶಮನಗೊಳಿಸುತ್ತದೆ, ದ್ರವತೆಯನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ.",
+    "mr": "चंद्र: चंद्र नमस्कार – पित्त शांत करतो, भावनांना आराम देतो, तरलता वाढवतो."
   },
   "yogaSaturn": {
     "en": "Saturn: Paschimottanasana, Viparita Karani  –  grounds Vata, calms nerves, supports joints.",
@@ -1908,10 +1908,10 @@
     "ta": "சனி: பச்சிமோத்தானாசனம்  –  வாதத்தை நிலநிறுத்துகிறது.",
     "bn": "শনি: পশ্চিমোত্তানাসন  –  বাত শান্ত করে।",
     "mai": "शनि: पश्चिमोत्तनासन, विपरीत करणी – वात केँ स्थिर करैत अछि, तंत्रिका केँ शांत करैत अछि, जोड़ केँ समर्थन करैत अछि।",
-    "te": "Saturn: Paschimottanasana, Viparita Karani  –  grounds Vata, calms nerves, supports joints.",
-    "gu": "Saturn: Paschimottanasana, Viparita Karani  –  grounds Vata, calms nerves, supports joints.",
-    "kn": "Saturn: Paschimottanasana, Viparita Karani  –  grounds Vata, calms nerves, supports joints.",
-    "mr": "Saturn: Paschimottanasana, Viparita Karani  –  grounds Vata, calms nerves, supports joints."
+    "te": "శని: పశ్చిమోత్తానాసనం, విపరీత కరణి – వాతాన్ని స్థిరీకరిస్తుంది, నరాలను శాంతపరుస్తుంది, కీళ్లకు మద్దతు ఇస్తుంది.",
+    "gu": "શનિ: પશ્ચિમોત્તાનાસન, વિપરીત કરણી – વાતને સ્થિર કરે છે, ચેતાતંત્રને શાંત કરે છે, સાંધાને ટેકો આપે છે.",
+    "kn": "ಶನಿ: ಪಶ್ಚಿಮೋತ್ತಾನಾಸನ, ವಿಪರೀತ ಕರಣಿ – ವಾತವನ್ನು ನೆಲಸಮಗೊಳಿಸುತ್ತದೆ, ನರಗಳನ್ನು ಶಾಂತಗೊಳಿಸುತ್ತದೆ, ಕೀಲುಗಳನ್ನು ಬೆಂಬಲಿಸುತ್ತದೆ.",
+    "mr": "शनी: पश्चिमोत्तनासन, विपरीत करणी – वात स्थिर करतो, मज्जातंतूंना शांत करतो, सांध्यांना आधार देतो."
   },
   "yogaMars": {
     "en": "Mars: Virabhadrasana (Warrior)  –  channels aggression, builds courage, strengthens blood.",
@@ -1919,10 +1919,10 @@
     "ta": "செவ்வாய்: வீரபத்ராசனம்  –  ஆக்ரோஷத்தை வழிநடத்துகிறது.",
     "bn": "মঙ্গল: বীরভদ্রাসন  –  আক্রমণ নিয়ন্ত্রণ, সাহস নির্মাণ।",
     "mai": "मंगल: वीरभद्रासन (योद्धा) – आक्रामकता केँ प्रसारित करैत अछि, साहस केँ निर्माण करैत अछि, रक्त केँ मजबूत करैत अछि।",
-    "te": "Mars: Virabhadrasana (Warrior)  –  channels aggression, builds courage, strengthens blood.",
-    "gu": "Mars: Virabhadrasana (Warrior)  –  channels aggression, builds courage, strengthens blood.",
-    "kn": "Mars: Virabhadrasana (Warrior)  –  channels aggression, builds courage, strengthens blood.",
-    "mr": "Mars: Virabhadrasana (Warrior)  –  channels aggression, builds courage, strengthens blood."
+    "te": "కుజుడు: వీరభద్రాసనం (యోధుడు) – దూకుడును మళ్లిస్తుంది, ధైర్యాన్ని పెంచుతుంది, రక్తాన్ని బలపరుస్తుంది.",
+    "gu": "મંગળ: વીરભદ્રાસન (યોદ્ધા) – આક્રમકતાને દિશામાન કરે છે, હિંમત બનાવે છે, રક્તને મજબૂત કરે છે.",
+    "kn": "ಮಂಗಳ: ವೀರಭದ್ರಾಸನ (ಯೋಧ) – ಆಕ್ರಮಣಶೀಲತೆಯನ್ನು ನಿರ್ದೇಶಿಸುತ್ತದೆ, ಧೈರ್ಯವನ್ನು ನಿರ್ಮಿಸುತ್ತದೆ, ರಕ್ತವನ್ನು ಬಲಪಡಿಸುತ್ತದೆ.",
+    "mr": "मंगळ: वीरभद्रासन (योद्धा) – आक्रमकता योग्य दिशेने वळवतो, धैर्य वाढवतो, रक्त मजबूत करतो."
   },
   "sec8Title": {
     "en": "Classical Text Cross-References",
@@ -1930,10 +1930,10 @@
     "ta": "சாஸ்திர நூல் குறிப்புகள்",
     "bn": "শাস্ত্রীয় গ্রন্থ ক্রস-রেফারেন্স",
     "mai": "शास्त्रीय ग्रंथ संदर्भ",
-    "te": "Classical Text Cross-References",
-    "gu": "Classical Text Cross-References",
-    "kn": "Classical Text Cross-References",
-    "mr": "Classical Text Cross-References"
+    "te": "శాస్త్రీయ గ్రంథాల సూచనలు",
+    "gu": "શાસ્ત્રીય ગ્રંથોના સંદર્ભો",
+    "kn": "ಶಾಸ್ತ್ರೀಯ ಗ್ರಂಥಗಳ ಅಡ್ಡ-ಉಲ್ಲೇಖಗಳು",
+    "mr": "शास्त्रीय ग्रंथांचे संदर्भ"
   },
   "charaka": {
     "en": "Charaka Samhita",
@@ -1941,10 +1941,10 @@
     "ta": "சரக சம்ஹிதா",
     "bn": "চরক সংহিতা",
     "mai": "चरक संहिता",
-    "te": "Charaka Samhita",
-    "gu": "Charaka Samhita",
-    "kn": "Charaka Samhita",
-    "mr": "Charaka Samhita"
+    "te": "చరక సంహిత",
+    "gu": "ચરક સંહિતા",
+    "kn": "ಚರಕ ಸಂಹಿತೆ",
+    "mr": "चरक संहिता"
   },
   "charakaDesc": {
     "en": "Chapter 29 (Ashtaninditiya Adhyaya) discusses how Grahas (planets) influence constitution and disease predisposition. Charaka explicitly states that the physician should consider the Jyotisha aspects of a patient's birth for prognosis.",
@@ -1952,10 +1952,10 @@
     "ta": "அத்தியாயம் 29 கிரகங்கள் உடலமைப்பு மற்றும் நோய் முன்கணிப்பை எவ்வாறு பாதிக்கின்றன என்பதை விவரிக்கிறது.",
     "bn": "অধ্যায় ২৯-এ গ্রহরা দেহগঠন ও রোগ প্রবণতাকে কীভাবে প্রভাবিত করে তা আলোচনা করে।",
     "mai": "अध्याय २९ (अष्टनिन्दितिया अध्याय) चर्चा करैत अछि जेना ग्रह (ग्रह) संविधान आ रोगक प्रवृत्ति केँ प्रभावित करैत अछि। चरक स्पष्ट रूप सँ कहैत अछि जे चिकित्सक केँ रोगीक जन्मक ज्योतिषीय पक्ष केँ निदान के लेल विचार करबाक चाही।",
-    "te": "Chapter 29 (Ashtaninditiya Adhyaya) discusses how Grahas (planets) influence constitution and disease predisposition. Charaka explicitly states that the physician should consider the Jyotisha aspects of a patient's birth for prognosis.",
-    "gu": "Chapter 29 (Ashtaninditiya Adhyaya) discusses how Grahas (planets) influence constitution and disease predisposition. Charaka explicitly states that the physician should consider the Jyotisha aspects of a patient's birth for prognosis.",
-    "kn": "Chapter 29 (Ashtaninditiya Adhyaya) discusses how Grahas (planets) influence constitution and disease predisposition. Charaka explicitly states that the physician should consider the Jyotisha aspects of a patient's birth for prognosis.",
-    "mr": "Chapter 29 (Ashtaninditiya Adhyaya) discusses how Grahas (planets) influence constitution and disease predisposition. Charaka explicitly states that the physician should consider the Jyotisha aspects of a patient's birth for prognosis."
+    "te": "అధ్యాయం 29 (అష్టనిందతీయ అధ్యాయం) గ్రహాలు (ప్లానెట్స్) శరీర తత్వం మరియు వ్యాధి ప్రవృత్తిని ఎలా ప్రభావితం చేస్తాయో చర్చిస్తుంది. రోగి యొక్క జ్యోతిష్య అంశాలను రోగ నిర్ధారణ కోసం వైద్యుడు పరిగణనలోకి తీసుకోవాలని చరక స్పష్టంగా పేర్కొన్నాడు.",
+    "gu": "અધ્યાય 29 (અષ્ટનિંદિતિય અધ્યાય) માં ચર્ચા કરવામાં આવી છે કે ગ્રહો (ગ્રહો) કેવી રીતે બંધારણ અને રોગની પૂર્વવૃત્તિને પ્રભાવિત કરે છે. ચરક સ્પષ્ટપણે જણાવે છે કે ચિકિત્સકે દર્દીના જન્મના જ્યોતિષીય પાસાઓને નિદાન માટે ધ્યાનમાં લેવા જોઈએ.",
+    "kn": "ಅಧ್ಯಾಯ 29 (ಅಷ್ಟನಿಂದಿತೀಯ ಅಧ್ಯಾಯ) ಗ್ರಹಗಳು (ಗ್ರಹಗಳು) ಸಂವಿಧಾನ ಮತ್ತು ರೋಗದ ಪೂರ್ವಭಾವಿತ್ವವನ್ನು ಹೇಗೆ ಪ್ರಭಾವಿಸುತ್ತವೆ ಎಂಬುದನ್ನು ಚರ್ಚಿಸುತ್ತದೆ. ಚರಕರು ರೋಗಿಯ ಜನನದ ಜ್ಯೋತಿಷ್ಯ ಅಂಶಗಳನ್ನು ರೋಗನಿರ್ಣಯಕ್ಕಾಗಿ ವೈದ್ಯರು ಪರಿಗಣಿಸಬೇಕು ಎಂದು ಸ್ಪಷ್ಟವಾಗಿ ಹೇಳುತ್ತಾರೆ.",
+    "mr": "अध्याय २९ (अष्टनिंदितीय अध्याय) मध्ये ग्रह (ग्रह) प्रकृती आणि रोगाच्या प्रवृत्तीवर कसा प्रभाव टाकतात याची चर्चा आहे. चरक स्पष्टपणे सांगतात की, रोगनिदानासाठी वैद्याने रुग्णाच्या जन्माच्या ज्योतिषीय पैलूंचा विचार केला पाहिजे."
   },
   "sushruta": {
     "en": "Sushruta Samhita",
@@ -1963,10 +1963,10 @@
     "ta": "சுஸ்ருத சம்ஹிதா",
     "bn": "সুশ্রুত সংহিতা",
     "mai": "सुश्रुत संहिता",
-    "te": "Sushruta Samhita",
-    "gu": "Sushruta Samhita",
-    "kn": "Sushruta Samhita",
-    "mr": "Sushruta Samhita"
+    "te": "సుశ్రుత సంహిత",
+    "gu": "સુશ્રુત સંહિતા",
+    "kn": "ಸುಶ್ರುತ ಸಂಹಿತೆ",
+    "mr": "सुश्रुत संहिता"
   },
   "sushrutaDesc": {
     "en": "The father of surgery prescribed specific nakshatras for surgical timing. Ashwini, Pushya, and Hasta were considered ideal for operations. Krittika, Ardra, and Ashlesha were explicitly contraindicated.",
@@ -1974,10 +1974,10 @@
     "ta": "அறுவை சிகிச்சையின் தந்தை குறிப்பிட்ட நட்சத்திரங்களை அறுவை நேரத்திற்கு பரிந்துரைத்தார்.",
     "bn": "শল্যচিকিৎসার জনক নির্দিষ্ট নক্ষত্র শল্যক্রিয়ার সময়ের জন্য নির্ধারণ করেছিলেন।",
     "mai": "शल्य चिकित्साक जनक शल्य चिकित्साक समय के लेल विशिष्ट नक्षत्र निर्धारित केलनि। अश्विनी, पुष्य आ हस्त केँ ऑपरेशन के लेल आदर्श मानल जाइत छल। कृत्तिका, आर्द्रा आ आश्लेषा केँ स्पष्ट रूप सँ वर्जित मानल जाइत छल।",
-    "te": "The father of surgery prescribed specific nakshatras for surgical timing. Ashwini, Pushya, and Hasta were considered ideal for operations. Krittika, Ardra, and Ashlesha were explicitly contraindicated.",
-    "gu": "The father of surgery prescribed specific nakshatras for surgical timing. Ashwini, Pushya, and Hasta were considered ideal for operations. Krittika, Ardra, and Ashlesha were explicitly contraindicated.",
-    "kn": "The father of surgery prescribed specific nakshatras for surgical timing. Ashwini, Pushya, and Hasta were considered ideal for operations. Krittika, Ardra, and Ashlesha were explicitly contraindicated.",
-    "mr": "The father of surgery prescribed specific nakshatras for surgical timing. Ashwini, Pushya, and Hasta were considered ideal for operations. Krittika, Ardra, and Ashlesha were explicitly contraindicated."
+    "te": "శస్త్రచికిత్స పితామహుడు శస్త్రచికిత్స సమయానికి నిర్దిష్ట నక్షత్రాలను సూచించాడు. అశ్విని, పుష్య, మరియు హస్త నక్షత్రాలు ఆపరేషన్లకు ఆదర్శంగా పరిగణించబడ్డాయి. కృత్తిక, ఆర్ద్ర, మరియు ఆశ్లేష నక్షత్రాలు స్పష్టంగా నిషేధించబడ్డాయి.",
+    "gu": "શલ્યચિકિત્સાના પિતાએ શસ્ત્રક્રિયાના સમય માટે ચોક્કસ નક્ષત્રો સૂચવ્યા હતા. અશ્વિની, પુષ્ય અને હસ્તને શસ્ત્રક્રિયા માટે આદર્શ માનવામાં આવતા હતા. કૃત્તિકા, આર્દ્રા અને આશ્લેષા સ્પષ્ટપણે પ્રતિબંધિત હતા.",
+    "kn": "ಶಸ್ತ್ರಚಿಕಿತ್ಸೆಯ ಪಿತಾಮಹರು ಶಸ್ತ್ರಚಿಕಿತ್ಸೆಯ ಸಮಯಕ್ಕಾಗಿ ನಿರ್ದಿಷ್ಟ ನಕ್ಷತ್ರಗಳನ್ನು ಸೂಚಿಸಿದರು. ಅಶ್ವಿನಿ, ಪುಷ್ಯ ಮತ್ತು ಹಸ್ತ ನಕ್ಷತ್ರಗಳನ್ನು ಶಸ್ತ್ರಚಿಕಿತ್ಸೆಗೆ ಸೂಕ್ತವೆಂದು ಪರಿಗಣಿಸಲಾಗಿತ್ತು. ಕೃತ್ತಿಕಾ, ಆರ್ದ್ರಾ ಮತ್ತು ಆಶ್ಲೇಷಾ ನಕ್ಷತ್ರಗಳನ್ನು ಸ್ಪಷ್ಟವಾಗಿ ನಿಷೇಧಿಸಲಾಗಿತ್ತು.",
+    "mr": "शस्त्रक्रियेचे जनक सुश्रुत यांनी शस्त्रक्रियेच्या वेळेसाठी विशिष्ट नक्षत्रे सांगितली. अश्विनी, पुष्य आणि हस्त नक्षत्रे शस्त्रक्रियेसाठी आदर्श मानली जात होती. कृत्तिका, आर्द्रा आणि आश्लेषा नक्षत्रे स्पष्टपणे टाळण्यास सांगितली होती."
   },
   "bphs": {
     "en": "Brihat Parashara Hora Shastra",
@@ -1985,10 +1985,10 @@
     "ta": "பிருஹத் பராசர ஹோரா சாஸ்திரம்",
     "bn": "বৃহৎ পরাশর হোরা শাস্ত্র",
     "mai": "बृहत् पाराशर होरा शास्त्र",
-    "te": "Brihat Parashara Hora Shastra",
-    "gu": "Brihat Parashara Hora Shastra",
-    "kn": "Brihat Parashara Hora Shastra",
-    "mr": "Brihat Parashara Hora Shastra"
+    "te": "బృహత్ పరాశర హోరా శాస్త్రం",
+    "gu": "બૃહત્ પરાશર હોરા શાસ્ત્ર",
+    "kn": "ಬೃಹತ್ ಪರಾಶರ ಹೋರಾ ಶಾಸ್ತ್ರ",
+    "mr": "बृहत् पराशर होरा शास्त्र"
   },
   "bphsDesc": {
     "en": "The Rogadhyaya (Disease Chapter) maps specific planets in specific houses to exact disease patterns. BPHS considers the 6th lord, 8th lord, and afflicted Moon as primary health indicators.",
@@ -1996,10 +1996,10 @@
     "ta": "ரோகாத்யாயம் குறிப்பிட்ட கிரகங்களை குறிப்பிட்ட பாவங்களில் நோய் வடிவங்களுடன் இணைக்கிறது.",
     "bn": "রোগাধ্যায় নির্দিষ্ট গ্রহকে নির্দিষ্ট ভাবে রোগ প্যাটার্নের সাথে যুক্ত করে।",
     "mai": "रोगाध्याय (रोग अध्याय) विशिष्ट ग्रहकेँ विशिष्ट भावमे सटीक रोगक स्वरूपसँ जोड़ैत अछि। बीपीएचएस षष्ठेश, अष्टमेश आ पीड़ित चन्द्रमाकेँ प्राथमिक स्वास्थ्य संकेतक मानैत अछि।",
-    "te": "The Rogadhyaya (Disease Chapter) maps specific planets in specific houses to exact disease patterns. BPHS considers the 6th lord, 8th lord, and afflicted Moon as primary health indicators.",
-    "gu": "The Rogadhyaya (Disease Chapter) maps specific planets in specific houses to exact disease patterns. BPHS considers the 6th lord, 8th lord, and afflicted Moon as primary health indicators.",
-    "kn": "The Rogadhyaya (Disease Chapter) maps specific planets in specific houses to exact disease patterns. BPHS considers the 6th lord, 8th lord, and afflicted Moon as primary health indicators.",
-    "mr": "The Rogadhyaya (Disease Chapter) maps specific planets in specific houses to exact disease patterns. BPHS considers the 6th lord, 8th lord, and afflicted Moon as primary health indicators."
+    "te": "రోగాధ్యాయం (వ్యాధి అధ్యాయం) నిర్దిష్ట భావాలలో నిర్దిష్ట గ్రహాలను ఖచ్చితమైన వ్యాధి నమూనాలకు మ్యాప్ చేస్తుంది. BPHS 6వ అధిపతి, 8వ అధిపతి మరియు పీడిత చంద్రుడిని ప్రాథమిక ఆరోగ్య సూచికలుగా పరిగణిస్తుంది.",
+    "gu": "રોગાધ્યાય (રોગ અધ્યાય) ચોક્કસ ભાવોમાં ચોક્કસ ગ્રહોને ચોક્કસ રોગ પેટર્ન સાથે જોડે છે. BPHS 6ઠ્ઠા સ્વામી, 8મા સ્વામી અને પીડિત ચંદ્રને પ્રાથમિક સ્વાસ્થ્ય સૂચકાંકો માને છે.",
+    "kn": "ರೋಗಾಧ್ಯಾಯ (ರೋಗ ಅಧ್ಯಾಯ) ನಿರ್ದಿಷ್ಟ ಭಾವಗಳಲ್ಲಿನ ನಿರ್ದಿಷ್ಟ ಗ್ರಹಗಳನ್ನು ನಿಖರವಾದ ರೋಗ ಮಾದರಿಗಳಿಗೆ ನಕ್ಷೆ ಮಾಡುತ್ತದೆ. BPHS 6ನೇ ಅಧಿಪತಿ, 8ನೇ ಅಧಿಪತಿ ಮತ್ತು ಪೀಡಿತ ಚಂದ್ರನನ್ನು ಪ್ರಾಥಮಿಕ ಆರೋಗ್ಯ ಸೂಚಕಗಳಾಗಿ ಪರಿಗಣಿಸುತ್ತದೆ.",
+    "mr": "रोगाध्याय (रोग अध्याय) विशिष्ट भावांमधील विशिष्ट ग्रहांना अचूक रोग पद्धतींशी जोडतो. BPHS ६व्या भावाचा स्वामी, ८व्या भावाचा स्वामी आणि पीडित चंद्राला प्राथमिक आरोग्य सूचक मानतो."
   },
   "ashtanga": {
     "en": "Ashtanga Hridaya",
@@ -2007,10 +2007,10 @@
     "ta": "அஷ்டாங்க ஹிருதயம்",
     "bn": "অষ্টাঙ্গ হৃদয়",
     "mai": "अष्टांग हृदय",
-    "te": "Ashtanga Hridaya",
-    "gu": "Ashtanga Hridaya",
-    "kn": "Ashtanga Hridaya",
-    "mr": "Ashtanga Hridaya"
+    "te": "అష్టాంగ హృదయం",
+    "gu": "અષ્ટાંગ હૃદય",
+    "kn": "ಅಷ್ಟಾಂಗ ಹೃದಯ",
+    "mr": "अष्टांग हृदय"
   },
   "ashtangaDesc": {
     "en": "Vagbhata's treatise emphasises Muhurta (auspicious timing) for administering medicines, beginning treatments, and performing Panchakarma. Specific tithis and nakshatras are recommended for different therapeutic procedures.",
@@ -2018,10 +2018,10 @@
     "ta": "வாக்பட்டரின் நூல் மருந்துகளை கொடுப்பதற்கும் சிகிச்சை தொடங்குவதற்கும் முஹூர்த்தத்தை வலியுறுத்துகிறது.",
     "bn": "বাগভটের গ্রন্থ ওষুধ প্রয়োগ ও চিকিৎসা শুরুর জন্য মুহূর্তের গুরুত্ব জোর দেয়।",
     "mai": "वाग्भटक ग्रंथमे औषधिक सेवन करबाक, उपचार शुरू करबाक आ पंचकर्म करबाक लेल मुहूर्त (शुभ समय) पर जोर देल गेल अछि। विभिन्न चिकित्सीय प्रक्रियाक लेल विशिष्ट तिथि आ नक्षत्र अनुशंसित अछि।",
-    "te": "Vagbhata's treatise emphasises Muhurta (auspicious timing) for administering medicines, beginning treatments, and performing Panchakarma. Specific tithis and nakshatras are recommended for different therapeutic procedures.",
-    "gu": "Vagbhata's treatise emphasises Muhurta (auspicious timing) for administering medicines, beginning treatments, and performing Panchakarma. Specific tithis and nakshatras are recommended for different therapeutic procedures.",
-    "kn": "Vagbhata's treatise emphasises Muhurta (auspicious timing) for administering medicines, beginning treatments, and performing Panchakarma. Specific tithis and nakshatras are recommended for different therapeutic procedures.",
-    "mr": "Vagbhata's treatise emphasises Muhurta (auspicious timing) for administering medicines, beginning treatments, and performing Panchakarma. Specific tithis and nakshatras are recommended for different therapeutic procedures."
+    "te": "వాగ్భటుని గ్రంథం ఔషధాలను ఇవ్వడానికి, చికిత్సలను ప్రారంభించడానికి మరియు పంచకర్మను నిర్వహించడానికి ముహూర్తం (శుభ సమయం) యొక్క ప్రాముఖ్యతను నొక్కి చెబుతుంది. వివిధ చికిత్సా విధానాలకు నిర్దిష్ట తిథులు మరియు నక్షత్రాలు సిఫార్సు చేయబడతాయి.",
+    "gu": "વાગ્ભટ્ટનો ગ્રંથ દવાઓ આપવા, ઉપચાર શરૂ કરવા અને પંચકર્મ કરવા માટે મુહૂર્ત (શુભ સમય) પર ભાર મૂકે છે. વિવિધ ઉપચારાત્મક પ્રક્રિયાઓ માટે ચોક્કસ તિથિઓ અને નક્ષત્રોની ભલામણ કરવામાં આવે છે.",
+    "kn": "ವಾಗ್ಭಟರ ಗ್ರಂಥವು ಔಷಧಿಗಳನ್ನು ನೀಡುವುದು, ಚಿಕಿತ್ಸೆಗಳನ್ನು ಪ್ರಾರಂಭಿಸುವುದು ಮತ್ತು ಪಂಚಕರ್ಮವನ್ನು ನಿರ್ವಹಿಸಲು ಮುಹೂರ್ತಕ್ಕೆ (ಶುಭ ಸಮಯ) ಒತ್ತು ನೀಡುತ್ತದೆ. ವಿವಿಧ ಚಿಕಿತ್ಸಾ ವಿಧಾನಗಳಿಗೆ ನಿರ್ದಿಷ್ಟ ತಿಥಿಗಳು ಮತ್ತು ನಕ್ಷತ್ರಗಳನ್ನು ಶಿಫಾರಸು ಮಾಡಲಾಗುತ್ತದೆ.",
+    "mr": "वाग्भटाच्या ग्रंथात औषधे देण्यासाठी, उपचार सुरू करण्यासाठी आणि पंचकर्म करण्यासाठी मुहूर्ताला (शुभ वेळ) महत्त्व दिले आहे. विविध उपचारात्मक प्रक्रियासाठी विशिष्ट तिथी आणि नक्षत्रे शिफारस केली आहेत."
   },
   "sec9Title": {
     "en": "Modern Scientific Parallels",
@@ -2029,10 +2029,10 @@
     "ta": "நவீன அறிவியல் இணையான கருத்துகள்",
     "bn": "আধুনিক বৈজ্ঞানিক সমান্তরাল",
     "mai": "आधुनिक वैज्ञानिक समानतासभ",
-    "te": "Modern Scientific Parallels",
-    "gu": "Modern Scientific Parallels",
-    "kn": "Modern Scientific Parallels",
-    "mr": "Modern Scientific Parallels"
+    "te": "ఆధునిక శాస్త్రీయ సమాంతరాలు",
+    "gu": "આધુનિક વૈજ્ઞાનિક સમાંતરતાઓ",
+    "kn": "ಆಧುನಿಕ ವೈಜ್ಞಾನಿಕ ಸಮಾನಾಂತರಗಳು",
+    "mr": "आधुनिक वैज्ञानिक समांतरता"
   },
   "chronobiology": {
     "en": "Chronobiology & Planetary Cycles",
@@ -2040,10 +2040,10 @@
     "ta": "காலவியல் & கிரக சுழற்சிகள்",
     "bn": "ক্রোনোবায়োলজি ও গ্রহ চক্র",
     "mai": "क्रोनोबायोलॉजी आ ग्रहीय चक्र",
-    "te": "Chronobiology & Planetary Cycles",
-    "gu": "Chronobiology & Planetary Cycles",
-    "kn": "Chronobiology & Planetary Cycles",
-    "mr": "Chronobiology & Planetary Cycles"
+    "te": "క్రోనోబయాలజీ & గ్రహ చక్రాలు",
+    "gu": "કાળજીવવિજ્ઞાન અને ગ્રહોના ચક્ર",
+    "kn": "ಕ್ರೊನೊಬಯಾಲಜಿ ಮತ್ತು ಗ್ರಹಗಳ ಚಕ್ರಗಳು",
+    "mr": "कालजीवशास्त्र आणि ग्रह चक्र"
   },
   "chronobiologyDesc": {
     "en": "Modern chronobiology has confirmed that biological rhythms follow celestial cycles: the circadian rhythm (24h solar), the circalunar rhythm (29.5d lunar), and seasonal hormonal variations. The Hora system  –  dividing daylight into planetary hours  –  predates this science by millennia, yet maps to the same biological reality.",
@@ -2051,10 +2051,10 @@
     "ta": "நவீன காலவியல் உயிரியல் தாளங்கள் வான சுழற்சிகளைப் பின்பற்றுவதை உறுதிப்படுத்தியுள்ளது.",
     "bn": "আধুনিক ক্রোনোবায়োলজি নিশ্চিত করেছে যে জৈবিক ছন্দ মহাজাগতিক চক্র অনুসরণ করে।",
     "mai": "आधुनिक क्रोनोबायोलॉजी पुष्टि केलक अछि जे जैविक लय खगोलीय चक्रक पालन करैत अछि: सर्कैडियन लय (२४ घंटाक सौर), सर्कैलूनर लय (२९.५ दिनक चंद्र), आ मौसमी हार्मोनल भिन्नतासभ। होरा प्रणाली – दिनक प्रकाशकेँ ग्रहीय होरामे विभाजित करब – ई विज्ञानसँ हजारो वर्ष पहिनेक अछि, मुदा ओही जैविक वास्तविकतासँ मेल खाइत अछि।",
-    "te": "Modern chronobiology has confirmed that biological rhythms follow celestial cycles: the circadian rhythm (24h solar), the circalunar rhythm (29.5d lunar), and seasonal hormonal variations. The Hora system  –  dividing daylight into planetary hours  –  predates this science by millennia, yet maps to the same biological reality.",
-    "gu": "Modern chronobiology has confirmed that biological rhythms follow celestial cycles: the circadian rhythm (24h solar), the circalunar rhythm (29.5d lunar), and seasonal hormonal variations. The Hora system  –  dividing daylight into planetary hours  –  predates this science by millennia, yet maps to the same biological reality.",
-    "kn": "Modern chronobiology has confirmed that biological rhythms follow celestial cycles: the circadian rhythm (24h solar), the circalunar rhythm (29.5d lunar), and seasonal hormonal variations. The Hora system  –  dividing daylight into planetary hours  –  predates this science by millennia, yet maps to the same biological reality.",
-    "mr": "Modern chronobiology has confirmed that biological rhythms follow celestial cycles: the circadian rhythm (24h solar), the circalunar rhythm (29.5d lunar), and seasonal hormonal variations. The Hora system  –  dividing daylight into planetary hours  –  predates this science by millennia, yet maps to the same biological reality."
+    "te": "ఆధునిక క్రోనోబయాలజీ జీవ లయలు ఖగోళ చక్రాలను అనుసరిస్తాయని ధృవీకరించింది: సిర్కాడియన్ రిథమ్ (24 గం. సౌర), సిర్కల్యూనార్ రిథమ్ (29.5 రోజులు చంద్ర), మరియు కాలానుగుణ హార్మోన్ల వైవిధ్యాలు. హోరా వ్యవస్థ – పగటి సమయాన్ని గ్రహ గంటలుగా విభజించడం – ఈ శాస్త్రానికి వేల సంవత్సరాల ముందు నుంచే ఉంది, అయినప్పటికీ అదే జీవ వాస్తవికతకు మ్యాప్ చేస్తుంది.",
+    "gu": "આધુનિક કાળજીવવિજ્ઞાને પુષ્ટિ કરી છે કે જૈવિક લય આકાશી ચક્રને અનુસરે છે: સર્કેડિયન લય (24 કલાક સૌર), સર્કલ્યુનર લય (29.5 દિવસ ચંદ્ર), અને મોસમી હોર્મોનલ ભિન્નતાઓ. હોરા પ્રણાલી – દિવસના પ્રકાશને ગ્રહોના કલાકોમાં વિભાજીત કરવી – આ વિજ્ઞાન કરતાં હજારો વર્ષ જૂની છે, છતાં તે જ જૈવિક વાસ્તવિકતા સાથે સુસંગત છે.",
+    "kn": "ಆಧುನಿಕ ಕ್ರೊನೊಬಯಾಲಜಿ ಜೈವಿಕ ಲಯಗಳು ಆಕಾಶ ಚಕ್ರಗಳನ್ನು ಅನುಸರಿಸುತ್ತವೆ ಎಂದು ದೃಢಪಡಿಸಿದೆ: ಸರ್ಕಾಡಿಯನ್ ಲಯ (24 ಗಂ ಸೌರ), ಸರ್ಕಾಲೂನಾರ್ ಲಯ (29.5 ದಿನ ಚಂದ್ರ), ಮತ್ತು ಕಾಲೋಚಿತ ಹಾರ್ಮೋನುಗಳ ವ್ಯತ್ಯಾಸಗಳು. ಹೋರಾ ವ್ಯವಸ್ಥೆ – ಹಗಲು ಬೆಳಕನ್ನು ಗ್ರಹಗಳ ಗಂಟೆಗಳಾಗಿ ವಿಭಜಿಸುವುದು – ಈ ವಿಜ್ಞಾನಕ್ಕಿಂತ ಸಾವಿರಾರು ವರ್ಷಗಳಷ್ಟು ಹಳೆಯದಾಗಿದೆ, ಆದರೂ ಅದೇ ಜೈವಿಕ ವಾಸ್ತವಕ್ಕೆ ನಕ್ಷೆ ಮಾಡುತ್ತದೆ.",
+    "mr": "आधुनिक कालजीवशास्त्राने पुष्टी केली आहे की जैविक लय खगोलीय चक्रांचे अनुसरण करतात: सर्केडियन लय (२४ तासांचे सौर), सर्केलुनार लय (२९.५ दिवसांचे चंद्र) आणि हंगामी हार्मोनल बदल. होरा प्रणाली – दिवसाच्या प्रकाशाला ग्रहांच्या तासांमध्ये विभागणे – या विज्ञानापेक्षा हजारो वर्षांपूर्वीची आहे, तरीही ती त्याच जैविक वास्तवाशी जुळते."
   },
   "circadian": {
     "en": "Circadian Medicine & Hora Timing",
@@ -2062,10 +2062,10 @@
     "ta": "சிர்காடியன் மருத்துவம் & ஹோரா நேரம்",
     "bn": "সার্কাডিয়ান মেডিসিন ও হোরা সময়",
     "mai": "सर्कैडियन चिकित्सा आ होरा समय",
-    "te": "Circadian Medicine & Hora Timing",
-    "gu": "Circadian Medicine & Hora Timing",
-    "kn": "Circadian Medicine & Hora Timing",
-    "mr": "Circadian Medicine & Hora Timing"
+    "te": "సిర్కాడియన్ మెడిసిన్ & హోరా సమయం",
+    "gu": "સર્કેડિયન ચિકિત્સા અને હોરા સમય",
+    "kn": "ಸರ್ಕಾಡಿಯನ್ ವೈದ್ಯಕೀಯ ಮತ್ತು ಹೋರಾ ಸಮಯ",
+    "mr": "सर्केडियन औषधशास्त्र आणि होरा वेळ"
   },
   "circadianDesc": {
     "en": "Chronopharmacology  –  administering drugs at the right time of day for maximum efficacy  –  mirrors Ayurveda's insistence on timing treatments to planetary horas. Statins work best at night (Saturn hora territory). Morning cortisol peaks align with Sun hora.",
@@ -2073,10 +2073,10 @@
     "ta": "காலமருந்தியல்  –  மருந்துகளை சரியான நேரத்தில் கொடுப்பது  –  கிரக ஹோராவுக்கு சிகிச்சை நேரத்தை ஆயுர்வேதத்தின் வலியுறுத்தலை பிரதிபலிக்கிறது.",
     "bn": "ক্রোনোফার্মাকোলজি  –  সঠিক সময়ে ওষুধ দেওয়া  –  গ্রহ হোরায় চিকিৎসার সময় নির্ধারণে আয়ুর্বেদের গুরুত্বকে প্রতিফলিত করে।",
     "mai": "क्रोनोफार्माकोलॉजी – अधिकतम प्रभावशीलताक लेल दिनक सही समय पर दवाक सेवन – आयुर्वेदिक उपचारकेँ ग्रहीय होराक समयक संग जोड़बाक आग्रहक दर्पण अछि। स्टेटिन रातिमे (शनि होरा क्षेत्र) सबसँ नीक काज करैत अछि। भोरक कोर्टिसोलक चरम सूर्य होरासँ मेल खाइत अछि।",
-    "te": "Chronopharmacology  –  administering drugs at the right time of day for maximum efficacy  –  mirrors Ayurveda's insistence on timing treatments to planetary horas. Statins work best at night (Saturn hora territory). Morning cortisol peaks align with Sun hora.",
-    "gu": "Chronopharmacology  –  administering drugs at the right time of day for maximum efficacy  –  mirrors Ayurveda's insistence on timing treatments to planetary horas. Statins work best at night (Saturn hora territory). Morning cortisol peaks align with Sun hora.",
-    "kn": "Chronopharmacology  –  administering drugs at the right time of day for maximum efficacy  –  mirrors Ayurveda's insistence on timing treatments to planetary horas. Statins work best at night (Saturn hora territory). Morning cortisol peaks align with Sun hora.",
-    "mr": "Chronopharmacology  –  administering drugs at the right time of day for maximum efficacy  –  mirrors Ayurveda's insistence on timing treatments to planetary horas. Statins work best at night (Saturn hora territory). Morning cortisol peaks align with Sun hora."
+    "te": "క్రోనోఫార్మకాలజీ – గరిష్ట ప్రభావాన్ని పొందడానికి రోజులో సరైన సమయంలో మందులను ఇవ్వడం – గ్రహ హోరాలకు చికిత్సలను సమయానికి ఇవ్వాలనే ఆయుర్వేద పట్టుదలను ప్రతిబింబిస్తుంది. స్టాటిన్స్ రాత్రిపూట ఉత్తమంగా పనిచేస్తాయి (శని హోరా ప్రాంతం). ఉదయం కార్టిసాల్ శిఖరాలు సూర్య హోరాతో సమలేఖనం అవుతాయి.",
+    "gu": "ક્રોનોફાર્માકોલોજી – મહત્તમ અસરકારકતા માટે દિવસના યોગ્ય સમયે દવાઓ આપવી – ગ્રહોના હોરા અનુસાર ઉપચારના સમય પર આયુર્વેદના આગ્રહને પ્રતિબિંબિત કરે છે. સ્ટેટિન્સ રાત્રે શ્રેષ્ઠ કાર્ય કરે છે (શનિ હોરાનો પ્રદેશ). સવારના કોર્ટિસોલના શિખરો સૂર્ય હોરા સાથે સુસંગત છે.",
+    "kn": "ಕ್ರೊನೊಫಾರ್ಮಕಾಲಜಿ – ಗರಿಷ್ಠ ಪರಿಣಾಮಕಾರಿತ್ವಕ್ಕಾಗಿ ದಿನದ ಸರಿಯಾದ ಸಮಯದಲ್ಲಿ ಔಷಧಿಗಳನ್ನು ನೀಡುವುದು – ಗ್ರಹಗಳ ಹೋರಾಗಳಿಗೆ ಚಿಕಿತ್ಸೆಗಳನ್ನು ಸಮಯಕ್ಕೆ ಸರಿಯಾಗಿ ನೀಡುವ ಆಯುರ್ವೇದದ ಒತ್ತಾಯವನ್ನು ಪ್ರತಿಬಿಂಬಿಸುತ್ತದೆ. ಸ್ಟ್ಯಾಟಿನ್‌ಗಳು ರಾತ್ರಿಯಲ್ಲಿ ಉತ್ತಮವಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತವೆ (ಶನಿ ಹೋರಾ ಪ್ರದೇಶ). ಬೆಳಗಿನ ಕಾರ್ಟಿಸೋಲ್ ಶಿಖರಗಳು ಸೂರ್ಯ ಹೋರಾಗೆ ಹೊಂದಿಕೆಯಾಗುತ್ತವೆ.",
+    "mr": "क्रोनोफार्माकोलॉजी – जास्तीत जास्त परिणामकारकतेसाठी दिवसाच्या योग्य वेळी औषधे देणे – आयुर्वेदाच्या ग्रह होरा नुसार उपचारांची वेळ निश्चित करण्याच्या आग्रहाचे प्रतिबिंब आहे. स्टॅटिन रात्री (शनी होरा क्षेत्रात) सर्वोत्तम काम करतात. सकाळचे कोर्टिसोलचे उच्च प्रमाण सूर्य होराशी जुळते."
   },
   "psychoneuro": {
     "en": "Psychoneuroimmunology & Saturn/Rahu",
@@ -2084,10 +2084,10 @@
     "ta": "உளநரம்பு நோயெதிர்ப்பியல் & சனி/ராகு",
     "bn": "সাইকোনিউরোইমিউনোলজি ও শনি/রাহু",
     "mai": "साइकोन्यूरोइम्यूनोलॉजी आ शनि/राहु",
-    "te": "Psychoneuroimmunology & Saturn/Rahu",
-    "gu": "Psychoneuroimmunology & Saturn/Rahu",
-    "kn": "Psychoneuroimmunology & Saturn/Rahu",
-    "mr": "Psychoneuroimmunology & Saturn/Rahu"
+    "te": "సైకోన్యూరోఇమ్యునాలజీ & శని/రాహువు",
+    "gu": "સાયકોન્યુરોઇમ્યુનોલોજી અને શનિ/રાહુ",
+    "kn": "ಸೈಕೋನ್ಯೂರೋಇಮ್ಯುನಾಲಜಿ ಮತ್ತು ಶನಿ/ರಾಹು",
+    "mr": "सायकोन्यूरोइम्युनोलॉजी आणि शनी/राहु"
   },
   "psychoneuroDesc": {
     "en": "PNI research proves that chronic stress (Saturn's signature) and anxiety (Rahu's signature) directly suppress immune function, increase inflammation, and accelerate ageing. The Vedic texts intuited this connection millennia ago: Saturn/Rahu periods were flagged as high-disease windows, especially when these planets afflict the Moon (mind) in the birth chart.",
@@ -2095,10 +2095,10 @@
     "ta": "PNI ஆராய்ச்சி நாள்பட்ட மன அழுத்தம் (சனியின் அடையாளம்) நோயெதிர்ப்பு செயல்பாட்டை நேரடியாக அடக்குகிறது என்பதை நிரூபிக்கிறது.",
     "bn": "PNI গবেষণা প্রমাণ করে যে দীর্ঘস্থায়ী মানসিক চাপ (শনির চিহ্ন) রোগ প্রতিরোধ ক্ষমতা দমন করে।",
     "mai": "पीएनआई शोध ई सिद्ध करैत अछि जे दीर्घकालिक तनाव (शनिक हस्ताक्षर) आ चिंता (राहुक हस्ताक्षर) सीधे प्रतिरक्षा प्रणालीकेँ दबाबैत अछि, सूजन बढ़ाबैत अछि आ बुढ़ारीकेँ तेज करैत अछि। वैदिक ग्रंथसभ हजारो वर्ष पहिने ई संबंधकेँ सहज रूपसँ बुझि गेल छल: शनि/राहुक कालकेँ उच्च-रोगक समयक रूपमे चिन्हित कएल गेल छल, खास कऽ जखन ई ग्रह जन्म कुंडलीमे चन्द्रमा (मन) केँ पीड़ित करैत अछि।",
-    "te": "PNI research proves that chronic stress (Saturn's signature) and anxiety (Rahu's signature) directly suppress immune function, increase inflammation, and accelerate ageing. The Vedic texts intuited this connection millennia ago: Saturn/Rahu periods were flagged as high-disease windows, especially when these planets afflict the Moon (mind) in the birth chart.",
-    "gu": "PNI research proves that chronic stress (Saturn's signature) and anxiety (Rahu's signature) directly suppress immune function, increase inflammation, and accelerate ageing. The Vedic texts intuited this connection millennia ago: Saturn/Rahu periods were flagged as high-disease windows, especially when these planets afflict the Moon (mind) in the birth chart.",
-    "kn": "PNI research proves that chronic stress (Saturn's signature) and anxiety (Rahu's signature) directly suppress immune function, increase inflammation, and accelerate ageing. The Vedic texts intuited this connection millennia ago: Saturn/Rahu periods were flagged as high-disease windows, especially when these planets afflict the Moon (mind) in the birth chart.",
-    "mr": "PNI research proves that chronic stress (Saturn's signature) and anxiety (Rahu's signature) directly suppress immune function, increase inflammation, and accelerate ageing. The Vedic texts intuited this connection millennia ago: Saturn/Rahu periods were flagged as high-disease windows, especially when these planets afflict the Moon (mind) in the birth chart."
+    "te": "PNI పరిశోధన దీర్ఘకాలిక ఒత్తిడి (శని లక్షణం) మరియు ఆందోళన (రాహువు లక్షణం) రోగనిరోధక శక్తిని నేరుగా అణచివేస్తాయని, వాపును పెంచుతాయని మరియు వృద్ధాప్యాన్ని వేగవంతం చేస్తాయని రుజువు చేస్తుంది. వేద గ్రంథాలు ఈ సంబంధాన్ని వేల సంవత్సరాల క్రితమే ఊహించాయి: శని/రాహు కాలాలు అధిక వ్యాధి విండోలుగా గుర్తించబడ్డాయి, ప్రత్యేకించి ఈ గ్రహాలు జన్మ చార్టులో చంద్రుడిని (మనస్సు) పీడించినప్పుడు.",
+    "gu": "PNI સંશોધન સાબિત કરે છે કે દીર્ઘકાલીન તણાવ (શનિની ઓળખ) અને ચિંતા (રાહુની ઓળખ) સીધા રોગપ્રતિકારક કાર્યને દબાવે છે, સોજો વધારે છે અને વૃદ્ધત્વને વેગ આપે છે. વૈદિક ગ્રંથોએ હજારો વર્ષો પહેલા આ જોડાણને સાહજિક રીતે સમજ્યું હતું: શનિ/રાહુના સમયગાળાને ઉચ્ચ-રોગ વિન્ડો તરીકે ચિહ્નિત કરવામાં આવ્યા હતા, ખાસ કરીને જ્યારે આ ગ્રહો જન્મ કુંડળીમાં ચંદ્ર (મન) ને પીડિત કરે છે.",
+    "kn": "PNI ಸಂಶೋಧನೆಯು ದೀರ್ಘಕಾಲದ ಒತ್ತಡ (ಶನಿಯ ಸಹಿ) ಮತ್ತು ಆತಂಕ (ರಾಹುವಿನ ಸಹಿ) ನೇರವಾಗಿ ರೋಗನಿರೋಧಕ ಕಾರ್ಯವನ್ನು ನಿಗ್ರಹಿಸುತ್ತದೆ, ಉರಿಯೂತವನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ ಮತ್ತು ವಯಸ್ಸಾಗುವಿಕೆಯನ್ನು ವೇಗಗೊಳಿಸುತ್ತದೆ ಎಂದು ಸಾಬೀತುಪಡಿಸುತ್ತದೆ. ವೈದಿಕ ಗ್ರಂಥಗಳು ಸಾವಿರಾರು ವರ್ಷಗಳ ಹಿಂದೆ ಈ ಸಂಪರ್ಕವನ್ನು ಅಂತರ್ಬೋಧೆಯಿಂದ ಅರಿತಿದ್ದವು: ಶನಿ/ರಾಹು ಅವಧಿಗಳನ್ನು ಹೆಚ್ಚಿನ ರೋಗದ ಕಿಟಕಿಗಳೆಂದು ಗುರುತಿಸಲಾಗಿತ್ತು, ವಿಶೇಷವಾಗಿ ಈ ಗ್ರಹಗಳು ಜನ್ಮ ಜಾತಕದಲ್ಲಿ ಚಂದ್ರನನ್ನು (ಮನಸ್ಸು) ಪೀಡಿಸಿದಾಗ.",
+    "mr": "PNI संशोधन सिद्ध करते की दीर्घकाळचा ताण (शनीचे वैशिष्ट्य) आणि चिंता (राहुचे वैशिष्ट्य) रोगप्रतिकारशक्ती थेट कमी करतात, दाह वाढवतात आणि वृद्धत्वाची प्रक्रिया वेगवान करतात. वैदिक ग्रंथांनी हजारो वर्षांपूर्वीच हे संबंध ओळखले होते: शनी/राहुच्या काळात रोगांचे प्रमाण जास्त असते, विशेषतः जेव्हा हे ग्रह जन्मकुंडलीतील चंद्राला (मन) पीडित करतात."
   },
   "disclaimer": {
     "en": "This content presents traditional Vedic knowledge for educational purposes only. It is NOT medical advice. Always consult qualified healthcare professionals for any health concern.",
@@ -2106,10 +2106,10 @@
     "ta": "இந்த உள்ளடக்கம் கல்வி நோக்கங்களுக்காக மட்டுமே பாரம்பரிய வேத அறிவை வழங்குகிறது. இது மருத்துவ ஆலோசனை அல்ல.",
     "bn": "এই বিষয়বস্তু শুধুমাত্র শিক্ষামূলক উদ্দেশ্যে ঐতিহ্যবাহী বৈদিক জ্ঞান উপস্থাপন করে। এটি চিকিৎসা পরামর্শ নয়।",
     "mai": "ई सामग्री पारंपरिक वैदिक ज्ञान मात्र शैक्षिक उद्देश्यक लेल प्रस्तुत करैत अछि। ई चिकित्सीय सलाह नहि अछि। कोनो स्वास्थ्य संबंधी चिंताक लेल सदिखन योग्य स्वास्थ्य सेवा पेशेवरसँ परामर्श करू।",
-    "te": "This content presents traditional Vedic knowledge for educational purposes only. It is NOT medical advice. Always consult qualified healthcare professionals for any health concern.",
-    "gu": "This content presents traditional Vedic knowledge for educational purposes only. It is NOT medical advice. Always consult qualified healthcare professionals for any health concern.",
-    "kn": "This content presents traditional Vedic knowledge for educational purposes only. It is NOT medical advice. Always consult qualified healthcare professionals for any health concern.",
-    "mr": "This content presents traditional Vedic knowledge for educational purposes only. It is NOT medical advice. Always consult qualified healthcare professionals for any health concern."
+    "te": "ఈ కంటెంట్ విద్యా ప్రయోజనాల కోసం మాత్రమే సాంప్రదాయ వేద జ్ఞానాన్ని అందిస్తుంది. ఇది వైద్య సలహా కాదు. ఏదైనా ఆరోగ్య సమస్య కోసం ఎల్లప్పుడూ అర్హత కలిగిన ఆరోగ్య సంరక్షణ నిపుణులను సంప్రదించండి.",
+    "gu": "આ સામગ્રી ફક્ત શૈક્ષણિક હેતુઓ માટે પરંપરાગત વૈદિક જ્ઞાન રજૂ કરે છે. તે તબીબી સલાહ નથી. કોઈપણ સ્વાસ્થ્ય સમસ્યા માટે હંમેશા લાયક આરોગ્ય સંભાળ વ્યાવસાયિકોની સલાહ લો.",
+    "kn": "ಈ ವಿಷಯವು ಶೈಕ್ಷಣಿಕ ಉದ್ದೇಶಗಳಿಗಾಗಿ ಸಾಂಪ್ರದಾಯಿಕ ವೈದಿಕ ಜ್ಞಾನವನ್ನು ಮಾತ್ರ ಪ್ರಸ್ತುತಪಡಿಸುತ್ತದೆ. ಇದು ವೈದ್ಯಕೀಯ ಸಲಹೆಯಲ್ಲ. ಯಾವುದೇ ಆರೋಗ್ಯ ಸಮಸ್ಯೆಗೆ ಯಾವಾಗಲೂ ಅರ್ಹ ಆರೋಗ್ಯ ವೃತ್ತಿಪರರನ್ನು ಸಂಪರ್ಕಿಸಿ.",
+    "mr": "ही सामग्री केवळ शैक्षणिक उद्देशांसाठी पारंपरिक वैदिक ज्ञान सादर करते. हा वैद्यकीय सल्ला नाही. कोणत्याही आरोग्य समस्येसाठी नेहमी पात्र आरोग्य व्यावसायिकांचा सल्ला घ्या."
   },
   "navKundali": {
     "en": "Generate Kundali",
@@ -2117,10 +2117,10 @@
     "ta": "குண்டலி உருவாக்கு",
     "bn": "কুণ্ডলী তৈরি করুন",
     "mai": "कुंडली बनाउ",
-    "te": "Generate Kundali",
-    "gu": "Generate Kundali",
-    "kn": "Generate Kundali",
-    "mr": "Generate Kundali"
+    "te": "కుండలిని రూపొందించండి",
+    "gu": "કુંડળી બનાવો",
+    "kn": "ಕುಂಡಲಿ ರಚಿಸಿ",
+    "mr": "कुंडली तयार करा"
   },
   "navHealth": {
     "en": "Medical Astrology Tool",
@@ -2128,10 +2128,10 @@
     "ta": "மருத்துவ ஜோதிட கருவி",
     "bn": "চিকিৎসা জ্যোতিষ সরঞ্জাম",
     "mai": "चिकित्सीय ज्योतिष उपकरण",
-    "te": "Medical Astrology Tool",
-    "gu": "Medical Astrology Tool",
-    "kn": "Medical Astrology Tool",
-    "mr": "Medical Astrology Tool"
+    "te": "వైద్య జ్యోతిష్య సాధనం",
+    "gu": "ચિકિત્સા જ્યોતિષ સાધન",
+    "kn": "ವೈದ್ಯಕೀಯ ಜ್ಯೋತಿಷ್ಯ ಸಾಧನ",
+    "mr": "वैद्यकीय ज्योतिष साधन"
   },
   "navLearnHealth": {
     "en": "Health & Astrology",
@@ -2139,10 +2139,10 @@
     "ta": "ஆரோக்கியம் & ஜோதிடம்",
     "bn": "স্বাস্থ্য ও জ্যোতিষ",
     "mai": "स्वास्थ्य आ ज्योतिष",
-    "te": "Health & Astrology",
-    "gu": "Health & Astrology",
-    "kn": "Health & Astrology",
-    "mr": "Health & Astrology"
+    "te": "ఆరోగ్యం & జ్యోతిష్యం",
+    "gu": "સ્વાસ્થ્ય અને જ્યોતિષ",
+    "kn": "ಆರೋಗ್ಯ ಮತ್ತು ಜ್ಯೋತಿಷ್ಯ",
+    "mr": "आरोग्य आणि ज्योतिष"
   },
   "navHora": {
     "en": "Hora Guide",
@@ -2150,9 +2150,9 @@
     "ta": "ஹோரா வழிகாட்டி",
     "bn": "হোরা গাইড",
     "mai": "होरा दर्शिका",
-    "te": "Hora Guide",
-    "gu": "Hora Guide",
-    "kn": "Hora Guide",
-    "mr": "Hora Guide"
+    "te": "హోరా మార్గదర్శిని",
+    "gu": "હોરા માર્ગદર્શિકા",
+    "kn": "ಹೋರಾ ಮಾರ್ಗದರ್ಶಿ",
+    "mr": "होरा मार्गदर्शक"
   }
 }

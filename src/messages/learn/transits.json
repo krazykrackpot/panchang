@@ -746,5 +746,13 @@
     "mr": "तुमची जन्मकुंडली समजून घ्या",
     "gu": "તમારી જન્મ કુંડળી સમજવી",
     "mai": "अपन जन्म कुण्डली बुझू"
+  },
+  "transitArticlesHeading": {
+    "en": "Transit Analysis Articles",
+    "hi": "गोचर विश्लेषण लेख"
+  },
+  "readFullArticle": {
+    "en": "Read full article →",
+    "hi": "पूरा लेख पढ़ें →"
   }
 }

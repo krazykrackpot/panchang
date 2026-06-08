@@ -28,11 +28,11 @@
         "hi": "1.1 रात्रि आकाश",
         "mai": "१.१ रातिक आकाश आ क्रांतिवृत्त",
         "mr": "1.1 रात्रि आकाश",
-        "ta": "1.1 Night Sky & Ecliptic",
-        "te": "1.1 Night Sky & Ecliptic",
-        "bn": "1.1 Night Sky & Ecliptic",
-        "kn": "1.1 Night Sky & Ecliptic",
-        "gu": "1.1 Night Sky & Ecliptic"
+        "ta": "1.1 இரவு வானம் மற்றும் சூரியப்பாதை",
+        "te": "1.1 రాత్రి ఆకాశం & క్రాంతి వృత్తం",
+        "bn": "1.1 রাতের আকাশ ও ক্রান্তিবৃত্ত",
+        "kn": "1.1 ರಾತ್ರಿ ಆಕಾಶ ಮತ್ತು ಕ್ರಾಂತಿವೃತ್ತ",
+        "gu": "1.1 રાત્રિ આકાશ અને ક્રાંતિવૃત"
       },
       "href": "/learn/modules/1-1"
     },
@@ -74,11 +74,11 @@
         "hi": "एक राशि में कितने अंश होते हैं?",
         "mai": "एकटा राशि (राशि चक्रक चिन्ह) केतेक डिग्रीक होइत अछि?",
         "mr": "एक राशि में कितने अंश होते हैं?",
-        "ta": "How many degrees make up one Rashi (zodiac sign)?",
-        "te": "How many degrees make up one Rashi (zodiac sign)?",
-        "bn": "How many degrees make up one Rashi (zodiac sign)?",
-        "kn": "How many degrees make up one Rashi (zodiac sign)?",
-        "gu": "How many degrees make up one Rashi (zodiac sign)?"
+        "ta": "ஒரு ராசி எத்தனை பாகைகளைக் கொண்டுள்ளது?",
+        "te": "ఒక రాశిలో ఎన్ని డిగ్రీలు ఉంటాయి?",
+        "bn": "একটি রাশি (রাশিচক্রের চিহ্ন) কত ডিগ্রি নিয়ে গঠিত?",
+        "kn": "ಒಂದು ರಾಶಿ (zodiac sign) ಎಷ್ಟು ಡಿಗ್ರಿಗಳನ್ನು ಒಳಗೊಂಡಿದೆ?",
+        "gu": "એક રાશિ કેટલા અંશની બનેલી હોય છે?"
       },
       "options": [
         {
@@ -132,11 +132,11 @@
         "hi": "360° ÷ 12 राशि = 30° प्रति राशि। यह समान विभाजन मूलभूत है  –  राशियाँ गणितीय विभाजन हैं, भौतिक नक्षत्रमंडल (जिनका विस्तार असमान है) नहीं।",
         "mai": "३६०° ÷ १२ राशि = प्रत्येक राशि ३०°। ई समान विभाजन मौलिक अछि – राशि सभ गणितीय विभाजन अछि, भौतिक नक्षत्र मंडल नहि (जेकर विस्तार असमान होइत अछि)।",
         "mr": "360° ÷ 12 राशि = 30° प्रति राशि। यह समान विभाजन मूलभूत है  –  राशियाँ गणितीय विभाजन हैं, भौतिक नक्षत्रमंडल (जिनका विस्तार असमान है) नहीं।",
-        "ta": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental  –  signs are mathematical divisions, not physical constellations (which have unequal spans).",
-        "te": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental  –  signs are mathematical divisions, not physical constellations (which have unequal spans).",
-        "bn": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental  –  signs are mathematical divisions, not physical constellations (which have unequal spans).",
-        "kn": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental  –  signs are mathematical divisions, not physical constellations (which have unequal spans).",
-        "gu": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental  –  signs are mathematical divisions, not physical constellations (which have unequal spans)."
+        "ta": "360° ÷ 12 ராசிகள் = ஒரு ராசிக்கு 30°. இந்த சமமான பிரிவு அடிப்படையானது – ராசிகள் கணிதப் பிரிவுகள், இயற்பியல் விண்மீன் கூட்டங்கள் அல்ல (அவை சமமற்ற பரப்பளவைக் கொண்டுள்ளன).",
+        "te": "360° ÷ 12 రాశులు = ఒక్కో రాశికి 30°. ఈ సమాన విభజన ప్రాథమికమైనది – రాశులు గణిత విభజనలు, భౌతిక నక్షత్రరాశులు (అసమాన విస్తీర్ణం కలిగి ఉంటాయి) కావు.",
+        "bn": "৩৬০° ÷ ১২ রাশি = প্রতি রাশিতে ৩০°। এই সমান বিভাজন মৌলিক – রাশিগুলি গাণিতিক বিভাজন, ভৌত নক্ষত্রমণ্ডল নয় (যার বিস্তার অসম)।",
+        "kn": "360° ÷ 12 ರಾಶಿಗಳು = ಪ್ರತಿ ರಾಶಿಗೆ 30°. ಈ ಸಮಾನ ವಿಭಜನೆಯು ಮೂಲಭೂತವಾಗಿದೆ – ರಾಶಿಗಳು ಗಣಿತದ ವಿಭಾಗಗಳಾಗಿವೆ, ಭೌತಿಕ ನಕ್ಷತ್ರಪುಂಜಗಳಲ್ಲ (ಅವು ಅಸಮಾನ ವ್ಯಾಪ್ತಿಯನ್ನು ಹೊಂದಿವೆ).",
+        "gu": "૩૬૦° ÷ ૧૨ રાશિ = ૩૦° પ્રતિ રાશિ. આ સમાન વિભાજન મૂળભૂત છે – રાશિઓ ગાણિતિક વિભાજન છે, ભૌતિક તારામંડળો નથી (જેની લંબાઈ અસમાન હોય છે)."
       },
       "classicalRef": "BPHS Ch.1 v.4"
     },
@@ -148,11 +148,11 @@
         "hi": "एक नक्षत्र कितने अंश का होता है?",
         "mai": "एकटा नक्षत्रक विस्तार केतेक डिग्रीक होइत अछि?",
         "mr": "एक नक्षत्र कितने अंश का होता है?",
-        "ta": "How many degrees span one Nakshatra?",
-        "te": "How many degrees span one Nakshatra?",
-        "bn": "How many degrees span one Nakshatra?",
-        "kn": "How many degrees span one Nakshatra?",
-        "gu": "How many degrees span one Nakshatra?"
+        "ta": "ஒரு நட்சத்திரம் எத்தனை பாகைகள் பரவுகிறது?",
+        "te": "ఒక నక్షత్రం ఎన్ని డిగ్రీలు విస్తరించి ఉంటుంది?",
+        "bn": "একটি নক্ষত্র কত ডিগ্রি বিস্তৃত?",
+        "kn": "ಒಂದು ನಕ್ಷತ್ರ ಎಷ್ಟು ಡಿಗ್ರಿಗಳನ್ನು ವ್ಯಾಪಿಸಿದೆ?",
+        "gu": "એક નક્ષત્રમાં કેટલા અંશ વિસ્તરેલા હોય છે?"
       },
       "options": [
         {
@@ -204,12 +204,12 @@
       "explanation": {
         "en": "360° ÷ 27 nakshatras = 13°20' (13.333°) per nakshatra. Each nakshatra is further divided into 4 padas of 3°20' each. Total: 27 × 4 = 108 padas = the sacred number.",
         "hi": "360° ÷ 27 = 13°20' प्रति नक्षत्र। प्रत्येक नक्षत्र 4 पादों (3°20') में विभाजित। कुल: 27 × 4 = 108 पाद = पवित्र संख्या।",
-        "ta": "360° ÷ 27 nakshatras = 13°20' (13.333°) per nakshatra. Each nakshatra is further divided into 4 padas of 3°20' each. Total: 27 × 4 = 108 padas = the sacred number.",
-        "te": "360° ÷ 27 nakshatras = 13°20' (13.333°) per nakshatra. Each nakshatra is further divided into 4 padas of 3°20' each. Total: 27 × 4 = 108 padas = the sacred number.",
-        "bn": "360° ÷ 27 nakshatras = 13°20' (13.333°) per nakshatra. Each nakshatra is further divided into 4 padas of 3°20' each. Total: 27 × 4 = 108 padas = the sacred number.",
-        "kn": "360° ÷ 27 nakshatras = 13°20' (13.333°) per nakshatra. Each nakshatra is further divided into 4 padas of 3°20' each. Total: 27 × 4 = 108 padas = the sacred number.",
+        "ta": "360° ÷ 27 நட்சத்திரங்கள் = ஒரு நட்சத்திரத்திற்கு 13°20' (13.333°). ஒவ்வொரு நட்சத்திரமும் மேலும் 4 பாதங்களாகப் பிரிக்கப்பட்டுள்ளது, ஒவ்வொன்றும் 3°20'. மொத்தம்: 27 × 4 = 108 பாதங்கள் = புனித எண்.",
+        "te": "360° ÷ 27 నక్షత్రాలు = ఒక్కో నక్షత్రానికి 13°20' (13.333°). ప్రతి నక్షత్రం 3°20' చొప్పున 4 పాదాలుగా విభజించబడింది. మొత్తం: 27 × 4 = 108 పాదాలు = పవిత్ర సంఖ్య.",
+        "bn": "৩৬০° ÷ ২৭ নক্ষত্র = প্রতি নক্ষত্রে ১৩°২০' (১৩.৩৩৩°)। প্রতিটি নক্ষত্রকে আরও ৪টি পদে বিভক্ত করা হয়, প্রতিটি ৩°২০' করে। মোট: ২৭ × ৪ = ১০৮ পদ = পবিত্র সংখ্যা।",
+        "kn": "360° ÷ 27 ನಕ್ಷತ್ರಗಳು = ಪ್ರತಿ ನಕ್ಷತ್ರಕ್ಕೆ 13°20' (13.333°). ಪ್ರತಿ ನಕ್ಷತ್ರವನ್ನು 3°20' ರ 4 ಪಾದಗಳಾಗಿ ವಿಂಗಡಿಸಲಾಗಿದೆ. ಒಟ್ಟು: 27 × 4 = 108 ಪಾದಗಳು = ಪವಿತ್ರ ಸಂಖ್ಯೆ.",
         "mr": "360° ÷ 27 = 13°20' प्रति नक्षत्र। प्रत्येक नक्षत्र 4 पादों (3°20') में विभाजित। कुल: 27 × 4 = 108 पाद = पवित्र संख्या।",
-        "gu": "360° ÷ 27 nakshatras = 13°20' (13.333°) per nakshatra. Each nakshatra is further divided into 4 padas of 3°20' each. Total: 27 × 4 = 108 padas = the sacred number.",
+        "gu": "૩૬૦° ÷ ૨૭ નક્ષત્ર = ૧૩°૨૦' (૧૩.૩૩૩°) પ્રતિ નક્ષત્ર. દરેક નક્ષત્રને આગળ ૪ પદમાં વિભાજિત કરવામાં આવે છે, જેમાં દરેક પદ ૩°૨૦'નું હોય છે. કુલ: ૨૭ × ૪ = ૧૦૮ પદ = પવિત્ર સંખ્યા.",
         "mai": "३६०° ÷ २७ नक्षत्र = प्रत्येक नक्षत्र १३°२०' (१३.३३३°)। प्रत्येक नक्षत्रकेँ आगाँ ३°२०' क ४ पादमे बाँटल गेल अछि। कुल: २७ × ४ = १०८ पाद = पवित्र संख्या।"
       },
       "classicalRef": "Surya Siddhanta"
@@ -222,11 +222,11 @@
         "hi": "चंद्रमा 47° निरयन देशांतर पर हो तो किस राशि में है?",
         "mai": "यदि चंद्रमा ४७° नक्षत्रक देशांतर पर अछि, तँ ई कोन राशिमे अछि?",
         "mr": "चंद्रमा 47° निरयन देशांतर पर हो तो किस राशि में है?",
-        "ta": "If the Moon is at 47° sidereal longitude, which sign is it in?",
-        "te": "If the Moon is at 47° sidereal longitude, which sign is it in?",
-        "bn": "If the Moon is at 47° sidereal longitude, which sign is it in?",
-        "kn": "If the Moon is at 47° sidereal longitude, which sign is it in?",
-        "gu": "If the Moon is at 47° sidereal longitude, which sign is it in?"
+        "ta": "சந்திரன் 47° நிராயன தீர்க்கரேகையில் இருந்தால், அது எந்த ராசியில் உள்ளது?",
+        "te": "చంద్రుడు 47° నిరయన రేఖాంశం వద్ద ఉంటే, అది ఏ రాశిలో ఉంటుంది?",
+        "bn": "যদি চন্দ্র ৪৭° নিরয়ন দ্রাঘিমাংশে থাকে, তাহলে এটি কোন রাশিতে আছে?",
+        "kn": "ಚಂದ್ರನು 47° ಸಿದ್ಧಾಂತದ ರೇಖಾಂಶದಲ್ಲಿದ್ದರೆ, ಅದು ಯಾವ ರಾಶಿಯಲ್ಲಿದೆ?",
+        "gu": "જો ચંદ્ર ૪૭° નિરાયન રેખાંશ પર હોય, તો તે કઈ રાશિમાં છે?"
       },
       "options": [
         {
@@ -234,44 +234,44 @@
           "hi": "मेष",
           "mai": "मेष (०-३०°)",
           "mr": "मेष",
-          "ta": "Aries (0-30°)",
-          "te": "Aries (0-30°)",
-          "bn": "Aries (0-30°)",
-          "kn": "Aries (0-30°)",
-          "gu": "Aries (0-30°)"
+          "ta": "மேஷம் (0-30°)",
+          "te": "మేషం (0-30°)",
+          "bn": "মেষ (০-৩০°)",
+          "kn": "ಮೇಷ (0-30°)",
+          "gu": "મેષ (૦-૩૦°)"
         },
         {
           "en": "Taurus (30-60°)",
           "hi": "वृषभ",
           "mai": "वृषभ (३०-६०°)",
           "mr": "वृषभ",
-          "ta": "Taurus (30-60°)",
-          "te": "Taurus (30-60°)",
-          "bn": "Taurus (30-60°)",
-          "kn": "Taurus (30-60°)",
-          "gu": "Taurus (30-60°)"
+          "ta": "ரிஷபம் (30-60°)",
+          "te": "వృషభం (30-60°)",
+          "bn": "বৃষ (৩০-৬০°)",
+          "kn": "ವೃಷಭ (30-60°)",
+          "gu": "વૃષભ (૩૦-૬૦°)"
         },
         {
           "en": "Gemini (60-90°)",
           "hi": "मिथुन",
           "mai": "मिथुन (६०-९०°)",
           "mr": "मिथुन",
-          "ta": "Gemini (60-90°)",
-          "te": "Gemini (60-90°)",
-          "bn": "Gemini (60-90°)",
-          "kn": "Gemini (60-90°)",
-          "gu": "Gemini (60-90°)"
+          "ta": "மிதுனம் (60-90°)",
+          "te": "మిథునం (60-90°)",
+          "bn": "মিথুন (৬০-৯০°)",
+          "kn": "ಮಿಥುನ (60-90°)",
+          "gu": "મિથુન (૬૦-૯૦°)"
         },
         {
           "en": "Cancer (90-120°)",
           "hi": "कर्क",
           "mai": "कर्क (९०-१२०°)",
           "mr": "कर्क",
-          "ta": "Cancer (90-120°)",
-          "te": "Cancer (90-120°)",
-          "bn": "Cancer (90-120°)",
-          "kn": "Cancer (90-120°)",
-          "gu": "Cancer (90-120°)"
+          "ta": "கடகம் (90-120°)",
+          "te": "కర్కాటకం (90-120°)",
+          "bn": "কর্কট (৯০-১২০°)",
+          "kn": "ಕರ್ಕಾಟಕ (90-120°)",
+          "gu": "કર્ક (૯૦-૧૨૦°)"
         }
       ],
       "correctAnswer": 1,
@@ -280,11 +280,11 @@
         "hi": "47° 30-60° सीमा में = वृषभ (2nd राशि)। सूत्र: floor(47/30) + 1 = 2 = वृषभ। वृषभ में 17° (47-30=17°)।",
         "mai": "४७° ३०-६०° क सीमामे अबैत अछि = वृषभ (दोसर राशि)। सूत्र: राशि = floor(४७/३०) + १ = floor(१.५६६) + १ = १ + १ = २ = वृषभ। चंद्रमा वृषभ राशिमे १७° पर अछि (४७ - ३० = १७°)।",
         "mr": "47° 30-60° सीमा में = वृषभ (2nd राशि)। सूत्र: floor(47/30) + 1 = 2 = वृषभ। वृषभ में 17° (47-30=17°)।",
-        "ta": "47° falls in 30-60° range = Taurus (2nd sign). Formula: sign = floor(47/30) + 1 = floor(1.566) + 1 = 1 + 1 = 2 = Taurus. The Moon is at 17° within Taurus (47 - 30 = 17°).",
-        "te": "47° falls in 30-60° range = Taurus (2nd sign). Formula: sign = floor(47/30) + 1 = floor(1.566) + 1 = 1 + 1 = 2 = Taurus. The Moon is at 17° within Taurus (47 - 30 = 17°).",
-        "bn": "47° falls in 30-60° range = Taurus (2nd sign). Formula: sign = floor(47/30) + 1 = floor(1.566) + 1 = 1 + 1 = 2 = Taurus. The Moon is at 17° within Taurus (47 - 30 = 17°).",
-        "kn": "47° falls in 30-60° range = Taurus (2nd sign). Formula: sign = floor(47/30) + 1 = floor(1.566) + 1 = 1 + 1 = 2 = Taurus. The Moon is at 17° within Taurus (47 - 30 = 17°).",
-        "gu": "47° falls in 30-60° range = Taurus (2nd sign). Formula: sign = floor(47/30) + 1 = floor(1.566) + 1 = 1 + 1 = 2 = Taurus. The Moon is at 17° within Taurus (47 - 30 = 17°)."
+        "ta": "47° என்பது 30-60° வரம்பில் வருகிறது = ரிஷபம் (2வது ராசி). சூத்திரம்: ராசி = floor(47/30) + 1 = floor(1.566) + 1 = 1 + 1 = 2 = ரிஷபம். சந்திரன் ரிஷபத்தில் 17° இல் உள்ளது (47 - 30 = 17°).",
+        "te": "47° అనేది 30-60° పరిధిలో వస్తుంది = వృషభం (2వ రాశి). సూత్రం: రాశి = floor(47/30) + 1 = floor(1.566) + 1 = 1 + 1 = 2 = వృషభం. చంద్రుడు వృషభంలో 17° వద్ద ఉన్నాడు (47 - 30 = 17°).",
+        "bn": "৪৭° ৩০-৬০° সীমার মধ্যে পড়ে = বৃষ (২য় রাশি)। সূত্র: রাশি = floor(৪৭/৩০) + ১ = floor(১.৫৬৬) + ১ = ১ + ১ = ২ = বৃষ। চন্দ্র বৃষ রাশির মধ্যে ১৭° তে আছে (৪৭ - ৩০ = ১৭°)।",
+        "kn": "47° 30-60° ವ್ಯಾಪ್ತಿಯಲ್ಲಿ ಬರುತ್ತದೆ = ವೃಷಭ (2ನೇ ರಾಶಿ). ಸೂತ್ರ: ರಾಶಿ = floor(47/30) + 1 = floor(1.566) + 1 = 1 + 1 = 2 = ವೃಷಭ. ಚಂದ್ರನು ವೃಷಭ ರಾಶಿಯಲ್ಲಿ 17° ನಲ್ಲಿದ್ದಾನೆ (47 - 30 = 17°).",
+        "gu": "૪૭° ૩૦-૬૦° ની શ્રેણીમાં આવે છે = વૃષભ (બીજી રાશિ). સૂત્ર: રાશિ = floor(૪૭/૩૦) + ૧ = floor(૧.૫૬૬) + ૧ = ૧ + ૧ = ૨ = વૃષભ. ચંદ્ર વૃષભ રાશિમાં ૧૭° પર છે (૪૭ - ૩૦ = ૧૭°)."
       }
     },
     {
@@ -295,11 +295,11 @@
         "hi": "चंद्रमा 47° पर हो तो कौन सा नक्षत्र?",
         "mai": "यदि चंद्रमा ४७° पर अछि, तँ ई कोन नक्षत्रमे अछि?",
         "mr": "चंद्रमा 47° पर हो तो कौन सा नक्षत्र?",
-        "ta": "If the Moon is at 47°, which Nakshatra is it in?",
-        "te": "If the Moon is at 47°, which Nakshatra is it in?",
-        "bn": "If the Moon is at 47°, which Nakshatra is it in?",
-        "kn": "If the Moon is at 47°, which Nakshatra is it in?",
-        "gu": "If the Moon is at 47°, which Nakshatra is it in?"
+        "ta": "சந்திரன் 47° இல் இருந்தால், அது எந்த நட்சத்திரத்தில் உள்ளது?",
+        "te": "చంద్రుడు 47° వద్ద ఉంటే, అది ఏ నక్షత్రంలో ఉంటుంది?",
+        "bn": "যদি চন্দ্র ৪৭° তে থাকে, তাহলে এটি কোন নক্ষত্রে আছে?",
+        "kn": "ಚಂದ್ರನು 47° ನಲ್ಲಿದ್ದರೆ, ಅದು ಯಾವ ನಕ್ಷತ್ರದಲ್ಲಿದೆ?",
+        "gu": "જો ચંદ્ર ૪૭° પર હોય, તો તે કયા નક્ષત્રમાં છે?"
       },
       "options": [
         {
@@ -307,56 +307,56 @@
           "hi": "अश्विनी",
           "mai": "अश्विनी (पहिल)",
           "mr": "अश्विनी",
-          "ta": "Ashwini (1st)",
-          "te": "Ashwini (1st)",
-          "bn": "Ashwini (1st)",
-          "kn": "Ashwini (1st)",
-          "gu": "Ashwini (1st)"
+          "ta": "அஸ்வினி (1வது)",
+          "te": "అశ్విని (1వ)",
+          "bn": "অশ্বিনী (১ম)",
+          "kn": "ಅಶ್ವಿನಿ (1ನೇ)",
+          "gu": "અશ્વિની (૧લું)"
         },
         {
           "en": "Bharani (2nd)",
           "hi": "भरणी",
           "mai": "भरणी (दोसर)",
           "mr": "भरणी",
-          "ta": "Bharani (2nd)",
-          "te": "Bharani (2nd)",
-          "bn": "Bharani (2nd)",
-          "kn": "Bharani (2nd)",
-          "gu": "Bharani (2nd)"
+          "ta": "பரணி (2வது)",
+          "te": "భరణి (2వ)",
+          "bn": "ভরণী (২য়)",
+          "kn": "ಭರಣಿ (2ನೇ)",
+          "gu": "ભરણી (૨જું)"
         },
         {
           "en": "Krittika (3rd)",
           "hi": "कृत्तिका",
           "mai": "कृत्तिका (तेसर)",
           "mr": "कृत्तिका",
-          "ta": "Krittika (3rd)",
-          "te": "Krittika (3rd)",
-          "bn": "Krittika (3rd)",
-          "kn": "Krittika (3rd)",
-          "gu": "Krittika (3rd)"
+          "ta": "கார்த்திகை (3வது)",
+          "te": "కృత్తిక (3వ)",
+          "bn": "কৃত্তিকা (৩য়)",
+          "kn": "ಕೃತ್ತಿಕಾ (3ನೇ)",
+          "gu": "કૃત્તિકા (૩જું)"
         },
         {
           "en": "Rohini (4th)",
           "hi": "रोहिणी",
           "mai": "रोहिणी (चौथ)",
           "mr": "रोहिणी",
-          "ta": "Rohini (4th)",
-          "te": "Rohini (4th)",
-          "bn": "Rohini (4th)",
-          "kn": "Rohini (4th)",
-          "gu": "Rohini (4th)"
+          "ta": "ரோகிணி (4வது)",
+          "te": "రోహిణి (4వ)",
+          "bn": "রোহিণী (৪র্থ)",
+          "kn": "ರೋಹಿಣಿ (4ನೇ)",
+          "gu": "રોહિણી (૪થું)"
         }
       ],
       "correctAnswer": 3,
       "explanation": {
         "en": "Nakshatra = floor(47 / 13.333) + 1 = floor(3.525) + 1 = 3 + 1 = 4 = Rohini. Rohini spans 40°00' to 53°20'. The Moon at 47° is in the 3rd pada of Rohini (7° into Rohini, pada = floor(7/3.333) + 1 = 3).",
         "hi": "नक्षत्र = floor(47/13.333) + 1 = 4 = रोहिणी। रोहिणी 40°-53°20' तक। 47° पर रोहिणी का 3rd पाद।",
-        "ta": "Nakshatra = floor(47 / 13.333) + 1 = floor(3.525) + 1 = 3 + 1 = 4 = Rohini. Rohini spans 40°00' to 53°20'. The Moon at 47° is in the 3rd pada of Rohini (7° into Rohini, pada = floor(7/3.333) + 1 = 3).",
-        "te": "Nakshatra = floor(47 / 13.333) + 1 = floor(3.525) + 1 = 3 + 1 = 4 = Rohini. Rohini spans 40°00' to 53°20'. The Moon at 47° is in the 3rd pada of Rohini (7° into Rohini, pada = floor(7/3.333) + 1 = 3).",
-        "bn": "Nakshatra = floor(47 / 13.333) + 1 = floor(3.525) + 1 = 3 + 1 = 4 = Rohini. Rohini spans 40°00' to 53°20'. The Moon at 47° is in the 3rd pada of Rohini (7° into Rohini, pada = floor(7/3.333) + 1 = 3).",
-        "kn": "Nakshatra = floor(47 / 13.333) + 1 = floor(3.525) + 1 = 3 + 1 = 4 = Rohini. Rohini spans 40°00' to 53°20'. The Moon at 47° is in the 3rd pada of Rohini (7° into Rohini, pada = floor(7/3.333) + 1 = 3).",
+        "ta": "நட்சத்திரம் = floor(47 / 13.333) + 1 = floor(3.525) + 1 = 3 + 1 = 4 = ரோகிணி. ரோகிணி 40°00' முதல் 53°20' வரை பரவுகிறது. சந்திரன் 47° இல் ரோகிணியின் 3வது பாதத்தில் உள்ளது (ரோகிணியில் 7°, பாதம் = floor(7/3.333) + 1 = 3).",
+        "te": "నక్షత్రం = floor(47 / 13.333) + 1 = floor(3.525) + 1 = 3 + 1 = 4 = రోహిణి. రోహిణి 40°00' నుండి 53°20' వరకు విస్తరించి ఉంటుంది. 47° వద్ద ఉన్న చంద్రుడు రోహిణి యొక్క 3వ పాదంలో ఉన్నాడు (రోహిణిలో 7°, పాదం = floor(7/3.333) + 1 = 3).",
+        "bn": "নক্ষত্র = floor(৪৭ / ১৩.৩৩৩) + ১ = floor(৩.৫২৫) + ১ = ৩ + ১ = ৪ = রোহিণী। রোহিণী ৪০°০০' থেকে ৫৩°২০' পর্যন্ত বিস্তৃত। ৪৭° তে চন্দ্র রোহিণী নক্ষত্রের ৩য় পদে আছে (রোহিণীর মধ্যে ৭°, পদ = floor(৭/৩.৩৩৩) + ১ = ৩)।",
+        "kn": "ನಕ್ಷತ್ರ = floor(47 / 13.333) + 1 = floor(3.525) + 1 = 3 + 1 = 4 = ರೋಹಿಣಿ. ರೋಹಿಣಿ 40°00' ರಿಂದ 53°20' ವರೆಗೆ ವ್ಯಾಪಿಸಿದೆ. 47° ನಲ್ಲಿರುವ ಚಂದ್ರನು ರೋಹಿಣಿಯ 3ನೇ ಪಾದದಲ್ಲಿದ್ದಾನೆ (ರೋಹಿಣಿಯಲ್ಲಿ 7°, ಪಾದ = floor(7/3.333) + 1 = 3).",
         "mr": "नक्षत्र = floor(47/13.333) + 1 = 4 = रोहिणी। रोहिणी 40°-53°20' तक। 47° पर रोहिणी का 3rd पाद।",
-        "gu": "Nakshatra = floor(47 / 13.333) + 1 = floor(3.525) + 1 = 3 + 1 = 4 = Rohini. Rohini spans 40°00' to 53°20'. The Moon at 47° is in the 3rd pada of Rohini (7° into Rohini, pada = floor(7/3.333) + 1 = 3).",
+        "gu": "નક્ષત્ર = floor(૪૭ / ૧૩.૩૩૩) + ૧ = floor(૩.૫૨૫) + ૧ = ૩ + ૧ = ૪ = રોહિણી. રોહિણી ૪૦°૦૦' થી ૫૩°૨૦' સુધી વિસ્તરેલું છે. ૪૭° પરનો ચંદ્ર રોહિણીના ત્રીજા પદમાં છે (રોહિણીમાં ૭°, પદ = floor(૭/૩.૩૩૩) + ૧ = ૩).",
         "mai": "नक्षत्र = floor(४७ / १३.३३३) + १ = floor(३.५२५) + १ = ३ + १ = ४ = रोहिणी। रोहिणीक विस्तार ४०°००' सँ ५३°२०' धरि अछि। चंद्रमा ४७° पर रोहिणीक तेसर पादमे अछि (रोहिणीमे ७°, पाद = floor(७/३.३३३) + १ = ३)।"
       }
     },
@@ -368,22 +368,22 @@
         "hi": "27 नक्षत्र × 4 पाद = 108  –  और यही कारण है कि 108 हिंदू धर्म में पवित्र है।",
         "mai": "२७ नक्षत्र × ४ पाद = १०८ – आ एही कारणेँ १०८ हिंदू धर्ममे पवित्र मानल जाइत अछि।",
         "mr": "27 नक्षत्र × 4 पाद = 108  –  और यही कारण है कि 108 हिंदू धर्म में पवित्र है।",
-        "ta": "27 nakshatras × 4 padas = 108  –  and this is why 108 is sacred in Hinduism.",
-        "te": "27 nakshatras × 4 padas = 108  –  and this is why 108 is sacred in Hinduism.",
-        "bn": "27 nakshatras × 4 padas = 108  –  and this is why 108 is sacred in Hinduism.",
-        "kn": "27 nakshatras × 4 padas = 108  –  and this is why 108 is sacred in Hinduism.",
-        "gu": "27 nakshatras × 4 padas = 108  –  and this is why 108 is sacred in Hinduism."
+        "ta": "27 நட்சத்திரங்கள் × 4 பாதங்கள் = 108 – இதனால்தான் 108 இந்து மதத்தில் புனிதமானது.",
+        "te": "27 నక్షత్రాలు × 4 పాదాలు = 108 – అందుకే హిందూ మతంలో 108 పవిత్రమైనది.",
+        "bn": "২৭ নক্ষত্র × ৪ পদ = ১০৮ – আর এই কারণেই ১০৮ হিন্দুধর্মে পবিত্র।",
+        "kn": "27 ನಕ್ಷತ್ರಗಳು × 4 ಪಾದಗಳು = 108 – ಮತ್ತು ಇದೇ ಕಾರಣಕ್ಕೆ 108 ಹಿಂದೂ ಧರ್ಮದಲ್ಲಿ ಪವಿತ್ರವಾಗಿದೆ.",
+        "gu": "૨૭ નક્ષત્ર × ૪ પદ = ૧૦૮ – અને આ જ કારણ છે કે હિંદુ ધર્મમાં ૧૦૮ ને પવિત્ર માનવામાં આવે છે."
       },
       "correctAnswer": true,
       "explanation": {
         "en": "Correct. 108 is the total number of Navamsha divisions (padas) in the zodiac. A mala (rosary) has 108 beads. The Sun's diameter is approximately 108 times Earth's. The Sun-Earth distance is approximately 108 Sun-diameters. This astronomical convergence was recognized by ancient Indian mathematicians.",
         "hi": "सही। 108 राशिचक्र में नवांश (पाद) विभाजनों की कुल संख्या है। एक माला में 108 मनके होते हैं। सूर्य का व्यास पृथ्वी का ~108 गुना है।",
-        "ta": "Correct. 108 is the total number of Navamsha divisions (padas) in the zodiac. A mala (rosary) has 108 beads. The Sun's diameter is approximately 108 times Earth's. The Sun-Earth distance is approximately 108 Sun-diameters. This astronomical convergence was recognized by ancient Indian mathematicians.",
-        "te": "Correct. 108 is the total number of Navamsha divisions (padas) in the zodiac. A mala (rosary) has 108 beads. The Sun's diameter is approximately 108 times Earth's. The Sun-Earth distance is approximately 108 Sun-diameters. This astronomical convergence was recognized by ancient Indian mathematicians.",
-        "bn": "Correct. 108 is the total number of Navamsha divisions (padas) in the zodiac. A mala (rosary) has 108 beads. The Sun's diameter is approximately 108 times Earth's. The Sun-Earth distance is approximately 108 Sun-diameters. This astronomical convergence was recognized by ancient Indian mathematicians.",
-        "kn": "Correct. 108 is the total number of Navamsha divisions (padas) in the zodiac. A mala (rosary) has 108 beads. The Sun's diameter is approximately 108 times Earth's. The Sun-Earth distance is approximately 108 Sun-diameters. This astronomical convergence was recognized by ancient Indian mathematicians.",
+        "ta": "சரி. 108 என்பது ராசி மண்டலத்தில் உள்ள மொத்த நவாம்சப் பிரிவுகளின் (பாதங்கள்) எண்ணிக்கை. ஒரு மாலை (ஜெபமாலை) 108 மணிகளைக் கொண்டுள்ளது. சூரியனின் விட்டம் பூமியின் விட்டத்தை விட தோராயமாக 108 மடங்கு அதிகம். சூரியன்-பூமி தூரம் தோராயமாக 108 சூரிய விட்டங்கள். இந்த வானியல் ஒருங்கிணைப்பு பண்டைய இந்திய கணிதவியலாளர்களால் அங்கீகரிக்கப்பட்டது.",
+        "te": "సరియైనది. 108 అనేది రాశిచక్రంలో నవాంశ విభజనల (పాదాల) మొత్తం సంఖ్య. ఒక మాల (జపమాల)లో 108 పూసలు ఉంటాయి. సూర్యుని వ్యాసం భూమి వ్యాసానికి సుమారు 108 రెట్లు. సూర్యుడు-భూమి దూరం సుమారు 108 సూర్య వ్యాసాలు. ఈ ఖగోళ సమన్వయాన్ని ప్రాచీన భారతీయ గణిత శాస్త్రజ్ఞులు గుర్తించారు.",
+        "bn": "সঠিক। ১০৮ হল রাশিচক্রে নবমশা বিভাজন (পদ)-এর মোট সংখ্যা। একটি মালাতে (জপমালা) ১০৮টি পুঁতি থাকে। সূর্যের ব্যাস পৃথিবীর ব্যাসের প্রায় ১০৮ গুণ। সূর্য-পৃথিবীর দূরত্ব প্রায় ১০৮টি সূর্য-ব্যাস। এই জ্যোতির্বিজ্ঞানের অভিসার প্রাচীন ভারতীয় গণিতবিদদের দ্বারা স্বীকৃত হয়েছিল।",
+        "kn": "ಸರಿ. 108 ರಾಶಿಚಕ್ರದಲ್ಲಿನ ನವಾಂಶ ವಿಭಾಗಗಳ (ಪಾದಗಳು) ಒಟ್ಟು ಸಂಖ್ಯೆ. ಒಂದು ಮಾಲೆ (ಜಪಮಾಲೆ) 108 ಮಣಿಗಳನ್ನು ಹೊಂದಿದೆ. ಸೂರ್ಯನ ವ್ಯಾಸವು ಭೂಮಿಯ ವ್ಯಾಸದ ಸುಮಾರು 108 ಪಟ್ಟು. ಸೂರ್ಯ-ಭೂಮಿ ಅಂತರವು ಸೂರ್ಯನ ವ್ಯಾಸದ ಸುಮಾರು 108 ಪಟ್ಟು. ಈ ಖಗೋಳೀಯ ಸಂಗಮವನ್ನು ಪ್ರಾಚೀನ ಭಾರತೀಯ ಗಣಿತಜ್ಞರು ಗುರುತಿಸಿದ್ದಾರೆ.",
         "mr": "सही। 108 राशिचक्र में नवांश (पाद) विभाजनों की कुल संख्या है। एक माला में 108 मनके होते हैं। सूर्य का व्यास पृथ्वी का ~108 गुना है।",
-        "gu": "Correct. 108 is the total number of Navamsha divisions (padas) in the zodiac. A mala (rosary) has 108 beads. The Sun's diameter is approximately 108 times Earth's. The Sun-Earth distance is approximately 108 Sun-diameters. This astronomical convergence was recognized by ancient Indian mathematicians.",
+        "gu": "સાચું. ૧૦૮ એ રાશિચક્રમાં નવમાંશ વિભાજન (પદ) ની કુલ સંખ્યા છે. એક માળામાં (જપમાળા) ૧૦૮ મણકા હોય છે. સૂર્યનો વ્યાસ પૃથ્વીના વ્યાસ કરતાં આશરે ૧૦૮ ગણો છે. સૂર્ય-પૃથ્વીનું અંતર આશરે ૧૦૮ સૂર્ય-વ્યાસ જેટલું છે. આ ખગોળીય સંયોગને પ્રાચીન ભારતીય ગણિતશાસ્ત્રીઓ દ્વારા ઓળખવામાં આવ્યો હતો.",
         "mai": "सही। १०८ राशि चक्रमे नवमांश विभाजन (पाद) क कुल संख्या अछि। एकटा मालामे १०८ मनका होइत अछि। सूर्यक व्यास पृथ्वीक लगभग १०८ गुना अछि। सूर्य-पृथ्वीक दूरी लगभग १०८ सूर्य-व्यास अछि। ई खगोलीय अभिसरणकेँ प्राचीन भारतीय गणितज्ञ सभ पहचानल छलाह।"
       }
     },
@@ -395,22 +395,22 @@
         "hi": "ज्योतिष में असमान तारामंडलों के बजाय समान 30° राशियाँ क्यों हैं?",
         "mai": "ज्योतिष प्रणाली असमान नक्षत्र मंडलक बदलामे समान ३०° क राशि सभक उपयोग की लेल करैत अछि?",
         "mr": "ज्योतिष में असमान तारामंडलों के बजाय समान 30° राशियाँ क्यों हैं?",
-        "ta": "Why does the Jyotish system use EQUAL 30° signs instead of the unequal constellations?",
-        "te": "Why does the Jyotish system use EQUAL 30° signs instead of the unequal constellations?",
-        "bn": "Why does the Jyotish system use EQUAL 30° signs instead of the unequal constellations?",
-        "kn": "Why does the Jyotish system use EQUAL 30° signs instead of the unequal constellations?",
-        "gu": "Why does the Jyotish system use EQUAL 30° signs instead of the unequal constellations?"
+        "ta": "சமமற்ற விண்மீன் கூட்டங்களுக்குப் பதிலாக ஜோதிட அமைப்பு ஏன் சமமான 30° ராசிகளைப் பயன்படுத்துகிறது?",
+        "te": "జ్యోతిష్య శాస్త్రం అసమాన నక్షత్రరాశులకు బదులుగా సమానమైన 30° రాశులను ఎందుకు ఉపయోగిస్తుంది?",
+        "bn": "কেন জ্যোতিষ পদ্ধতি অসম নক্ষত্রমণ্ডলের পরিবর্তে সমান ৩০° রাশি ব্যবহার করে?",
+        "kn": "ಜ್ಯೋತಿಷ್ಯ ವ್ಯವಸ್ಥೆಯು ಅಸಮಾನ ನಕ್ಷತ್ರಪುಂಜಗಳ ಬದಲಿಗೆ ಸಮಾನ 30° ರಾಶಿಗಳನ್ನು ಏಕೆ ಬಳಸುತ್ತದೆ?",
+        "gu": "જ્યોતિષ પ્રણાલી અસમાન તારામંડળોને બદલે સમાન ૩૦° રાશિઓનો શા માટે ઉપયોગ કરે છે?"
       },
       "options": [
         {
           "en": "Because ancient Indians didn't know constellations had different sizes",
           "hi": "क्योंकि प्राचीन भारतीयों को नहीं पता था कि तारामंडल अलग-अलग आकार के हैं",
-          "ta": "Because ancient Indians didn't know constellations had different sizes",
-          "te": "Because ancient Indians didn't know constellations had different sizes",
-          "bn": "Because ancient Indians didn't know constellations had different sizes",
-          "kn": "Because ancient Indians didn't know constellations had different sizes",
+          "ta": "பண்டைய இந்தியர்களுக்கு விண்மீன் கூட்டங்கள் வெவ்வேறு அளவுகளைக் கொண்டிருந்தன என்று தெரியாததால்",
+          "te": "ప్రాచీన భారతీయులకు నక్షత్రరాశులు వేర్వేరు పరిమాణాలను కలిగి ఉన్నాయని తెలియదు కాబట్టి",
+          "bn": "কারণ প্রাচীন ভারতীয়রা জানত না যে নক্ষত্রমণ্ডলের আকার ভিন্ন ছিল",
+          "kn": "ಏಕೆಂದರೆ ಪ್ರಾಚೀನ ಭಾರತೀಯರಿಗೆ ನಕ್ಷತ್ರಪುಂಜಗಳು ವಿಭಿನ್ನ ಗಾತ್ರಗಳನ್ನು ಹೊಂದಿವೆ ಎಂದು ತಿಳಿದಿರಲಿಲ್ಲ",
           "mr": "क्योंकि प्राचीन भारतीयों को नहीं पता था कि तारामंडल अलग-अलग आकार के हैं",
-          "gu": "Because ancient Indians didn't know constellations had different sizes",
+          "gu": "કારણ કે પ્રાચીન ભારતીયો જાણતા ન હતા કે તારામંડળોના કદ અલગ અલગ હોય છે",
           "mai": "किएक तँ प्राचीन भारतीय सभ नहि जनैत छलाह जे नक्षत्र मंडलक आकार भिन्न-भिन्न होइत अछि"
         },
         {
@@ -418,45 +418,45 @@
           "hi": "गणितीय सुविधा  –  समान विभाजन सटीक गणना संभव बनाते हैं",
           "mai": "गणितीय सुविधाक लेल – समान विभाजन सटीक गणनाकेँ संभव बनबैत अछि",
           "mr": "गणितीय सुविधा  –  समान विभाजन सटीक गणना संभव बनाते हैं",
-          "ta": "For mathematical convenience  –  equal divisions enable precise computation",
-          "te": "For mathematical convenience  –  equal divisions enable precise computation",
-          "bn": "For mathematical convenience  –  equal divisions enable precise computation",
-          "kn": "For mathematical convenience  –  equal divisions enable precise computation",
-          "gu": "For mathematical convenience  –  equal divisions enable precise computation"
+          "ta": "கணித வசதிக்காக – சமமான பிரிவுகள் துல்லியமான கணக்கீட்டை செயல்படுத்துகின்றன",
+          "te": "గణిత సౌలభ్యం కోసం – సమాన విభజనలు ఖచ్చితమైన గణనను సాధ్యం చేస్తాయి",
+          "bn": "গাণিতিক সুবিধার জন্য – সমান বিভাজন সঠিক গণনা সক্ষম করে",
+          "kn": "ಗಣಿತದ ಅನುಕೂಲಕ್ಕಾಗಿ – ಸಮಾನ ವಿಭಾಗಗಳು ನಿಖರವಾದ ಲೆಕ್ಕಾಚಾರವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುತ್ತವೆ",
+          "gu": "ગાણિતિક સુવિધા માટે – સમાન વિભાજન ચોક્કસ ગણતરીને સક્ષમ બનાવે છે"
         },
         {
           "en": "Because the Greeks told them to",
           "hi": "क्योंकि ग्रीकों ने कहा",
           "mai": "किएक तँ यूनानी सभ हुनका कहलनि",
           "mr": "क्योंकि ग्रीकों ने कहा",
-          "ta": "Because the Greeks told them to",
-          "te": "Because the Greeks told them to",
-          "bn": "Because the Greeks told them to",
-          "kn": "Because the Greeks told them to",
-          "gu": "Because the Greeks told them to"
+          "ta": "கிரேக்கர்கள் அவர்களுக்குச் சொன்னதால்",
+          "te": "గ్రీకులు వారికి చెప్పినందున",
+          "bn": "কারণ গ্রীকরা তাদের বলেছিল",
+          "kn": "ಏಕೆಂದರೆ ಗ್ರೀಕರು ಅವರಿಗೆ ಹಾಗೆ ಹೇಳಿದರು",
+          "gu": "કારણ કે ગ્રીકોએ તેમને તેમ કરવાનું કહ્યું હતું"
         },
         {
           "en": "It was an error that stuck",
           "hi": "यह एक त्रुटि थी जो बनी रही",
           "mai": "ई एकटा त्रुटि छल जे रहि गेल",
           "mr": "यह एक त्रुटि थी जो बनी रही",
-          "ta": "It was an error that stuck",
-          "te": "It was an error that stuck",
-          "bn": "It was an error that stuck",
-          "kn": "It was an error that stuck",
-          "gu": "It was an error that stuck"
+          "ta": "அது ஒரு பிழை, அது அப்படியே நிலைத்துவிட்டது",
+          "te": "అది ఒక తప్పు, అది అలాగే ఉండిపోయింది",
+          "bn": "এটি একটি ভুল ছিল যা রয়ে গেছে",
+          "kn": "ಅದು ಅಂಟಿಕೊಂಡ ದೋಷವಾಗಿತ್ತು",
+          "gu": "તે એક ભૂલ હતી જે ચાલુ રહી"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic  –  like longitude lines on Earth.",
         "hi": "समान 30° विभाजन जानबूझकर है। प्राचीन भारतीयों को पता था कि तारा-पैटर्न असमान हैं। लेकिन गणना के लिए एकसमान निर्देशांक आवश्यक है।",
-        "ta": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic  –  like longitude lines on Earth.",
-        "te": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic  –  like longitude lines on Earth.",
-        "bn": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic  –  like longitude lines on Earth.",
-        "kn": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic  –  like longitude lines on Earth.",
+        "ta": "சமமான 30° பிரிவு வேண்டுமென்றே செய்யப்பட்டது. நட்சத்திர வடிவங்கள் சமமற்ற பரப்பளவைக் கொண்டுள்ளன என்பதை பண்டைய இந்தியர்கள் முழுமையாக அறிந்திருந்தனர். ஆனால் கணக்கீட்டிற்கு ஒரு சீரான ஆயத்தொலைவு அமைப்பு தேவை. 12 × 30° கட்டம் மற்றும் 27 × 13°20' கட்டம் ஆகியவை சூரியப்பாதையில் பதிக்கப்பட்ட கணித கட்டமைப்புகள் – பூமியில் உள்ள தீர்க்கரேகை கோடுகளைப் போல.",
+        "te": "సమానమైన 30° విభజన ఉద్దేశపూర్వకమైనది. నక్షత్ర నమూనాలకు అసమాన విస్తీర్ణాలు ఉన్నాయని ప్రాచీన భారతీయులకు పూర్తిగా తెలుసు. అయితే, గణన కోసం ఒక ఏకరీతి నిరూపక వ్యవస్థ అవసరం. 12 × 30° గ్రిడ్ మరియు 27 × 13°20' గ్రిడ్ అనేవి క్రాంతి వృత్తంపై వేయబడిన గణిత ఫ్రేమ్‌వర్క్‌లు – భూమిపై రేఖాంశాల వలె.",
+        "bn": "সমান ৩০° বিভাজন ইচ্ছাকৃত। প্রাচীন ভারতীয়রা সম্পূর্ণরূপে অবগত ছিল যে নক্ষত্র বিন্যাসগুলির অসম বিস্তার রয়েছে। কিন্তু গণনার জন্য একটি অভিন্ন স্থানাঙ্ক ব্যবস্থা প্রয়োজন। ১২ × ৩০° গ্রিড এবং ২৭ × ১৩°২০' গ্রিড হল ক্রান্তিবৃত্তের উপর স্থাপিত গাণিতিক কাঠামো – পৃথিবীর দ্রাঘিমা রেখার মতো।",
+        "kn": "ಸಮಾನ 30° ವಿಭಜನೆಯು ಉದ್ದೇಶಪೂರ್ವಕವಾಗಿದೆ. ನಕ್ಷತ್ರಗಳ ಮಾದರಿಗಳು ಅಸಮಾನ ವ್ಯಾಪ್ತಿಯನ್ನು ಹೊಂದಿವೆ ಎಂದು ಪ್ರಾಚೀನ ಭಾರತೀಯರಿಗೆ ಸಂಪೂರ್ಣವಾಗಿ ತಿಳಿದಿತ್ತು. ಆದರೆ ಲೆಕ್ಕಾಚಾರಕ್ಕೆ ಏಕರೂಪದ ನಿರ್ದೇಶಾಂಕ ವ್ಯವಸ್ಥೆ ಬೇಕು. 12 × 30° ಗ್ರಿಡ್ ಮತ್ತು 27 × 13°20' ಗ್ರಿಡ್ ಕ್ರಾಂತಿವೃತ್ತದ ಮೇಲೆ ಅಳವಡಿಸಲಾದ ಗಣಿತದ ಚೌಕಟ್ಟುಗಳಾಗಿವೆ – ಭೂಮಿಯ ಮೇಲಿನ ರೇಖಾಂಶ ರೇಖೆಗಳಂತೆ.",
         "mr": "समान 30° विभाजन जानबूझकर है। प्राचीन भारतीयों को पता था कि तारा-पैटर्न असमान हैं। लेकिन गणना के लिए एकसमान निर्देशांक आवश्यक है।",
-        "gu": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic  –  like longitude lines on Earth.",
+        "gu": "સમાન ૩૦° વિભાજન ઇરાદાપૂર્વકનું છે. પ્રાચીન ભારતીયો સંપૂર્ણપણે જાણતા હતા કે તારાઓના સમૂહોની લંબાઈ અસમાન હોય છે. પરંતુ ગણતરી માટે એક સમાન સંકલન પ્રણાલીની જરૂર પડે છે. ૧૨ × ૩૦° ગ્રીડ અને ૨૭ × ૧૩°૨૦' ગ્રીડ એ ક્રાંતિવૃત પર અધ્યારોપિત ગાણિતિક માળખાં છે – જેમ પૃથ્વી પર રેખાંશ રેખાઓ હોય છે.",
         "mai": "समान ३०° क विभाजन जानि-बुझिकय कएल गेल अछि। प्राचीन भारतीय सभ एहि बातसँ पूर्ण रूपसँ अवगत छलाह जे ताराक पैटर्नक विस्तार असमान होइत अछि। मुदा गणनाक लेल एकटा समान समन्वय प्रणालीक आवश्यकता होइत अछि। १२ × ३०° ग्रिड आ २७ × १३°२०' ग्रिड क्रांतिवृत्त पर अध्यारोपित गणितीय ढाँचा अछि – पृथ्वी परक देशांतर रेखा सभ जकाँ।"
       },
       "classicalRef": "Surya Siddhanta Ch.1"
@@ -469,11 +469,11 @@
         "hi": "एक राशि में कितने नक्षत्र आते हैं?",
         "mai": "एकटा राशिमे केतेक नक्षत्र समाहित होइत अछि?",
         "mr": "एक राशि में कितने नक्षत्र आते हैं?",
-        "ta": "How many Nakshatras fit in one Rashi?",
-        "te": "How many Nakshatras fit in one Rashi?",
-        "bn": "How many Nakshatras fit in one Rashi?",
-        "kn": "How many Nakshatras fit in one Rashi?",
-        "gu": "How many Nakshatras fit in one Rashi?"
+        "ta": "ஒரு ராசியில் எத்தனை நட்சத்திரங்கள் பொருந்தும்?",
+        "te": "ఒక రాశిలో ఎన్ని నక్షత్రాలు సరిపోతాయి?",
+        "bn": "একটি রাশিতে কতগুলি নক্ষত্র ধরে?",
+        "kn": "ಒಂದು ರಾಶಿಯಲ್ಲಿ ಎಷ್ಟು ನಕ್ಷತ್ರಗಳು ಹೊಂದಿಕೊಳ್ಳುತ್ತವೆ?",
+        "gu": "એક રાશિમાં કેટલા નક્ષત્ર સમાય છે?"
       },
       "options": [
         {
@@ -481,33 +481,33 @@
           "hi": "ठीक 2",
           "mai": "ठीक २",
           "mr": "ठीक 2",
-          "ta": "Exactly 2",
-          "te": "Exactly 2",
-          "bn": "Exactly 2",
-          "kn": "Exactly 2",
-          "gu": "Exactly 2"
+          "ta": "சரியாக 2",
+          "te": "సరిగ్గా 2",
+          "bn": "ঠিক ২",
+          "kn": "ನಿಖರವಾಗಿ 2",
+          "gu": "બરાબર ૨"
         },
         {
           "en": "2.25 (2 and a quarter)",
           "hi": "2.25 (सवा दो)",
           "mai": "२.२५ (२ आ सवा)",
           "mr": "2.25 (सवा दो)",
-          "ta": "2.25 (2 and a quarter)",
-          "te": "2.25 (2 and a quarter)",
-          "bn": "2.25 (2 and a quarter)",
-          "kn": "2.25 (2 and a quarter)",
-          "gu": "2.25 (2 and a quarter)"
+          "ta": "2.25 (இரண்டே கால்)",
+          "te": "2.25 (రెండు పావు వంతులు)",
+          "bn": "২.২৫ (২ এবং এক চতুর্থাংশ)",
+          "kn": "2.25 (ಎರಡು ಕಾಲು)",
+          "gu": "૨.૨૫ (સવા બે)"
         },
         {
           "en": "Exactly 3",
           "hi": "ठीक 3",
           "mai": "ठीक ३",
           "mr": "ठीक 3",
-          "ta": "Exactly 3",
-          "te": "Exactly 3",
-          "bn": "Exactly 3",
-          "kn": "Exactly 3",
-          "gu": "Exactly 3"
+          "ta": "சரியாக 3",
+          "te": "సరిగ్గా 3",
+          "bn": "ঠিক ৩",
+          "kn": "ನಿಖರವಾಗಿ 3",
+          "gu": "બરાબર ૩"
         },
         {
           "en": "2.5",
@@ -527,11 +527,11 @@
         "hi": "30° ÷ 13.333° = 2.25 नक्षत्र प्रति राशि। नक्षत्र सीमाएं राशि सीमाओं से मेल नहीं खातीं। यह विस्थापन पाद-नवांश मानचित्रण प्रणाली बनाता है।",
         "mai": "प्रत्येक राशि ३०° ÷ प्रत्येक नक्षत्र १३.३३३° = प्रत्येक राशिमे २.२५ नक्षत्र। एकर मतलब ई जे नक्षत्रक सीमा राशि सीमासँ मेल नहि खाइत अछि। एकटा नक्षत्र दू राशि धरि पसरल भऽ सकैत अछि। ई अंतर समृद्ध पाद-नवमांश मानचित्रण प्रणालीकेँ जन्म दैत अछि।",
         "mr": "30° ÷ 13.333° = 2.25 नक्षत्र प्रति राशि। नक्षत्र सीमाएं राशि सीमाओं से मेल नहीं खातीं। यह विस्थापन पाद-नवांश मानचित्रण प्रणाली बनाता है।",
-        "ta": "30° per sign ÷ 13.333° per nakshatra = 2.25 nakshatras per sign. This means nakshatra boundaries do NOT align with sign boundaries. A nakshatra can span two signs. This offset creates the rich pada-navamsha mapping system.",
-        "te": "30° per sign ÷ 13.333° per nakshatra = 2.25 nakshatras per sign. This means nakshatra boundaries do NOT align with sign boundaries. A nakshatra can span two signs. This offset creates the rich pada-navamsha mapping system.",
-        "bn": "30° per sign ÷ 13.333° per nakshatra = 2.25 nakshatras per sign. This means nakshatra boundaries do NOT align with sign boundaries. A nakshatra can span two signs. This offset creates the rich pada-navamsha mapping system.",
-        "kn": "30° per sign ÷ 13.333° per nakshatra = 2.25 nakshatras per sign. This means nakshatra boundaries do NOT align with sign boundaries. A nakshatra can span two signs. This offset creates the rich pada-navamsha mapping system.",
-        "gu": "30° per sign ÷ 13.333° per nakshatra = 2.25 nakshatras per sign. This means nakshatra boundaries do NOT align with sign boundaries. A nakshatra can span two signs. This offset creates the rich pada-navamsha mapping system."
+        "ta": "ஒரு ராசிக்கு 30° ÷ ஒரு நட்சத்திரத்திற்கு 13.333° = ஒரு ராசிக்கு 2.25 நட்சத்திரங்கள். இதன் பொருள் நட்சத்திர எல்லைகள் ராசி எல்லைகளுடன் ஒத்துப்போவதில்லை. ஒரு நட்சத்திரம் இரண்டு ராசிகளை உள்ளடக்கும். இந்த விலகல் வளமான பாத-நவாம்ச வரைபட அமைப்பை உருவாக்குகிறது.",
+        "te": "ఒక్కో రాశికి 30° ÷ ఒక్కో నక్షత్రానికి 13.333° = ఒక్కో రాశికి 2.25 నక్షత్రాలు. దీని అర్థం నక్షత్ర సరిహద్దులు రాశి సరిహద్దులతో సరిపోలవు. ఒక నక్షత్రం రెండు రాశులలో విస్తరించి ఉండవచ్చు. ఈ వ్యత్యాసం సంపన్న పాద-నవాంశ మ్యాపింగ్ వ్యవస్థను సృష్టిస్తుంది.",
+        "bn": "প্রতি রাশিতে ৩০° ÷ প্রতি নক্ষত্রে ১৩.৩৩৩° = প্রতি রাশিতে ২.২৫ নক্ষত্র। এর অর্থ হল নক্ষত্রের সীমানা রাশির সীমানার সাথে মেলে না। একটি নক্ষত্র দুটি রাশি জুড়ে বিস্তৃত হতে পারে। এই অফসেটটি সমৃদ্ধ পদ-নবমশা ম্যাপিং সিস্টেম তৈরি করে।",
+        "kn": "ಪ್ರತಿ ರಾಶಿಗೆ 30° ÷ ಪ್ರತಿ ನಕ್ಷತ್ರಕ್ಕೆ 13.333° = ಪ್ರತಿ ರಾಶಿಗೆ 2.25 ನಕ್ಷತ್ರಗಳು. ಇದರರ್ಥ ನಕ್ಷತ್ರದ ಗಡಿಗಳು ರಾಶಿ ಗಡಿಗಳೊಂದಿಗೆ ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ. ಒಂದು ನಕ್ಷತ್ರವು ಎರಡು ರಾಶಿಗಳನ್ನು ವ್ಯಾಪಿಸಬಹುದು. ಈ ಆಫ್‌ಸೆಟ್ ಶ್ರೀಮಂತ ಪಾದ-ನವಾಂಶ ಮ್ಯಾಪಿಂಗ್ ವ್ಯವಸ್ಥೆಯನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ.",
+        "gu": "૩૦° પ્રતિ રાશિ ÷ ૧૩.૩૩૩° પ્રતિ નક્ષત્ર = ૨.૨૫ નક્ષત્ર પ્રતિ રાશિ. આનો અર્થ એ છે કે નક્ષત્રની સીમાઓ રાશિની સીમાઓ સાથે સુસંગત નથી. એક નક્ષત્ર બે રાશિઓ સુધી વિસ્તરી શકે છે. આ વિસંગતતા સમૃદ્ધ પદ-નવમાંશ મેપિંગ સિસ્ટમ બનાવે છે."
       }
     },
     {
@@ -540,24 +540,24 @@
       "question": {
         "en": "One pada of a Nakshatra spans exactly 3°20' (3.333°).",
         "hi": "एक नक्षत्र पाद ठीक 3°20' (3.333°) का होता है।",
-        "ta": "One pada of a Nakshatra spans exactly 3°20' (3.333°).",
-        "te": "One pada of a Nakshatra spans exactly 3°20' (3.333°).",
-        "bn": "One pada of a Nakshatra spans exactly 3°20' (3.333°).",
-        "kn": "One pada of a Nakshatra spans exactly 3°20' (3.333°).",
+        "ta": "ஒரு நட்சத்திரத்தின் ஒரு பாதம் சரியாக 3°20' (3.333°) பரவுகிறது.",
+        "te": "ఒక నక్షత్రం యొక్క ఒక పాదం సరిగ్గా 3°20' (3.333°) విస్తరించి ఉంటుంది.",
+        "bn": "একটি নক্ষত্রের একটি পদ ঠিক ৩°২০' (৩.৩৩৩°) বিস্তৃত।",
+        "kn": "ಒಂದು ನಕ್ಷತ್ರದ ಒಂದು ಪಾದವು ನಿಖರವಾಗಿ 3°20' (3.333°) ವ್ಯಾಪಿಸಿದೆ.",
         "mr": "एक नक्षत्र पाद ठीक 3°20' (3.333°) का होता है।",
-        "gu": "One pada of a Nakshatra spans exactly 3°20' (3.333°).",
+        "gu": "એક નક્ષત્રનું એક પદ બરાબર ૩°૨૦' (૩.૩૩૩°) સુધી વિસ્તરેલું હોય છે.",
         "mai": "एकटा नक्षत्रक एकटा पादक ठीक ३°२०' (३.३३३°) विस्तार होइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "Correct. 13°20' per nakshatra ÷ 4 padas = 3°20' per pada. Since each pada maps to exactly one Navamsha (D9) sign, and there are 108 padas total (27 × 4), the pada is the fundamental unit connecting the nakshatra system to the divisional chart system.",
         "hi": "सही। 13°20' ÷ 4 = 3°20' प्रति पाद। प्रत्येक पाद एक नवांश (D9) राशि से मानचित्रित, कुल 108 पाद।",
-        "ta": "Correct. 13°20' per nakshatra ÷ 4 padas = 3°20' per pada. Since each pada maps to exactly one Navamsha (D9) sign, and there are 108 padas total (27 × 4), the pada is the fundamental unit connecting the nakshatra system to the divisional chart system.",
-        "te": "Correct. 13°20' per nakshatra ÷ 4 padas = 3°20' per pada. Since each pada maps to exactly one Navamsha (D9) sign, and there are 108 padas total (27 × 4), the pada is the fundamental unit connecting the nakshatra system to the divisional chart system.",
-        "bn": "Correct. 13°20' per nakshatra ÷ 4 padas = 3°20' per pada. Since each pada maps to exactly one Navamsha (D9) sign, and there are 108 padas total (27 × 4), the pada is the fundamental unit connecting the nakshatra system to the divisional chart system.",
-        "kn": "Correct. 13°20' per nakshatra ÷ 4 padas = 3°20' per pada. Since each pada maps to exactly one Navamsha (D9) sign, and there are 108 padas total (27 × 4), the pada is the fundamental unit connecting the nakshatra system to the divisional chart system.",
+        "ta": "சரி. ஒரு நட்சத்திரத்திற்கு 13°20' ÷ 4 பாதங்கள் = ஒரு பாதத்திற்கு 3°20'. ஒவ்வொரு பாதமும் சரியாக ஒரு நவாம்ச (D9) ராசிக்கு ஒத்திருப்பதால், மற்றும் மொத்தம் 108 பாதங்கள் உள்ளன (27 × 4), பாதம் என்பது நட்சத்திர அமைப்பை வர்க்க சக்கர அமைப்புடன் இணைக்கும் அடிப்படை அலகு ஆகும்.",
+        "te": "సరియైనది. ఒక్కో నక్షత్రానికి 13°20' ÷ 4 పాదాలు = ఒక్కో పాదానికి 3°20'. ప్రతి పాదం సరిగ్గా ఒక నవాంశ (D9) రాశికి మ్యాప్ చేయబడుతుంది కాబట్టి, మరియు మొత్తం 108 పాదాలు (27 × 4) ఉన్నాయి కాబట్టి, పాదం అనేది నక్షత్ర వ్యవస్థను విభాగ చార్ట్ వ్యవస్థకు అనుసంధానించే ప్రాథమిక యూనిట్.",
+        "bn": "সঠিক। প্রতি নক্ষত্রে ১৩°২০' ÷ ৪ পদ = প্রতি পদে ৩°২০'। যেহেতু প্রতিটি পদ ঠিক একটি নবমশা (D9) রাশির সাথে মিলে যায়, এবং মোট ১০৮টি পদ রয়েছে (২৭ × ৪), তাই পদ হল নক্ষত্র পদ্ধতিকে বিভাগীয় চার্ট পদ্ধতির সাথে সংযুক্তকারী মৌলিক একক।",
+        "kn": "ಸರಿ. ಪ್ರತಿ ನಕ್ಷತ್ರಕ್ಕೆ 13°20' ÷ 4 ಪಾದಗಳು = ಪ್ರತಿ ಪಾದಕ್ಕೆ 3°20'. ಪ್ರತಿ ಪಾದವು ನಿಖರವಾಗಿ ಒಂದು ನವಾಂಶ (D9) ರಾಶಿಗೆ ನಕ್ಷತ್ರೀಕರಿಸಲ್ಪಟ್ಟಿರುವುದರಿಂದ, ಮತ್ತು ಒಟ್ಟು 108 ಪಾದಗಳು (27 × 4) ಇರುವುದರಿಂದ, ಪಾದವು ನಕ್ಷತ್ರ ವ್ಯವಸ್ಥೆಯನ್ನು ವಿಭಾಗೀಯ ಚಾರ್ಟ್ ವ್ಯವಸ್ಥೆಗೆ ಸಂಪರ್ಕಿಸುವ ಮೂಲಭೂತ ಘಟಕವಾಗಿದೆ.",
         "mr": "सही। 13°20' ÷ 4 = 3°20' प्रति पाद। प्रत्येक पाद एक नवांश (D9) राशि से मानचित्रित, कुल 108 पाद।",
-        "gu": "Correct. 13°20' per nakshatra ÷ 4 padas = 3°20' per pada. Since each pada maps to exactly one Navamsha (D9) sign, and there are 108 padas total (27 × 4), the pada is the fundamental unit connecting the nakshatra system to the divisional chart system.",
+        "gu": "સાચું. ૧૩°૨૦' પ્રતિ નક્ષત્ર ÷ ૪ પદ = ૩°૨૦' પ્રતિ પદ. કારણ કે દરેક પદ બરાબર એક નવમાંશ (D9) રાશિ સાથે સંકળાયેલું છે, અને કુલ ૧૦૮ પદ છે (૨૭ × ૪), પદ એ નક્ષત્ર પ્રણાલીને વિભાગીય ચાર્ટ પ્રણાલી સાથે જોડતો મૂળભૂત એકમ છે.",
         "mai": "सही। प्रत्येक नक्षत्र १३°२०' ÷ ४ पाद = प्रत्येक पाद ३°२०'। किएक तँ प्रत्येक पाद ठीक एकटा नवमांश (D9) राशिमे मानचित्रित होइत अछि, आ कुल १०८ पाद (२७ × ४) होइत अछि, पाद नक्षत्र प्रणालीकेँ विभागीय चार्ट प्रणालीसँ जोड़निहार मौलिक इकाई अछि।"
       }
     },
@@ -569,11 +569,11 @@
         "hi": "1 अंश (degree) को किसमें विभाजित करते हैं?",
         "mai": "१ डिग्री चाप कोन चीजमे बाँटल जाइत अछि?",
         "mr": "1 अंश (degree) को किसमें विभाजित करते हैं?",
-        "ta": "What is 1 degree of arc divided into?",
-        "te": "What is 1 degree of arc divided into?",
-        "bn": "What is 1 degree of arc divided into?",
-        "kn": "What is 1 degree of arc divided into?",
-        "gu": "What is 1 degree of arc divided into?"
+        "ta": "ஒரு பாகை வில் எதில் பிரிக்கப்பட்டுள்ளது?",
+        "te": "1 డిగ్రీ ఆర్క్ దేనిగా విభజించబడింది?",
+        "bn": "১ আর্ক ডিগ্রি কীসে বিভক্ত?",
+        "kn": "1 ಡಿಗ್ರಿ ಆರ್ಕ್ ಅನ್ನು ಯಾವುದಕ್ಕೆ ವಿಂಗಡಿಸಲಾಗಿದೆ?",
+        "gu": "ચાપનો ૧ અંશ શેમાં વિભાજિત થાય છે?"
       },
       "options": [
         {
@@ -581,56 +581,56 @@
           "hi": "60 सेकंड",
           "mai": "६० सेकंड",
           "mr": "60 सेकंड",
-          "ta": "60 seconds",
-          "te": "60 seconds",
-          "bn": "60 seconds",
-          "kn": "60 seconds",
-          "gu": "60 seconds"
+          "ta": "60 வினாடிகள்",
+          "te": "60 సెకన్లు",
+          "bn": "৬০ সেকেন্ড",
+          "kn": "60 ಸೆಕೆಂಡುಗಳು",
+          "gu": "૬૦ સેકન્ડ"
         },
         {
           "en": "60 minutes, each of 60 seconds",
           "hi": "60 कला (minutes), प्रत्येक 60 विकला (seconds)",
           "mai": "६० मिनट, प्रत्येक ६० सेकंडक",
           "mr": "60 कला (minutes), प्रत्येक 60 विकला (seconds)",
-          "ta": "60 minutes, each of 60 seconds",
-          "te": "60 minutes, each of 60 seconds",
-          "bn": "60 minutes, each of 60 seconds",
-          "kn": "60 minutes, each of 60 seconds",
-          "gu": "60 minutes, each of 60 seconds"
+          "ta": "60 நிமிடங்கள், ஒவ்வொன்றும் 60 வினாடிகள்",
+          "te": "60 నిమిషాలు, ఒక్కొక్కటి 60 సెకన్లు",
+          "bn": "৬০ মিনিট, প্রতিটি ৬০ সেকেন্ডের",
+          "kn": "60 ನಿಮಿಷಗಳು, ಪ್ರತಿಯೊಂದೂ 60 ಸೆಕೆಂಡುಗಳು",
+          "gu": "૬૦ મિનિટ, દરેક ૬૦ સેકન્ડની"
         },
         {
           "en": "100 centidegrees",
           "hi": "100 शतांश",
           "mai": "१०० सेंटीडिग्री",
           "mr": "100 शतांश",
-          "ta": "100 centidegrees",
-          "te": "100 centidegrees",
-          "bn": "100 centidegrees",
-          "kn": "100 centidegrees",
-          "gu": "100 centidegrees"
+          "ta": "100 சென்டிபாகைகள்",
+          "te": "100 సెంటిడిగ్రీలు",
+          "bn": "১০০ সেন্টিডিগ্রি",
+          "kn": "100 ಸೆಂಟಿಡಿಗ್ರಿ",
+          "gu": "૧૦૦ સેન્ટિડિગ્રી"
         },
         {
           "en": "24 hours",
           "hi": "24 घंटे",
           "mai": "२४ घंटा",
           "mr": "24 घंटे",
-          "ta": "24 hours",
-          "te": "24 hours",
-          "bn": "24 hours",
-          "kn": "24 hours",
-          "gu": "24 hours"
+          "ta": "24 மணிநேரம்",
+          "te": "24 గంటలు",
+          "bn": "২৪ ঘন্টা",
+          "kn": "24 ಗಂಟೆಗಳು",
+          "gu": "૨૪ કલાક"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "1° = 60' (arcminutes, called \"Kala\" कला in Sanskrit) = 3600\" (arcseconds, called \"Vikala\" विकला). This sexagesimal system (base-60) was used by both Indian and Babylonian astronomers. The same system gives us 60 minutes per hour and 60 seconds per minute.",
         "hi": "1° = 60' (कला) = 3600\" (विकला)। यह षष्ट्यंश (base-60) प्रणाली भारतीय और बेबीलोनियन दोनों खगोलशास्त्रियों ने प्रयोग की।",
-        "ta": "1° = 60' (arcminutes, called \"Kala\" कला in Sanskrit) = 3600\" (arcseconds, called \"Vikala\" विकला). This sexagesimal system (base-60) was used by both Indian and Babylonian astronomers. The same system gives us 60 minutes per hour and 60 seconds per minute.",
-        "te": "1° = 60' (arcminutes, called \"Kala\" कला in Sanskrit) = 3600\" (arcseconds, called \"Vikala\" विकला). This sexagesimal system (base-60) was used by both Indian and Babylonian astronomers. The same system gives us 60 minutes per hour and 60 seconds per minute.",
-        "bn": "1° = 60' (arcminutes, called \"Kala\" कला in Sanskrit) = 3600\" (arcseconds, called \"Vikala\" विकला). This sexagesimal system (base-60) was used by both Indian and Babylonian astronomers. The same system gives us 60 minutes per hour and 60 seconds per minute.",
-        "kn": "1° = 60' (arcminutes, called \"Kala\" कला in Sanskrit) = 3600\" (arcseconds, called \"Vikala\" विकला). This sexagesimal system (base-60) was used by both Indian and Babylonian astronomers. The same system gives us 60 minutes per hour and 60 seconds per minute.",
+        "ta": "1° = 60' (வில் நிமிடங்கள், சமஸ்கிருதத்தில் \"கலா\" कला என்று அழைக்கப்படுகிறது) = 3600\" (வில் வினாடிகள், \"விகலா\" विकला என்று அழைக்கப்படுகிறது). இந்த அறுபதின்ம முறை (அடிப்படை-60) இந்திய மற்றும் பாபிலோனிய வானியலாளர்களால் பயன்படுத்தப்பட்டது. அதே அமைப்பு ஒரு மணிநேரத்திற்கு 60 நிமிடங்கள் மற்றும் ஒரு நிமிடத்திற்கு 60 வினாடிகளை நமக்கு வழங்குகிறது.",
+        "te": "1° = 60' (ఆర్క్‌మినిట్స్, సంస్కృతంలో \"కళ\" कला అని పిలుస్తారు) = 3600\" (ఆర్క్‌సెకన్లు, \"వికళ\" विकला అని పిలుస్తారు). ఈ షష్టిమాన పద్ధతి (బేస్-60) భారతీయ మరియు బాబిలోనియన్ ఖగోళ శాస్త్రజ్ఞులు ఇద్దరూ ఉపయోగించారు. అదే పద్ధతి గంటకు 60 నిమిషాలు మరియు నిమిషానికి 60 సెకన్లు ఇస్తుంది.",
+        "bn": "১° = ৬০' (আর্ক মিনিট, সংস্কৃতে \"কলা\" कला বলা হয়) = ৩৬০০\" (আর্ক সেকেন্ড, \"বিকলা\" विकला বলা হয়)। এই ষাট-ভিত্তিক পদ্ধতি (৬০-ভিত্তিক) ভারতীয় এবং ব্যাবিলনীয় উভয় জ্যোতির্বিজ্ঞানী দ্বারা ব্যবহৃত হয়েছিল। একই পদ্ধতি আমাদের প্রতি ঘন্টায় ৬০ মিনিট এবং প্রতি মিনিটে ৬০ সেকেন্ড দেয়।",
+        "kn": "1° = 60' (ಆರ್ಕ್‌ಮಿನಿಟ್ಸ್, ಸಂಸ್ಕೃತದಲ್ಲಿ \"ಕಲಾ\" कला ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ) = 3600\" (ಆರ್ಕ್‌ಸೆಕೆಂಡ್ಸ್, \"ವಿಕಲಾ\" विकला ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ). ಈ ಸೆಕ್ಸೇಜೆಸಿಮಲ್ ವ್ಯವಸ್ಥೆಯನ್ನು (ಬೇಸ್-60) ಭಾರತೀಯ ಮತ್ತು ಬ್ಯಾಬಿಲೋನಿಯನ್ ಖಗೋಳಶಾಸ್ತ್ರಜ್ಞರು ಬಳಸಿದ್ದಾರೆ. ಇದೇ ವ್ಯವಸ್ಥೆಯು ನಮಗೆ ಪ್ರತಿ ಗಂಟೆಗೆ 60 ನಿಮಿಷಗಳು ಮತ್ತು ಪ್ರತಿ ನಿಮಿಷಕ್ಕೆ 60 ಸೆಕೆಂಡುಗಳನ್ನು ನೀಡುತ್ತದೆ.",
         "mr": "1° = 60' (कला) = 3600\" (विकला)। यह षष्ट्यंश (base-60) प्रणाली भारतीय और बेबीलोनियन दोनों खगोलशास्त्रियों ने प्रयोग की।",
-        "gu": "1° = 60' (arcminutes, called \"Kala\" कला in Sanskrit) = 3600\" (arcseconds, called \"Vikala\" विकला). This sexagesimal system (base-60) was used by both Indian and Babylonian astronomers. The same system gives us 60 minutes per hour and 60 seconds per minute.",
+        "gu": "૧° = ૬૦' (આર્કમિનિટ્સ, સંસ્કૃતમાં \"કલા\" कला કહેવાય છે) = ૩૬૦૦\" (આર્કસેકન્ડ્સ, \"વિકલા\" विकला કહેવાય છે). આ ષષ્ટિઅંશ પદ્ધતિ (આધાર-૬૦) ભારતીય અને બેબીલોનીયન બંને ખગોળશાસ્ત્રીઓ દ્વારા ઉપયોગમાં લેવાતી હતી. આ જ પદ્ધતિ આપણને પ્રતિ કલાક ૬૦ મિનિટ અને પ્રતિ મિનિટ ૬૦ સેકન્ડ આપે છે.",
         "mai": "१° = ६०' (चाप मिनट, संस्कृतमे \"कला\" कला कहल जाइत अछि) = ३६००\" (चाप सेकंड, \"विकला\" विकला कहल जाइत अछि)। ई षष्ठि-आधारी प्रणाली (आधार-६०) भारतीय आ बेबिलोनियाई दुनू खगोलशास्त्री सभ द्वारा उपयोग कएल जाइत छल। एही प्रणालीसँ हमरा सभकेँ प्रति घंटा ६० मिनट आ प्रति मिनट ६० सेकंड भेटैत अछि।"
       }
     },
@@ -642,11 +642,11 @@
         "hi": "12 (राशि) और 27 (नक्षत्र) का LCM 108 है। राशिचक्र में 108 क्या दर्शाता है?",
         "mai": "१२ (राशि) आ २७ (नक्षत्र) क लघुत्तम समापवर्त्य १०८ अछि। राशि चक्रमे १०८ की दर्शाबैत अछि?",
         "mr": "12 (राशि) और 27 (नक्षत्र) का LCM 108 है। राशिचक्र में 108 क्या दर्शाता है?",
-        "ta": "The LCM of 12 (signs) and 27 (nakshatras) is 108. What does 108 represent in the zodiac?",
-        "te": "The LCM of 12 (signs) and 27 (nakshatras) is 108. What does 108 represent in the zodiac?",
-        "bn": "The LCM of 12 (signs) and 27 (nakshatras) is 108. What does 108 represent in the zodiac?",
-        "kn": "The LCM of 12 (signs) and 27 (nakshatras) is 108. What does 108 represent in the zodiac?",
-        "gu": "The LCM of 12 (signs) and 27 (nakshatras) is 108. What does 108 represent in the zodiac?"
+        "ta": "12 (ராசிகள்) மற்றும் 27 (நட்சத்திரங்கள்) ஆகியவற்றின் மீச்சிறு பொது மடங்கு 108 ஆகும். ராசி மண்டலத்தில் 108 எதைக் குறிக்கிறது?",
+        "te": "12 (రాశులు) మరియు 27 (నక్షత్రాలు) యొక్క క.సా.గు. 108. రాశిచక్రంలో 108 దేనిని సూచిస్తుంది?",
+        "bn": "১২ (রাশি) এবং ২৭ (নক্ষত্র)-এর ল.সা.গু. হল ১০৮। রাশিচক্রে ১০৮ কী বোঝায়?",
+        "kn": "12 (ರಾಶಿಗಳು) ಮತ್ತು 27 (ನಕ್ಷತ್ರಗಳು) ರ LCM 108 ಆಗಿದೆ. ರಾಶಿಚಕ್ರದಲ್ಲಿ 108 ಏನನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತದೆ?",
+        "gu": "૧૨ (રાશિ) અને ૨૭ (નક્ષત્ર) નો લઘુત્તમ સામાન્ય અવયવી (LCM) ૧૦૮ છે. રાશિચક્રમાં ૧૦૮ શું દર્શાવે છે?"
       },
       "options": [
         {
@@ -654,44 +654,44 @@
           "hi": "योगों की संख्या",
           "mai": "योगक संख्या",
           "mr": "योगों की संख्या",
-          "ta": "The number of yogas",
-          "te": "The number of yogas",
-          "bn": "The number of yogas",
-          "kn": "The number of yogas",
-          "gu": "The number of yogas"
+          "ta": "யோகங்களின் எண்ணிக்கை",
+          "te": "యోగాల సంఖ్య",
+          "bn": "যোগের সংখ্যা",
+          "kn": "ಯೋಗಗಳ ಸಂಖ್ಯೆ",
+          "gu": "યોગોની સંખ્યા"
         },
         {
           "en": "The total number of navamsha divisions (padas)",
           "hi": "नवांश विभाजनों (पादों) की कुल संख्या",
           "mai": "नवमांश विभाजन (पाद) क कुल संख्या",
           "mr": "नवांश विभाजनों (पादों) की कुल संख्या",
-          "ta": "The total number of navamsha divisions (padas)",
-          "te": "The total number of navamsha divisions (padas)",
-          "bn": "The total number of navamsha divisions (padas)",
-          "kn": "The total number of navamsha divisions (padas)",
-          "gu": "The total number of navamsha divisions (padas)"
+          "ta": "நவாம்சப் பிரிவுகளின் (பாதங்கள்) மொத்த எண்ணிக்கை",
+          "te": "నవాంశ విభజనల (పాదాల) మొత్తం సంఖ్య",
+          "bn": "নবমশা বিভাজন (পদ)-এর মোট সংখ্যা",
+          "kn": "ನವಾಂಶ ವಿಭಾಗಗಳ (ಪಾದಗಳು) ಒಟ್ಟು ಸಂಖ್ಯೆ",
+          "gu": "નવમાંશ વિભાજન (પદ) ની કુલ સંખ્યા"
         },
         {
           "en": "The number of days in a season",
           "hi": "एक ऋतु में दिनों की संख्या",
           "mai": "एकटा ऋतुमे दिनक संख्या",
           "mr": "एक ऋतु में दिनों की संख्या",
-          "ta": "The number of days in a season",
-          "te": "The number of days in a season",
-          "bn": "The number of days in a season",
-          "kn": "The number of days in a season",
-          "gu": "The number of days in a season"
+          "ta": "ஒரு பருவத்தில் உள்ள நாட்களின் எண்ணிக்கை",
+          "te": "ఒక రుతువులోని రోజుల సంఖ్య",
+          "bn": "একটি ঋতুতে দিনের সংখ্যা",
+          "kn": "ಒಂದು ಋತುವಿನಲ್ಲಿನ ದಿನಗಳ ಸಂಖ್ಯೆ",
+          "gu": "એક ઋતુમાં દિવસોની સંખ્યા"
         },
         {
           "en": "The number of tithis in a year",
           "hi": "एक वर्ष में तिथियों की संख्या",
           "mai": "एकटा वर्षमे तिथि सभक संख्या",
           "mr": "एक वर्ष में तिथियों की संख्या",
-          "ta": "The number of tithis in a year",
-          "te": "The number of tithis in a year",
-          "bn": "The number of tithis in a year",
-          "kn": "The number of tithis in a year",
-          "gu": "The number of tithis in a year"
+          "ta": "ஒரு வருடத்தில் உள்ள திதிகளின் எண்ணிக்கை",
+          "te": "ఒక సంవత్సరంలో తిథుల సంఖ్య",
+          "bn": "এক বছরে তিথির সংখ্যা",
+          "kn": "ಒಂದು ವರ್ಷದಲ್ಲಿನ ತಿಥಿಗಳ ಸಂಖ್ಯೆ",
+          "gu": "એક વર્ષમાં તિથિઓની સંખ્યા"
         }
       ],
       "correctAnswer": 1,
@@ -700,11 +700,11 @@
         "hi": "108 = 27 × 4 = 12 × 9। प्रत्येक पाद एक नवांश है। 108 की माला, 108 उपनिषद, 108 नाम  –  मूल यह राशिचक्रीय गुणनखंड है।",
         "mai": "१०८ = २७ नक्षत्र × ४ पाद = १२ राशि × ९ नवमांश। प्रत्येक पाद एकटा नवमांश अछि। एही कारणेँ १०८ हिंदू परंपरामे हर जगह देखाइत अछि: एकटा मालामे १०८ मनका, १०८ उपनिषद, देवता सभक १०८ नाम। खगोलीय उत्पत्ति ई राशि चक्रक गुणनखंडन अछि।",
         "mr": "108 = 27 × 4 = 12 × 9। प्रत्येक पाद एक नवांश है। 108 की माला, 108 उपनिषद, 108 नाम  –  मूल यह राशिचक्रीय गुणनखंड है।",
-        "ta": "108 = 27 nakshatras × 4 padas = 12 signs × 9 navamshas. Each pada IS a navamsha. This is why 108 appears everywhere in Hindu tradition: 108 beads in a mala, 108 Upanishads, 108 names of deities. The astronomical origin is this zodiacal factorization.",
-        "te": "108 = 27 nakshatras × 4 padas = 12 signs × 9 navamshas. Each pada IS a navamsha. This is why 108 appears everywhere in Hindu tradition: 108 beads in a mala, 108 Upanishads, 108 names of deities. The astronomical origin is this zodiacal factorization.",
-        "bn": "108 = 27 nakshatras × 4 padas = 12 signs × 9 navamshas. Each pada IS a navamsha. This is why 108 appears everywhere in Hindu tradition: 108 beads in a mala, 108 Upanishads, 108 names of deities. The astronomical origin is this zodiacal factorization.",
-        "kn": "108 = 27 nakshatras × 4 padas = 12 signs × 9 navamshas. Each pada IS a navamsha. This is why 108 appears everywhere in Hindu tradition: 108 beads in a mala, 108 Upanishads, 108 names of deities. The astronomical origin is this zodiacal factorization.",
-        "gu": "108 = 27 nakshatras × 4 padas = 12 signs × 9 navamshas. Each pada IS a navamsha. This is why 108 appears everywhere in Hindu tradition: 108 beads in a mala, 108 Upanishads, 108 names of deities. The astronomical origin is this zodiacal factorization."
+        "ta": "108 = 27 நட்சத்திரங்கள் × 4 பாதங்கள் = 12 ராசிகள் × 9 நவாம்சங்கள். ஒவ்வொரு பாதமும் ஒரு நவாம்சம் ஆகும். இதனால்தான் இந்து பாரம்பரியத்தில் 108 எல்லா இடங்களிலும் காணப்படுகிறது: ஒரு மாலையில் 108 மணிகள், 108 உபநிடதங்கள், தெய்வங்களின் 108 பெயர்கள். இந்த வானியல் தோற்றம் இந்த ராசி காரணிப்படுத்தல் ஆகும்.",
+        "te": "108 = 27 నక్షత్రాలు × 4 పాదాలు = 12 రాశులు × 9 నవాంశలు. ప్రతి పాదం ఒక నవాంశే. అందుకే హిందూ సంప్రదాయంలో 108 ప్రతిచోటా కనిపిస్తుంది: ఒక మాలలో 108 పూసలు, 108 ఉపనిషత్తులు, దేవతల 108 నామాలు. ఖగోళ మూలం ఈ రాశిచక్ర కారకీకరణ.",
+        "bn": "১০৮ = ২৭ নক্ষত্র × ৪ পদ = ১২ রাশি × ৯ নবমশা। প্রতিটি পদই একটি নবমশা। এই কারণেই হিন্দু ঐতিহ্যে ১০৮ সর্বত্র দেখা যায়: একটি মালায় ১০৮টি পুঁতি, ১০৮টি উপনিষদ, দেব-দেবীর ১০৮টি নাম। জ্যোতির্বিজ্ঞানের উৎস হল এই রাশিচক্রের উৎপাদক।",
+        "kn": "108 = 27 ನಕ್ಷತ್ರಗಳು × 4 ಪಾದಗಳು = 12 ರಾಶಿಗಳು × 9 ನವಾಂಶಗಳು. ಪ್ರತಿ ಪಾದವು ನವಾಂಶವಾಗಿದೆ. ಇದೇ ಕಾರಣಕ್ಕೆ 108 ಹಿಂದೂ ಸಂಪ್ರದಾಯದಲ್ಲಿ ಎಲ್ಲೆಡೆ ಕಂಡುಬರುತ್ತದೆ: ಒಂದು ಮಾಲೆಯಲ್ಲಿ 108 ಮಣಿಗಳು, 108 ಉಪನಿಷತ್ತುಗಳು, ದೇವತೆಗಳ 108 ಹೆಸರುಗಳು. ಖಗೋಳೀಯ ಮೂಲವು ಈ ರಾಶಿಚಕ್ರದ ಅಪವರ್ತನೀಕರಣವಾಗಿದೆ.",
+        "gu": "૧૦૮ = ૨૭ નક્ષત્ર × ૪ પદ = ૧૨ રાશિ × ૯ નવમાંશ. દરેક પદ એક નવમાંશ છે. આ જ કારણ છે કે હિંદુ પરંપરામાં ૧૦૮ દરેક જગ્યાએ જોવા મળે છે: માળામાં ૧૦૮ મણકા, ૧૦૮ ઉપનિષદ, દેવી-દેવતાઓના ૧૦૮ નામ. ખગોળીય મૂળ આ રાશિચક્રના અવયવીકરણમાં છે."
       }
     }
   ]

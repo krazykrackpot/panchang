@@ -4,22 +4,22 @@
     "hi": "चक्र प्रणालियाँ  –  सर्वतोभद्र और कोटा",
     "mai": "चक्र प्रणाली – सर्वतोभद्र आ कोट",
     "mr": "चक्र प्रणालियाँ  –  सर्वतोभद्र और कोटा",
-    "ta": "Chakra Systems  –  Sarvatobhadra & Kota",
-    "te": "Chakra Systems  –  Sarvatobhadra & Kota",
-    "bn": "Chakra Systems  –  Sarvatobhadra & Kota",
-    "kn": "Chakra Systems  –  Sarvatobhadra & Kota",
-    "gu": "Chakra Systems  –  Sarvatobhadra & Kota"
+    "ta": "சக்கர அமைப்புகள் – சர்வதோபத்ர மற்றும் கோட்ட",
+    "te": "చక్ర వ్యవస్థలు – సర్వతోభద్ర & కోట",
+    "bn": "চক্র পদ্ধতি – সর্বতোভদ্র ও কোটা",
+    "kn": "ಚಕ್ರ ವ್ಯವಸ್ಥೆಗಳು – ಸರ್ವತೋಭದ್ರ ಮತ್ತು ಕೋಟ",
+    "gu": "ચક્ર પ્રણાલીઓ – સર્વતોભદ્ર અને કોટા"
   },
   "subtitle": {
     "en": "Grid-based predictive tools for transit analysis and vedha",
     "hi": "गोचर विश्लेषण और वेध के लिए ग्रिड-आधारित भविष्यवाणी उपकरण",
     "mai": "गोचर विश्लेषण आ वेध के लेल ग्रिड-आधारित भविष्यसूचक उपकरण",
     "mr": "गोचर विश्लेषण और वेध के लिए ग्रिड-आधारित भविष्यवाणी उपकरण",
-    "ta": "Grid-based predictive tools for transit analysis and vedha",
-    "te": "Grid-based predictive tools for transit analysis and vedha",
-    "bn": "Grid-based predictive tools for transit analysis and vedha",
-    "kn": "Grid-based predictive tools for transit analysis and vedha",
-    "gu": "Grid-based predictive tools for transit analysis and vedha"
+    "ta": "கோச்சார பகுப்பாய்வு மற்றும் வேதாவுக்கான கட்டம் சார்ந்த கணிப்பு கருவிகள்",
+    "te": "గోచారం విశ్లేషణ మరియు వేధ కోసం గ్రిడ్ ఆధారిత భవిష్యత్ సూచక సాధనాలు",
+    "bn": "গোচর বিশ্লেষণ এবং বেধের জন্য গ্রিড-ভিত্তিক ভবিষ্যদ্বাণীমূলক সরঞ্জাম",
+    "kn": "ಗೋಚಾರ ವಿಶ್ಲೇಷಣೆ ಮತ್ತು ವೇಧಕ್ಕಾಗಿ ಗ್ರಿಡ್ ಆಧಾರಿತ ಭವಿಷ್ಯಸೂಚಕ ಸಾಧನಗಳು",
+    "gu": "ગોચર વિશ્લેષણ અને વેધ માટે ગ્રીડ-આધારિત ભવિષ્યવાણીના સાધનો"
   },
   "crossRefs": [
     {
@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 23.1: ग्रहण भविष्यवाणी",
         "mai": "मॉड्यूल २३.१: ग्रहणक भविष्यवाणी",
         "mr": "मॉड्यूल 23.1: ग्रहण भविष्यवाणी",
-        "ta": "Module 23.1: Eclipse Prediction",
-        "te": "Module 23.1: Eclipse Prediction",
-        "bn": "Module 23.1: Eclipse Prediction",
-        "kn": "Module 23.1: Eclipse Prediction",
-        "gu": "Module 23.1: Eclipse Prediction"
+        "ta": "தொகுதி 23.1: கிரகண கணிப்பு",
+        "te": "మాడ్యూల్ 23.1: గ్రహణం అంచనా",
+        "bn": "মডিউল ২৩.১: গ্রহণ ভবিষ্যদ্বাণী",
+        "kn": "ಮಾಡ್ಯೂಲ್ 23.1: ಗ್ರಹಣ ಭವಿಷ್ಯ",
+        "gu": "મોડ્યુલ ૨૩.૧: ગ્રહણ ભવિષ્યવાણી"
       },
       "href": "/learn/modules/23-1"
     },
@@ -42,11 +42,11 @@
         "hi": "मॉड्यूल 23.4: स्फुट और संवेदनशील बिन्दु",
         "mai": "मॉड्यूल २३.४: स्फुट ओ संवेदनशील बिंदु",
         "mr": "मॉड्यूल 23.4: स्फुट और संवेदनशील बिन्दु",
-        "ta": "Module 23.4: Sphutas & Sensitive Points",
-        "te": "Module 23.4: Sphutas & Sensitive Points",
-        "bn": "Module 23.4: Sphutas & Sensitive Points",
-        "kn": "Module 23.4: Sphutas & Sensitive Points",
-        "gu": "Module 23.4: Sphutas & Sensitive Points"
+        "ta": "தொகுதி 23.4: ஸ்புடங்கள் மற்றும் உணர்திறன் புள்ளிகள்",
+        "te": "మాడ్యూల్ 23.4: స్ఫుటాలు & సున్నితమైన బిందువులు",
+        "bn": "মডিউল ২৩.৪: স্ফুট ও সংবেদনশীল বিন্দু",
+        "kn": "ಮಾಡ್ಯೂಲ್ 23.4: ಸ್ಫುಟಗಳು ಮತ್ತು ಸೂಕ್ಷ್ಮ ಬಿಂದುಗಳು",
+        "gu": "મોડ્યુલ ૨૩.૪: સ્ફુટ અને સંવેદનશીલ બિંદુઓ"
       },
       "href": "/learn/modules/23-4"
     },
@@ -56,11 +56,11 @@
         "hi": "मॉड्यूल 23.5: प्रश्न योग",
         "mai": "मॉड्यूल २३.५: प्रश्न योग",
         "mr": "मॉड्यूल 23.5: प्रश्न योग",
-        "ta": "Module 23.5: Prashna Yogas",
-        "te": "Module 23.5: Prashna Yogas",
-        "bn": "Module 23.5: Prashna Yogas",
-        "kn": "Module 23.5: Prashna Yogas",
-        "gu": "Module 23.5: Prashna Yogas"
+        "ta": "தொகுதி 23.5: பிரஸ்ன யோகங்கள்",
+        "te": "మాడ్యూల్ 23.5: ప్రశ్న యోగాలు",
+        "bn": "মডিউল ২৩.৫: প্রশ্ন যোগ",
+        "kn": "ಮಾಡ್ಯೂಲ್ 23.5: ಪ್ರಶ್ನ ಯೋಗಗಳು",
+        "gu": "મોડ્યુલ ૨૩.૫: પ્રશ્ન યોગો"
       },
       "href": "/learn/modules/23-5"
     },
@@ -70,11 +70,11 @@
         "hi": "कुण्डली बनाएँ",
         "mai": "कुंडली बनाउ",
         "mr": "कुण्डली बनाएँ",
-        "ta": "Generate Kundali",
-        "te": "Generate Kundali",
-        "bn": "Generate Kundali",
-        "kn": "Generate Kundali",
-        "gu": "Generate Kundali"
+        "ta": "குண்டலியை உருவாக்கு",
+        "te": "కుండలిని రూపొందించండి",
+        "bn": "কুণ্ডলী তৈরি করুন",
+        "kn": "ಕುಂಡಲಿ ರಚಿಸಿ",
+        "gu": "કુંડળી બનાવો"
       },
       "href": "/kundali"
     }
@@ -88,11 +88,11 @@
         "hi": "सर्वतोभद्र चक्र क्या है?",
         "mai": "सर्वतोभद्र चक्र की अछि?",
         "mr": "सर्वतोभद्र चक्र क्या है?",
-        "ta": "What is the Sarvatobhadra Chakra?",
-        "te": "What is the Sarvatobhadra Chakra?",
-        "bn": "What is the Sarvatobhadra Chakra?",
-        "kn": "What is the Sarvatobhadra Chakra?",
-        "gu": "What is the Sarvatobhadra Chakra?"
+        "ta": "சர்வதோபத்ர சக்கரம் என்றால் என்ன?",
+        "te": "సర్వతోభద్ర చక్రం అంటే ఏమిటి?",
+        "bn": "সর্বতোভদ্র চক্র কী?",
+        "kn": "ಸರ್ವತೋಭದ್ರ ಚಕ್ರ ಎಂದರೇನು?",
+        "gu": "સર્વતોભદ્ર ચક્ર શું છે?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -100,11 +100,11 @@
         "hi": "सर्वतोभद्र चक्र एक व्यापक 9×9 ग्रिड है जो संस्कृत स्वरों, व्यंजनों, 27 नक्षत्रों, 30 तिथियों और 7 वारों (सप्ताह के दिनों) को एक आरेख में मैप करती है। इसका उपयोग मुख्य रूप से गोचर भविष्यवाणियों में वेध (अवरोध) विश्लेषण के लिए होता है।",
         "mai": "सर्वतोभद्र चक्र एकटा व्यापक ९x९ ग्रिड अछि जे संस्कृत स्वर, व्यंजन, २७ नक्षत्र, ३० तिथि, आ ७ वार (सप्ताहक दिन) कें एकटा एकल आरेखमे मानचित्रित करैत अछि। एकर उपयोग मुख्य रूप सँ वेध (बाधा) विश्लेषणक लेल कयल जाइत अछि गोचरक भविष्यवाणीमे।",
         "mr": "सर्वतोभद्र चक्र एक व्यापक 9×9 ग्रिड है जो संस्कृत स्वरों, व्यंजनों, 27 नक्षत्रों, 30 तिथियों और 7 वारों (सप्ताह के दिनों) को एक आरेख में मैप करती है। इसका उपयोग मुख्य रूप से गोचर भविष्यवाणियों में वेध (अवरोध) विश्लेषण के लिए होता है।",
-        "ta": "The Sarvatobhadra Chakra is a comprehensive 9x9 grid that maps Sanskrit vowels, consonants, the 27 nakshatras, 30 tithis, and 7 varas (weekdays) into a single diagram. It is used primarily for Vedha (obstruction) analysis in transit predictions.",
-        "te": "The Sarvatobhadra Chakra is a comprehensive 9x9 grid that maps Sanskrit vowels, consonants, the 27 nakshatras, 30 tithis, and 7 varas (weekdays) into a single diagram. It is used primarily for Vedha (obstruction) analysis in transit predictions.",
-        "bn": "The Sarvatobhadra Chakra is a comprehensive 9x9 grid that maps Sanskrit vowels, consonants, the 27 nakshatras, 30 tithis, and 7 varas (weekdays) into a single diagram. It is used primarily for Vedha (obstruction) analysis in transit predictions.",
-        "kn": "The Sarvatobhadra Chakra is a comprehensive 9x9 grid that maps Sanskrit vowels, consonants, the 27 nakshatras, 30 tithis, and 7 varas (weekdays) into a single diagram. It is used primarily for Vedha (obstruction) analysis in transit predictions.",
-        "gu": "The Sarvatobhadra Chakra is a comprehensive 9x9 grid that maps Sanskrit vowels, consonants, the 27 nakshatras, 30 tithis, and 7 varas (weekdays) into a single diagram. It is used primarily for Vedha (obstruction) analysis in transit predictions."
+        "ta": "சர்வதோபத்ர சக்கரம் என்பது ஒரு விரிவான 9x9 கட்டம் ஆகும், இது சம்ஸ்கிருத உயிரெழுத்துக்கள், மெய்யெழுத்துக்கள், 27 நட்சத்திரங்கள், 30 திதிகள் மற்றும் 7 வாரங்களை (கிழமைகள்) ஒரே வரைபடத்தில் வரைபடமாக்குகிறது. இது முக்கியமாக கோச்சார கணிப்புகளில் வேதா (தடை) பகுப்பாய்வுக்காகப் பயன்படுத்தப்படுகிறது.",
+        "te": "సర్వతోభద్ర చక్రం అనేది సంస్కృత అచ్చులు, హల్లులు, 27 నక్షత్రాలు, 30 తిథులు మరియు 7 వారాలను (వారపు రోజులు) ఒకే రేఖాచిత్రంలో మ్యాప్ చేసే ఒక సమగ్ర 9x9 గ్రిడ్. ఇది ప్రధానంగా గోచారం అంచనాలలో వేధ (అడ్డంకి) విశ్లేషణ కోసం ఉపయోగించబడుతుంది.",
+        "bn": "সর্বতোভদ্র চক্র একটি ব্যাপক ৯x৯ গ্রিড যা সংস্কৃত স্বরবর্ণ, ব্যঞ্জনবর্ণ, ২৭ নক্ষত্র, ৩০ তিথি এবং ৭ বার (সপ্তাহের দিন) একটি একক চিত্রে ম্যাপ করে। এটি প্রধানত গোচর ভবিষ্যদ্বাণীতে বেধ (বাধা) বিশ্লেষণের জন্য ব্যবহৃত হয়।",
+        "kn": "ಸರ್ವತೋಭದ್ರ ಚಕ್ರವು ಒಂದು ಸಮಗ್ರ 9x9 ಗ್ರಿಡ್ ಆಗಿದೆ, ಇದು ಸಂಸ್ಕೃತ ಸ್ವರಗಳು, ವ್ಯಂಜನಗಳು, 27 ನಕ್ಷತ್ರಗಳು, 30 ತಿಥಿಗಳು ಮತ್ತು 7 ವಾರಗಳನ್ನು (ವಾರದ ದಿನಗಳು) ಒಂದೇ ರೇಖಾಚಿತ್ರದಲ್ಲಿ ನಕ್ಷೆ ಮಾಡುತ್ತದೆ. ಇದನ್ನು ಮುಖ್ಯವಾಗಿ ಗೋಚಾರ ಭವಿಷ್ಯದಲ್ಲಿ ವೇಧ (ಅಡಚಣೆ) ವಿಶ್ಲೇಷಣೆಗಾಗಿ ಬಳಸಲಾಗುತ್ತದೆ.",
+        "gu": "સર્વતોભદ્ર ચક્ર એક વ્યાપક ૯x૯ ગ્રીડ છે જે સંસ્કૃત સ્વરો, વ્યંજનો, ૨૭ નક્ષત્રો, ૩૦ તિથિઓ અને ૭ વાર (અઠવાડિયાના દિવસો) ને એક જ આકૃતિમાં દર્શાવે છે. તેનો ઉપયોગ મુખ્યત્વે ગોચર ભવિષ્યવાણીમાં વેધ (અવરોધ) વિશ્લેષણ માટે થાય છે."
       },
       "options": [
         {
@@ -112,44 +112,44 @@
           "hi": "12 भावों का जन्म कुण्डली विन्यास",
           "mai": "एकटा १२-भावक जन्म कुंडलीक लेआउट",
           "mr": "12 भावों का जन्म कुण्डली विन्यास",
-          "ta": "A 12-house birth chart layout",
-          "te": "A 12-house birth chart layout",
-          "bn": "A 12-house birth chart layout",
-          "kn": "A 12-house birth chart layout",
-          "gu": "A 12-house birth chart layout"
+          "ta": "12 பாவம் கொண்ட ஒரு ஜாதக அமைப்பு",
+          "te": "12 భావాల జన్మ పట లేఅవుట్",
+          "bn": "একটি ১২-ভাবের জন্মছকের বিন্যাস",
+          "kn": "12 ಭಾವಗಳ ಜನ್ಮ ಕುಂಡಲಿ ವಿನ್ಯಾಸ",
+          "gu": "૧૨ ભાવનો જન્મ કુંડળીનો નકશો"
         },
         {
           "en": "A 9x9 grid mapping vowels, consonants, nakshatras, tithis, and varas",
           "hi": "स्वर, व्यंजन, नक्षत्र, तिथि और वार को मैप करने वाली 9×9 ग्रिड",
           "mai": "एकटा ९x९ ग्रिड जे स्वर, व्यंजन, नक्षत्र, तिथि, आ वारकें मानचित्रित करैत अछि",
           "mr": "स्वर, व्यंजन, नक्षत्र, तिथि और वार को मैप करने वाली 9×9 ग्रिड",
-          "ta": "A 9x9 grid mapping vowels, consonants, nakshatras, tithis, and varas",
-          "te": "A 9x9 grid mapping vowels, consonants, nakshatras, tithis, and varas",
-          "bn": "A 9x9 grid mapping vowels, consonants, nakshatras, tithis, and varas",
-          "kn": "A 9x9 grid mapping vowels, consonants, nakshatras, tithis, and varas",
-          "gu": "A 9x9 grid mapping vowels, consonants, nakshatras, tithis, and varas"
+          "ta": "உயிரெழுத்துக்கள், மெய்யெழுத்துக்கள், நட்சத்திரங்கள், திதிகள் மற்றும் வாரங்களை வரைபடமாக்கும் ஒரு 9x9 கட்டம்",
+          "te": "అచ్చులు, హల్లులు, నక్షత్రాలు, తిథులు మరియు వారాలను మ్యాప్ చేసే 9x9 గ్రిడ్",
+          "bn": "স্বরবর্ণ, ব্যঞ্জনবর্ণ, নক্ষত্র, তিথি এবং বার ম্যাপ করা একটি ৯x৯ গ্রিড",
+          "kn": "ಸ್ವರಗಳು, ವ್ಯಂಜನಗಳು, ನಕ್ಷತ್ರಗಳು, ತಿಥಿಗಳು ಮತ್ತು ವಾರಗಳನ್ನು ನಕ್ಷೆ ಮಾಡುವ 9x9 ಗ್ರಿಡ್",
+          "gu": "સ્વરો, વ્યંજનો, નક્ષત્રો, તિથિઓ અને વારને દર્શાવતી ૯x૯ ગ્રીડ"
         },
         {
           "en": "A circular diagram of planetary orbits",
           "hi": "ग्रहीय कक्षाओं का वृत्ताकार आरेख",
           "mai": "ग्रहक कक्षामे एकटा वृत्ताकार आरेख",
           "mr": "ग्रहीय कक्षाओं का वृत्ताकार आरेख",
-          "ta": "A circular diagram of planetary orbits",
-          "te": "A circular diagram of planetary orbits",
-          "bn": "A circular diagram of planetary orbits",
-          "kn": "A circular diagram of planetary orbits",
-          "gu": "A circular diagram of planetary orbits"
+          "ta": "கிரகங்களின் சுற்றுப்பாதைகளின் ஒரு வட்ட வரைபடம்",
+          "te": "గ్రహ కక్ష్యల వృత్తాకార రేఖాచిత్రం",
+          "bn": "গ্রহের কক্ষপথের একটি বৃত্তাকার চিত্র",
+          "kn": "ಗ್ರಹಗಳ ಕಕ್ಷೆಗಳ ವೃತ್ತಾಕಾರದ ರೇಖಾಚಿತ್ರ",
+          "gu": "ગ્રહોની કક્ષાનો ગોળાકાર આકૃતિ"
         },
         {
           "en": "A table of planetary dignities",
           "hi": "ग्रहीय गरिमाओं की तालिका",
           "mai": "ग्रहक गरिमाक एकटा सारणी",
           "mr": "ग्रहीय गरिमाओं की तालिका",
-          "ta": "A table of planetary dignities",
-          "te": "A table of planetary dignities",
-          "bn": "A table of planetary dignities",
-          "kn": "A table of planetary dignities",
-          "gu": "A table of planetary dignities"
+          "ta": "கிரகங்களின் பலம் பற்றிய ஒரு அட்டவணை",
+          "te": "గ్రహాల గౌరవాల పట్టిక",
+          "bn": "গ্রহের মর্যাদাগুলির একটি সারণী",
+          "kn": "ಗ್ರಹಗಳ ಘನತೆಗಳ ಕೋಷ್ಟಕ",
+          "gu": "ગ્રહોની ગરિમાનું કોષ્ટક"
         }
       ]
     },
@@ -161,11 +161,11 @@
         "hi": "सर्वतोभद्र चक्र के सन्दर्भ में \"वेध\" क्या है?",
         "mai": "सर्वतोभद्र चक्रक संदर्भमे \"वेध\" की अछि?",
         "mr": "सर्वतोभद्र चक्र के सन्दर्भ में \"वेध\" क्या है?",
-        "ta": "What is \"Vedha\" in the context of Sarvatobhadra Chakra?",
-        "te": "What is \"Vedha\" in the context of Sarvatobhadra Chakra?",
-        "bn": "What is \"Vedha\" in the context of Sarvatobhadra Chakra?",
-        "kn": "What is \"Vedha\" in the context of Sarvatobhadra Chakra?",
-        "gu": "What is \"Vedha\" in the context of Sarvatobhadra Chakra?"
+        "ta": "சர்வதோபத்ர சக்கரத்தின் சூழலில் \"வேதா\" என்றால் என்ன?",
+        "te": "సర్వతోభద్ర చక్రం సందర్భంలో \"వేధ\" అంటే ఏమిటి?",
+        "bn": "সর্বতোভদ্র চক্রের প্রেক্ষাপটে \"বেধ\" কী?",
+        "kn": "ಸರ್ವತೋಭದ್ರ ಚಕ್ರದ ಸಂದರ್ಭದಲ್ಲಿ \"ವೇಧ\" ಎಂದರೇನು?",
+        "gu": "સર્વતોભદ્ર ચક્રના સંદર્ભમાં \"વેધ\" શું છે?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -173,11 +173,11 @@
         "hi": "वेध का अर्थ \"छेदना\" या \"अवरोध\" है। सर्वतोभद्र चक्र में, जब कोई गोचर पाप ग्रह ऐसी स्थिति में हो जो आपके जन्म नक्षत्र की पंक्ति या स्तम्भ पर हो, तो यह वेध  –  उस जीवन क्षेत्र में अवरोध या चुनौती बनाता है। बृहस्पति या शुक्र का शुभ वेध सहायता प्रदान करता है।",
         "mai": "वेधक अर्थ \"छेदन\" वा \"बाधा\" होइत अछि। सर्वतोभद्र चक्रमे, जखन कोनो गोचर करयवला अशुभ ग्रह अहाँक जन्म नक्षत्रक समान पंक्ति वा स्तंभमे स्थित कोनो स्थान पर रहैत अछि, तखन ओ वेध उत्पन्न करैत अछि – ओहि जीवन क्षेत्रमे एकटा बाधा वा चुनौती। बृहस्पति वा शुक्र सँ शुभ वेध समर्थन उत्पन्न करैत अछि।",
         "mr": "वेध का अर्थ \"छेदना\" या \"अवरोध\" है। सर्वतोभद्र चक्र में, जब कोई गोचर पाप ग्रह ऐसी स्थिति में हो जो आपके जन्म नक्षत्र की पंक्ति या स्तम्भ पर हो, तो यह वेध  –  उस जीवन क्षेत्र में अवरोध या चुनौती बनाता है। बृहस्पति या शुक्र का शुभ वेध सहायता प्रदान करता है।",
-        "ta": "Vedha means \"piercing\" or \"obstruction.\" In the Sarvatobhadra Chakra, when a transiting malefic planet occupies a position that lies on the same row or column as your birth nakshatra, it creates vedha  –  an obstruction or challenge in that life area. Benefic vedha from Jupiter or Venus creates support.",
-        "te": "Vedha means \"piercing\" or \"obstruction.\" In the Sarvatobhadra Chakra, when a transiting malefic planet occupies a position that lies on the same row or column as your birth nakshatra, it creates vedha  –  an obstruction or challenge in that life area. Benefic vedha from Jupiter or Venus creates support.",
-        "bn": "Vedha means \"piercing\" or \"obstruction.\" In the Sarvatobhadra Chakra, when a transiting malefic planet occupies a position that lies on the same row or column as your birth nakshatra, it creates vedha  –  an obstruction or challenge in that life area. Benefic vedha from Jupiter or Venus creates support.",
-        "kn": "Vedha means \"piercing\" or \"obstruction.\" In the Sarvatobhadra Chakra, when a transiting malefic planet occupies a position that lies on the same row or column as your birth nakshatra, it creates vedha  –  an obstruction or challenge in that life area. Benefic vedha from Jupiter or Venus creates support.",
-        "gu": "Vedha means \"piercing\" or \"obstruction.\" In the Sarvatobhadra Chakra, when a transiting malefic planet occupies a position that lies on the same row or column as your birth nakshatra, it creates vedha  –  an obstruction or challenge in that life area. Benefic vedha from Jupiter or Venus creates support."
+        "ta": "வேதா என்றால் \"துளைத்தல்\" அல்லது \"தடை\" என்று பொருள். சர்வதோபத்ர சக்கரத்தில், ஒரு கோச்சார அசுப கிரகம் உங்கள் ஜென்ம நட்சத்திரத்தின் அதே வரிசை அல்லது நிரலில் உள்ள ஒரு நிலையை ஆக்கிரமிக்கும்போது, அது வேதா – அந்த வாழ்க்கைப் பகுதியில் ஒரு தடை அல்லது சவாலை உருவாக்குகிறது. குரு அல்லது சுக்கிரனால் ஏற்படும் சுப வேதா ஆதரவை உருவாக்குகிறது.",
+        "te": "వేధ అంటే \"కుట్టడం\" లేదా \"అడ్డంకి\". సర్వతోభద్ర చక్రంలో, ఒక గోచారం చేసే అశుభ గ్రహం మీ జన్మ నక్షత్రం ఉన్న అదే అడ్డు వరుస లేదా నిలువు వరుసలో ఉన్న స్థానాన్ని ఆక్రమించినప్పుడు, అది వేధను సృష్టిస్తుంది – ఆ జీవిత రంగంలో ఒక అడ్డంకి లేదా సవాలు. గురుడు లేదా శుక్రుడి నుండి శుభ వేధ మద్దతును సృష్టిస్తుంది.",
+        "bn": "বেধ মানে \"ভেদ করা\" বা \"বাধা\"। সর্বতোভদ্র চক্রে, যখন একটি গোচর অশুভ গ্রহ আপনার জন্ম নক্ষত্রের একই সারি বা কলামে অবস্থিত একটি স্থান দখল করে, তখন এটি বেধ তৈরি করে – সেই জীবন ক্ষেত্রে একটি বাধা বা চ্যালেঞ্জ। বৃহস্পতি বা শুক্র থেকে শুভ বেধ সমর্থন তৈরি করে।",
+        "kn": "ವೇಧ ಎಂದರೆ \"ಚುಚ್ಚುವುದು\" ಅಥವಾ \"ಅಡಚಣೆ\". ಸರ್ವತೋಭದ್ರ ಚಕ್ರದಲ್ಲಿ, ಗೋಚಾರದಲ್ಲಿರುವ ಒಂದು ದುಷ್ಟ ಗ್ರಹವು ನಿಮ್ಮ ಜನ್ಮ ನಕ್ಷತ್ರದ ಅದೇ ಸಾಲು ಅಥವಾ ಕಾಲಮ್‌ನಲ್ಲಿರುವ ಸ್ಥಾನವನ್ನು ಆಕ್ರಮಿಸಿದಾಗ, ಅದು ವೇಧವನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ – ಆ ಜೀವನ ಕ್ಷೇತ್ರದಲ್ಲಿ ಒಂದು ಅಡಚಣೆ ಅಥವಾ ಸವಾಲು. ಗುರು ಅಥವಾ ಶುಕ್ರನಿಂದ ಶುಭ ವೇಧವು ಬೆಂಬಲವನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ.",
+        "gu": "વેધ એટલે \"ભેદવું\" અથવા \"અવરોધ\". સર્વતોભદ્ર ચક્રમાં, જ્યારે કોઈ ગોચરનો અશુભ ગ્રહ તમારા જન્મ નક્ષત્રની સમાન પંક્તિ અથવા સ્તંભમાં સ્થાન લે છે, ત્યારે તે વેધ – તે જીવન ક્ષેત્રમાં અવરોધ અથવા પડકાર – બનાવે છે. ગુરુ અથવા શુક્ર દ્વારા શુભ વેધ સહાય બનાવે છે."
       },
       "options": [
         {
@@ -185,44 +185,44 @@
           "hi": "ग्रहीय गरिमा का एक प्रकार",
           "mai": "एकटा प्रकारक ग्रहक गरिमा",
           "mr": "ग्रहीय गरिमा का एक प्रकार",
-          "ta": "A type of planetary dignity",
-          "te": "A type of planetary dignity",
-          "bn": "A type of planetary dignity",
-          "kn": "A type of planetary dignity",
-          "gu": "A type of planetary dignity"
+          "ta": "ஒரு வகை கிரக பலம்",
+          "te": "ఒక రకమైన గ్రహ గౌరవం",
+          "bn": "এক ধরণের গ্রহের মর্যাদা",
+          "kn": "ಒಂದು ರೀತಿಯ ಗ್ರಹಗಳ ಘನತೆ",
+          "gu": "ગ્રહોની ગરિમાનો એક પ્રકાર"
         },
         {
           "en": "An obstruction created when a transiting planet hits a row/column of your birth nakshatra",
           "hi": "जब गोचर ग्रह आपके जन्म नक्षत्र की पंक्ति/स्तम्भ से टकराता है तब उत्पन्न अवरोध",
           "mai": "एकटा बाधा उत्पन्न होइत अछि जखन कोनो गोचर करयवला ग्रह अहाँक जन्म नक्षत्रक पंक्ति/स्तंभ सँ टकराइत अछि",
           "mr": "जब गोचर ग्रह आपके जन्म नक्षत्र की पंक्ति/स्तम्भ से टकराता है तब उत्पन्न अवरोध",
-          "ta": "An obstruction created when a transiting planet hits a row/column of your birth nakshatra",
-          "te": "An obstruction created when a transiting planet hits a row/column of your birth nakshatra",
-          "bn": "An obstruction created when a transiting planet hits a row/column of your birth nakshatra",
-          "kn": "An obstruction created when a transiting planet hits a row/column of your birth nakshatra",
-          "gu": "An obstruction created when a transiting planet hits a row/column of your birth nakshatra"
+          "ta": "ஒரு கோச்சார கிரகம் உங்கள் ஜென்ம நட்சத்திரத்தின் வரிசை/நிரலைத் தாக்கும்போது ஏற்படும் ஒரு தடை",
+          "te": "గోచారం చేసే గ్రహం మీ జన్మ నక్షత్రం యొక్క అడ్డు వరుస/నిలువు వరుసను తాకినప్పుడు ఏర్పడే అడ్డంకి",
+          "bn": "যখন একটি গোচর গ্রহ আপনার জন্ম নক্ষত্রের একটি সারি/কলামে আঘাত করে তখন সৃষ্ট একটি বাধা",
+          "kn": "ಗೋಚಾರ ಗ್ರಹವು ನಿಮ್ಮ ಜನ್ಮ ನಕ್ಷತ್ರದ ಸಾಲು/ಕಾಲಮ್ ಅನ್ನು ತಲುಪಿದಾಗ ಸೃಷ್ಟಿಯಾಗುವ ಅಡಚಣೆ",
+          "gu": "જ્યારે કોઈ ગોચર ગ્રહ તમારા જન્મ નક્ષત્રની પંક્તિ/સ્તંભને સ્પર્શે ત્યારે સર્જાતો અવરોધ"
         },
         {
           "en": "A benefic yoga between Jupiter and Venus",
           "hi": "बृहस्पति और शुक्र के बीच शुभ योग",
           "mai": "बृहस्पति आ शुक्रक बीच एकटा शुभ योग",
           "mr": "बृहस्पति और शुक्र के बीच शुभ योग",
-          "ta": "A benefic yoga between Jupiter and Venus",
-          "te": "A benefic yoga between Jupiter and Venus",
-          "bn": "A benefic yoga between Jupiter and Venus",
-          "kn": "A benefic yoga between Jupiter and Venus",
-          "gu": "A benefic yoga between Jupiter and Venus"
+          "ta": "குரு மற்றும் சுக்கிரனுக்கு இடையிலான ஒரு சுப யோகம்",
+          "te": "గురుడు మరియు శుక్రుడు మధ్య ఒక శుభ యోగం",
+          "bn": "বৃহস্পতি ও শুক্রের মধ্যে একটি শুভ যোগ",
+          "kn": "ಗುರು ಮತ್ತು ಶುಕ್ರರ ನಡುವಿನ ಶುಭ ಯೋಗ",
+          "gu": "ગુરુ અને શુક્ર વચ્ચેનો શુભ યોગ"
         },
         {
           "en": "The combustion of a planet",
           "hi": "ग्रह का अस्त होना",
           "mai": "एकटा ग्रहक अस्त",
           "mr": "ग्रह का अस्त होना",
-          "ta": "The combustion of a planet",
-          "te": "The combustion of a planet",
-          "bn": "The combustion of a planet",
-          "kn": "The combustion of a planet",
-          "gu": "The combustion of a planet"
+          "ta": "ஒரு கிரகத்தின் அஸ்தமனம்",
+          "te": "ఒక గ్రహం యొక్క అస్తంగత్వం",
+          "bn": "একটি গ্রহের দহন",
+          "kn": "ಒಂದು ಗ್ರಹದ ಅಸ್ತಂಗತ",
+          "gu": "ગ્રહનું અસ્ત થવું"
         }
       ]
     },
@@ -234,11 +234,11 @@
         "hi": "कोटा चक्र में 4 परतें हैं जो व्यक्तिगत प्रभाव के विभिन्न स्तरों का प्रतिनिधित्व करती हैं।",
         "mai": "कोटा चक्रमे ४ परत अछि जे व्यक्तिगत प्रभावक विभिन्न स्तरक प्रतिनिधित्व करैत अछि।",
         "mr": "कोटा चक्र में 4 परतें हैं जो व्यक्तिगत प्रभाव के विभिन्न स्तरों का प्रतिनिधित्व करती हैं।",
-        "ta": "The Kota Chakra has 4 layers representing different levels of personal impact.",
-        "te": "The Kota Chakra has 4 layers representing different levels of personal impact.",
-        "bn": "The Kota Chakra has 4 layers representing different levels of personal impact.",
-        "kn": "The Kota Chakra has 4 layers representing different levels of personal impact.",
-        "gu": "The Kota Chakra has 4 layers representing different levels of personal impact."
+        "ta": "கோட்ட சக்கரம் தனிப்பட்ட தாக்கத்தின் வெவ்வேறு நிலைகளைக் குறிக்கும் 4 அடுக்குகளைக் கொண்டுள்ளது.",
+        "te": "కోట చక్రం వ్యక్తిగత ప్రభావం యొక్క వివిధ స్థాయిలను సూచించే 4 పొరలను కలిగి ఉంది.",
+        "bn": "কোটা চক্রের ৪টি স্তর রয়েছে যা ব্যক্তিগত প্রভাবের বিভিন্ন স্তরকে উপস্থাপন করে।",
+        "kn": "ಕೋಟ ಚಕ್ರವು ವೈಯಕ್ತಿಕ ಪ್ರಭಾವದ ವಿವಿಧ ಹಂತಗಳನ್ನು ಪ್ರತಿನಿಧಿಸುವ 4 ಪದರಗಳನ್ನು ಹೊಂದಿದೆ.",
+        "gu": "કોટા ચક્રમાં વ્યક્તિગત અસરના વિવિધ સ્તરો દર્શાવતા ૪ સ્તરો હોય છે."
       },
       "correctAnswer": 3,
       "explanation": {
@@ -246,11 +246,11 @@
         "hi": "कोटा चक्र 4 संकेन्द्रित परतों वाला \"किला\" आरेख है: स्तम्भ (खम्भा/अन्तरतम), मध्य (बीच), प्राकार (दीवार), और बाह्य (बाहरी)। आपकी स्तम्भ परत से गोचर करने वाले ग्रहों का सबसे प्रत्यक्ष व्यक्तिगत प्रभाव होता है, जबकि बाह्य परत वाले बाहरी परिस्थितियों को प्रभावित करते हैं।",
         "mai": "कोटा चक्र एकटा \"किला\" आरेख अछि जे ४ संकेंद्रित परतक संग: स्तंभ (खंभा/भीतरी), मध्य (बीचक), प्राकार (दीवार), आ बाह्य (बाहरी)। अहाँक स्तंभ परत सँ गोचर करयवला ग्रहक सबसँ सीधा व्यक्तिगत प्रभाव होइत अछि, जखन कि बाह्य परतमे रहयवला ग्रह बाहरी परिस्थितिकें प्रभावित करैत अछि।",
         "mr": "कोटा चक्र 4 संकेन्द्रित परतों वाला \"किला\" आरेख है: स्तम्भ (खम्भा/अन्तरतम), मध्य (बीच), प्राकार (दीवार), और बाह्य (बाहरी)। आपकी स्तम्भ परत से गोचर करने वाले ग्रहों का सबसे प्रत्यक्ष व्यक्तिगत प्रभाव होता है, जबकि बाह्य परत वाले बाहरी परिस्थितियों को प्रभावित करते हैं।",
-        "ta": "The Kota Chakra is a \"fort\" diagram with 4 concentric layers: Stambha (pillar/innermost), Madhya (middle), Praakara (wall), and Bahya (outer). Planets transiting your Stambha layer have the most direct personal impact, while those in the Bahya layer affect external circumstances.",
-        "te": "The Kota Chakra is a \"fort\" diagram with 4 concentric layers: Stambha (pillar/innermost), Madhya (middle), Praakara (wall), and Bahya (outer). Planets transiting your Stambha layer have the most direct personal impact, while those in the Bahya layer affect external circumstances.",
-        "bn": "The Kota Chakra is a \"fort\" diagram with 4 concentric layers: Stambha (pillar/innermost), Madhya (middle), Praakara (wall), and Bahya (outer). Planets transiting your Stambha layer have the most direct personal impact, while those in the Bahya layer affect external circumstances.",
-        "kn": "The Kota Chakra is a \"fort\" diagram with 4 concentric layers: Stambha (pillar/innermost), Madhya (middle), Praakara (wall), and Bahya (outer). Planets transiting your Stambha layer have the most direct personal impact, while those in the Bahya layer affect external circumstances.",
-        "gu": "The Kota Chakra is a \"fort\" diagram with 4 concentric layers: Stambha (pillar/innermost), Madhya (middle), Praakara (wall), and Bahya (outer). Planets transiting your Stambha layer have the most direct personal impact, while those in the Bahya layer affect external circumstances."
+        "ta": "கோட்ட சக்கரம் என்பது 4 மைய அடுக்குகளைக் கொண்ட ஒரு \"கோட்டை\" வரைபடம் ஆகும்: ஸ்தம்பா (தூண்/உள்ளே), மத்திய (நடு), பிராகார (சுவர்) மற்றும் பாஹ்ய (வெளி). உங்கள் ஸ்தம்பா அடுக்கில் கோச்சாரம் செய்யும் கிரகங்கள் மிகவும் நேரடியான தனிப்பட்ட தாக்கத்தை ஏற்படுத்துகின்றன, அதே நேரத்தில் பாஹ்ய அடுக்கில் உள்ளவை வெளிப்புற சூழ்நிலைகளை பாதிக்கின்றன.",
+        "te": "కోట చక్రం అనేది 4 ఏకకేంద్రక పొరలతో కూడిన ఒక \"కోట\" రేఖాచిత్రం: స్తంభ (స్తంభం/అత్యంత లోపలి), మధ్య (మధ్య), ప్రాకార (గోడ), మరియు బాహ్య (బయటి). మీ స్తంభ పొర గుండా గోచారం చేసే గ్రహాలు అత్యంత ప్రత్యక్ష వ్యక్తిగత ప్రభావాన్ని కలిగి ఉంటాయి, అయితే బాహ్య పొరలో ఉన్నవి బాహ్య పరిస్థితులను ప్రభావితం చేస్తాయి.",
+        "bn": "কোটা চক্র একটি \"দুর্গ\" চিত্র যার ৪টি কেন্দ্রীভূত স্তর রয়েছে: স্তম্ভ (স্তম্ভ/অভ্যন্তরীণ), মধ্য (মাঝের), প্রাকার (প্রাচীর) এবং বাহ্য (বাহিরের)। আপনার স্তম্ভ স্তরে গোচরকারী গ্রহগুলির সবচেয়ে সরাসরি ব্যক্তিগত প্রভাব থাকে, যখন বাহ্য স্তরের গ্রহগুলি বাহ্যিক পরিস্থিতিকে প্রভাবিত করে।",
+        "kn": "ಕೋಟ ಚಕ್ರವು 4 ಕೇಂದ್ರೀಕೃತ ಪದರಗಳನ್ನು ಹೊಂದಿರುವ \"ಕೋಟೆ\" ರೇಖಾಚಿತ್ರವಾಗಿದೆ: ಸ್ತಂಭ (ಕಂಬ/ಅತ್ಯಂತ ಒಳಗಿನ), ಮಧ್ಯ (ಮಧ್ಯದ), ಪ್ರಾಕಾರ (ಗೋಡೆ), ಮತ್ತು ಬಾಹ್ಯ (ಹೊರಗಿನ). ನಿಮ್ಮ ಸ್ತಂಭ ಪದರದಲ್ಲಿ ಗೋಚಾರ ಮಾಡುವ ಗ್ರಹಗಳು ಅತ್ಯಂತ ನೇರ ವೈಯಕ್ತಿಕ ಪ್ರಭಾವವನ್ನು ಹೊಂದಿರುತ್ತವೆ, ಆದರೆ ಬಾಹ್ಯ ಪದರದಲ್ಲಿರುವವು ಬಾಹ್ಯ ಪರಿಸ್ಥಿತಿಗಳ ಮೇಲೆ ಪರಿಣಾಮ ಬೀರುತ್ತವೆ.",
+        "gu": "કોટા ચક્ર એ ૪ કેન્દ્રિત સ્તરો સાથેનો \"કિલ્લો\" આકૃતિ છે: સ્તંભ (સ્તંભ/સૌથી અંદરનો), મધ્ય (મધ્યમ), પ્રાકાર (દીવાલ), અને બાહ્ય (બાહ્ય). તમારા સ્તંભ સ્તરમાંથી ગોચર કરતા ગ્રહોની સૌથી સીધી વ્યક્તિગત અસર હોય છે, જ્યારે બાહ્ય સ્તરમાં રહેલા ગ્રહો બાહ્ય સંજોગોને અસર કરે છે."
       }
     },
     {
@@ -261,11 +261,11 @@
         "hi": "कोटा चक्र में, कौन सी परत सबसे प्रत्यक्ष व्यक्तिगत प्रभाव दर्शाती है?",
         "mai": "कोटा चक्रमे, कोन परत सबसँ सीधा व्यक्तिगत प्रभावक प्रतिनिधित्व करैत अछि?",
         "mr": "कोटा चक्र में, कौन सी परत सबसे प्रत्यक्ष व्यक्तिगत प्रभाव दर्शाती है?",
-        "ta": "In the Kota Chakra, which layer represents the most direct personal impact?",
-        "te": "In the Kota Chakra, which layer represents the most direct personal impact?",
-        "bn": "In the Kota Chakra, which layer represents the most direct personal impact?",
-        "kn": "In the Kota Chakra, which layer represents the most direct personal impact?",
-        "gu": "In the Kota Chakra, which layer represents the most direct personal impact?"
+        "ta": "கோட்ட சக்கரத்தில், எந்த அடுக்கு மிகவும் நேரடியான தனிப்பட்ட தாக்கத்தைக் குறிக்கிறது?",
+        "te": "కోట చక్రంలో, ఏ పొర అత్యంత ప్రత్యక్ష వ్యక్తిగత ప్రభావాన్ని సూచిస్తుంది?",
+        "bn": "কোটা চক্রে, কোন স্তরটি সবচেয়ে সরাসরি ব্যক্তিগত প্রভাবকে উপস্থাপন করে?",
+        "kn": "ಕೋಟ ಚಕ್ರದಲ್ಲಿ, ಯಾವ ಪದರವು ಅತ್ಯಂತ ನೇರ ವೈಯಕ್ತಿಕ ಪ್ರಭಾವವನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತದೆ?",
+        "gu": "કોટા ચક્રમાં, કયું સ્તર સૌથી સીધી વ્યક્તિગત અસર દર્શાવે છે?"
       },
       "correctAnswer": 3,
       "explanation": {
@@ -273,11 +273,11 @@
         "hi": "स्तम्भ (खम्भा या अन्तरतम परत) किले के केन्द्र  –  सबसे व्यक्तिगत क्षेत्र का प्रतिनिधित्व करती है। जब कोई ग्रह आपकी स्तम्भ परत से गोचर करता है, तो प्रभाव सबसे प्रत्यक्ष और व्यक्तिगत रूप से अनुभव होता है। स्तम्भ परत में पाप ग्रह = प्रत्यक्ष व्यक्तिगत चुनौती; शुभ ग्रह = प्रत्यक्ष व्यक्तिगत आशीर्वाद।",
         "mai": "स्तंभ (खंभा वा भीतरी परत) किलाक मूलक प्रतिनिधित्व करैत अछि – सबसँ व्यक्तिगत क्षेत्र। जखन कोनो ग्रह अहाँक स्तंभ परत सँ गोचर करैत अछि, तखन प्रभाव सबसँ सीधा आ व्यक्तिगत रूप सँ महसूस कयल जाइत अछि। स्तंभ परतमे एकटा अशुभ ग्रह = सीधा व्यक्तिगत चुनौती; एकटा शुभ ग्रह = सीधा व्यक्तिगत आशीर्वाद।",
         "mr": "स्तम्भ (खम्भा या अन्तरतम परत) किले के केन्द्र  –  सबसे व्यक्तिगत क्षेत्र का प्रतिनिधित्व करती है। जब कोई ग्रह आपकी स्तम्भ परत से गोचर करता है, तो प्रभाव सबसे प्रत्यक्ष और व्यक्तिगत रूप से अनुभव होता है। स्तम्भ परत में पाप ग्रह = प्रत्यक्ष व्यक्तिगत चुनौती; शुभ ग्रह = प्रत्यक्ष व्यक्तिगत आशीर्वाद।",
-        "ta": "Stambha (the pillar or innermost layer) represents the core of the fort  –  the most personal area. When a planet transits through your Stambha layer, the impact is felt most directly and personally. A malefic in the Stambha layer = direct personal challenge; a benefic = direct personal blessing.",
-        "te": "Stambha (the pillar or innermost layer) represents the core of the fort  –  the most personal area. When a planet transits through your Stambha layer, the impact is felt most directly and personally. A malefic in the Stambha layer = direct personal challenge; a benefic = direct personal blessing.",
-        "bn": "Stambha (the pillar or innermost layer) represents the core of the fort  –  the most personal area. When a planet transits through your Stambha layer, the impact is felt most directly and personally. A malefic in the Stambha layer = direct personal challenge; a benefic = direct personal blessing.",
-        "kn": "Stambha (the pillar or innermost layer) represents the core of the fort  –  the most personal area. When a planet transits through your Stambha layer, the impact is felt most directly and personally. A malefic in the Stambha layer = direct personal challenge; a benefic = direct personal blessing.",
-        "gu": "Stambha (the pillar or innermost layer) represents the core of the fort  –  the most personal area. When a planet transits through your Stambha layer, the impact is felt most directly and personally. A malefic in the Stambha layer = direct personal challenge; a benefic = direct personal blessing."
+        "ta": "ஸ்தம்பா (தூண் அல்லது உள்ளே உள்ள அடுக்கு) கோட்டையின் மையப்பகுதியைக் குறிக்கிறது – மிகவும் தனிப்பட்ட பகுதி. ஒரு கிரகம் உங்கள் ஸ்தம்பா அடுக்கு வழியாக கோச்சாரம் செய்யும்போது, அதன் தாக்கம் மிகவும் நேரடியான மற்றும் தனிப்பட்ட முறையில் உணரப்படுகிறது. ஸ்தம்பா அடுக்கில் ஒரு அசுப கிரகம் = நேரடியான தனிப்பட்ட சவால்; ஒரு சுப கிரகம் = நேரடியான தனிப்பட்ட ஆசீர்வாதம்.",
+        "te": "స్తంభ (స్తంభం లేదా అత్యంత లోపలి పొర) కోట యొక్క ప్రధాన భాగాన్ని – అత్యంత వ్యక్తిగత ప్రాంతాన్ని సూచిస్తుంది. ఒక గ్రహం మీ స్తంభ పొర గుండా గోచారం చేసినప్పుడు, ప్రభావం అత్యంత ప్రత్యక్షంగా మరియు వ్యక్తిగతంగా అనుభూతి చెందుతుంది. స్తంభ పొరలో అశుభ గ్రహం = ప్రత్యక్ష వ్యక్తిగత సవాలు; శుభ గ్రహం = ప్రత్యక్ష వ్యక్తిగత ఆశీర్వాదం.",
+        "bn": "স্তম্ভ (স্তম্ভ বা অভ্যন্তরীণ স্তর) দুর্গের মূল অংশকে উপস্থাপন করে – সবচেয়ে ব্যক্তিগত ক্ষেত্র। যখন একটি গ্রহ আপনার স্তম্ভ স্তরের মধ্য দিয়ে গোচর করে, তখন প্রভাবটি সবচেয়ে সরাসরি এবং ব্যক্তিগতভাবে অনুভূত হয়। স্তম্ভ স্তরে একটি অশুভ গ্রহ = সরাসরি ব্যক্তিগত চ্যালেঞ্জ; একটি শুভ গ্রহ = সরাসরি ব্যক্তিগত আশীর্বাদ।",
+        "kn": "ಸ್ತಂಭ (ಕಂಬ ಅಥವಾ ಅತ್ಯಂತ ಒಳಗಿನ ಪದರ) ಕೋಟೆಯ ತಿರುಳನ್ನು – ಅತ್ಯಂತ ವೈಯಕ್ತಿಕ ಪ್ರದೇಶವನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತದೆ. ಒಂದು ಗ್ರಹವು ನಿಮ್ಮ ಸ್ತಂಭ ಪದರದ ಮೂಲಕ ಗೋಚಾರ ಮಾಡಿದಾಗ, ಅದರ ಪ್ರಭಾವವು ಅತ್ಯಂತ ನೇರವಾಗಿ ಮತ್ತು ವೈಯಕ್ತಿಕವಾಗಿ ಅನುಭವಿಸಲ್ಪಡುತ್ತದೆ. ಸ್ತಂಭ ಪದರದಲ್ಲಿ ದುಷ್ಟ ಗ್ರಹ = ನೇರ ವೈಯಕ್ತಿಕ ಸವಾಲು; ಶುಭ ಗ್ರಹ = ನೇರ ವೈಯಕ್ತಿಕ ಆಶೀರ್ವಾದ.",
+        "gu": "સ્તંભ (સ્તંભ અથવા સૌથી અંદરનો સ્તર) કિલ્લાના મૂળ – સૌથી વ્યક્તિગત ક્ષેત્ર – નું પ્રતિનિધિત્વ કરે છે. જ્યારે કોઈ ગ્રહ તમારા સ્તંભ સ્તરમાંથી ગોચર કરે છે, ત્યારે તેની અસર સૌથી સીધી અને વ્યક્તિગત રીતે અનુભવાય છે. સ્તંભ સ્તરમાં અશુભ ગ્રહ = સીધો વ્યક્તિગત પડકાર; શુભ ગ્રહ = સીધો વ્યક્તિગત આશીર્વાદ."
       },
       "options": [
         {
@@ -285,44 +285,44 @@
           "hi": "बाह्य (बाहरी)",
           "mai": "बाह्य (बाहरी)",
           "mr": "बाह्य (बाहरी)",
-          "ta": "Bahya (outer)",
-          "te": "Bahya (outer)",
-          "bn": "Bahya (outer)",
-          "kn": "Bahya (outer)",
-          "gu": "Bahya (outer)"
+          "ta": "பாஹ்ய (வெளி)",
+          "te": "బాహ్య (బయటి)",
+          "bn": "বাহ্য (বাহিরের)",
+          "kn": "ಬಾಹ್ಯ (ಹೊರಗಿನ)",
+          "gu": "બાહ્ય (બાહ્ય)"
         },
         {
           "en": "Praakara (wall)",
           "hi": "प्राकार (दीवार)",
           "mai": "प्राकार (दीवार)",
           "mr": "प्राकार (दीवार)",
-          "ta": "Praakara (wall)",
-          "te": "Praakara (wall)",
-          "bn": "Praakara (wall)",
-          "kn": "Praakara (wall)",
-          "gu": "Praakara (wall)"
+          "ta": "பிராகார (சுவர்)",
+          "te": "ప్రాకార (గోడ)",
+          "bn": "প্রাকার (প্রাচীর)",
+          "kn": "ಪ್ರಾಕಾರ (ಗೋಡೆ)",
+          "gu": "પ્રાકાર (દીવાલ)"
         },
         {
           "en": "Madhya (middle)",
           "hi": "मध्य (बीच)",
           "mai": "मध्य (बीचक)",
           "mr": "मध्य (बीच)",
-          "ta": "Madhya (middle)",
-          "te": "Madhya (middle)",
-          "bn": "Madhya (middle)",
-          "kn": "Madhya (middle)",
-          "gu": "Madhya (middle)"
+          "ta": "மத்திய (நடு)",
+          "te": "మధ్య (మధ్య)",
+          "bn": "মধ্য (মাঝের)",
+          "kn": "ಮಧ್ಯ (ಮಧ್ಯದ)",
+          "gu": "મધ્ય (મધ્યમ)"
         },
         {
           "en": "Stambha (pillar/innermost)",
           "hi": "स्तम्भ (खम्भा/अन्तरतम)",
           "mai": "स्तंभ (खंभा/भीतरी)",
           "mr": "स्तम्भ (खम्भा/अन्तरतम)",
-          "ta": "Stambha (pillar/innermost)",
-          "te": "Stambha (pillar/innermost)",
-          "bn": "Stambha (pillar/innermost)",
-          "kn": "Stambha (pillar/innermost)",
-          "gu": "Stambha (pillar/innermost)"
+          "ta": "ஸ்தம்பா (தூண்/உள்ளே)",
+          "te": "స్తంభ (స్తంభం/అత్యంత లోపలి)",
+          "bn": "স্তম্ভ (স্তম্ভ/অভ্যন্তরীণ)",
+          "kn": "ಸ್ತಂಭ (ಕಂಬ/ಅತ್ಯಂತ ಒಳಗಿನ)",
+          "gu": "સ્તંભ (સ્તંભ/સૌથી અંદરનો)"
         }
       ]
     },
@@ -334,11 +334,11 @@
         "hi": "आप कोटा चक्र की किस परत पर हैं, यह क्या निर्धारित करता है?",
         "mai": "की निर्धारित करैत अछि जे अहाँ कोन कोटा चक्र परत पर छी?",
         "mr": "आप कोटा चक्र की किस परत पर हैं, यह क्या निर्धारित करता है?",
-        "ta": "What determines which Kota Chakra layer you are on?",
-        "te": "What determines which Kota Chakra layer you are on?",
-        "bn": "What determines which Kota Chakra layer you are on?",
-        "kn": "What determines which Kota Chakra layer you are on?",
-        "gu": "What determines which Kota Chakra layer you are on?"
+        "ta": "நீங்கள் எந்த கோட்ட சக்கர அடுக்கில் இருக்கிறீர்கள் என்பதை எது தீர்மானிக்கிறது?",
+        "te": "మీరు ఏ కోట చక్ర పొరలో ఉన్నారో ఏమి నిర్ణయిస్తుంది?",
+        "bn": "কোন কোটা চক্র স্তরে আপনি আছেন তা কী নির্ধারণ করে?",
+        "kn": "ನೀವು ಯಾವ ಕೋಟ ಚಕ್ರ ಪದರದಲ್ಲಿದ್ದೀರಿ ಎಂಬುದನ್ನು ಯಾವುದು ನಿರ್ಧರಿಸುತ್ತದೆ?",
+        "gu": "તમે કયા કોટા ચક્ર સ્તર પર છો તે શું નક્કી કરે છે?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -346,11 +346,11 @@
         "hi": "आपका जन्म नक्षत्र (जन्म नक्षत्र  –  जन्म के समय चन्द्रमा जिस नक्षत्र में था) निर्धारित करता है कि आप कोटा चक्र की किस परत पर हैं। 27 नक्षत्र 4 परतों में वितरित हैं, और आपकी व्यक्तिगत परत परिभाषित करती है कि गोचर ग्रह आपको कैसे प्रभावित करते हैं।",
         "mai": "अहाँक जन्म नक्षत्र (जन्म नक्षत्र – जन्मक समय चंद्रमा द्वारा अधिग्रहित नक्षत्र) निर्धारित करैत अछि जे अहाँ कोटा चक्रक कोन परत सँ संबंधित छी। २७ नक्षत्र ४ परतमे वितरित अछि, आ अहाँक व्यक्तिगत परत ई परिभाषित करैत अछि जे गोचर करयवला ग्रह अहाँकें कोना प्रभावित करैत अछि।",
         "mr": "आपका जन्म नक्षत्र (जन्म नक्षत्र  –  जन्म के समय चन्द्रमा जिस नक्षत्र में था) निर्धारित करता है कि आप कोटा चक्र की किस परत पर हैं। 27 नक्षत्र 4 परतों में वितरित हैं, और आपकी व्यक्तिगत परत परिभाषित करती है कि गोचर ग्रह आपको कैसे प्रभावित करते हैं।",
-        "ta": "Your birth nakshatra (Janma Nakshatra  –  the nakshatra occupied by the Moon at birth) determines which layer of the Kota Chakra you belong to. The 27 nakshatras are distributed across the 4 layers, and your personal layer defines how transiting planets affect you.",
-        "te": "Your birth nakshatra (Janma Nakshatra  –  the nakshatra occupied by the Moon at birth) determines which layer of the Kota Chakra you belong to. The 27 nakshatras are distributed across the 4 layers, and your personal layer defines how transiting planets affect you.",
-        "bn": "Your birth nakshatra (Janma Nakshatra  –  the nakshatra occupied by the Moon at birth) determines which layer of the Kota Chakra you belong to. The 27 nakshatras are distributed across the 4 layers, and your personal layer defines how transiting planets affect you.",
-        "kn": "Your birth nakshatra (Janma Nakshatra  –  the nakshatra occupied by the Moon at birth) determines which layer of the Kota Chakra you belong to. The 27 nakshatras are distributed across the 4 layers, and your personal layer defines how transiting planets affect you.",
-        "gu": "Your birth nakshatra (Janma Nakshatra  –  the nakshatra occupied by the Moon at birth) determines which layer of the Kota Chakra you belong to. The 27 nakshatras are distributed across the 4 layers, and your personal layer defines how transiting planets affect you."
+        "ta": "உங்கள் ஜென்ம நட்சத்திரம் (சந்திரன் பிறந்த நேரத்தில் இருக்கும் நட்சத்திரம்) நீங்கள் எந்த கோட்ட சக்கர அடுக்கைச் சேர்ந்தவர் என்பதை தீர்மானிக்கிறது. 27 நட்சத்திரங்களும் 4 அடுக்குகளில் பரப்பப்பட்டுள்ளன, மேலும் உங்கள் தனிப்பட்ட அடுக்கு கோச்சார கிரகங்கள் உங்களை எவ்வாறு பாதிக்கின்றன என்பதை வரையறுக்கிறது.",
+        "te": "మీ జన్మ నక్షత్రం (జన్మ నక్షత్రం – పుట్టినప్పుడు చంద్రుడు ఉన్న నక్షత్రం) మీరు కోట చక్రం యొక్క ఏ పొరకు చెందినవారో నిర్ణయిస్తుంది. 27 నక్షత్రాలు 4 పొరలలో పంపిణీ చేయబడ్డాయి, మరియు మీ వ్యక్తిగత పొర గోచారం చేసే గ్రహాలు మిమ్మల్ని ఎలా ప్రభావితం చేస్తాయో నిర్వచిస్తుంది.",
+        "bn": "আপনার জন্ম নক্ষত্র (জন্ম নক্ষত্র – জন্মের সময় চন্দ্র দ্বারা অধিকৃত নক্ষত্র) নির্ধারণ করে আপনি কোটা চক্রের কোন স্তরের অন্তর্গত। ২৭টি নক্ষত্র ৪টি স্তরে বিতরণ করা হয়েছে, এবং আপনার ব্যক্তিগত স্তর নির্ধারণ করে কীভাবে গোচর গ্রহগুলি আপনাকে প্রভাবিত করে।",
+        "kn": "ನಿಮ್ಮ ಜನ್ಮ ನಕ್ಷತ್ರ (ಜನ್ಮ ನಕ್ಷತ್ರ – ಜನನದ ಸಮಯದಲ್ಲಿ ಚಂದ್ರನು ಆಕ್ರಮಿಸಿಕೊಂಡಿರುವ ನಕ್ಷತ್ರ) ನೀವು ಕೋಟ ಚಕ್ರದ ಯಾವ ಪದರಕ್ಕೆ ಸೇರಿದ್ದೀರಿ ಎಂಬುದನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ. 27 ನಕ್ಷತ್ರಗಳನ್ನು 4 ಪದರಗಳಲ್ಲಿ ವಿತರಿಸಲಾಗಿದೆ, ಮತ್ತು ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಪದರವು ಗೋಚಾರ ಗ್ರಹಗಳು ನಿಮ್ಮ ಮೇಲೆ ಹೇಗೆ ಪರಿಣಾಮ ಬೀರುತ್ತವೆ ಎಂಬುದನ್ನು ವ್ಯಾಖ್ಯಾನಿಸುತ್ತದೆ.",
+        "gu": "તમારું જન્મ નક્ષત્ર (જન્મ નક્ષત્ર – જન્મ સમયે ચંદ્ર દ્વારા અધિકૃત નક્ષત્ર) નક્કી કરે છે કે તમે કોટા ચક્રના કયા સ્તરના છો. ૨૭ નક્ષત્રો ૪ સ્તરોમાં વહેંચાયેલા છે, અને તમારું વ્યક્તિગત સ્તર નક્કી કરે છે કે ગોચર ગ્રહો તમને કેવી રીતે અસર કરે છે."
       },
       "options": [
         {
@@ -358,44 +358,44 @@
           "hi": "आपकी सूर्य राशि",
           "mai": "अहाँक सूर्य राशि",
           "mr": "आपकी सूर्य राशि",
-          "ta": "Your Sun sign",
-          "te": "Your Sun sign",
-          "bn": "Your Sun sign",
-          "kn": "Your Sun sign",
-          "gu": "Your Sun sign"
+          "ta": "உங்கள் சூரிய ராசி",
+          "te": "మీ సూర్య రాశి",
+          "bn": "আপনার সূর্য রাশি",
+          "kn": "ನಿಮ್ಮ ಸೂರ್ಯ ರಾಶಿ",
+          "gu": "તમારી સૂર્ય રાશિ"
         },
         {
           "en": "Your Lagna (ascendant)",
           "hi": "आपका लग्न",
           "mai": "अहाँक लग्न (उदय)",
           "mr": "आपका लग्न",
-          "ta": "Your Lagna (ascendant)",
-          "te": "Your Lagna (ascendant)",
-          "bn": "Your Lagna (ascendant)",
-          "kn": "Your Lagna (ascendant)",
-          "gu": "Your Lagna (ascendant)"
+          "ta": "உங்கள் லக்னம் (உதய லக்னம்)",
+          "te": "మీ లగ్నం (ఆరోహణ)",
+          "bn": "আপনার লগ্ন (উদয়)",
+          "kn": "ನಿಮ್ಮ ಲಗ್ನ (ಆರೋಹಣ)",
+          "gu": "તમારું લગ્ન (લગ્ન)"
         },
         {
           "en": "Your birth nakshatra",
           "hi": "आपका जन्म नक्षत्र",
           "mai": "अहाँक जन्म नक्षत्र",
           "mr": "आपका जन्म नक्षत्र",
-          "ta": "Your birth nakshatra",
-          "te": "Your birth nakshatra",
-          "bn": "Your birth nakshatra",
-          "kn": "Your birth nakshatra",
-          "gu": "Your birth nakshatra"
+          "ta": "உங்கள் ஜென்ம நட்சத்திரம்",
+          "te": "మీ జన్మ నక్షత్రం",
+          "bn": "আপনার জন্ম নক্ষত্র",
+          "kn": "ನಿಮ್ಮ ಜನ್ಮ ನಕ್ಷತ್ರ",
+          "gu": "તમારું જન્મ નક્ષત્ર"
         },
         {
           "en": "Your Moon sign",
           "hi": "आपकी चन्द्र राशि",
           "mai": "अहाँक चंद्र राशि",
           "mr": "आपकी चन्द्र राशि",
-          "ta": "Your Moon sign",
-          "te": "Your Moon sign",
-          "bn": "Your Moon sign",
-          "kn": "Your Moon sign",
-          "gu": "Your Moon sign"
+          "ta": "உங்கள் சந்திர ராசி",
+          "te": "మీ చంద్ర రాశి",
+          "bn": "আপনার চন্দ্র রাশি",
+          "kn": "ನಿಮ್ಮ ಚಂದ್ರ ರಾಶಿ",
+          "gu": "તમારી ચંદ્ર રાશિ"
         }
       ]
     },
@@ -407,17 +407,17 @@
         "hi": "कोटा चक्र की बाहरी से भीतरी परतों में प्रवेश करता पाप ग्रह बढ़ती चुनौती दर्शाता है।",
         "mai": "कोटा चक्रक बाहरी सँ भीतरी परत धरि एकटा अशुभ ग्रहक उल्लंघन बढ़ती चुनौतीक संकेत दैत अछि।",
         "mr": "कोटा चक्र की बाहरी से भीतरी परतों में प्रवेश करता पाप ग्रह बढ़ती चुनौती दर्शाता है।",
-        "ta": "A malefic planet breaching from the outer to inner layers of the Kota Chakra indicates increasing challenge.",
-        "te": "A malefic planet breaching from the outer to inner layers of the Kota Chakra indicates increasing challenge.",
-        "bn": "A malefic planet breaching from the outer to inner layers of the Kota Chakra indicates increasing challenge.",
-        "kn": "A malefic planet breaching from the outer to inner layers of the Kota Chakra indicates increasing challenge.",
-        "gu": "A malefic planet breaching from the outer to inner layers of the Kota Chakra indicates increasing challenge."
+        "ta": "கோட்ட சக்கரத்தின் வெளி அடுக்குகளிலிருந்து உள் அடுக்குகளுக்கு ஒரு அசுப கிரகம் ஊடுருவுவது சவால்கள் அதிகரிப்பதைக் குறிக்கிறது.",
+        "te": "కోట చక్రం యొక్క బయటి నుండి లోపలి పొరలకు అశుభ గ్రహం ప్రవేశించడం పెరుగుతున్న సవాలును సూచిస్తుంది.",
+        "bn": "কোটা চক্রের বাইরের থেকে ভেতরের স্তরে একটি অশুভ গ্রহের অনুপ্রবেশ ক্রমবর্ধমান চ্যালেঞ্জ নির্দেশ করে।",
+        "kn": "ಕೋಟ ಚಕ್ರದ ಹೊರ ಪದರಗಳಿಂದ ಒಳಗಿನ ಪದರಗಳಿಗೆ ದುಷ್ಟ ಗ್ರಹದ ಪ್ರವೇಶವು ಹೆಚ್ಚುತ್ತಿರುವ ಸವಾಲನ್ನು ಸೂಚಿಸುತ್ತದೆ.",
+        "gu": "કોટા ચક્રના બાહ્યથી આંતરિક સ્તરોમાં પ્રવેશતો અશુભ ગ્રહ વધતા પડકાર સૂચવે છે."
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Just as an invading army breaching a fort\"s walls represents increasing danger, a malefic transiting from the Bahya (outer) toward the Stambha (inner) layer indicates progressively greater personal challenge. The reverse  –  moving outward  –  shows the challenge is receding.",
         "hi": "जैसे किले की दीवारों को तोड़ती आक्रमणकारी सेना बढ़ते खतरे का प्रतिनिधित्व करती है, बाह्य (बाहरी) से स्तम्भ (भीतरी) परत की ओर गोचर करता पाप ग्रह उत्तरोत्तर बड़ी व्यक्तिगत चुनौती दर्शाता है। विपरीत  –  बाहर की ओर जाना  –  दर्शाता है कि चुनौती घट रही है।",
-        "mr": "Just as an invading army breaching a fort\"s walls represents increasing danger, a malefic transiting from the Bahya (outer) toward the Stambha (inner) layer indicates progressively greater personal challenge. The reverse  –  moving outward  –  shows the challenge is receding.",
+        "mr": "जसे की एखाद्या किल्ल्याच्या भिंती भेदणारे आक्रमणकारी सैन्य वाढत्या धोक्याचे प्रतिनिधित्व करते, त्याचप्रमाणे एखादा अशुभ ग्रह बाह्य (बाहेरील) स्तरापासून स्तंभ (आतील) स्तराकडे गोचर करत असताना व्यक्तिगत आव्हानांमध्ये प्रगतीशील वाढ दर्शवतो. याउलट – बाहेरच्या दिशेने सरकणे – आव्हान कमी होत असल्याचे दर्शवते.",
         "mai": "जेना कोनो आक्रमणकारी सेना द्वारा किलाक दीवारक उल्लंघन बढ़ती खतराक प्रतिनिधित्व करैत अछि, तेनाहि बाह्य (बाहरी) सँ स्तंभ (भीतरी) परत दिस गोचर करयवला अशुभ ग्रह उत्तरोत्तर बेसी व्यक्तिगत चुनौतीक संकेत दैत अछि। एकर विपरीत – बाहरक दिस बढ़ब – देखाबैत अछि जे चुनौती कम भऽ रहल अछि।"
       }
     },
@@ -429,17 +429,17 @@
         "hi": "सूर्य-कालानल चक्र किसके लिए उपयोग होता है?",
         "mai": "सूर्य-कालानल चक्रक उपयोग के लेल कयल जाइत अछि?",
         "mr": "सूर्य-कालानल चक्र किसके लिए उपयोग होता है?",
-        "ta": "What is the Surya-Kalanala Chakra used for?",
-        "te": "What is the Surya-Kalanala Chakra used for?",
-        "bn": "What is the Surya-Kalanala Chakra used for?",
-        "kn": "What is the Surya-Kalanala Chakra used for?",
-        "gu": "What is the Surya-Kalanala Chakra used for?"
+        "ta": "சூரிய-காலானல சக்கரம் எதற்காகப் பயன்படுத்தப்படுகிறது?",
+        "te": "సూర్య-కాలాగ్ని చక్రం దేనికి ఉపయోగించబడుతుంది?",
+        "bn": "সূর্য-কালানল চক্র কীসের জন্য ব্যবহৃত হয়?",
+        "kn": "ಸೂರ್ಯ-ಕಾಲಾನಲ ಚಕ್ರವನ್ನು ಯಾವುದಕ್ಕಾಗಿ ಬಳಸಲಾಗುತ್ತದೆ?",
+        "gu": "સૂર્ય-કાલાનલ ચક્રનો ઉપયોગ શાના માટે થાય છે?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The Surya-Kalanala Chakra is a \"fire-wheel\" diagram used for timing monthly predictions. It maps the Sun's transit through each nakshatra and identifies which birth nakshatras receive vedha (obstruction) during that month. When the Sun transits a nakshatra that creates vedha on yours, that month brings challenges.",
         "hi": "सूर्य-कालानल चक्र मासिक भविष्यवाणियों के समय के लिए उपयोग होने वाला \"अग्नि-चक्र\" आरेख है। यह प्रत्येक नक्षत्र से सूर्य के गोचर को मैप करता है और पहचानता है कि उस महीने किन जन्म नक्षत्रों को वेध (अवरोध) प्राप्त होता है। जब सूर्य ऐसे नक्षत्र से गोचर करता है जो आपके पर वेध बनाता है, तो वह महीना चुनौतियाँ लाता है।",
-        "mr": "The Surya-Kalanala Chakra is a \"fire-wheel\" diagram used for timing monthly predictions. It maps the Sun's transit through each nakshatra and identifies which birth nakshatras receive vedha (obstruction) during that month. When the Sun transits a nakshatra that creates vedha on yours, that month brings challenges.",
+        "mr": "सूर्य-कालानल चक्र हे एक 'अग्निचक्र' आकृती आहे, जे मासिक भविष्य वर्तवण्यासाठी वापरले जाते. ते सूर्याचे प्रत्येक नक्षत्रातून होणारे गोचर दर्शवते आणि त्या महिन्यात कोणत्या जन्म नक्षत्रांना वेध (अडथळा) प्राप्त होतो हे ओळखते. जेव्हा सूर्य अशा नक्षत्रातून गोचर करतो, जे तुमच्या नक्षत्रावर वेध निर्माण करते, तेव्हा तो महिना आव्हाने घेऊन येतो.",
         "mai": "सूर्य-कालानल चक्र एकटा \"अग्नि-चक्र\" आरेख अछि जे मासिक भविष्यवाणीक समय निर्धारणक लेल उपयोग कयल जाइत अछि। ई सूर्यक प्रत्येक नक्षत्र सँ गोचरकें मानचित्रित करैत अछि आ ई पहचान करैत अछि जे कोन जन्म नक्षत्रकें ओहि मासमे वेध (बाधा) प्राप्त होइत अछि। जखन सूर्य कोनो एहन नक्षत्र सँ गोचर करैत अछि जे अहाँक नक्षत्र पर वेध उत्पन्न करैत अछि, तखन ओहि मासमे चुनौती आबैत अछि।"
       },
       "options": [
@@ -448,16 +448,16 @@
           "hi": "ग्रहीय अवधियों (दशाओं) की गणना",
           "mai": "ग्रहक दशाक (दशा) गणना करब",
           "mr": "ग्रहीय अवधियों (दशाओं) की गणना",
-          "ta": "Calculating planetary periods (dashas)",
-          "te": "Calculating planetary periods (dashas)",
-          "bn": "Calculating planetary periods (dashas)",
-          "kn": "Calculating planetary periods (dashas)",
-          "gu": "Calculating planetary periods (dashas)"
+          "ta": "கிரக காலங்களை (தசாக்கள்) கணக்கிடுதல்",
+          "te": "గ్రహ కాలాలను (దశలు) లెక్కించడం",
+          "bn": "গ্রহের দশা গণনা করা",
+          "kn": "ಗ್ರಹಗಳ ಅವಧಿಗಳನ್ನು (ದಶಾ) ಲೆಕ್ಕಾಚಾರ ಮಾಡಲು",
+          "gu": "ગ્રહોના દશાકાળ (દશા) ની ગણતરી કરવી"
         },
         {
           "en": "Timing monthly predictions based on the Sun\"s nakshatra transit",
           "hi": "सूर्य के नक्षत्र गोचर पर आधारित मासिक भविष्यवाणियों का समय",
-          "mr": "Timing monthly predictions based on the Sun\"s nakshatra transit",
+          "mr": "सूर्याच्या नक्षत्र गोचरावर आधारित मासिक भविष्य वर्तवणे",
           "mai": "सूर्यक नक्षत्र गोचरक आधार पर मासिक भविष्यवाणीक समय निर्धारण करब"
         },
         {
@@ -465,22 +465,22 @@
           "hi": "जन्म कुण्डली भावों की गणना",
           "mai": "जन्म कुंडलीक भावक गणना करब",
           "mr": "जन्म कुण्डली भावों की गणना",
-          "ta": "Computing birth chart houses",
-          "te": "Computing birth chart houses",
-          "bn": "Computing birth chart houses",
-          "kn": "Computing birth chart houses",
-          "gu": "Computing birth chart houses"
+          "ta": "ஜாதக பாவங்களை கணக்கிடுதல்",
+          "te": "జన్మ పట భావాలను లెక్కించడం",
+          "bn": "জন্মছকের ভাব গণনা করা",
+          "kn": "ಜನ್ಮ ಕುಂಡಲಿ ಭಾವಗಳನ್ನು ಲೆಕ್ಕಾಚಾರ ಮಾಡಲು",
+          "gu": "જન્મ કુંડળીના ભાવની ગણતરી કરવી"
         },
         {
           "en": "Determining marriage compatibility",
           "hi": "विवाह अनुकूलता निर्धारित करना",
           "mai": "विवाहक अनुकूलता निर्धारित करब",
           "mr": "विवाह अनुकूलता निर्धारित करना",
-          "ta": "Determining marriage compatibility",
-          "te": "Determining marriage compatibility",
-          "bn": "Determining marriage compatibility",
-          "kn": "Determining marriage compatibility",
-          "gu": "Determining marriage compatibility"
+          "ta": "திருமணப் பொருத்தத்தை தீர்மானித்தல்",
+          "te": "వివాహ అనుకూలతను నిర్ణయించడం",
+          "bn": "বিবাহ সঙ্গতি নির্ধারণ করা",
+          "kn": "ವಿವಾಹ ಹೊಂದಾಣಿಕೆಯನ್ನು ನಿರ್ಧರಿಸಲು",
+          "gu": "લગ્ન સુસંગતતા નક્કી કરવી"
         }
       ]
     },
@@ -492,11 +492,11 @@
         "hi": "सर्वतोभद्र चक्र में अपनी ग्रिड संरचना में संस्कृत स्वर और व्यंजन शामिल हैं।",
         "mai": "सर्वतोभद्र चक्रमे संस्कृत स्वर आ व्यंजन अपन ग्रिड संरचनामे शामिल अछि।",
         "mr": "सर्वतोभद्र चक्र में अपनी ग्रिड संरचना में संस्कृत स्वर और व्यंजन शामिल हैं।",
-        "ta": "The Sarvatobhadra Chakra includes Sanskrit vowels and consonants in its grid structure.",
-        "te": "The Sarvatobhadra Chakra includes Sanskrit vowels and consonants in its grid structure.",
-        "bn": "The Sarvatobhadra Chakra includes Sanskrit vowels and consonants in its grid structure.",
-        "kn": "The Sarvatobhadra Chakra includes Sanskrit vowels and consonants in its grid structure.",
-        "gu": "The Sarvatobhadra Chakra includes Sanskrit vowels and consonants in its grid structure."
+        "ta": "சர்வதோபத்ர சக்கரம் அதன் கட்ட அமைப்பில் சம்ஸ்கிருத உயிரெழுத்துக்கள் மற்றும் மெய்யெழுத்துக்களை உள்ளடக்கியது.",
+        "te": "సర్వతోభద్ర చక్రం దాని గ్రిడ్ నిర్మాణంలో సంస్కృత అచ్చులు మరియు హల్లులను కలిగి ఉంటుంది.",
+        "bn": "সর্বতোভদ্র চক্র তার গ্রিড কাঠামোতে সংস্কৃত স্বরবর্ণ এবং ব্যঞ্জনবর্ণ অন্তর্ভুক্ত করে।",
+        "kn": "ಸರ್ವತೋಭದ್ರ ಚಕ್ರವು ತನ್ನ ಗ್ರಿಡ್ ರಚನೆಯಲ್ಲಿ ಸಂಸ್ಕೃತ ಸ್ವರಗಳು ಮತ್ತು ವ್ಯಂಜನಗಳನ್ನು ಒಳಗೊಂಡಿದೆ.",
+        "gu": "સર્વતોભદ્ર ચક્ર તેની ગ્રીડ રચનામાં સંસ્કૃત સ્વરો અને વ્યંજનોનો સમાવેશ કરે છે."
       },
       "correctAnswer": 1,
       "explanation": {
@@ -504,11 +504,11 @@
         "hi": "सर्वतोभद्र चक्र अद्वितीय रूप से संस्कृत ध्वनियों (स्वर और व्यंजन) को नक्षत्रों, तिथियों और वारों के साथ मैप करता है। यह नाम-ध्वनि (नामाक्षर) को आकाशीय स्थितियों से जोड़ता है, वेध विश्लेषण के माध्यम से नाम-आधारित भविष्यवाणियाँ सक्षम करता है।",
         "mai": "सर्वतोभद्र चक्र विशिष्ट रूप सँ नक्षत्र, तिथि, आ वारक संग संस्कृतक स्वनिम (स्वर आ व्यंजन) कें मानचित्रित करैत अछि। ई नाम-ध्वनि (नामाक्षर) कें आकाशीय स्थितिसँ जोड़ैत अछि, जे वेध विश्लेषणक माध्यम सँ नाम-आधारित भविष्यवाणीकें सक्षम बनाबैत अछि।",
         "mr": "सर्वतोभद्र चक्र अद्वितीय रूप से संस्कृत ध्वनियों (स्वर और व्यंजन) को नक्षत्रों, तिथियों और वारों के साथ मैप करता है। यह नाम-ध्वनि (नामाक्षर) को आकाशीय स्थितियों से जोड़ता है, वेध विश्लेषण के माध्यम से नाम-आधारित भविष्यवाणियाँ सक्षम करता है।",
-        "ta": "The Sarvatobhadra Chakra uniquely maps Sanskrit phonemes (vowels and consonants) alongside nakshatras, tithis, and varas. This connects the name-sound (Nama-akshar) to celestial positions, enabling name-based predictions through vedha analysis.",
-        "te": "The Sarvatobhadra Chakra uniquely maps Sanskrit phonemes (vowels and consonants) alongside nakshatras, tithis, and varas. This connects the name-sound (Nama-akshar) to celestial positions, enabling name-based predictions through vedha analysis.",
-        "bn": "The Sarvatobhadra Chakra uniquely maps Sanskrit phonemes (vowels and consonants) alongside nakshatras, tithis, and varas. This connects the name-sound (Nama-akshar) to celestial positions, enabling name-based predictions through vedha analysis.",
-        "kn": "The Sarvatobhadra Chakra uniquely maps Sanskrit phonemes (vowels and consonants) alongside nakshatras, tithis, and varas. This connects the name-sound (Nama-akshar) to celestial positions, enabling name-based predictions through vedha analysis.",
-        "gu": "The Sarvatobhadra Chakra uniquely maps Sanskrit phonemes (vowels and consonants) alongside nakshatras, tithis, and varas. This connects the name-sound (Nama-akshar) to celestial positions, enabling name-based predictions through vedha analysis."
+        "ta": "சர்வதோபத்ர சக்கரம் சம்ஸ்கிருத ஒலிப்புக்களை (உயிரெழுத்துக்கள் மற்றும் மெய்யெழுத்துக்கள்) நட்சத்திரங்கள், திதிகள் மற்றும் வாரங்களுடன் தனித்துவமாக வரைபடமாக்குகிறது. இது பெயர்-ஒலியை (நாம-அக்ஷர்) வான நிலைகளுடன் இணைக்கிறது, வேதா பகுப்பாய்வு மூலம் பெயர் சார்ந்த கணிப்புகளை செயல்படுத்துகிறது.",
+        "te": "సర్వతోభద్ర చక్రం నక్షత్రాలు, తిథులు మరియు వారాలతో పాటు సంస్కృత ధ్వనులను (అచ్చులు మరియు హల్లులు) ప్రత్యేకంగా మ్యాప్ చేస్తుంది. ఇది పేరు-ధ్వనిని (నామాక్షరం) ఖగోళ స్థానాలకు కలుపుతుంది, వేధ విశ్లేషణ ద్వారా పేరు ఆధారిత అంచనాలను సాధ్యం చేస్తుంది.",
+        "bn": "সর্বতোভদ্র চক্র নক্ষত্র, তিথি এবং বারের পাশাপাশি সংস্কৃত ধ্বনি (স্বরবর্ণ এবং ব্যঞ্জনবর্ণ) অনন্যভাবে ম্যাপ করে। এটি নাম-ধ্বনি (নামাক্ষর) কে স্বর্গীয় অবস্থানের সাথে সংযুক্ত করে, যা বেধ বিশ্লেষণের মাধ্যমে নাম-ভিত্তিক ভবিষ্যদ্বাণী সক্ষম করে।",
+        "kn": "ಸರ್ವತೋಭದ್ರ ಚಕ್ರವು ನಕ್ಷತ್ರಗಳು, ತಿಥಿಗಳು ಮತ್ತು ವಾರಗಳ ಜೊತೆಗೆ ಸಂಸ್ಕೃತ ಸ್ವರಗಳು (ಧ್ವನಿಮಾ) ಮತ್ತು ವ್ಯಂಜನಗಳನ್ನು ಅನನ್ಯವಾಗಿ ನಕ್ಷೆ ಮಾಡುತ್ತದೆ. ಇದು ಹೆಸರು-ಧ್ವನಿಯನ್ನು (ನಾಮ-ಅಕ್ಷರ) ಆಕಾಶ ಸ್ಥಾನಗಳಿಗೆ ಸಂಪರ್ಕಿಸುತ್ತದೆ, ವೇಧ ವಿಶ್ಲೇಷಣೆಯ ಮೂಲಕ ಹೆಸರು ಆಧಾರಿತ ಭವಿಷ್ಯಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುತ್ತದೆ.",
+        "gu": "સર્વતોભદ્ર ચક્ર અનન્ય રીતે સંસ્કૃત ધ્વનિઓ (સ્વરો અને વ્યંજનો) ને નક્ષત્રો, તિથિઓ અને વાર સાથે જોડે છે. આ નામ-ધ્વનિ (નામાક્ષર) ને આકાશી સ્થાનો સાથે જોડે છે, જે વેધ વિશ્લેષણ દ્વારા નામ-આધારિત ભવિષ્યવાણીને સક્ષમ બનાવે છે."
       }
     },
     {
@@ -519,11 +519,11 @@
         "hi": "कोटा चक्र में, \"प्राकार\" परत किसका प्रतिनिधित्व करती है?",
         "mai": "कोटा चक्रमे, \"प्राकार\" परत प्रतिनिधित्व करैत अछि:",
         "mr": "कोटा चक्र में, \"प्राकार\" परत किसका प्रतिनिधित्व करती है?",
-        "ta": "In the Kota Chakra, the \"Praakara\" layer represents:",
-        "te": "In the Kota Chakra, the \"Praakara\" layer represents:",
-        "bn": "In the Kota Chakra, the \"Praakara\" layer represents:",
-        "kn": "In the Kota Chakra, the \"Praakara\" layer represents:",
-        "gu": "In the Kota Chakra, the \"Praakara\" layer represents:"
+        "ta": "கோட்ட சக்கரத்தில், \"பிராகார\" அடுக்கு எதைக் குறிக்கிறது:",
+        "te": "కోట చక్రంలో, \"ప్రాకార\" పొర సూచిస్తుంది:",
+        "bn": "কোটা চক্রে, \"প্রাকার\" স্তরটি কী উপস্থাপন করে:",
+        "kn": "ಕೋಟ ಚಕ್ರದಲ್ಲಿ, \"ಪ್ರಾಕಾರ\" ಪದರವು ಪ್ರತಿನಿಧಿಸುತ್ತದೆ:",
+        "gu": "કોટા ચક્રમાં, \"પ્રાકાર\" સ્તર શું દર્શાવે છે:"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -531,11 +531,11 @@
         "hi": "प्राकार का शाब्दिक अर्थ \"दीवार\" या \"प्राचीर\" है। कोटा चक्र में, यह रक्षात्मक परत  –  आपकी बाहरी सहायता प्रणालियों, सामाजिक नेटवर्क और रक्षात्मक संरचनाओं का प्रतिनिधित्व करती है। प्राकार से गोचर करते शुभ ग्रह आपकी रक्षा मजबूत करते हैं; पाप ग्रह कमजोर करते हैं।",
         "mai": "प्राकारक शाब्दिक अर्थ \"दीवार\" वा \"प्राचीर\" होइत अछि। कोटा चक्रमे, ई सुरक्षात्मक परतक प्रतिनिधित्व करैत अछि – अहाँक बाहरी समर्थन प्रणाली, सामाजिक नेटवर्क, आ रक्षात्मक संरचना। प्राकार सँ गोचर करयवला शुभ ग्रह अहाँक रक्षाकें मजबूत करैत अछि; अशुभ ग्रह ओकरा कमजोर करैत अछि।",
         "mr": "प्राकार का शाब्दिक अर्थ \"दीवार\" या \"प्राचीर\" है। कोटा चक्र में, यह रक्षात्मक परत  –  आपकी बाहरी सहायता प्रणालियों, सामाजिक नेटवर्क और रक्षात्मक संरचनाओं का प्रतिनिधित्व करती है। प्राकार से गोचर करते शुभ ग्रह आपकी रक्षा मजबूत करते हैं; पाप ग्रह कमजोर करते हैं।",
-        "ta": "Praakara literally means \"wall\" or \"rampart.\" In the Kota Chakra, it represents the protective layer  –  your external support systems, social networks, and defensive structures. Benefics transiting the Praakara strengthen your defenses; malefics weaken them.",
-        "te": "Praakara literally means \"wall\" or \"rampart.\" In the Kota Chakra, it represents the protective layer  –  your external support systems, social networks, and defensive structures. Benefics transiting the Praakara strengthen your defenses; malefics weaken them.",
-        "bn": "Praakara literally means \"wall\" or \"rampart.\" In the Kota Chakra, it represents the protective layer  –  your external support systems, social networks, and defensive structures. Benefics transiting the Praakara strengthen your defenses; malefics weaken them.",
-        "kn": "Praakara literally means \"wall\" or \"rampart.\" In the Kota Chakra, it represents the protective layer  –  your external support systems, social networks, and defensive structures. Benefics transiting the Praakara strengthen your defenses; malefics weaken them.",
-        "gu": "Praakara literally means \"wall\" or \"rampart.\" In the Kota Chakra, it represents the protective layer  –  your external support systems, social networks, and defensive structures. Benefics transiting the Praakara strengthen your defenses; malefics weaken them."
+        "ta": "பிராகார என்றால் \"சுவர்\" அல்லது \"மதில்\" என்று நேரடிப் பொருள். கோட்ட சக்கரத்தில், இது பாதுகாப்பு அடுக்கைக் குறிக்கிறது – உங்கள் வெளிப்புற ஆதரவு அமைப்புகள், சமூக வலைப்பின்னல்கள் மற்றும் தற்காப்பு கட்டமைப்புகள். பிராகாரத்தில் கோச்சாரம் செய்யும் சுப கிரகங்கள் உங்கள் பாதுகாப்பை பலப்படுத்துகின்றன; அசுப கிரகங்கள் அவற்றை பலவீனப்படுத்துகின்றன.",
+        "te": "ప్రాకార అంటే అక్షరాలా \"గోడ\" లేదా \"ప్రాకారం\". కోట చక్రంలో, ఇది రక్షిత పొరను సూచిస్తుంది – మీ బాహ్య మద్దతు వ్యవస్థలు, సామాజిక నెట్‌వర్క్‌లు మరియు రక్షణాత్మక నిర్మాణాలు. ప్రాకారం గుండా గోచారం చేసే శుభ గ్రహాలు మీ రక్షణలను బలపరుస్తాయి; అశుభ గ్రహాలు వాటిని బలహీనపరుస్తాయి.",
+        "bn": "প্রাকার আক্ষরিক অর্থে \"প্রাচীর\" বা \"দুর্গপ্রাচীর\" বোঝায়। কোটা চক্রে, এটি প্রতিরক্ষামূলক স্তরকে উপস্থাপন করে – আপনার বাহ্যিক সমর্থন ব্যবস্থা, সামাজিক নেটওয়ার্ক এবং প্রতিরক্ষামূলক কাঠামো। প্রাকারে গোচরকারী শুভ গ্রহ আপনার প্রতিরক্ষা শক্তিশালী করে; অশুভ গ্রহ সেগুলিকে দুর্বল করে।",
+        "kn": "ಪ್ರಾಕಾರ ಎಂದರೆ ಅಕ್ಷರಶಃ \"ಗೋಡೆ\" ಅಥವಾ \"ಕೋಟೆಗೋಡೆ\". ಕೋಟ ಚಕ್ರದಲ್ಲಿ, ಇದು ರಕ್ಷಣಾತ್ಮಕ ಪದರವನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತದೆ – ನಿಮ್ಮ ಬಾಹ್ಯ ಬೆಂಬಲ ವ್ಯವಸ್ಥೆಗಳು, ಸಾಮಾಜಿಕ ಜಾಲಗಳು ಮತ್ತು ರಕ್ಷಣಾತ್ಮಕ ರಚನೆಗಳು. ಪ್ರಾಕಾರದಲ್ಲಿ ಗೋಚಾರ ಮಾಡುವ ಶುಭ ಗ್ರಹಗಳು ನಿಮ್ಮ ರಕ್ಷಣೆಯನ್ನು ಬಲಪಡಿಸುತ್ತವೆ; ದುಷ್ಟ ಗ್ರಹಗಳು ಅವುಗಳನ್ನು ದುರ್ಬಲಗೊಳಿಸುತ್ತವೆ.",
+        "gu": "પ્રાકારનો શાબ્દિક અર્થ \"દીવાલ\" અથવા \"કોટ\" થાય છે. કોટા ચક્રમાં, તે રક્ષણાત્મક સ્તર – તમારી બાહ્ય સહાય પ્રણાલીઓ, સામાજિક નેટવર્ક્સ અને રક્ષણાત્મક રચનાઓ – નું પ્રતિનિધિત્વ કરે છે. પ્રાકારમાંથી ગોચર કરતા શુભ ગ્રહો તમારા સંરક્ષણને મજબૂત કરે છે; અશુભ ગ્રહો તેને નબળા પાડે છે."
       },
       "options": [
         {
@@ -543,44 +543,44 @@
           "hi": "व्यक्तिगत पहचान का अन्तरतम केन्द्र",
           "mai": "व्यक्तिगत पहचानक सबसँ भीतरी मूल",
           "mr": "व्यक्तिगत पहचान का अन्तरतम केन्द्र",
-          "ta": "The innermost core of personal identity",
-          "te": "The innermost core of personal identity",
-          "bn": "The innermost core of personal identity",
-          "kn": "The innermost core of personal identity",
-          "gu": "The innermost core of personal identity"
+          "ta": "தனிப்பட்ட அடையாளத்தின் உள்ளே உள்ள மையப்பகுதி",
+          "te": "వ్యక్తిగత గుర్తింపు యొక్క అత్యంత లోపలి కేంద్రం",
+          "bn": "ব্যক্তিগত পরিচয়ের অভ্যন্তরীণ মূল",
+          "kn": "ವೈಯಕ್ತಿಕ ಗುರುತಿನ ಅತ್ಯಂತ ಒಳಗಿನ ತಿರುಳು",
+          "gu": "વ્યક્તિગત ઓળખનો સૌથી આંતરિક મૂળ"
         },
         {
           "en": "The protective wall  –  external protection and social support",
           "hi": "रक्षात्मक दीवार  –  बाहरी सुरक्षा और सामाजिक सहायता",
           "mai": "सुरक्षात्मक दीवार – बाहरी सुरक्षा आ सामाजिक समर्थन",
           "mr": "रक्षात्मक दीवार  –  बाहरी सुरक्षा और सामाजिक सहायता",
-          "ta": "The protective wall  –  external protection and social support",
-          "te": "The protective wall  –  external protection and social support",
-          "bn": "The protective wall  –  external protection and social support",
-          "kn": "The protective wall  –  external protection and social support",
-          "gu": "The protective wall  –  external protection and social support"
+          "ta": "பாதுகாப்பு சுவர் – வெளிப்புற பாதுகாப்பு மற்றும் சமூக ஆதரவு",
+          "te": "రక్షిత గోడ – బాహ్య రక్షణ మరియు సామాజిక మద్దతు",
+          "bn": "প্রতিরক্ষামূলক প্রাচীর – বাহ্যিক সুরক্ষা এবং সামাজিক সমর্থন",
+          "kn": "ರಕ್ಷಣಾತ್ಮಕ ಗೋಡೆ – ಬಾಹ್ಯ ರಕ್ಷಣೆ ಮತ್ತು ಸಾಮಾಜಿಕ ಬೆಂಬಲ",
+          "gu": "રક્ષણાત્મક દીવાલ – બાહ્ય સુરક્ષા અને સામાજિક સહાય"
         },
         {
           "en": "The outermost worldly circumstances",
           "hi": "बाहरी सबसे सांसारिक परिस्थितियाँ",
           "mai": "सबसँ बाहरी सांसारिक परिस्थिति",
           "mr": "बाहरी सबसे सांसारिक परिस्थितियाँ",
-          "ta": "The outermost worldly circumstances",
-          "te": "The outermost worldly circumstances",
-          "bn": "The outermost worldly circumstances",
-          "kn": "The outermost worldly circumstances",
-          "gu": "The outermost worldly circumstances"
+          "ta": "வெளிப்புற உலக சூழ்நிலைகள்",
+          "te": "అత్యంత బాహ్య ప్రపంచ పరిస్థితులు",
+          "bn": "সবচেয়ে বাইরের পার্থিব পরিস্থিতি",
+          "kn": "ಅತ್ಯಂತ ಹೊರಗಿನ ಲೌಕಿಕ ಪರಿಸ್ಥಿತಿಗಳು",
+          "gu": "સૌથી બાહ્ય દુન્યવી સંજોગો"
         },
         {
           "en": "The middle zone between self and world",
           "hi": "आत्म और संसार के बीच मध्य क्षेत्र",
           "mai": "स्वयं आ संसारक बीचक क्षेत्र",
           "mr": "आत्म और संसार के बीच मध्य क्षेत्र",
-          "ta": "The middle zone between self and world",
-          "te": "The middle zone between self and world",
-          "bn": "The middle zone between self and world",
-          "kn": "The middle zone between self and world",
-          "gu": "The middle zone between self and world"
+          "ta": "சுயத்திற்கும் உலகத்திற்கும் இடையிலான நடுப்பகுதி",
+          "te": "స్వీయ మరియు ప్రపంచం మధ్య మధ్యస్థ మండలం",
+          "bn": "আত্ম এবং বিশ্বের মধ্যবর্তী অঞ্চল",
+          "kn": "ಸ್ವಯಂ ಮತ್ತು ಪ್ರಪಂಚದ ನಡುವಿನ ಮಧ್ಯದ ವಲಯ",
+          "gu": "સ્વ અને વિશ્વ વચ્ચેનો મધ્યમ ક્ષેત્ર"
         }
       ]
     },
@@ -592,11 +592,11 @@
         "hi": "हमारा इंजन सर्वतोभद्र चक्र का उपयोग कैसे करता है?",
         "mai": "हमर इंजन सर्वतोभद्र चक्रक उपयोग कोना करैत अछि?",
         "mr": "हमारा इंजन सर्वतोभद्र चक्र का उपयोग कैसे करता है?",
-        "ta": "How does our engine use the Sarvatobhadra Chakra?",
-        "te": "How does our engine use the Sarvatobhadra Chakra?",
-        "bn": "How does our engine use the Sarvatobhadra Chakra?",
-        "kn": "How does our engine use the Sarvatobhadra Chakra?",
-        "gu": "How does our engine use the Sarvatobhadra Chakra?"
+        "ta": "எங்கள் இயந்திரம் சர்வதோபத்ர சக்கரத்தை எவ்வாறு பயன்படுத்துகிறது?",
+        "te": "మా ఇంజిన్ సర్వతోభద్ర చక్రాన్ని ఎలా ఉపయోగిస్తుంది?",
+        "bn": "আমাদের ইঞ্জিন কীভাবে সর্বতোভদ্র চক্র ব্যবহার করে?",
+        "kn": "ನಮ್ಮ ಎಂಜಿನ್ ಸರ್ವತೋಭದ್ರ ಚಕ್ರವನ್ನು ಹೇಗೆ ಬಳಸುತ್ತದೆ?",
+        "gu": "અમારું એન્જિન સર્વતોભદ્ર ચક્રનો ઉપયોગ કેવી રીતે કરે છે?"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -604,11 +604,11 @@
         "hi": "हमारा इंजन सर्वतोभद्र चक्र से वेध सम्बन्धों की स्वचालित पूर्व-गणना करता है, यह निर्धारित करता है कि कौन से गोचर ग्रह प्रत्येक जन्म नक्षत्र के लिए अवरोध या सहायता बनाते हैं। यह स्वचालित विश्लेषण मैन्युअल चार्ट पठन की आवश्यकता समाप्त करता है।",
         "mai": "हमर इंजन सर्वतोभद्र चक्र सँ वेध संबंधकें पूर्व-गणना करैत अछि, ई निर्धारित करैत अछि जे कोन गोचर करयवला ग्रह प्रत्येक जन्म नक्षत्रक लेल बाधा वा समर्थन उत्पन्न करैत अछि। ई स्वचालित विश्लेषण मैन्युअल चार्ट पढ़बाक आवश्यकताकें समाप्त करैत अछि।",
         "mr": "हमारा इंजन सर्वतोभद्र चक्र से वेध सम्बन्धों की स्वचालित पूर्व-गणना करता है, यह निर्धारित करता है कि कौन से गोचर ग्रह प्रत्येक जन्म नक्षत्र के लिए अवरोध या सहायता बनाते हैं। यह स्वचालित विश्लेषण मैन्युअल चार्ट पठन की आवश्यकता समाप्त करता है।",
-        "ta": "Our engine pre-computes vedha relationships from the Sarvatobhadra Chakra, determining which transiting planets create obstructions or support for each birth nakshatra. This automated analysis removes the need for manual chart reading.",
-        "te": "Our engine pre-computes vedha relationships from the Sarvatobhadra Chakra, determining which transiting planets create obstructions or support for each birth nakshatra. This automated analysis removes the need for manual chart reading.",
-        "bn": "Our engine pre-computes vedha relationships from the Sarvatobhadra Chakra, determining which transiting planets create obstructions or support for each birth nakshatra. This automated analysis removes the need for manual chart reading.",
-        "kn": "Our engine pre-computes vedha relationships from the Sarvatobhadra Chakra, determining which transiting planets create obstructions or support for each birth nakshatra. This automated analysis removes the need for manual chart reading.",
-        "gu": "Our engine pre-computes vedha relationships from the Sarvatobhadra Chakra, determining which transiting planets create obstructions or support for each birth nakshatra. This automated analysis removes the need for manual chart reading."
+        "ta": "எங்கள் இயந்திரம் சர்வதோபத்ர சக்கரத்திலிருந்து வேதா உறவுகளை முன்கூட்டியே கணக்கிடுகிறது, ஒவ்வொரு ஜென்ம நட்சத்திரத்திற்கும் எந்த கோச்சார கிரகங்கள் தடைகளை அல்லது ஆதரவை உருவாக்குகின்றன என்பதை தீர்மானிக்கிறது. இந்த தானியங்கி பகுப்பாய்வு கைமுறையாக ஜாதகம் படிக்கும் தேவையை நீக்குகிறது.",
+        "te": "మా ఇంజిన్ సర్వతోభద్ర చక్రం నుండి వేధ సంబంధాలను ముందుగానే లెక్కిస్తుంది, ప్రతి జన్మ నక్షత్రానికి ఏ గోచారం చేసే గ్రహాలు అడ్డంకులను లేదా మద్దతును సృష్టిస్తాయో నిర్ణయిస్తుంది. ఈ స్వయంచాలక విశ్లేషణ మాన్యువల్ చార్ట్ రీడింగ్ అవసరాన్ని తొలగిస్తుంది.",
+        "bn": "আমাদের ইঞ্জিন সর্বতোভদ্র চক্র থেকে বেধ সম্পর্কগুলি পূর্ব-গণনা করে, যা নির্ধারণ করে কোন গোচর গ্রহ প্রতিটি জন্ম নক্ষত্রের জন্য বাধা বা সমর্থন তৈরি করে। এই স্বয়ংক্রিয় বিশ্লেষণ ম্যানুয়াল ছক পড়ার প্রয়োজনীয়তা দূর করে।",
+        "kn": "ನಮ್ಮ ಎಂಜಿನ್ ಸರ್ವತೋಭದ್ರ ಚಕ್ರದಿಂದ ವೇಧ ಸಂಬಂಧಗಳನ್ನು ಪೂರ್ವ-ಲೆಕ್ಕಾಚಾರ ಮಾಡುತ್ತದೆ, ಪ್ರತಿ ಜನ್ಮ ನಕ್ಷತ್ರಕ್ಕೆ ಯಾವ ಗೋಚಾರ ಗ್ರಹಗಳು ಅಡಚಣೆಗಳನ್ನು ಅಥವಾ ಬೆಂಬಲವನ್ನು ಸೃಷ್ಟಿಸುತ್ತವೆ ಎಂಬುದನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ. ಈ ಸ್ವಯಂಚಾಲಿತ ವಿಶ್ಲೇಷಣೆಯು ಕೈಯಾರೆ ಚಾರ್ಟ್ ಓದುವ ಅಗತ್ಯವನ್ನು ನಿವಾರಿಸುತ್ತದೆ.",
+        "gu": "અમારું એન્જિન સર્વતોભદ્ર ચક્રમાંથી વેધ સંબંધોની પૂર્વ-ગણતરી કરે છે, જે નક્કી કરે છે કે કયા ગોચર ગ્રહો દરેક જન્મ નક્ષત્ર માટે અવરોધો અથવા સહાય બનાવે છે. આ સ્વયંસંચાલિત વિશ્લેષણ મેન્યુઅલ ચાર્ટ વાંચવાની જરૂરિયાતને દૂર કરે છે."
       },
       "options": [
         {
@@ -616,44 +616,44 @@
           "hi": "यह चक्र प्रणालियों को पूर्णतः अनदेखा करता है",
           "mai": "ई चक्र प्रणालीकें पूर्ण रूप सँ अनदेखी करैत अछि",
           "mr": "यह चक्र प्रणालियों को पूर्णतः अनदेखा करता है",
-          "ta": "It ignores chakra systems entirely",
-          "te": "It ignores chakra systems entirely",
-          "bn": "It ignores chakra systems entirely",
-          "kn": "It ignores chakra systems entirely",
-          "gu": "It ignores chakra systems entirely"
+          "ta": "இது சக்கர அமைப்புகளை முற்றிலும் புறக்கணிக்கிறது",
+          "te": "ఇది చక్ర వ్యవస్థలను పూర్తిగా విస్మరిస్తుంది",
+          "bn": "এটি চক্র পদ্ধতি সম্পূর্ণরূপে উপেক্ষা করে",
+          "kn": "ಇದು ಚಕ್ರ ವ್ಯವಸ್ಥೆಗಳನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ನಿರ್ಲಕ್ಷಿಸುತ್ತದೆ",
+          "gu": "તે ચક્ર પ્રણાલીઓને સંપૂર્ણપણે અવગણે છે"
         },
         {
           "en": "It manually draws the chart for the user to interpret",
           "hi": "यह उपयोगकर्ता की व्याख्या के लिए चार्ट मैन्युअली बनाता है",
           "mai": "ई मैन्युअल रूप सँ चार्टकें उपयोगकर्ताकें व्याख्या करबाक लेल खींचैत अछि",
           "mr": "यह उपयोगकर्ता की व्याख्या के लिए चार्ट मैन्युअली बनाता है",
-          "ta": "It manually draws the chart for the user to interpret",
-          "te": "It manually draws the chart for the user to interpret",
-          "bn": "It manually draws the chart for the user to interpret",
-          "kn": "It manually draws the chart for the user to interpret",
-          "gu": "It manually draws the chart for the user to interpret"
+          "ta": "இது பயனர் விளக்கத்திற்காக சக்கரத்தை கைமுறையாக வரைகிறது",
+          "te": "ఇది వినియోగదారు అర్థం చేసుకోవడానికి చార్ట్‌ను మాన్యువల్‌గా గీస్తుంది",
+          "bn": "এটি ব্যবহারকারীর ব্যাখ্যার জন্য ম্যানুয়ালি ছক আঁকে",
+          "kn": "ಇದು ಬಳಕೆದಾರರು ವ್ಯಾಖ್ಯಾನಿಸಲು ಚಾರ್ಟ್ ಅನ್ನು ಕೈಯಾರೆ ರಚಿಸುತ್ತದೆ",
+          "gu": "તે વપરાશકર્તાને અર્થઘટન કરવા માટે ચાર્ટ મેન્યુઅલી દોરે છે"
         },
         {
           "en": "It pre-computes vedha relationships automatically",
           "hi": "यह स्वचालित रूप से वेध सम्बन्धों की पूर्व-गणना करता है",
           "mai": "ई वेध संबंधकें स्वचालित रूप सँ पूर्व-गणना करैत अछि",
           "mr": "यह स्वचालित रूप से वेध सम्बन्धों की पूर्व-गणना करता है",
-          "ta": "It pre-computes vedha relationships automatically",
-          "te": "It pre-computes vedha relationships automatically",
-          "bn": "It pre-computes vedha relationships automatically",
-          "kn": "It pre-computes vedha relationships automatically",
-          "gu": "It pre-computes vedha relationships automatically"
+          "ta": "இது வேதா உறவுகளை தானாகவே முன்கூட்டியே கணக்கிடுகிறது",
+          "te": "ఇది వేధ సంబంధాలను స్వయంచాలకంగా ముందుగానే లెక్కిస్తుంది",
+          "bn": "এটি স্বয়ংক্রিয়ভাবে বেধ সম্পর্কগুলি পূর্ব-গণনা করে",
+          "kn": "ಇದು ವೇಧ ಸಂಬಂಧಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪೂರ್ವ-ಲೆಕ್ಕಾಚಾರ ಮಾಡುತ್ತದೆ",
+          "gu": "તે વેધ સંબંધોની આપમેળે પૂર્વ-ગણતરી કરે છે"
         },
         {
           "en": "It only uses the chart for name-based predictions",
           "hi": "यह चार्ट का उपयोग केवल नाम-आधारित भविष्यवाणियों के लिए करता है",
           "mai": "ई केवल चार्टकें नाम-आधारित भविष्यवाणीक लेल उपयोग करैत अछि",
           "mr": "यह चार्ट का उपयोग केवल नाम-आधारित भविष्यवाणियों के लिए करता है",
-          "ta": "It only uses the chart for name-based predictions",
-          "te": "It only uses the chart for name-based predictions",
-          "bn": "It only uses the chart for name-based predictions",
-          "kn": "It only uses the chart for name-based predictions",
-          "gu": "It only uses the chart for name-based predictions"
+          "ta": "இது பெயர் சார்ந்த கணிப்புகளுக்கு மட்டுமே சக்கரத்தைப் பயன்படுத்துகிறது",
+          "te": "ఇది పేరు ఆధారిత అంచనాల కోసం మాత్రమే చార్ట్‌ను ఉపయోగిస్తుంది",
+          "bn": "এটি শুধুমাত্র নাম-ভিত্তিক ভবিষ্যদ্বাণীর জন্য ছক ব্যবহার করে",
+          "kn": "ಇದು ಹೆಸರು ಆಧಾರಿತ ಭವಿಷ್ಯಗಳಿಗಾಗಿ ಮಾತ್ರ ಚಾರ್ಟ್ ಅನ್ನು ಬಳಸುತ್ತದೆ",
+          "gu": "તે ફક્ત નામ-આધારિત ભવિષ્યવાણી માટે ચાર્ટનો ઉપયોગ કરે છે"
         }
       ]
     }

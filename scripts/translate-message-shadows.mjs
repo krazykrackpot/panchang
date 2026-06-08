@@ -63,7 +63,8 @@ async function geminiTranslateOne(token, enObject, locale) {
   };
 
   let lastErr = null;
-  for (let attempt = 0; attempt < 3; attempt++) {
+  const maxAttempts = 5;
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
     const res = spawnSync(
       'curl',
       [
@@ -95,8 +96,9 @@ async function geminiTranslateOne(token, enObject, locale) {
       }
     }
     lastErr = new Error(`curl exit ${res.status}: ${res.stderr?.slice(0, 200)}`);
-    const wait = 1000 * 2 ** attempt;
-    process.stderr.write(`    curl failed (exit ${res.status}), retry ${attempt + 1}/3 in ${wait / 1000}s\n`);
+    // Backoff: 2s, 6s, 14s, 30s — gives transient outages time to recover.
+    const wait = 2000 * (2 ** attempt - 1) + 2000;
+    process.stderr.write(`    curl failed (exit ${res.status}), retry ${attempt + 1}/${maxAttempts} in ${wait / 1000}s\n`);
     await new Promise((r) => setTimeout(r, wait));
   }
   throw lastErr;
@@ -190,13 +192,26 @@ async function main() {
   }
   const token = getAccessToken();
   const results = [];
+  const failures = [];
   for (const f of files) {
-    results.push(await processFile(f, token));
+    try {
+      results.push(await processFile(f, token));
+    } catch (err) {
+      // One file's transient outage shouldn't kill the whole batch — the
+      // script is idempotent, so just record and continue. Re-run on the
+      // failed files to fill remaining shadows.
+      process.stderr.write(`  ✗ FAILED ${f}: ${err.message?.slice(0, 200)}\n`);
+      failures.push({ filePath: f, error: err.message });
+    }
   }
   process.stderr.write('\n=== summary ===\n');
   for (const r of results) {
     process.stderr.write(`  ${r.written ? '✓' : '·'} ${r.filePath}${r.calls != null ? ` (${r.calls} calls)` : ''}\n`);
   }
+  for (const fail of failures) {
+    process.stderr.write(`  ✗ ${fail.filePath} — ${fail.error?.slice(0, 120)}\n`);
+  }
+  if (failures.length > 0) process.exit(3);
 }
 
 main().catch((err) => {

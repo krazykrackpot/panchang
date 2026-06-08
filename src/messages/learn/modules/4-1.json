@@ -72,69 +72,69 @@
       "question": {
         "en": "What is the primary cause of Earth's axial precession?",
         "hi": "पृथ्वी के अक्षीय पुरस्सरण का प्रमुख कारण क्या है?",
-        "ta": "What is the primary cause of Earth's axial precession?",
-        "te": "What is the primary cause of Earth's axial precession?",
-        "bn": "What is the primary cause of Earth's axial precession?",
-        "kn": "What is the primary cause of Earth's axial precession?",
+        "ta": "பூமியின் அச்சு முன்கூட்டிய இயக்கத்திற்கு முதன்மைக் காரணம் என்ன?",
+        "te": "భూమి యొక్క అక్షీయ పురోగమనానికి ప్రధాన కారణం ఏమిటి?",
+        "bn": "পৃথিবীর অক্ষীয় অয়নচলনের মূল কারণ কী?",
+        "kn": "ಭೂಮಿಯ ಅಕ್ಷೀಯ ಪೂರ್ವಗಮನಕ್ಕೆ ಪ್ರಮುಖ ಕಾರಣವೇನು?",
         "mr": "पृथ्वी के अक्षीय पुरस्सरण का प्रमुख कारण क्या है?",
-        "gu": "What is the primary cause of Earth's axial precession?",
+        "gu": "પૃથ્વીના અક્ષીય અયનનું મુખ્ય કારણ શું છે?",
         "mai": "पृथ्वीक अक्षीय पुरस्सरणक मुख्य कारण की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The Sun and Moon's gravitational pull on Earth's equatorial bulge (Earth is 43km wider at the equator) creates a torque that drives axial precession at ~50.3 arcseconds per year.",
         "hi": "पृथ्वी के भूमध्यरेखीय उभार (पृथ्वी भूमध्य रेखा पर 43 किमी अधिक चौड़ी है) पर सूर्य और चन्द्रमा का गुरुत्वाकर्षण एक बलाघूर्ण उत्पन्न करता है जो ~50.3 कलांश/वर्ष की दर से पुरस्सरण चलाता है।",
-        "ta": "The Sun and Moon's gravitational pull on Earth's equatorial bulge (Earth is 43km wider at the equator) creates a torque that drives axial precession at ~50.3 arcseconds per year.",
-        "te": "The Sun and Moon's gravitational pull on Earth's equatorial bulge (Earth is 43km wider at the equator) creates a torque that drives axial precession at ~50.3 arcseconds per year.",
-        "bn": "The Sun and Moon's gravitational pull on Earth's equatorial bulge (Earth is 43km wider at the equator) creates a torque that drives axial precession at ~50.3 arcseconds per year.",
-        "kn": "The Sun and Moon's gravitational pull on Earth's equatorial bulge (Earth is 43km wider at the equator) creates a torque that drives axial precession at ~50.3 arcseconds per year.",
+        "ta": "சூரியன் மற்றும் சந்திரனின் ஈர்ப்பு விசை, பூமியின் நிலநடுக்கோட்டுப் புடைப்பின் மீது (பூமி நிலநடுக்கோட்டில் 43கிமீ அகலமாக உள்ளது) ஒரு முறுக்குவிசையை உருவாக்குகிறது, அது அச்சு முன்கூட்டிய இயக்கத்தை ஆண்டுக்கு சுமார் 50.3 ஆர்க் வினாடிகள் என்ற விகிதத்தில் இயக்குகிறது.",
+        "te": "సూర్య చంద్రుల గురుత్వాకర్షణ శక్తి భూమి యొక్క భూమధ్యరేఖ ఉబ్బరం (భూమి భూమధ్యరేఖ వద్ద 43 కి.మీ. వెడల్పుగా ఉంటుంది) పై పనిచేసి, సంవత్సరానికి సుమారు 50.3 ఆర్క్‌సెకన్ల చొప్పున అక్షీయ పురోగమనాన్ని నడిపించే ఒక టార్క్ ను సృష్టిస్తుంది.",
+        "bn": "সূর্য ও চন্দ্রের মহাকর্ষীয় টান পৃথিবীর নিরক্ষীয় স্ফীতির (পৃথিবী নিরক্ষরেখায় ৪৩ কিমি চওড়া) উপর একটি টর্ক তৈরি করে, যা প্রতি বছর প্রায় ৫০.৩ আর্কসেকেন্ড হারে অক্ষীয় অয়নচলন ঘটায়।",
+        "kn": "ಸೂರ್ಯ ಮತ್ತು ಚಂದ್ರನ ಗುರುತ್ವಾಕರ್ಷಣೆಯ ಸೆಳೆತವು ಭೂಮಿಯ ಸಮಭಾಜಕದ ಉಬ್ಬುವಿಕೆಯ ಮೇಲೆ (ಭೂಮಿಯು ಸಮಭಾಜಕದಲ್ಲಿ 43 ಕಿ.ಮೀ. ಹೆಚ್ಚು ಅಗಲವಾಗಿದೆ) ಒಂದು ಟಾರ್ಕ್ ಅನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ, ಇದು ವರ್ಷಕ್ಕೆ ಸುಮಾರು 50.3 ಆರ್ಕ್‌ಸೆಕೆಂಡ್‌ಗಳ ದರದಲ್ಲಿ ಅಕ್ಷೀಯ ಪೂರ್ವಗಮನವನ್ನು ಉಂಟುಮಾಡುತ್ತದೆ.",
         "mr": "पृथ्वी के भूमध्यरेखीय उभार (पृथ्वी भूमध्य रेखा पर 43 किमी अधिक चौड़ी है) पर सूर्य और चन्द्रमा का गुरुत्वाकर्षण एक बलाघूर्ण उत्पन्न करता है जो ~50.3 कलांश/वर्ष की दर से पुरस्सरण चलाता है।",
-        "gu": "The Sun and Moon's gravitational pull on Earth's equatorial bulge (Earth is 43km wider at the equator) creates a torque that drives axial precession at ~50.3 arcseconds per year.",
+        "gu": "સૂર્ય અને ચંદ્રનું પૃથ્વીના વિષુવવૃત્તીય ઉપસાવ પરનું ગુરુત્વાકર્ષણ બળ (પૃથ્વી વિષુવવૃત્ત પર 43 કિમી વધુ પહોળી છે) એક ટોર્ક બનાવે છે જે પ્રતિ વર્ષ ~50.3 આર્કસેકન્ડના દરે અક્ષીય અયનને ચલાવે છે.",
         "mai": "सूर्य आ चन्द्रमाक पृथ्वीक भूमध्यरेखीय उभार (पृथ्वी भूमध्यरेखीय पर ४३ किमी बेसी चौड़ा अछि) पर गुरुत्वाकर्षण बल एकटा बल आघूर्ण उत्पन्न करैत अछि जे प्रति वर्ष लगभग ५०.३ आर्कसेकेंडक दर सँ अक्षीय पुरस्सरण चलाबैत अछि।"
       },
       "options": [
         {
           "en": "Earth's magnetic field reversals",
           "hi": "पृथ्वी के चुम्बकीय क्षेत्र का उत्क्रमण",
-          "ta": "Earth's magnetic field reversals",
-          "te": "Earth's magnetic field reversals",
-          "bn": "Earth's magnetic field reversals",
-          "kn": "Earth's magnetic field reversals",
+          "ta": "பூமியின் காந்தப்புலத் திசைமாற்றங்கள்",
+          "te": "భూమి యొక్క అయస్కాంత క్షేత్ర విలోమాలు",
+          "bn": "পৃথিবীর চৌম্বক ক্ষেত্রের বিপরীতমুখী পরিবর্তন",
+          "kn": "ಭೂಮಿಯ ಕಾಂತಕ್ಷೇತ್ರದ ಹಿಮ್ಮುಖ ಬದಲಾವಣೆಗಳು",
           "mr": "पृथ्वी के चुम्बकीय क्षेत्र का उत्क्रमण",
-          "gu": "Earth's magnetic field reversals",
+          "gu": "પૃથ્વીના ચુંબકીય ક્ષેત્રના ઉલટાણ",
           "mai": "पृथ्वीक चुंबकीय क्षेत्रक उत्क्रमण"
         },
         {
           "en": "Gravitational pull of Sun and Moon on Earth's equatorial bulge",
           "hi": "पृथ्वी के भूमध्यरेखीय उभार पर सूर्य और चन्द्रमा का गुरुत्वाकर्षण",
-          "ta": "Gravitational pull of Sun and Moon on Earth's equatorial bulge",
-          "te": "Gravitational pull of Sun and Moon on Earth's equatorial bulge",
-          "bn": "Gravitational pull of Sun and Moon on Earth's equatorial bulge",
-          "kn": "Gravitational pull of Sun and Moon on Earth's equatorial bulge",
+          "ta": "சூரியன் மற்றும் சந்திரனின் ஈர்ப்பு விசை பூமியின் நிலநடுக்கோட்டுப் புடைப்பின் மீது",
+          "te": "భూమి యొక్క భూమధ్యరేఖ ఉబ్బరంపై సూర్య చంద్రుల గురుత్వాకర్షణ శక్తి",
+          "bn": "সূর্য ও চন্দ্রের মহাকর্ষীয় টান পৃথিবীর নিরক্ষীয় স্ফীতির উপর",
+          "kn": "ಸೂರ್ಯ ಮತ್ತು ಚಂದ್ರನ ಗುರುತ್ವಾಕರ್ಷಣೆಯು ಭೂಮಿಯ ಸಮಭಾಜಕದ ಉಬ್ಬುವಿಕೆಯ ಮೇಲೆ ಬೀರುವ ಸೆಳೆತ",
           "mr": "पृथ्वी के भूमध्यरेखीय उभार पर सूर्य और चन्द्रमा का गुरुत्वाकर्षण",
-          "gu": "Gravitational pull of Sun and Moon on Earth's equatorial bulge",
+          "gu": "સૂર્ય અને ચંદ્રનું પૃથ્વીના વિષુવવૃત્તીય ઉપસાવ પરનું ગુરુત્વાકર્ષણ બળ",
           "mai": "सूर्य आ चन्द्रमाक पृथ्वीक भूमध्यरेखीय उभार पर गुरुत्वाकर्षण बल"
         },
         {
           "en": "Jupiter's orbital resonance",
           "hi": "बृहस्पति की कक्षीय अनुनाद",
-          "ta": "Jupiter's orbital resonance",
-          "te": "Jupiter's orbital resonance",
-          "bn": "Jupiter's orbital resonance",
-          "kn": "Jupiter's orbital resonance",
+          "ta": "வியாழனின் சுற்றுப்பாதை ஒத்திசைவு",
+          "te": "బృహస్పతి యొక్క కక్ష్య అనునాదం",
+          "bn": "বৃহস্পতির কক্ষপথের অনুরণন",
+          "kn": "ಗುರುಗ್ರಹದ ಕಕ್ಷೀಯ ಅನುರಣನ",
           "mr": "बृहस्पति की कक्षीय अनुनाद",
-          "gu": "Jupiter's orbital resonance",
+          "gu": "ગુરુનો કક્ષીય અનુનાદ",
           "mai": "बृहस्पतिक कक्षीय अनुनाद"
         },
         {
           "en": "Solar wind pressure on the magnetosphere",
           "hi": "चुम्बकमण्डल पर सौर पवन का दबाव",
-          "ta": "Solar wind pressure on the magnetosphere",
-          "te": "Solar wind pressure on the magnetosphere",
-          "bn": "Solar wind pressure on the magnetosphere",
-          "kn": "Solar wind pressure on the magnetosphere",
+          "ta": "காந்தக்கோளத்தின் மீது சூரியக் காற்றின் அழுத்தம்",
+          "te": "అయస్కాంత గోళంపై సౌర గాలి పీడనం",
+          "bn": "ম্যাগনেটোস্ফিয়ারের উপর সৌর বায়ুর চাপ",
+          "kn": "ಸೌರ ಮಾರುತದ ಒತ್ತಡವು ಕಾಂತಗೋಳದ ಮೇಲೆ",
           "mr": "चुम्बकमण्डल पर सौर पवन का दबाव",
-          "gu": "Solar wind pressure on the magnetosphere",
+          "gu": "મેગ્નેટોસ્ફિયર પર સૌર પવનનું દબાણ",
           "mai": "चुम्बकमंडल पर सौर पवनक दबाव"
         }
       ]
@@ -145,24 +145,24 @@
       "question": {
         "en": "Precession completes one full cycle (the Platonic Year) in approximately 25,772 years.",
         "hi": "पुरस्सरण एक पूर्ण चक्र (प्लेटोनिक वर्ष) लगभग 25,772 वर्षों में पूरा करता है।",
-        "ta": "Precession completes one full cycle (the Platonic Year) in approximately 25,772 years.",
-        "te": "Precession completes one full cycle (the Platonic Year) in approximately 25,772 years.",
-        "bn": "Precession completes one full cycle (the Platonic Year) in approximately 25,772 years.",
-        "kn": "Precession completes one full cycle (the Platonic Year) in approximately 25,772 years.",
+        "ta": "முன்கூட்டிய இயக்கம் ஒரு முழு சுழற்சியை (பிளாட்டோனிக் ஆண்டு) தோராயமாக 25,772 ஆண்டுகளில் நிறைவு செய்கிறது.",
+        "te": "పురోగమనం ఒక పూర్తి చక్రాన్ని (ప్లాటోనిక్ సంవత్సరం) సుమారు 25,772 సంవత్సరాలలో పూర్తి చేస్తుంది.",
+        "bn": "অয়নচলন একটি পূর্ণ চক্র (প্লেটোনিক বছর) প্রায় ২৫,৭৭২ বছরে সম্পন্ন করে।",
+        "kn": "ಪೂರ್ವಗಮನವು ಒಂದು ಪೂರ್ಣ ಚಕ್ರವನ್ನು (ಪ್ಲಾಟೋನಿಕ್ ವರ್ಷ) ಸುಮಾರು 25,772 ವರ್ಷಗಳಲ್ಲಿ ಪೂರ್ಣಗೊಳಿಸುತ್ತದೆ.",
         "mr": "पुरस्सरण एक पूर्ण चक्र (प्लेटोनिक वर्ष) लगभग 25,772 वर्षों में पूरा करता है।",
-        "gu": "Precession completes one full cycle (the Platonic Year) in approximately 25,772 years.",
+        "gu": "અયન આશરે 25,772 વર્ષમાં એક સંપૂર્ણ ચક્ર (પ્લેટોનિક વર્ષ) પૂર્ણ કરે છે.",
         "mai": "पुरस्सरण लगभग २५,७७२ वर्ष मे एकटा पूर्ण चक्र (प्लेटोनिक वर्ष) पूरा करैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "Correct. At 50.3 arcseconds/year, one full 360-degree precession cycle takes about 25,772 years  –  known as the Platonic Year or Great Year.",
         "hi": "सही। 50.3 कलांश/वर्ष की दर से, एक पूर्ण 360-अंश पुरस्सरण चक्र लगभग 25,772 वर्ष लेता है  –  जिसे प्लेटोनिक वर्ष या महावर्ष कहते हैं।",
-        "ta": "Correct. At 50.3 arcseconds/year, one full 360-degree precession cycle takes about 25,772 years  –  known as the Platonic Year or Great Year.",
-        "te": "Correct. At 50.3 arcseconds/year, one full 360-degree precession cycle takes about 25,772 years  –  known as the Platonic Year or Great Year.",
-        "bn": "Correct. At 50.3 arcseconds/year, one full 360-degree precession cycle takes about 25,772 years  –  known as the Platonic Year or Great Year.",
-        "kn": "Correct. At 50.3 arcseconds/year, one full 360-degree precession cycle takes about 25,772 years  –  known as the Platonic Year or Great Year.",
+        "ta": "சரி. ஆண்டுக்கு 50.3 ஆர்க் வினாடிகள் என்ற விகிதத்தில், ஒரு முழு 360 டிகிரி முன்கூட்டிய இயக்கச் சுழற்சி சுமார் 25,772 ஆண்டுகள் ஆகும் – இது பிளாட்டோனிக் ஆண்டு அல்லது பெரிய ஆண்டு என்று அழைக்கப்படுகிறது.",
+        "te": "సరియైనది. సంవత్సరానికి 50.3 ఆర్క్‌సెకన్ల వద్ద, ఒక పూర్తి 360-డిగ్రీల పురోగమన చక్రం సుమారు 25,772 సంవత్సరాలు పడుతుంది – దీనిని ప్లాటోనిక్ సంవత్సరం లేదా మహా సంవత్సరం అని పిలుస్తారు.",
+        "bn": "সঠিক। প্রতি বছর ৫০.৩ আর্কসেকেন্ড হারে, একটি পূর্ণ ৩৬০-ডিগ্রি অয়নচলন চক্র প্রায় ২৫,৭৭২ বছর সময় নেয় – যা প্লেটোনিক বছর বা মহাবর্ষ নামে পরিচিত।",
+        "kn": "ಸರಿ. ವರ್ಷಕ್ಕೆ 50.3 ಆರ್ಕ್‌ಸೆಕೆಂಡ್‌ಗಳ ದರದಲ್ಲಿ, ಒಂದು ಪೂರ್ಣ 360-ಡಿಗ್ರಿ ಪೂರ್ವಗಮನ ಚಕ್ರಕ್ಕೆ ಸುಮಾರು 25,772 ವರ್ಷಗಳು ಬೇಕಾಗುತ್ತದೆ – ಇದನ್ನು ಪ್ಲಾಟೋನಿಕ್ ವರ್ಷ ಅಥವಾ ಮಹಾ ವರ್ಷ ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ.",
         "mr": "सही। 50.3 कलांश/वर्ष की दर से, एक पूर्ण 360-अंश पुरस्सरण चक्र लगभग 25,772 वर्ष लेता है  –  जिसे प्लेटोनिक वर्ष या महावर्ष कहते हैं।",
-        "gu": "Correct. At 50.3 arcseconds/year, one full 360-degree precession cycle takes about 25,772 years  –  known as the Platonic Year or Great Year.",
+        "gu": "સાચું. 50.3 આર્કસેકન્ડ/વર્ષના દરે, એક સંપૂર્ણ 360-ડિગ્રી અયન ચક્રને લગભગ 25,772 વર્ષ લાગે છે – જેને પ્લેટોનિક વર્ષ અથવા મહાન વર્ષ તરીકે ઓળખવામાં આવે છે.",
         "mai": "सही। ५०.३ आर्कसेकेंड/वर्षक दर सँ, एकटा पूर्ण ३६०-डिग्री पुरस्सरण चक्र मे लगभग २५,७७२ वर्ष लगैत अछि – जेकरा प्लेटोनिक वर्ष वा महान वर्षक रूप मे जानल जाइत अछि।"
       }
     },
@@ -172,69 +172,69 @@
       "question": {
         "en": "The current Lahiri Ayanamsha (2026) is approximately:",
         "hi": "वर्तमान लहिरी अयनांश (2026) लगभग कितना है?",
-        "ta": "The current Lahiri Ayanamsha (2026) is approximately:",
-        "te": "The current Lahiri Ayanamsha (2026) is approximately:",
-        "bn": "The current Lahiri Ayanamsha (2026) is approximately:",
-        "kn": "The current Lahiri Ayanamsha (2026) is approximately:",
+        "ta": "தற்போதைய லஹிரி அயனாம்சம் (2026) தோராயமாக:",
+        "te": "ప్రస్తుత లాహిరి అయనాంశం (2026) సుమారుగా:",
+        "bn": "বর্তমান লাহিড়ী অয়নাম্শ (২০২৬) প্রায়:",
+        "kn": "ಪ್ರಸ್ತುತ ಲಾಹಿರಿ ಅಯನಾಂಶ (2026) ಸರಿಸುಮಾರು:",
         "mr": "वर्तमान लहिरी अयनांश (2026) लगभग कितना है?",
-        "gu": "The current Lahiri Ayanamsha (2026) is approximately:",
+        "gu": "વર્તમાન લાહિરી અયનાંશ (2026) આશરે છે:",
         "mai": "वर्तमान लाहिड़ी अयनांश (२०२६) लगभग अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The Lahiri Ayanamsha in 2026 is approximately 24.22 degrees  –  the accumulated angular gap between the tropical and sidereal zodiacs since they were aligned around 285 CE.",
         "hi": "लहिरी अयनांश 2026 में लगभग 24.22 अंश है  –  लगभग 285 ई. में राशिचक्रों के संरेखण के बाद से सायन और निरयन राशिचक्रों के बीच संचित कोणीय अन्तर।",
-        "ta": "The Lahiri Ayanamsha in 2026 is approximately 24.22 degrees  –  the accumulated angular gap between the tropical and sidereal zodiacs since they were aligned around 285 CE.",
-        "te": "The Lahiri Ayanamsha in 2026 is approximately 24.22 degrees  –  the accumulated angular gap between the tropical and sidereal zodiacs since they were aligned around 285 CE.",
-        "bn": "The Lahiri Ayanamsha in 2026 is approximately 24.22 degrees  –  the accumulated angular gap between the tropical and sidereal zodiacs since they were aligned around 285 CE.",
-        "kn": "The Lahiri Ayanamsha in 2026 is approximately 24.22 degrees  –  the accumulated angular gap between the tropical and sidereal zodiacs since they were aligned around 285 CE.",
+        "ta": "2026 இல் லஹிரி அயனாம்சம் தோராயமாக 24.22 டிகிரி ஆகும் – அயன மற்றும் நிராயன ராசிகளுக்கு இடையில், அவை கி.பி 285 இல் சீரமைக்கப்பட்டதிலிருந்து திரட்டப்பட்ட கோண இடைவெளி இது.",
+        "te": "2026లో లాహిరి అయనాంశం సుమారు 24.22 డిగ్రీలు – ఇది ఉష్ణమండల మరియు నక్షత్ర రాశిచక్రాలు సుమారు 285 CEలో సమలేఖనం చేయబడినప్పటి నుండి వాటి మధ్య సంచిత కోణీయ అంతరం.",
+        "bn": "২০২৬ সালে লাহিড়ী অয়নাম্শ প্রায় ২৪.২২ ডিগ্রি – ক্রান্তীয় ও নাক্ষত্রিক রাশিচক্রের মধ্যে সঞ্চিত কৌণিক ব্যবধান, যেহেতু তারা প্রায় ২৮৫ খ্রিস্টাব্দে সারিবদ্ধ ছিল।",
+        "kn": "2026 ರಲ್ಲಿ ಲಾಹಿರಿ ಅಯನಾಂಶವು ಸರಿಸುಮಾರು 24.22 ಡಿಗ್ರಿಗಳಷ್ಟಿದೆ – ಇದು ಉಷ್ಣವಲಯದ ಮತ್ತು ನಿರವಯವ ರಾಶಿಚಕ್ರಗಳು ಸುಮಾರು 285 CE ನಲ್ಲಿ ಜೋಡಿಸಲ್ಪಟ್ಟ ನಂತರ ಅವುಗಳ ನಡುವಿನ ಸಂಚಿತ ಕೋನೀಯ ಅಂತರವಾಗಿದೆ.",
         "mr": "लहिरी अयनांश 2026 में लगभग 24.22 अंश है  –  लगभग 285 ई. में राशिचक्रों के संरेखण के बाद से सायन और निरयन राशिचक्रों के बीच संचित कोणीय अन्तर।",
-        "gu": "The Lahiri Ayanamsha in 2026 is approximately 24.22 degrees  –  the accumulated angular gap between the tropical and sidereal zodiacs since they were aligned around 285 CE.",
+        "gu": "2026 માં લાહિરી અયનાંશ આશરે 24.22 ડિગ્રી છે – ઉષ્ણકટિબંધીય અને નિરયન રાશિઓ વચ્ચેનું સંચિત કોણીય અંતર, જ્યારે તેઓ લગભગ 285 CE ની આસપાસ સંરેખિત થયા હતા ત્યારથી.",
         "mai": "लाहिड़ी अयनांश २०२६ मे लगभग २४.२२ डिग्री अछि – सायन आ निरयण राशिचक्रक बीचक संचित कोणीय अंतर जखन सँ ओ लगभग २८५ ईस्वी मे संरेखित भेल छल।"
       },
       "options": [
         {
           "en": "12 degrees",
           "hi": "12 अंश",
-          "ta": "12 degrees",
-          "te": "12 degrees",
-          "bn": "12 degrees",
-          "kn": "12 degrees",
+          "ta": "12 டிகிரி",
+          "te": "12 డిగ్రీలు",
+          "bn": "১২ ডিগ্রি",
+          "kn": "12 ಡಿಗ್ರಿ",
           "mr": "12 अंश",
-          "gu": "12 degrees",
+          "gu": "12 ડિગ્રી",
           "mai": "१२ डिग्री"
         },
         {
           "en": "24.2 degrees",
           "hi": "24.2 अंश",
-          "ta": "24.2 degrees",
-          "te": "24.2 degrees",
-          "bn": "24.2 degrees",
-          "kn": "24.2 degrees",
+          "ta": "24.2 டிகிரி",
+          "te": "24.2 డిగ్రీలు",
+          "bn": "২৪.২ ডিগ্রি",
+          "kn": "24.2 ಡಿಗ್ರಿ",
           "mr": "24.2 अंश",
-          "gu": "24.2 degrees",
+          "gu": "24.2 ડિગ્રી",
           "mai": "२४.२ डिग्री"
         },
         {
           "en": "36 degrees",
           "hi": "36 अंश",
-          "ta": "36 degrees",
-          "te": "36 degrees",
-          "bn": "36 degrees",
-          "kn": "36 degrees",
+          "ta": "36 டிகிரி",
+          "te": "36 డిగ్రీలు",
+          "bn": "৩৬ ডিগ্রি",
+          "kn": "36 ಡಿಗ್ರಿ",
           "mr": "36 अंश",
-          "gu": "36 degrees",
+          "gu": "36 ડિગ્રી",
           "mai": "३६ डिग्री"
         },
         {
           "en": "0 degrees",
           "hi": "0 अंश",
-          "ta": "0 degrees",
-          "te": "0 degrees",
-          "bn": "0 degrees",
-          "kn": "0 degrees",
+          "ta": "0 டிகிரி",
+          "te": "0 డిగ్రీలు",
+          "bn": "০ ডিগ্রি",
+          "kn": "0 ಡಿಗ್ರಿ",
           "mr": "0 अंश",
-          "gu": "0 degrees",
+          "gu": "0 ડિગ્રી",
           "mai": "० डिग्री"
         }
       ]
@@ -245,24 +245,24 @@
       "question": {
         "en": "The Surya Siddhanta correctly described precession as a steady, one-directional increase.",
         "hi": "सूर्य सिद्धान्त ने पुरस्सरण को स्थिर, एकदिशात्मक वृद्धि के रूप में सही वर्णित किया।",
-        "ta": "The Surya Siddhanta correctly described precession as a steady, one-directional increase.",
-        "te": "The Surya Siddhanta correctly described precession as a steady, one-directional increase.",
-        "bn": "The Surya Siddhanta correctly described precession as a steady, one-directional increase.",
-        "kn": "The Surya Siddhanta correctly described precession as a steady, one-directional increase.",
+        "ta": "சூரிய சித்தாந்தம் முன்கூட்டிய இயக்கத்தை ஒரு நிலையான, ஒரு திசை அதிகரிப்பாக சரியாக விவரித்தது.",
+        "te": "సూర్య సిద్ధాంతం పురోగమనాన్ని స్థిరమైన, ఏకదిశాత్మక పెరుగుదలగా సరిగ్గా వివరించింది.",
+        "bn": "সূর্য সিদ্ধান্ত অয়নচলনকে একটি স্থির, একমুখী বৃদ্ধি হিসাবে সঠিকভাবে বর্ণনা করেছে।",
+        "kn": "ಸೂರ್ಯ ಸಿದ್ಧಾಂತವು ಪೂರ್ವಗಮನವನ್ನು ಸ್ಥಿರವಾದ, ಏಕಮುಖ ಹೆಚ್ಚಳವಾಗಿ ಸರಿಯಾಗಿ ವಿವರಿಸಿದೆ.",
         "mr": "सूर्य सिद्धान्त ने पुरस्सरण को स्थिर, एकदिशात्मक वृद्धि के रूप में सही वर्णित किया।",
-        "gu": "The Surya Siddhanta correctly described precession as a steady, one-directional increase.",
+        "gu": "સૂર્ય સિદ્ધાંતે અયનનું સ્થિર, એક-દિશાવાળા વધારા તરીકે યોગ્ય રીતે વર્ણન કર્યું.",
         "mai": "सूर्य सिद्धांत पुरस्सरण कें एकटा स्थिर, एक-दिशात्मक वृद्धि कें रूप मे सही ढंग सँ वर्णन केलक।"
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. The Surya Siddhanta used a trepidation (oscillating) model where precession swings back and forth with a maximum of ~27 degrees. Modern astronomy confirms precession is monotonic  –  it increases steadily and does not reverse.",
         "hi": "असत्य। सूर्य सिद्धान्त ने एक कम्पन (दोलन) प्रतिरूप प्रयोग किया जहाँ पुरस्सरण ~27 अंश तक आगे-पीछे झूलता है। आधुनिक खगोलशास्त्र पुष्टि करता है कि पुरस्सरण एकदिशात्मक है  –  यह स्थिर रूप से बढ़ता है और उलटता नहीं।",
-        "ta": "False. The Surya Siddhanta used a trepidation (oscillating) model where precession swings back and forth with a maximum of ~27 degrees. Modern astronomy confirms precession is monotonic  –  it increases steadily and does not reverse.",
-        "te": "False. The Surya Siddhanta used a trepidation (oscillating) model where precession swings back and forth with a maximum of ~27 degrees. Modern astronomy confirms precession is monotonic  –  it increases steadily and does not reverse.",
-        "bn": "False. The Surya Siddhanta used a trepidation (oscillating) model where precession swings back and forth with a maximum of ~27 degrees. Modern astronomy confirms precession is monotonic  –  it increases steadily and does not reverse.",
-        "kn": "False. The Surya Siddhanta used a trepidation (oscillating) model where precession swings back and forth with a maximum of ~27 degrees. Modern astronomy confirms precession is monotonic  –  it increases steadily and does not reverse.",
+        "ta": "தவறு. சூரிய சித்தாந்தம் ஒரு நடுக்க (அலைவுறும்) மாதிரியைப் பயன்படுத்தியது, அங்கு முன்கூட்டிய இயக்கம் அதிகபட்சம் சுமார் 27 டிகிரி வரை முன்னும் பின்னும் அலைவுறும். நவீன வானியல் முன்கூட்டிய இயக்கம் ஒற்றைப்படை என்பதை உறுதிப்படுத்துகிறது – அது சீராக அதிகரிக்கிறது மற்றும் தலைகீழாக மாறாது.",
+        "te": "తప్పు. సూర్య సిద్ధాంతం ఒక కంపన (ఆసిలేటింగ్) నమూనాను ఉపయోగించింది, ఇక్కడ పురోగమనం గరిష్టంగా ~27 డిగ్రీలతో ముందుకు వెనుకకు ఊగుతుంది. ఆధునిక ఖగోళ శాస్త్రం పురోగమనం ఏకదిశాత్మకమని నిర్ధారిస్తుంది – ఇది స్థిరంగా పెరుగుతుంది మరియు తిరగబడదు.",
+        "bn": "ভুল। সূর্য সিদ্ধান্ত একটি কম্পনশীল (দোদুল্যমান) মডেল ব্যবহার করেছিল যেখানে অয়নচলন সামনে-পিছনে দুলত সর্বোচ্চ প্রায় ২৭ ডিগ্রি পর্যন্ত। আধুনিক জ্যোতির্বিদ্যা নিশ্চিত করে যে অয়নচলন একমুখী – এটি স্থিরভাবে বৃদ্ধি পায় এবং বিপরীতমুখী হয় না।",
+        "kn": "ತಪ್ಪು. ಸೂರ್ಯ ಸಿದ್ಧಾಂತವು ಕಂಪನ (ಅಲೆದಾಡುವ) ಮಾದರಿಯನ್ನು ಬಳಸಿದೆ, ಅಲ್ಲಿ ಪೂರ್ವಗಮನವು ಗರಿಷ್ಠ ~27 ಡಿಗ್ರಿಗಳೊಂದಿಗೆ ಹಿಂದಕ್ಕೆ ಮತ್ತು ಮುಂದಕ್ಕೆ ಚಲಿಸುತ್ತದೆ. ಆಧುನಿಕ ಖಗೋಳಶಾಸ್ತ್ರವು ಪೂರ್ವಗಮನವು ಏಕತಾನತೆಯಿಂದ ಕೂಡಿದೆ ಎಂದು ದೃಢಪಡಿಸುತ್ತದೆ – ಅದು ಸ್ಥಿರವಾಗಿ ಹೆಚ್ಚಾಗುತ್ತದೆ ಮತ್ತು ಹಿಮ್ಮುಖವಾಗುವುದಿಲ್ಲ.",
         "mr": "असत्य। सूर्य सिद्धान्त ने एक कम्पन (दोलन) प्रतिरूप प्रयोग किया जहाँ पुरस्सरण ~27 अंश तक आगे-पीछे झूलता है। आधुनिक खगोलशास्त्र पुष्टि करता है कि पुरस्सरण एकदिशात्मक है  –  यह स्थिर रूप से बढ़ता है और उलटता नहीं।",
-        "gu": "False. The Surya Siddhanta used a trepidation (oscillating) model where precession swings back and forth with a maximum of ~27 degrees. Modern astronomy confirms precession is monotonic  –  it increases steadily and does not reverse.",
+        "gu": "ખોટું. સૂર્ય સિદ્ધાંતે કંપન (ઓસીલેટીંગ) મોડેલનો ઉપયોગ કર્યો હતો જ્યાં અયન મહત્તમ ~27 ડિગ્રી સાથે આગળ-પાછળ ઝૂલે છે. આધુનિક ખગોળશાસ્ત્ર પુષ્ટિ કરે છે કે અયન મોનોટોનિક છે – તે સતત વધે છે અને ઉલટાવતું નથી.",
         "mai": "गलत। सूर्य सिद्धांत एकटा कंपन (दोलनशील) मॉडलक उपयोग केलक जतय पुरस्सरण अधिकतम लगभग २७ डिग्रीक संग आगा-पाछा झूलैत अछि। आधुनिक खगोल विज्ञान पुष्टि करैत अछि जे पुरस्सरण एकदिशीय अछि – ई लगातार बढ़ैत अछि आ उलटैत नहि अछि।"
       }
     },
@@ -272,69 +272,69 @@
       "question": {
         "en": "To convert a tropical longitude to sidereal, you:",
         "hi": "सायन देशान्तर को निरयन में बदलने के लिए आप:",
-        "ta": "To convert a tropical longitude to sidereal, you:",
-        "te": "To convert a tropical longitude to sidereal, you:",
-        "bn": "To convert a tropical longitude to sidereal, you:",
-        "kn": "To convert a tropical longitude to sidereal, you:",
+        "ta": "ஒரு அயன தீர்க்கரேகையை நிராயன தீர்க்கரேகையாக மாற்ற, நீங்கள்:",
+        "te": "ఉష్ణమండల రేఖాంశాన్ని నక్షత్ర రేఖాంశానికి మార్చడానికి, మీరు:",
+        "bn": "একটি ক্রান্তীয় দ্রাঘিমাকে নাক্ষত্রিক দ্রাঘিমায় রূপান্তর করতে, আপনি:",
+        "kn": "ಉಷ್ಣವಲಯದ ರೇಖಾಂಶವನ್ನು ನಿರವಯವ ರೇಖಾಂಶಕ್ಕೆ ಪರಿವರ್ತಿಸಲು, ನೀವು:",
         "mr": "सायन देशान्तर को निरयन में बदलने के लिए आप:",
-        "gu": "To convert a tropical longitude to sidereal, you:",
+        "gu": "ઉષ્ણકટિબંધીય રેખાંશને નિરયન રેખાંશમાં રૂપાંતરિત કરવા માટે, તમે:",
         "mai": "एकटा सायन देशांतर कें निरयण मे परिवर्तित करबाक लेल, अहाँ:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Sidereal longitude = Tropical longitude minus Ayanamsha. The tropical vernal equinox has moved forward (eastward) relative to the stars, so sidereal positions are behind by the ayanamsha amount.",
         "hi": "निरयन देशान्तर = सायन देशान्तर ऋण अयनांश। सायन वसन्त सम्पात तारों के सापेक्ष आगे (पूर्व दिशा में) बढ़ गया है, इसलिए निरयन स्थितियाँ अयनांश मात्रा से पीछे हैं।",
-        "ta": "Sidereal longitude = Tropical longitude minus Ayanamsha. The tropical vernal equinox has moved forward (eastward) relative to the stars, so sidereal positions are behind by the ayanamsha amount.",
-        "te": "Sidereal longitude = Tropical longitude minus Ayanamsha. The tropical vernal equinox has moved forward (eastward) relative to the stars, so sidereal positions are behind by the ayanamsha amount.",
-        "bn": "Sidereal longitude = Tropical longitude minus Ayanamsha. The tropical vernal equinox has moved forward (eastward) relative to the stars, so sidereal positions are behind by the ayanamsha amount.",
-        "kn": "Sidereal longitude = Tropical longitude minus Ayanamsha. The tropical vernal equinox has moved forward (eastward) relative to the stars, so sidereal positions are behind by the ayanamsha amount.",
+        "ta": "நிராயன தீர்க்கரேகை = அயன தீர்க்கரேகை கழித்தல் அயனாம்சம். அயன வசந்த கால சம இரவுப் பகல் நட்சத்திரங்களை ஒப்பிடும்போது முன்னோக்கி (கிழக்கு நோக்கி) நகர்ந்துள்ளது, எனவே நிராயன நிலைகள் அயனாம்ச அளவால் பின்தங்கியுள்ளன.",
+        "te": "నక్షత్ర రేఖాంశం = ఉష్ణమండల రేఖాంశం మైనస్ అయనాంశం. ఉష్ణమండల వసంత విషువత్తు నక్షత్రాలకు సంబంధించి ముందుకు (తూర్పు వైపు) కదిలింది, కాబట్టి నక్షత్ర స్థానాలు అయనాంశం మొత్తంలో వెనుకబడి ఉంటాయి.",
+        "bn": "নাক্ষত্রিক দ্রাঘিমা = ক্রান্তীয় দ্রাঘিমা বিয়োগ অয়নাম্শ। ক্রান্তীয় বসন্ত বিষুব নক্ষত্রগুলির সাপেক্ষে এগিয়ে গেছে (পূর্ব দিকে), তাই নাক্ষত্রিক অবস্থানগুলি অয়নাম্শের পরিমাণ দ্বারা পিছিয়ে থাকে।",
+        "kn": "ನಿರವಯವ ರೇಖಾಂಶ = ಉಷ್ಣವಲಯದ ರೇಖಾಂಶ ಮೈನಸ್ ಅಯನಾಂಶ. ಉಷ್ಣವಲಯದ ವಸಂತ ವಿಷುವತ್ ಸಂಕ್ರಾಂತಿಯು ನಕ್ಷತ್ರಗಳಿಗೆ ಸಂಬಂಧಿಸಿದಂತೆ ಮುಂದಕ್ಕೆ (ಪೂರ್ವಕ್ಕೆ) ಚಲಿಸಿದೆ, ಆದ್ದರಿಂದ ನಿರವಯವ ಸ್ಥಾನಗಳು ಅಯನಾಂಶದ ಪ್ರಮಾಣದಿಂದ ಹಿಂದಿವೆ.",
         "mr": "निरयन देशान्तर = सायन देशान्तर ऋण अयनांश। सायन वसन्त सम्पात तारों के सापेक्ष आगे (पूर्व दिशा में) बढ़ गया है, इसलिए निरयन स्थितियाँ अयनांश मात्रा से पीछे हैं।",
-        "gu": "Sidereal longitude = Tropical longitude minus Ayanamsha. The tropical vernal equinox has moved forward (eastward) relative to the stars, so sidereal positions are behind by the ayanamsha amount.",
+        "gu": "નિરયન રેખાંશ = ઉષ્ણકટિબંધીય રેખાંશ ઓછા અયનાંશ. ઉષ્ણકટિબંધીય વસંત સંપાત તારાઓની સાપેક્ષમાં આગળ (પૂર્વ તરફ) વધ્યો છે, તેથી નિરયન સ્થિતિઓ અયનાંશની માત્રા જેટલી પાછળ છે.",
         "mai": "निरयण देशांतर = सायन देशांतर माइनस अयनांश। सायन वसंत विषुव ताराक सापेक्ष आगा (पूर्व दिस) बढ़ि गेल अछि, तेँ निरयण स्थिति अयनांशक मात्रा सँ पाछाँ अछि।"
       },
       "options": [
         {
           "en": "Add the ayanamsha",
           "hi": "अयनांश जोड़ते हैं",
-          "ta": "Add the ayanamsha",
-          "te": "Add the ayanamsha",
-          "bn": "Add the ayanamsha",
-          "kn": "Add the ayanamsha",
+          "ta": "அயனாம்சத்தைச் சேர்க்கவும்",
+          "te": "అయనాంశాన్ని కలపండి",
+          "bn": "অয়নাম্শ যোগ করুন",
+          "kn": "ಅಯನಾಂಶವನ್ನು ಸೇರಿಸಿ",
           "mr": "अयनांश जोड़ते हैं",
-          "gu": "Add the ayanamsha",
+          "gu": "અયનાંશ ઉમેરો",
           "mai": "अयनांश कें जोड़ू"
         },
         {
           "en": "Subtract the ayanamsha",
           "hi": "अयनांश घटाते हैं",
-          "ta": "Subtract the ayanamsha",
-          "te": "Subtract the ayanamsha",
-          "bn": "Subtract the ayanamsha",
-          "kn": "Subtract the ayanamsha",
+          "ta": "அயனாம்சத்தைக் கழிக்கவும்",
+          "te": "అయనాంశాన్ని తీసివేయండి",
+          "bn": "অয়নাম্শ বিয়োগ করুন",
+          "kn": "ಅಯನಾಂಶವನ್ನು ಕಳೆಯಿರಿ",
           "mr": "अयनांश घटाते हैं",
-          "gu": "Subtract the ayanamsha",
+          "gu": "અયનાંશ બાદ કરો",
           "mai": "अयनांश कें घटाबू"
         },
         {
           "en": "Multiply by the ayanamsha",
           "hi": "अयनांश से गुणा करते हैं",
-          "ta": "Multiply by the ayanamsha",
-          "te": "Multiply by the ayanamsha",
-          "bn": "Multiply by the ayanamsha",
-          "kn": "Multiply by the ayanamsha",
+          "ta": "அயனாம்சத்தால் பெருக்கவும்",
+          "te": "అయనాంశంతో గుణించండి",
+          "bn": "অয়নাম্শ দ্বারা গুণ করুন",
+          "kn": "ಅಯನಾಂಶದಿಂದ ಗುಣಿಸಿ",
           "mr": "अयनांश से गुणा करते हैं",
-          "gu": "Multiply by the ayanamsha",
+          "gu": "અયનાંશ વડે ગુણાકાર કરો",
           "mai": "अयनांश सँ गुणा करू"
         },
         {
           "en": "Divide by the ayanamsha",
           "hi": "अयनांश से भाग देते हैं",
-          "ta": "Divide by the ayanamsha",
-          "te": "Divide by the ayanamsha",
-          "bn": "Divide by the ayanamsha",
-          "kn": "Divide by the ayanamsha",
+          "ta": "அயனாம்சத்தால் வகுக்கவும்",
+          "te": "అయనాంశంతో భాగించండి",
+          "bn": "অয়নাম্শ দ্বারা ভাগ করুন",
+          "kn": "ಅಯನಾಂಶದಿಂದ ಭಾಗಿಸಿ",
           "mr": "अयनांश से भाग देते हैं",
-          "gu": "Divide by the ayanamsha",
+          "gu": "અયનાંશ વડે ભાગાકાર કરો",
           "mai": "अयनांश सँ भाग करू"
         }
       ]
@@ -345,69 +345,69 @@
       "question": {
         "en": "Which star anchors the Lahiri (Chitrapaksha) ayanamsha at exactly 180 degrees sidereal longitude?",
         "hi": "कौन-सा तारा लहिरी (चित्रापक्ष) अयनांश को ठीक 180 अंश निरयन देशान्तर पर स्थापित करता है?",
-        "ta": "Which star anchors the Lahiri (Chitrapaksha) ayanamsha at exactly 180 degrees sidereal longitude?",
-        "te": "Which star anchors the Lahiri (Chitrapaksha) ayanamsha at exactly 180 degrees sidereal longitude?",
-        "bn": "Which star anchors the Lahiri (Chitrapaksha) ayanamsha at exactly 180 degrees sidereal longitude?",
-        "kn": "Which star anchors the Lahiri (Chitrapaksha) ayanamsha at exactly 180 degrees sidereal longitude?",
+        "ta": "எந்த நட்சத்திரம் லஹிரி (சித்ரபக்ஷ) அயனாம்சத்தை சரியாக 180 டிகிரி நிராயன தீர்க்கரேகையில் நிலைநிறுத்துகிறது?",
+        "te": "లాహిరి (చిత్రపక్ష) అయనాంశాన్ని సరిగ్గా 180 డిగ్రీల నక్షత్ర రేఖాంశం వద్ద ఏ నక్షత్రం స్థిరీకరిస్తుంది?",
+        "bn": "কোন নক্ষত্র লাহিড়ী (চিত্রপক্ষ) অয়নাম্শকে ঠিক ১৮০ ডিগ্রি নাক্ষত্রিক দ্রাঘিমায় স্থাপন করে?",
+        "kn": "ಯಾವ ನಕ್ಷತ್ರವು ಲಾಹಿರಿ (ಚಿತ್ರಪಕ್ಷ) ಅಯನಾಂಶವನ್ನು ನಿಖರವಾಗಿ 180 ಡಿಗ್ರಿ ನಿರವಯವ ರೇಖಾಂಶದಲ್ಲಿ ನಿಗದಿಪಡಿಸುತ್ತದೆ?",
         "mr": "कौन-सा तारा लहिरी (चित्रापक्ष) अयनांश को ठीक 180 अंश निरयन देशान्तर पर स्थापित करता है?",
-        "gu": "Which star anchors the Lahiri (Chitrapaksha) ayanamsha at exactly 180 degrees sidereal longitude?",
+        "gu": "કયો તારો લાહિરી (ચિત્રપક્ષ) અયનાંશને બરાબર 180 ડિગ્રી નિરયન રેખાંશ પર સ્થિર કરે છે?",
         "mai": "कोन तारा ठीक १८० डिग्री निरयण देशांतर पर लाहिड़ी (चित्रपक्ष) अयनांश कें लंगर डालैत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The Lahiri (Chitrapaksha) ayanamsha anchors the bright star Spica (Chitra) at exactly 180 degrees sidereal longitude  –  the exact opposite of the sidereal zero point. This was chosen by the Indian Calendar Reform Committee in 1955.",
         "hi": "लहिरी (चित्रापक्ष) अयनांश चमकीले तारे स्पाइका (चित्रा) को ठीक 180 अंश निरयन देशान्तर पर स्थापित करता है  –  निरयन शून्य बिन्दु के ठीक विपरीत। इसे 1955 में भारतीय पंचांग सुधार समिति ने चुना था।",
-        "ta": "The Lahiri (Chitrapaksha) ayanamsha anchors the bright star Spica (Chitra) at exactly 180 degrees sidereal longitude  –  the exact opposite of the sidereal zero point. This was chosen by the Indian Calendar Reform Committee in 1955.",
-        "te": "The Lahiri (Chitrapaksha) ayanamsha anchors the bright star Spica (Chitra) at exactly 180 degrees sidereal longitude  –  the exact opposite of the sidereal zero point. This was chosen by the Indian Calendar Reform Committee in 1955.",
-        "bn": "The Lahiri (Chitrapaksha) ayanamsha anchors the bright star Spica (Chitra) at exactly 180 degrees sidereal longitude  –  the exact opposite of the sidereal zero point. This was chosen by the Indian Calendar Reform Committee in 1955.",
-        "kn": "The Lahiri (Chitrapaksha) ayanamsha anchors the bright star Spica (Chitra) at exactly 180 degrees sidereal longitude  –  the exact opposite of the sidereal zero point. This was chosen by the Indian Calendar Reform Committee in 1955.",
+        "ta": "லஹிரி (சித்ரபக்ஷ) அயனாம்சம் பிரகாசமான நட்சத்திரமான ஸ்பிகா (சித்திரை) ஐ சரியாக 180 டிகிரி நிராயன தீர்க்கரேகையில் நிலைநிறுத்துகிறது – நிராயன பூஜ்ஜியப் புள்ளிக்குச் சரியான எதிர். இது 1955 இல் இந்திய நாட்காட்டி சீர்திருத்தக் குழுவால் தேர்ந்தெடுக்கப்பட்டது.",
+        "te": "లాహిరి (చిత్రపక్ష) అయనాంశం ప్రకాశవంతమైన నక్షత్రం స్పికా (చిత్ర)ను సరిగ్గా 180 డిగ్రీల నక్షత్ర రేఖాంశం వద్ద స్థిరీకరిస్తుంది – ఇది నక్షత్ర సున్నా బిందువుకు సరిగ్గా వ్యతిరేకం. దీనిని 1955లో భారత క్యాలెండర్ సంస్కరణ కమిటీ ఎంపిక చేసింది.",
+        "bn": "লাহিড়ী (চিত্রপক্ষ) অয়নাম্শ উজ্জ্বল নক্ষত্র স্বাতী (চিত্রা) কে ঠিক ১৮০ ডিগ্রি নাক্ষত্রিক দ্রাঘিমায় স্থাপন করে – নাক্ষত্রিক শূন্য বিন্দুর ঠিক বিপরীত। এটি ১৯৫৫ সালে ভারতীয় পঞ্জিকা সংস্কার কমিটি দ্বারা নির্বাচিত হয়েছিল।",
+        "kn": "ಲಾಹಿರಿ (ಚಿತ್ರಪಕ್ಷ) ಅಯನಾಂಶವು ಪ್ರಕಾಶಮಾನವಾದ ನಕ್ಷತ್ರ ಸ್ಪಿಕಾ (ಚಿತ್ರಾ) ವನ್ನು ನಿಖರವಾಗಿ 180 ಡಿಗ್ರಿ ನಿರವಯವ ರೇಖಾಂಶದಲ್ಲಿ ನಿಗದಿಪಡಿಸುತ್ತದೆ – ಇದು ನಿರವಯವ ಶೂನ್ಯ ಬಿಂದುವಿನ ನಿಖರ ವಿರುದ್ಧ. ಇದನ್ನು 1955 ರಲ್ಲಿ ಭಾರತೀಯ ಕ್ಯಾಲೆಂಡರ್ ಸುಧಾರಣಾ ಸಮಿತಿಯು ಆಯ್ಕೆ ಮಾಡಿದೆ.",
         "mr": "लहिरी (चित्रापक्ष) अयनांश चमकीले तारे स्पाइका (चित्रा) को ठीक 180 अंश निरयन देशान्तर पर स्थापित करता है  –  निरयन शून्य बिन्दु के ठीक विपरीत। इसे 1955 में भारतीय पंचांग सुधार समिति ने चुना था।",
-        "gu": "The Lahiri (Chitrapaksha) ayanamsha anchors the bright star Spica (Chitra) at exactly 180 degrees sidereal longitude  –  the exact opposite of the sidereal zero point. This was chosen by the Indian Calendar Reform Committee in 1955.",
+        "gu": "લાહિરી (ચિત્રપક્ષ) અયનાંશ તેજસ્વી તારા ચિત્રા (Spica) ને બરાબર 180 ડિગ્રી નિરયન રેખાંશ પર સ્થિર કરે છે – નિરયન શૂન્ય બિંદુની બરાબર વિરુદ્ધ. આ 1955 માં ભારતીય કેલેન્ડર સુધારણા સમિતિ દ્વારા પસંદ કરવામાં આવ્યું હતું.",
         "mai": "लाहिड़ी (चित्रपक्ष) अयनांश चमकीला तारा चित्रा (Spica) कें ठीक १८० डिग्री निरयण देशांतर पर लंगर डालैत अछि – निरयण शून्य बिंदु कें ठीक विपरीत। ई १९५५ मे भारतीय पंचांग सुधार समिति द्वारा चुनल गेल छल।"
       },
       "options": [
         {
           "en": "Polaris (Dhruva)",
           "hi": "पोलारिस (ध्रुव)",
-          "ta": "Polaris (Dhruva)",
-          "te": "Polaris (Dhruva)",
-          "bn": "Polaris (Dhruva)",
-          "kn": "Polaris (Dhruva)",
+          "ta": "துருவ நட்சத்திரம் (துருவா)",
+          "te": "ధ్రువ నక్షత్రం (ధ్రువ)",
+          "bn": "ধ্রুবতারা (ধ্রুব)",
+          "kn": "ಧ್ರುವ ನಕ್ಷತ್ರ (ಧ್ರುವ)",
           "mr": "पोलारिस (ध्रुव)",
-          "gu": "Polaris (Dhruva)",
+          "gu": "ધ્રુવ (Polaris)",
           "mai": "ध्रुव (Polaris)"
         },
         {
           "en": "Spica (Chitra)",
           "hi": "स्पाइका (चित्रा)",
-          "ta": "Spica (Chitra)",
-          "te": "Spica (Chitra)",
-          "bn": "Spica (Chitra)",
-          "kn": "Spica (Chitra)",
+          "ta": "சித்திரை (ஸ்பிகா)",
+          "te": "స్పికా (చిత్ర)",
+          "bn": "স্বাতী (চিত্রা)",
+          "kn": "ಸ್ಪಿಕಾ (ಚಿತ್ರಾ)",
           "mr": "स्पाइका (चित्रा)",
-          "gu": "Spica (Chitra)",
+          "gu": "ચિત્રા (Spica)",
           "mai": "चित्रा (Spica)"
         },
         {
           "en": "Regulus (Magha)",
           "hi": "रेगुलस (मघा)",
-          "ta": "Regulus (Magha)",
-          "te": "Regulus (Magha)",
-          "bn": "Regulus (Magha)",
-          "kn": "Regulus (Magha)",
+          "ta": "மகம் (ரெகுலஸ்)",
+          "te": "రెగ్యులస్ (మఘ)",
+          "bn": "মঘা (রেগুলাস)",
+          "kn": "ರೆಗ್ಯುಲಸ್ (ಮಘಾ)",
           "mr": "रेगुलस (मघा)",
-          "gu": "Regulus (Magha)",
+          "gu": "મઘા (Regulus)",
           "mai": "मघा (Regulus)"
         },
         {
           "en": "Aldebaran (Rohini)",
           "hi": "एल्डेबरान (रोहिणी)",
-          "ta": "Aldebaran (Rohini)",
-          "te": "Aldebaran (Rohini)",
-          "bn": "Aldebaran (Rohini)",
-          "kn": "Aldebaran (Rohini)",
+          "ta": "ரோகிணி (ஆல்டேபரான்)",
+          "te": "ఆల్డెబరాన్ (రోహిణి)",
+          "bn": "রোহিণী (আল্ডেবারান)",
+          "kn": "ಆಲ್ಡೆಬರಾನ್ (ರೋಹಿಣಿ)",
           "mr": "एल्डेबरान (रोहिणी)",
-          "gu": "Aldebaran (Rohini)",
+          "gu": "રોહિણી (Aldebaran)",
           "mai": "रोहिणी (Aldebaran)"
         }
       ]
@@ -418,69 +418,69 @@
       "question": {
         "en": "Who first measured precession in the Western tradition?",
         "hi": "पश्चिमी परम्परा में पुरस्सरण को सर्वप्रथम किसने मापा?",
-        "ta": "Who first measured precession in the Western tradition?",
-        "te": "Who first measured precession in the Western tradition?",
-        "bn": "Who first measured precession in the Western tradition?",
-        "kn": "Who first measured precession in the Western tradition?",
+        "ta": "மேற்கத்திய பாரம்பரியத்தில் யார் முதலில் முன்கூட்டிய இயக்கத்தை அளவிட்டார்?",
+        "te": "పాశ్చాత్య సంప్రదాయంలో పురోగమనాన్ని మొదట ఎవరు కొలిచారు?",
+        "bn": "পশ্চিমা ঐতিহ্যে কে প্রথম অয়নচলন পরিমাপ করেছিলেন?",
+        "kn": "ಪಾಶ್ಚಾತ್ಯ ಸಂಪ್ರದಾಯದಲ್ಲಿ ಪೂರ್ವಗಮನವನ್ನು ಮೊದಲು ಅಳೆದವರು ಯಾರು?",
         "mr": "पश्चिमी परम्परा में पुरस्सरण को सर्वप्रथम किसने मापा?",
-        "gu": "Who first measured precession in the Western tradition?",
+        "gu": "પશ્ચિમી પરંપરામાં અયનને સૌપ્રથમ કોણે માપ્યું?",
         "mai": "पश्चिमी परंपरा मे सबसँ पहिने के पुरस्सरण कें मापलक?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The Greek astronomer Hipparchus (c. 150 BCE) first measured precession by comparing star catalogs 150 years apart. He estimated the rate at 36 arcseconds/year  –  the actual value is 50.3 arcseconds/year.",
         "hi": "यूनानी खगोलशास्त्री हिपार्कस (लगभग 150 ई.पू.) ने 150 वर्षों के अन्तर पर तारा-सूचियों की तुलना करके पुरस्सरण को पहली बार मापा। उन्होंने दर 36 कलांश/वर्ष अनुमानित की  –  वास्तविक मान 50.3 कलांश/वर्ष है।",
-        "ta": "The Greek astronomer Hipparchus (c. 150 BCE) first measured precession by comparing star catalogs 150 years apart. He estimated the rate at 36 arcseconds/year  –  the actual value is 50.3 arcseconds/year.",
-        "te": "The Greek astronomer Hipparchus (c. 150 BCE) first measured precession by comparing star catalogs 150 years apart. He estimated the rate at 36 arcseconds/year  –  the actual value is 50.3 arcseconds/year.",
-        "bn": "The Greek astronomer Hipparchus (c. 150 BCE) first measured precession by comparing star catalogs 150 years apart. He estimated the rate at 36 arcseconds/year  –  the actual value is 50.3 arcseconds/year.",
-        "kn": "The Greek astronomer Hipparchus (c. 150 BCE) first measured precession by comparing star catalogs 150 years apart. He estimated the rate at 36 arcseconds/year  –  the actual value is 50.3 arcseconds/year.",
+        "ta": "கிரேக்க வானியலாளர் ஹிப்பார்க்கஸ் (கிமு 150) முதலில் முன்கூட்டிய இயக்கத்தை 150 ஆண்டுகள் இடைவெளியில் உள்ள நட்சத்திர அட்டவணைகளை ஒப்பிடுவதன் மூலம் அளவிட்டார். அவர் விகிதத்தை ஆண்டுக்கு 36 ஆர்க் வினாடிகள் என மதிப்பிட்டார் – உண்மையான மதிப்பு ஆண்டுக்கு 50.3 ஆர்க் வினாடிகள்.",
+        "te": "గ్రీకు ఖగోళ శాస్త్రజ్ఞుడు హిప్పార్కస్ (సుమారు 150 BCE) 150 సంవత్సరాల తేడాతో నక్షత్ర కేటలాగ్‌లను పోల్చడం ద్వారా పురోగమనాన్ని మొదట కొలిచారు. అతను సంవత్సరానికి 36 ఆర్క్‌సెకన్ల రేటును అంచనా వేశారు – వాస్తవ విలువ సంవత్సరానికి 50.3 ఆర్క్‌సెకన్లు.",
+        "bn": "গ্রিক জ্যোতির্বিদ হিপ্পার্কাস (আনুমানিক ১৫০ খ্রিস্টপূর্বাব্দ) ১৫০ বছরের ব্যবধানে তারকা ক্যাটালগ তুলনা করে প্রথম অয়নচলন পরিমাপ করেছিলেন। তিনি এর হার প্রতি বছর ৩৬ আর্কসেকেন্ড অনুমান করেছিলেন – প্রকৃত মান প্রতি বছর ৫০.৩ আর্কসেকেন্ড।",
+        "kn": "ಗ್ರೀಕ್ ಖಗೋಳಶಾಸ್ತ್ರಜ್ಞ ಹಿಪ್ಪಾರ್ಕಸ್ (ಸುಮಾರು 150 BCE) 150 ವರ್ಷಗಳ ಅಂತರದಲ್ಲಿ ನಕ್ಷತ್ರ ಕ್ಯಾಟಲಾಗ್‌ಗಳನ್ನು ಹೋಲಿಸುವ ಮೂಲಕ ಪೂರ್ವಗಮನವನ್ನು ಮೊದಲು ಅಳೆದರು. ಅವರು ದರವನ್ನು ವರ್ಷಕ್ಕೆ 36 ಆರ್ಕ್‌ಸೆಕೆಂಡ್‌ಗಳು ಎಂದು ಅಂದಾಜಿಸಿದರು – ನಿಜವಾದ ಮೌಲ್ಯವು ವರ್ಷಕ್ಕೆ 50.3 ಆರ್ಕ್‌ಸೆಕೆಂಡ್‌ಗಳು.",
         "mr": "यूनानी खगोलशास्त्री हिपार्कस (लगभग 150 ई.पू.) ने 150 वर्षों के अन्तर पर तारा-सूचियों की तुलना करके पुरस्सरण को पहली बार मापा। उन्होंने दर 36 कलांश/वर्ष अनुमानित की  –  वास्तविक मान 50.3 कलांश/वर्ष है।",
-        "gu": "The Greek astronomer Hipparchus (c. 150 BCE) first measured precession by comparing star catalogs 150 years apart. He estimated the rate at 36 arcseconds/year  –  the actual value is 50.3 arcseconds/year.",
+        "gu": "ગ્રીક ખગોળશાસ્ત્રી હિપ્પાર્કસ (આશરે 150 BCE) એ 150 વર્ષના અંતરે આવેલા તારા કેટલોગની સરખામણી કરીને સૌપ્રથમ અયનને માપ્યું. તેણે દર 36 આર્કસેકન્ડ/વર્ષનો અંદાજ લગાવ્યો હતો – વાસ્તવિક મૂલ્ય 50.3 આર્કસેકન્ડ/વર્ષ છે.",
         "mai": "यूनानी खगोलशास्त्री हिप्पार्कस (लगभग १५० ईसा पूर्व) सबसँ पहिने १५० वर्षक अंतराल पर तारा सूचीक तुलना कय कय पुरस्सरण कें मापलक। ओ दरक अनुमान ३६ आर्कसेकेंड/वर्ष लगौलक – वास्तविक मान ५०.३ आर्कसेकेंड/वर्ष अछि।"
       },
       "options": [
         {
           "en": "Ptolemy (~150 CE)",
           "hi": "टॉलेमी (~150 ई.)",
-          "ta": "Ptolemy (~150 CE)",
-          "te": "Ptolemy (~150 CE)",
-          "bn": "Ptolemy (~150 CE)",
-          "kn": "Ptolemy (~150 CE)",
+          "ta": "தாலமி (~கி.பி 150)",
+          "te": "టోలెమీ (~150 CE)",
+          "bn": "টলেমি (আনুমানিক ১৫০ খ্রিস্টাব্দ)",
+          "kn": "ಟಾಲೆಮಿ (ಸುಮಾರು 150 CE)",
           "mr": "टॉलेमी (~150 ई.)",
-          "gu": "Ptolemy (~150 CE)",
+          "gu": "ટોલેમી (~150 CE)",
           "mai": "टॉलेमी (लगभग १५० ईस्वी)"
         },
         {
           "en": "Hipparchus (~150 BCE)",
           "hi": "हिपार्कस (~150 ई.पू.)",
-          "ta": "Hipparchus (~150 BCE)",
-          "te": "Hipparchus (~150 BCE)",
-          "bn": "Hipparchus (~150 BCE)",
-          "kn": "Hipparchus (~150 BCE)",
+          "ta": "ஹிப்பார்க்கஸ் (~கிமு 150)",
+          "te": "హిప్పార్కస్ (~150 BCE)",
+          "bn": "হিপ্পার্কাস (আনুমানিক ১৫০ খ্রিস্টপূর্বাব্দ)",
+          "kn": "ಹಿಪ್ಪಾರ್ಕಸ್ (ಸುಮಾರು 150 BCE)",
           "mr": "हिपार्कस (~150 ई.पू.)",
-          "gu": "Hipparchus (~150 BCE)",
+          "gu": "હિપ્પાર્કસ (~150 BCE)",
           "mai": "हिप्पार्कस (लगभग १५० ईसा पूर्व)"
         },
         {
           "en": "Copernicus (1543 CE)",
           "hi": "कोपर्निकस (1543 ई.)",
-          "ta": "Copernicus (1543 CE)",
-          "te": "Copernicus (1543 CE)",
-          "bn": "Copernicus (1543 CE)",
-          "kn": "Copernicus (1543 CE)",
+          "ta": "கோப்பர்நிக்கஸ் (கி.பி 1543)",
+          "te": "కోపర్నికస్ (1543 CE)",
+          "bn": "কোপার্নিকাস (১৫৪৩ খ্রিস্টাব্দ)",
+          "kn": "ಕೋಪರ್ನಿಕಸ್ (1543 CE)",
           "mr": "कोपर्निकस (1543 ई.)",
-          "gu": "Copernicus (1543 CE)",
+          "gu": "કોપરનિકસ (1543 CE)",
           "mai": "कोपरनिकस (१५४३ ईस्वी)"
         },
         {
           "en": "Newton (1687 CE)",
           "hi": "न्यूटन (1687 ई.)",
-          "ta": "Newton (1687 CE)",
-          "te": "Newton (1687 CE)",
-          "bn": "Newton (1687 CE)",
-          "kn": "Newton (1687 CE)",
+          "ta": "நியூட்டன் (கி.பி 1687)",
+          "te": "న్యూటన్ (1687 CE)",
+          "bn": "নিউটন (১৬৮৭ খ্রিস্টাব্দ)",
+          "kn": "ನ್ಯೂಟನ್ (1687 CE)",
           "mr": "न्यूटन (1687 ई.)",
-          "gu": "Newton (1687 CE)",
+          "gu": "ન્યૂટન (1687 CE)",
           "mai": "न्यूटन (१६८७ ईस्वी)"
         }
       ]
@@ -491,24 +491,24 @@
       "question": {
         "en": "The Lahiri and KP ayanamsha values differ by more than 2 degrees.",
         "hi": "लहिरी और के.पी. अयनांश मान 2 अंश से अधिक भिन्न हैं।",
-        "ta": "The Lahiri and KP ayanamsha values differ by more than 2 degrees.",
-        "te": "The Lahiri and KP ayanamsha values differ by more than 2 degrees.",
-        "bn": "The Lahiri and KP ayanamsha values differ by more than 2 degrees.",
-        "kn": "The Lahiri and KP ayanamsha values differ by more than 2 degrees.",
+        "ta": "லஹிரி மற்றும் கே.பி. அயனாம்ச மதிப்புகள் 2 டிகிரிக்கு மேல் வேறுபடுகின்றன.",
+        "te": "లాహిరి మరియు KP అయనాంశ విలువలు 2 డిగ్రీల కంటే ఎక్కువగా తేడా ఉంటాయి.",
+        "bn": "লাহিড়ী এবং কেপি অয়নাম্শের মান ২ ডিগ্রির বেশি ভিন্ন।",
+        "kn": "ಲಾಹಿರಿ ಮತ್ತು ಕೆಪಿ ಅಯನಾಂಶ ಮೌಲ್ಯಗಳು 2 ಡಿಗ್ರಿಗಳಿಗಿಂತ ಹೆಚ್ಚು ಭಿನ್ನವಾಗಿವೆ.",
         "mr": "लहिरी और के.पी. अयनांश मान 2 अंश से अधिक भिन्न हैं।",
-        "gu": "The Lahiri and KP ayanamsha values differ by more than 2 degrees.",
+        "gu": "લાહિરી અને કેપી અયનાંશના મૂલ્યો 2 ડિગ્રીથી વધુ અલગ પડે છે.",
         "mai": "लाहिड़ी आ केपी अयनांशक मान २ डिग्री सँ बेसी भिन्न अछि।"
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. Lahiri and KP ayanamsha values are very close  –  they differ by only about 0.03 degrees (~2 arcminutes). Both anchor to Spica, but KP uses a slightly different polynomial refinement. The difference rarely changes planetary sign placements.",
         "hi": "असत्य। लहिरी और के.पी. अयनांश मान बहुत निकट हैं  –  वे केवल लगभग 0.03 अंश (~2 कला) भिन्न हैं। दोनों चित्रा तारे पर आधारित हैं, किन्तु के.पी. थोड़ा भिन्न बहुपद शोधन प्रयोग करता है। यह अन्तर ग्रहों की राशि स्थिति शायद ही कभी बदलता है।",
-        "ta": "False. Lahiri and KP ayanamsha values are very close  –  they differ by only about 0.03 degrees (~2 arcminutes). Both anchor to Spica, but KP uses a slightly different polynomial refinement. The difference rarely changes planetary sign placements.",
-        "te": "False. Lahiri and KP ayanamsha values are very close  –  they differ by only about 0.03 degrees (~2 arcminutes). Both anchor to Spica, but KP uses a slightly different polynomial refinement. The difference rarely changes planetary sign placements.",
-        "bn": "False. Lahiri and KP ayanamsha values are very close  –  they differ by only about 0.03 degrees (~2 arcminutes). Both anchor to Spica, but KP uses a slightly different polynomial refinement. The difference rarely changes planetary sign placements.",
-        "kn": "False. Lahiri and KP ayanamsha values are very close  –  they differ by only about 0.03 degrees (~2 arcminutes). Both anchor to Spica, but KP uses a slightly different polynomial refinement. The difference rarely changes planetary sign placements.",
+        "ta": "தவறு. லஹிரி மற்றும் கே.பி. அயனாம்ச மதிப்புகள் மிக நெருக்கமாக உள்ளன – அவை சுமார் 0.03 டிகிரி (~2 ஆர்க் நிமிடங்கள்) மட்டுமே வேறுபடுகின்றன. இரண்டும் ஸ்பிகாவை நிலைநிறுத்துகின்றன, ஆனால் கே.பி. சற்று மாறுபட்ட பல்லுறுப்புக்கோவை சுத்திகரிப்பைப் பயன்படுத்துகிறது. இந்த வேறுபாடு கிரக ராசி நிலைகளை அரிதாகவே மாற்றுகிறது.",
+        "te": "తప్పు. లాహిరి మరియు KP అయనాంశ విలువలు చాలా దగ్గరగా ఉంటాయి – అవి కేవలం సుమారు 0.03 డిగ్రీలు (~2 ఆర్క్‌మినిట్లు) మాత్రమే తేడా ఉంటాయి. రెండూ స్పికాకు స్థిరీకరించబడ్డాయి, అయితే KP కొద్దిగా భిన్నమైన బహుపది శుద్ధీకరణను ఉపయోగిస్తుంది. ఈ వ్యత్యాసం గ్రహ రాశి స్థానాలను చాలా అరుదుగా మారుస్తుంది.",
+        "bn": "ভুল। লাহিড়ী এবং কেপি অয়নাম্শের মান খুব কাছাকাছি – তারা মাত্র প্রায় ০.০৩ ডিগ্রি (~২ আর্ক মিনিট) ভিন্ন। উভয়ই স্বাতী নক্ষত্রে (Spica) স্থাপন করা হয়, কিন্তু কেপি সামান্য ভিন্ন বহুপদী পরিমার্জন ব্যবহার করে। এই পার্থক্য খুব কমই গ্রহের রাশি পরিবর্তন করে।",
+        "kn": "ತಪ್ಪು. ಲಾಹಿರಿ ಮತ್ತು ಕೆಪಿ ಅಯನಾಂಶ ಮೌಲ್ಯಗಳು ಬಹಳ ಹತ್ತಿರದಲ್ಲಿವೆ – ಅವು ಕೇವಲ ಸುಮಾರು 0.03 ಡಿಗ್ರಿಗಳಷ್ಟು (~2 ಆರ್ಕ್‌ಮಿನಿಟ್‌ಗಳು) ಭಿನ್ನವಾಗಿವೆ. ಎರಡೂ ಸ್ಪಿಕಾವನ್ನು ಆಧರಿಸಿವೆ, ಆದರೆ ಕೆಪಿ ಸ್ವಲ್ಪ ವಿಭಿನ್ನ ಬಹುಪದೀಯ ಪರಿಷ್ಕರಣೆಯನ್ನು ಬಳಸುತ್ತದೆ. ಈ ವ್ಯತ್ಯಾಸವು ಗ್ರಹಗಳ ರಾಶಿ ಸ್ಥಾನಗಳನ್ನು ವಿರಳವಾಗಿ ಬದಲಾಯಿಸುತ್ತದೆ.",
         "mr": "असत्य। लहिरी और के.पी. अयनांश मान बहुत निकट हैं  –  वे केवल लगभग 0.03 अंश (~2 कला) भिन्न हैं। दोनों चित्रा तारे पर आधारित हैं, किन्तु के.पी. थोड़ा भिन्न बहुपद शोधन प्रयोग करता है। यह अन्तर ग्रहों की राशि स्थिति शायद ही कभी बदलता है।",
-        "gu": "False. Lahiri and KP ayanamsha values are very close  –  they differ by only about 0.03 degrees (~2 arcminutes). Both anchor to Spica, but KP uses a slightly different polynomial refinement. The difference rarely changes planetary sign placements.",
+        "gu": "ખોટું. લાહિરી અને કેપી અયનાંશના મૂલ્યો ખૂબ નજીક છે – તેઓ માત્ર લગભગ 0.03 ડિગ્રી (~2 આર્કમિનિટ) થી અલગ પડે છે. બંને સ્વાતિ (Spica) ને આધાર માને છે, પરંતુ કેપી સહેજ અલગ બહુપદી સુધારણાનો ઉપયોગ કરે છે. આ તફાવત ભાગ્યે જ ગ્રહોના રાશિ સ્થાનોને બદલે છે.",
         "mai": "गलत। लाहिड़ी आ केपी अयनांशक मान बहुत नजदीक अछि – ओ केवल लगभग ०.०३ डिग्री (लगभग २ आर्कमिनट) सँ भिन्न अछि। दुनू चित्रा कें लंगर डालैत अछि, मुदा केपी किछु भिन्न बहुपद परिष्करणक उपयोग करैत अछि। ई अंतर ग्रहक राशि स्थान कें शायदए बदलैत अछि।"
       }
     },
@@ -518,69 +518,69 @@
       "question": {
         "en": "A planet is at 24.5 degrees tropical longitude. With Lahiri ayanamsha (24.22 degrees) it falls at 0.28 degrees Aries. With Fagan-Bradley (25.10 degrees) it falls at:",
         "hi": "एक ग्रह 24.5 अंश सायन देशान्तर पर है। लहिरी अयनांश (24.22 अंश) से यह 0.28 अंश मेष में आता है। फ़गन-ब्रैडली (25.10 अंश) से यह कहाँ आएगा?",
-        "ta": "A planet is at 24.5 degrees tropical longitude. With Lahiri ayanamsha (24.22 degrees) it falls at 0.28 degrees Aries. With Fagan-Bradley (25.10 degrees) it falls at:",
-        "te": "A planet is at 24.5 degrees tropical longitude. With Lahiri ayanamsha (24.22 degrees) it falls at 0.28 degrees Aries. With Fagan-Bradley (25.10 degrees) it falls at:",
-        "bn": "A planet is at 24.5 degrees tropical longitude. With Lahiri ayanamsha (24.22 degrees) it falls at 0.28 degrees Aries. With Fagan-Bradley (25.10 degrees) it falls at:",
-        "kn": "A planet is at 24.5 degrees tropical longitude. With Lahiri ayanamsha (24.22 degrees) it falls at 0.28 degrees Aries. With Fagan-Bradley (25.10 degrees) it falls at:",
+        "ta": "ஒரு கிரகம் 24.5 டிகிரி அயன தீர்க்கரேகையில் உள்ளது. லஹிரி அயனாம்சம் (24.22 டிகிரி) உடன் அது 0.28 டிகிரி மேஷத்தில் விழுகிறது. ஃபேகன்-பிராட்லி (25.10 டிகிரி) உடன் அது விழுகிறது:",
+        "te": "ఒక గ్రహం 24.5 డిగ్రీల ఉష్ణమండల రేఖాంశం వద్ద ఉంది. లాహిరి అయనాంశం (24.22 డిగ్రీలు)తో అది 0.28 డిగ్రీల మేష రాశిలో పడుతుంది. ఫాగాన్-బ్రాడ్లీ (25.10 డిగ్రీలు)తో అది పడేది:",
+        "bn": "একটি গ্রহ ২৪.৫ ডিগ্রি ক্রান্তীয় দ্রাঘিমায় রয়েছে। লাহিড়ী অয়নাম্শ (২৪.২২ ডিগ্রি) সহ এটি ০.২৮ ডিগ্রি মেষ রাশিতে পড়ে। ফাগান-ব্র্যাডলি (২৫.১০ ডিগ্রি) সহ এটি পড়ে:",
+        "kn": "ಒಂದು ಗ್ರಹವು 24.5 ಡಿಗ್ರಿ ಉಷ್ಣವಲಯದ ರೇಖಾಂಶದಲ್ಲಿದೆ. ಲಾಹಿರಿ ಅಯನಾಂಶ (24.22 ಡಿಗ್ರಿ) ಯೊಂದಿಗೆ ಅದು 0.28 ಡಿಗ್ರಿ ಮೇಷ ರಾಶಿಯಲ್ಲಿ ಬೀಳುತ್ತದೆ. ಫಾಗನ್-ಬ್ರಾಡ್ಲಿ (25.10 ಡಿಗ್ರಿ) ಯೊಂದಿಗೆ ಅದು ಬೀಳುತ್ತದೆ:",
         "mr": "एक ग्रह 24.5 अंश सायन देशान्तर पर है। लहिरी अयनांश (24.22 अंश) से यह 0.28 अंश मेष में आता है। फ़गन-ब्रैडली (25.10 अंश) से यह कहाँ आएगा?",
-        "gu": "A planet is at 24.5 degrees tropical longitude. With Lahiri ayanamsha (24.22 degrees) it falls at 0.28 degrees Aries. With Fagan-Bradley (25.10 degrees) it falls at:",
+        "gu": "એક ગ્રહ 24.5 ડિગ્રી ઉષ્ણકટિબંધીય રેખાંશ પર છે. લાહિરી અયનાંશ (24.22 ડિગ્રી) સાથે તે 0.28 ડિગ્રી મેષ રાશિમાં આવે છે. ફેગન-બ્રેડલી (25.10 ડિગ્રી) સાથે તે આવે છે:",
         "mai": "एकटा ग्रह २४.५ डिग्री सायन देशांतर पर अछि। लाहिड़ी अयनांश (२४.२२ डिग्री) कें संग ई ०.२८ डिग्री मेष राशि मे पड़ैत अछि। फेगन-ब्रैडली (२५.१० डिग्री) कें संग ई पड़ैत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "24.5 minus 25.10 = -0.60 degrees, which wraps to 360 - 0.60 = 359.40 degrees = 29.40 degrees Pisces. A mere 0.88 degree difference in ayanamsha pushes the planet into an entirely different sign! This is why boundary cases matter.",
         "hi": "24.5 ऋण 25.10 = -0.60 अंश, जो 360 - 0.60 = 359.40 अंश = 29.40 अंश मीन बनता है। अयनांश में मात्र 0.88 अंश का अन्तर ग्रह को पूर्णतः भिन्न राशि में धकेल देता है! इसीलिए सीमारेखा के मामले महत्त्वपूर्ण हैं।",
-        "ta": "24.5 minus 25.10 = -0.60 degrees, which wraps to 360 - 0.60 = 359.40 degrees = 29.40 degrees Pisces. A mere 0.88 degree difference in ayanamsha pushes the planet into an entirely different sign! This is why boundary cases matter.",
-        "te": "24.5 minus 25.10 = -0.60 degrees, which wraps to 360 - 0.60 = 359.40 degrees = 29.40 degrees Pisces. A mere 0.88 degree difference in ayanamsha pushes the planet into an entirely different sign! This is why boundary cases matter.",
-        "bn": "24.5 minus 25.10 = -0.60 degrees, which wraps to 360 - 0.60 = 359.40 degrees = 29.40 degrees Pisces. A mere 0.88 degree difference in ayanamsha pushes the planet into an entirely different sign! This is why boundary cases matter.",
-        "kn": "24.5 minus 25.10 = -0.60 degrees, which wraps to 360 - 0.60 = 359.40 degrees = 29.40 degrees Pisces. A mere 0.88 degree difference in ayanamsha pushes the planet into an entirely different sign! This is why boundary cases matter.",
+        "ta": "24.5 கழித்தல் 25.10 = -0.60 டிகிரி, இது 360 - 0.60 = 359.40 டிகிரி = 29.40 டிகிரி மீன ராசிக்குச் சுழல்கிறது. அயனாம்சத்தில் வெறும் 0.88 டிகிரி வேறுபாடு கிரகத்தை முற்றிலும் வேறுபட்ட ராசிக்குள் தள்ளுகிறது! அதனால்தான் எல்லை வழக்குகள் முக்கியம்.",
+        "te": "24.5 మైనస్ 25.10 = -0.60 డిగ్రీలు, ఇది 360 - 0.60 = 359.40 డిగ్రీలు = 29.40 డిగ్రీల మీన రాశికి మారుతుంది. అయనాంశంలో కేవలం 0.88 డిగ్రీల వ్యత్యాసం గ్రహాన్ని పూర్తిగా వేరే రాశిలోకి నెట్టివేస్తుంది! అందుకే సరిహద్దు సందర్భాలు ముఖ్యమైనవి.",
+        "bn": "২৪.৫ বিয়োগ ২৫.১০ = -০.৬০ ডিগ্রি, যা ৩৬০ - ০.৬০ = ৩৫৯.৪০ ডিগ্রি = ২৯.৪০ ডিগ্রি মীন রাশিতে পরিণত হয়। অয়নাম্শের মাত্র ০.৮৮ ডিগ্রির পার্থক্য গ্রহটিকে সম্পূর্ণ ভিন্ন রাশিতে ঠেলে দেয়! এই কারণেই সীমানা পরিস্থিতি গুরুত্বপূর্ণ।",
+        "kn": "24.5 ಮೈನಸ್ 25.10 = -0.60 ಡಿಗ್ರಿ, ಇದು 360 - 0.60 = 359.40 ಡಿಗ್ರಿ = 29.40 ಡಿಗ್ರಿ ಮೀನ ರಾಶಿಗೆ ಸುತ್ತುತ್ತದೆ. ಅಯನಾಂಶದಲ್ಲಿ ಕೇವಲ 0.88 ಡಿಗ್ರಿ ವ್ಯತ್ಯಾಸವು ಗ್ರಹವನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ವಿಭಿನ್ನ ರಾಶಿಗೆ ತಳ್ಳುತ್ತದೆ! ಅದಕ್ಕಾಗಿಯೇ ಗಡಿ ಪ್ರಕರಣಗಳು ಮುಖ್ಯ.",
         "mr": "24.5 ऋण 25.10 = -0.60 अंश, जो 360 - 0.60 = 359.40 अंश = 29.40 अंश मीन बनता है। अयनांश में मात्र 0.88 अंश का अन्तर ग्रह को पूर्णतः भिन्न राशि में धकेल देता है! इसीलिए सीमारेखा के मामले महत्त्वपूर्ण हैं।",
-        "gu": "24.5 minus 25.10 = -0.60 degrees, which wraps to 360 - 0.60 = 359.40 degrees = 29.40 degrees Pisces. A mere 0.88 degree difference in ayanamsha pushes the planet into an entirely different sign! This is why boundary cases matter.",
+        "gu": "24.5 ઓછા 25.10 = -0.60 ડિગ્રી, જે 360 - 0.60 = 359.40 ડિગ્રી = 29.40 ડિગ્રી મીન રાશિમાં ફેરવાય છે. અયનાંશમાં માત્ર 0.88 ડિગ્રીનો તફાવત ગ્રહને સંપૂર્ણપણે અલગ રાશિમાં ધકેલી દે છે! આથી જ સીમાવર્તી કિસ્સાઓ મહત્વના છે.",
         "mai": "२४.५ माइनस २५.१० = -०.६० डिग्री, जे ३६० - ०.६० = ३५९.४० डिग्री धरि घूमैत अछि = २९.४० डिग्री मीन राशि। अयनांश मे मात्र ०.८८ डिग्रीक अंतर ग्रह कें पूर्ण रूप सँ भिन्न राशि मे धकेल दैत अछि! एही कारण सँ सीमांत मामला महत्वपूर्ण अछि।"
       },
       "options": [
         {
           "en": "0.60 degrees Aries",
           "hi": "0.60 अंश मेष",
-          "ta": "0.60 degrees Aries",
-          "te": "0.60 degrees Aries",
-          "bn": "0.60 degrees Aries",
-          "kn": "0.60 degrees Aries",
+          "ta": "0.60 டிகிரி மேஷம்",
+          "te": "0.60 డిగ్రీల మేష రాశి",
+          "bn": "০.৬০ ডিগ্রি মেষ রাশি",
+          "kn": "0.60 ಡಿಗ್ರಿ ಮೇಷ ರಾಶಿ",
           "mr": "0.60 अंश मेष",
-          "gu": "0.60 degrees Aries",
+          "gu": "0.60 ડિગ્રી મેષ",
           "mai": "०.६० डिग्री मेष राशि"
         },
         {
           "en": "29.40 degrees Pisces  –  a different sign!",
           "hi": "29.40 अंश मीन  –  भिन्न राशि!",
-          "ta": "29.40 degrees Pisces  –  a different sign!",
-          "te": "29.40 degrees Pisces  –  a different sign!",
-          "bn": "29.40 degrees Pisces  –  a different sign!",
-          "kn": "29.40 degrees Pisces  –  a different sign!",
+          "ta": "29.40 டிகிரி மீனம் – ஒரு வேறுபட்ட ராசி!",
+          "te": "29.40 డిగ్రీల మీన రాశి – వేరే రాశి!",
+          "bn": "২৯.৪০ ডিগ্রি মীন রাশি – একটি ভিন্ন রাশি!",
+          "kn": "29.40 ಡಿಗ್ರಿ ಮೀನ ರಾಶಿ – ಒಂದು ವಿಭಿನ್ನ ರಾಶಿ!",
           "mr": "29.40 अंश मीन  –  भिन्न राशि!",
-          "gu": "29.40 degrees Pisces  –  a different sign!",
+          "gu": "29.40 ડિગ્રી મીન – એક અલગ રાશિ!",
           "mai": "२९.४० डिग्री मीन राशि – एकटा भिन्न राशि!"
         },
         {
           "en": "24.50 degrees Pisces",
           "hi": "24.50 अंश मीन",
-          "ta": "24.50 degrees Pisces",
-          "te": "24.50 degrees Pisces",
-          "bn": "24.50 degrees Pisces",
-          "kn": "24.50 degrees Pisces",
+          "ta": "24.50 டிகிரி மீனம்",
+          "te": "24.50 డిగ్రీల మీన రాశి",
+          "bn": "২৪.৫০ ডিগ্রি মীন রাশি",
+          "kn": "24.50 ಡಿಗ್ರಿ ಮೀನ ರಾಶಿ",
           "mr": "24.50 अंश मीन",
-          "gu": "24.50 degrees Pisces",
+          "gu": "24.50 ડિગ્રી મીન",
           "mai": "२४.५० डिग्री मीन राशि"
         },
         {
           "en": "1.10 degrees Aries",
           "hi": "1.10 अंश मेष",
-          "ta": "1.10 degrees Aries",
-          "te": "1.10 degrees Aries",
-          "bn": "1.10 degrees Aries",
-          "kn": "1.10 degrees Aries",
+          "ta": "1.10 டிகிரி மேஷம்",
+          "te": "1.10 డిగ్రీల మేష రాశి",
+          "bn": "১.১০ ডিগ্রি মেষ রাশি",
+          "kn": "1.10 ಡಿಗ್ರಿ ಮೇಷ ರಾಶಿ",
           "mr": "1.10 अंश मेष",
-          "gu": "1.10 degrees Aries",
+          "gu": "1.10 ડિગ્રી મેષ",
           "mai": "१.१० डिग्री मेष राशि"
         }
       ]
@@ -591,24 +591,24 @@
       "question": {
         "en": "Western tropical astrology is \"wrong\" because it ignores precession, while Vedic sidereal astrology is \"correct.\"",
         "hi": "पश्चिमी सायन ज्योतिष \"गलत\" है क्योंकि यह पुरस्सरण की उपेक्षा करता है, जबकि वैदिक निरयन ज्योतिष \"सही\" है।",
-        "ta": "Western tropical astrology is \"wrong\" because it ignores precession, while Vedic sidereal astrology is \"correct.\"",
-        "te": "Western tropical astrology is \"wrong\" because it ignores precession, while Vedic sidereal astrology is \"correct.\"",
-        "bn": "Western tropical astrology is \"wrong\" because it ignores precession, while Vedic sidereal astrology is \"correct.\"",
-        "kn": "Western tropical astrology is \"wrong\" because it ignores precession, while Vedic sidereal astrology is \"correct.\"",
+        "ta": "மேற்கத்திய அயன ஜோதிடம் \"தவறானது\" ஏனெனில் அது முன்கூட்டிய இயக்கத்தை புறக்கணிக்கிறது, அதேசமயம் வேத நிராயன ஜோதிடம் \"சரியானது.\"",
+        "te": "పాశ్చాత్య ఉష్ణమండల జ్యోతిష్యం \"తప్పు\" ఎందుకంటే అది పురోగమనాన్ని విస్మరిస్తుంది, అయితే వేద నక్షత్ర జ్యోతిష్యం \"సరియైనది.\"",
+        "bn": "পশ্চিমা ক্রান্তীয় জ্যোতিষ \"ভুল\" কারণ এটি অয়নচলনকে উপেক্ষা করে, যখন বৈদিক নাক্ষত্রিক জ্যোতিষ \"সঠিক।\"",
+        "kn": "ಪಾಶ್ಚಾತ್ಯ ಉಷ್ಣವಲಯದ ಜ್ಯೋತಿಷ್ಯವು ಪೂರ್ವಗಮನವನ್ನು ನಿರ್ಲಕ್ಷಿಸುವುದರಿಂದ \"ತಪ್ಪು\", ಆದರೆ ವೈದಿಕ ನಿರವಯವ ಜ್ಯೋತಿಷ್ಯವು \"ಸರಿ.\"",
         "mr": "पश्चिमी सायन ज्योतिष \"गलत\" है क्योंकि यह पुरस्सरण की उपेक्षा करता है, जबकि वैदिक निरयन ज्योतिष \"सही\" है।",
-        "gu": "Western tropical astrology is \"wrong\" because it ignores precession, while Vedic sidereal astrology is \"correct.\"",
+        "gu": "પશ્ચિમી ઉષ્ણકટિબંધીય જ્યોતિષ \"ખોટું\" છે કારણ કે તે અયનની અવગણના કરે છે, જ્યારે વૈદિક નિરયન જ્યોતિષ \"સાચું\" છે.",
         "mai": "पश्चिमी सायन ज्योतिष \"गलत\" अछि किएक तँ ई पुरस्सरण कें अनदेखा करैत अछि, जखन कि वैदिक निरयण ज्योतिष \"सही\" अछि।"
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. Both systems are internally consistent reference frames. Tropical astrology tracks seasonal/equinox relationships (valid for weather and agricultural cycles). Sidereal astrology tracks stellar relationships (essential for nakshatra-based systems). Neither is inherently \"wrong\"  –  they answer different questions using different anchors.",
         "hi": "असत्य। दोनों पद्धतियाँ आन्तरिक रूप से सुसंगत सन्दर्भ ढाँचे हैं। सायन ज्योतिष मौसमी/सम्पात सम्बन्धों को ट्रैक करता है (मौसम और कृषि चक्रों के लिए मान्य)। निरयन ज्योतिष तारकीय सम्बन्धों को ट्रैक करता है (नक्षत्र-आधारित पद्धतियों के लिए आवश्यक)। कोई भी स्वाभाविक रूप से \"गलत\" नहीं है  –  वे भिन्न लंगरों का उपयोग करके भिन्न प्रश्नों का उत्तर देते हैं।",
-        "ta": "False. Both systems are internally consistent reference frames. Tropical astrology tracks seasonal/equinox relationships (valid for weather and agricultural cycles). Sidereal astrology tracks stellar relationships (essential for nakshatra-based systems). Neither is inherently \"wrong\"  –  they answer different questions using different anchors.",
-        "te": "False. Both systems are internally consistent reference frames. Tropical astrology tracks seasonal/equinox relationships (valid for weather and agricultural cycles). Sidereal astrology tracks stellar relationships (essential for nakshatra-based systems). Neither is inherently \"wrong\"  –  they answer different questions using different anchors.",
-        "bn": "False. Both systems are internally consistent reference frames. Tropical astrology tracks seasonal/equinox relationships (valid for weather and agricultural cycles). Sidereal astrology tracks stellar relationships (essential for nakshatra-based systems). Neither is inherently \"wrong\"  –  they answer different questions using different anchors.",
-        "kn": "False. Both systems are internally consistent reference frames. Tropical astrology tracks seasonal/equinox relationships (valid for weather and agricultural cycles). Sidereal astrology tracks stellar relationships (essential for nakshatra-based systems). Neither is inherently \"wrong\"  –  they answer different questions using different anchors.",
+        "ta": "தவறு. இரண்டு அமைப்புகளும் உள்நாட்டில் சீரான குறிப்பு சட்டகங்கள். அயன ஜோதிடம் பருவகால/சம இரவுப் பகல் உறவுகளைக் கண்காணிக்கிறது (வானிலை மற்றும் விவசாய சுழற்சிகளுக்கு செல்லுபடியாகும்). நிராயன ஜோதிடம் நட்சத்திர உறவுகளைக் கண்காணிக்கிறது (நட்சத்திர அடிப்படையிலான அமைப்புகளுக்கு அவசியம்). இரண்டும் உள்ளார்ந்த ரீதியாக \"தவறானவை\" அல்ல – அவை வெவ்வேறு ஆதாரங்களைப் பயன்படுத்தி வெவ்வேறு கேள்விகளுக்கு பதிலளிக்கின்றன.",
+        "te": "తప్పు. రెండు వ్యవస్థలు అంతర్గతంగా స్థిరమైన సూచన ఫ్రేమ్‌లు. ఉష్ణమండల జ్యోతిష్యం కాలానుగుణ/విషువత్తు సంబంధాలను (వాతావరణం మరియు వ్యవసాయ చక్రాలకు చెల్లుబాటు అవుతుంది) ట్రాక్ చేస్తుంది. నక్షత్ర జ్యోతిష్యం నక్షత్ర సంబంధాలను (నక్షత్రం ఆధారిత వ్యవస్థలకు అవసరం) ట్రాక్ చేస్తుంది. ఏదీ అంతర్గతంగా \"తప్పు\" కాదు – అవి వేర్వేరు యాంకర్లను ఉపయోగించి వేర్వేరు ప్రశ్నలకు సమాధానం ఇస్తాయి.",
+        "bn": "ভুল। উভয় পদ্ধতিই অভ্যন্তরীণভাবে সুসংগত রেফারেন্স ফ্রেম। ক্রান্তীয় জ্যোতিষ ঋতু/বিষুব সম্পর্ক ট্র্যাক করে (আবহাওয়া এবং কৃষি চক্রের জন্য বৈধ)। নাক্ষত্রিক জ্যোতিষ নক্ষত্র সম্পর্ক ট্র্যাক করে (নক্ষত্র-ভিত্তিক পদ্ধতির জন্য অপরিহার্য)। কোনটিই সহজাতভাবে \"ভুল\" নয় – তারা ভিন্ন অ্যাঙ্কর ব্যবহার করে ভিন্ন প্রশ্নের উত্তর দেয়।",
+        "kn": "ತಪ್ಪು. ಎರಡೂ ವ್ಯವಸ್ಥೆಗಳು ಆಂತರಿಕವಾಗಿ ಸ್ಥಿರವಾದ ಉಲ್ಲೇಖ ಚೌಕಟ್ಟುಗಳಾಗಿವೆ. ಉಷ್ಣವಲಯದ ಜ್ಯೋತಿಷ್ಯವು ಕಾಲೋಚಿತ/ವಿಷುವತ್ ಸಂಬಂಧಗಳನ್ನು (ಹವಾಮಾನ ಮತ್ತು ಕೃಷಿ ಚಕ್ರಗಳಿಗೆ ಮಾನ್ಯವಾಗಿದೆ) ಟ್ರ್ಯಾಕ್ ಮಾಡುತ್ತದೆ. ನಿರವಯವ ಜ್ಯೋತಿಷ್ಯವು ನಕ್ಷತ್ರ ಸಂಬಂಧಗಳನ್ನು (ನಕ್ಷತ್ರ ಆಧಾರಿತ ವ್ಯವಸ್ಥೆಗಳಿಗೆ ಅವಶ್ಯಕ) ಟ್ರ್ಯಾಕ್ ಮಾಡುತ್ತದೆ. ಯಾವುದೂ ಸಹಜವಾಗಿ \"ತಪ್ಪು\" ಅಲ್ಲ – ಅವು ವಿಭಿನ್ನ ಆಧಾರಗಳನ್ನು ಬಳಸಿಕೊಂಡು ವಿಭಿನ್ನ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸುತ್ತವೆ.",
         "mr": "असत्य। दोनों पद्धतियाँ आन्तरिक रूप से सुसंगत सन्दर्भ ढाँचे हैं। सायन ज्योतिष मौसमी/सम्पात सम्बन्धों को ट्रैक करता है (मौसम और कृषि चक्रों के लिए मान्य)। निरयन ज्योतिष तारकीय सम्बन्धों को ट्रैक करता है (नक्षत्र-आधारित पद्धतियों के लिए आवश्यक)। कोई भी स्वाभाविक रूप से \"गलत\" नहीं है  –  वे भिन्न लंगरों का उपयोग करके भिन्न प्रश्नों का उत्तर देते हैं।",
-        "gu": "False. Both systems are internally consistent reference frames. Tropical astrology tracks seasonal/equinox relationships (valid for weather and agricultural cycles). Sidereal astrology tracks stellar relationships (essential for nakshatra-based systems). Neither is inherently \"wrong\"  –  they answer different questions using different anchors.",
+        "gu": "ખોટું. બંને પ્રણાલીઓ આંતરિક રીતે સુસંગત સંદર્ભ ફ્રેમ્સ છે. ઉષ્ણકટિબંધીય જ્યોતિષ મોસમી/સંપાત સંબંધોને ટ્રેક કરે છે (હવામાન અને કૃષિ ચક્ર માટે માન્ય). નિરયન જ્યોતિષ તારાઓના સંબંધોને ટ્રેક કરે છે (નક્ષત્ર-આધારિત પ્રણાલીઓ માટે આવશ્યક). બંનેમાંથી કોઈ પણ સહજ રીતે \"ખોટું\" નથી – તેઓ અલગ-અલગ એન્કરનો ઉપયોગ કરીને અલગ-અલગ પ્રશ્નોના જવાબ આપે છે.",
         "mai": "गलत। दुनू प्रणाली आंतरिक रूप सँ सुसंगत संदर्भ फ्रेम अछि। सायन ज्योतिष मौसमी/विषुव संबंध कें ट्रैक करैत अछि (मौसम आ कृषि चक्रक लेल वैध)। निरयण ज्योतिष तारकीय संबंध कें ट्रैक करैत अछि (नक्षत्र-आधारित प्रणालीक लेल आवश्यक)। कोनो भी स्वाभाविक रूप सँ \"गलत\" नहि अछि – ओ भिन्न लंगर कें उपयोग कय कय भिन्न प्रश्नक उत्तर दैत अछि।"
       }
     }
@@ -617,85 +617,85 @@
     "en": "What Is Precession and Why It Matters",
     "hi": "पुरस्सरण क्या है और यह क्यों महत्त्वपूर्ण है",
     "mai": "पुरस्सरण की अछि आ ई कियाँ महत्वपूर्ण अछि?",
-    "mr": "What Is Precession and Why It Matters"
+    "mr": "अयनचलन काय आहे आणि ते महत्त्वाचे का आहे?"
   },
   "every72YearsYourZodiac": {
     "en": "Every 72 years, your zodiac sign shifts by 1 degree. In 2,000 years, it shifts by an entire sign. This isn't astrology  –  it's physics. And it's the reason your Vedic sign differs from your Western sign.",
     "hi": "प्रत्येक 72 वर्ष में आपकी राशि 1 अंश खिसकती है। 2000 वर्षों में यह पूरी एक राशि खिसक जाती है। यह ज्योतिष नहीं  –  यह भौतिकशास्त्र है। और यही कारण है कि आपकी वैदिक राशि आपकी पश्चिमी राशि से भिन्न है।",
     "mai": "प्रत्येक ७२ वर्ष पर, अहाँक राशि १ डिग्री सँ खसय अछि। २००० वर्ष मे, ई एकटा पूरा राशि सँ बदलि जाइत अछि। ई ज्योतिष नहि अछि – ई भौतिकी अछि। आ ई ओ कारण अछि जाहि सँ अहाँक वैदिक राशि अहाँक पश्चिमी राशि सँ भिन्न अछि।",
-    "mr": "Every 72 years, your zodiac sign shifts by 1 degree. In 2,000 years, it shifts by an entire sign. This isn't astrology  –  it's physics. And it's the reason your Vedic sign differs from your Western sign."
+    "mr": "प्रत्येक ७२ वर्षांनी, तुमची रास १ अंशाने सरकते. २,००० वर्षांत, ती पूर्ण राशीने सरकते. हे ज्योतिष नाही – हे भौतिकशास्त्र आहे. आणि यामुळे तुमची वैदिक रास तुमच्या पाश्चात्त्य राशीपेक्षा वेगळी असते."
   },
   "theSpinningTopAnalogy": {
     "en": "The Spinning Top Analogy",
     "hi": "लट्टू की उपमा",
     "mai": "घुमनिहार लट्टूक उपमा",
-    "mr": "The Spinning Top Analogy"
+    "mr": "फिरणाऱ्या भिंगरीचे उदाहरण"
   },
   "imagineASpinningTopOn": {
     "en": "Imagine a spinning top on a table. As it spins, its axis slowly traces a circle in the air  –  that's precession. Earth does exactly the same thing. Earth's rotation axis traces a cone in space, completing one full circle every 25,772 years. This is called the \"Platonic Year\" or \"Great Year.\"",
     "hi": "मेज़ पर एक घूमते हुए लट्टू की कल्पना कीजिए। जैसे-जैसे यह घूमता है, इसका अक्ष हवा में धीरे-धीरे एक वृत्त बनाता है  –  इसे पुरस्सरण कहते हैं। पृथ्वी ठीक यही करती है। पृथ्वी का घूर्णन अक्ष अन्तरिक्ष में एक शंकु बनाते हुए घूमता है, एक पूर्ण चक्र 25,772 वर्षों में पूरा करता है। इसे \"प्लेटोनिक वर्ष\" या \"महावर्ष\" कहा जाता है।",
     "mai": "कल्पना करू एकटा टेबल पर घुमनिहार लट्टू। जखन ई घूमय अछि, एकर अक्ष धीरे-धीरे हवा मे एकटा वृत्त बनाबैत अछि – ओ पुरस्सरण अछि। पृथ्वी सेहो ठीक ओहिना करैत अछि। पृथ्वीक घूर्णन अक्ष अंतरिक्ष मे एकटा शंकु बनाबैत अछि, प्रत्येक २५,७७२ वर्ष मे एकटा पूरा वृत्त पूरा करैत। एकरा \"प्लेटोनिक वर्ष\" वा \"महान वर्ष\" कहल जाइत अछि।",
-    "mr": "Imagine a spinning top on a table. As it spins, its axis slowly traces a circle in the air  –  that's precession. Earth does exactly the same thing. Earth's rotation axis traces a cone in space, completing one full circle every 25,772 years. This is called the \"Platonic Year\" or \"Great Year.\""
+    "mr": "टेबलावर फिरणारी भिंगरी कल्पना करा. ती फिरताना, तिचा अक्ष हळू हळू हवेत एक वर्तुळ तयार करतो – ते अयनचलन आहे. पृथ्वी देखील असेच करते. पृथ्वीचा फिरण्याचा अक्ष अवकाशात एक शंकू तयार करतो, जो २५,७७२ वर्षांत एक पूर्ण वर्तुळ पूर्ण करतो. याला \"प्लेटोनिक वर्ष\" किंवा \"महावर्ष\" म्हणतात."
   },
   "thePhysicsTheSunAnd": {
     "en": "The physics: the Sun and Moon's gravitational pull acts on Earth's equatorial bulge (Earth is 43 kilometres wider at the equator than from pole to pole). This creates a torque that slowly tilts the rotation axis. Rate: 50.29 arcseconds per year, which equals 1 degree every 71.6 years.",
     "hi": "भौतिकशास्त्र: सूर्य और चन्द्रमा का गुरुत्वाकर्षण पृथ्वी के भूमध्यरेखीय उभार पर खींचता है (पृथ्वी ध्रुवों की तुलना में भूमध्य रेखा पर 43 किलोमीटर अधिक चौड़ी है)। यह एक बलाघूर्ण उत्पन्न करता है जो घूर्णन अक्ष को धीरे-धीरे घुमाता है। दर: 50.29 कलांश/वर्ष, अर्थात् प्रत्येक 71.6 वर्ष में 1 अंश।",
     "mai": "भौतिकी: सूर्य आ चन्द्रमाक गुरुत्वाकर्षण खिंचाव पृथ्वीक भूमध्यरेखीय उभार पर कार्य करैत अछि (पृथ्वी ध्रुव सँ ध्रुव धरि सँ भूमध्य रेखा पर ४३ किलोमीटर बेसी चौड़ा अछि)। ई एकटा बल आघूर्ण उत्पन्न करैत अछि जे धीरे-धीरे घूर्णन अक्ष केँ झुका दैत अछि। दर: प्रति वर्ष ५०.२९ आर्कसेकंड, जे प्रत्येक ७१.६ वर्ष मे १ डिग्रीक बराबर होइत अछि।",
-    "mr": "The physics: the Sun and Moon's gravitational pull acts on Earth's equatorial bulge (Earth is 43 kilometres wider at the equator than from pole to pole). This creates a torque that slowly tilts the rotation axis. Rate: 50.29 arcseconds per year, which equals 1 degree every 71.6 years."
+    "mr": "भौतिकशास्त्र: सूर्य आणि चंद्राचे गुरुत्वाकर्षण पृथ्वीच्या विषुववृत्तीय फुगवट्यावर कार्य करते (पृथ्वी विषुववृत्तावर ध्रुवांपेक्षा ४३ किलोमीटर अधिक रुंद आहे). यामुळे एक टॉर्क (बलघूर्ण) निर्माण होतो जो फिरण्याच्या अक्षाला हळू हळू तिरका करतो. दर: दरवर्षी ५०.२९ आर्कसेकंद, जे प्रत्येक ७१.६ वर्षांनी १ अंशाच्या बरोबरीचे आहे."
   },
   "theConsequenceTheVernalEquinox": {
     "en": "The consequence: the vernal equinox (the point where the Sun crosses the celestial equator) slowly drifts westward along the ecliptic. This means the tropical zodiac (anchored to equinoxes) and the sidereal zodiac (anchored to fixed stars) slowly separate. The ayanamsha is the accumulated angular gap between them. Today: ~24.22 degrees (Lahiri). Growing at ~1.4 degrees per century.",
     "hi": "परिणाम: वसन्त सम्पात (जहाँ सूर्य खगोलीय भूमध्य रेखा को पार करता है) क्रान्तिवृत्त के सापेक्ष धीरे-धीरे पश्चिम की ओर विस्थापित होता है। इसका अर्थ है कि सायन राशिचक्र (सम्पातों पर आधारित) और निरयन राशिचक्र (तारों पर आधारित) धीरे-धीरे अलग होते जाते हैं। अयनांश = सायन और निरयन के बीच संचित कोणीय अन्तर। आज: ~24.22° (लहिरी)। प्रत्येक शताब्दी में ~1.4° की वृद्धि।",
     "mai": "परिणाम: वसंत विषुव (ओ बिंदु जतय सूर्य खगोलीय भूमध्य रेखा केँ पार करैत अछि) धीरे-धीरे क्रांतिवृत्तक संग पश्चिम दिस खसय अछि। एकर अर्थ ई अछि जे उष्णकटिबंधीय राशिचक्र (विषुव सँ जुड़ल) आ नाक्षत्र राशिचक्र (स्थिर तारा सँ जुड़ल) धीरे-धीरे अलग भऽ जाइत अछि। अयनमशा ओहि सभक बीचक संचित कोणीय अंतर अछि। आइ: ~२४.२२ डिग्री (लाहिड़ी)। प्रति शताब्दी ~१.४ डिग्रीक दर सँ बढ़ि रहल अछि।",
-    "mr": "The consequence: the vernal equinox (the point where the Sun crosses the celestial equator) slowly drifts westward along the ecliptic. This means the tropical zodiac (anchored to equinoxes) and the sidereal zodiac (anchored to fixed stars) slowly separate. The ayanamsha is the accumulated angular gap between them. Today: ~24.22 degrees (Lahiri). Growing at ~1.4 degrees per century."
+    "mr": "परिणाम: वसंत संपात (सूर्य आकाशीय विषुववृत्ताला ओलांडतो तो बिंदू) हळू हळू क्रांतिवृत्तावर पश्चिमेकडे सरकतो. याचा अर्थ उष्णकटिबंधीय राशीचक्र (संपातांवर आधारित) आणि सायन राशीचक्र (स्थिर ताऱ्यांवर आधारित) हळू हळू वेगळे होतात. त्यांच्यातील जमा झालेला कोनीय फरक म्हणजे अयनांश. आज: ~२४.२२ अंश (लाहिरी). दर शतकात ~१.४ अंशांनी वाढत आहे."
   },
   "historicalDiscovery": {
     "en": "Historical Discovery",
     "hi": "ऐतिहासिक खोज",
     "mai": "ऐतिहासिक खोज",
-    "mr": "Historical Discovery"
+    "mr": "ऐतिहासिक शोध"
   },
   "hipparchusC150BceGreece": {
     "en": "Hipparchus (c. 150 BCE, Greece): First to measure precession by comparing star catalogues 150 years apart. His estimate: 36 arcseconds per year (actual: 50.3 arcseconds per year). He noticed that star positions had systematically shifted from earlier catalogues  –  all in the same direction, at a steady rate.",
     "hi": "हिपार्कस (लगभग 150 ई.पू., ग्रीस): 150 वर्षों के अन्तराल पर तारा-सूचियों की तुलना करके पुरस्सरण को मापने वाले प्रथम व्यक्ति। उनका अनुमान: 36 कलांश/वर्ष (वास्तविक: 50.3 कलांश/वर्ष)। उन्होंने देखा कि तारों की स्थितियाँ पिछली सूचियों से व्यवस्थित रूप से खिसकी हुई थीं  –  एक ही दिशा में, एक स्थिर दर से।",
     "mai": "हिप्पार्कस (लगभग १५० ईसा पूर्व, ग्रीस): १५० वर्षक अंतराल पर तारा सूचीक तुलना कय कऽ पुरस्सरण केँ मापन करनिहार पहिल व्यक्ति। हुनकर अनुमान: प्रति वर्ष ३६ आर्कसेकंड (वास्तविक: प्रति वर्ष ५०.३ आर्कसेकंड)। हुनका ई देखबा मे आयल जे ताराक स्थिति पहिनेक सूची सँ व्यवस्थित रूप सँ खसल छल – सभ एकहि दिशा मे, एकटा स्थिर दर सँ।",
-    "mr": "Hipparchus (c. 150 BCE, Greece): First to measure precession by comparing star catalogues 150 years apart. His estimate: 36 arcseconds per year (actual: 50.3 arcseconds per year). He noticed that star positions had systematically shifted from earlier catalogues  –  all in the same direction, at a steady rate."
+    "mr": "हिप्पार्कस (सुमारे १५० ईसापूर्व, ग्रीस): १५० वर्षांच्या अंतराने असलेल्या तारा सूचींची तुलना करून अयनचलन मोजणारा पहिला. त्याचे अनुमान: दरवर्षी ३६ आर्कसेकंद (वास्तविक: दरवर्षी ५०.३ आर्कसेकंद). त्याने पाहिले की ताऱ्यांची स्थिती पूर्वीच्या सूचींमधून पद्धतशीरपणे सरकली होती – सर्व एकाच दिशेने, स्थिर गतीने."
   },
   "indianDiscoveryIndependentTheSurya": {
     "en": "Indian discovery (independent): The Surya Siddhanta described precession but used a \"trepidation\" model  –  an oscillation with a maximum of plus or minus 27 degrees. This was wrong; precession is actually monotonic (one-directional). Varahamihira (505 CE) compared five astronomical systems in the Pancha Siddhantika and noted the shifting equinox. Bhaskaracharya II (1150 CE) gave a precession rate close to the modern value.",
     "hi": "भारतीय खोज (स्वतन्त्र): सूर्य सिद्धान्त ने पुरस्सरण का वर्णन किया किन्तु \"कम्पन\" (दोलन) प्रतिरूप प्रयोग किया  –  अधिकतम ±27° तक दोलन। यह त्रुटिपूर्ण था; पुरस्सरण वस्तुतः एकदिशात्मक है। वराहमिहिर (505 ई.) ने पञ्चसिद्धान्तिका में पाँच खगोलीय पद्धतियों की तुलना की और विस्थापित होते सम्पात को नोट किया। भास्कराचार्य द्वितीय (1150 ई.) ने आधुनिक मान के निकट पुरस्सरण दर दी।",
     "mai": "भारतीय खोज (स्वतंत्र): सूर्य सिद्धांत मे पुरस्सरणक वर्णन कयल गेल छल मुदा एकटा \"कंपन\" मॉडलक उपयोग कयल गेल छल – जेकर अधिकतम प्लस वा माइनस २७ डिग्रीक दोलन छल। ई गलत छल; पुरस्सरण वास्तव मे एकदिशीय (एक-दिशात्मक) होइत अछि। वराहमिहिर (५०५ ईस्वी) पंच सिद्धांतिका मे पाँचटा खगोलीय प्रणालीक तुलना केलथि आ खसयवला विषुव केँ नोट केलथि। भास्कराचार्य द्वितीय (११५० ईस्वी) आधुनिक मानक नजदीक पुरस्सरण दर देलथि।",
-    "mr": "Indian discovery (independent): The Surya Siddhanta described precession but used a \"trepidation\" model  –  an oscillation with a maximum of plus or minus 27 degrees. This was wrong; precession is actually monotonic (one-directional). Varahamihira (505 CE) compared five astronomical systems in the Pancha Siddhantika and noted the shifting equinox. Bhaskaracharya II (1150 CE) gave a precession rate close to the modern value."
+    "mr": "भारतीय शोध (स्वतंत्र): सूर्य सिद्धांतने अयनचलनाचे वर्णन केले, परंतु \"कंपन\" मॉडेल वापरले – अधिक किंवा वजा २७ अंशांच्या कमाल दोलनासह. हे चुकीचे होते; अयनचलन प्रत्यक्षात एकदिशीय (एकाच दिशेने) असते. वराहमिहिराने (५०५ ई.) पंचसिद्धांतिकामध्ये पाच खगोलशास्त्रीय प्रणालींची तुलना केली आणि सरकणाऱ्या संपाताची नोंद घेतली. भास्कराचार्य II (११५० ई.) यांनी आधुनिक मूल्याच्या जवळची अयनचलन दर दिला."
   },
   "classicalOrigin": {
     "en": "Classical Origin",
     "hi": "शास्त्रीय उत्पत्ति",
     "mai": "शास्त्रीय मूल",
-    "mr": "Classical Origin"
+    "mr": "प्राचीन मूळ"
   },
   "suryaSiddhantaChapter3The": {
     "en": "Surya Siddhanta, Chapter 3: \"The solstitial points move along the ecliptic, sometimes eastward, sometimes westward, at the rate of 54 arcseconds (per year).\" This was the trepidation model  –  the idea that the direction reverses was the Surya Siddhanta's one major error. Yet the fact that ancient Indian astronomers recognized precession at all was a remarkable achievement.",
     "hi": "सूर्य सिद्धान्त, अध्याय 3: \"सम्पात बिन्दु क्रान्तिवृत्त के अनुदिश गति करते हैं, कभी पूर्व की ओर, कभी पश्चिम की ओर, 54 कलांश (प्रति वर्ष) की दर से।\" यह कम्पन प्रतिरूप था  –  दिशा उलटने का विचार सूर्य सिद्धान्त की एकमात्र बड़ी त्रुटि थी। फिर भी, यह तथ्य कि प्राचीन भारतीय खगोलशास्त्रियों ने पुरस्सरण को बिल्कुल भी पहचाना, एक उल्लेखनीय उपलब्धि है।",
     "mai": "सूर्य सिद्धांत, अध्याय ३: \"संक्रांति बिंदु क्रांतिवृत्तक संग, कहियो पूरब दिस, कहियो पश्चिम दिस, प्रति वर्ष ५४ आर्कसेकंडक दर सँ चलैत अछि।\" ई कंपन मॉडल छल – ई विचार जे दिशा उलटि जाइत अछि, सूर्य सिद्धांतक एकटा प्रमुख त्रुटि छल। तथापि, ई तथ्य जे प्राचीन भारतीय ज्योतिषी पुरस्सरण केँ पहचानलथि, एकटा उल्लेखनीय उपलब्धि छल।",
-    "mr": "Surya Siddhanta, Chapter 3: \"The solstitial points move along the ecliptic, sometimes eastward, sometimes westward, at the rate of 54 arcseconds (per year).\" This was the trepidation model  –  the idea that the direction reverses was the Surya Siddhanta's one major error. Yet the fact that ancient Indian astronomers recognized precession at all was a remarkable achievement."
+    "mr": "सूर्य सिद्धांत, अध्याय ३: \"संपात बिंदू क्रांतिवृत्तावर कधी पूर्वेकडे, कधी पश्चिमेकडे, ५४ आर्कसेकंद (प्रति वर्ष) दराने सरकतात.\" हे कंपन मॉडेल होते – दिशा उलटते ही कल्पना सूर्य सिद्धांतची एक मोठी चूक होती. तरीही, प्राचीन भारतीय खगोलशास्त्रज्ञांनी अयनचलनाला ओळखले ही एक उल्लेखनीय उपलब्धी होती."
   },
   "theAyanamshaWhereTropicalAnd": {
     "en": "The Ayanamsha  –  Where Tropical and Sidereal Diverge",
     "hi": "अयनांश  –  जहाँ सायन और निरयन विभक्त होते हैं",
     "mai": "अयनमशा – जतय उष्णकटिबंधीय आ नाक्षत्र भिन्न होइत अछि",
-    "mr": "The Ayanamsha  –  Where Tropical and Sidereal Diverge"
+    "mr": "अयनांश – जिथे उष्णकटिबंधीय आणि सायन राशीचक्र वेगळे होतात"
   },
   "whenWereTheTwoZodiacs": {
     "en": "When were the two zodiacs aligned? This is called the \"zero ayanamsha date\"  –  the epoch when tropical equals sidereal. Different systems disagree, because each uses a different reference star or mathematical method.",
     "hi": "राशिचक्र कब संरेखित थे? इसे \"शून्य अयनांश तिथि\" कहते हैं  –  वह युग जब सायन = निरयन। विभिन्न पद्धतियाँ असहमत हैं, क्योंकि प्रत्येक पद्धति भिन्न सन्दर्भ तारे या गणितीय विधि का प्रयोग करती है।",
     "mai": "दू टा राशिचक्र कहिया संरेखित छल? एकरा \"शून्य अयनमशा तिथि\" कहल जाइत अछि – ओ युग जखन उष्णकटिबंधीय नाक्षत्रक बराबर होइत अछि। विभिन्न प्रणाली असहमत अछि, कियाकि प्रत्येक एकटा भिन्न संदर्भ तारा वा गणितीय विधि क उपयोग करैत अछि।",
-    "mr": "When were the two zodiacs aligned? This is called the \"zero ayanamsha date\"  –  the epoch when tropical equals sidereal. Different systems disagree, because each uses a different reference star or mathematical method."
+    "mr": "दोन राशीचक्र कधी संरेखित झाली होती? याला \"शून्य अयनांश तारीख\" म्हणतात – जेव्हा उष्णकटिबंधीय आणि सायन राशीचक्र समान होते तो काळ. भिन्न प्रणालींमध्ये मतभेद आहेत, कारण प्रत्येक प्रणाली भिन्न संदर्भ तारा किंवा गणितीय पद्धत वापरते."
   },
   "ayanamshaSystemsCompared": {
     "en": "Ayanamsha Systems Compared",
     "hi": "अयनांश पद्धतियों की तुलना",
     "mai": "अयनमशा प्रणालीक तुलना",
-    "mr": "Ayanamsha Systems Compared"
+    "mr": "अयनांश प्रणालींची तुलना"
   },
   "system": {
     "en": "System",
@@ -713,25 +713,25 @@
     "en": "Zero Date",
     "hi": "शून्य तिथि",
     "mai": "शून्य दिनांक",
-    "mr": "Zero Date"
+    "mr": "शून्य तारीख"
   },
   "lahiriChitrapaksha": {
     "en": "Lahiri (Chitrapaksha)",
     "hi": "लहिरी (चित्रापक्ष)",
     "mai": "लाहिड़ी (चित्रपक्ष)",
-    "mr": "Lahiri (Chitrapaksha)"
+    "mr": "लाहिरी (चित्रापक्ष)"
   },
   "spicaChitraAt180U00b0": {
     "en": "Spica (Chitra) at 180\\u00b0",
     "hi": "चित्रा (स्पाइका) 180° पर",
     "mai": "स्वाति (चित्रा) १८०° पर",
-    "mr": "Spica (Chitra) at 180\\u00b0"
+    "mr": "स्वाती (चित्रा) १८०° वर"
   },
   "k285Ce": {
     "en": "~285 CE",
     "hi": "~285 ई.",
     "mai": "~२८५ ईस्वी",
-    "mr": "~285 CE"
+    "mr": "~२८५ ई."
   },
   "raman": {
     "en": "Raman",
@@ -743,67 +743,67 @@
     "en": "~397 CE",
     "hi": "~397 ई.",
     "mai": "~३९७ ईस्वी",
-    "mr": "~397 CE"
+    "mr": "~३९७ ई."
   },
   "kpKrishnamurti": {
     "en": "KP (Krishnamurti)",
     "hi": "के.पी. (कृष्णमूर्ति)",
     "mai": "केपी (कृष्णमूर्ति)",
-    "mr": "KP (Krishnamurti)"
+    "mr": "केपी (कृष्णमूर्ती)"
   },
   "spicaRefined": {
     "en": "Spica (refined)",
     "hi": "चित्रा (शोधित)",
     "mai": "स्वाति (परिष्कृत)",
-    "mr": "Spica (refined)"
+    "mr": "स्वाती (सुधारित)"
   },
   "k291Ce": {
     "en": "~291 CE",
     "hi": "~291 ई.",
     "mai": "~२९१ ईस्वी",
-    "mr": "~291 CE"
+    "mr": "~२९१ ई."
   },
   "faganBradley": {
     "en": "Fagan-Bradley",
     "hi": "फ़गन-ब्रैडली",
     "mai": "फागन-ब्राडली",
-    "mr": "Fagan-Bradley"
+    "mr": "फागन-ब्रॅडली"
   },
   "k221Ce": {
     "en": "~221 CE",
     "hi": "~221 ई.",
     "mai": "~२२१ ईस्वी",
-    "mr": "~221 CE"
+    "mr": "~२२१ ई."
   },
   "theCalculation": {
     "en": "The Calculation",
     "hi": "गणना कैसे होती है",
     "mai": "गणना",
-    "mr": "The Calculation"
+    "mr": "गणना"
   },
   "theLahiriAyanamshaForAny": {
     "en": "The Lahiri ayanamsha for any date is computed from a polynomial formula:",
     "hi": "किसी भी तिथि के लिए लहिरी अयनांश एक बहुपद सूत्र से निकाला जाता है:",
     "mai": "कोनो तिथि लेल लाहिड़ी अयनमशा एकटा बहुपद सूत्र सँ गणना कयल जाइत अछि:",
-    "mr": "The Lahiri ayanamsha for any date is computed from a polynomial formula:"
+    "mr": "कोणत्याही तारखेसाठी लाहिरी अयनांश बहुपदी सूत्रावरून काढला जातो:"
   },
   "whereTCenturiesFromJ2000": {
     "en": "where T = centuries from J2000.0 (Jan 1, 2000)",
     "hi": "जहाँ T = J2000.0 (1 जनवरी 2000) से शताब्दियाँ",
     "mai": "जतय T = J2000.0 सँ शताब्दी (१ जनवरी, २०००)",
-    "mr": "where T = centuries from J2000.0 (Jan 1, 2000)"
+    "mr": "जिथे T = J2000.0 (१ जानेवारी २०००) पासूनची शतके"
   },
   "forApril2026TIs": {
     "en": "For April 2026: T is approximately 0.2625 centuries. A is approximately 24.042 + (1.3968 times 0.2625) + (0.0005 times 0.0689) = roughly 24.41 degrees (simplified; the full IAU polynomial yields ~24.22 degrees). The exact value depends on how many terms are included  –  our app uses the full polynomial fitted to IAU precession.",
     "hi": "अप्रैल 2026 के लिए: T ≈ 0.2625 → A ≈ 24.042 + (1.3968 × 0.2625) + (0.0005 × 0.0689) ≈ 24.042 + 0.367 + 0.00003 ≈ 24.41° (सरलीकृत; पूर्ण IAU बहुपद ~24.22° देता है)। सटीक मान प्रयुक्त शब्दों की संख्या पर निर्भर करता है  –  हमारा ऐप IAU पुरस्सरण के साथ पूर्ण बहुपद प्रयोग करता है।",
     "mai": "अप्रैल २०२२ लेल: T लगभग ०.२६२५ शताब्दी अछि। A लगभग २४.०४२ + (१.३९६८ गुना ०.२६२५) + (०.०००५ गुना ०.०६८९) = लगभग २४.४१ डिग्री (सरलीकृत; पूर्ण IAU बहुपद सँ ~२४.२२ डिग्री प्राप्त होइत अछि)। सटीक मान एहि पर निर्भर करैत अछि जे केतेक पद शामिल कयल गेल अछि – हमर ऐप IAU पुरस्सरण मे फिट कयल गेल पूर्ण बहुपद क उपयोग करैत अछि।",
-    "mr": "For April 2026: T is approximately 0.2625 centuries. A is approximately 24.042 + (1.3968 times 0.2625) + (0.0005 times 0.0689) = roughly 24.41 degrees (simplified; the full IAU polynomial yields ~24.22 degrees). The exact value depends on how many terms are included  –  our app uses the full polynomial fitted to IAU precession."
+    "mr": "एप्रिल २०२६ साठी: T अंदाजे ०.२६२५ शतके आहे. A अंदाजे २४.०४२ + (१.३९६८ गुणिले ०.२६२५) + (०.०००५ गुणिले ०.०६८९) = अंदाजे २४.४१ अंश (सरलीकृत; पूर्ण IAU बहुपदी ~२४.२२ अंश देते). अचूक मूल्य किती पदे समाविष्ट आहेत यावर अवलंबून असते – आमचे ॲप IAU अयनचलनानुसार बसवलेली पूर्ण बहुपदी वापरते."
   },
   "workedExampleTheBoundaryProblem": {
     "en": "Worked Example  –  The Boundary Problem",
     "hi": "उदाहरण  –  सीमारेखा की समस्या",
     "mai": "हल कयल गेल उदाहरण – सीमा समस्या",
-    "mr": "Worked Example  –  The Boundary Problem"
+    "mr": "सोडवलेले उदाहरण – सीमा समस्या"
   },
   "problem": {
     "en": "Problem:",
@@ -815,49 +815,49 @@
     "en": "A planet is at 24.5 degrees tropical longitude. Find its sidereal position under both ayanamshas.",
     "hi": "एक ग्रह 24.5° सायन देशान्तर पर है। दोनों अयनांशों से निरयन स्थिति ज्ञात कीजिए।",
     "mai": "एकटा ग्रह २४.५ डिग्री उष्णकटिबंधीय देशांतर पर अछि। दू टा अयनमशाक अंतर्गत एकर नाक्षत्र स्थिति ज्ञात करू।",
-    "mr": "A planet is at 24.5 degrees tropical longitude. Find its sidereal position under both ayanamshas."
+    "mr": "एक ग्रह २४.५ अंश उष्णकटिबंधीय रेखांशावर आहे. दोन्ही अयनांशांनुसार त्याची सायन स्थिती शोधा."
   },
   "lahiri2422Deg": {
     "en": "Lahiri (24.22 deg):",
     "hi": "लहिरी (24.22°):",
     "mai": "लाहिड़ी (२४.२२ डिग्री):",
-    "mr": "Lahiri (24.22 deg):"
+    "mr": "लाहिरी (२४.२२ अंश):"
   },
   "k245Minus2422": {
     "en": "24.5 minus 24.22 = 0.28 degrees = 0 degrees 17 arcminutes Aries (in Aries)",
     "hi": "24.5 - 24.22 = 0.28° → 0°17' मेष (मेष राशि में)",
     "mai": "२४.५ माइनस २४.२२ = ०.२८ डिग्री = ० डिग्री १७ आर्कमिनट मेष (मेष मे)",
-    "mr": "24.5 minus 24.22 = 0.28 degrees = 0 degrees 17 arcminutes Aries (in Aries)"
+    "mr": "२४.५ वजा २४.२२ = ०.२८ अंश = ० अंश १७ आर्कमिनिट मेष (मेष राशीत)"
   },
   "faganBradley2510Deg": {
     "en": "Fagan-Bradley (25.10 deg):",
     "hi": "फ़गन-ब्रैडली (25.10°):",
     "mai": "फागन-ब्राडली (२५.१० डिग्री):",
-    "mr": "Fagan-Bradley (25.10 deg):"
+    "mr": "फागन-ब्रॅडली (२५.१० अंश):"
   },
   "k245Minus2510": {
     "en": "24.5 minus 25.10 = negative 0.60 degrees, wraps to 359.40 degrees = 29 degrees 24 arcminutes Pisces (in Pisces!)",
     "hi": "24.5 - 25.10 = -0.60° → 360° - 0.60° = 359.40° = 29°24' मीन (मीन राशि में!)",
     "mai": "२४.५ माइनस २५.१० = ऋणात्मक ०.६० डिग्री, ३५९.४० डिग्री धरि घूमैत अछि = २९ डिग्री २४ आर्कमिनट मीन (मीन मे!)",
-    "mr": "24.5 minus 25.10 = negative 0.60 degrees, wraps to 359.40 degrees = 29 degrees 24 arcminutes Pisces (in Pisces!)"
+    "mr": "२४.५ वजा २५.१० = ऋण ०.६० अंश, ३५९.४० अंशांपर्यंत फिरते = २९ अंश २४ आर्कमिनिट मीन (मीन राशीत!)"
   },
   "aMere088Degree": {
     "en": "A mere 0.88-degree difference in ayanamsha pushes the planet from Aries to Pisces  –  a completely different sign, different ruler, different interpretation. This problem arises when a planet is near any sign boundary (0-2 degrees or 28-30 degrees of any sign).",
     "hi": "अयनांश में मात्र 0.88° का अन्तर ग्रह को मेष से मीन में धकेल देता है  –  पूर्णतः भिन्न राशि, भिन्न स्वामी, भिन्न फलादेश। यह समस्या तब उत्पन्न होती है जब ग्रह किसी राशि की सीमा (0°-2° या 28°-30°) के निकट हो।",
     "mai": "अयनमशा मे मात्र ०.८८ डिग्रीक अंतर ग्रह केँ मेष सँ मीन मे धकेल दैत अछि – एकटा पूर्णतः भिन्न राशि, भिन्न स्वामी, भिन्न व्याख्या। ई समस्या तखन उत्पन्न होइत अछि जखन कोनो ग्रह कोनो राशि सीमाक नजदीक होइत अछि (कोनो राशि क ०-२ डिग्री वा २८-३० डिग्री)।",
-    "mr": "A mere 0.88-degree difference in ayanamsha pushes the planet from Aries to Pisces  –  a completely different sign, different ruler, different interpretation. This problem arises when a planet is near any sign boundary (0-2 degrees or 28-30 degrees of any sign)."
+    "mr": "अयनांशामधील केवळ ०.८८ अंशाचा फरक ग्रहाला मेष राशीतून मीन राशीत ढकलतो – एक पूर्णपणे भिन्न रास, भिन्न स्वामी, भिन्न अर्थ. ही समस्या तेव्हा उद्भवते जेव्हा एखादा ग्रह कोणत्याही राशीच्या सीमेच्या जवळ असतो (कोणत्याही राशीच्या ०-२ अंश किंवा २८-३० अंश)."
   },
   "realChartComparisonLahiriVs": {
     "en": "Real Chart Comparison  –  Lahiri vs Raman",
     "hi": "वास्तविक उदाहरण  –  लहिरी बनाम रमन",
     "mai": "वास्तविक कुंडलीक तुलना – लाहिड़ी बनाम रमन",
-    "mr": "Real Chart Comparison  –  Lahiri vs Raman"
+    "mr": "वास्तविक कुंडली तुलना – लाहिरी विरुद्ध रमण"
   },
   "birth14May198806": {
     "en": "Birth: 14 May 1988, 06:00 IST, Delhi. Lahiri ayanamsha: 23.69°. Raman ayanamsha: 22.30°. Difference: 1.39°. This seemingly small gap causes THREE major changes:",
     "hi": "जन्म: 14 मई 1988, 06:00 IST, दिल्ली। लहिरी अयनांश: 23.69°। रमन अयनांश: 22.30°। अन्तर: 1.39°। यह छोटा सा अन्तर तीन प्रमुख परिवर्तन लाता है:",
     "mai": "जन्म: १४ मई १९८८, ०६:०० IST, दिल्ली। लाहिड़ी अयनमशा: २३.६९°। रमन अयनमशा: २२.३०°। अंतर: १.३९°। ई देखबा मे छोट अंतर तीनटा प्रमुख परिवर्तनक कारण बनैत अछि:",
-    "mr": "Birth: 14 May 1988, 06:00 IST, Delhi. Lahiri ayanamsha: 23.69°. Raman ayanamsha: 22.30°. Difference: 1.39°. This seemingly small gap causes THREE major changes:"
+    "mr": "जन्म: १४ मे १९८८, सकाळी ०६:०० IST, दिल्ली. लाहिरी अयनांश: २३.६९°. रमण अयनांश: २२.३०°. फरक: १.३९°. हा वरवर पाहता लहान फरक तीन मोठे बदल घडवतो:"
   },
   "planet": {
     "en": "Planet",
@@ -887,19 +887,19 @@
     "en": "Aries 29.75°",
     "hi": "मेष 29.75°",
     "mai": "मेष २९.७५°",
-    "mr": "Aries 29.75°"
+    "mr": "मेष २९.७५°"
   },
   "taurus114": {
     "en": "Taurus 1.14°",
     "hi": "वृषभ 1.14°",
     "mai": "वृषभ १.१४°",
-    "mr": "Taurus 1.14°"
+    "mr": "वृषभ १.१४°"
   },
   "signChanged": {
     "en": "SIGN CHANGED!",
     "hi": "राशि बदली!",
     "mai": "राशि बदलि गेल!",
-    "mr": "SIGN CHANGED!"
+    "mr": "रास बदलली!"
   },
   "venus": {
     "en": "Venus",
@@ -911,19 +911,19 @@
     "en": "Mrigashira Nak.",
     "hi": "मृगशिरा नक्षत्र",
     "mai": "मृगशिरा नक्षत्र।",
-    "mr": "Mrigashira Nak."
+    "mr": "मृगशीर्ष नक्षत्र."
   },
   "ardraNak": {
     "en": "Ardra Nak.",
     "hi": "आर्द्रा नक्षत्र",
     "mai": "आर्द्रा नक्षत्र।",
-    "mr": "Ardra Nak."
+    "mr": "आर्द्रा नक्षत्र."
   },
   "nakChanged": {
     "en": "NAK. CHANGED!",
     "hi": "नक्षत्र बदला!",
     "mai": "नक्षत्र बदलि गेल!",
-    "mr": "NAK. CHANGED!"
+    "mr": "नक्षत्र बदलले!"
   },
   "ketu": {
     "en": "Ketu",
@@ -935,181 +935,181 @@
     "en": "P. Phalguni Nak.",
     "hi": "पूर्वा फाल्गुनी",
     "mai": "पू. फाल्गुनी नक्षत्र।",
-    "mr": "P. Phalguni Nak."
+    "mr": "पू. फाल्गुनी नक्षत्र."
   },
   "uPhalguniNak": {
     "en": "U. Phalguni Nak.",
     "hi": "उत्तरा फाल्गुनी",
     "mai": "उ. फाल्गुनी नक्षत्र।",
-    "mr": "U. Phalguni Nak."
+    "mr": "उ. फाल्गुनी नक्षत्र."
   },
   "other6Planets": {
     "en": "Other 6 planets",
     "hi": "अन्य 6 ग्रह",
     "mai": "अन्य ६ ग्रह",
-    "mr": "Other 6 planets"
+    "mr": "इतर ६ ग्रह"
   },
   "sameSignsSameNakshatrasNot": {
     "en": "Same signs, same nakshatras (not near boundaries)",
     "hi": "समान राशि, समान नक्षत्र (सीमा से दूर)",
     "mai": "समान राशि, समान नक्षत्र (सीमाक नजदीक नहि)",
-    "mr": "Same signs, same nakshatras (not near boundaries)"
+    "mr": "समान राशी, समान नक्षत्रे (सीमेजवळ नाहीत)"
   },
   "theSunMovingFromAries": {
     "en": "The Sun moving from Aries to Taurus is a MAJOR shift  –  the Sun sign, its lordship, and all Sun-related yogas change entirely. Venus changing nakshatras affects marriage compatibility (Melapaka) calculations. Ketu changing nakshatras shifts spiritual karmic patterns. Same birth data  –  two different life narratives, just from the ayanamsha choice.",
     "hi": "सूर्य का मेष से वृषभ में जाना एक बड़ा परिवर्तन है  –  सूर्य राशि, सूर्य का स्वामी, और सूर्य से जुड़े सभी योग प्रभावित होते हैं। शुक्र का नक्षत्र बदलना विवाह अनुकूलता (मेलापक) गणना को प्रभावित करता है। एक ही जन्म डेटा  –  दो अलग-अलग जीवन कथाएँ, केवल अयनांश चयन के कारण।",
     "mai": "सूर्यक मेष सँ वृषभ मे जायब एकटा प्रमुख बदलाव अछि – सूर्य राशि, एकर स्वामित्व, आ सूर्य सँ संबंधित सभ योग पूर्णतः बदलि जाइत अछि। शुक्रक नक्षत्र बदलबा सँ विवाहक अनुकूलता (मेलापक) गणना प्रभावित होइत अछि। केतुक नक्षत्र बदलबा सँ आध्यात्मिक कर्मिक पैटर्न बदलि जाइत अछि। समान जन्म डेटा – दू टा भिन्न जीवन कथा, मात्र अयनमशाक चुनाव सँ।",
-    "mr": "The Sun moving from Aries to Taurus is a MAJOR shift  –  the Sun sign, its lordship, and all Sun-related yogas change entirely. Venus changing nakshatras affects marriage compatibility (Melapaka) calculations. Ketu changing nakshatras shifts spiritual karmic patterns. Same birth data  –  two different life narratives, just from the ayanamsha choice."
+    "mr": "सूर्याचे मेष राशीतून वृषभ राशीत जाणे हा एक मोठा बदल आहे – सूर्य रास, त्याचे स्वामित्व आणि सूर्याशी संबंधित सर्व योग पूर्णपणे बदलतात. शुक्राचे नक्षत्र बदलल्याने विवाह जुळणी (मेळापक) गणितांवर परिणाम होतो. केतूचे नक्षत्र बदलल्याने आध्यात्मिक कर्मिक नमुने बदलतात. समान जन्म माहिती – केवळ अयनांश निवडीमुळे दोन भिन्न जीवन कथा."
   },
   "whyLahiriWonIndiaS": {
     "en": "Why Lahiri Won  –  India's Calendar Reform",
     "hi": "लहिरी ने क्यों जीता  –  भारतीय पंचांग सुधार",
     "mai": "लाहिड़ी कियाँ जीतल – भारतक पंचांग सुधार",
-    "mr": "Why Lahiri Won  –  India's Calendar Reform"
+    "mr": "लाहिरी का जिंकले – भारताचे कॅलेंडर सुधारणा"
   },
   "theIndianCalendarReformCommittee": {
     "en": "The Indian Calendar Reform Committee (1955), headed by physicist Meghnad Saha (who discovered the Saha ionization equation used in astrophysics worldwide), officially adopted the Lahiri (Chitrapaksha) ayanamsha for India's National Calendar. Saha chose it because:",
     "hi": "भारतीय पंचांग सुधार समिति (1955), भौतिकशास्त्री मेघनाद साहा (जिन्होंने खगोल भौतिकी में विश्वव्यापी रूप से प्रयुक्त साहा आयनन समीकरण की खोज की) के नेतृत्व में, ने भारत के राष्ट्रीय पंचांग के लिए लहिरी (चित्रापक्ष) अयनांश को आधिकारिक रूप से अपनाया। साहा ने इसे चुना क्योंकि:",
     "mai": "भारतीय पंचांग सुधार समिति (१९५५), भौतिक विज्ञानी मेघनाद साहाक अध्यक्षता मे (जे साहा आयनीकरण समीकरणक खोज केलथि जेकर उपयोग विश्वभरि मे खगोल भौतिकी मे कयल जाइत अछि), भारतक राष्ट्रीय पंचांग लेल आधिकारिक रूप सँ लाहिड़ी (चित्रपक्ष) अयनमशा केँ अपना लेलथि। साहा एकरा चुनलाह कियाकि:",
-    "mr": "The Indian Calendar Reform Committee (1955), headed by physicist Meghnad Saha (who discovered the Saha ionization equation used in astrophysics worldwide), officially adopted the Lahiri (Chitrapaksha) ayanamsha for India's National Calendar. Saha chose it because:"
+    "mr": "भारतीय कॅलेंडर सुधारणा समिती (१९५५), भौतिकशास्त्रज्ञ मेघनाद साहा यांच्या अध्यक्षतेखाली (ज्यांनी जगभरात खगोलभौतिकशास्त्रात वापरले जाणारे साहा आयनीकरण समीकरण शोधले), यांनी भारताच्या राष्ट्रीय कॅलेंडरसाठी लाहिरी (चित्रापक्ष) अयनांश अधिकृतपणे स्वीकारला. साहा यांनी ते निवडले कारण:"
   },
   "itAnchorsToSpicaChitra": {
     "en": "It anchors to Spica (Chitra)  –  a bright, first-magnitude star that is easily observable.",
     "hi": "यह चित्रा (स्पाइका) पर आधारित है  –  एक चमकीला, आसानी से प्रेक्षणीय तारा जो प्रथम कोटि का है।",
     "mai": "ई Spica (चित्रा) सँ जुड़ल अछि – एकटा चमकीला, पहिल-परिमाणक तारा जे आसानी सँ देखल जा सकैत अछि।",
-    "mr": "It anchors to Spica (Chitra)  –  a bright, first-magnitude star that is easily observable."
+    "mr": "ते स्वाती (चित्रा) ला आधार मानते – एक तेजस्वी, प्रथम-परिमाणाचा तारा जो सहजपणे निरीक्षण करण्यायोग्य आहे."
   },
   "k180DegreesIsAstronomicallyClean": {
     "en": "180 degrees is astronomically clean  –  exactly opposite the vernal equinox.",
     "hi": "180° खगोलीय रूप से स्वच्छ है  –  वसन्त सम्पात के ठीक विपरीत।",
     "mai": "१८० डिग्री खगोलशास्त्रीय रूप सँ स्वच्छ अछि – वसंत विषुव के ठीक विपरीत।",
-    "mr": "180 degrees is astronomically clean  –  exactly opposite the vernal equinox."
+    "mr": "१८० अंश खगोलशास्त्रीयदृष्ट्या स्वच्छ आहे – वसंत संपाताच्या अगदी विरुद्ध."
   },
   "itBestFitsHistoricalAstronomical": {
     "en": "It best fits historical astronomical observations recorded in Indian texts.",
     "hi": "यह भारतीय ग्रन्थों में ऐतिहासिक खगोलीय प्रेक्षणों से सर्वोत्तम मेल खाता है।",
     "mai": "ई भारतीय ग्रंथसभ मे दर्ज ऐतिहासिक खगोलीय अवलोकन सँ सबसँ नीक सँ मेल खाएत अछि।",
-    "mr": "It best fits historical astronomical observations recorded in Indian texts."
+    "mr": "ते भारतीय ग्रंथांमध्ये नोंदवलेल्या ऐतिहासिक खगोलशास्त्रीय निरीक्षणांशी उत्तम जुळते."
   },
   "whyEveryoneDisagreesTheRoot": {
     "en": "Why Everyone Disagrees  –  The Root Problem",
     "hi": "सब असहमत क्यों हैं  –  मूल समस्या",
     "mai": "सब लोक की लेल असहमत अछि – मूल समस्या",
-    "mr": "Why Everyone Disagrees  –  The Root Problem"
+    "mr": "प्रत्येकजण असहमत का आहे – मूळ समस्या"
   },
   "toUnderstandTheAyanamshaDebate": {
     "en": "To understand the ayanamsha debate, you need to understand the root problem: nobody knows the EXACT date when the tropical and sidereal zodiacs were aligned. This is called the \"zero ayanamsha date\"  –  the moment when the vernal equinox coincided with 0° Aries sidereal. But there are three fundamental obstacles:",
     "hi": "अयनांश विवाद को समझने के लिए आपको मूल समस्या समझनी होगी: कोई नहीं जानता कि सायन और निरयन राशिचक्र ठीक कब संरेखित थे। यह \"शून्य अयनांश तिथि\" है  –  वह क्षण जब वसन्त सम्पात 0° मेष निरयन के साथ मेल खाता था। लेकिन तीन बाधाएँ हैं:",
     "mai": "अयनमशाक बहस केँ बुझबाक लेल, अहाँ केँ मूल समस्या केँ बुझबाक आवश्यकता अछि: केओ सेहो सटीक तिथि नहि जनैत अछि जखन उष्णकटिबंधीय आ नाक्षत्र राशिचक्र संरेखित छल। एकरा \"शून्य अयनमशा तिथि\" कहल जाइत अछि – ओ क्षण जखन वसंत विषुव ०° मेष नाक्षत्र सँ मेल खाइल। मुदा तीनटा मौलिक बाधा अछि:",
-    "mr": "To understand the ayanamsha debate, you need to understand the root problem: nobody knows the EXACT date when the tropical and sidereal zodiacs were aligned. This is called the \"zero ayanamsha date\"  –  the moment when the vernal equinox coincided with 0° Aries sidereal. But there are three fundamental obstacles:"
+    "mr": "अयनांश वाद समजून घेण्यासाठी, तुम्हाला मूळ समस्या समजून घेणे आवश्यक आहे: उष्णकटिबंधीय आणि सायन राशीचक्र कधी संरेखित झाले होते याची अचूक तारीख कोणालाही माहित नाही. याला \"शून्य अयनांश तारीख\" म्हणतात – जेव्हा वसंत संपात ०° मेष सायन राशीशी जुळला तो क्षण. परंतु तीन मूलभूत अडथळे आहेत:"
   },
   "theEquinoxIsInvisibleIt": {
     "en": "The equinox is INVISIBLE  –  it's a mathematical point where the ecliptic plane intersects the equatorial plane. You can't \"see\" it. There's no marker in the sky.",
     "hi": "सम्पात बिन्दु अदृश्य है  –  यह वह गणितीय बिन्दु है जहाँ क्रान्तिवृत्त तल भूमध्यरेखीय तल को काटता है। आप इसे \"देख\" नहीं सकते। आकाश में कोई चिह्न नहीं है।",
     "mai": "विषुव अदृश्य अछि – ई एकटा गणितीय बिंदु अछि जतय क्रांतिवृत्त तल भूमध्यरेखीय तल केँ काटैत अछि। अहाँ एकरा \"देखि\" नहि सकैत छी। आकाश मे कोनो चिन्ह नहि अछि।",
-    "mr": "The equinox is INVISIBLE  –  it's a mathematical point where the ecliptic plane intersects the equatorial plane. You can't \"see\" it. There's no marker in the sky."
+    "mr": "संपात अदृश्य आहे – तो एक गणितीय बिंदू आहे जिथे क्रांतिवृत्त प्रतल विषुववृत्तीय प्रतलाला छेदते. तुम्ही ते \"पाहू\" शकत नाही. आकाशात कोणताही दर्शक नाही."
   },
   "k0AriesSiderealIsDefined": {
     "en": "\"0° Aries sidereal\" is defined differently by each system  –  constellations don't have sharp edges. Where does \"Aries\" end and \"Pisces\" begin? Stars don't come with labels. Each system chose a DIFFERENT anchor star to define this boundary.",
     "hi": "0° मेष निरयन अलग-अलग परिभाषित है  –  तारामंडलों की तीक्ष्ण सीमाएँ नहीं होतीं। \"मेष\" कहाँ समाप्त होता है और \"मीन\" कहाँ आरम्भ होता है? तारे लेबल के साथ नहीं आते। प्रत्येक प्रणाली एक भिन्न \"लंगर तारा\" चुनती है।",
     "mai": "\"०° मेष नाक्षत्र\" केँ प्रत्येक प्रणाली द्वारा भिन्न रूप सँ परिभाषित कएल जाइत अछि – नक्षत्रसभक कोनो तीक्ष्ण किनारा नहि होइत अछि। \"मेष\" कतय समाप्त होइत अछि आ \"मीन\" कतय शुरू होइत अछि? तारासभ लेबलक संग नहि अबैत अछि। प्रत्येक प्रणाली ई सीमा केँ परिभाषित करबाक लेल एकटा भिन्न लंगर तारा केँ चुनलक।",
-    "mr": "\"0° Aries sidereal\" is defined differently by each system  –  constellations don't have sharp edges. Where does \"Aries\" end and \"Pisces\" begin? Stars don't come with labels. Each system chose a DIFFERENT anchor star to define this boundary."
+    "mr": "\"०° मेष सायन\" प्रत्येक प्रणालीद्वारे भिन्न प्रकारे परिभाषित केले जाते – नक्षत्रांना तीक्ष्ण कडा नसतात. \"मेष\" कुठे संपते आणि \"मीन\" कुठे सुरू होते? ताऱ्यांवर लेबले नसतात. प्रत्येक प्रणालीने ही सीमा परिभाषित करण्यासाठी एक भिन्न आधार तारा निवडला."
   },
   "ancientAstronomersMeasuredRelativePositions": {
     "en": "Ancient astronomers measured RELATIVE positions, not absolute  –  \"planet X is 30° from star Y.\" Converting these to an absolute reference frame requires choosing an anchor star  –  and that choice is a human convention.",
     "hi": "प्राचीन खगोलशास्त्रियों ने सापेक्ष स्थिति मापी, निरपेक्ष नहीं  –  \"ग्रह X तारा Y से 30° दूर है\"  –  इसे निरपेक्ष सन्दर्भ ढाँचे में रूपान्तरित करने के लिए एक लंगर तारा चुनना आवश्यक है।",
     "mai": "प्राचीन खगोलशास्त्री सापेक्ष स्थिति केँ मापलनि, निरपेक्ष नहि – \"ग्रह X तारा Y सँ ३०° पर अछि।\" एकरा निरपेक्ष संदर्भ फ्रेम मे परिवर्तित करबाक लेल एकटा लंगर तारा केँ चुनबाक आवश्यकता होइत अछि – आ ओ चुनाव एकटा मानवीय परंपरा अछि।",
-    "mr": "Ancient astronomers measured RELATIVE positions, not absolute  –  \"planet X is 30° from star Y.\" Converting these to an absolute reference frame requires choosing an anchor star  –  and that choice is a human convention."
+    "mr": "प्राचीन खगोलशास्त्रज्ञांनी सापेक्ष स्थिती मोजली, निरपेक्ष नाही – \"ग्रह X तारा Y पासून ३०° वर आहे.\" यांना निरपेक्ष संदर्भ फ्रेममध्ये रूपांतरित करण्यासाठी आधार तारा निवडणे आवश्यक आहे – आणि ती निवड मानवी प्रथा आहे."
   },
   "howEachSystemChoseIts": {
     "en": "How Each System Chose Its Anchor",
     "hi": "प्रत्येक प्रणाली ने अपना लंगर कैसे चुना",
     "mai": "प्रत्येक प्रणाली अपन लंगर केना चुनलक",
-    "mr": "How Each System Chose Its Anchor"
+    "mr": "प्रत्येक प्रणालीने आपला आधार कसा निवडला"
   },
   "fixedSpicaChitraΑVirginis": {
     "en": "Fixed Spica (Chitra, α Virginis) at exactly 180° sidereal. Spica is bright (magnitude 1.0), easily observable, and 180° is mathematically clean (exactly opposite 0° Aries). Working backward from Spica's known proper motion → zero date ≈ 285 CE.",
     "hi": "स्पाइका (चित्रा, α Virginis) को ठीक 180° निरयन पर स्थिर किया। चित्रा चमकीला (प्रथम कोटि), आसानी से प्रेक्षणीय, और 180° गणितीय रूप से स्वच्छ है (0° मेष के ठीक विपरीत)। स्पाइका की ज्ञात गति से पीछे गणना करने पर → शून्य तिथि ≈ 285 ई.।",
     "mai": "Spica (चित्रा, α Virginis) केँ ठीक १८०° नाक्षत्र पर स्थिर कएल गेल। Spica चमकीला (परिमाण १.०), आसानी सँ देखल जा सकैत अछि, आ १८०° गणितीय रूप सँ स्वच्छ अछि (०° मेष के ठीक विपरीत)। Spica के ज्ञात उचित गति सँ पाछू दिस काज करैत → शून्य तिथि ≈ २८५ ईस्वी।",
-    "mr": "Fixed Spica (Chitra, α Virginis) at exactly 180° sidereal. Spica is bright (magnitude 1.0), easily observable, and 180° is mathematically clean (exactly opposite 0° Aries). Working backward from Spica's known proper motion → zero date ≈ 285 CE."
+    "mr": "स्थिर स्वाती (चित्रा, α व्हर्जिनिस) बरोबर १८०° सायनवर. स्वाती तेजस्वी (परिमाण १.०), सहज निरीक्षण करण्यायोग्य आहे आणि १८०° गणितीयदृष्ट्या स्वच्छ आहे (०° मेष राशीच्या अगदी विरुद्ध). स्वातीच्या ज्ञात योग्य गतीवरून मागे जाऊन → शून्य तारीख ≈ २८५ ई."
   },
   "usedRevatiΖPisciumAs": {
     "en": "Used Revati (ζ Piscium) as anchor at 359°50' sidereal, based on Surya Siddhanta references. Different star → different zero → zero date ≈ 397 CE.",
     "hi": "रेवती (ζ Piscium) को 359°50' निरयन पर लंगर के रूप में प्रयोग किया, सूर्य सिद्धान्त के सन्दर्भों के आधार पर। भिन्न तारा → भिन्न शून्य → शून्य तिथि ≈ 397 ई.।",
     "mai": "रेवती (ζ Piscium) केँ ३५९°५०' नाक्षत्र पर लंगरक रूप मे प्रयोग कएल गेल, सूर्य सिद्धांतक संदर्भसभ पर आधारित। भिन्न तारा → भिन्न शून्य → शून्य तिथि ≈ ३९७ ईस्वी।",
-    "mr": "Used Revati (ζ Piscium) as anchor at 359°50' sidereal, based on Surya Siddhanta references. Different star → different zero → zero date ≈ 397 CE."
+    "mr": "रेवती (ζ पिसियम) ला ३५९°५०' सायनवर आधार म्हणून वापरले, सूर्य सिद्धांत संदर्भांवर आधारित. भिन्न तारा → भिन्न शून्य → शून्य तारीख ≈ ३९७ ई."
   },
   "startedFromLahiriButApplied": {
     "en": "Started from Lahiri but applied a small correction based on his own observations of dasha timing accuracy. The idea: whichever ayanamsha makes Vimshottari dasha predictions MOST accurate is the \"correct\" one. Empirical tuning → zero ≈ 291 CE.",
     "hi": "लहिरी से आरम्भ किया लेकिन दशा समय की सटीकता के अपने प्रेक्षणों के आधार पर एक छोटा सुधार लागू किया। विचार: जो अयनांश विंशोत्तरी दशा भविष्यवाणियों को सबसे सटीक बनाए, वही \"सही\" है। प्रायोगिक समायोजन → शून्य ≈ 291 ई.।",
     "mai": "लाहिरी सँ शुरू कएल गेल मुदा दशाक समयक सटीकताक अपन अवलोकन पर आधारित एकटा छोट सुधार लागू कएल गेल। विचार ई अछि: जे अयनमशा विंशोत्तरी दशाक भविष्यवाणी केँ सबसँ सटीक बनबैत अछि, ओही \"सही\" अछि। अनुभवजन्य ट्यूनिंग → शून्य ≈ २९१ ईस्वी।",
-    "mr": "Started from Lahiri but applied a small correction based on his own observations of dasha timing accuracy. The idea: whichever ayanamsha makes Vimshottari dasha predictions MOST accurate is the \"correct\" one. Empirical tuning → zero ≈ 291 CE."
+    "mr": "लाहिरीपासून सुरुवात केली परंतु त्याच्या स्वतःच्या दशा वेळेच्या अचूकतेच्या निरीक्षणांवर आधारित एक लहान सुधारणा लागू केली. कल्पना: जो अयनांश विंशोत्तरी दशा भविष्यवाण्यांना सर्वात अचूक बनवतो तो \"योग्य\" आहे. अनुभवजन्य समायोजन → शून्य ≈ २९१ ई."
   },
   "cyrilFaganIrishUsedAldebaran": {
     "en": "Cyril Fagan (Irish) used Aldebaran (α Tauri) at exactly 15° Taurus AND Antares (α Scorpii) at exactly 15° Scorpio as dual anchors. Double verification with two opposite stars → zero ≈ 221 CE.",
     "hi": "सिरिल फ़गन (आयरिश) ने अल्डेबैरन (α Tauri) को ठीक 15° वृषभ और एन्टेयर्स (α Scorpii) को ठीक 15° वृश्चिक में दोहरे लंगर के रूप में प्रयोग किया। दोहरा सत्यापन, भिन्न तारे → शून्य ≈ 221 ई.।",
     "mai": "सिरिल फागन (आयरिश) Aldebaran (α Tauri) केँ ठीक १५° वृषभ पर आ Antares (α Scorpii) केँ ठीक १५° वृश्चिक पर दोहरी लंगरक रूप मे प्रयोग कएलनि। दूटा विपरीत तारासभक संग दोहरी सत्यापन → शून्य ≈ २२१ ईस्वी।",
-    "mr": "Cyril Fagan (Irish) used Aldebaran (α Tauri) at exactly 15° Taurus AND Antares (α Scorpii) at exactly 15° Scorpio as dual anchors. Double verification with two opposite stars → zero ≈ 221 CE."
+    "mr": "सिरिल फागन (आयरिश) यांनी रोहिणी (α टॉरी) ला बरोबर १५° वृषभ राशीत आणि ज्येष्ठा (α स्कॉर्पी) ला बरोबर १५° वृश्चिक राशीत दुहेरी आधार म्हणून वापरले. दोन विरुद्ध ताऱ्यांसह दुहेरी पडताळणी → शून्य ≈ २२१ ई."
   },
   "sriYukteshwarGiriYoganandaS": {
     "en": "Sri Yukteshwar Giri (Yogananda's guru) calculated from precessional theory in \"The Holy Science\" (1894). Derived a unique zero date of ~499 CE.",
     "hi": "श्री युक्तेश्वर गिरि (योगानन्द के गुरु) ने अपनी पुस्तक \"The Holy Science\" (1894) में पुरस्सरण सिद्धान्त से गणना की। एक अद्वितीय शून्य तिथि ~499 ई. प्राप्त की।",
     "mai": "श्री युक्तेश्वर गिरि (योगानंदक गुरु) \"द होली साइंस\" (१८९४) मे पूर्ववर्ती सिद्धांत सँ गणना कएलनि। ~४९९ ईस्वीक एकटा अद्वितीय शून्य तिथि प्राप्त कएलनि।",
-    "mr": "Sri Yukteshwar Giri (Yogananda's guru) calculated from precessional theory in \"The Holy Science\" (1894). Derived a unique zero date of ~499 CE."
+    "mr": "श्री युक्तेश्वर गिरी (योगानंदांचे गुरु) यांनी \"द होली सायन्स\" (१८९४) मधील अयनचलन सिद्धांतावरून गणना केली. त्यांनी ~४९९ ई. ची एक अद्वितीय शून्य तारीख काढली."
   },
   "whyCanTWeJust": {
     "en": "Why Can't We Just Measure It?",
     "hi": "क्या हम इसे माप नहीं सकते?",
     "mai": "हमसभ एकरा मात्र की लेल नहि मापि सकैत छी?",
-    "mr": "Why Can't We Just Measure It?"
+    "mr": "आपण फक्त ते मोजू शकत नाही का?"
   },
   "becausePrecessionIsContinuousAnd": {
     "en": "Because precession is continuous and the \"correct\" zero point depends on WHERE you draw the constellation boundary  –  which is a human convention, not a physical fact. The IAU (International Astronomical Union) constellation boundaries don't even match the traditional 30°-per-sign equal divisions.",
     "hi": "क्योंकि पुरस्सरण सतत है और \"सही\" शून्य बिन्दु इस पर निर्भर करता है कि आप तारामंडल की सीमा कहाँ खींचते हैं  –  जो एक मानवीय परम्परा है, भौतिक तथ्य नहीं। IAU (अन्तर्राष्ट्रीय खगोलीय संघ) की तारामंडल सीमाएँ परम्परागत 30°-प्रति-राशि विभाजनों से मेल नहीं खातीं।",
     "mai": "किएक तँ अयन निरंतर अछि आ \"सही\" शून्य बिंदु एहि बात पर निर्भर करैत अछि जे अहाँ नक्षत्रक सीमा कतय खींचैत छी – जे एकटा मानवीय परंपरा अछि, भौतिक तथ्य नहि। IAU (अंतर्राष्ट्रीय खगोलीय संघ) नक्षत्र सीमासभ पारंपरिक ३०°-प्रति-राशि समान विभाजन सँ सेहो मेल नहि खाएत अछि।",
-    "mr": "Because precession is continuous and the \"correct\" zero point depends on WHERE you draw the constellation boundary  –  which is a human convention, not a physical fact. The IAU (International Astronomical Union) constellation boundaries don't even match the traditional 30°-per-sign equal divisions."
+    "mr": "कारण अयनचलन सतत असते आणि \"योग्य\" शून्य बिंदू तुम्ही नक्षत्र सीमा कुठे काढता यावर अवलंबून असतो – जी मानवी प्रथा आहे, भौतिक सत्य नाही. IAU (आंतरराष्ट्रीय खगोलशास्त्रीय संघ) च्या नक्षत्र सीमा पारंपारिक ३०° प्रति रास समान विभागांशी जुळत नाहीत."
   },
   "thinkOfItLikeChoosing": {
     "en": "Think of it like choosing a city boundary  –  does \"Delhi\" end at the railway station or the airport? Both answers are valid, both are human choices, and both give you a consistent map  –  just slightly different. The ayanamsha choice is exactly like this.",
     "hi": "यह किसी शहर की सीमा चुनने जैसा है  –  \"दिल्ली\" रेलवे स्टेशन पर समाप्त होती है या हवाई अड्डे पर? दोनों उत्तर वैध हैं, दोनों मानवीय चुनाव हैं, और दोनों एक सुसंगत मानचित्र देते हैं  –  बस थोड़ा अलग। अयनांश का चुनाव ठीक ऐसा ही है।",
     "mai": "एकरा शहरक सीमा चुनबाक जेकाँ सोचू – की \"दिल्ली\" रेलवे स्टेशन पर समाप्त होइत अछि या हवाई अड्डा पर? दुनू उत्तर वैध अछि, दुनू मानवीय विकल्प अछि, आ दुनू अहाँ केँ एकटा सुसंगत नक्शा दैत अछि – मात्र किछु भिन्न। अयनमशाक चुनाव ठीक एहिना अछि।",
-    "mr": "Think of it like choosing a city boundary  –  does \"Delhi\" end at the railway station or the airport? Both answers are valid, both are human choices, and both give you a consistent map  –  just slightly different. The ayanamsha choice is exactly like this."
+    "mr": "शहराची सीमा निवडण्यासारखे याचा विचार करा – \"दिल्ली\" रेल्वे स्टेशनवर संपते की विमानतळावर? दोन्ही उत्तरे वैध आहेत, दोन्ही मानवी निवडी आहेत आणि दोन्ही तुम्हाला एक सुसंगत नकाशा देतात – फक्त थोडे वेगळे. अयनांश निवड अगदी अशीच आहे."
   },
   "whichOneShouldYouUse": {
     "en": "Which One Should You Use?",
     "hi": "कौन सा चुनें?",
     "mai": "अहाँ केँ कोनटा उपयोग करबाक चाही?",
-    "mr": "Which One Should You Use?"
+    "mr": "तुम्ही कोणता वापरला पाहिजे?"
   },
   "lahiriIsDominantInIndia": {
     "en": "Lahiri is dominant in India (roughly 90 percent of practitioners). KP uses a very close variant. Raman is used by a significant minority. Our recommendation: START with Lahiri (most widely used, most validated). If your guru or tradition uses a different system, choose that one. Our app supports all three (Lahiri/Raman/KP)  –  you can generate the same chart with different systems and compare.",
     "hi": "लहिरी भारत में प्रमुख है (~90% ज्योतिषी)। के.पी. पद्धति एक बहुत निकट संस्करण प्रयोग करती है। रमण एक महत्त्वपूर्ण अल्पसंख्यक द्वारा प्रयुक्त है। पश्चिमी निरयन ज्योतिषी फ़गन-ब्रैडली प्रयोग करते हैं। हमारा सुझाव: लहिरी से आरम्भ करें (सबसे व्यापक, सबसे अधिक सत्यापित)। यदि आपके गुरु या परम्परा कोई अन्य पद्धति प्रयोग करती है, उसे चुनें। हमारा ऐप तीनों (लहिरी/रमन/केपी) का समर्थन करता है।",
     "mai": "लाहिरी भारत मे प्रमुख अछि (लगभग ९० प्रतिशत व्यवसायी)। केपी एकटा बहुत निकट भिन्नताक उपयोग करैत अछि। रमन केँ एकटा महत्वपूर्ण अल्पसंख्यक द्वारा उपयोग कएल जाइत अछि। हमर सिफारिश: लाहिरी सँ शुरू करू (सबसँ व्यापक रूप सँ उपयोग कएल गेल, सबसँ अधिक मान्य)। जँ अहाँक गुरु वा परंपरा एकटा भिन्न प्रणालीक उपयोग करैत अछि, तँ ओकरा चुनू। हमर ऐप ई तीनू (लाहिरी/रमन/केपी) केँ समर्थन करैत अछि – अहाँ भिन्न प्रणालीसभक संग एकहि चार्ट उत्पन्न कऽ सकैत छी आ तुलना कऽ सकैत छी।",
-    "mr": "Lahiri is dominant in India (roughly 90 percent of practitioners). KP uses a very close variant. Raman is used by a significant minority. Our recommendation: START with Lahiri (most widely used, most validated). If your guru or tradition uses a different system, choose that one. Our app supports all three (Lahiri/Raman/KP)  –  you can generate the same chart with different systems and compare."
+    "mr": "लाहिरी भारतात प्रभावी आहे (सुमारे ९० टक्के अभ्यासक). केपी एक अतिशय जवळचा प्रकार वापरते. रमण एक महत्त्वपूर्ण अल्पसंख्याक वापरतात. आमची शिफारस: लाहिरीपासून सुरुवात करा (सर्वात जास्त वापरले जाणारे, सर्वात जास्त प्रमाणित). जर तुमचे गुरु किंवा परंपरा वेगळी प्रणाली वापरत असेल, तर ती निवडा. आमचे ॲप तिन्ही (लाहिरी/रमण/केपी) ला समर्थन देते – तुम्ही वेगवेगळ्या प्रणालींसह समान कुंडली तयार करू शकता आणि तुलना करू शकता."
   },
   "practicalImpactIfYourPlanet": {
     "en": "Practical impact: if your planet is within 2 degrees of a sign boundary, the ayanamsha choice matters. For planets in the middle of a sign, all systems agree.",
     "hi": "व्यावहारिक प्रभाव: यदि आपका ग्रह किसी राशि की सीमा के 2° के भीतर है, तो अयनांश का चुनाव महत्त्वपूर्ण है। राशि के मध्य में स्थित ग्रहों के लिए सभी पद्धतियाँ सहमत हैं।",
     "mai": "व्यावहारिक प्रभाव: जँ अहाँक ग्रह राशि सीमाक २ डिग्रीक भीतर अछि, तँ अयनमशाक चुनाव महत्वपूर्ण अछि। राशि के मध्य मे ग्रहसभक लेल, सब प्रणाली सहमत अछि।",
-    "mr": "Practical impact: if your planet is within 2 degrees of a sign boundary, the ayanamsha choice matters. For planets in the middle of a sign, all systems agree."
+    "mr": "व्यावहारिक परिणाम: जर तुमचा ग्रह राशीच्या सीमेच्या २ अंशांच्या आत असेल, तर अयनांश निवड महत्त्वाची ठरते. राशीच्या मध्यभागी असलेल्या ग्रहांसाठी, सर्व प्रणाली सहमत आहेत."
   },
   "howOurAppHandlesIt": {
     "en": "How Our App Handles It",
     "hi": "हमारा ऐप कैसे सँभालता है",
     "mai": "हमर ऐप एकरा केना संभालैत अछि",
-    "mr": "How Our App Handles It"
+    "mr": "आमचे ॲप ते कसे हाताळते"
   },
   "theKundaliGeneratorLetsYou": {
     "en": "The kundali generator lets you choose Lahiri, Raman, or KP ayanamsha. The default is Lahiri (most widely used). The formula is a polynomial fitted to IAU precession with Spica pinned at 180 degrees sidereal. All planetary positions are first computed using tropical (equinox-based) mathematics, then converted to sidereal by subtracting the chosen ayanamsha.",
     "hi": "कुण्डली जनक आपको लहिरी, रमण या के.पी. अयनांश चुनने देता है। पूर्वनिर्धारित लहिरी है (सर्वाधिक व्यापक)। सूत्र IAU पुरस्सरण पर आधारित बहुपद है जिसमें चित्रा (स्पाइका) 180° निरयन पर स्थिर है। सभी ग्रह स्थितियाँ पहले सायन (उष्णकटिबन्धीय) गणित से निकाली जाती हैं, फिर चयनित अयनांश घटाकर निरयन (नाक्षत्र) में रूपान्तरित की जाती हैं।",
     "mai": "कुंडली जनरेटर अहाँ केँ लाहिरी, रमन, वा केपी अयनमशा चुनबाक अनुमति दैत अछि। डिफ़ॉल्ट लाहिरी अछि (सबसँ व्यापक रूप सँ उपयोग कएल गेल)। सूत्र एकटा बहुपद अछि जे IAU अयन सँ फिट कएल गेल अछि जतय Spica १८० डिग्री नाक्षत्र पर पिन कएल गेल अछि। सब ग्रहक स्थिति केँ पहिने उष्णकटिबंधीय (विषुव-आधारित) गणितक उपयोग कऽ कऽ गणना कएल जाइत अछि, फेर चुनल गेल अयनमशा केँ घटा कऽ नाक्षत्र मे परिवर्तित कएल जाइत अछि।",
-    "mr": "The kundali generator lets you choose Lahiri, Raman, or KP ayanamsha. The default is Lahiri (most widely used). The formula is a polynomial fitted to IAU precession with Spica pinned at 180 degrees sidereal. All planetary positions are first computed using tropical (equinox-based) mathematics, then converted to sidereal by subtracting the chosen ayanamsha."
+    "mr": "कुंडली जनरेटर तुम्हाला लाहिरी, रमण किंवा केपी अयनांश निवडण्याची परवानगी देतो. डीफॉल्ट लाहिरी आहे (सर्वात जास्त वापरले जाणारे). सूत्र हे IAU अयनचलनानुसार बसवलेली बहुपदी आहे, ज्यात स्वाती १८० अंश सायनवर निश्चित केली आहे. सर्व ग्रहांची स्थिती प्रथम उष्णकटिबंधीय (संपात-आधारित) गणितांचा वापर करून काढली जाते, नंतर निवडलेला अयनांश वजा करून सायनमध्ये रूपांतरित केली जाते."
   },
   "commonMisconceptions": {
     "en": "Common Misconceptions",
     "hi": "सामान्य भ्रान्तियाँ",
     "mai": "सामान्य गलत धारणासभ",
-    "mr": "Common Misconceptions"
+    "mr": "सामान्य गैरसमज"
   },
   "myth": {
     "en": "Myth:",
@@ -1121,7 +1121,7 @@
     "en": "\"Western astrology is wrong because it doesn't use ayanamsha.\"",
     "hi": "\"पश्चिमी ज्योतिष गलत है क्योंकि वह अयनांश का प्रयोग नहीं करता।\"",
     "mai": "\"पश्चिमी ज्योतिष गलत अछि किएक तँ ई अयनमशाक उपयोग नहि करैत अछि।\"",
-    "mr": "\"Western astrology is wrong because it doesn't use ayanamsha.\""
+    "mr": "\"पाश्चात्त्य ज्योतिष चुकीचे आहे कारण ते अयनांश वापरत नाही.\""
   },
   "reality": {
     "en": "Reality:",
@@ -1133,18 +1133,18 @@
     "en": "Both systems are internally consistent. Tropical astrology tracks seasonal and equinox relationships (valid for weather and agricultural cycles). Sidereal astrology tracks stellar relationships (valid for nakshatra-based systems). Neither is \"wrong\"  –  they answer different questions using different anchors.",
     "hi": "दोनों पद्धतियाँ आन्तरिक रूप से सुसंगत हैं। सायन ज्योतिष मौसमी सम्बन्धों को ट्रैक करता है (मौसम और कृषि के लिए मान्य)। निरयन ज्योतिष तारकीय सम्बन्धों को ट्रैक करता है (नक्षत्र-आधारित पद्धतियों के लिए मान्य)। कोई भी \"गलत\" नहीं है  –  वे भिन्न लंगरों का उपयोग करके भिन्न प्रश्नों का उत्तर देते हैं।",
     "mai": "दुनू प्रणाली आंतरिक रूप सँ सुसंगत अछि। उष्णकटिबंधीय ज्योतिष मौसमी आ विषुव संबंधसभ केँ ट्रैक करैत अछि (मौसम आ कृषि चक्रक लेल वैध)। नाक्षत्र ज्योतिष तारकीय संबंधसभ केँ ट्रैक करैत अछि (नक्षत्र-आधारित प्रणालीसभक लेल वैध)। दुनू मे सँ केओ \"गलत\" नहि अछि – ओ विभिन्न लंगरसभक उपयोग कऽ कऽ भिन्न प्रश्नसभक उत्तर दैत अछि।",
-    "mr": "Both systems are internally consistent. Tropical astrology tracks seasonal and equinox relationships (valid for weather and agricultural cycles). Sidereal astrology tracks stellar relationships (valid for nakshatra-based systems). Neither is \"wrong\"  –  they answer different questions using different anchors."
+    "mr": "दोन्ही प्रणाली अंतर्गत सुसंगत आहेत. उष्णकटिबंधीय ज्योतिष हंगामी आणि संपात संबंधांचा मागोवा घेते (हवामान आणि कृषी चक्रांसाठी वैध). सायन ज्योतिष तारा संबंधांचा मागोवा घेते (नक्षत्र-आधारित प्रणालींसाठी वैध). दोन्हीपैकी काहीही \"चुकीचे\" नाही – ते भिन्न आधार वापरून भिन्न प्रश्नांची उत्तरे देतात."
   },
   "modernRelevance": {
     "en": "Modern Relevance",
     "hi": "आधुनिक प्रासंगिकता",
     "mai": "आधुनिक प्रासंगिकता",
-    "mr": "Modern Relevance"
+    "mr": "आधुनिक प्रासंगिकता"
   },
   "theIauInternationalAstronomicalUnion": {
     "en": "The IAU (International Astronomical Union) uses the ICRS (International Celestial Reference System) anchored to distant quasars  –  neither tropical nor sidereal. All ayanamsha systems are human-chosen reference frames. What matters is consistency, not absolute \"truth.\" NASA uses precession in all orbital calculations. Our app uses the same mathematics  –  a polynomial based on the IAU precession rate, anchored to the star Spica at 180 degrees sidereal.",
     "hi": "अन्तर्राष्ट्रीय खगोलीय संघ (IAU) ICRS (अन्तर्राष्ट्रीय खगोलीय सन्दर्भ पद्धति) प्रयोग करता है जो दूरस्थ क्वेसारों पर आधारित है  –  न सायन, न निरयन। सभी अयनांश पद्धतियाँ मानव-चयनित सन्दर्भ ढाँचे हैं। जो महत्त्वपूर्ण है वह सुसंगतता है, न कि परम \"सत्य\"। नासा कक्षीय गणनाओं में पुरस्सरण प्रयोग करता है। हमारा ऐप वही गणित प्रयोग करता है  –  IAU पुरस्सरण दर पर आधारित बहुपद, चित्रा तारे से 180° पर स्थिर।",
     "mai": "IAU (अंतर्राष्ट्रीय खगोलीय संघ) ICRS (अंतर्राष्ट्रीय खगोलीय संदर्भ प्रणाली) केँ उपयोग करैत अछि जे दूरस्थ क्वासरसभ सँ जुड़ल अछि – न तँ उष्णकटिबंधीय आ नहि नाक्षत्र। सब अयनमशा प्रणाली मानवीय रूप सँ चुनल गेल संदर्भ फ्रेम अछि। जे महत्वपूर्ण अछि ओ सुसंगतता अछि, निरपेक्ष \"सत्य\" नहि। नासा सब कक्षीय गणनासभ मे अयनक उपयोग करैत अछि। हमर ऐप ओही गणितक उपयोग करैत अछि – एकटा बहुपद जे IAU अयन दर पर आधारित अछि, जे तारा Spica सँ १८० डिग्री नाक्षत्र पर जुड़ल अछि।",
-    "mr": "The IAU (International Astronomical Union) uses the ICRS (International Celestial Reference System) anchored to distant quasars  –  neither tropical nor sidereal. All ayanamsha systems are human-chosen reference frames. What matters is consistency, not absolute \"truth.\" NASA uses precession in all orbital calculations. Our app uses the same mathematics  –  a polynomial based on the IAU precession rate, anchored to the star Spica at 180 degrees sidereal."
+    "mr": "IAU (आंतरराष्ट्रीय खगोलशास्त्रीय संघ) दूरच्या क्वासारवर आधारित ICRS (आंतरराष्ट्रीय खगोलीय संदर्भ प्रणाली) वापरते – उष्णकटिबंधीय किंवा सायन दोन्ही नाही. सर्व अयनांश प्रणाली मानवनिर्मित संदर्भ फ्रेम आहेत. सुसंगतता महत्त्वाची आहे, निरपेक्ष \"सत्य\" नाही. नासा सर्व कक्षीय गणितांमध्ये अयनचलन वापरते. आमचे ॲप समान गणित वापरते – IAU अयनचलन दरावर आधारित बहुपदी, जी स्वाती ताऱ्याला १८० अंश सायनवर आधार मानते."
   }
 }

@@ -1104,7 +1104,7 @@ export default function KundaliClient() {
         ketuLongitude: ketuP?.longitude,
         lagnaLordId,
         moonLongitude: moonP?.longitude,
-      });
+      }, locale);
     } catch (err) {
       console.error('[kundali] blueprint generation failed:', err);
       return null;

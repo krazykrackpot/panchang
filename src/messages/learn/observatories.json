@@ -57,24 +57,24 @@
   "s4Title": {
     "en": "Legacy",
     "hi": "विरासत",
-    "ta": "Legacy",
-    "te": "Legacy",
-    "bn": "Legacy",
-    "kn": "Legacy",
-    "mr": "Legacy",
-    "gu": "Legacy",
-    "mai": "Legacy"
+    "ta": "பாரம்பரியம்",
+    "te": "వారసత్వం",
+    "bn": "ঐতিহ্য",
+    "kn": "ಪರಂಪರೆ",
+    "mr": "वारसा",
+    "gu": "વારસો",
+    "mai": "विरासत"
   },
   "s5Title": {
     "en": "Visit",
     "hi": "दर्शन करें",
-    "ta": "Visit",
-    "te": "Visit",
-    "bn": "Visit",
-    "kn": "Visit",
-    "mr": "Visit",
-    "gu": "Visit",
-    "mai": "Visit"
+    "ta": "பார்வையிடவும்",
+    "te": "దర్శించండి",
+    "bn": "দর্শন করুন",
+    "kn": "ದರ್ಶನ ಮಾಡಿ",
+    "mr": "दर्शन घ्या",
+    "gu": "દર્શન કરો",
+    "mai": "दर्शन करू"
   },
   "backToLearn": {
     "en": "Back to Learn",

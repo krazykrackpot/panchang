@@ -8,6 +8,22 @@ import { buildIndexableHreflang } from '@/lib/seo/hreflang';
 
 const BASE_URL = 'https://dekhopanchang.com';
 
+// Open Graph requires a BCP 47-ish underscore-joined locale tag. Indic
+// regional locales use `<lang>_IN` per Facebook's convention. Maithili
+// (`mai_IN`) is not in Facebook's documented set but is a valid BCP 47
+// extension and Facebook accepts unknown tags gracefully.
+const OG_LOCALE_TAGS: Record<string, string> = {
+  en: 'en_US', hi: 'hi_IN', ta: 'ta_IN', te: 'te_IN',
+  bn: 'bn_IN', gu: 'gu_IN', kn: 'kn_IN', mai: 'mai_IN', mr: 'mr_IN',
+};
+
+// Schema.org `inLanguage` accepts ISO 639-1 codes. All 9 visible
+// locales have a valid 639-1 tag (mai = Maithili).
+const INLANGUAGE_TAGS: Record<string, string> = {
+  en: 'en', hi: 'hi', ta: 'ta', te: 'te',
+  bn: 'bn', gu: 'gu', kn: 'kn', mai: 'mai', mr: 'mr',
+};
+
 export function generateStaticParams() {
   return Object.keys(LOCALIZED_TRANSIT_ARTICLES).map(slug => ({ slug }));
 }
@@ -32,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url: `${BASE_URL}/${locale}/learn/transits/${slug}`,
       siteName: 'Dekho Panchang',
-      locale: locale === 'hi' ? 'hi_IN' : 'en_US',
+      locale: OG_LOCALE_TAGS[locale] ?? 'en_US',
       type: 'article',
     },
     twitter: { card: 'summary_large_image', title, description },
@@ -73,7 +89,7 @@ export default async function TransitArticleLayout({
     url: `${BASE_URL}/${locale}/learn/transits/${slug}`,
     author: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
     publisher: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
-    inLanguage: locale === 'hi' ? 'hi' : 'en',
+    inLanguage: INLANGUAGE_TAGS[locale] ?? 'en',
   };
 
   // Breadcrumb name uses the localised article title — breadcrumb

@@ -11,7 +11,7 @@ import React, {
   useState,
 } from 'react';
 
-import { getGlossaryEntry } from '@/lib/constants/glossary';
+import { getGlossaryEntry } from '@/lib/constants/glossary-with-overlay';
 import { tl } from '@/lib/utils/trilingual';
 
 const SEEN_STORAGE_KEY = 'jyotish-terms-seen';
@@ -203,14 +203,14 @@ export default function JyotishTerm({ term, children, showOnce = false }: Jyotis
 
           {/* Short definition */}
           <p className="text-text-primary text-xs leading-relaxed mb-2">
-            {entry.shortDef}
+            {tl(entry.shortDef, locale)}
           </p>
 
           {/* Western equivalent */}
           {entry.westernEquivalent && (
             <p className="text-text-secondary text-xs mb-2">
               <span className="text-gold-primary/70">Western:</span>{' '}
-              {entry.westernEquivalent}
+              {tl(entry.westernEquivalent, locale)}
             </p>
           )}
 

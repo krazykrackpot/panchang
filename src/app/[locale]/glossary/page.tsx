@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react';
 import { Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocale } from 'next-intl';
-import { GLOSSARY, type GlossaryEntry } from '@/lib/constants/glossary';
+import { GLOSSARY, type LocalizedGlossaryEntry as GlossaryEntry } from '@/lib/constants/glossary-with-overlay';
 import { tl } from '@/lib/utils/trilingual';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
@@ -41,9 +41,9 @@ export default function GlossaryPage() {
       return (
         entry.term.en.toLowerCase().includes(q) ||
         (entry.term.hi && entry.term.hi.toLowerCase().includes(q)) ||
-        entry.shortDef.toLowerCase().includes(q) ||
-        entry.fullDef.toLowerCase().includes(q) ||
-        (entry.westernEquivalent?.toLowerCase().includes(q) ?? false)
+        entry.shortDef.en.toLowerCase().includes(q) ||
+        entry.fullDef.en.toLowerCase().includes(q) ||
+        (entry.westernEquivalent?.en.toLowerCase().includes(q) ?? false)
       );
     });
   }, [search, activeCategory]);
@@ -70,7 +70,7 @@ export default function GlossaryPage() {
       '@type': 'DefinedTerm',
       '@id': `#${entry.id}`,
       name: entry.term.en,
-      description: entry.shortDef,
+      description: entry.shortDef.en,
       inDefinedTermSet: 'Vedic Astrology Glossary',
     })),
   };
@@ -189,19 +189,19 @@ export default function GlossaryPage() {
 
                           {/* Short definition */}
                           <p className="text-[#e6e2d8] text-sm font-medium mb-2">
-                            {entry.shortDef}
+                            {tl(entry.shortDef, locale)}
                           </p>
 
                           {/* Full definition */}
                           <p className="text-[#8a8478] text-sm leading-relaxed mb-3">
-                            {entry.fullDef}
+                            {tl(entry.fullDef, locale)}
                           </p>
 
                           {/* Western equivalent */}
                           {entry.westernEquivalent && (
                             <div className="flex items-center gap-2 mb-3 text-sm">
                               <span className="text-[#8a8478]">Western equivalent:</span>
-                              <span className="text-[#e6e2d8] italic">{entry.westernEquivalent}</span>
+                              <span className="text-[#e6e2d8] italic">{tl(entry.westernEquivalent, locale)}</span>
                             </div>
                           )}
 

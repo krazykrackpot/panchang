@@ -11,6 +11,7 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateFestivalEventLD } from '@/lib/seo/event-ld';
 import { generateHowToLD } from '@/lib/seo/howto-ld';
 import { computePersonalizedReading } from '@/lib/festivals/personalized-reading';
+import { computeYearContext } from '@/lib/festivals/year-context';
 import { FESTIVAL_ASTRO_FOCUS } from '@/lib/festivals/festival-astro-focus';
 import { FESTIVAL_WISHES } from '@/lib/festivals/wishes';
 import { FESTIVAL_OBSERVANCES } from '@/lib/festivals/observances';
@@ -492,6 +493,77 @@ export default async function FestivalCanonicalPage({
             <span>{tl({ en: 'Observation Rule', hi: 'पालन नियम' }, locale)}: <span className="text-gold-primary font-medium">{ruleLabel}</span></span>
           </div>
         </div>
+
+        {/* ── Year Context (audit item #5 — closes festival year-variant
+             thin-content risk by surfacing year-specific computed facts:
+             weekday this year, lunar drift from previous year, Hindu
+             calendar year markers) ── */}
+        {(() => {
+          const ctx = computeYearContext(slug, year, festivalDate);
+          if (ctx.weekday < 0) return null;
+          // Locale-aware weekday label. ICU is the only way to get correct
+          // non-Hindi Indic weekday spellings without a hand-rolled table.
+          const fullDateObj = new Date(festivalDate + 'T00:00:00Z');
+          const weekdayLoc = (() => {
+            const tag = locale === 'mr' ? 'mr-IN'
+              : locale === 'hi' || locale === 'mai' ? 'hi-IN'
+              : locale === 'ta' ? 'ta-IN'
+              : locale === 'te' ? 'te-IN'
+              : locale === 'bn' ? 'bn-IN'
+              : locale === 'gu' ? 'gu-IN'
+              : locale === 'kn' ? 'kn-IN'
+              : 'en-US';
+            return fullDateObj.toLocaleDateString(tag, { weekday: 'long', timeZone: 'UTC' });
+          })();
+          const driftSentence = (() => {
+            if (ctx.driftFromPreviousYear == null || ctx.previousYearDate == null) return null;
+            const d = ctx.driftFromPreviousYear;
+            const abs = Math.abs(d);
+            // Skip insignificant drifts (≤2 days, mostly solar festivals
+            // like Makar Sankranti that don't move year-on-year).
+            if (abs < 3) return null;
+            const direction = d < 0 ? 'earlier' : 'later';
+            return tl({
+              en: `This year ${festivalNameEn} falls on a ${ctx.weekdayEn}, ${abs} days ${direction} than ${year - 1} (${ctx.previousYearDate}) — typical lunar-calendar drift.`,
+              hi: `इस वर्ष ${festivalNameLocale} ${weekdayLoc} को पड़ रहा है, ${year - 1} (${ctx.previousYearDate}) से ${abs} दिन ${d < 0 ? 'पहले' : 'बाद'} — सामान्य चन्द्र-पंचांग बदलाव।`,
+            }, locale);
+          })();
+          return (
+            <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] rounded-2xl border border-gold-primary/10 p-5 sm:p-6 space-y-3">
+              <h2 className="text-gold-light font-bold text-lg flex items-center gap-2" style={{ fontFamily: 'var(--font-heading)' }}>
+                <Calendar className="w-5 h-5 text-gold-primary" />
+                {tl({ en: `${year} Calendar Context`, hi: `${year} पंचांग संदर्भ` }, locale)}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+                <div className="bg-gold-primary/5 rounded-xl p-3 border border-gold-primary/10">
+                  <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">
+                    {tl({ en: 'Weekday', hi: 'वार' }, locale)}
+                  </p>
+                  <p className="text-gold-light font-bold" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                    {weekdayLoc}
+                  </p>
+                </div>
+                <div className="bg-gold-primary/5 rounded-xl p-3 border border-gold-primary/10">
+                  <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">
+                    {tl({ en: 'Vikram Samvat', hi: 'विक्रम संवत्' }, locale)}
+                  </p>
+                  <p className="text-gold-light font-bold">{ctx.vikramSamvat}</p>
+                </div>
+                <div className="bg-gold-primary/5 rounded-xl p-3 border border-gold-primary/10">
+                  <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">
+                    {tl({ en: 'Shaka Samvat', hi: 'शक संवत्' }, locale)}
+                  </p>
+                  <p className="text-gold-light font-bold">{ctx.shakaSamvat}</p>
+                </div>
+              </div>
+              {driftSentence && (
+                <p className="text-text-primary/80 text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {driftSentence}
+                </p>
+              )}
+            </div>
+          );
+        })()}
 
         {/* ── Multi-City Muhurat Table ── */}
         <div className="space-y-3">

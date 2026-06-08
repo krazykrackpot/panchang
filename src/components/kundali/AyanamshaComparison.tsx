@@ -8,6 +8,11 @@ import type { KundaliData, PlanetPosition } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import {
+  pickAyanamshaLabel as AYL,
+  formatAyanamshaLabel,
+  cuspLifeLabel,
+} from '@/lib/content/kundali-ayanamsha-labels';
 import { getSubLordForDegree } from '@/lib/kp/sub-lords';
 import { calculatePlacidusCusps } from '@/lib/kp/placidus';
 import type { SubLordInfo } from '@/types/kp';
@@ -246,10 +251,10 @@ function SignShiftCommentary({ planets, locale }: { planets: PlanetRow[]; locale
     return (
       <div className="mt-5 rounded-xl bg-emerald-500/5 border border-emerald-500/15 p-4 text-center">
         <p className="text-emerald-400 text-sm font-medium">
-          {isHi ? '✓ सभी ग्रह तीनों अयनांश पद्धतियों में एक ही राशि में हैं' : '✓ All planets remain in the same sign across all three ayanamsha systems'}
+          {AYL('allPlanetsSame', locale)}
         </p>
         <p className="text-text-secondary text-xs mt-1">
-          {isHi ? 'आपकी कुण्डली अयनांश-स्वतन्त्र है  –  कोई भी पद्धति समान व्याख्या देगी।' : 'Your chart is ayanamsha-stable  –  any system will produce the same sign-level interpretation.'}
+          {AYL('chartStable', locale)}
         </p>
       </div>
     );
@@ -260,7 +265,11 @@ function SignShiftCommentary({ planets, locale }: { planets: PlanetRow[]; locale
   return (
     <div className="mt-5">
       <h4 className="text-amber-300 text-sm font-bold mb-3">
-        {isHi ? `⚡ ${shifted.length} ग्रह राशि सन्धि पर  –  विस्तृत विश्लेषण` : `⚡ ${shifted.length} Planet${shifted.length > 1 ? 's' : ''} at Sign Boundaries  –  Detailed Analysis`}
+        {formatAyanamshaLabel(
+          shifted.length === 1 ? 'planetBoundariesTemplateSingular' : 'planetBoundariesTemplate',
+          locale,
+          { COUNT: String(shifted.length) },
+        )}
       </h4>
       <div className="flex flex-col gap-3">
         {shifted.map((row) => {
@@ -374,7 +383,7 @@ function HolisticImpactSummary({ planets, locale, kundali }: { planets: PlanetRo
     const s1 = tl(RASHIS[lahiriSign]?.name, locale);
     const s2 = tl(RASHIS[ramanSign]?.name, locale);
     cards.push({
-      title: isHi ? `लग्न परिवर्तन: ${s1} → ${s2}` : `Lagna Shifts: ${s1} → ${s2}`,
+      title: formatAyanamshaLabel('lagnaShiftsTemplate', locale, { S1: s1, S2: s2 }),
       body: isHi
         ? `यह सबसे गम्भीर अन्तर है। लग्न आपकी सम्पूर्ण कुण्डली का आधार है  –  यदि यह बदलता है, तो सभी 12 भावों का स्वामित्व बदल जाता है, सभी योग पुनर्गणित होते हैं, और दशा-व्याख्या पूर्णतः भिन्न हो जाती है। आपको दोनों लग्नों से अपनी कुण्डली पढ़नी चाहिए और देखना चाहिए कि कौन-सा आपके जीवन-अनुभव से अधिक मेल खाता है  –  वही आपका सही अयनांश है।`
         : `This is the single most consequential difference. Your Lagna is the foundation of the entire chart  –  if it changes, all 12 house lordships shift, every yoga gets recalculated, and dasha interpretations change completely. You should read your chart from both Lagnas and honestly assess: which one describes your personality, appearance, and life trajectory more accurately? That is your correct ayanamsha.`,
@@ -423,7 +432,7 @@ function HolisticImpactSummary({ planets, locale, kundali }: { planets: PlanetRo
 
   // Practical self-assessment
   cards.push({
-    title: isHi ? 'कौन-सा अयनांश आपके लिए सही है?' : 'Which Ayanamsha Is Right For You?',
+    title: AYL('whichAyanamshaRight', locale),
     body: isHi
       ? 'अधिकांश भारतीय ज्योतिषी लाहिरी का प्रयोग करते हैं  –  यह भारत सरकार का आधिकारिक मानक है और सर्वाधिक परीक्षित है। लेकिन "सही" अयनांश वह है जो आपके वास्तविक जीवन-अनुभव से सबसे अधिक मेल खाता है। ऊपर प्रत्येक ग्रह के लिए दिए गए प्रश्नों पर विचार करें। यदि लाहिरी के भाव-स्थान आपके जीवन का अधिक सटीक वर्णन करते हैं, तो लाहिरी आपका अयनांश है। यदि रमन के भाव-स्थान अधिक मेल खाते हैं, तो रमन पर विचार करें। अधिकांश लोगों के लिए  –  विशेषकर जिनके ग्रह राशि सन्धि से दूर हैं  –  सभी पद्धतियाँ समान परिणाम देती हैं।'
       : 'Most Indian astrologers use Lahiri  –  it is the government-adopted standard and the most widely tested. But the "correct" ayanamsha is the one that most accurately describes your actual life experience. Reflect on the questions above for each planet. If the Lahiri house placements describe your life more accurately, Lahiri is your ayanamsha. If Raman\'s placements resonate more, consider using Raman. For most people  –  especially those whose planets aren\'t near sign boundaries  –  all three systems produce identical results, and this question is moot.',
@@ -433,7 +442,7 @@ function HolisticImpactSummary({ planets, locale, kundali }: { planets: PlanetRo
   return (
     <div className="mt-6 space-y-4">
       <h4 className="text-amber-300 text-base sm:text-lg font-bold">
-        {isHi ? 'आपके जीवन पर वास्तविक प्रभाव' : 'What This Concretely Means For Your Life'}
+        {AYL('whatConcretely', locale)}
       </h4>
       {cards.map((card, i) => (
         <div
@@ -510,7 +519,7 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
 
     planetRows.push({
       id: -1,
-      name: locale === 'hi' ? 'लग्न' : 'Lagna',
+      name: AYL('lagnaRowLabel', locale),
       positions: { lahiri: ascLong, raman: ramanAsc, kp: kpAsc },
       hasSignChange: lahiriAscSign !== ramanAscSign || lahiriAscSign !== kpAscSign,
       kpSubLord: getSubLordForDegree(kpAsc),
@@ -544,7 +553,7 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
   return (
     <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/15 p-5 sm:p-6">
       <h3 className="text-gold-light text-base sm:text-lg font-bold mb-5">
-        {locale === 'hi' ? 'आपकी कुण्डली: तीन अयनांश पद्धतियों में तुलना' : 'Your Chart Across Three Ayanamsha Systems'}
+        {AYL('yourChartAcross', locale)}
       </h3>
 
       {/* Ayanamsha values */}
@@ -572,7 +581,7 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
           <thead>
             <tr className="border-b border-gold-primary/15">
               <th className="text-left py-2 px-2 text-text-secondary font-medium">
-                {locale === 'hi' ? 'ग्रह' : 'Planet'}
+                {AYL('planetColHeader', locale)}
               </th>
               <th className="text-center py-2 px-2 text-gold-light font-bold">Lahiri</th>
               <th className="text-center py-2 px-2 text-gold-light font-bold">Raman</th>
@@ -597,9 +606,7 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
                     {row.hasSignChange && (
                       <span
                         className="ml-1.5 inline-block w-2 h-2 rounded-full bg-amber-400"
-                        title={locale === 'hi'
-                          ? 'भिन्न अयनांश में राशि परिवर्तन'
-                          : 'Sign changes across ayanamshas'}
+                        title={AYL('signChangesTooltip', locale)}
                       />
                     )}
                   </td>
@@ -641,28 +648,26 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
       {/* KP Cuspal Sub-Lords (Placidus) */}
       <div className="mt-6 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-5">
         <h4 className="text-gold-light text-sm font-bold mb-3">
-          {locale === 'hi'
-            ? 'केपी भाव-कुशल उप-स्वामी (प्लासिडस)'
-            : 'KP Cuspal Sub-Lords (Placidus)'}
+          {AYL('kpCuspalSubLords', locale)}
         </h4>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/15">
                 <th className="text-left py-1.5 px-2 text-text-secondary font-medium">
-                  {locale === 'hi' ? 'भाव' : 'Cusp'}
+                  {AYL('cuspHeader', locale)}
                 </th>
                 <th className="text-center py-1.5 px-2 text-text-secondary font-medium">
-                  {locale === 'hi' ? 'अंश' : 'Degree'}
+                  {AYL('degreeHeader', locale)}
                 </th>
                 <th className="text-center py-1.5 px-2 text-text-secondary font-medium">
-                  {locale === 'hi' ? 'राशि स्वामी' : 'Sign Lord'}
+                  {AYL('signLordHeader', locale)}
                 </th>
                 <th className="text-center py-1.5 px-2 text-text-secondary font-medium">
-                  {locale === 'hi' ? 'नक्षत्र स्वामी' : 'Star Lord'}
+                  {AYL('starLordHeader', locale)}
                 </th>
                 <th className="text-center py-1.5 px-2 text-text-secondary font-medium">
-                  {locale === 'hi' ? 'उप स्वामी' : 'Sub Lord'}
+                  {AYL('subLordHeader', locale)}
                 </th>
               </tr>
             </thead>
@@ -678,11 +683,7 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
                   <tr key={house} className="border-b border-gold-primary/5">
                     <td className="py-1.5 px-2 text-text-primary font-medium">
                       <span>{house}</span>
-                      <span className="text-text-secondary/60 text-[9px] ml-1">{(() => {
-                        const CUSP_LIFE: Record<number, { en: string; hi: string }> = { 1: { en: 'Self', hi: 'स्वयं' }, 2: { en: 'Wealth', hi: 'धन' }, 3: { en: 'Courage', hi: 'साहस' }, 4: { en: 'Home', hi: 'गृह' }, 5: { en: 'Children', hi: 'सन्तान' }, 6: { en: 'Health', hi: 'रोग' }, 7: { en: 'Marriage', hi: 'विवाह' }, 8: { en: 'Transform', hi: 'रूपान्तर' }, 9: { en: 'Fortune', hi: 'भाग्य' }, 10: { en: 'Career', hi: 'कैरियर' }, 11: { en: 'Gains', hi: 'लाभ' }, 12: { en: 'Liberation', hi: 'मोक्ष' } };
-                        const cl = CUSP_LIFE[house];
-                        return cl ? (isDevanagariLocale(locale) ? cl.hi : cl.en) : '';
-                      })()}</span>
+                      <span className="text-text-secondary/60 text-[9px] ml-1">{cuspLifeLabel(house, locale)}</span>
                     </td>
                     <td className="py-1.5 px-2 text-center text-text-secondary whitespace-nowrap">
                       {signName} {d}°{m.toString().padStart(2, '0')}&prime;
@@ -703,9 +704,7 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
           </table>
         </div>
         <p className="text-text-secondary/50 text-[10px] mt-2">
-          {locale === 'hi'
-            ? 'केपी कृष्णमूर्ति अयनांश एवं प्लासिडस भाव पद्धति पर आधारित'
-            : 'Computed using Krishnamurti ayanamsha and the Placidus house system'}
+          {AYL('kpFootnote', locale)}
         </p>
       </div>
 
@@ -713,16 +712,12 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
       <div className="mt-4 flex items-center gap-2 justify-center">
         <span className="w-2 h-2 rounded-full bg-amber-400" />
         <span className="text-text-secondary text-xs">
-          {locale === 'hi'
-            ? 'एम्बर = इस अयनांश में राशि भिन्न है'
-            : 'Amber = sign differs from Lahiri in this ayanamsha'}
+          {AYL('amberLegend', locale)}
         </span>
       </div>
 
       <p className="text-text-secondary/60 text-xs text-center mt-3">
-        {locale === 'hi'
-          ? 'राशि सन्धि पर स्थित ग्रह अयनांश के अनुसार राशि बदल सकते हैं। अधिकांश ज्योतिषी लाहिरी का प्रयोग करते हैं।'
-          : 'Planets near sign boundaries may shift signs depending on the ayanamsha. Most Vedic astrologers use Lahiri (Chitrapaksha). KP practitioners use Krishnamurti. B.V. Raman\'s system is popular in South India.'}
+        {AYL('boundaryFootnote', locale)}
       </p>
     </div>
   );

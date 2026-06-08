@@ -1,4 +1,11 @@
 import type { ActiveFactor } from './verdict-types';
+import { BLOCK_NAME_LABELS } from './block-name-labels';
+
+/** Attach the 9-locale label overlay onto each block by `id`. */
+function attachLT<T extends { id: string }>(block: T): T {
+  const lt = BLOCK_NAME_LABELS[block.id];
+  return lt ? { ...block, nameLT: lt } : block;
+}
 
 // ─── Configurable conflict-resolution constants ───────────────────────────────
 // When Abhijit overlaps a hard block (Rahu Kaal / Yamaganda / Gulika), the slot
@@ -11,7 +18,7 @@ export const ABHIJIT_WEDNESDAY_VERDICT: 'caution' | 'good' = 'caution';
 
 // ─── N1–N6: Hard blocks (override all positives unless configured otherwise) ──
 
-export const HARD_BLOCKS: ActiveFactor[] = [
+const HARD_BLOCKS_RAW: ActiveFactor[] = [
   {
     id: 'vishti',
     name: 'Vishti (Bhadra)',
@@ -74,9 +81,11 @@ export const HARD_BLOCKS: ActiveFactor[] = [
   },
 ];
 
+export const HARD_BLOCKS: ActiveFactor[] = HARD_BLOCKS_RAW.map(attachLT);
+
 // ─── N7–N9: Conditional blocks (context-dependent; can be overridden) ─────────
 
-export const CONDITIONAL_BLOCKS: ActiveFactor[] = [
+const CONDITIONAL_BLOCKS_RAW: ActiveFactor[] = [
   {
     id: 'varjyam',
     name: 'Varjyam',
@@ -145,13 +154,15 @@ export const CONDITIONAL_BLOCKS: ActiveFactor[] = [
   },
 ];
 
+export const CONDITIONAL_BLOCKS: ActiveFactor[] = CONDITIONAL_BLOCKS_RAW.map(attachLT);
+
 // ─── P1–P10: Positives (ranked by classical strength) ─────────────────────────
 
 export interface PositiveFactor extends ActiveFactor {
   strength: number;
 }
 
-export const POSITIVES: PositiveFactor[] = [
+const POSITIVES_RAW: PositiveFactor[] = [
   {
     id: 'guru_pushya',
     name: 'Guru Pushya Yoga',
@@ -280,3 +291,5 @@ export const POSITIVES: PositiveFactor[] = [
     strength: 60,
   },
 ];
+
+export const POSITIVES: PositiveFactor[] = POSITIVES_RAW.map(attachLT);

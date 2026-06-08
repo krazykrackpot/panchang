@@ -1,9 +1,17 @@
+import type { LocaleText } from '@/types/panchang';
+
 export type VerdictRating = 'avoid' | 'caution' | 'good' | 'very_good' | 'excellent' | 'exceptional';
 
 export interface ActiveFactor {
   id: string;
   name: string;
   nameHi: string;
+  /**
+   * 9-locale label populated for blocks sourced from BLOCK_DEFINITIONS
+   * or the activity-template helper. Consumers prefer this via
+   * `tlScript()` and fall back to `name`/`nameHi` if absent.
+   */
+  nameLT?: LocaleText;
   type: 'hard_block' | 'conditional_block' | 'positive' | 'context';
   rank: string;
   source: string;

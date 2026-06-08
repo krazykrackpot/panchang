@@ -1,0 +1,42 @@
+{
+  "hi": {
+    "activity_nakshatra_hard_template": "{ACTIVITY} हेतु नक्षत्र वर्जित",
+    "activity_nakshatra_template": "{ACTIVITY} हेतु नक्षत्र अनुपयुक्त",
+    "activity_tithi_template": "{ACTIVITY} हेतु तिथि अनुपयुक्त"
+  },
+  "mai": {
+    "activity_nakshatra_hard_template": "नक्षत्र {ACTIVITY} कऽ लेल वर्जित अछि",
+    "activity_nakshatra_template": "नक्षत्र {ACTIVITY} कऽ लेल अनुपयुक्त अछि",
+    "activity_tithi_template": "तिथि {ACTIVITY} कऽ लेल अनुपयुक्त अछि"
+  },
+  "mr": {
+    "activity_nakshatra_hard_template": "नक्षत्र {ACTIVITY} साठी वर्जित आहे",
+    "activity_nakshatra_template": "नक्षत्र {ACTIVITY} साठी अयोग्य आहे",
+    "activity_tithi_template": "तिथी {ACTIVITY} साठी अयोग्य आहे"
+  },
+  "ta": {
+    "activity_nakshatra_hard_template": "{ACTIVITY}க்கு நக்ஷத்திரம் விலக்கப்பட்டது",
+    "activity_nakshatra_template": "{ACTIVITY}க்கு நக்ஷத்திரம் உகந்ததல்ல",
+    "activity_tithi_template": "{ACTIVITY}க்கு திதி உகந்ததல்ல"
+  },
+  "te": {
+    "activity_nakshatra_hard_template": "నక్షత్రం {ACTIVITY}కి నిషిద్ధం",
+    "activity_nakshatra_template": "నక్షత్రం {ACTIVITY}కి అనుకూలం కాదు",
+    "activity_tithi_template": "తిథి {ACTIVITY}కి అనుకూలం కాదు"
+  },
+  "kn": {
+    "activity_nakshatra_hard_template": "ನಕ್ಷತ್ರವು {ACTIVITY}ಕ್ಕೆ ನಿಷಿದ್ಧ",
+    "activity_nakshatra_template": "ನಕ್ಷತ್ರವು {ACTIVITY}ಕ್ಕೆ ಅಶುಭ",
+    "activity_tithi_template": "ತಿಥಿಯು {ACTIVITY}ಕ್ಕೆ ಅಶುಭ"
+  },
+  "gu": {
+    "activity_nakshatra_hard_template": "નક્ષત્ર {ACTIVITY} માટે વર્જિત",
+    "activity_nakshatra_template": "નક્ષત્ર {ACTIVITY} માટે અયોગ્ય",
+    "activity_tithi_template": "તિથિ {ACTIVITY} માટે અયોગ્ય"
+  },
+  "bn": {
+    "activity_nakshatra_hard_template": "নক্ষত্র {ACTIVITY} এর জন্য নিষিদ্ধ",
+    "activity_nakshatra_template": "নক্ষত্র {ACTIVITY} এর জন্য অশুভ",
+    "activity_tithi_template": "তিথি {ACTIVITY} এর জন্য অশুভ"
+  }
+}

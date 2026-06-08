@@ -1,4 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
+import { pickToolPageLabel as TPL } from '@/lib/content/tool-pages-labels';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { loadPrecomputedTable, buildYearlyTithiTable, lookupAllTithiByNumber, type TithiEntry } from '@/lib/calendar/tithi-table';
 import Link from 'next/link';
 import DateCategoryClient from './Client';
@@ -50,18 +52,18 @@ const EKADASHI_NAMES: Record<string, Record<string, { en: string; hi: string }>>
 };
 
 // Special Amavasya labels
-function getAmavasyaLabel(entry: TithiEntry, isHi: boolean): string {
+function getAmavasyaLabel(entry: TithiEntry, locale: string): string {
   const dow = getDow(entry.sunriseDate);
-  if (dow === 1) return isHi ? 'सोमवती अमावस्या' : 'Somvati Amavasya';
-  if (dow === 6) return isHi ? 'शनि अमावस्या' : 'Shani Amavasya';
+  if (dow === 1) return TPL('somvatiAmavasya', locale);
+  if (dow === 6) return TPL('shaniAmavasya', locale);
   const m = entry.masa.amanta;
-  if (m === 'kartik') return isHi ? 'दीपावली अमावस्या' : 'Diwali Amavasya';
-  if (m === 'magha') return isHi ? 'मौनी अमावस्या' : 'Mauni Amavasya';
-  return isHi ? 'अमावस्या' : 'Amavasya';
+  if (m === 'kartik') return TPL('diwaliAmavasya', locale);
+  if (m === 'magha') return TPL('mauniAmavasya', locale);
+  return TPL('amavasya', locale);
 }
 
 // Special Purnima labels
-function getPurnimaLabel(entry: TithiEntry, isHi: boolean): string {
+function getPurnimaLabel(entry: TithiEntry, locale: string): string {
   const m = entry.masa.amanta;
   const labels: Record<string, { en: string; hi: string }> = {
     ashadha: { en: 'Guru Purnima', hi: 'गुरु पूर्णिमा' },
@@ -73,10 +75,11 @@ function getPurnimaLabel(entry: TithiEntry, isHi: boolean): string {
     magha: { en: 'Maghi Purnima', hi: 'माघी पूर्णिमा' },
     chaitra: { en: 'Hanuman Jayanti', hi: 'हनुमान जयन्ती' },
   };
+  const isDev = isDevanagariLocale(locale);
   const label = labels[m];
-  if (label) return isHi ? label.hi : label.en;
-  const masaLabel = isHi ? MASA_LABELS_HI[m] || m : MASA_LABELS_EN[m] || m;
-  return isHi ? `${masaLabel} पूर्णिमा` : `${masaLabel} Purnima`;
+  if (label) return isDev ? label.hi : label.en;
+  const masaLabel = isDev ? MASA_LABELS_HI[m] || m : MASA_LABELS_EN[m] || m;
+  return isDev ? `${masaLabel} पूर्णिमा` : `${masaLabel} Purnima`;
 }
 
 function getDow(dateStr: string): number {
@@ -118,7 +121,8 @@ interface DateRow {
   label: string;
 }
 
-function buildDateRows(category: Category, entries: TithiEntry[], year: number, isHi: boolean): DateRow[] {
+function buildDateRows(category: Category, entries: TithiEntry[], year: number, locale: string): DateRow[] {
+  const isDev = isDevanagariLocale(locale);
   const rows: DateRow[] = [];
   for (const entry of entries) {
     // Only include entries whose sunriseDate falls in the target year
@@ -126,21 +130,21 @@ function buildDateRows(category: Category, entries: TithiEntry[], year: number, 
 
     let label = '';
     if (category === 'amavasya') {
-      label = getAmavasyaLabel(entry, isHi);
+      label = getAmavasyaLabel(entry, locale);
     } else if (category === 'purnima') {
-      label = getPurnimaLabel(entry, isHi);
+      label = getPurnimaLabel(entry, locale);
     } else if (category === 'ekadashi') {
       const ekName = EKADASHI_NAMES[entry.masa.amanta]?.[entry.paksha];
-      label = ekName ? (isHi ? ekName.hi : ekName.en) : '';
+      label = ekName ? (isDev ? ekName.hi : ekName.en) : '';
     } else if (category === 'pradosham') {
       const dow = getDow(entry.sunriseDate);
-      if (dow === 6) label = isHi ? 'शनि प्रदोष' : 'Shani Pradosham';
-      else if (dow === 1) label = isHi ? 'सोम प्रदोष' : 'Soma Pradosham';
-      else label = isHi ? 'प्रदोष' : 'Pradosham';
+      if (dow === 6) label = TPL('shaniPradosham', locale);
+      else if (dow === 1) label = TPL('somaPradosham', locale);
+      else label = TPL('pradosham', locale);
     } else if (category === 'chaturthi') {
       label = entry.paksha === 'krishna'
-        ? (isHi ? 'संकष्टी चतुर्थी' : 'Sankashti Chaturthi')
-        : (isHi ? 'विनायक चतुर्थी' : 'Vinayaka Chaturthi');
+        ? (TPL('sankashtiChaturthi', locale))
+        : (TPL('vinayakaChaturthi', locale));
     }
 
     rows.push({
@@ -258,7 +262,7 @@ export default async function DateCategoryPage({ params }: { params: Promise<{ l
     for (const tn of tithiNumbers) {
       entries.push(...lookupAllTithiByNumber(table, tn));
     }
-    rows = buildDateRows(category, entries, year, isHi);
+    rows = buildDateRows(category, entries, year, locale);
   } catch (err) {
     console.error('[dates/category] SSR tithi table build failed:', err);
   }
@@ -300,19 +304,19 @@ export default async function DateCategoryPage({ params }: { params: Promise<{ l
               <thead>
                 <tr className="bg-gold-primary/[0.06] border-b border-gold-primary/12">
                   <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider">
-                    {isHi ? 'तारीख' : 'Date'}
+                    {TPL('date', locale)}
                   </th>
                   <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider">
-                    {isHi ? 'वार' : 'Day'}
+                    {TPL('day', locale)}
                   </th>
                   <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider hidden sm:table-cell">
-                    {isHi ? 'हिन्दू मास' : 'Hindu Month'}
+                    {TPL('hinduMonth', locale)}
                   </th>
                   <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider hidden sm:table-cell">
-                    {isHi ? 'पक्ष' : 'Paksha'}
+                    {TPL('paksha', locale)}
                   </th>
                   <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider">
-                    {isHi ? 'विशेष / नाम' : 'Name / Significance'}
+                    {TPL('nameSignificance', locale)}
                   </th>
                 </tr>
               </thead>
@@ -330,7 +334,7 @@ export default async function DateCategoryPage({ params }: { params: Promise<{ l
                           ? 'bg-emerald-500/15 text-emerald-300'
                           : 'bg-violet-500/15 text-violet-300'
                       }`}>
-                        {row.paksha === 'shukla' ? (isHi ? 'शुक्ल' : 'Shukla') : (isHi ? 'कृष्ण' : 'Krishna')}
+                        {row.paksha === 'shukla' ? (TPL('shukla', locale)) : (TPL('krishna', locale))}
                       </span>
                     </td>
                     <td className="py-2 px-4 text-text-primary font-medium">{row.label}</td>

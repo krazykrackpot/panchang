@@ -3,6 +3,7 @@ import { headers } from 'next/headers';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getSeoCityForLocale } from '@/lib/constants/cities';
 import { tl } from '@/lib/utils/trilingual';
+import { pickToolPageLabel as TPL } from '@/lib/content/tool-pages-labels';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import Link from 'next/link';
 import HoraClient from './Client';
@@ -116,9 +117,7 @@ export default async function HoraPage({ params }: { params: Promise<{ locale: s
         </p>
 
         <p className="text-text-secondary text-sm mt-3 max-w-2xl leading-relaxed">
-          {isHi
-            ? 'होरा सूर्योदय और सूर्यास्त के आधार पर गणना किए जाते हैं। प्रत्येक शहर के लिए समय भिन्न होता है। नीचे इंटरैक्टिव टूल में अपना शहर चुनें।'
-            : 'Hora slots are calculated from sunrise and sunset, so times vary by city. Use the interactive tool below to select your city.'}
+          {TPL('horaSlotsAreCalculated', locale)}
         </p>
 
         {/* ═══ Hora Table — 24 slots ═══ */}
@@ -135,13 +134,13 @@ export default async function HoraPage({ params }: { params: Promise<{ locale: s
                       #
                     </th>
                     <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider">
-                      {isHi ? 'ग्रह' : 'Planet'}
+                      {TPL('planet', locale)}
                     </th>
                     <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider">
-                      {isHi ? 'समय' : 'Time'}
+                      {TPL('time', locale)}
                     </th>
                     <th className="text-left py-2.5 px-4 text-gold-light text-xs font-semibold uppercase tracking-wider hidden sm:table-cell">
-                      {isHi ? 'उपयुक्त कार्य' : 'Best For'}
+                      {TPL('bestFor', locale)}
                     </th>
                   </tr>
                 </thead>
@@ -175,30 +174,24 @@ export default async function HoraPage({ params }: { params: Promise<{ locale: s
         {/* Explanatory content for SEO */}
         <div className="mt-8 space-y-4 text-text-secondary text-sm leading-relaxed">
           <h2 className="text-gold-light text-lg font-semibold" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? 'होरा क्या है?' : 'What is Hora?'}
+            {TPL('whatIsHora', locale)}
           </h2>
           <p>
-            {isHi
-              ? 'होरा (Hora) वैदिक ज्योतिष में ग्रहों के घंटों की प्रणाली है। दिन और रात को 12-12 होरा में विभाजित किया जाता है, कुल 24 होरा प्रतिदिन। प्रत्येक होरा एक ग्रह (सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि) द्वारा शासित होता है। यह "कैल्डियन क्रम" (Chaldean order) पर आधारित है — ग्रहों को उनकी कक्षीय अवधि के अनुसार क्रमबद्ध किया गया है।'
-              : 'Hora is the Vedic astrology system of planetary hours. Each day and night is divided into 12 horas each, totalling 24 horas per day. Each hora is ruled by one of the seven classical planets (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) in the "Chaldean order" — planets ordered by their orbital period from slowest to fastest.'}
+            {TPL('horaIsTheVedic', locale)}
           </p>
 
           <h2 className="text-gold-light text-lg font-semibold" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? 'कौन सा होरा किस कार्य के लिए?' : 'Which Hora is Good for Which Activity?'}
+            {TPL('whichHoraIsGood', locale)}
           </h2>
           <p>
-            {isHi
-              ? 'सूर्य होरा: सरकारी कार्य, अधिकार और स्वास्थ्य। चन्द्र होरा: यात्रा, जनसंपर्क और रचनात्मकता। मंगल होरा: संपत्ति, कानूनी विवाद और साहसिक कार्य। बुध होरा: शिक्षा, संचार, लेखन और व्यापार। गुरु होरा: वित्त, धार्मिक कार्य और विवाह (सबसे शुभ)। शुक्र होरा: कला, मनोरंजन, प्रेम और विलासिता। शनि होरा: कृषि, लोहा/इस्पात कार्य और श्रम।'
-              : 'Sun Hora: government work, authority, health matters. Moon Hora: travel, public relations, creative work. Mars Hora: property, legal matters, surgery, courageous acts. Mercury Hora: education, communication, writing, trade. Jupiter Hora: finance, teaching, religious ceremonies, marriage (most auspicious). Venus Hora: arts, entertainment, romance, luxury purchases. Saturn Hora: agriculture, iron/steel work, disciplined labour.'}
+            {TPL('sunHoraGovernmentWork', locale)}
           </p>
 
           <h2 className="text-gold-light text-lg font-semibold" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? 'होरा की गणना कैसे होती है?' : 'How is Hora Calculated?'}
+            {TPL('howIsHoraCalculated', locale)}
           </h2>
           <p>
-            {isHi
-              ? 'दिन के 12 होरा: सूर्योदय से सूर्यास्त तक का समय 12 बराबर भागों में विभाजित। रात के 12 होरा: सूर्यास्त से अगले सूर्योदय तक 12 भागों में। पहला होरा वार के स्वामी ग्रह का होता है (रविवार = सूर्य, सोमवार = चन्द्र, आदि)। उसके बाद कैल्डियन क्रम में अगले ग्रह आते हैं: शनि → गुरु → मंगल → सूर्य → शुक्र → बुध → चन्द्र।'
-              : 'Day horas: sunrise to sunset divided into 12 equal parts. Night horas: sunset to next sunrise divided into 12 parts. The first hora belongs to the weekday lord (Sunday = Sun, Monday = Moon, etc.). Subsequent horas follow the Chaldean sequence: Saturn → Jupiter → Mars → Sun → Venus → Mercury → Moon, cycling repeatedly.'}
+            {TPL('dayHorasSunriseTo', locale)}
           </p>
         </div>
 
@@ -209,23 +202,23 @@ export default async function HoraPage({ params }: { params: Promise<{ locale: s
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/choghadiya" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? 'चौघड़िया' : 'Choghadiya'}
+            {TPL('choghadiya', locale)}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/rahu-kaal" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? 'राहु काल' : 'Rahu Kaal'}
+            {TPL('rahuKaal', locale)}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/panchang/auspicious" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? 'शुभ मुहूर्त' : 'Auspicious Timings'}
+            {TPL('auspiciousTimings', locale)}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/muhurta-ai" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? 'मुहूर्त AI' : 'Muhurat AI'}
+            {TPL('muhuratAi', locale)}
           </Link>
           <span className="text-text-secondary/30">·</span>
           <Link href="/calendar" className="text-gold-primary/70 hover:text-gold-light transition-colors">
-            {isHi ? 'त्योहार कैलेंडर' : 'Festival Calendar'}
+            {TPL('festivalCalendar', locale)}
           </Link>
         </nav>
       </div>

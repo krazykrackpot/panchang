@@ -1,4 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
+import { pickToolPageLabel as TPL } from '@/lib/content/tool-pages-labels';
 import Link from 'next/link';
 import MatchingClient from './Client';
 
@@ -42,9 +43,9 @@ export default async function MatchingPage({ params }: { params: Promise<{ local
             <table className="w-full text-sm border-collapse mt-3">
               <thead>
                 <tr className="border-b border-gold-primary/15">
-                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{isHi ? 'कूट' : 'Kuta'}</th>
-                  <th className="text-center py-2 px-3 text-gold-dark font-bold">{isHi ? 'अंक' : 'Points'}</th>
-                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{isHi ? 'विवरण' : 'What It Measures'}</th>
+                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{TPL('kuta', locale)}</th>
+                  <th className="text-center py-2 px-3 text-gold-dark font-bold">{TPL('points', locale)}</th>
+                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{TPL('whatItMeasures', locale)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -79,10 +80,10 @@ export default async function MatchingPage({ params }: { params: Promise<{ local
 
           {/* Internal links */}
           <div className="flex flex-wrap gap-3 mt-8 text-sm">
-            <Link href={`/${locale}/matching/compatibility`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'राशि संगतता चार्ट \u2192' : 'Rashi Compatibility Chart \u2192'}</Link>
-            <Link href={`/${locale}/kundali`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'कुण्डली बनाएँ \u2192' : 'Generate Birth Chart \u2192'}</Link>
-            <Link href={`/${locale}/learn/matching`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'गुण मिलान के बारे में जानें \u2192' : 'Learn about Matching \u2192'}</Link>
-            <Link href={`/${locale}/learn/nakshatras`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'नक्षत्रों के बारे में जानें \u2192' : 'Learn about Nakshatras \u2192'}</Link>
+            <Link href={`/${locale}/matching/compatibility`} className="text-gold-primary hover:text-gold-light transition-colors">{TPL('rashiCompatibilityChartU2192', locale)}</Link>
+            <Link href={`/${locale}/kundali`} className="text-gold-primary hover:text-gold-light transition-colors">{TPL('generateBirthChartU2192', locale)}</Link>
+            <Link href={`/${locale}/learn/matching`} className="text-gold-primary hover:text-gold-light transition-colors">{TPL('learnAboutMatchingU2192', locale)}</Link>
+            <Link href={`/${locale}/learn/nakshatras`} className="text-gold-primary hover:text-gold-light transition-colors">{TPL('learnAboutNakshatrasU2192', locale)}</Link>
           </div>
         </article>
       </section>

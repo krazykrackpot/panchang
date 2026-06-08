@@ -7,6 +7,15 @@ import { pickByScript } from "@/lib/utils/locale-fonts";
 
 const BASE_URL = 'https://dekhopanchang.com';
 
+// Schema.org `inLanguage` BCP 47 region tags for the 9 visible locales.
+// `mai` and `sa` fold into the umbrella `hi-IN` code (no Maithili-IN
+// entry on Schema.org's accepted list; Sanskrit was retired but kept
+// here to gracefully tag legacy redirects). Falls back to `en-US`.
+const BCP47_TAGS: Record<string, string> = {
+  en: 'en-US', hi: 'hi-IN', sa: 'hi-IN', mai: 'hi-IN', mr: 'mr-IN',
+  ta: 'ta-IN', te: 'te-IN', bn: 'bn-IN', gu: 'gu-IN', kn: 'kn-IN',
+};
+
 const DISPLAY_NAMES: Record<string, string> = {
   panchang: 'Panchang',
   kundali: 'Kundali',
@@ -417,7 +426,7 @@ export function generateYogaArticleLD(opts: {
       inDefinedTermSet: { '@type': 'DefinedTermSet', name: 'Vedic Astrology Yogas' },
     },
     articleSection: opts.category.replace(/_/g, ' '),
-    inLanguage: opts.locale === 'hi' ? 'hi-IN' : 'en-US',
+    inLanguage: BCP47_TAGS[opts.locale] ?? 'en-US',
   };
 }
 
@@ -435,6 +444,6 @@ export function generateYogaCollectionLD(locale: string, count: number): object 
     mainEntityOfPage: url,
     numberOfItems: count,
     provider: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
-    inLanguage: pickByScript('en-US', 'hi-IN', locale),
+    inLanguage: BCP47_TAGS[locale] ?? 'en-US',
   };
 }

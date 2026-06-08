@@ -69,7 +69,7 @@ import { findDashaSandhiPeriods } from '@/lib/kundali/dasha-sandhi';
 import { assembleBirthPosterData } from '@/lib/shareable/birth-poster';
 import { generateCosmicBlueprint, type CosmicBlueprint } from '@/lib/kundali/archetype-engine';
 import { SIGN_LORDS as SIGN_LORDS_MAP } from '@/lib/constants/dignities';
-import { getNarayanaInterpretation } from '@/lib/constants/narayana-interpretations';
+import { getNarayanaInterpretation } from '@/lib/constants/narayana-interpretations-with-overlay';
 // Dynamic imports  –  only loaded after chart generation or on specific tab activation
 const ChartNorth = dynamic(() => import('@/components/kundali/ChartNorth'), { ssr: false });
 const ChartSouth = dynamic(() => import('@/components/kundali/ChartSouth'), { ssr: false });
@@ -3286,19 +3286,32 @@ export default function KundaliClient() {
                         {dashaSystem === 'narayana' && (isCurrent || !isPast) && (() => {
                           const interp = getNarayanaInterpretation(d.sign);
                           if (!interp) return null;
-                          const lk = (locale === 'en' || isTamil) ? 'en' : 'hi';
+                          // Locale-aware narayana interpretation — PR with
+                          // narayana-interpretations-with-overlay ships 7
+                          // regional locale keys; tl() falls back to .en
+                          // if a locale's overlay is missing.
+                          const focusLabels: Record<string, string> = {
+                            en: 'Focus: ', hi: 'ध्यान: ', sa: 'ध्यानम्: ',
+                            ta: 'கவனம்: ', te: 'దృష్టి: ', bn: 'মনোযোগ: ',
+                            gu: 'ધ્યાન: ', kn: 'ಗಮನ: ', mai: 'ध्यान: ', mr: 'लक्ष: ',
+                          };
+                          const cautionLabels: Record<string, string> = {
+                            en: 'Caution: ', hi: 'सावधानी: ', sa: 'सावधानम्: ',
+                            ta: 'எச்சரிக்கை: ', te: 'జాగ్రత్త: ', bn: 'সতর্কতা: ',
+                            gu: 'સાવધાની: ', kn: 'ಎಚ್ಚರಿಕೆ: ', mai: 'सावधानी: ', mr: 'सावधगिरी: ',
+                          };
                           return (
                             <div className={`mt-2 pt-2 border-t border-gold-primary/8 space-y-1.5 ${isCurrent ? '' : 'opacity-70'}`}>
                               <p className="text-text-secondary/80 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                                {interp.themes[lk]}
+                                {tl(interp.themes, locale)}
                               </p>
                               <p className="text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                                <span className="text-emerald-400/70 font-medium">{lk === 'en' ? 'Focus: ' : 'ध्यान: '}</span>
-                                <span className="text-text-secondary/70">{interp.focus[lk]}</span>
+                                <span className="text-emerald-400/70 font-medium">{focusLabels[locale] ?? focusLabels.en}</span>
+                                <span className="text-text-secondary/70">{tl(interp.focus, locale)}</span>
                               </p>
                               <p className="text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                                <span className="text-amber-400/70 font-medium">{lk === 'en' ? 'Caution: ' : 'सावधानी: '}</span>
-                                <span className="text-text-secondary/70">{interp.caution[lk]}</span>
+                                <span className="text-amber-400/70 font-medium">{cautionLabels[locale] ?? cautionLabels.en}</span>
+                                <span className="text-text-secondary/70">{tl(interp.caution, locale)}</span>
                               </p>
                             </div>
                           );

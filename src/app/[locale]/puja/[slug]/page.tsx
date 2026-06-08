@@ -6,7 +6,7 @@ import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import Link from 'next/link';
-import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi';
+import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi-with-overlay';
 import MantraCard from '@/components/puja/MantraCard';
 import HeroCard from '@/components/puja/HeroCard';
 import PujaMode from '@/components/puja/PujaMode';

@@ -11,7 +11,7 @@
  * handle the null case and simply not emit the HowTo script tag.
  */
 
-import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi';
+import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi-with-overlay';
 import { tl } from '@/lib/utils/trilingual';
 import type { Locale } from '@/types/panchang';
 

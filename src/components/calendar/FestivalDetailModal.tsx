@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, BookOpen, Flame, Star, Clock, AlertTriangle, Sun, Moon, Check, Copy, ChevronDown } from 'lucide-react';
 import type { Locale,  LocaleText} from '@/types/panchang';
 import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details-with-overlay';
-import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
+import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi-with-overlay';
 import type { PujaVidhi, MantraDetail as MantraType } from '@/lib/constants/puja-vidhi/types';
 import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';

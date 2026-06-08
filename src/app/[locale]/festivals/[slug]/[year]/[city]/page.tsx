@@ -12,7 +12,7 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi';
+import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi-with-overlay';
 import { getCityFestivalContext } from '@/lib/constants/city-festival-context';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';

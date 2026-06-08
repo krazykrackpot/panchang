@@ -10,7 +10,7 @@ import {
   formatVargasTabLabel,
 } from '@/lib/content/kundali-vargas-tab-labels';
 import { buildDeepVargaAnalysis } from '@/lib/tippanni/varga-deep-analysis';
-import { getDrekkanaFace, getDecanateFromDegree } from '@/lib/constants/drekkana-faces';
+import { getDrekkanaFace, getDecanateFromDegree } from '@/lib/constants/drekkana-faces-with-overlay';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import type { KundaliData, ChartData, DivisionalChart } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';

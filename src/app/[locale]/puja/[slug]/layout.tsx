@@ -5,6 +5,13 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { generateHowToLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
+// OpenGraph BCP 47 codes for the 9 visible locales. `sa` is retired
+// but kept here to gracefully tag any legacy redirect.
+const OG_LOCALE_TAGS: Record<string, string> = {
+  en: 'en_US', hi: 'hi_IN', sa: 'sa_IN', mai: 'mai_IN', mr: 'mr_IN',
+  ta: 'ta_IN', te: 'te_IN', bn: 'bn_IN', gu: 'gu_IN', kn: 'kn_IN',
+};
+
 export function generateStaticParams() {
   return Object.keys(PUJA_VIDHIS).map(slug => ({ slug }));
 }
@@ -34,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url: `https://dekhopanchang.com/${locale}/puja/${slug}`,
       siteName: 'Dekho Panchang',
-      locale: locale === 'hi' ? 'hi_IN' : 'en_US',
+      locale: OG_LOCALE_TAGS[locale] ?? 'en_US',
       type: 'article',
     },
     twitter: {

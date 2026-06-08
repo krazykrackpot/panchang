@@ -1,0 +1,22 @@
+{
+  "brahmacharya.description": "विद्यार्थी — अहाँक धर्म एखन अछि सिखनाय, अनुशासनक निर्माण करब आ जे किछु आबयवला अछि तकरा लेल आधार रखब।",
+  "brahmacharya.focusAreas[0]": "शिक्षा",
+  "brahmacharya.focusAreas[1]": "कौशल निर्माण",
+  "brahmacharya.focusAreas[2]": "आत्म-अनुशासन",
+  "brahmacharya.focusAreas[3]": "आधार",
+  "grihastha.description": "गृहस्थ — सभसँ सक्रिय आश्रम। धनक निर्माण करू, परिवारक पालन-पोषण करू, समाजक सेवा करू। चारू पुरुषार्थ एक संग प्राप्त कएल जाइत अछि।",
+  "grihastha.focusAreas[0]": "करियरक विकास",
+  "grihastha.focusAreas[1]": "परिवारक निर्माण",
+  "grihastha.focusAreas[2]": "धनक सृजन",
+  "grihastha.focusAreas[3]": "धार्मिक सेवा",
+  "sannyasa.description": "ऋषि — सांसारिक फल सँ मोह त्यागू. आंतरिक शांति, मोक्ष आओर ज्ञानक प्रसारण पर ध्यान केंद्रित करू.",
+  "sannyasa.focusAreas[0]": "आंतरिक शांति",
+  "sannyasa.focusAreas[1]": "मोक्ष",
+  "sannyasa.focusAreas[2]": "ज्ञानक प्रसारण",
+  "sannyasa.focusAreas[3]": "आध्यात्मिक विरासत",
+  "vanaprastha.description": "गुरु — सक्रिय संग्रह सँ विरत भेल. ज्ञान बाँटू, युवाकें मार्गदर्शन करू, आध्यात्मिक साधनाकें आओर गहिर करू.",
+  "vanaprastha.focusAreas[0]": "मार्गदर्शन",
+  "vanaprastha.focusAreas[1]": "प्रतिदान",
+  "vanaprastha.focusAreas[2]": "आध्यात्मिक साधना",
+  "vanaprastha.focusAreas[3]": "विरासत निर्माण"
+}

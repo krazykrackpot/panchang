@@ -1,0 +1,22 @@
+{
+  "brahmacharya.description": "విద్యార్థి — నీ ధర్మం ఇప్పుడు నేర్చుకోవడం, క్రమశిక్షణను అలవర్చుకోవడం, ఆ తర్వాత వచ్చే ప్రతిదానికీ పునాది వేయడం.",
+  "brahmacharya.focusAreas[0]": "విద్య",
+  "brahmacharya.focusAreas[1]": "నైపుణ్యాల నిర్మాణం",
+  "brahmacharya.focusAreas[2]": "స్వీయ క్రమశిక్షణ",
+  "brahmacharya.focusAreas[3]": "పునాది",
+  "grihastha.description": "గృహస్థుడు — అత్యంత క్రియాశీలమైన ఆశ్రమం. సంపదను నిర్మించు, కుటుంబాన్ని పెంచు, సమాజానికి సేవ చేయి. నాలుగు పురుషార్థాలూ ఏకకాలంలో సాధించబడతాయి.",
+  "grihastha.focusAreas[0]": "వృత్తి వృద్ధి",
+  "grihastha.focusAreas[1]": "కుటుంబ నిర్మాణం",
+  "grihastha.focusAreas[2]": "సంపద సృష్టి",
+  "grihastha.focusAreas[3]": "ధార్మిక సేవ",
+  "sannyasa.description": "జ్ఞాని — లౌకిక ఫలితాలపై ఆసక్తిని విడిచిపెట్టు. అంతర్గత శాంతి, మోక్షం మరియు జ్ఞాన ప్రసారంపై దృష్టి పెట్టు.",
+  "sannyasa.focusAreas[0]": "అంతర్గత శాంతి",
+  "sannyasa.focusAreas[1]": "మోక్షం",
+  "sannyasa.focusAreas[2]": "జ్ఞాన ప్రసారం",
+  "sannyasa.focusAreas[3]": "ఆధ్యాత్మిక వారసత్వం",
+  "vanaprastha.description": "గురువు — క్రియాశీలక సంచయం నుండి తప్పుకో. జ్ఞానాన్ని పంచుకో, యువతకు మార్గదర్శనం చెయ్యి, ఆధ్యాత్మిక సాధనను గాఢతరం చెయ్యి.",
+  "vanaprastha.focusAreas[0]": "మార్గదర్శనం",
+  "vanaprastha.focusAreas[1]": "తిరిగి ఇవ్వడం",
+  "vanaprastha.focusAreas[2]": "ఆధ్యాత్మిక సాధన",
+  "vanaprastha.focusAreas[3]": "వారసత్వ నిర్మాణం"
+}

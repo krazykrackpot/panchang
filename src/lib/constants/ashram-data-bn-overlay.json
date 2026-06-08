@@ -1,0 +1,22 @@
+{
+  "brahmacharya.description": "শিক্ষার্থী — আপনার বর্তমান ধর্ম হলো জ্ঞানার্জন করা, আত্ম-শৃঙ্খলা গড়ে তোলা এবং ভবিষ্যতের সকল কিছুর জন্য সুদৃঢ় ভিত্তি স্থাপন করা।",
+  "brahmacharya.focusAreas[0]": "শিক্ষা",
+  "brahmacharya.focusAreas[1]": "দক্ষতা অর্জন",
+  "brahmacharya.focusAreas[2]": "আত্ম-শৃঙ্খলা",
+  "brahmacharya.focusAreas[3]": "ভিত্তি",
+  "grihastha.description": "গৃহস্থ — এটি সবচেয়ে কর্মময় আশ্রম। এখানে সম্পদ গড়ে তোলা, পরিবার প্রতিপালন করা এবং সমাজের সেবা করা — এই চারটি পুরুষার্থই যুগপৎ সাধিত হয়।",
+  "grihastha.focusAreas[0]": "কর্মজীবনের উন্নতি",
+  "grihastha.focusAreas[1]": "পরিবার গঠন",
+  "grihastha.focusAreas[2]": "সম্পদ সৃষ্টি",
+  "grihastha.focusAreas[3]": "ধার্মিক সেবা",
+  "sannyasa.description": "ঋষি — পার্থিব ফলাফলের প্রতি আসক্তি ত্যাগ করুন। অভ্যন্তরীণ শান্তি, মোক্ষ এবং জ্ঞানের সঞ্চালনে মনোযোগ দিন।",
+  "sannyasa.focusAreas[0]": "অভ্যন্তরীণ শান্তি",
+  "sannyasa.focusAreas[1]": "মোক্ষ",
+  "sannyasa.focusAreas[2]": "জ্ঞান বিতরণ",
+  "sannyasa.focusAreas[3]": "আধ্যাত্মিক উত্তরাধিকার",
+  "vanaprastha.description": "গুরু — সক্রিয় সঞ্চয় থেকে নিবৃত্ত হন। জ্ঞান বিতরণ করুন, তরুণদের পথপ্রদর্শন করুন, আধ্যাত্মিক অনুশীলনকে গভীর করুন।",
+  "vanaprastha.focusAreas[0]": "পথপ্রদর্শন",
+  "vanaprastha.focusAreas[1]": "সমাজকে কিছু ফিরিয়ে দেওয়া",
+  "vanaprastha.focusAreas[2]": "আধ্যাত্মিক অনুশীলন",
+  "vanaprastha.focusAreas[3]": "উত্তরাধিকার নির্মাণ"
+}

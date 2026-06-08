@@ -1,0 +1,22 @@
+{
+  "brahmacharya.description": "மாணவன் — உன் தர்மம் இப்போது கற்றுக்கொள்வது, கட்டுப்பாட்டை வளர்ப்பது, மற்றும் வரவிருக்கும் அனைத்திற்கும் அடித்தளம் அமைப்பது.",
+  "brahmacharya.focusAreas[0]": "கல்வி",
+  "brahmacharya.focusAreas[1]": "திறன் வளர்ப்பு",
+  "brahmacharya.focusAreas[2]": "சுய கட்டுப்பாடு",
+  "brahmacharya.focusAreas[3]": "அடித்தளம்",
+  "grihastha.description": "இல்லறத்தான் — மிகவும் சுறுசுறுப்பான ஆசிரமம். செல்வம் சேர், குடும்பத்தை வளர்ப்பாய், சமுதாயத்திற்கு சேவை செய். நான்கு புருஷார்த்தங்களும் ஒரே நேரத்தில் பின்பற்றப்படுகின்றன.",
+  "grihastha.focusAreas[0]": "தொழில் வளர்ச்சி",
+  "grihastha.focusAreas[1]": "குடும்பம் அமைத்தல்",
+  "grihastha.focusAreas[2]": "செல்வ உருவாக்கம்",
+  "grihastha.focusAreas[3]": "தர்ம சேவை",
+  "sannyasa.description": "ஞானி — உலகியல் பலன்களின் மீதான பற்றை விடு. அக அமைதி, மோட்சம் மற்றும் ஞானத்தைப் பரப்புவதில் கவனம் செலுத்து.",
+  "sannyasa.focusAreas[0]": "அக அமைதி",
+  "sannyasa.focusAreas[1]": "மோட்சம்",
+  "sannyasa.focusAreas[2]": "ஞானப் பகிர்வு",
+  "sannyasa.focusAreas[3]": "ஆன்மீக மரபு",
+  "vanaprastha.description": "வழிகாட்டி — தீவிரமான பொருள் சேர்க்கும் முனைப்பிலிருந்து விலகு. ஞானத்தைப் பகிர், இளையோருக்கு வழிகாட்டு, ஆன்மீகப் பயிற்சியை ஆழப்படுத்து.",
+  "vanaprastha.focusAreas[0]": "வழிகாட்டுதல்",
+  "vanaprastha.focusAreas[1]": "மீண்டும் அளித்தல்",
+  "vanaprastha.focusAreas[2]": "ஆன்மீகப் பயிற்சி",
+  "vanaprastha.focusAreas[3]": "மரபு உருவாக்குதல்"
+}

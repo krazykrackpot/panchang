@@ -581,5 +581,29 @@
     "gu": "લગ્ન અંશ ભાવ ચલિતનો પાયો છે – સમજો કે તે શા માટે મહત્વપૂર્ણ છે.",
     "kn": "ಲಗ್ನ ಅಂಶವು ಭಾವ ಚಲಿತದ ಅಡಿಪಾಯವಾಗಿದೆ – ಇದು ಏಕೆ ಮುಖ್ಯವಾಗಿದೆ ಎಂಬುದನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಿ.",
     "mr": "लग्न अंश भाव चलितचा आधार आहे – हे का महत्त्वाचे आहे ते समजून घ्या."
+  },
+  "rashiChartD1": {
+    "en": "Rashi Chart (D1)",
+    "hi": "राशि कुण्डली (D1)"
+  },
+  "rashiChartDesc": {
+    "en": "Each sign = one house\nSimple, based on sign boundaries",
+    "hi": "प्रत्येक राशि = एक भाव\nसरल, राशि सीमाओं पर आधारित"
+  },
+  "bhavaChalit": {
+    "en": "Bhava Chalit",
+    "hi": "भाव चलित"
+  },
+  "bhavaChalitDesc": {
+    "en": "Ascendant degree = House 1 midpoint\nDegree-based, 30° arcs",
+    "hi": "लग्न अंश = भाव 1 का मध्य\nअंश-आधारित, 30° चाप"
+  },
+  "exampleLabel": {
+    "en": "Example",
+    "hi": "उदाहरण"
+  },
+  "practicalConsensus": {
+    "en": "Practical Consensus",
+    "hi": "व्यावहारिक सहमति"
   }
 }

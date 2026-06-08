@@ -14,7 +14,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { pickFestivalLabel as FL, formatFestivalLabel } from '@/lib/content/festivals-labels';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi-with-overlay';
-import { getCityFestivalContext } from '@/lib/constants/city-festival-context';
+import { getCityFestivalContext } from '@/lib/constants/city-festival-context-with-overlay';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Calendar, Clock, MapPin, Sun, Moon, ChevronDown, ChevronRight, Info, BookOpen, Sparkles, Leaf, CheckCircle } from 'lucide-react';
@@ -748,7 +748,10 @@ export default async function FestivalCityPage({
         {(() => {
           const cityContext = getCityFestivalContext(slug, citySlug);
           if (!cityContext) return null;
-          const contextText = isHi ? cityContext.hi : cityContext.en;
+          // Locale-aware lookup via the with-overlay variant. cityContext
+          // now carries ta/te/bn/gu/kn/mai/mr keys when an overlay entry
+          // exists for this (festival, city) pair; falls back to .en.
+          const contextText = (cityContext as unknown as Record<string, string>)[locale] || cityContext.en;
           return (
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] rounded-2xl border border-gold-primary/12 p-5 sm:p-6 space-y-3">
               <div className="flex items-center gap-2">

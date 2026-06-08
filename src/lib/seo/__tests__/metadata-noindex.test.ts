@@ -32,26 +32,22 @@ describe('getPageMetadata — fully-translated route', () => {
   });
 });
 
-describe('getPageMetadata — thin /learn slug', () => {
-  it('emits hreflang only for en+hi + x-default on /learn/surya', () => {
+describe('getPageMetadata — /learn slug (promoted to 9-locale parity PR #596)', () => {
+  // /learn/* used to be EN+HI only with noindex on regional Indic
+  // locales. PR #596 (2026-06-08) flipped the policy after all
+  // /learn/*.json message files were translated to ≥86% per-locale.
+  const FULL_9_HREFLANG = ['bn', 'en', 'gu', 'hi', 'kn', 'mai', 'mr', 'ta', 'te', 'x-default'];
+
+  it('emits hreflang for all 9 locales + x-default on /learn/surya', () => {
     const meta = getPageMetadata('/learn/surya', 'en');
     const langs = (meta.alternates?.languages ?? {}) as Record<string, string>;
     const keys = Object.keys(langs).sort();
-    expect(keys).toEqual(['en', 'hi', 'x-default']);
+    expect(keys).toEqual(FULL_9_HREFLANG);
   });
 
-  it('emits NO robots tag for indexable locales (en, hi)', () => {
-    expect(getPageMetadata('/learn/surya', 'en').robots).toBeUndefined();
-    expect(getPageMetadata('/learn/surya', 'hi').robots).toBeUndefined();
-  });
-
-  it('emits robots:{index:false,follow:true} for non-indexable locales', () => {
-    for (const loc of ['ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr']) {
-      const meta = getPageMetadata('/learn/surya', loc);
-      expect(meta.robots, `expected /learn/surya on ${loc} to be noindex`).toEqual({
-        index: false,
-        follow: true,
-      });
+  it('emits NO robots tag for any locale (all 9 are indexable)', () => {
+    for (const loc of ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai', 'mr']) {
+      expect(getPageMetadata('/learn/surya', loc).robots).toBeUndefined();
     }
   });
 
@@ -64,19 +60,13 @@ describe('getPageMetadata — thin /learn slug', () => {
       '/learn/nakshatra-pada/ashwini-pada-1',
     ]) {
       const meta = getPageMetadata(route, 'ta');
-      expect(meta.robots, `${route} ta should be noindex`).toEqual({
-        index: false,
-        follow: true,
-      });
+      expect(meta.robots, `${route} ta should be indexable (no robots tag)`).toBeUndefined();
       const langs = (meta.alternates?.languages ?? {}) as Record<string, string>;
-      expect(Object.keys(langs).sort()).toEqual(['en', 'hi', 'x-default']);
+      expect(Object.keys(langs).sort()).toEqual(FULL_9_HREFLANG);
     }
   });
 
-  it('keeps the canonical URL pointing at the served locale (even when noindex)', () => {
-    // Google still uses canonical to choose the indexable representative.
-    // Pointing canonical at /en/* would conflict with hreflang's x-default
-    // semantics; the noindex tag is what tells Google to drop this URL.
+  it('canonical URL points at the served locale', () => {
     const meta = getPageMetadata('/learn/surya', 'mr');
     expect(meta.alternates?.canonical).toContain('/mr/learn/surya');
   });

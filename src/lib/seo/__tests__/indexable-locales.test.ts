@@ -36,29 +36,33 @@ describe('INDEXABLE_EN_HI constant', () => {
   });
 });
 
-describe('thin-coverage prefix policy — en+hi only', () => {
+describe('/learn/ prefix policy — promoted to 9-locale parity 2026-06-08 (PR #596)', () => {
+  // /learn/ used to be EN+HI only because /learn/[topic] pages rendered
+  // hardcoded {en, hi, sa} constants that fell back to EN. That changed
+  // when every src/messages/learn/*.json file was translated to ≥86%
+  // per-locale across PRs #530 #534 #538 #549 #552 #558 #561 #564 #566
+  // #567 #570 #575 #579 #595 #591 + #596 itself.
+  const FULL_9 = ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'];
+
   it.each([
     '/learn/surya',
     '/learn/chandra',
     '/learn/modules',
     '/learn/modules/0-1',
     '/learn/planet-in-house/sun-in-1st-house',
-  ])('returns en+hi for %s', (route) => {
-    expect(getIndexableLocales(route)).toEqual(INDEXABLE_EN_HI);
+  ])('returns all 9 locales for %s', (route) => {
+    const result = getIndexableLocales(route);
+    expect(result).not.toBeUndefined();
+    expect([...result!]).toEqual(FULL_9);
   });
 
-  it('noindexes regional Indic locales on thin-coverage prefixes', () => {
-    // /learn/ is the only remaining thin-coverage prefix where
-    // regional Indic locales should be noindexed. /baby-names/,
-    // /matching/, /devotional/, /horoscope/, /gauri-panchang/ have
-    // all been promoted to full 9-locale parity (PRs #481, #493,
-    // #496, #502, #506, plus the baby-names promotion).
+  it('every regional Indic locale is now indexable on /learn/* slugs', () => {
     for (const route of [
       '/learn/surya',
       '/learn/modules/0-1',
     ]) {
       for (const loc of REGIONAL_INDIC) {
-        expect(isLocaleIndexable(route, loc)).toBe(false);
+        expect(isLocaleIndexable(route, loc)).toBe(true);
       }
     }
   });
@@ -194,10 +198,16 @@ describe('option A — /learn/yoga/ promoted to en+hi+mai+ta+te+bn+gu+kn+mr', ()
     }
   });
 
-  it('sibling /learn/* paths stay en+hi only (longest-match wins)', () => {
-    // /learn/surya hits the broader /learn/ entry, not /learn/yoga/.
-    expect(getIndexableLocales('/learn/surya')).toEqual(['en', 'hi']);
-    expect(getIndexableLocales('/learn/modules/0-1')).toEqual(['en', 'hi']);
+  it('sibling /learn/* paths now also return all 9 locales (PR #596 promotion)', () => {
+    // PR #596 promoted the /learn/ prefix from EN+HI to all 9 locales,
+    // so the longest-match still picks /learn/yoga/ for yoga slugs but
+    // siblings now resolve to the same 9-locale set via the broader
+    // /learn/ entry. The longest-match wiring is still verifiable by
+    // assertion: a yoga slug returns the yoga entry; a non-yoga slug
+    // returns the /learn/ entry — both are now 9 locales.
+    const FULL_9 = ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'];
+    expect([...getIndexableLocales('/learn/surya')!]).toEqual(FULL_9);
+    expect([...getIndexableLocales('/learn/modules/0-1')!]).toEqual(FULL_9);
   });
 });
 
@@ -291,10 +301,11 @@ describe('PER_ROUTE_INDEXABLE — transitional staging shape', () => {
   // lookup shape using a prefix where overrides could exist (the
   // empty map at first means nothing flips).
   it('returns just the prefix set when no override exists', () => {
-    // /learn/ stays en+hi with no per-route overrides (other than the
-    // /learn/yoga/ promotion). /baby-names/ and /devotional/ used to
-    // be examples here but were both promoted to all 9 locales.
-    expect(getIndexableLocales('/learn/surya')).toEqual(['en', 'hi']);
+    // /learn/ was promoted to all 9 locales in PR #596 (2026-06-08).
+    // The lookup-shape test still holds — /learn/surya has no per-route
+    // override, so it falls through to the /learn/ prefix set.
+    const FULL_9 = ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'];
+    expect([...getIndexableLocales('/learn/surya')!]).toEqual(FULL_9);
   });
 
   it('trailing slash in the looked-up route is handled defensively', () => {
@@ -315,10 +326,12 @@ describe('regression: route equality / boundary semantics', () => {
     expect(getIndexableLocales('/matchings')).toBeUndefined();
   });
 
-  it('routes inside a thin-prefix get the prefix policy', () => {
-    // /learn/ remains the only thin-coverage cluster after the
-    // /baby-names/ promotion.
-    expect(isLocaleIndexable('/learn/surya', 'ta')).toBe(false);
-    expect(isLocaleIndexable('/learn/modules/0-1', 'gu')).toBe(false);
+  it('routes inside a known prefix get the prefix policy', () => {
+    // After PR #596 the /learn/ prefix is at 9-locale parity, so
+    // every regional Indic locale is now indexable inside /learn/*.
+    // (There are no remaining thin-coverage prefixes — every entry
+    // in INDEXABLE_BY_PREFIX maps to all 9 locales.)
+    expect(isLocaleIndexable('/learn/surya', 'ta')).toBe(true);
+    expect(isLocaleIndexable('/learn/modules/0-1', 'gu')).toBe(true);
   });
 });

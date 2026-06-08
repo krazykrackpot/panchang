@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { getStoryBySlug, getAllStorySlugs } from '@/lib/stories/story-data';
 import StoryViewer from '@/components/stories/StoryViewer';
 import { locales } from '@/lib/i18n/config';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 import { BASE_URL } from '@/lib/seo/base-url';
@@ -79,7 +79,7 @@ export default async function StoryPage({ params }: { params: Promise<{ locale: 
       url: BASE_URL,
     },
     url,
-    inLanguage: locale === 'hi' ? 'hi' : locale === 'sa' ? 'sa' : 'en',
+    inLanguage: pickByLocale({ en: 'en', hi: 'hi', sa: 'sa' }, locale),
   };
 
   return (

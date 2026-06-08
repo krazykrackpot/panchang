@@ -9,7 +9,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { BookOpen, ChevronRight, ChevronDown, Clock, Star, CheckCircle, Sparkles, Library, ArrowRight, Flame, GraduationCap } from 'lucide-react';
 import { ShareRow } from '@/components/ui/ShareButton';
 import AdUnit from '@/components/ads/AdUnit';
-import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript, pickByLocale } from '@/lib/utils/locale-fonts';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
@@ -232,7 +232,7 @@ export default function LearnPage() {
             {hydrated && streak.streakDays > 0 && (
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 font-bold">
                 <Flame className="w-5 h-5" />
-                {locale === 'hi' ? `${streak.streakDays} दिन स्ट्रीक` : locale === 'ta' ? `${streak.streakDays} நாள் தொடர்` : locale === 'bn' ? `${streak.streakDays} দিন ধারাবাহিক` : `Day ${streak.streakDays} streak`}
+                {pickByLocale({ en: `Day ${streak.streakDays} streak`, hi: `${streak.streakDays} दिन स्ट्रीक`, ta: `${streak.streakDays} நாள் தொடர்`, bn: `${streak.streakDays} দিন ধারাবাহিক` }, locale)}
               </div>
             )}
           </div>
@@ -275,10 +275,7 @@ export default function LearnPage() {
           <div className="flex items-center gap-3">
             <GraduationCap className="w-5 h-5 text-violet-400" />
             <span className="text-text-primary font-medium" style={bf}>
-              {locale === 'hi' ? 'मेरा सीखने का डैशबोर्ड  –  प्रगति, स्ट्रीक, बैज' :
-               locale === 'ta' ? 'என் கற்றல் டாஷ்போர்ட்  –  முன்னேற்றம், தொடர், பதக்கங்கள்' :
-               locale === 'bn' ? 'আমার শেখার ড্যাশবোর্ড  –  অগ্রগতি, ধারাবাহিকতা, ব্যাজ' :
-               'My Learning Dashboard  –  progress, streak, badges'}
+              {pickByLocale({ en: 'My Learning Dashboard  –  progress, streak, badges', hi: 'मेरा सीखने का डैशबोर्ड  –  प्रगति, स्ट्रीक, बैज', ta: 'என் கற்றல் டாஷ்போர்ட்  –  முன்னேற்றம், தொடர், பதக்கங்கள்', bn: 'আমার শেখার ড্যাশবোর্ড  –  অগ্রগতি, ধারাবাহিকতা, ব্যাজ' }, locale)}
             </span>
           </div>
           <ArrowRight className="w-5 h-5 text-violet-400 group-hover:translate-x-1 transition-transform" />
@@ -296,16 +293,10 @@ export default function LearnPage() {
 
       {/* ── Learning Path (sequential phases) ── */}
       <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={hf}>
-        {locale === 'hi' ? 'आपकी सीखने की यात्रा' :
-         locale === 'ta' ? 'உங்கள் கற்றல் பயணம்' :
-         locale === 'bn' ? 'আপনার শেখার যাত্রা' :
-         'Your Learning Journey'}
+        {pickByLocale({ en: 'Your Learning Journey', hi: 'आपकी सीखने की यात्रा', ta: 'உங்கள் கற்றல் பயணம்', bn: 'আপনার শেখার যাত্রা' }, locale)}
       </h2>
       <p className="text-text-secondary text-sm mb-8 max-w-2xl" style={bf}>
-        {locale === 'hi' ? `${PHASE_INFO.length} चरण, मूल बातों से लेकर उन्नत भविष्यवाणी तक  –  क्रमानुसार ऊपर बढ़ें।` :
-         locale === 'ta' ? `${PHASE_INFO.length} நிலைகள், அடிப்படையிலிருந்து மேம்பட்ட கணிப்பு வரை  –  வரிசையாக மேலே செல்லுங்கள்.` :
-         locale === 'bn' ? `${PHASE_INFO.length}টি পর্যায়, মূল বিষয় থেকে উন্নত ভবিষ্যদ্বাণী পর্যন্ত  –  ক্রমানুসারে উপরে উঠুন।` :
-         `${PHASE_INFO.length} phases, from foundations to advanced prediction  –  work your way up.`}
+        {pickByLocale({ en: `${PHASE_INFO.length} phases, from foundations to advanced prediction  –  work your way up.`, hi: `${PHASE_INFO.length} चरण, मूल बातों से लेकर उन्नत भविष्यवाणी तक  –  क्रमानुसार ऊपर बढ़ें।`, ta: `${PHASE_INFO.length} நிலைகள், அடிப்படையிலிருந்து மேம்பட்ட கணிப்பு வரை  –  வரிசையாக மேலே செல்லுங்கள்.`, bn: `${PHASE_INFO.length}টি পর্যায়, মূল বিষয় থেকে উন্নত ভবিষ্যদ্বাণী পর্যন্ত  –  ক্রমানুসারে উপরে উঠুন।` }, locale)}
       </p>
       <div className="mb-16">
         <LearningPath />
@@ -443,10 +434,10 @@ export default function LearnPage() {
           </div>
           <div>
             <h2 className="text-2xl font-bold text-gold-gradient" style={hf}>
-              {locale === 'hi' ? 'योग विश्वकोश' : locale === 'ta' ? 'யோக கலைக்களஞ்சியம்' : locale === 'bn' ? 'যোগ বিশ্বকোষ' : 'Yoga Encyclopedia'}
+              {pickByLocale({ en: 'Yoga Encyclopedia', hi: 'योग विश्वकोश', ta: 'யோக கலைக்களஞ்சியம்', bn: 'যোগ বিশ্বকোষ' }, locale)}
             </h2>
             <p className="text-text-secondary text-sm" style={bf}>
-              {locale === 'hi' ? '104 वैदिक ज्योतिष योगों का विस्तृत विवरण' : locale === 'ta' ? '104 வேத ஜோதிட யோகங்கள்' : locale === 'bn' ? '104টি বৈদিক জ্যোতিষ যোগ' : '104 detailed yoga articles — formation, effects & remedies'}
+              {pickByLocale({ en: '104 detailed yoga articles — formation, effects & remedies', hi: '104 वैदिक ज्योतिष योगों का विस्तृत विवरण', ta: '104 வேத ஜோதிட யோகங்கள்', bn: '104টি বৈদিক জ্যোতিষ যোগ' }, locale)}
             </p>
           </div>
         </div>
@@ -497,10 +488,7 @@ export default function LearnPage() {
               <div className="mt-4">
                 <Link href="/learn/yoga"
                   className="inline-flex items-center gap-2 text-gold-primary hover:text-gold-light text-sm font-medium transition-colors group">
-                  {locale === 'hi' ? `सभी ${Object.keys(YOGA_DETAIL_DATA).length} योग देखें` :
-                   locale === 'ta' ? `அனைத்து ${Object.keys(YOGA_DETAIL_DATA).length} யோகங்களையும் காண்க` :
-                   locale === 'bn' ? `সমস্ত ${Object.keys(YOGA_DETAIL_DATA).length} যোগ দেখুন` :
-                   `View all ${Object.keys(YOGA_DETAIL_DATA).length} yogas`}
+                  {pickByLocale({ en: `View all ${Object.keys(YOGA_DETAIL_DATA).length} yogas`, hi: `सभी ${Object.keys(YOGA_DETAIL_DATA).length} योग देखें`, ta: `அனைத்து ${Object.keys(YOGA_DETAIL_DATA).length} யோகங்களையும் காண்க`, bn: `সমস্ত ${Object.keys(YOGA_DETAIL_DATA).length} যোগ দেখুন` }, locale)}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
@@ -519,8 +507,8 @@ export default function LearnPage() {
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gold-primary/20 hover:border-gold-primary/40 bg-gold-primary/5 hover:bg-gold-primary/10 text-gold-light text-sm font-medium transition-all mb-6"
         >
           {showRefs
-            ? (locale === 'hi' ? 'संदर्भ पुस्तकालय छुपाएँ' : locale === 'ta' ? 'குறிப்பு நூலகத்தை மறை' : locale === 'bn' ? 'রেফারেন্স লাইব্রেরি লুকান' : 'Hide Reference Library')
-            : (locale === 'hi' ? `संदर्भ पुस्तकालय देखें (${REF_GROUPS.reduce((s, g) => s + g.refs.length, 0)} विषय)` : locale === 'ta' ? `குறிப்பு நூலகம் (${REF_GROUPS.reduce((s, g) => s + g.refs.length, 0)} தலைப்புகள்)` : locale === 'bn' ? `রেফারেন্স লাইব্রেরি (${REF_GROUPS.reduce((s, g) => s + g.refs.length, 0)} বিষয়)` : `Browse Reference Library (${REF_GROUPS.reduce((s, g) => s + g.refs.length, 0)} topics)`)}
+            ? (pickByLocale({ en: 'Hide Reference Library', hi: 'संदर्भ पुस्तकालय छुपाएँ', ta: 'குறிப்பு நூலகத்தை மறை', bn: 'রেফারেন্স লাইব্রেরি লুকান' }, locale))
+            : (pickByLocale({ en: `Browse Reference Library (${REF_GROUPS.reduce((s, g) => s + g.refs.length, 0)} topics)`, hi: `संदर्भ पुस्तकालय देखें (${REF_GROUPS.reduce((s, g) => s + g.refs.length, 0)} विषय)`, ta: `குறிப்பு நூலகம் (${REF_GROUPS.reduce((s, g) => s + g.refs.length, 0)} தலைப்புகள்)`, bn: `রেফারেন্স লাইব্রেরি (${REF_GROUPS.reduce((s, g) => s + g.refs.length, 0)} বিষয়)` }, locale))}
           <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${showRefs ? 'rotate-180' : ''}`} />
         </button>
 

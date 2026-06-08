@@ -7,6 +7,7 @@
 
 import { BASE_URL } from '@/lib/seo/base-url';
 import { generatePersonLD } from '@/lib/seo/structured-data';
+import { pickByLocale } from "@/lib/utils/locale-fonts";
 
 // Key learn topics with their publication dates and descriptions
 const ARTICLE_META: Record<string, { datePublished: string; dateModified: string }> = {
@@ -98,7 +99,7 @@ export function generateArticleLD(
     },
     datePublished: meta.datePublished,
     dateModified: meta.dateModified,
-    inLanguage: locale === 'hi' ? 'hi' : locale === 'ta' ? 'ta' : locale === 'bn' ? 'bn' : 'en',
+    inLanguage: pickByLocale({ en: 'en', hi: 'hi', ta: 'ta', bn: 'bn' }, locale),
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `${BASE_URL}/${locale}${route}`,

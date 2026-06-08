@@ -8,7 +8,7 @@ import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
 import { HoroscopeClient } from './HoroscopeClient';
 import { RashiArticle } from './RashiArticle';
 import { tl } from '@/lib/utils/trilingual';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByLocale } from '@/lib/utils/locale-fonts';
 import { scoreLabel, getScoreBgClass } from '@/lib/horoscope/score-utils';
 import { Link } from '@/lib/i18n/navigation';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
@@ -244,17 +244,7 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
             ? `${vedicName} राशीभविष्य ${L.today} — ${today}`
             : isHi
             ? `${vedicName} राशिफल आज — ${today}`
-            : locale === 'ta'
-            ? `${vedicName} ராசிபலன் ${L.today} — ${today}`
-            : locale === 'te'
-            ? `${vedicName} రాశిఫలం ${L.today} — ${today}`
-            : locale === 'kn'
-            ? `${vedicName} ರಾಶಿಫಲ ${L.today} — ${today}`
-            : locale === 'gu'
-            ? `${vedicName} રાશિફળ ${L.today} — ${today}`
-            : locale === 'bn'
-            ? `${vedicName} রাশিফল ${L.today} — ${today}`
-            : `${vedicName} (${westernName}) Horoscope Today — ${today}`}
+            : pickByLocale({ en: `${vedicName} (${westernName}) Horoscope Today — ${today}`, ta: `${vedicName} ராசிபலன் ${L.today} — ${today}`, te: `${vedicName} రాశిఫలం ${L.today} — ${today}`, kn: `${vedicName} ರಾಶಿಫಲ ${L.today} — ${today}`, gu: `${vedicName} રાશિફળ ${L.today} — ${today}`, bn: `${vedicName} রাশিফল ${L.today} — ${today}` }, locale)}
         </h1>
 
         {/* Primary answer paragraph — what Google shows in featured snippets */}
@@ -411,17 +401,7 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
               ? `${vedicName} राशी (${westernName}) ${element} तत्त्वाची राशी आहे, हिचे स्वामी ${ruler} आहेत. हे राशीभविष्य ${vedicName} चन्द्र राशी (Moon Sign) असणाऱ्यांसाठी आहे — वैदिक ज्योतिषात चन्द्र राशी सर्वात अचूक दैनिक भविष्यवाणी देते.`
               : isHi
               ? `${vedicName} राशि (${westernName}) ${element} तत्व की राशि है जिसके स्वामी ${ruler} हैं। यह राशिफल ${vedicName} चन्द्र राशि (Moon Sign) वालों के लिए है — वैदिक ज्योतिष में चन्द्र राशि सबसे सटीक दैनिक भविष्यवाणी देती है।`
-              : locale === 'ta'
-              ? `${vedicName} (${westernName}) என்பது ${element} தத்துவத்துடன் கூடிய ராசி, இதன் அதிபதி ${ruler}. இந்த ராசிபலன் ${vedicName} சந்திர ராசி வைத்தவர்களுக்கு — வேத ஜோதிடத்தில் சந்திர ராசி உண்மையான கிரக சஞ்சாரத்தின் அடிப்படையில் மிக துல்லியமான தினசரி கணிப்பு தருகிறது.`
-              : locale === 'te'
-              ? `${vedicName} (${westernName}) అనేది ${element} తత్త్వంతో కూడిన రాశి, దీని అధిపతి ${ruler}. ఈ రాశిఫలం ${vedicName} చంద్ర రాశి ఉన్నవారికి — వేద జ్యోతిషంలో చంద్ర రాశి నిజమైన గ్రహ గోచారాన్ని ఆధారం చేసుకుని అత్యంత ఖచ్చితమైన రోజువారీ అంచనా ఇస్తుంది.`
-              : locale === 'kn'
-              ? `${vedicName} (${westernName}) ${element} ತತ್ತ್ವದ ರಾಶಿ, ಇದರ ಅಧಿಪತಿ ${ruler}. ಈ ರಾಶಿಫಲ ${vedicName} ಚಂದ್ರ ರಾಶಿಯವರಿಗೆ — ವೇದ ಜ್ಯೋತಿಷದಲ್ಲಿ ಚಂದ್ರ ರಾಶಿಯು ನಿಜವಾದ ಗ್ರಹ ಸಂಚಾರವನ್ನು ಆಧರಿಸಿ ಅತ್ಯಂತ ನಿಖರವಾದ ದೈನಂದಿನ ಭವಿಷ್ಯ ನೀಡುತ್ತದೆ.`
-              : locale === 'gu'
-              ? `${vedicName} (${westernName}) એ ${element} તત્વની રાશિ છે જેનો સ્વામી ${ruler} છે. આ રાશિફળ ${vedicName} ચંદ્ર રાશિ ધરાવનારાઓ માટે છે — વૈદિક જ્યોતિષમાં ચંદ્ર રાશિ વાસ્તવિક ગ્રહ ગોચરના આધારે સૌથી ચોક્કસ દૈનિક ભવિષ્યવાણી આપે છે.`
-              : locale === 'bn'
-              ? `${vedicName} (${westernName}) হল ${element} তত্ত্বের রাশি যার অধিপতি ${ruler}। এই রাশিফল ${vedicName} চন্দ্র রাশি যাদের জন্য — বৈদিক জ্যোতিষে চন্দ্র রাশি প্রকৃত গ্রহ গোচরের ভিত্তিতে সবচেয়ে নির্ভুল দৈনিক ভবিষ্যৎবাণী দেয়।`
-              : `${westernName} (${vedicName}) is a ${tl(rashi.element, 'en')} sign ruled by ${tl(rashi.rulerName, 'en')}. This horoscope is for ${westernName} Moon Sign — in Vedic astrology, the Moon sign provides the most accurate daily predictions based on actual planetary transits.`}
+              : pickByLocale({ en: `${westernName} (${vedicName}) is a ${tl(rashi.element, 'en')} sign ruled by ${tl(rashi.rulerName, 'en')}. This horoscope is for ${westernName} Moon Sign — in Vedic astrology, the Moon sign provides the most accurate daily predictions based on actual planetary transits.`, ta: `${vedicName} (${westernName}) என்பது ${element} தத்துவத்துடன் கூடிய ராசி, இதன் அதிபதி ${ruler}. இந்த ராசிபலன் ${vedicName} சந்திர ராசி வைத்தவர்களுக்கு — வேத ஜோதிடத்தில் சந்திர ராசி உண்மையான கிரக சஞ்சாரத்தின் அடிப்படையில் மிக துல்லியமான தினசரி கணிப்பு தருகிறது.`, te: `${vedicName} (${westernName}) అనేది ${element} తత్త్వంతో కూడిన రాశి, దీని అధిపతి ${ruler}. ఈ రాశిఫలం ${vedicName} చంద్ర రాశి ఉన్నవారికి — వేద జ్యోతిషంలో చంద్ర రాశి నిజమైన గ్రహ గోచారాన్ని ఆధారం చేసుకుని అత్యంత ఖచ్చితమైన రోజువారీ అంచనా ఇస్తుంది.`, kn: `${vedicName} (${westernName}) ${element} ತತ್ತ್ವದ ರಾಶಿ, ಇದರ ಅಧಿಪತಿ ${ruler}. ಈ ರಾಶಿಫಲ ${vedicName} ಚಂದ್ರ ರಾಶಿಯವರಿಗೆ — ವೇದ ಜ್ಯೋತಿಷದಲ್ಲಿ ಚಂದ್ರ ರಾಶಿಯು ನಿಜವಾದ ಗ್ರಹ ಸಂಚಾರವನ್ನು ಆಧರಿಸಿ ಅತ್ಯಂತ ನಿಖರವಾದ ದೈನಂದಿನ ಭವಿಷ್ಯ ನೀಡುತ್ತದೆ.`, gu: `${vedicName} (${westernName}) એ ${element} તત્વની રાશિ છે જેનો સ્વામી ${ruler} છે. આ રાશિફળ ${vedicName} ચંદ્ર રાશિ ધરાવનારાઓ માટે છે — વૈદિક જ્યોતિષમાં ચંદ્ર રાશિ વાસ્તવિક ગ્રહ ગોચરના આધારે સૌથી ચોક્કસ દૈનિક ભવિષ્યવાણી આપે છે.`, bn: `${vedicName} (${westernName}) হল ${element} তত্ত্বের রাশি যার অধিপতি ${ruler}। এই রাশিফল ${vedicName} চন্দ্র রাশি যাদের জন্য — বৈদিক জ্যোতিষে চন্দ্র রাশি প্রকৃত গ্রহ গোচরের ভিত্তিতে সবচেয়ে নির্ভুল দৈনিক ভবিষ্যৎবাণী দেয়।` }, locale)}
           </p>
         </div>
 

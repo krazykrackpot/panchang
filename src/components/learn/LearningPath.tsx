@@ -7,7 +7,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { PHASE_INFO, getPhaseModules } from '@/lib/learn/module-sequence';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByLocale } from '@/lib/utils/locale-fonts';
 
 /**
  * LearningPath  –  vertical milestone visualization of the 12-phase Jyotish curriculum.
@@ -92,16 +92,10 @@ export default function LearningPath() {
   };
 
   const continueLabel =
-    locale === 'hi' ? 'जारी रखें' :
-    locale === 'ta' ? 'தொடரவும்' :
-    locale === 'bn' ? 'চালিয়ে যান' :
-    'Continue';
+    pickByLocale({ en: 'Continue', hi: 'जारी रखें', ta: 'தொடரவும்', bn: 'চালিয়ে যান' }, locale);
 
   const completedLabel =
-    locale === 'hi' ? 'पूर्ण' :
-    locale === 'ta' ? 'முடிந்தது' :
-    locale === 'bn' ? 'সম্পন্ন' :
-    'Completed';
+    pickByLocale({ en: 'Completed', hi: 'पूर्ण', ta: 'முடிந்தது', bn: 'সম্পন্ন' }, locale);
 
   return (
     <div className="relative max-w-2xl mx-auto">
@@ -134,7 +128,7 @@ export default function LearningPath() {
                 <div className={`flex items-center gap-3 ${i > 0 ? 'mt-6 mb-3' : 'mb-3'} ml-14 sm:ml-[4.5rem]`}>
                   <div className="h-px flex-1 max-w-16 bg-gradient-to-r from-gold-primary/25 to-transparent" />
                   <span className="text-gold-dark text-[10px] uppercase tracking-[3px] font-bold">
-                    {locale === 'hi' ? tier.hi : locale === 'ta' ? tier.ta : locale === 'bn' ? tier.bn : tier.en}
+                    {pickByLocale({ en: tier.en, hi: tier.hi, ta: tier.ta, bn: tier.bn }, locale)}
                   </span>
                   <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gold-primary/15 to-transparent" />
                 </div>
@@ -179,10 +173,7 @@ export default function LearningPath() {
                           : 'text-text-secondary/40'
                       }`}
                     >
-                      {locale === 'hi' ? `चरण ${phase.phase}` :
-                       locale === 'ta' ? `நிலை ${phase.phase}` :
-                       locale === 'bn' ? `পর্যায় ${phase.phase}` :
-                       `Phase ${phase.phase}`}
+                      {pickByLocale({ en: `Phase ${phase.phase}`, hi: `चरण ${phase.phase}`, ta: `நிலை ${phase.phase}`, bn: `পর্যায় ${phase.phase}` }, locale)}
                     </span>
 
                     {/* Phase title */}
@@ -250,10 +241,10 @@ export default function LearningPath() {
                       }`}
                     >
                       {isCompleted
-                        ? (locale === 'hi' ? 'पुनः देखें' : locale === 'ta' ? 'மீண்டும் பார்' : locale === 'bn' ? 'আবার দেখুন' : 'Review')
+                        ? (pickByLocale({ en: 'Review', hi: 'पुनः देखें', ta: 'மீண்டும் பார்', bn: 'আবার দেখুন' }, locale))
                         : isInProgress
                         ? continueLabel
-                        : (locale === 'hi' ? 'शुरू करें' : locale === 'ta' ? 'தொடங்கு' : locale === 'bn' ? 'শুরু করুন' : 'Start')}
+                        : (pickByLocale({ en: 'Start', hi: 'शुरू करें', ta: 'தொடங்கு', bn: 'শুরু করুন' }, locale))}
                       <ArrowRight className="w-4 h-4" />
                     </Link>
                   </div>

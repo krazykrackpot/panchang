@@ -13,6 +13,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { locales } from '@/lib/i18n/config';
 
 import { BASE_URL } from '@/lib/seo/base-url';
+import { pickByLocale } from "@/lib/utils/locale-fonts";
 
 /** Format "2026-08-22" → "Aug 22" (short, for title  –  saves characters) */
 function fmtShortDate(dateStr: string): string {
@@ -186,7 +187,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url,
       siteName: 'Dekho Panchang',
-      locale: locale === 'hi' ? 'hi_IN' : locale === 'sa' ? 'sa_IN' : 'en_US',
+      locale: pickByLocale({ en: 'en_US', hi: 'hi_IN', sa: 'sa_IN' }, locale),
       type: 'article',
       images: [
         {

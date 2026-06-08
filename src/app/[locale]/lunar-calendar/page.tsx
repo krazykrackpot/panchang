@@ -10,7 +10,7 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import type { PanchangData } from '@/types/panchang';
 import { ChevronLeft, ChevronRight, MapPin, ArrowRight, Moon, Sun, Sparkles, AlertTriangle } from 'lucide-react';
-import { pickByScript } from "@/lib/utils/locale-fonts";
+import { pickByScript, pickByLocale } from "@/lib/utils/locale-fonts";
 
 // ─── Types ────────────────────────────────────────────────
 
@@ -313,7 +313,7 @@ export default function LunarCalendarPage() {
         {/* ─── Section 1: Lunar Phase Hero ─── */}
         <section className="mb-12">
           <h1 className="text-3xl sm:text-4xl font-bold text-gold-light mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-            {locale === 'hi' ? 'चंद्र जीवनशैली कैलेंडर' : locale === 'sa' ? 'चन्द्रकलापत्रम्' : 'Lunar Lifestyle Calendar'}
+            {pickByLocale({ en: 'Lunar Lifestyle Calendar', hi: 'चंद्र जीवनशैली कैलेंडर', sa: 'चन्द्रकलापत्रम्' }, locale)}
           </h1>
           <p className="text-text-secondary mb-6">
             {pickByScript('Track the Moon\'s daily energy and plan your lifestyle according to Vedic Panchang rhythms.', 'चंद्रमा की दैनिक ऊर्जा को ट्रैक करें और वैदिक पंचांग के अनुसार जीवनशैली योजना बनाएं।', locale)}

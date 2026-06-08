@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { setRequestLocale } from 'next-intl/server';
-import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript, pickByLocale } from '@/lib/utils/locale-fonts';
 import { generatePersonLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { Mail, Globe, Code, BookOpen, Calculator, Shield } from 'lucide-react';
@@ -401,7 +401,7 @@ export default async function AboutPage({
 
           {/* Social links */}
           <div className="flex items-center gap-4 mt-6 pt-6 border-t border-gold-primary/10">
-            <span className="text-text-secondary text-sm">{locale === 'hi' ? 'हमसे जुड़ें' : locale === 'ta' ? 'எங்களை தொடருங்கள்' : locale === 'bn' ? 'আমাদের অনুসরণ করুন' : 'Follow us'}:</span>
+            <span className="text-text-secondary text-sm">{pickByLocale({ en: 'Follow us', hi: 'हमसे जुड़ें', ta: 'எங்களை தொடருங்கள்', bn: 'আমাদের অনুসরণ করুন' }, locale)}:</span>
             <a href="https://x.com/dekhopanchang" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/8 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all text-sm">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               @dekhopanchang

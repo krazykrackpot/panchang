@@ -33,7 +33,7 @@ import {
 import { ALL_FESTIVAL_DEFS, type FestivalDef } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details-with-overlay';
 import { tl } from '@/lib/utils/trilingual';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByLocale } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -291,7 +291,7 @@ export default function HinduMonthsCalendar() {
               .replace(/ (Krishna|Shukla)$/, '');
             const festivals = festivalsForMasa(festivalKey, 4);
             const nameForLocale =
-              locale === 'hi' ? row.hi : locale === 'sa' ? row.sa : row.en;
+              pickByLocale({ en: row.en, hi: row.hi, sa: row.sa }, locale);
             const baseName = row.en.replace(/^Adhika /, '');
 
             // Visual treatment: adhika = emerald glow; sandwich top/bottom

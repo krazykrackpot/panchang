@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import { tl } from '@/lib/utils/trilingual';
 import type { TimelineTrigger } from '@/lib/kundali/domain-synthesis/types';
+import { pickByLocale } from "@/lib/utils/locale-fonts";
 
 // ---------------------------------------------------------------------------
 // Props
@@ -36,7 +37,7 @@ function dotBg(nature: TimelineTrigger['nature']): string {
 
 function fmtDate(iso: string, locale: string): string {
   const d = new Date(iso);
-  return d.toLocaleDateString(locale === 'hi' ? 'hi-IN' : locale === 'ta' ? 'ta-IN' : locale === 'bn' ? 'bn-IN' : 'en-GB', { month: 'short', year: 'numeric' });
+  return d.toLocaleDateString(pickByLocale({ en: 'en-GB', hi: 'hi-IN', ta: 'ta-IN', bn: 'bn-IN' }, locale), { month: 'short', year: 'numeric' });
 }
 
 const TYPE_LABELS: Record<TimelineTrigger['triggerType'], { en: string; hi: string }> = {

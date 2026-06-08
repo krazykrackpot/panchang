@@ -10,7 +10,7 @@ import { MapPin, Loader2, Search, X } from 'lucide-react';
 import type { PanchangData, Locale } from '@/types/panchang';
 import { TithiIcon, NakshatraIcon, YogaIcon, KaranaIcon, VaraIcon } from '@/components/icons/PanchangIcons';
 import { useLocationStore } from '@/stores/location-store';
-import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, getHeadingFont, getBodyFont, pickByLocale } from '@/lib/utils/locale-fonts';
 import { tl as _tl } from '@/lib/utils/trilingual';
 import { YOGAS } from '@/lib/constants/yogas';
 import { KARANAS } from '@/lib/constants/karanas';
@@ -418,10 +418,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
           <span className="text-gold-primary">✦</span>
           {isDevanagariLocale(locale)
             ? 'अपनी जन्म कुण्डली बनाएं — निःशुल्क'
-            : locale === 'ta' ? 'உங்கள் ஜாதகம் உருவாக்கவும் — இலவசம்'
-            : locale === 'bn' ? 'আপনার জন্ম কুণ্ডলী তৈরি করুন — বিনামূল্যে'
-            : locale === 'te' ? 'మీ జాతకం తయారు చేయండి — ఉచితం'
-            : 'Generate Your Birth Chart — Free'}
+            : pickByLocale({ en: 'Generate Your Birth Chart — Free', ta: 'உங்கள் ஜாதகம் உருவாக்கவும் — இலவசம்', bn: 'আপনার জন্ম কুণ্ডলী তৈরি করুন — বিনামূল্যে', te: 'మీ జాతకం తయారు చేయండి — ఉచితం' }, locale)}
           <span className="text-gold-primary/60">→</span>
         </a>
       </div>

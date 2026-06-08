@@ -22,7 +22,7 @@ import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import BodyMapVisual from '@/components/medical/BodyMapVisual';
 import { ChevronDown } from 'lucide-react';
-import { pickByScript } from "@/lib/utils/locale-fonts";
+import { pickByScript, pickByLocale } from "@/lib/utils/locale-fonts";
 
 // ─── Inline labels (4 active locales: en, hi, ta, bn) ────────────────────────
 const LABELS = {
@@ -781,7 +781,7 @@ export default function MedicalAstrologyPage() {
         {savedCharts.length > 0 && !result && (
           <section>
             <h2 className="text-lg font-semibold text-text-primary mb-3" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-              {locale === 'hi' ? 'परिवार का सदस्य चुनें' : locale === 'ta' ? 'குடும்ப உறுப்பினரைத் தேர்ந்தெடுக்கவும்' : locale === 'bn' ? 'পরিবারের সদস্য নির্বাচন করুন' : 'Select a Family Member'}
+              {pickByLocale({ en: 'Select a Family Member', hi: 'परिवार का सदस्य चुनें', ta: 'குடும்ப உறுப்பினரைத் தேர்ந்தெடுக்கவும்', bn: 'পরিবারের সদস্য নির্বাচন করুন' }, locale)}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {savedCharts.map((c) => {
@@ -840,7 +840,7 @@ export default function MedicalAstrologyPage() {
           <section>
             {savedCharts.length > 0 && (
               <div className="text-center text-text-secondary text-sm mb-4 mt-2">
-                {locale === 'hi' ? 'या नए विवरण दर्ज करें' : locale === 'ta' ? 'அல்லது புதிய விவரங்களை உள்ளிடவும்' : locale === 'bn' ? 'অথবা নতুন বিবরণ লিখুন' : 'Or enter new details'}
+                {pickByLocale({ en: 'Or enter new details', hi: 'या नए विवरण दर्ज करें', ta: 'அல்லது புதிய விவரங்களை உள்ளிடவும்', bn: 'অথবা নতুন বিবরণ লিখুন' }, locale)}
               </div>
             )}
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 rounded-2xl p-6">

@@ -121,14 +121,21 @@ def _write_overlay(locale: str, overlay: dict[str, str]) -> None:
     merged: dict[str, str] = {}
     if out_path.exists():
         try:
-            merged = json.loads(out_path.read_text())
+            # Explicit utf-8 — overlay JSON contains non-ASCII script
+            # bytes (Tamil/Bengali/Kannada), and Python defaults to the
+            # platform encoding (cp1252 on Windows) which corrupts them.
+            # Gemini PR #550 cycle-2 MED.
+            merged = json.loads(out_path.read_text(encoding="utf-8"))
             if not isinstance(merged, dict):
                 merged = {}
         except json.JSONDecodeError:
             merged = {}
     merged.update(overlay)
     tmp = out_path.with_suffix(".json.tmp")
-    tmp.write_text(json.dumps(merged, ensure_ascii=False, indent=2, sort_keys=True))
+    tmp.write_text(
+        json.dumps(merged, ensure_ascii=False, indent=2, sort_keys=True),
+        encoding="utf-8",
+    )
     tmp.replace(out_path)
 
 
@@ -171,7 +178,7 @@ def main() -> int:
         print("Run first: npx tsx scripts/extract-planet-house-verses-translation-jobs.ts > /tmp/planet-house-verses-jobs.json", file=sys.stderr)
         return 1
 
-    jobs_data = json.loads(JOBS_FILE.read_text())
+    jobs_data = json.loads(JOBS_FILE.read_text(encoding="utf-8"))
     print(f"Total jobs: {jobs_data['total']}")
     print(f"By locale: {jobs_data['by_locale']}")
 
@@ -207,7 +214,7 @@ def main() -> int:
     # a final summary line per locale. Gemini PR #550 cycle-1 MED.
     for locale, overlay in results.items():
         out_path = OUT_DIR / f"planet-in-house-verses-{locale}-overlay.json"
-        n_total = len(json.loads(out_path.read_text())) if out_path.exists() else 0
+        n_total = len(json.loads(out_path.read_text(encoding="utf-8"))) if out_path.exists() else 0
         print(f"wrote {out_path} ({n_total} total entries, {len(overlay)} new this run)")
 
     return 0

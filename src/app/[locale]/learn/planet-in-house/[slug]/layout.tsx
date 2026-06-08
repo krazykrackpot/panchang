@@ -72,9 +72,16 @@ export async function generateMetadata({
   // LocaleText carries the locale's translation; tl() handles fallback
   // for any locale still missing.
   const interp = verse?.interpretation as Record<string, string> | undefined;
+  // Belt-and-braces fallback chain: locale → en → generic. Without the
+  // generic terminator, an overlay missing both interp[locale] AND
+  // interp.en (shouldn't happen given the authored corpus, but defence)
+  // produces `undefined.slice()` → runtime TypeError. Gemini PR #550
+  // cycle-2 MED.
+  const genericFallback =
+    `${planet.en} in the ${suffix} house  –  classical verse and modern interpretation from Brihat Parashara Hora Shastra.`;
   const descText = interp
-    ? (interp[locale] ?? interp.en)
-    : `${planet.en} in the ${suffix} house  –  classical verse and modern interpretation from Brihat Parashara Hora Shastra.`;
+    ? (interp[locale] ?? interp.en ?? genericFallback)
+    : genericFallback;
   const description = descText.slice(0, 160);
 
   const url = `${BASE_URL}/${locale}/learn/planet-in-house/${slug}`;

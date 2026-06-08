@@ -361,7 +361,7 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
         <div className="flex items-center gap-3">
           {dayLevelYogas.length > 0 && (
             <span className="text-gold-primary/70 text-[10px]">
-              ✦ {dayLevelYogas.map(y => isHi ? y.nameHi : y.name).join(', ')}
+              ✦ {dayLevelYogas.map(y => y.nameLT ? tlScript(y.nameLT, locale) : (isHi ? y.nameHi : y.name)).join(', ')}
             </span>
           )}
           {/* Personal tarabala toggle */}
@@ -498,7 +498,7 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
                 const allBlocks = [...firstSlot.hardBlocks, ...firstSlot.conditionalBlocks];
                 for (const b of allBlocks) {
                   if (b.id === 'activity_nakshatra_hard' || b.id === 'activity_nakshatra' || b.id === 'activity_tithi') {
-                    notes.push(isHi ? b.nameHi : b.name);
+                    notes.push(b.nameLT ? tlScript(b.nameLT, locale) : (isHi ? b.nameHi : b.name));
                   }
                 }
               }
@@ -516,7 +516,7 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
               <Clock className="w-4 h-4 text-gold-light/70" />
               <span className="text-gold-light font-mono text-sm">{fmt12(bestWindow.start)} – {fmt12(bestWindow.end)}</span>
               <span className="text-emerald-400/80 text-xs">
-                {bestWindow.positives.map(p => isHi ? p.nameHi : p.name).join(' + ')}
+                {bestWindow.positives.map(p => p.nameLT ? tlScript(p.nameLT, locale) : (isHi ? p.nameHi : p.name)).join(' + ')}
               </span>
             </div>
             <span className="flex items-center gap-0.5">

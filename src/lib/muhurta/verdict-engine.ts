@@ -25,6 +25,7 @@ import {
 import { resolveConflict } from './conflict-matrix';
 import { EXTENDED_ACTIVITIES } from './activity-rules-extended';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
+import { formatActivityBlockName } from './block-name-labels';
 
 // ─── Time helpers ───────────────────────────────────────────────────────────
 
@@ -201,10 +202,12 @@ export function computeDayVerdict(panchang: PanchangData, activityId?: string): 
       const baseBlock = CONDITIONAL_BLOCKS.find(b => b.id === 'activity_nakshatra_hard')
         ?? HARD_BLOCKS.find(b => b.id === 'activity_nakshatra_hard');
       if (baseBlock) {
+        const nameLT = formatActivityBlockName('activity_nakshatra_hard_template', activity.label, 'en');
         activityDayBlocks.push({
           ...baseBlock,
-          name: `Nakshatra vetoed for ${activity.label.en}`,
-          nameHi: `${activity.label.hi} हेतु नक्षत्र वर्जित`,
+          name: nameLT.en,
+          nameHi: nameLT.hi ?? `${activity.label.hi} हेतु नक्षत्र वर्जित`,
+          nameLT,
         });
       }
     }
@@ -212,10 +215,12 @@ export function computeDayVerdict(panchang: PanchangData, activityId?: string): 
     else if (activity.avoidNakshatras?.includes(nakshatraId)) {
       const baseBlock = CONDITIONAL_BLOCKS.find(b => b.id === 'activity_nakshatra');
       if (baseBlock) {
+        const nameLT = formatActivityBlockName('activity_nakshatra_template', activity.label, 'en');
         activityDayConditionals.push({
           ...baseBlock,
-          name: `Nakshatra unsuitable for ${activity.label.en}`,
-          nameHi: `${activity.label.hi} हेतु नक्षत्र अनुपयुक्त`,
+          name: nameLT.en,
+          nameHi: nameLT.hi ?? `${activity.label.hi} हेतु नक्षत्र अनुपयुक्त`,
+          nameLT,
         });
       }
     }
@@ -224,10 +229,12 @@ export function computeDayVerdict(panchang: PanchangData, activityId?: string): 
     if (activity.avoidTithis?.includes(tithiNum)) {
       const baseBlock = CONDITIONAL_BLOCKS.find(b => b.id === 'activity_tithi');
       if (baseBlock) {
+        const nameLT = formatActivityBlockName('activity_tithi_template', activity.label, 'en');
         activityDayConditionals.push({
           ...baseBlock,
-          name: `Tithi unsuitable for ${activity.label.en}`,
-          nameHi: `${activity.label.hi} हेतु तिथि अनुपयुक्त`,
+          name: nameLT.en,
+          nameHi: nameLT.hi ?? `${activity.label.hi} हेतु तिथि अनुपयुक्त`,
+          nameLT,
         });
       }
     }

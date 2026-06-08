@@ -9,6 +9,7 @@ import type { LocaleText } from '@/types/panchang';
 import { getUpcomingFestivals } from '@/lib/calendar/next-festival';
 import { getSeoCityForLocale } from '@/lib/constants/cities';
 import { tl as trilingual } from '@/lib/utils/trilingual';
+import { pickHoroscopeLabel as HL, formatHoroscopeLabel } from '@/lib/content/horoscope-labels';
 import Link from 'next/link';
 
 export const revalidate = 86400;
@@ -47,24 +48,28 @@ export default async function MonthlyRashiPage({ params }: { params: Promise<{ l
   const vedicName = rashi.name.hi || rashi.name.en;
   const westernName = rashi.name.en;
 
-  const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
-  const monthLabel = isHi ? getMonthLabelHi() : getMonthLabel();
+  // Use Hindi-script month label for Devanagari locales (mai/mr/sa
+  // share Devanagari script with Hindi); other scripts get the
+  // English-format label until ICU month-name overlays ship.
+  const monthLabel = (locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai')
+    ? getMonthLabelHi()
+    : getMonthLabel();
 
   return (
     <main className="min-h-screen bg-[#0a0e27] pb-20">
       {/* SSR: H1 with rashi name and month  –  Google indexes this */}
       <div className="max-w-4xl mx-auto px-4 pt-8">
         <h1 className="text-2xl sm:text-3xl font-bold text-gold-light text-center">
-          {isHi
-            ? `${vedicName} मासिक राशिफल  –  ${monthLabel}`
-            : `${vedicName} (${westernName}) Monthly Horoscope  –  ${monthLabel}`}
+          {formatHoroscopeLabel('monthlyH1Template', locale, {
+            NAME: vedicName, WESTERN_NAME: westernName, MONTH: monthLabel,
+          })}
         </h1>
 
         {/* SSR: Brief description paragraph for indexing */}
         <p className="mt-4 text-center text-text-secondary text-sm max-w-2xl mx-auto">
-          {isHi
-            ? `${vedicName} राशि का मासिक राशिफल ${monthLabel} के लिए। कैलेंडर हीटमैप, करियर, प्रेम, स्वास्थ्य एवं वित्त भविष्यवाणी। वैदिक ग्रह गोचर पर आधारित।`
-            : `${westernName} (${vedicName}) monthly horoscope for ${monthLabel}. Calendar heatmap, career, love, health and finance predictions based on actual Vedic planetary transits.`}
+          {formatHoroscopeLabel('monthlyDescTemplate', locale, {
+            NAME: vedicName, WESTERN_NAME: westernName, MONTH: monthLabel,
+          })}
         </p>
       </div>
 
@@ -85,8 +90,8 @@ export default async function MonthlyRashiPage({ params }: { params: Promise<{ l
         return (
           <div className="max-w-4xl mx-auto px-4 mt-6">
             <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-5 sm:p-6">
-              <h2 className="text-gold-light text-base sm:text-lg font-semibold mb-3" >
-                {isHi ? 'इस माह के पर्व एवं व्रत' : 'Festivals & Vrats This Month'}
+              <h2 className="text-gold-light text-base sm:text-lg font-semibold mb-3">
+                {HL('festivalsThisMonth', locale)}
               </h2>
               <ul className="space-y-1.5 text-sm">
                 {upcoming.map((u, i) => (

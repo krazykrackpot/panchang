@@ -16,6 +16,7 @@ import { getSupabase } from '@/lib/supabase/client';
 import type { Locale } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { pickHoroscopeLabel as HL } from '@/lib/content/horoscope-labels';
 import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 
@@ -464,7 +465,7 @@ export function HubClient({ locale }: HubClientProps) {
                 }`}
                 style={bodyFont}
               >
-                {birthName || (isHi ? 'स्वयं' : 'Me')}
+                {birthName || HL('me', locale)}
                 <span className="ml-1 text-[10px] opacity-60">
                   {RASHIS[birthRashi - 1]?.name[lk]}
                 </span>
@@ -534,7 +535,7 @@ export function HubClient({ locale }: HubClientProps) {
                   <Star className="w-5 h-5 text-emerald-400 fill-emerald-400" />
                   <div className="flex-1">
                     <p className="text-emerald-300 text-xs font-semibold uppercase tracking-wider">
-                      {isHi ? 'आज की विशेष राशि' : 'Featured Sign of the Day'}
+                      {HL('featuredSignOfTheDay', locale)}
                     </p>
                     <p className="text-gold-light text-sm font-bold mt-0.5" style={bodyFont}>
                       {(fRashi.name[lk] ?? fRashi.name.en) as string} ({fRashi.name.en})  –  {featured.score}/10

@@ -11,6 +11,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { Link } from '@/lib/i18n/navigation';
 import ShareButton from '@/components/ui/ShareButton';
 import { tl } from '@/lib/utils/trilingual';
+import { pickHoroscopeLabel as HL } from '@/lib/content/horoscope-labels';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
 import { trackHoroscopeViewed } from '@/lib/analytics';
 import { scoreLabel, getScoreBgClass as scoreBgColor, getScoreTextClass as scoreTextColor } from '@/lib/horoscope/score-utils';
@@ -515,7 +516,7 @@ export function WeeklyClient({ rashi, locale }: WeeklyClientProps) {
                       ))
                     ) : (
                       <p className="text-text-secondary text-xs italic" style={bodyFont}>
-                        {isHi ? 'कोई विशेष प्रबल दिन नहीं' : 'No standout strong days'}
+                        {HL('noStandoutStrongDays', locale)}
                       </p>
                     )}
                   </div>
@@ -539,7 +540,7 @@ export function WeeklyClient({ rashi, locale }: WeeklyClientProps) {
                       ))
                     ) : (
                       <p className="text-text-secondary text-xs italic" style={bodyFont}>
-                        {isHi ? 'कोई चुनौतीपूर्ण दिन नहीं' : 'No especially challenging days'}
+                        {HL('noChallengingDays', locale)}
                       </p>
                     )}
                   </div>

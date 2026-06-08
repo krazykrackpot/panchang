@@ -10,6 +10,7 @@ import ShareButton from '@/components/ui/ShareButton';
 import WhatsAppShareBanner from '@/components/ui/WhatsAppShareBanner';
 import NakshatraShareButton from '@/components/shareable/NakshatraShareButton';
 import { tl } from '@/lib/utils/trilingual';
+import { pickHoroscopeLabel as HL } from '@/lib/content/horoscope-labels';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
 import { scoreLabel, getScoreBgClass as scoreBgColor, getScoreTextClass as scoreTextColor } from '@/lib/horoscope/score-utils';
 import { useBirthDataStore } from '@/stores/birth-data-store';
@@ -358,21 +359,21 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
         {/* Navigation tabs: Daily | Weekly | Monthly */}
         <div className="flex items-center gap-1 mb-8 bg-white/5 rounded-xl p-1 w-fit">
           <div className="px-4 py-2 rounded-lg text-sm font-medium bg-gold-primary/15 text-gold-light border border-gold-primary/20" style={bodyFont}>
-            {isHi ? 'दैनिक' : 'Daily'}
+            {HL('tabDaily', locale)}
           </div>
           <Link
             href={`/horoscope/${rashiSlug}/weekly` as '/horoscope'}
             className="px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all"
             style={bodyFont}
           >
-            {isHi ? 'साप्ताहिक' : 'Weekly'}
+            {HL('tabWeekly', locale)}
           </Link>
           <Link
             href={`/horoscope/${rashiSlug}/monthly` as '/horoscope'}
             className="px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all"
             style={bodyFont}
           >
-            {isHi ? 'मासिक' : 'Monthly'}
+            {HL('tabMonthly', locale)}
           </Link>
         </div>
 
@@ -406,7 +407,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
                 {/* Dasha context badge */}
                 {personalForecast.dasha?.maha && (
                   <span className="inline-flex items-center gap-1 mb-3 rounded-full bg-purple-600/20 border border-purple-500/25 px-3 py-1 text-xs font-medium text-purple-300">
-                    {isHi ? 'दशा' : 'Dasha'}: {personalForecast.dasha.maha}
+                    {HL('tabDasha', locale)}: {personalForecast.dasha.maha}
                     {personalForecast.dasha.antar ? ` / ${personalForecast.dasha.antar}` : ''}
                   </span>
                 )}
@@ -741,7 +742,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
             subtext={isHi
               ? 'व्यक्तिगत गोचर विश्लेषण, साढ़े साती जाँच, और रोज़ सूर्योदय पर ईमेल'
               : 'Personalised transit analysis, Sade Sati check, and daily sunrise email'}
-            buttonLabel={isHi ? 'निःशुल्क खाता बनाएँ' : 'Sign Up Free'}
+            buttonLabel={HL('signUpFree', locale)}
             triggerAuth
           />
         </div>

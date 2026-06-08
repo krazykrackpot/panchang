@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { RashiIconById } from '@/components/icons/RashiIcons';
-import { getArchetype } from '@/lib/constants/archetypes';
+import { getArchetype } from '@/lib/constants/archetypes-with-overlay';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { useRouter } from 'next/navigation';

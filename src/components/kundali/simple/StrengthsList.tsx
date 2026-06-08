@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import type { EvaluatedYoga } from '@/lib/kundali/yoga-engine/types';
-import { getYogaPlainName } from '@/lib/constants/yoga-plain-names';
+import { getYogaPlainName } from '@/lib/constants/yoga-plain-names-with-overlay';
 import { tl } from '@/lib/utils/trilingual';
 import { ChevronDown } from 'lucide-react';
 import RarityBadge from '../RarityBadge';

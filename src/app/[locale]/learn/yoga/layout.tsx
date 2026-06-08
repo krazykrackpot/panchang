@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import { generateYogaCollectionLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import LearnArticleLD from '@/components/learn/LearnArticleLD';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 const ACTIVE_LOCALES = ['en', 'hi', 'ta', 'bn'] as const;
@@ -57,6 +58,7 @@ export default async function Layout({ children, params }: { children: React.Rea
 
   return (
     <>
+      <LearnArticleLD route="/learn/yoga" locale={locale} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionLD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
       {children}

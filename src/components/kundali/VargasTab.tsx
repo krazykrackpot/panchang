@@ -5,6 +5,10 @@ import dynamic from 'next/dynamic';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS, GRAHA_ABBREVIATIONS } from '@/lib/constants/grahas';
 import { tl } from '@/lib/utils/trilingual';
+import {
+  pickVargasTabLabel as VTL,
+  formatVargasTabLabel,
+} from '@/lib/content/kundali-vargas-tab-labels';
 import { buildDeepVargaAnalysis } from '@/lib/tippanni/varga-deep-analysis';
 import { getDrekkanaFace, getDecanateFromDegree } from '@/lib/constants/drekkana-faces';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
@@ -290,8 +294,8 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
     return (
       <div className="mt-3">
         <div className="flex items-center gap-3 text-xs mb-1.5">
-          <span className="text-text-secondary">{isHi ? 'वचन' : 'Promise'}: <span className="text-gold-light font-bold">{d1Promise}</span></span>
-          <span className="text-text-secondary">{isHi ? 'फलन' : 'Delivery'}: <span className="text-emerald-400 font-bold">{dxxDelivery}</span></span>
+          <span className="text-text-secondary">{VTL('promise', locale)}: <span className="text-gold-light font-bold">{d1Promise}</span></span>
+          <span className="text-text-secondary">{VTL('delivery', locale)}: <span className="text-emerald-400 font-bold">{dxxDelivery}</span></span>
         </div>
         <div className="h-2.5 rounded-full bg-bg-secondary/80 overflow-hidden flex border border-gold-primary/10">
           <div
@@ -309,13 +313,13 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
             <div className="h-1.5 rounded-full bg-gold-primary/15 overflow-hidden">
               <div className="h-full bg-gold-primary/50 rounded-full" style={{ width: `${d1Promise}%` }} />
             </div>
-            <span className="text-[10px] text-gold-dark">{isHi ? 'D1 वचन' : 'D1 Promise'}</span>
+            <span className="text-[10px] text-gold-dark">{VTL('d1Promise', locale)}</span>
           </div>
           <div className="flex-1">
             <div className="h-1.5 rounded-full bg-emerald-500/15 overflow-hidden">
               <div className="h-full bg-emerald-500/50 rounded-full" style={{ width: `${dxxDelivery}%` }} />
             </div>
-            <span className="text-[10px] text-emerald-500/60">{selectedDiv} {isHi ? 'फलन' : 'Delivery'}</span>
+            <span className="text-[10px] text-emerald-500/60">{selectedDiv} {VTL('delivery', locale)}</span>
           </div>
         </div>
         <p className="text-text-secondary text-xs mt-2 leading-relaxed italic">{verdictText}</p>
@@ -328,7 +332,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
       {/* ── Tiered Pill-Tab Chart Selector ── */}
       <div>
         <h3 className="text-gold-light text-lg font-bold mb-3 text-center" style={headingFont}>
-          {isHi ? 'वर्ग चार्ट चुनें' : 'Select Divisional Chart'}
+          {VTL('selectDivisionalChart', locale)}
         </h3>
 
         {/* Tier 1: Prominent */}
@@ -360,7 +364,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
               className="text-xs text-text-secondary hover:text-gold-light transition-colors px-3 py-1 border border-gold-primary/10 rounded-lg hover:bg-gold-primary/5"
             >
               {showMore
-                ? (isHi ? 'कम दिखाएं' : 'Show Less')
+                ? (VTL('showLess', locale))
                 : (isHi ? `अधिक ▾ (${overflowCharts.length})` : `More \u25BE (${overflowCharts.length})`)}
             </button>
             {showMore && (
@@ -400,7 +404,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
           </p>
           {ascSignName && (
             <p className="text-gold-primary/70 text-xs mt-2">
-              {isHi ? 'लग्न: ' : 'Ascendant: '}
+              {VTL('ascendantPrefix', locale)}
               {tl(ascSignName, locale)}
             </p>
           )}
@@ -423,7 +427,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
               {/* Domain */}
               <div className="mb-3">
                 <span className="text-[10px] uppercase tracking-widest text-text-secondary/50">
-                  {isHi ? 'क्षेत्र' : 'Domain'}
+                  {VTL('domain', locale)}
                 </span>
                 <h3 className="text-gold-light text-lg font-bold" style={headingFont}>
                   {isHi
@@ -435,7 +439,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
               {/* Rising Sign */}
               {ascSignName && (
                 <div className="mb-2 text-sm">
-                  <span className="text-text-secondary">{isHi ? 'उदय राशि: ' : 'Rising: '}</span>
+                  <span className="text-text-secondary">{VTL('risingPrefix', locale)}</span>
                   <span className="text-gold-light font-semibold">{tl(ascSignName, locale)}</span>
                 </div>
               )}
@@ -460,7 +464,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
               {/* Dispositor Chain */}
               {deepAnalysis.crossCorrelation.dispositorChain.finalDispositor !== null && (
                 <div className="mb-2 text-sm">
-                  <span className="text-text-secondary">{isHi ? 'अंतिम अधिपति: ' : 'Final Dispositor: '}</span>
+                  <span className="text-text-secondary">{VTL('finalDispositor', locale)}</span>
                   <span className="text-gold-light font-semibold">
                     {isHi
                       ? PLANET_NAMES[deepAnalysis.crossCorrelation.dispositorChain.finalDispositor]?.hi
@@ -476,7 +480,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
         </div>
       ) : (
         <div className="text-center py-12 text-text-secondary/60 text-sm">
-          {isHi ? 'इस वर्ग के लिए चार्ट डेटा उपलब्ध नहीं है।' : 'Divisional chart data not available for this chart.'}
+          {VTL('noChartData', locale)}
         </div>
       )}
 
@@ -493,11 +497,11 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
 
               {/* Table header */}
               <div className="hidden sm:grid grid-cols-[80px_120px_90px_110px_1fr] gap-1 mb-2 px-2 text-[10px] text-text-secondary/50 uppercase tracking-wider">
-                <span>{isHi ? 'ग्रह' : 'Planet'}</span>
+                <span>{VTL('planet', locale)}</span>
                 <span>{isHi ? 'D1→' + selectedDiv : 'D1\u2192' + selectedDiv}</span>
-                <span>{isHi ? 'बल' : 'Dignity'}</span>
-                <span>{isHi ? 'चिह्न' : 'Badges'}</span>
-                <span>{isHi ? 'संक्षेप' : 'Brief'}</span>
+                <span>{VTL('dignity', locale)}</span>
+                <span>{VTL('badges', locale)}</span>
+                <span>{VTL('brief', locale)}</span>
               </div>
 
               <div className="space-y-1">
@@ -558,18 +562,18 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
 
                   // Dignity display
                   const dignityLabel = ds.isVargottama
-                    ? (isHi ? 'वर्गोत्तम' : 'Vargottama')
+                    ? (VTL('vargottama', locale))
                     : ds.dxxDignity === 'exalted'
-                      ? (isHi ? 'उच्च' : 'Exalted')
+                      ? (VTL('exalted', locale))
                       : ds.dxxDignity === 'debilitated'
-                        ? (isHi ? 'नीच' : 'Debil.')
+                        ? (VTL('debilitatedShort', locale))
                         : ds.dxxDignity === 'own'
-                          ? (isHi ? 'स्वगृह' : 'Own')
+                          ? (VTL('own', locale))
                           : ds.dxxDignity === 'friend'
-                            ? (isHi ? 'मित्र' : 'Friend')
+                            ? (VTL('friend', locale))
                             : ds.dxxDignity === 'enemy'
-                              ? (isHi ? 'शत्रु' : 'Enemy')
-                              : (isHi ? 'सम' : 'Neutral');
+                              ? (VTL('enemy', locale))
+                              : (VTL('neutral', locale));
 
                   const dignityBorderClass = ds.dxxDignity === 'exalted' || ds.isVargottama
                     ? 'border-emerald-500/20 bg-emerald-500/5'
@@ -604,12 +608,12 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                           </div>
                           <div className="text-text-secondary/70 text-[11px] truncate">
                             {ds.shift === 'improved'
-                              ? (isHi ? 'बल में सुधार' : 'Strength improved')
+                              ? (VTL('strengthImproved', locale))
                               : ds.shift === 'declined'
-                                ? (isHi ? 'बल में गिरावट' : 'Strength declined')
+                                ? (VTL('strengthDeclined', locale))
                                 : ds.isVargottama
-                                  ? (isHi ? 'एकीकृत अभिव्यक्ति' : 'Unified expression')
-                                  : (isHi ? 'स्थिर' : 'Stable')}
+                                  ? (VTL('unifiedExpression', locale))
+                                  : (VTL('stable', locale))}
                           </div>
                         </div>
 
@@ -690,7 +694,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
             /* Fallback: old flat planet placements when no deep analysis */
             <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 to-[#0a0e27] border border-gold-primary/12 p-5">
               <h4 className="text-gold-light text-sm font-bold uppercase tracking-wider mb-3" style={headingFont}>
-                {isHi ? 'ग्रह स्थितियां' : 'Planet Placements'}
+                {VTL('planetPlacements', locale)}
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                 {planetPlacements.map((pp, i) => {
@@ -704,9 +708,9 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                         ? 'border-sky-500/20 bg-sky-500/5'
                         : 'border-gold-primary/8 bg-gold-primary/3';
                   const dignityLabel = pp.dignity === 'vargottama' ? 'Vgm'
-                    : pp.dignity === 'exalted' ? (isHi ? 'उच्च' : 'Exalted')
-                    : pp.dignity === 'debilitated' ? (isHi ? 'नीच' : 'Debil.')
-                    : pp.dignity === 'own' ? (isHi ? 'स्वगृह' : 'Own')
+                    : pp.dignity === 'exalted' ? (VTL('exalted', locale))
+                    : pp.dignity === 'debilitated' ? (VTL('debilitatedShort', locale))
+                    : pp.dignity === 'own' ? (VTL('own', locale))
                     : null;
                   const dignityBadgeClass = pp.dignity === 'exalted' ? 'bg-emerald-500/20 text-emerald-300'
                     : pp.dignity === 'vargottama' ? 'bg-gold-primary/20 text-gold-light'
@@ -784,7 +788,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
             return (
               <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 to-[#0a0e27] border border-gold-primary/12 p-5">
                 <h4 className="text-gold-light text-sm font-bold uppercase tracking-wider mb-1" style={headingFont}>
-                  {isHi ? 'द्रेक्काण मुख  –  शास्त्रीय प्रतिमा व्याख्या' : 'Drekkana Faces  –  Classical Image Interpretations'}
+                  {VTL('drekkanaFaces', locale)}
                 </h4>
                 <p className="text-text-secondary/60 text-xs mb-4">
                   {isHi
@@ -844,7 +848,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
           {selectedDiv === 'D60' && kundali.d60Deities && kundali.d60Deities.length > 0 && (
             <div data-testid="d60-deity-card" className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 to-[#0a0e27] border border-gold-primary/12 p-5">
               <h4 className="text-gold-light text-sm font-bold uppercase tracking-wider mb-1" style={headingFont}>
-                {isHi ? 'षष्ट्यंश देवता  –  शास्त्रीय खण्ड व्याख्या' : 'Shashtiamsha Deities  –  Classical Segment Interpretation'}
+                {VTL('shashtiamshaDeities', locale)}
               </h4>
               <p className="text-text-secondary/60 text-xs mb-4">
                 {isHi
@@ -868,8 +872,8 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                       ? 'bg-rose-500/15 text-rose-300 border-rose-500/30'
                       : 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30';
                     const badgeLabel = krura
-                      ? (isHi ? 'क्रूर' : 'Krura')
-                      : (isHi ? 'सौम्य' : 'Saumya');
+                      ? (VTL('krura', locale))
+                      : (VTL('saumya', locale));
                     return (
                       <div key={p.planet.id} className="rounded-lg border border-gold-primary/10 bg-gold-primary/3 p-3">
                         <div className="flex items-center gap-2 flex-wrap">
@@ -915,14 +919,14 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
           {deepAnalysis && (
             <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 to-[#0a0e27] border border-gold-primary/12 p-5">
               <h4 className="text-gold-light text-sm font-bold uppercase tracking-wider mb-3" style={headingFont}>
-                {isHi ? 'गहन विश्लेषण' : 'Deep Analysis'}
+                {VTL('deepAnalysis', locale)}
               </h4>
 
               <div className="space-y-1">
                 {/* Key House Lordship Trace */}
                 {deepAnalysis.crossCorrelation.keyHouseLords.length > 0 && (
                   <ExpandableSection
-                    title={isHi ? 'मुख्य भाव स्वामित्व' : 'Key House Lordship Trace'}
+                    title={VTL('keyHouseLordshipTrace', locale)}
                     sectionKey="keyHouseLords"
                     expandedSections={expandedSections}
                     toggle={toggleSection}
@@ -943,7 +947,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                 {/* Argala on Key Houses */}
                 {deepAnalysis.crossCorrelation.argalaOnKeyHouses.length > 0 && (
                   <ExpandableSection
-                    title={isHi ? 'मुख्य भावों पर अर्गला' : 'Argala on Key Houses'}
+                    title={VTL('argalaOnKeyHouses', locale)}
                     sectionKey="argala"
                     expandedSections={expandedSections}
                     toggle={toggleSection}
@@ -956,20 +960,20 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                           </span>{' '}
                           {arg.supporting.length > 0 && (
                             <span className="text-emerald-400/80">
-                              {isHi ? 'सहायक: ' : 'Supporting: '}
+                              {VTL('supporting', locale)}
                               {arg.supporting.map(pid => isHi ? PLANET_NAMES[pid]?.hi : PLANET_NAMES[pid]?.en).join(', ')}
                             </span>
                           )}
                           {arg.supporting.length > 0 && arg.obstructing.length > 0 && ' | '}
                           {arg.obstructing.length > 0 && (
                             <span className="text-red-400/80">
-                              {isHi ? 'अवरोधक: ' : 'Obstructing: '}
+                              {VTL('obstructing', locale)}
                               {arg.obstructing.map(pid => isHi ? PLANET_NAMES[pid]?.hi : PLANET_NAMES[pid]?.en).join(', ')}
                             </span>
                           )}
                           {arg.supporting.length === 0 && arg.obstructing.length === 0 && (
                             <span className="text-text-secondary/50 italic">
-                              {isHi ? 'कोई अर्गला नहीं' : 'No argala'}
+                              {VTL('noArgala', locale)}
                             </span>
                           )}
                         </div>
@@ -981,7 +985,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                 {/* Jaimini Karakas */}
                 {deepAnalysis.crossCorrelation.jaiminiKarakas.length > 0 && (
                   <ExpandableSection
-                    title={isHi ? 'जैमिनी कारक' : 'Jaimini Karakas'}
+                    title={VTL('jaiminiKarakas', locale)}
                     sectionKey="jaimini"
                     expandedSections={expandedSections}
                     toggle={toggleSection}
@@ -1001,7 +1005,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                 {/* Parivartana */}
                 {deepAnalysis.crossCorrelation.parivartanas.length > 0 && (
                   <ExpandableSection
-                    title={isHi ? 'परिवर्तन (राशि विनिमय)' : 'Parivartana (Sign Exchanges)'}
+                    title={VTL('parivartana', locale)}
                     sectionKey="parivartana"
                     expandedSections={expandedSections}
                     toggle={toggleSection}
@@ -1023,7 +1027,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
 
                 {/* Dispositor Chain */}
                 <ExpandableSection
-                  title={isHi ? 'अधिपति श्रृंखला' : 'Dispositor Chain'}
+                  title={VTL('dispositorChain', locale)}
                   sectionKey="dispositor"
                   expandedSections={expandedSections}
                   toggle={toggleSection}
@@ -1051,7 +1055,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                 {/* Aspects on Key Houses */}
                 {deepAnalysis.crossCorrelation.aspectsOnKeyHouses.some(a => a.aspectingPlanets.length > 0) && (
                   <ExpandableSection
-                    title={isHi ? 'मुख्य भावों पर दृष्टि' : 'Aspects on Key Houses'}
+                    title={VTL('aspectsOnKeyHouses', locale)}
                     sectionKey="aspects"
                     expandedSections={expandedSections}
                     toggle={toggleSection}
@@ -1082,7 +1086,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                 {/* SAV Overlay */}
                 {deepAnalysis.crossCorrelation.savOverlay.length > 0 && (
                   <ExpandableSection
-                    title={isHi ? 'सर्वाष्टकवर्ग (SAV)' : 'SAV Overlay'}
+                    title={VTL('savOverlay', locale)}
                     sectionKey="sav"
                     expandedSections={expandedSections}
                     toggle={toggleSection}
@@ -1107,7 +1111,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                 {/* Dasha Lord Placement */}
                 {deepAnalysis.crossCorrelation.dashaLordPlacement && (
                   <ExpandableSection
-                    title={isHi ? 'दशा स्वामी स्थिति' : 'Dasha Lord in ' + selectedDiv}
+                    title={formatVargasTabLabel('dashaLordInTemplate', locale, { CHART: selectedDiv })}
                     sectionKey="dasha"
                     expandedSections={expandedSections}
                     toggle={toggleSection}
@@ -1127,7 +1131,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
           {deepAnalysis && (
             <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 p-5">
               <h4 className="text-gold-light text-sm font-bold uppercase tracking-wider mb-3" style={headingFont}>
-                {isHi ? 'संश्लेषित मूल्यांकन' : 'Synthesized Prognosis'}
+                {VTL('synthesizedPrognosis', locale)}
               </h4>
               <div className="text-text-secondary text-sm leading-relaxed whitespace-pre-line">
                 {isHi ? deepAnalysis.narrative.hi : deepAnalysis.narrative.en}
@@ -1144,12 +1148,12 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
               {keyHouseSign && (
                 <p className="text-text-secondary text-xs">
                   <span className="text-gold-primary font-medium">
-                    {isHi ? 'राशि: ' : 'Sign: '}
+                    {VTL('signPrefix', locale)}
                   </span>
                   {tl(keyHouseSign.name, locale)}
                   {keyHouseSign.rulerName && (
                     <span className="text-text-secondary/60">
-                      {' '}({isHi ? 'स्वामी: ' : 'Lord: '}{tl(keyHouseSign.rulerName, locale)})
+                      {' '}({VTL('lordPrefix', locale)}{tl(keyHouseSign.rulerName, locale)})
                     </span>
                   )}
                 </p>
@@ -1157,13 +1161,13 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
               {keyHousePlanets.length > 0 ? (
                 <p className="text-text-secondary text-xs">
                   <span className="text-gold-primary font-medium">
-                    {isHi ? 'ग्रह: ' : 'Planets: '}
+                    {VTL('planetsPrefix', locale)}
                   </span>
                   {keyHousePlanets.map(g => g ? tl(g.name, locale) : '').join(', ')}
                 </p>
               ) : (
                 <p className="text-text-secondary/50 text-xs italic">
-                  {isHi ? 'इस भाव में कोई ग्रह नहीं' : 'No planets in this house'}
+                  {VTL('noPlanetsInHouse', locale)}
                 </p>
               )}
             </div>
@@ -1173,7 +1177,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
           {vimshopakaNotes.length > 0 && (
             <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 to-[#0a0e27] border border-gold-primary/12 p-5">
               <h4 className="text-gold-light text-sm font-bold uppercase tracking-wider mb-3" style={headingFont}>
-                {isHi ? 'विंशोपक बल (सभी वर्ग)' : 'Vimshopaka Bala (All Vargas)'}
+                {VTL('vimshopakaBala', locale)}
               </h4>
               <p className="text-text-secondary/60 text-xs mb-3">
                 {isHi

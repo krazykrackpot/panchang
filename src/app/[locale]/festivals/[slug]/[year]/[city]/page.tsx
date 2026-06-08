@@ -11,6 +11,7 @@ import { getSunriseSunsetLocalMinutes } from '@/lib/ephem/sunrise-sunset-local';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
+import { pickFestivalLabel as FL, formatFestivalLabel } from '@/lib/content/festivals-labels';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi-with-overlay';
 import { getCityFestivalContext } from '@/lib/constants/city-festival-context';
@@ -277,7 +278,7 @@ export default async function FestivalCityPage({
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: `${BASE_URL}/${locale}` },
-      { '@type': 'ListItem', position: 2, name: tl({ en: 'Festivals', hi: 'त्योहार' }, locale), item: `${BASE_URL}/${locale}/calendar` },
+      { '@type': 'ListItem', position: 2, name: FL('festivalsPlural', locale), item: `${BASE_URL}/${locale}/calendar` },
       { '@type': 'ListItem', position: 3, name: festivalNameLocale, item: `${BASE_URL}/${locale}/calendar/${slug}` },
       { '@type': 'ListItem', position: 4, name: String(year), item: `${BASE_URL}/${locale}/festivals/${slug}/${year}/${citySlug}` },
       { '@type': 'ListItem', position: 5, name: cityNameLocale },
@@ -345,22 +346,22 @@ export default async function FestivalCityPage({
           >
             {festivalNameLocale} {year}
             <span className="block text-lg sm:text-xl text-text-secondary mt-1 font-normal">
-              {tl({ en: `in ${cityNameLocale}`, hi: `${cityNameLocale} में` }, locale)}
+              {formatFestivalLabel('inCityTemplate', locale, { CITY: cityNameLocale })}
             </span>
           </h1>
           {/* Cross-links to core pages  –  passes SEO authority from high-impression festival pages */}
           <div className="flex flex-wrap justify-center gap-2 mt-3">
             <a href={`/${locale}/panchang`} className="px-3 py-1 rounded-full text-xs border border-gold-primary/20 text-gold-dark hover:bg-gold-primary/10 transition-colors">
-              {isHi ? 'आज का पंचांग' : "Today's Panchang"}
+              {FL('linkTodaysPanchang', locale)}
             </a>
             <a href={`/${locale}/ekadashi`} className="px-3 py-1 rounded-full text-xs border border-gold-primary/20 text-gold-dark hover:bg-gold-primary/10 transition-colors">
-              {isHi ? 'एकादशी 2026' : 'Ekadashi 2026'}
+              {FL('linkEkadashi2026', locale)}
             </a>
             <a href={`/${locale}/muhurta-ai`} className="px-3 py-1 rounded-full text-xs border border-gold-primary/20 text-gold-dark hover:bg-gold-primary/10 transition-colors">
-              {isHi ? 'शुभ मुहूर्त खोजें' : 'Find Auspicious Muhurta'}
+              {FL('linkFindMuhurta', locale)}
             </a>
             <a href={`/${locale}/kundali`} className="px-3 py-1 rounded-full text-xs border border-gold-primary/20 text-gold-dark hover:bg-gold-primary/10 transition-colors">
-              {isHi ? 'कुण्डली बनाएँ' : 'Generate Kundali'}
+              {FL('linkGenerateKundali', locale)}
             </a>
           </div>
 
@@ -389,14 +390,14 @@ export default async function FestivalCityPage({
         <div className="bg-bg-secondary rounded-2xl border border-gold-primary/20 p-5 sm:p-6 space-y-4">
           <h2 className="text-gold-light font-bold text-lg flex items-center gap-2" style={{ fontFamily: 'var(--font-heading)' }}>
             <Calendar className="w-5 h-5 text-gold-primary" />
-            {tl({ en: 'Key Timings', hi: 'प्रमुख समय' }, locale)}
+            {FL('keyTimings', locale)}
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {/* Festival Date */}
             <div className="bg-gold-primary/5 rounded-xl p-4 border border-gold-primary/10">
               <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">
-                {tl({ en: 'Festival Date', hi: 'त्योहार की तिथि' }, locale)}
+                {FL('festivalDate', locale)}
               </p>
               <p className="text-gold-light font-bold text-lg" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                 {formatDate(festivalDate, locale)}
@@ -407,7 +408,7 @@ export default async function FestivalCityPage({
             {pujaMuhurat && (
               <div className="bg-gold-primary/5 rounded-xl p-4 border border-gold-primary/10">
                 <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">
-                  {tl({ en: pujaMuhurat.name, hi: pujaMuhurat.name }, locale)}
+                  {pujaMuhurat.name}
                 </p>
                 <p className="text-gold-light font-bold text-lg">
                   <Clock className="inline-block w-4 h-4 mr-1 -mt-0.5 text-gold-primary" />
@@ -419,7 +420,7 @@ export default async function FestivalCityPage({
             {/* Sunrise */}
             <div className="bg-gold-primary/5 rounded-xl p-4 border border-gold-primary/10">
               <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">
-                {tl({ en: 'Sunrise', hi: 'सूर्योदय' }, locale)}
+                {FL('sunrise', locale)}
               </p>
               <p className="text-gold-light font-bold text-lg">
                 <Sun className="inline-block w-4 h-4 mr-1 -mt-0.5 text-amber-400" />
@@ -430,7 +431,7 @@ export default async function FestivalCityPage({
             {/* Sunset */}
             <div className="bg-gold-primary/5 rounded-xl p-4 border border-gold-primary/10">
               <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">
-                {tl({ en: 'Sunset', hi: 'सूर्यास्त' }, locale)}
+                {FL('sunset', locale)}
               </p>
               <p className="text-gold-light font-bold text-lg">
                 <Moon className="inline-block w-4 h-4 mr-1 -mt-0.5 text-orange-400" />
@@ -442,7 +443,7 @@ export default async function FestivalCityPage({
           {/* Tithi Info */}
           {tithiStr && (
             <div className="text-text-secondary text-sm">
-              <span className="text-gold-primary font-medium">{tl({ en: 'Tithi', hi: 'तिथि' }, locale)}:</span>{' '}
+              <span className="text-gold-primary font-medium">{FL('tithi', locale)}:</span>{' '}
               {tithiStr}
             </div>
           )}
@@ -450,14 +451,14 @@ export default async function FestivalCityPage({
           {/* Observation Rule Badge */}
           <div className="flex items-center gap-2 text-xs text-text-secondary">
             <Info className="w-3.5 h-3.5 text-gold-dark" />
-            <span>{tl({ en: 'Observation Rule', hi: 'पालन नियम' }, locale)}: <span className="text-gold-primary font-medium">{ruleLabel}</span></span>
+            <span>{FL('observationRule', locale)}: <span className="text-gold-primary font-medium">{ruleLabel}</span></span>
           </div>
         </div>
 
         {/* ── "Why This Date?" Section ── */}
         <div className="space-y-3">
           <h2 className="text-gold-light font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {tl({ en: 'Why This Date?', hi: 'यह तिथि क्यों?' }, locale)}
+            {FL('whyThisDate', locale)}
           </h2>
           <div className="bg-bg-secondary rounded-xl border border-gold-primary/10 p-4">
             <p className="text-text-secondary text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
@@ -472,7 +473,7 @@ export default async function FestivalCityPage({
             <div className="flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-gold-primary" />
               <h2 className="text-gold-light font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-                {tl({ en: 'Tithi Determination Rule', hi: 'तिथि निर्धारण नियम' }, locale)}
+                {FL('tithiDeterminationRule', locale)}
               </h2>
             </div>
             <div className="flex items-center gap-2">
@@ -498,7 +499,7 @@ export default async function FestivalCityPage({
             <div className="flex items-center gap-2">
               <BookOpen className="w-5 h-5 text-purple-400" />
               <h2 className="text-gold-light font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-                {tl({ en: 'Puja Vidhi', hi: 'पूजा विधि' }, locale)}
+                {FL('pujaVidhi', locale)}
               </h2>
             </div>
 
@@ -506,7 +507,7 @@ export default async function FestivalCityPage({
             {pujaVidhi.samagri.length > 0 && (
               <div className="space-y-2">
                 <h3 className="text-purple-300 text-xs uppercase tracking-widest font-bold">
-                  {tl({ en: 'Materials Required', hi: 'आवश्यक सामग्री' }, locale)}
+                  {FL('materialsRequired', locale)}
                 </h3>
                 <ul className="space-y-1.5">
                   {pujaVidhi.samagri.slice(0, 5).map((item, i) => (
@@ -535,7 +536,7 @@ export default async function FestivalCityPage({
             {pujaVidhi.vidhiSteps.length > 0 && (
               <div className="space-y-2">
                 <h3 className="text-purple-300 text-xs uppercase tracking-widest font-bold">
-                  {tl({ en: 'Puja Steps', hi: 'पूजा के चरण' }, locale)}
+                  {FL('pujaSteps', locale)}
                 </h3>
                 <ol className="space-y-2">
                   {pujaVidhi.vidhiSteps.slice(0, 3).map((step) => (
@@ -592,8 +593,8 @@ export default async function FestivalCityPage({
                 <Leaf className="w-5 h-5 text-emerald-400" />
                 <h2 className="text-gold-light font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
                   {isVrat
-                    ? tl({ en: 'Vrat Phala (Fasting Benefits)', hi: 'व्रत फल (उपवास के लाभ)' }, locale)
-                    : tl({ en: 'Phala (Benefits)', hi: 'फल (लाभ)' }, locale)
+                    ? FL('vratPhalaFastingBenefits', locale)
+                    : FL('phalaBenefits', locale)
                   }
                 </h2>
               </div>
@@ -608,34 +609,34 @@ export default async function FestivalCityPage({
         <details className="group">
           <summary className="flex items-center gap-2 cursor-pointer text-gold-primary text-sm font-medium hover:text-gold-light transition-colors">
             <ChevronRight className="w-4 h-4 group-open:rotate-90 transition-transform" />
-            {tl({ en: 'Calculation Proof  –  Transparent Audit Trail', hi: 'गणना प्रमाण  –  पारदर्शी लेखा परीक्षा' }, locale)}
+            {FL('calculationProof', locale)}
           </summary>
           <div className="mt-3 bg-bg-secondary rounded-xl border border-gold-primary/10 p-4 space-y-2 text-sm text-text-secondary">
             <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
-              <span className="text-text-secondary/60">{tl({ en: 'Festival', hi: 'त्योहार' }, locale)}</span>
+              <span className="text-text-secondary/60">{FL('festivalSingular', locale)}</span>
               <span className="text-gold-light">{festivalNameEn}</span>
 
-              <span className="text-text-secondary/60">{tl({ en: 'Tithi', hi: 'तिथि' }, locale)}</span>
+              <span className="text-text-secondary/60">{FL('tithi', locale)}</span>
               <span className="text-gold-light">{tithiStr || ' – '}</span>
 
-              <span className="text-text-secondary/60">{tl({ en: 'Kala Rule', hi: 'काल नियम' }, locale)}</span>
+              <span className="text-text-secondary/60">{FL('kalaRule', locale)}</span>
               <span className="text-gold-light">{ruleLabel}</span>
 
-              <span className="text-text-secondary/60">{tl({ en: 'Sunrise', hi: 'सूर्योदय' }, locale)}</span>
+              <span className="text-text-secondary/60">{FL('sunrise', locale)}</span>
               <span className="text-gold-light">{sunriseStr}</span>
 
-              <span className="text-text-secondary/60">{tl({ en: 'Sunset', hi: 'सूर्यास्त' }, locale)}</span>
+              <span className="text-text-secondary/60">{FL('sunset', locale)}</span>
               <span className="text-gold-light">{sunsetStr}</span>
 
-              <span className="text-text-secondary/60">{tl({ en: 'Coordinates', hi: 'निर्देशांक' }, locale)}</span>
+              <span className="text-text-secondary/60">{FL('coordinates', locale)}</span>
               <span className="text-gold-light">{cityData.lat.toFixed(4)}°N, {cityData.lng.toFixed(4)}°E</span>
 
-              <span className="text-text-secondary/60">{tl({ en: 'Timezone', hi: 'समय क्षेत्र' }, locale)}</span>
+              <span className="text-text-secondary/60">{FL('timezone', locale)}</span>
               <span className="text-gold-light">{cityData.timezone} (UTC{tzOffset >= 0 ? '+' : ''}{tzOffset})</span>
 
               {pujaMuhurat && (
                 <>
-                  <span className="text-text-secondary/60">{tl({ en: 'Puja Window', hi: 'पूजा समय' }, locale)}</span>
+                  <span className="text-text-secondary/60">{FL('pujaWindow', locale)}</span>
                   <span className="text-gold-light">{pujaMuhurat.start} – {pujaMuhurat.end}</span>
                 </>
               )}
@@ -652,7 +653,7 @@ export default async function FestivalCityPage({
                 {tl(detail.deity, locale).charAt(0)}
               </div>
               <div>
-                <p className="text-text-secondary text-xs uppercase tracking-wider">{tl({ en: 'Deity', hi: 'देवता' }, locale)}</p>
+                <p className="text-text-secondary text-xs uppercase tracking-wider">{FL('deity', locale)}</p>
                 <p className="text-gold-light font-medium" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   {tl(detail.deity, locale)}
                 </p>
@@ -663,7 +664,7 @@ export default async function FestivalCityPage({
           {/* Legend & History */}
           <div>
             <h2 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-              {tl({ en: 'Legend & History', hi: 'कथा एवं इतिहास' }, locale)}
+              {FL('legendHistory', locale)}
             </h2>
             {(() => {
               // Long-form mythology may have '\n\n' paragraph breaks (added
@@ -695,11 +696,11 @@ export default async function FestivalCityPage({
                     <span className="group-open:hidden">
                       {summary}
                       <span className="text-gold-primary text-xs font-medium ml-1">
-                        {' '}{tl({ en: 'Read full legend →', hi: 'पूरी कथा पढ़ें →' }, locale)}
+                        {' '}{FL('readFullLegend', locale)}
                       </span>
                     </span>
                     <span className="hidden group-open:inline text-gold-primary text-xs font-medium">
-                      {tl({ en: 'Show less ↑', hi: 'कम दिखाएँ ↑' }, locale)}
+                      {FL('showLessUp', locale)}
                     </span>
                   </summary>
                   <div className="space-y-2 text-text-secondary text-sm leading-relaxed mt-2" style={bodyFont}>
@@ -713,7 +714,7 @@ export default async function FestivalCityPage({
           {/* Observance */}
           <div>
             <h2 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-              {tl({ en: 'How to Observe', hi: 'कैसे मनाएँ' }, locale)}
+              {FL('howToObserve', locale)}
             </h2>
             <p className="text-text-secondary text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
               {tl(detail.observance, locale)}
@@ -723,7 +724,7 @@ export default async function FestivalCityPage({
           {/* Significance */}
           <div>
             <h2 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-              {tl({ en: 'Significance', hi: 'महत्व' }, locale)}
+              {FL('significance', locale)}
             </h2>
             <p className="text-text-secondary text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
               {tl(detail.significance, locale)}
@@ -734,7 +735,7 @@ export default async function FestivalCityPage({
           {detail.isFast && detail.fastNote && (
             <div className="bg-amber-500/10 rounded-xl p-4 border border-amber-500/20">
               <p className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-1">
-                {tl({ en: 'Fasting', hi: 'व्रत' }, locale)}
+                {FL('fasting', locale)}
               </p>
               <p className="text-text-secondary text-sm" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                 {tl(detail.fastNote, locale)}
@@ -819,30 +820,30 @@ export default async function FestivalCityPage({
 
         {/* ── Learn More Links ── */}
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-text-secondary text-xs">{tl({ en: 'Learn more', hi: 'और जानें' }, locale)}:</span>
+          <span className="text-text-secondary text-xs">{FL('learnMore', locale)}:</span>
           <Link
             href={`/${locale}/learn/festival-rules`}
             className="text-xs text-gold-primary/70 hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg px-3 py-1 transition-colors"
           >
-            {tl({ en: 'Festival Timing Rules', hi: 'उत्सव काल नियम' }, locale)}
+            {FL('festivalTimingRules', locale)}
           </Link>
           <Link
             href={`/${locale}/learn/tithis`}
             className="text-xs text-gold-primary/70 hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg px-3 py-1 transition-colors"
           >
-            {tl({ en: 'Understanding Tithis', hi: 'तिथि को समझें' }, locale)}
+            {FL('understandingTithis', locale)}
           </Link>
           <Link
             href={`/${locale}/learn/masa`}
             className="text-xs text-gold-primary/70 hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg px-3 py-1 transition-colors"
           >
-            {tl({ en: 'Lunar Months Explained', hi: 'चंद्र मास विवरण' }, locale)}
+            {FL('lunarMonthsExplained', locale)}
           </Link>
           <Link
             href={`/${locale}/learn/smarta-vaishnava`}
             className="text-xs text-gold-primary/70 hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg px-3 py-1 transition-colors"
           >
-            {tl({ en: 'Smarta & Vaishnava Calendars', hi: 'स्मार्त और वैष्णव पंचांग' }, locale)}
+            {FL('smartaVaishnava', locale)}
           </Link>
         </div>
 
@@ -862,7 +863,7 @@ export default async function FestivalCityPage({
             href={`/${locale}/calendar`}
             className="inline-flex items-center gap-2 px-5 py-2 rounded-xl text-gold-primary text-sm hover:text-gold-light transition-colors"
           >
-            {tl({ en: 'View All Festivals & Vrats', hi: 'सभी त्योहार और व्रत देखें' }, locale)}
+            {FL('viewAllFestivalsVrats', locale)}
           </Link>
         </div>
       </article>

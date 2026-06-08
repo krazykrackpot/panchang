@@ -27,6 +27,7 @@ import type { Locale } from '@/types/panchang';
 import type { PersonalizedFestivalReading } from '@/lib/festivals/types';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
+import { pickFestivalLabel as FL, formatFestivalLabel } from '@/lib/content/festivals-labels';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi-with-overlay';
 import { notFound } from 'next/navigation';
@@ -318,7 +319,7 @@ export default async function FestivalCanonicalPage({
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: `${BASE_URL}/${locale}` },
-      { '@type': 'ListItem', position: 2, name: tl({ en: 'Festivals', hi: 'त्योहार' }, locale), item: `${BASE_URL}/${locale}/calendar` },
+      { '@type': 'ListItem', position: 2, name: FL('festivalsPlural', locale), item: `${BASE_URL}/${locale}/calendar` },
       { '@type': 'ListItem', position: 3, name: festivalNameLocale, item: `${BASE_URL}/${locale}/calendar/${slug}` },
       { '@type': 'ListItem', position: 4, name: String(year) },
     ],
@@ -379,8 +380,8 @@ export default async function FestivalCanonicalPage({
       <Breadcrumb
         className="mb-6"
         items={[
-          { href: '/', label: isHi ? 'मुख्य' : 'Home' },
-          { href: '/festivals', label: isHi ? 'त्योहार' : 'Festivals' },
+          { href: '/', label: FL('crumbHome', locale) },
+          { href: '/festivals', label: FL('crumbFestivals', locale) },
           { label: `${festivalNameLocale} ${year}` },
         ]}
       />
@@ -423,24 +424,21 @@ export default async function FestivalCanonicalPage({
             {festivalNameLocale} {year}
           </h1>
           <p className="text-text-secondary text-sm max-w-lg mx-auto" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-            {tl({
-              en: `Exact date, puja muhurat & city-wise timings for ${festivalNameEn} ${year}`,
-              hi: `${festivalNameLocale} ${year} की सटीक तिथि, पूजा मुहूर्त व शहर-वार समय`,
-            }, locale)}
+            {formatFestivalLabel('subtitleTemplate', locale, { NAME: festivalNameLocale, YEAR: String(year) })}
           </p>
           {/* Cross-links to core pages */}
           <div className="flex flex-wrap justify-center gap-2 mt-3">
             <a href={`/${locale}/panchang`} className="px-3 py-1 rounded-full text-xs border border-gold-primary/20 text-gold-dark hover:bg-gold-primary/10 transition-colors">
-              {isHi ? 'आज का पंचांग' : "Today's Panchang"}
+              {FL('linkTodaysPanchang', locale)}
             </a>
             <a href={`/${locale}/ekadashi`} className="px-3 py-1 rounded-full text-xs border border-gold-primary/20 text-gold-dark hover:bg-gold-primary/10 transition-colors">
-              {isHi ? 'एकादशी 2026' : 'Ekadashi 2026'}
+              {FL('linkEkadashi2026', locale)}
             </a>
             <a href={`/${locale}/muhurta-ai`} className="px-3 py-1 rounded-full text-xs border border-gold-primary/20 text-gold-dark hover:bg-gold-primary/10 transition-colors">
-              {isHi ? 'शुभ मुहूर्त खोजें' : 'Find Auspicious Muhurta'}
+              {FL('linkFindMuhurta', locale)}
             </a>
             <a href={`/${locale}/kundali`} className="px-3 py-1 rounded-full text-xs border border-gold-primary/20 text-gold-dark hover:bg-gold-primary/10 transition-colors">
-              {isHi ? 'कुण्डली बनाएँ' : 'Generate Kundali'}
+              {FL('linkGenerateKundali', locale)}
             </a>
           </div>
         </div>
@@ -451,14 +449,14 @@ export default async function FestivalCanonicalPage({
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] rounded-2xl border border-gold-primary/12 p-5 sm:p-6 space-y-4">
           <h2 className="text-gold-light font-bold text-lg flex items-center gap-2" style={{ fontFamily: 'var(--font-heading)' }}>
             <Calendar className="w-5 h-5 text-gold-primary" />
-            {tl({ en: 'Key Information', hi: 'प्रमुख जानकारी' }, locale)}
+            {FL('keyInformation', locale)}
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {/* Festival Date */}
             <div className="bg-gold-primary/5 rounded-xl p-4 border border-gold-primary/10">
               <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">
-                {tl({ en: 'Festival Date', hi: 'त्योहार की तिथि' }, locale)}
+                {FL('festivalDate', locale)}
               </p>
               <p className="text-gold-light font-bold text-lg" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                 {formatDate(festivalDate, locale)}
@@ -482,7 +480,7 @@ export default async function FestivalCanonicalPage({
           {/* Tithi Info */}
           {tithiStr && (
             <div className="text-text-secondary text-sm">
-              <span className="text-gold-primary font-medium">{tl({ en: 'Tithi', hi: 'तिथि' }, locale)}:</span>{' '}
+              <span className="text-gold-primary font-medium">{FL('tithi', locale)}:</span>{' '}
               {tithiStr}
             </div>
           )}
@@ -490,7 +488,7 @@ export default async function FestivalCanonicalPage({
           {/* Observation Rule Badge */}
           <div className="flex items-center gap-2 text-xs text-text-secondary">
             <Info className="w-3.5 h-3.5 text-gold-dark" />
-            <span>{tl({ en: 'Observation Rule', hi: 'पालन नियम' }, locale)}: <span className="text-gold-primary font-medium">{ruleLabel}</span></span>
+            <span>{FL('observationRule', locale)}: <span className="text-gold-primary font-medium">{ruleLabel}</span></span>
           </div>
         </div>
 
@@ -532,12 +530,12 @@ export default async function FestivalCanonicalPage({
             <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] rounded-2xl border border-gold-primary/10 p-5 sm:p-6 space-y-3">
               <h2 className="text-gold-light font-bold text-lg flex items-center gap-2" style={{ fontFamily: 'var(--font-heading)' }}>
                 <Calendar className="w-5 h-5 text-gold-primary" />
-                {tl({ en: `${year} Calendar Context`, hi: `${year} पंचांग संदर्भ` }, locale)}
+                {formatFestivalLabel('yearCalendarContextTemplate', locale, { YEAR: String(year) })}
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
                 <div className="bg-gold-primary/5 rounded-xl p-3 border border-gold-primary/10">
                   <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">
-                    {tl({ en: 'Weekday', hi: 'वार' }, locale)}
+                    {FL('weekday', locale)}
                   </p>
                   <p className="text-gold-light font-bold" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                     {weekdayLoc}
@@ -545,13 +543,13 @@ export default async function FestivalCanonicalPage({
                 </div>
                 <div className="bg-gold-primary/5 rounded-xl p-3 border border-gold-primary/10">
                   <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">
-                    {tl({ en: 'Vikram Samvat', hi: 'विक्रम संवत्' }, locale)}
+                    {FL('vikramSamvat', locale)}
                   </p>
                   <p className="text-gold-light font-bold">{ctx.vikramSamvat}</p>
                 </div>
                 <div className="bg-gold-primary/5 rounded-xl p-3 border border-gold-primary/10">
                   <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">
-                    {tl({ en: 'Shaka Samvat', hi: 'शक संवत्' }, locale)}
+                    {FL('shakaSamvat', locale)}
                   </p>
                   <p className="text-gold-light font-bold">{ctx.shakaSamvat}</p>
                 </div>
@@ -580,20 +578,20 @@ export default async function FestivalCanonicalPage({
               <thead>
                 <tr className="bg-gradient-to-r from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27]">
                   <th className="text-left px-4 py-3 text-gold-primary font-bold text-xs uppercase tracking-wider">
-                    {tl({ en: 'City', hi: 'शहर' }, locale)}
+                    {FL('city', locale)}
                   </th>
                   <th className="text-left px-4 py-3 text-gold-primary font-bold text-xs uppercase tracking-wider">
                     <Sun className="inline-block w-3.5 h-3.5 mr-1 -mt-0.5 text-amber-400" />
-                    {tl({ en: 'Sunrise', hi: 'सूर्योदय' }, locale)}
+                    {FL('sunrise', locale)}
                   </th>
                   <th className="text-left px-4 py-3 text-gold-primary font-bold text-xs uppercase tracking-wider">
                     <Moon className="inline-block w-3.5 h-3.5 mr-1 -mt-0.5 text-orange-400" />
-                    {tl({ en: 'Sunset', hi: 'सूर्यास्त' }, locale)}
+                    {FL('sunset', locale)}
                   </th>
                   {cityRows.some(r => r.pujaMuhurat) && (
                     <th className="text-left px-4 py-3 text-gold-primary font-bold text-xs uppercase tracking-wider">
                       <Clock className="inline-block w-3.5 h-3.5 mr-1 -mt-0.5" />
-                      {tl({ en: 'Puja Muhurat', hi: 'पूजा मुहूर्त' }, locale)}
+                      {FL('pujaMuhurat', locale)}
                     </th>
                   )}
                 </tr>
@@ -698,7 +696,7 @@ export default async function FestivalCanonicalPage({
         {/* ── "Why This Date?" Section ── */}
         <div className="space-y-3">
           <h2 className="text-gold-light font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {tl({ en: 'Why This Date?', hi: 'यह तिथि क्यों?' }, locale)}
+            {FL('whyThisDate', locale)}
           </h2>
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] rounded-xl border border-gold-primary/12 p-4">
             <p className="text-text-secondary text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
@@ -713,7 +711,7 @@ export default async function FestivalCanonicalPage({
             <div className="flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-gold-primary" />
               <h2 className="text-gold-light font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-                {tl({ en: 'Tithi Determination Rule', hi: 'तिथि निर्धारण नियम' }, locale)}
+                {FL('tithiDeterminationRule', locale)}
               </h2>
             </div>
             <div className="flex items-center gap-2">
@@ -739,7 +737,7 @@ export default async function FestivalCanonicalPage({
             <div className="flex items-center gap-2">
               <BookOpen className="w-5 h-5 text-purple-400" />
               <h2 className="text-gold-light font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-                {tl({ en: 'Puja Vidhi', hi: 'पूजा विधि' }, locale)}
+                {FL('pujaVidhi', locale)}
               </h2>
             </div>
 
@@ -747,7 +745,7 @@ export default async function FestivalCanonicalPage({
             {pujaVidhi.samagri.length > 0 && (
               <div className="space-y-2">
                 <h3 className="text-purple-300 text-xs uppercase tracking-widest font-bold">
-                  {tl({ en: 'Materials Required', hi: 'आवश्यक सामग्री' }, locale)}
+                  {FL('materialsRequired', locale)}
                 </h3>
                 <ul className="space-y-1.5">
                   {pujaVidhi.samagri.slice(0, 5).map((item, i) => (
@@ -776,7 +774,7 @@ export default async function FestivalCanonicalPage({
             {pujaVidhi.vidhiSteps.length > 0 && (
               <div className="space-y-2">
                 <h3 className="text-purple-300 text-xs uppercase tracking-widest font-bold">
-                  {tl({ en: 'Puja Steps', hi: 'पूजा के चरण' }, locale)}
+                  {FL('pujaSteps', locale)}
                 </h3>
                 <ol className="space-y-2">
                   {pujaVidhi.vidhiSteps.slice(0, 3).map((step) => (
@@ -822,8 +820,8 @@ export default async function FestivalCanonicalPage({
                 <Leaf className="w-5 h-5 text-emerald-400" />
                 <h2 className="text-gold-light font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
                   {isVrat
-                    ? tl({ en: 'Vrat Phala (Fasting Benefits)', hi: 'व्रत फल (उपवास के लाभ)' }, locale)
-                    : tl({ en: 'Phala (Benefits)', hi: 'फल (लाभ)' }, locale)
+                    ? FL('vratPhalaFastingBenefits', locale)
+                    : FL('phalaBenefits', locale)
                   }
                 </h2>
               </div>
@@ -843,7 +841,7 @@ export default async function FestivalCanonicalPage({
                 {tl(detail.deity, locale).charAt(0)}
               </div>
               <div>
-                <p className="text-text-secondary text-xs uppercase tracking-wider">{tl({ en: 'Deity', hi: 'देवता' }, locale)}</p>
+                <p className="text-text-secondary text-xs uppercase tracking-wider">{FL('deity', locale)}</p>
                 <p className="text-gold-light font-medium" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   {tl(detail.deity, locale)}
                 </p>
@@ -854,7 +852,7 @@ export default async function FestivalCanonicalPage({
           {/* Legend & History */}
           <div>
             <h2 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-              {tl({ en: 'Legend & History', hi: 'कथा एवं इतिहास' }, locale)}
+              {FL('legendHistory', locale)}
             </h2>
             {(() => {
               // Long-form mythology may have '\n\n' paragraph breaks (added
@@ -887,11 +885,11 @@ export default async function FestivalCanonicalPage({
                     <span className="group-open:hidden">
                       {summary}
                       <span className="text-gold-primary text-xs font-medium ml-1">
-                        {' '}{tl({ en: 'Read full legend →', hi: 'पूरी कथा पढ़ें →' }, locale)}
+                        {' '}{FL('readFullLegend', locale)}
                       </span>
                     </span>
                     <span className="hidden group-open:inline text-gold-primary text-xs font-medium">
-                      {tl({ en: 'Show less ↑', hi: 'कम दिखाएँ ↑' }, locale)}
+                      {FL('showLessUp', locale)}
                     </span>
                   </summary>
                   <div className="space-y-2 text-text-secondary text-sm leading-relaxed mt-2" style={bodyFont}>
@@ -905,7 +903,7 @@ export default async function FestivalCanonicalPage({
           {/* Observance */}
           <div>
             <h2 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-              {tl({ en: 'How to Observe', hi: 'कैसे मनाएँ' }, locale)}
+              {FL('howToObserve', locale)}
             </h2>
             <p className="text-text-secondary text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
               {tl(detail.observance, locale)}
@@ -915,7 +913,7 @@ export default async function FestivalCanonicalPage({
           {/* Significance */}
           <div>
             <h2 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-              {tl({ en: 'Significance', hi: 'महत्व' }, locale)}
+              {FL('significance', locale)}
             </h2>
             <p className="text-text-secondary text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
               {tl(detail.significance, locale)}
@@ -926,7 +924,7 @@ export default async function FestivalCanonicalPage({
           {detail.isFast && detail.fastNote && (
             <div className="bg-amber-500/10 rounded-xl p-4 border border-amber-500/20">
               <p className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-1">
-                {tl({ en: 'Fasting', hi: 'व्रत' }, locale)}
+                {FL('fasting', locale)}
               </p>
               <p className="text-text-secondary text-sm" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                 {tl(detail.fastNote, locale)}
@@ -991,24 +989,24 @@ export default async function FestivalCanonicalPage({
 
         {/* ── Learn More Links ── */}
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-text-secondary text-xs">{tl({ en: 'Learn more', hi: 'और जानें' }, locale)}:</span>
+          <span className="text-text-secondary text-xs">{FL('learnMore', locale)}:</span>
           <Link
             href={`/${locale}/learn/festival-rules`}
             className="text-xs text-gold-primary/70 hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg px-3 py-1 transition-colors"
           >
-            {tl({ en: 'Festival Timing Rules', hi: 'उत्सव काल नियम' }, locale)}
+            {FL('festivalTimingRules', locale)}
           </Link>
           <Link
             href={`/${locale}/learn/tithis`}
             className="text-xs text-gold-primary/70 hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg px-3 py-1 transition-colors"
           >
-            {tl({ en: 'Understanding Tithis', hi: 'तिथि को समझें' }, locale)}
+            {FL('understandingTithis', locale)}
           </Link>
           <Link
             href={`/${locale}/learn/masa`}
             className="text-xs text-gold-primary/70 hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg px-3 py-1 transition-colors"
           >
-            {tl({ en: 'Lunar Months Explained', hi: 'चंद्र मास विवरण' }, locale)}
+            {FL('lunarMonthsExplained', locale)}
           </Link>
         </div>
 
@@ -1028,7 +1026,7 @@ export default async function FestivalCanonicalPage({
             href={`/${locale}/calendar`}
             className="inline-flex items-center gap-2 px-5 py-2 rounded-xl text-gold-primary text-sm hover:text-gold-light transition-colors"
           >
-            {tl({ en: 'View All Festivals & Vrats', hi: 'सभी त्योहार और व्रत देखें' }, locale)}
+            {FL('viewAllFestivalsVrats', locale)}
           </Link>
         </div>
 

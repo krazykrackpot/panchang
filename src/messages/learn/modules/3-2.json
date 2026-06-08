@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 3-1: 12 राशियाँ",
         "mai": "मॉड्यूल ३-१: १२ राशि",
         "mr": "मॉड्यूल 3-1: 12 राशियाँ",
-        "ta": "Module 3-1: The 12 Signs",
-        "te": "Module 3-1: The 12 Signs",
-        "bn": "Module 3-1: The 12 Signs",
-        "kn": "Module 3-1: The 12 Signs",
-        "gu": "Module 3-1: The 12 Signs"
+        "ta": "தொகுதி 3-1: 12 ராசிகள்",
+        "te": "మాడ్యూల్ 3-1: 12 రాశులు",
+        "bn": "মডিউল ৩-১: ১২টি রাশি",
+        "kn": "ಮೋಡ್ಯೂಲ್ 3-1: 12 ರಾಶಿಗಳು",
+        "gu": "મોડ્યુલ ૩-૧: ૧૨ રાશિઓ"
       },
       "href": "/learn/modules/3-1"
     },
@@ -42,11 +42,11 @@
         "hi": "मॉड्यूल 3-3: राशि स्वामित्व",
         "mai": "मॉड्यूल ३-३: राशि अधिपतित्व",
         "mr": "मॉड्यूल 3-3: राशि स्वामित्व",
-        "ta": "Module 3-3: Sign Rulerships",
-        "te": "Module 3-3: Sign Rulerships",
-        "bn": "Module 3-3: Sign Rulerships",
-        "kn": "Module 3-3: Sign Rulerships",
-        "gu": "Module 3-3: Sign Rulerships"
+        "ta": "தொகுதி 3-3: ராசி அதிபதிகள்",
+        "te": "మాడ్యూల్ 3-3: రాశి అధిపత్యాలు",
+        "bn": "মডিউল ৩-৩: রাশির অধিপতিত্ব",
+        "kn": "ಮೋಡ್ಯೂಲ್ 3-3: ರಾಶಿಗಳ ಅಧಿಪತಿಗಳು",
+        "gu": "મોડ્યુલ ૩-૩: રાશિઓના સ્વામિત્વ"
       },
       "href": "/learn/modules/3-3"
     },
@@ -56,11 +56,11 @@
         "hi": "राशि विस्तार",
         "mai": "राशि सभक गहन अध्ययन",
         "mr": "राशि विस्तार",
-        "ta": "Rashis Deep Dive",
-        "te": "Rashis Deep Dive",
-        "bn": "Rashis Deep Dive",
-        "kn": "Rashis Deep Dive",
-        "gu": "Rashis Deep Dive"
+        "ta": "ராசிகள் – ஆழமான ஆய்வு",
+        "te": "రాశుల లోతైన విశ్లేషణ",
+        "bn": "রাশি: গভীর আলোচনা",
+        "kn": "ರಾಶಿಗಳ ಆಳವಾದ ವಿಶ್ಲೇಷಣೆ",
+        "gu": "રાશિઓ: ઊંડાણપૂર્વક સમજ"
       },
       "href": "/learn/rashis"
     }
@@ -74,11 +74,11 @@
         "hi": "कौन सी राशियाँ चर (गतिशील) हैं?",
         "mai": "कोन राशि चर अछि?",
         "mr": "कौन सी राशियाँ चर (गतिशील) हैं?",
-        "ta": "Which signs are Movable (Chara)?",
-        "te": "Which signs are Movable (Chara)?",
-        "bn": "Which signs are Movable (Chara)?",
-        "kn": "Which signs are Movable (Chara)?",
-        "gu": "Which signs are Movable (Chara)?"
+        "ta": "எந்த ராசிகள் சரம் (சரம்)?",
+        "te": "ఏ రాశులు చర (చర) రాశులు?",
+        "bn": "কোন রাশিগুলি চর (চারা)?",
+        "kn": "ಯಾವ ರಾಶಿಗಳು ಚರ (ಚರ)?",
+        "gu": "કઈ રાશિઓ ચર (ચલ) છે?"
       },
       "options": [
         {
@@ -86,44 +86,44 @@
           "hi": "वृषभ, सिंह, वृश्चिक, कुम्भ",
           "mai": "वृषभ, सिंह, वृश्चिक, कुंभ",
           "mr": "वृषभ, सिंह, वृश्चिक, कुम्भ",
-          "ta": "Taurus, Leo, Scorpio, Aquarius",
-          "te": "Taurus, Leo, Scorpio, Aquarius",
-          "bn": "Taurus, Leo, Scorpio, Aquarius",
-          "kn": "Taurus, Leo, Scorpio, Aquarius",
-          "gu": "Taurus, Leo, Scorpio, Aquarius"
+          "ta": "ரிஷபம், சிம்மம், விருச்சிகம், கும்பம்",
+          "te": "వృషభం, సింహం, వృశ్చికం, కుంభం",
+          "bn": "বৃষ, সিংহ, বৃশ্চিক, কুম্ভ",
+          "kn": "ವೃಷಭ, ಸಿಂಹ, ವೃಶ್ಚಿಕ, ಕುಂಭ",
+          "gu": "વૃષભ, સિંહ, વૃશ્ચિક, કુંભ"
         },
         {
           "en": "Aries, Cancer, Libra, Capricorn",
           "hi": "मेष, कर्क, तुला, मकर",
           "mai": "मेष, कर्क, तुला, मकर",
           "mr": "मेष, कर्क, तुला, मकर",
-          "ta": "Aries, Cancer, Libra, Capricorn",
-          "te": "Aries, Cancer, Libra, Capricorn",
-          "bn": "Aries, Cancer, Libra, Capricorn",
-          "kn": "Aries, Cancer, Libra, Capricorn",
-          "gu": "Aries, Cancer, Libra, Capricorn"
+          "ta": "மேஷம், கடகம், துலாம், மகரம்",
+          "te": "మేషం, కర్కాటకం, తుల, మకరం",
+          "bn": "মেষ, কর্কট, তুলা, মকর",
+          "kn": "ಮೇಷ, ಕರ್ಕಾಟಕ, ತುಲಾ, ಮಕರ",
+          "gu": "મેષ, કર્ક, તુલા, મકર"
         },
         {
           "en": "Gemini, Virgo, Sagittarius, Pisces",
           "hi": "मिथुन, कन्या, धनु, मीन",
           "mai": "मिथुन, कन्या, धनु, मीन",
           "mr": "मिथुन, कन्या, धनु, मीन",
-          "ta": "Gemini, Virgo, Sagittarius, Pisces",
-          "te": "Gemini, Virgo, Sagittarius, Pisces",
-          "bn": "Gemini, Virgo, Sagittarius, Pisces",
-          "kn": "Gemini, Virgo, Sagittarius, Pisces",
-          "gu": "Gemini, Virgo, Sagittarius, Pisces"
+          "ta": "மிதுனம், கன்னி, தனுசு, மீனம்",
+          "te": "మిథునం, కన్య, ధనుస్సు, మీనం",
+          "bn": "মিথুন, কন্যা, ধনু, মীন",
+          "kn": "ಮಿಥುನ, ಕನ್ಯಾ, ಧನು, ಮೀನ",
+          "gu": "મિથુન, કન્યા, ધન, મીન"
         },
         {
           "en": "All fire signs",
           "hi": "सभी अग्नि राशियाँ",
           "mai": "सभ अग्नि राशि",
           "mr": "सभी अग्नि राशियाँ",
-          "ta": "All fire signs",
-          "te": "All fire signs",
-          "bn": "All fire signs",
-          "kn": "All fire signs",
-          "gu": "All fire signs"
+          "ta": "அனைத்து அக்னி ராசிகள்",
+          "te": "అన్ని అగ్ని రాశులు",
+          "bn": "সমস্ত অগ্নি রাশি",
+          "kn": "ಎಲ್ಲಾ ಅಗ್ನಿ ರಾಶಿಗಳು",
+          "gu": "બધી અગ્નિ રાશિઓ"
         }
       ],
       "correctAnswer": 1,
@@ -132,11 +132,11 @@
         "hi": "चर राशियाँ 4 कार्डिनल बिन्दुओं पर हैं: 1(मेष), 4(कर्क), 7(तुला), 10(मकर)। ये केन्द्र भावों से मेल खाती हैं।",
         "mai": "चर राशि सभ ४टा मुख्य बिंदु पर अछि: १म (मेष), ४थ (कर्क), ७म (तुला), १०म (मकर)। ई सभ केन्द्र (कोणीय भाव) सँ मेल खाइत अछि।",
         "mr": "चर राशियाँ 4 कार्डिनल बिन्दुओं पर हैं: 1(मेष), 4(कर्क), 7(तुला), 10(मकर)। ये केन्द्र भावों से मेल खाती हैं।",
-        "ta": "Movable signs are at the 4 cardinal points: 1st(Aries), 4th(Cancer), 7th(Libra), 10th(Capricorn). These correspond to the Kendras (angular houses).",
-        "te": "Movable signs are at the 4 cardinal points: 1st(Aries), 4th(Cancer), 7th(Libra), 10th(Capricorn). These correspond to the Kendras (angular houses).",
-        "bn": "Movable signs are at the 4 cardinal points: 1st(Aries), 4th(Cancer), 7th(Libra), 10th(Capricorn). These correspond to the Kendras (angular houses).",
-        "kn": "Movable signs are at the 4 cardinal points: 1st(Aries), 4th(Cancer), 7th(Libra), 10th(Capricorn). These correspond to the Kendras (angular houses).",
-        "gu": "Movable signs are at the 4 cardinal points: 1st(Aries), 4th(Cancer), 7th(Libra), 10th(Capricorn). These correspond to the Kendras (angular houses)."
+        "ta": "சரம் ராசிகள் 4 கேந்திரப் புள்ளிகளில் உள்ளன: 1வது (மேஷம்), 4வது (கடகம்), 7வது (துலாம்), 10வது (மகரம்). இவை கேந்திரங்களுக்கு (கோண பாவங்கள்) ஒத்தவை.",
+        "te": "చర రాశులు 4 కేంద్ర స్థానాలలో ఉంటాయి: 1వ (మేషం), 4వ (కర్కాటకం), 7వ (తుల), 10వ (మకరం). ఇవి కేంద్రాలకు (కోణ భావాలు) అనుగుణంగా ఉంటాయి.",
+        "bn": "চর রাশিগুলি ৪টি মূল বিন্দুতে অবস্থিত: ১ম (মেষ), ৪র্থ (কর্কট), ৭ম (তুলা), ১০ম (মকর)। এগুলি কেন্দ্র (কোণ ভাব) এর সাথে মিলে যায়।",
+        "kn": "ಚರ ರಾಶಿಗಳು 4 ಪ್ರಮುಖ ಬಿಂದುಗಳಲ್ಲಿವೆ: 1ನೇ (ಮೇಷ), 4ನೇ (ಕರ್ಕಾಟಕ), 7ನೇ (ತುಲಾ), 10ನೇ (ಮಕರ). ಇವು ಕೇಂದ್ರಗಳಿಗೆ (ಕೋನ ಭಾವಗಳು) ಸಂಬಂಧಿಸಿವೆ.",
+        "gu": "ચર રાશિઓ ૪ મુખ્ય બિંદુઓ પર છે: ૧લી (મેષ), ૪થી (કર્ક), ૭મી (તુલા), ૧૦મી (મકર). આ કેન્દ્ર (કોણીય ભાવ) ને અનુરૂપ છે."
       },
       "classicalRef": "BPHS Ch.4 v.7"
     },
@@ -148,11 +148,11 @@
         "hi": "कुम्भ राशि का तत्व क्या है?",
         "mai": "कुंभ कोन तत्व अछि?",
         "mr": "कुम्भ राशि का तत्व क्या है?",
-        "ta": "What element is Aquarius?",
-        "te": "What element is Aquarius?",
-        "bn": "What element is Aquarius?",
-        "kn": "What element is Aquarius?",
-        "gu": "What element is Aquarius?"
+        "ta": "கும்ப ராசியின் தனிமம் என்ன?",
+        "te": "కుంభ రాశికి ఏ మూలకం చెందినది?",
+        "bn": "কুম্ভ রাশি কোন তত্ত্বের?",
+        "kn": "ಕುಂಭ ರಾಶಿಯ ಧಾತು ಯಾವುದು?",
+        "gu": "કુંભ રાશિ કયા તત્વની છે?"
       },
       "options": [
         {
@@ -206,11 +206,11 @@
         "hi": "कुम्भ जल-वाहक चित्रण के बावजूद वायु राशि है। वायु राशियाँ: मिथुन, तुला, कुम्भ। जल-वाहक ज्ञान के वितरण का प्रतीक है, जल तत्व का नहीं।",
         "mai": "कुंभ जल-वाहकक कल्पनाक बावजूद एकटा वायु राशि अछि। वायु राशि सभ: मिथुन, तुला, कुंभ। जल-वाहक ज्ञानक वितरणक प्रतिनिधित्व करैत अछि, जल तत्वक नहि।",
         "mr": "कुम्भ जल-वाहक चित्रण के बावजूद वायु राशि है। वायु राशियाँ: मिथुन, तुला, कुम्भ। जल-वाहक ज्ञान के वितरण का प्रतीक है, जल तत्व का नहीं।",
-        "ta": "Aquarius is an AIR sign despite the water-bearer imagery. Air signs: Gemini, Libra, Aquarius. The water-bearer represents distribution of knowledge, not the water element.",
-        "te": "Aquarius is an AIR sign despite the water-bearer imagery. Air signs: Gemini, Libra, Aquarius. The water-bearer represents distribution of knowledge, not the water element.",
-        "bn": "Aquarius is an AIR sign despite the water-bearer imagery. Air signs: Gemini, Libra, Aquarius. The water-bearer represents distribution of knowledge, not the water element.",
-        "kn": "Aquarius is an AIR sign despite the water-bearer imagery. Air signs: Gemini, Libra, Aquarius. The water-bearer represents distribution of knowledge, not the water element.",
-        "gu": "Aquarius is an AIR sign despite the water-bearer imagery. Air signs: Gemini, Libra, Aquarius. The water-bearer represents distribution of knowledge, not the water element."
+        "ta": "கும்பம் ஒரு வாயு ராசி, நீர் சுமப்பவர் உருவகம் இருந்தபோதிலும். வாயு ராசிகள்: மிதுனம், துலாம், கும்பம். நீர் சுமப்பவர் அறிவுப் பரவலைக் குறிக்கிறது, நீர் தனிமத்தை அல்ல.",
+        "te": "కుంభం ఒక వాయు రాశి, నీటిని మోసేవారి చిత్రణ ఉన్నప్పటికీ. వాయు రాశులు: మిథునం, తుల, కుంభం. నీటిని మోసే వ్యక్తి జ్ఞాన పంపిణీని సూచిస్తాడు, నీటి మూలకాన్ని కాదు.",
+        "bn": "জলবাহী চিত্র থাকা সত্ত্বেও কুম্ভ একটি বায়ু রাশি। বায়ু রাশিগুলি: মিথুন, তুলা, কুম্ভ। জলবাহী জ্ঞান বিতরণের প্রতীক, জল তত্ত্বের নয়।",
+        "kn": "ಕುಂಭ ರಾಶಿಯು ಜಲಕುಂಭದ ಚಿತ್ರಣವನ್ನು ಹೊಂದಿದ್ದರೂ, ಅದು ವಾಯು ರಾಶಿಯಾಗಿದೆ. ವಾಯು ರಾಶಿಗಳು: ಮಿಥುನ, ತುಲಾ, ಕುಂಭ. ಜಲಕುಂಭವು ಜ್ಞಾನದ ವಿತರಣೆಯನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತದೆ, ಜಲ ಧಾತುವನ್ನಲ್ಲ.",
+        "gu": "કુંભ રાશિ જળ કુંભના ચિત્રણ છતાં વાયુ તત્વની રાશિ છે. વાયુ રાશિઓ: મિથુન, તુલા, કુંભ. જળ કુંભ જ્ઞાનના વિતરણનું પ્રતિનિધિત્વ કરે છે, જળ તત્વનું નહીં."
       }
     },
     {
@@ -221,11 +221,11 @@
         "hi": "विषम-संख्या राशियाँ (1,3,5,7,9,11) पुरुष और दिवाचर हैं।",
         "mai": "विषम संख्याक राशि सभ (१,३,५,७,९,११) पुरुष आ दिन-बली होइत अछि।",
         "mr": "विषम-संख्या राशियाँ (1,3,5,7,9,11) पुरुष और दिवाचर हैं।",
-        "ta": "Odd-numbered signs (1,3,5,7,9,11) are Male and Diurnal.",
-        "te": "Odd-numbered signs (1,3,5,7,9,11) are Male and Diurnal.",
-        "bn": "Odd-numbered signs (1,3,5,7,9,11) are Male and Diurnal.",
-        "kn": "Odd-numbered signs (1,3,5,7,9,11) are Male and Diurnal.",
-        "gu": "Odd-numbered signs (1,3,5,7,9,11) are Male and Diurnal."
+        "ta": "ஒற்றைப்படை ராசிகள் (1,3,5,7,9,11) ஆண் மற்றும் பகல் பலம் கொண்டவை.",
+        "te": "బేసి సంఖ్య రాశులు (1,3,5,7,9,11) పురుష మరియు పగటి బలము గలవి.",
+        "bn": "বিজোড় সংখ্যার রাশিগুলি (১,৩,৫,৭,৯,১১) পুরুষ এবং দিবা-বলশালী।",
+        "kn": "ಬೆಸ ಸಂಖ್ಯೆಯ ರಾಶಿಗಳು (1,3,5,7,9,11) ಪುರುಷ ಮತ್ತು ಹಗಲು ಬಲವನ್ನು ಹೊಂದಿರುತ್ತವೆ.",
+        "gu": "વિષમ સંખ્યાની રાશિઓ (૧,૩,૫,૭,૯,૧૧) પુરુષ અને દિવસબલી છે."
       },
       "correctAnswer": true,
       "explanation": {
@@ -233,11 +233,11 @@
         "hi": "सही। विषम = पुरुष/दिवा-बली। सम = स्त्री/रात्रि-बली। यह वैकल्पिक प्रतिरूप राशिचक्र में सन्तुलन बनाता है।",
         "mai": "सही अछि। विषम = पुरुष/पुरुषा/दिन-बली। सम = स्त्री/स्त्री/राति-बली। ई एकांतर पैटर्न राशिचक्र मे संतुलन बनबैत अछि।",
         "mr": "सही। विषम = पुरुष/दिवा-बली। सम = स्त्री/रात्रि-बली। यह वैकल्पिक प्रतिरूप राशिचक्र में सन्तुलन बनाता है।",
-        "ta": "Correct. Odd = Male/Purusha/Day-strong. Even = Female/Stri/Night-strong. This alternating pattern creates balance in the zodiac.",
-        "te": "Correct. Odd = Male/Purusha/Day-strong. Even = Female/Stri/Night-strong. This alternating pattern creates balance in the zodiac.",
-        "bn": "Correct. Odd = Male/Purusha/Day-strong. Even = Female/Stri/Night-strong. This alternating pattern creates balance in the zodiac.",
-        "kn": "Correct. Odd = Male/Purusha/Day-strong. Even = Female/Stri/Night-strong. This alternating pattern creates balance in the zodiac.",
-        "gu": "Correct. Odd = Male/Purusha/Day-strong. Even = Female/Stri/Night-strong. This alternating pattern creates balance in the zodiac."
+        "ta": "சரியானது. ஒற்றைப்படை = ஆண்/புருஷ/பகல் பலம். இரட்டைப்படை = பெண்/ஸ்திரீ/இரவு பலம். இந்த மாற்று முறை ராசி சக்கரத்தில் சமநிலையை உருவாக்குகிறது.",
+        "te": "సరియైనది. బేసి = పురుష/పురుష/పగటి బలము. సరి = స్త్రీ/స్త్రీ/రాత్రి బలము. ఈ ప్రత్యామ్నాయ నమూనా రాశిచక్రంలో సమతుల్యతను సృష్టిస్తుంది.",
+        "bn": "সঠিক। বিজোড় = পুরুষ/পুরুষ/দিবা-বলশালী। জোড় = স্ত্রী/স্ত্রী/রাত্রি-বলশালী। এই পর্যায়ক্রমিক বিন্যাস রাশিচক্রে ভারসাম্য তৈরি করে।",
+        "kn": "ಸರಿ. ಬೆಸ = ಪುರುಷ/ಪುರುಷ/ಹಗಲು ಬಲ. ಸಮ = ಸ್ತ್ರೀ/ಸ್ತ್ರೀ/ರಾತ್ರಿ ಬಲ. ಈ ಪರ್ಯಾಯ ಮಾದರಿಯು ರಾಶಿಚಕ್ರದಲ್ಲಿ ಸಮತೋಲನವನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ.",
+        "gu": "સાચું. વિષમ = પુરુષ/પૂરુષ/દિવસબલી. સમ = સ્ત્રી/સ્ત્રી/રાત્રિબલી. આ વૈકલ્પિક પદ્ધતિ રાશિચક્રમાં સંતુલન બનાવે છે."
       },
       "classicalRef": "BPHS Ch.4"
     },
@@ -249,11 +249,11 @@
         "hi": "शीर्षोदय राशियाँ घटनाओं को प्रकट करती हैं:",
         "mai": "शिरशोदय राशि सभ घटना सभक अभिव्यक्ति करैत अछि:",
         "mr": "शीर्षोदय राशियाँ घटनाओं को प्रकट करती हैं:",
-        "ta": "Shirshodaya signs manifest events:",
-        "te": "Shirshodaya signs manifest events:",
-        "bn": "Shirshodaya signs manifest events:",
-        "kn": "Shirshodaya signs manifest events:",
-        "gu": "Shirshodaya signs manifest events:"
+        "ta": "சிரஷோதய ராசிகள் நிகழ்வுகளை வெளிப்படுத்துகின்றன:",
+        "te": "శిర్షోదయ రాశులు సంఘటనలను వ్యక్తపరుస్తాయి:",
+        "bn": "শীর্ষোদয় রাশিগুলি ঘটনা প্রকাশ করে:",
+        "kn": "ಶೀರ್ಷೋದಯ ರಾಶಿಗಳು ಘಟನೆಗಳನ್ನು ಪ್ರಕಟಿಸುತ್ತವೆ:",
+        "gu": "શિર્ષોદય રાશિઓ ઘટનાઓ પ્રગટ કરે છે:"
       },
       "options": [
         {
@@ -272,22 +272,22 @@
           "hi": "शीघ्र (सिर पहले उदय होता है)",
           "mai": "शीघ्रता सँ (माथ पहिने उठैत अछि)",
           "mr": "शीघ्र (सिर पहले उदय होता है)",
-          "ta": "Quickly (head rises first)",
-          "te": "Quickly (head rises first)",
-          "bn": "Quickly (head rises first)",
-          "kn": "Quickly (head rises first)",
-          "gu": "Quickly (head rises first)"
+          "ta": "வேகமாக (தலை முதலில் உயர்கிறது)",
+          "te": "త్వరగా (తల ముందుగా ఉదయించును)",
+          "bn": "দ্রুত (মাথা প্রথমে ওঠে)",
+          "kn": "ವೇಗವಾಗಿ (ಮೊದಲು ತಲೆ ಏರುತ್ತದೆ)",
+          "gu": "ઝડપથી (માથું પહેલા ઉગે છે)"
         },
         {
           "en": "Only at night",
           "hi": "केवल रात में",
           "mai": "राति मे मात्रे",
           "mr": "केवल रात में",
-          "ta": "Only at night",
-          "te": "Only at night",
-          "bn": "Only at night",
-          "kn": "Only at night",
-          "gu": "Only at night"
+          "ta": "இரவில் மட்டும்",
+          "te": "రాత్రి మాత్రమే",
+          "bn": "শুধুমাত্র রাতে",
+          "kn": "ರಾತ್ರಿಯಲ್ಲಿ ಮಾತ್ರ",
+          "gu": "ફક્ત રાત્રે"
         },
         {
           "en": "Never",
@@ -307,11 +307,11 @@
         "hi": "शीर्षोदय = सिर-पहले उदय। इन राशियों (मिथुन, सिंह, कन्या, तुला, वृश्चिक, कुम्भ) की घटनाएँ शीघ्र प्रकट होती हैं।",
         "mai": "शिरशोदय = माथ-पहिने उदय। ई राशि सभ (मिथुन, सिंह, कन्या, तुला, वृश्चिक, कुंभ) सँ घटना सभ शीघ्रता सँ प्रकट होइत अछि। ई प्रश्न ज्योतिष मे विशेष रूप सँ महत्वपूर्ण अछि।",
         "mr": "शीर्षोदय = सिर-पहले उदय। इन राशियों (मिथुन, सिंह, कन्या, तुला, वृश्चिक, कुम्भ) की घटनाएँ शीघ्र प्रकट होती हैं।",
-        "ta": "Shirshodaya = head-first rising. Events from these signs (Gemini, Leo, Virgo, Libra, Scorpio, Aquarius) manifest quickly. This is especially important in Prashna astrology.",
-        "te": "Shirshodaya = head-first rising. Events from these signs (Gemini, Leo, Virgo, Libra, Scorpio, Aquarius) manifest quickly. This is especially important in Prashna astrology.",
-        "bn": "Shirshodaya = head-first rising. Events from these signs (Gemini, Leo, Virgo, Libra, Scorpio, Aquarius) manifest quickly. This is especially important in Prashna astrology.",
-        "kn": "Shirshodaya = head-first rising. Events from these signs (Gemini, Leo, Virgo, Libra, Scorpio, Aquarius) manifest quickly. This is especially important in Prashna astrology.",
-        "gu": "Shirshodaya = head-first rising. Events from these signs (Gemini, Leo, Virgo, Libra, Scorpio, Aquarius) manifest quickly. This is especially important in Prashna astrology."
+        "ta": "சிரஷோதயம் = தலை முதலில் உயர்தல். இந்த ராசிகளிலிருந்து வரும் நிகழ்வுகள் (மிதுனம், சிம்மம், கன்னி, துலாம், விருச்சிகம், கும்பம்) வேகமாக வெளிப்படுகின்றன. இது பிரசன்ன ஜோதிடத்தில் மிகவும் முக்கியமானது.",
+        "te": "శిర్షోదయ = తల ముందుగా ఉదయించుట. ఈ రాశుల నుండి వచ్చే సంఘటనలు (మిథునం, సింహం, కన్య, తుల, వృశ్చికం, కుంభం) త్వరగా వ్యక్తపడతాయి. ఇది ప్రశ్న జ్యోతిష్యశాస్త్రంలో చాలా ముఖ్యం.",
+        "bn": "শীর্ষোদয় = মাথা প্রথমে ওঠা। এই রাশিগুলি (মিথুন, সিংহ, কন্যা, তুলা, বৃশ্চিক, কুম্ভ) থেকে ঘটনা দ্রুত প্রকাশ পায়। এটি বিশেষত প্রশ্ন জ্যোতিষে গুরুত্বপূর্ণ।",
+        "kn": "ಶೀರ್ಷೋದಯ = ಮೊದಲು ತಲೆ ಏರುವುದು. ಈ ರಾಶಿಗಳಿಂದ (ಮಿಥುನ, ಸಿಂಹ, ಕನ್ಯಾ, ತುಲಾ, ವೃಶ್ಚಿಕ, ಕುಂಭ) ಘಟನೆಗಳು ವೇಗವಾಗಿ ಪ್ರಕಟವಾಗುತ್ತವೆ. ಇದು ಪ್ರಶ್ನ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ ವಿಶೇಷವಾಗಿ ಮುಖ್ಯವಾಗಿದೆ.",
+        "gu": "શિર્ષોદય = માથું પહેલા ઉગવું. આ રાશિઓ (મિથુન, સિંહ, કન્યા, તુલા, વૃશ્ચિક, કુંભ) માંથી ઘટનાઓ ઝડપથી પ્રગટ થાય છે. આ પ્રશ્ન જ્યોતિષમાં ખાસ કરીને મહત્વનું છે."
       }
     },
     {
@@ -322,11 +322,11 @@
         "hi": "3 गुण × 4 तत्व = ?",
         "mai": "३ गुण × ४ तत्व = ?",
         "mr": "3 गुण × 4 तत्व = ?",
-        "ta": "3 Qualities × 4 Elements = ?",
-        "te": "3 Qualities × 4 Elements = ?",
-        "bn": "3 Qualities × 4 Elements = ?",
-        "kn": "3 Qualities × 4 Elements = ?",
-        "gu": "3 Qualities × 4 Elements = ?"
+        "ta": "3 குணங்கள் × 4 தனிமங்கள் = ?",
+        "te": "3 గుణాలు × 4 మూలకాలు = ?",
+        "bn": "৩ গুণ × ৪ তত্ত্ব = ?",
+        "kn": "3 ಗುಣಗಳು × 4 ಧಾತುಗಳು = ?",
+        "gu": "૩ ગુણ × ૪ તત્વ = ?"
       },
       "options": [
         {
@@ -334,44 +334,44 @@
           "hi": "8 संयोजन",
           "mai": "८ संयोजन",
           "mr": "8 संयोजन",
-          "ta": "8 combinations",
-          "te": "8 combinations",
-          "bn": "8 combinations",
-          "kn": "8 combinations",
-          "gu": "8 combinations"
+          "ta": "8 சேர்க்கைகள்",
+          "te": "8 కలయికలు",
+          "bn": "৮টি সংমিশ্রণ",
+          "kn": "8 ಸಂಯೋಜನೆಗಳು",
+          "gu": "૮ સંયોજનો"
         },
         {
           "en": "10 combinations",
           "hi": "10 संयोजन",
           "mai": "१० संयोजन",
           "mr": "10 संयोजन",
-          "ta": "10 combinations",
-          "te": "10 combinations",
-          "bn": "10 combinations",
-          "kn": "10 combinations",
-          "gu": "10 combinations"
+          "ta": "10 சேர்க்கைகள்",
+          "te": "10 కలయికలు",
+          "bn": "১০টি সংমিশ্রণ",
+          "kn": "10 ಸಂಯೋಜನೆಗಳು",
+          "gu": "૧૦ સંયોજનો"
         },
         {
           "en": "12 unique combinations (= 12 signs)",
           "hi": "12 अद्वितीय संयोजन (= 12 राशियाँ)",
           "mai": "१२ अद्वितीय संयोजन (= १२ राशि)",
           "mr": "12 अद्वितीय संयोजन (= 12 राशियाँ)",
-          "ta": "12 unique combinations (= 12 signs)",
-          "te": "12 unique combinations (= 12 signs)",
-          "bn": "12 unique combinations (= 12 signs)",
-          "kn": "12 unique combinations (= 12 signs)",
-          "gu": "12 unique combinations (= 12 signs)"
+          "ta": "12 தனித்துவமான சேர்க்கைகள் (= 12 ராசிகள்)",
+          "te": "12 ప్రత్యేక కలయికలు (= 12 రాశులు)",
+          "bn": "১২টি অনন্য সংমিশ্রণ (= ১২টি রাশি)",
+          "kn": "12 ವಿಶಿಷ್ಟ ಸಂಯೋಜನೆಗಳು (= 12 ರಾಶಿಗಳು)",
+          "gu": "૧૨ અનન્ય સંયોજનો (= ૧૨ રાશિઓ)"
         },
         {
           "en": "16 combinations",
           "hi": "16 संयोजन",
           "mai": "१६ संयोजन",
           "mr": "16 संयोजन",
-          "ta": "16 combinations",
-          "te": "16 combinations",
-          "bn": "16 combinations",
-          "kn": "16 combinations",
-          "gu": "16 combinations"
+          "ta": "16 சேர்க்கைகள்",
+          "te": "16 కలయికలు",
+          "bn": "১৬টি সংমিশ্রণ",
+          "kn": "16 ಸಂಯೋಜನೆಗಳು",
+          "gu": "૧૬ સંયોજનો"
         }
       ],
       "correctAnswer": 2,
@@ -380,11 +380,11 @@
         "hi": "3 × 4 = 12  –  प्रत्येक राशि का एक अद्वितीय गुण-तत्व संयोजन है। यह संयोग नहीं; यह राशिचक्र की गणितीय संरचना है।",
         "mai": "३ × ४ = १२ – प्रत्येक राशि मे एकटा अद्वितीय गुण-तत्व संयोजन होइत अछि। ई संयोगवश नहि अछि; ई राशिचक्रक गणितीय संरचना अछि।",
         "mr": "3 × 4 = 12  –  प्रत्येक राशि का एक अद्वितीय गुण-तत्व संयोजन है। यह संयोग नहीं; यह राशिचक्र की गणितीय संरचना है।",
-        "ta": "3 × 4 = 12  –  each sign has a unique quality-element combination. This is NOT coincidental; it's the mathematical structure of the zodiac.",
-        "te": "3 × 4 = 12  –  each sign has a unique quality-element combination. This is NOT coincidental; it's the mathematical structure of the zodiac.",
-        "bn": "3 × 4 = 12  –  each sign has a unique quality-element combination. This is NOT coincidental; it's the mathematical structure of the zodiac.",
-        "kn": "3 × 4 = 12  –  each sign has a unique quality-element combination. This is NOT coincidental; it's the mathematical structure of the zodiac.",
-        "gu": "3 × 4 = 12  –  each sign has a unique quality-element combination. This is NOT coincidental; it's the mathematical structure of the zodiac."
+        "ta": "3 × 4 = 12  –  ஒவ்வொரு ராசிக்கும் ஒரு தனித்துவமான குணம்-தனிம சேர்க்கை உள்ளது. இது தற்செயலானது அல்ல; இது ராசி சக்கரத்தின் கணித அமைப்பு.",
+        "te": "3 × 4 = 12 – ప్రతి రాశికి ఒక ప్రత్యేక గుణ-మూలక కలయిక ఉంటుంది. ఇది యాదృచ్ఛికం కాదు; ఇది రాశిచక్రం యొక్క గణిత నిర్మాణం.",
+        "bn": "৩ × ৪ = ১২ – প্রতিটি রাশির একটি অনন্য গুণ-তত্ত্ব সংমিশ্রণ রয়েছে। এটি কাকতালীয় নয়; এটি রাশিচক্রের গাণিতিক কাঠামো।",
+        "kn": "3 × 4 = 12 – ಪ್ರತಿ ರಾಶಿಯು ವಿಶಿಷ್ಟ ಗುಣ-ಧಾತು ಸಂಯೋಜನೆಯನ್ನು ಹೊಂದಿದೆ. ಇದು ಆಕಸ್ಮಿಕವಲ್ಲ; ಇದು ರಾಶಿಚಕ್ರದ ಗಣಿತದ ರಚನೆಯಾಗಿದೆ.",
+        "gu": "૩ × ૪ = ૧૨  –  દરેક રાશિમાં એક અનન્ય ગુણ-તત્વ સંયોજન હોય છે. આ સંયોગ નથી; તે રાશિચક્રની ગાણિતિક રચના છે."
       }
     },
     {
@@ -395,11 +395,11 @@
         "hi": "कर्क एक चर जल राशि है।",
         "mai": "कर्क एकटा चर जल राशि अछि।",
         "mr": "कर्क एक चर जल राशि है।",
-        "ta": "Cancer is a Movable Water sign.",
-        "te": "Cancer is a Movable Water sign.",
-        "bn": "Cancer is a Movable Water sign.",
-        "kn": "Cancer is a Movable Water sign.",
-        "gu": "Cancer is a Movable Water sign."
+        "ta": "கடகம் ஒரு சரம் நீர் ராசி.",
+        "te": "కర్కాటకం ఒక చర జల రాశి.",
+        "bn": "কর্কট একটি চর জল রাশি।",
+        "kn": "ಕರ್ಕಾಟಕವು ಒಂದು ಚರ ಜಲ ರಾಶಿ.",
+        "gu": "કર્ક રાશિ ચર જળ રાશિ છે."
       },
       "correctAnswer": true,
       "explanation": {
@@ -407,11 +407,11 @@
         "hi": "सही। कर्क = चर (आरम्भ करता है) + जल (भावना)। यह भावनात्मक सम्बन्ध, गृह-निर्माण और पोषण आरम्भ करता है।",
         "mai": "सही अछि। कर्क = चर (आरंभ करैत अछि) + जल (भावना)। ई भावनात्मक संबंध, घर बनयबाक आ पोषणक आरंभ करैत अछि – सभ चर ऊर्जाक संग जल-समान कार्य।",
         "mr": "सही। कर्क = चर (आरम्भ करता है) + जल (भावना)। यह भावनात्मक सम्बन्ध, गृह-निर्माण और पोषण आरम्भ करता है।",
-        "ta": "Correct. Cancer = Movable (initiates) + Water (emotion). It initiates emotional connections, home-building, and nurturing  –  all water-like actions with cardinal energy.",
-        "te": "Correct. Cancer = Movable (initiates) + Water (emotion). It initiates emotional connections, home-building, and nurturing  –  all water-like actions with cardinal energy.",
-        "bn": "Correct. Cancer = Movable (initiates) + Water (emotion). It initiates emotional connections, home-building, and nurturing  –  all water-like actions with cardinal energy.",
-        "kn": "Correct. Cancer = Movable (initiates) + Water (emotion). It initiates emotional connections, home-building, and nurturing  –  all water-like actions with cardinal energy.",
-        "gu": "Correct. Cancer = Movable (initiates) + Water (emotion). It initiates emotional connections, home-building, and nurturing  –  all water-like actions with cardinal energy."
+        "ta": "சரியானது. கடகம் = சரம் (தொடங்குகிறது) + நீர் (உணர்ச்சி). இது உணர்ச்சிபூர்வமான தொடர்புகள், வீடு கட்டுதல் மற்றும் வளர்ப்பதை தொடங்குகிறது  –  அனைத்தும் கேந்திர ஆற்றலுடன் கூடிய நீர் போன்ற செயல்கள்.",
+        "te": "సరియైనది. కర్కాటకం = చర (ప్రారంభిస్తుంది) + జలం (భావోద్వేగం). ఇది భావోద్వేగ సంబంధాలను, గృహ నిర్మాణం, మరియు పోషణను ప్రారంభిస్తుంది – అన్నీ కేంద్ర శక్తితో కూడిన జల-వంటి చర్యలు.",
+        "bn": "সঠিক। কর্কট = চর (সূচনা করে) + জল (অনুভূতি)। এটি আবেগপূর্ণ সম্পর্ক, গৃহ নির্মাণ এবং লালন-পালনের সূচনা করে – এগুলি সবই জল-সদৃশ ক্রিয়া, যা চর শক্তির সাথে যুক্ত।",
+        "kn": "ಸರಿ. ಕರ್ಕಾಟಕ = ಚರ (ಪ್ರಾರಂಭಿಸುತ್ತದೆ) + ಜಲ (ಭಾವನೆ). ಇದು ಭಾವನಾತ್ಮಕ ಸಂಬಂಧಗಳು, ಮನೆ ನಿರ್ಮಾಣ ಮತ್ತು ಪೋಷಣೆಯನ್ನು ಪ್ರಾರಂಭಿಸುತ್ತದೆ – ಇವೆಲ್ಲವೂ ಚರ ಶಕ್ತಿಯೊಂದಿಗೆ ಜಲದಂತಹ ಕ್ರಿಯೆಗಳು.",
+        "gu": "સાચું. કર્ક = ચર (શરૂઆત કરનાર) + જળ (ભાવના). તે ભાવનાત્મક સંબંધો, ઘર નિર્માણ અને પાલનપોષણની શરૂઆત કરે છે  –  આ બધી જળ જેવી ક્રિયાઓ ચર ઊર્જા સાથે છે."
       }
     },
     {
@@ -422,11 +422,11 @@
         "hi": "स्थिर राशियाँ किन भाव स्थानों पर होती हैं?",
         "mai": "स्थिर राशि सभ कोन भावक स्थिति ग्रहण करैत अछि?",
         "mr": "स्थिर राशियाँ किन भाव स्थानों पर होती हैं?",
-        "ta": "Which house positions do the Fixed signs occupy?",
-        "te": "Which house positions do the Fixed signs occupy?",
-        "bn": "Which house positions do the Fixed signs occupy?",
-        "kn": "Which house positions do the Fixed signs occupy?",
-        "gu": "Which house positions do the Fixed signs occupy?"
+        "ta": "எந்த பாவ நிலைகளில் ஸ்திர ராசிகள் அமைகின்றன?",
+        "te": "స్థిర రాశులు ఏ భావ స్థానాలను ఆక్రమిస్తాయి?",
+        "bn": "কোন ভাব অবস্থানগুলি স্থির রাশিগুলি দখল করে?",
+        "kn": "ಯಾವ ಭಾವ ಸ್ಥಾನಗಳನ್ನು ಸ್ಥಿರ ರಾಶಿಗಳು ಆಕ್ರಮಿಸುತ್ತವೆ?",
+        "gu": "સ્થિર રાશિઓ કયા ભાવમાં હોય છે?"
       },
       "options": [
         {
@@ -480,11 +480,11 @@
         "hi": "स्थिर राशियाँ = भाव 2, 5, 8, 11 (पणफर भाव)। चर = 1,4,7,10 (केन्द्र)। द्वि = 3,6,9,12 (आपोक्लिम)।",
         "mai": "स्थिर राशि = भाव २, ५, ८, ११ (पणफर भाव)। चर = १,४,७,१० (केन्द्र)। द्विस्वभाव = ३,६,९,१२ (अपोक्लिमा)।",
         "mr": "स्थिर राशियाँ = भाव 2, 5, 8, 11 (पणफर भाव)। चर = 1,4,7,10 (केन्द्र)। द्वि = 3,6,9,12 (आपोक्लिम)।",
-        "ta": "Fixed signs = houses 2, 5, 8, 11 (Panaphara houses). Movable = 1,4,7,10 (Kendras). Dual = 3,6,9,12 (Apoklima).",
-        "te": "Fixed signs = houses 2, 5, 8, 11 (Panaphara houses). Movable = 1,4,7,10 (Kendras). Dual = 3,6,9,12 (Apoklima).",
-        "bn": "Fixed signs = houses 2, 5, 8, 11 (Panaphara houses). Movable = 1,4,7,10 (Kendras). Dual = 3,6,9,12 (Apoklima).",
-        "kn": "Fixed signs = houses 2, 5, 8, 11 (Panaphara houses). Movable = 1,4,7,10 (Kendras). Dual = 3,6,9,12 (Apoklima).",
-        "gu": "Fixed signs = houses 2, 5, 8, 11 (Panaphara houses). Movable = 1,4,7,10 (Kendras). Dual = 3,6,9,12 (Apoklima)."
+        "ta": "ஸ்திர ராசிகள் = பாவங்கள் 2, 5, 8, 11 (பணபரா பாவங்கள்). சரம் = 1,4,7,10 (கேந்திரங்கள்). உபய = 3,6,9,12 (அபோக்லிமா).",
+        "te": "స్థిర రాశులు = 2, 5, 8, 11 భావాలు (పనఫర భావాలు). చర = 1,4,7,10 (కేంద్రాలు). ద్విస్వభావ = 3,6,9,12 (అపోక్లిమ).",
+        "bn": "স্থির রাশি = ২, ৫, ৮, ১১ ভাব (পনফরা ভাব)। চর = ১,৪,৭,১০ (কেন্দ্র)। দ্বি-স্বভাব = ৩,৬,৯,১২ (আপোক্লিমা)।",
+        "kn": "ಸ್ಥಿರ ರಾಶಿಗಳು = 2, 5, 8, 11ನೇ ಭಾವಗಳು (ಪಣಫರ ಭಾವಗಳು). ಚರ = 1,4,7,10ನೇ ಭಾವಗಳು (ಕೇಂದ್ರಗಳು). ದ್ವಿಸ್ವಭಾವ = 3,6,9,12ನೇ ಭಾವಗಳು (ಅಪೋಕ್ಲಿಮ).",
+        "gu": "સ્થિર રાશિઓ = ભાવ ૨, ૫, ૮, ૧૧ (પનફર ભાવ). ચર = ૧,૪,૭,૧૦ (કેન્દ્ર). દ્વિસ્વભાવ = ૩,૬,૯,૧૨ (અપોક્લીમા)."
       }
     },
     {
@@ -495,11 +495,11 @@
         "hi": "अग्नि राशियों में अधिकांश ग्रहों वाली कुण्डली व्यक्ति को सुझाती है:",
         "mai": "अग्नि राशि सभ मे बेसी ग्रह बला कुंडली एहन व्यक्ति केँ सूचित करैत अछि जे:",
         "mr": "अग्नि राशियों में अधिकांश ग्रहों वाली कुण्डली व्यक्ति को सुझाती है:",
-        "ta": "A chart with most planets in Fire signs suggests a person who is:",
-        "te": "A chart with most planets in Fire signs suggests a person who is:",
-        "bn": "A chart with most planets in Fire signs suggests a person who is:",
-        "kn": "A chart with most planets in Fire signs suggests a person who is:",
-        "gu": "A chart with most planets in Fire signs suggests a person who is:"
+        "ta": "பெரும்பாலான கிரகங்கள் அக்னி ராசிகளில் கொண்ட ஒரு ஜாதகம் ஒரு நபரை சுட்டிக்காட்டுகிறது:",
+        "te": "అగ్ని రాశులలో ఎక్కువ గ్రహాలు ఉన్న జాతకం ఒక వ్యక్తిని సూచిస్తుంది:",
+        "bn": "যে কোষ্ঠীতে বেশিরভাগ গ্রহ অগ্নি রাশিতে থাকে, তা এমন একজন ব্যক্তিকে নির্দেশ করে যিনি:",
+        "kn": "ಹೆಚ್ಚಿನ ಗ್ರಹಗಳು ಅಗ್ನಿ ರಾಶಿಗಳಲ್ಲಿ ಇರುವ ಜಾತಕವು ಒಬ್ಬ ವ್ಯಕ್ತಿಯನ್ನು ಸೂಚಿಸುತ್ತದೆ, ಅವರು:",
+        "gu": "જે કુંડળીમાં મોટાભાગના ગ્રહો અગ્નિ રાશિઓમાં હોય તે વ્યક્તિ સૂચવે છે કે તે:"
       },
       "options": [
         {
@@ -507,44 +507,44 @@
           "hi": "भावनात्मक रूप से संवेदनशील और अन्तर्ज्ञानी",
           "mai": "भावनात्मक रूप सँ संवेदनशील आ सहज ज्ञान युक्त",
           "mr": "भावनात्मक रूप से संवेदनशील और अन्तर्ज्ञानी",
-          "ta": "Emotionally sensitive and intuitive",
-          "te": "Emotionally sensitive and intuitive",
-          "bn": "Emotionally sensitive and intuitive",
-          "kn": "Emotionally sensitive and intuitive",
-          "gu": "Emotionally sensitive and intuitive"
+          "ta": "உணர்ச்சிவசப்பட்ட மற்றும் உள்ளுணர்வு கொண்டவர்",
+          "te": "భావోద్వేగంగా సున్నితమైన మరియు అంతర్జ్ఞానం గలవారు",
+          "bn": "আবেগপ্রবণ এবং স্বজ্ঞাত",
+          "kn": "ಭಾವನಾತ್ಮಕವಾಗಿ ಸೂಕ್ಷ್ಮ ಮತ್ತು ಅಂತರ್ಬೋಧೆಯುಳ್ಳವರು",
+          "gu": "ભાવનાત્મક રીતે સંવેદનશીલ અને અંતર્જ્ઞાની"
         },
         {
           "en": "Practical, methodical, and grounded",
           "hi": "व्यावहारिक, व्यवस्थित और ज़मीन से जुड़ा",
           "mai": "व्यावहारिक, व्यवस्थित आ जमीन सँ जुड़ल",
           "mr": "व्यावहारिक, व्यवस्थित और ज़मीन से जुड़ा",
-          "ta": "Practical, methodical, and grounded",
-          "te": "Practical, methodical, and grounded",
-          "bn": "Practical, methodical, and grounded",
-          "kn": "Practical, methodical, and grounded",
-          "gu": "Practical, methodical, and grounded"
+          "ta": "நடைமுறைவாதி, முறையானவர் மற்றும் உறுதியானவர்",
+          "te": "ఆచరణాత్మక, క్రమబద్ధమైన మరియు స్థిరమైన",
+          "bn": "বাস্তববাদী, পদ্ধতিগত এবং দৃঢ়প্রতিজ্ঞ",
+          "kn": "ಪ್ರಾಯೋಗಿಕ, ಕ್ರಮಬದ್ಧ ಮತ್ತು ವಾಸ್ತವಿಕ",
+          "gu": "વ્યવહારુ, પદ્ધતિસર અને જમીન સાથે જોડાયેલ"
         },
         {
           "en": "Action-oriented, energetic, possibly aggressive",
           "hi": "कर्म-उन्मुख, ऊर्जावान, सम्भवतः आक्रामक",
           "mai": "कार्य-उन्मुख, ऊर्जावान, संभवतः आक्रामक",
           "mr": "कर्म-उन्मुख, ऊर्जावान, सम्भवतः आक्रामक",
-          "ta": "Action-oriented, energetic, possibly aggressive",
-          "te": "Action-oriented, energetic, possibly aggressive",
-          "bn": "Action-oriented, energetic, possibly aggressive",
-          "kn": "Action-oriented, energetic, possibly aggressive",
-          "gu": "Action-oriented, energetic, possibly aggressive"
+          "ta": "செயல் சார்ந்தவர், ஆற்றல் மிக்கவர், ஒருவேளை ஆக்ரோஷமானவர்",
+          "te": "కార్యాచరణ-ఆధారిత, శక్తివంతమైన, బహుశా దూకుడు స్వభావం గలవారు",
+          "bn": "কর্মঠ, উদ্যমী, সম্ভবত আক্রমণাত্মক",
+          "kn": "ಕ್ರಿಯಾಶೀಲ, ಶಕ್ತಿಯುತ, ಬಹುಶಃ ಆಕ್ರಮಣಕಾರಿ",
+          "gu": "કાર્યલક્ષી, ઊર્જાવાન, કદાચ આક્રમક"
         },
         {
           "en": "Intellectual, communicative, and detached",
           "hi": "बौद्धिक, संवादशील और निर्लिप्त",
           "mai": "बौद्धिक, संचारी आ विरक्त",
           "mr": "बौद्धिक, संवादशील और निर्लिप्त",
-          "ta": "Intellectual, communicative, and detached",
-          "te": "Intellectual, communicative, and detached",
-          "bn": "Intellectual, communicative, and detached",
-          "kn": "Intellectual, communicative, and detached",
-          "gu": "Intellectual, communicative, and detached"
+          "ta": "அறிவுசார்ந்தவர், தொடர்பு கொள்ளும் திறன் கொண்டவர் மற்றும் பற்றற்றவர்",
+          "te": "మేధావి, సంభాషణాత్మక మరియు నిర్లిప్తమైన",
+          "bn": "বুদ্ধিমান, যোগাযোগে পারদর্শী এবং নির্লিপ্ত",
+          "kn": "ಬುದ್ಧಿವಂತ, ಸಂವಹನಶೀಲ ಮತ್ತು ನಿರ್ಲಿಪ್ತ",
+          "gu": "બૌદ્ધિક, વાતચીત કરનાર અને નિષ્પક્ષ"
         }
       ],
       "correctAnswer": 2,
@@ -553,11 +553,11 @@
         "hi": "अग्नि तत्व = क्रिया, ऊर्जा, पहल, नेतृत्व। अत्यधिक अग्नि आक्रामकता या अधीरता के रूप में प्रकट हो सकती है।",
         "mai": "अग्नि तत्व = कार्य, ऊर्जा, पहल, नेतृत्व। बेसी अग्नि आक्रामकता, अधीरता, या बर्नआउटक रूप मे प्रकट भऽ सकैत अछि। अग्नि राशि सभ: मेष, सिंह, धनु।",
         "mr": "अग्नि तत्व = क्रिया, ऊर्जा, पहल, नेतृत्व। अत्यधिक अग्नि आक्रामकता या अधीरता के रूप में प्रकट हो सकती है।",
-        "ta": "Fire (Agni) element = action, energy, initiative, leadership. Too much fire can manifest as aggression, impatience, or burnout. Fire signs: Aries, Leo, Sagittarius.",
-        "te": "Fire (Agni) element = action, energy, initiative, leadership. Too much fire can manifest as aggression, impatience, or burnout. Fire signs: Aries, Leo, Sagittarius.",
-        "bn": "Fire (Agni) element = action, energy, initiative, leadership. Too much fire can manifest as aggression, impatience, or burnout. Fire signs: Aries, Leo, Sagittarius.",
-        "kn": "Fire (Agni) element = action, energy, initiative, leadership. Too much fire can manifest as aggression, impatience, or burnout. Fire signs: Aries, Leo, Sagittarius.",
-        "gu": "Fire (Agni) element = action, energy, initiative, leadership. Too much fire can manifest as aggression, impatience, or burnout. Fire signs: Aries, Leo, Sagittarius."
+        "ta": "அக்னி (அக்னி) தனிமம் = செயல், ஆற்றல், முன்முயற்சி, தலைமைத்துவம். அதிக அக்னி ஆக்ரோஷம், பொறுமையின்மை அல்லது சோர்வாக வெளிப்படலாம். அக்னி ராசிகள்: மேஷம், சிம்மம், தனுசு.",
+        "te": "అగ్ని (అగ్ని) మూలకం = కార్యాచరణ, శక్తి, చొరవ, నాయకత్వం. ఎక్కువ అగ్ని దూకుడు, అసహనం లేదా అలసటగా వ్యక్తపడవచ్చు. అగ్ని రాశులు: మేషం, సింహం, ధనుస్సు.",
+        "bn": "অগ্নি (অগ্নি) তত্ত্ব = কর্ম, শক্তি, উদ্যোগ, নেতৃত্ব। অতিরিক্ত অগ্নি আক্রমণাত্মকতা, অধৈর্য বা অবসাদ হিসাবে প্রকাশ পেতে পারে। অগ্নি রাশিগুলি: মেষ, সিংহ, ধনু।",
+        "kn": "ಅಗ್ನಿ (ಅಗ್ನಿ) ಧಾತು = ಕ್ರಿಯೆ, ಶಕ್ತಿ, ಉಪಕ್ರಮ, ನಾಯಕತ್ವ. ಹೆಚ್ಚು ಅಗ್ನಿಯು ಆಕ್ರಮಣಶೀಲತೆ, ತಾಳ್ಮೆ ಇಲ್ಲದಿರುವುದು ಅಥವಾ ಸುಡುವಿಕೆಯಾಗಿ ಪ್ರಕಟವಾಗಬಹುದು. ಅಗ್ನಿ ರಾಶಿಗಳು: ಮೇಷ, ಸಿಂಹ, ಧನು.",
+        "gu": "અગ્નિ (અગ્નિ) તત્વ = કાર્ય, ઊર્જા, પહેલ, નેતૃત્વ. વધુ પડતી અગ્નિ આક્રમકતા, અધીરાઈ અથવા થાક તરીકે પ્રગટ થઈ શકે છે. અગ્નિ રાશિઓ: મેષ, સિંહ, ધન."
       }
     },
     {
@@ -568,11 +568,11 @@
         "hi": "कौन सा तत्व बौद्धिक और संवादात्मक ऊर्जा से जुड़ा है?",
         "mai": "कोन तत्व बौद्धिक आ संचारी ऊर्जा सँ संबंधित अछि?",
         "mr": "कौन सा तत्व बौद्धिक और संवादात्मक ऊर्जा से जुड़ा है?",
-        "ta": "Which element is associated with intellectual and communicative energy?",
-        "te": "Which element is associated with intellectual and communicative energy?",
-        "bn": "Which element is associated with intellectual and communicative energy?",
-        "kn": "Which element is associated with intellectual and communicative energy?",
-        "gu": "Which element is associated with intellectual and communicative energy?"
+        "ta": "எந்த தனிமம் அறிவுசார்ந்த மற்றும் தொடர்பு கொள்ளும் ஆற்றலுடன் தொடர்புடையது?",
+        "te": "ఏ మూలకం మేధో మరియు సంభాషణా శక్తితో సంబంధం కలిగి ఉంది?",
+        "bn": "কোন তত্ত্ব বুদ্ধিগত এবং যোগাযোগমূলক শক্তির সাথে যুক্ত?",
+        "kn": "ಯಾವ ಧಾತುವು ಬೌದ್ಧಿಕ ಮತ್ತು ಸಂವಹನ ಶಕ್ತಿಯೊಂದಿಗೆ ಸಂಬಂಧಿಸಿದೆ?",
+        "gu": "કયું તત્વ બૌદ્ધિક અને વાતચીતની ઊર્જા સાથે સંકળાયેલું છે?"
       },
       "options": [
         {
@@ -580,44 +580,44 @@
           "hi": "अग्नि",
           "mai": "अग्नि (अग्नि)",
           "mr": "अग्नि",
-          "ta": "Fire (Agni)",
-          "te": "Fire (Agni)",
-          "bn": "Fire (Agni)",
-          "kn": "Fire (Agni)",
-          "gu": "Fire (Agni)"
+          "ta": "அக்னி (அக்னி)",
+          "te": "అగ్ని (అగ్ని)",
+          "bn": "অগ্নি (অগ্নি)",
+          "kn": "ಅಗ್ನಿ (ಅಗ್ನಿ)",
+          "gu": "અગ્નિ (અગ્નિ)"
         },
         {
           "en": "Earth (Prithvi)",
           "hi": "पृथ्वी",
           "mai": "पृथ्वी (पृथ्वी)",
           "mr": "पृथ्वी",
-          "ta": "Earth (Prithvi)",
-          "te": "Earth (Prithvi)",
-          "bn": "Earth (Prithvi)",
-          "kn": "Earth (Prithvi)",
-          "gu": "Earth (Prithvi)"
+          "ta": "பூமி (பிருத்வி)",
+          "te": "భూమి (పృథ్వి)",
+          "bn": "পৃথিবী (পৃথ্বী)",
+          "kn": "ಭೂಮಿ (ಪೃಥ್ವಿ)",
+          "gu": "પૃથ્વી (પૃથ્વી)"
         },
         {
           "en": "Air (Vayu)",
           "hi": "वायु",
           "mai": "वायु (वायु)",
           "mr": "वायु",
-          "ta": "Air (Vayu)",
-          "te": "Air (Vayu)",
-          "bn": "Air (Vayu)",
-          "kn": "Air (Vayu)",
-          "gu": "Air (Vayu)"
+          "ta": "வாயு (வாயு)",
+          "te": "వాయువు (వాయు)",
+          "bn": "বায়ু (বায়ু)",
+          "kn": "ವಾಯು (ವಾಯು)",
+          "gu": "વાયુ (વાયુ)"
         },
         {
           "en": "Water (Jala)",
           "hi": "जल",
           "mai": "जल (जल)",
           "mr": "जल",
-          "ta": "Water (Jala)",
-          "te": "Water (Jala)",
-          "bn": "Water (Jala)",
-          "kn": "Water (Jala)",
-          "gu": "Water (Jala)"
+          "ta": "நீர் (ஜல)",
+          "te": "నీరు (జల)",
+          "bn": "জল (জল)",
+          "kn": "ಜಲ (ಜಲ)",
+          "gu": "જળ (જળ)"
         }
       ],
       "correctAnswer": 2,
@@ -626,11 +626,11 @@
         "hi": "वायु बुद्धि, संवाद, विचार और सामाजिक सम्बन्धों को नियन्त्रित करती है। वायु राशियाँ (मिथुन, तुला, कुम्भ) विचारक, संवादक और सम्बन्ध-उन्मुख हैं।",
         "mai": "वायु (Vayu) बुद्धि, संचार, विचार आ सामाजिक संबंध सभक शासन करैत अछि। वायु राशि सभ (मिथुन, तुला, कुंभ) विचारक, संचारी आ संबंध-उन्मुख होइत अछि।",
         "mr": "वायु बुद्धि, संवाद, विचार और सामाजिक सम्बन्धों को नियन्त्रित करती है। वायु राशियाँ (मिथुन, तुला, कुम्भ) विचारक, संवादक और सम्बन्ध-उन्मुख हैं।",
-        "ta": "Air (Vayu) governs intellect, communication, ideas, and social connections. Air signs (Gemini, Libra, Aquarius) are thinkers, communicators, and relationship-oriented.",
-        "te": "Air (Vayu) governs intellect, communication, ideas, and social connections. Air signs (Gemini, Libra, Aquarius) are thinkers, communicators, and relationship-oriented.",
-        "bn": "Air (Vayu) governs intellect, communication, ideas, and social connections. Air signs (Gemini, Libra, Aquarius) are thinkers, communicators, and relationship-oriented.",
-        "kn": "Air (Vayu) governs intellect, communication, ideas, and social connections. Air signs (Gemini, Libra, Aquarius) are thinkers, communicators, and relationship-oriented.",
-        "gu": "Air (Vayu) governs intellect, communication, ideas, and social connections. Air signs (Gemini, Libra, Aquarius) are thinkers, communicators, and relationship-oriented."
+        "ta": "வாயு (வாயு) அறிவு, தொடர்பு, யோசனைகள் மற்றும் சமூக தொடர்புகளை ஆட்சி செய்கிறது. வாயு ராசிகள் (மிதுனம், துலாம், கும்பம்) சிந்தனையாளர்கள், தொடர்பாளர்கள் மற்றும் உறவு சார்ந்தவர்கள்.",
+        "te": "వాయువు (వాయు) మేధస్సు, సంభాషణ, ఆలోచనలు మరియు సామాజిక సంబంధాలను పాలిస్తుంది. వాయు రాశులు (మిథునం, తుల, కుంభం) ఆలోచనాపరులు, సంభాషణాపరులు మరియు సంబంధాల-ఆధారిత వ్యక్తులు.",
+        "bn": "বায়ু (বায়ু) বুদ্ধি, যোগাযোগ, ধারণা এবং সামাজিক সম্পর্ক নিয়ন্ত্রণ করে। বায়ু রাশিগুলি (মিথুন, তুলা, কুম্ভ) চিন্তাশীল, যোগাযোগে পারদর্শী এবং সম্পর্ক-কেন্দ্রিক।",
+        "kn": "ವಾಯು (ವಾಯು) ಬುದ್ಧಿಶಕ್ತಿ, ಸಂವಹನ, ವಿಚಾರಗಳು ಮತ್ತು ಸಾಮಾಜಿಕ ಸಂಪರ್ಕಗಳನ್ನು ನಿಯಂತ್ರಿಸುತ್ತದೆ. ವಾಯು ರಾಶಿಗಳು (ಮಿಥುನ, ತುಲಾ, ಕುಂಭ) ಚಿಂತಕರು, ಸಂವಹನಕಾರರು ಮತ್ತು ಸಂಬಂಧ-ಆಧಾರಿತರು.",
+        "gu": "વાયુ (વાયુ) બુદ્ધિ, વાતચીત, વિચારો અને સામાજિક સંબંધોનું સંચાલન કરે છે. વાયુ રાશિઓ (મિથુન, તુલા, કુંભ) વિચારકો, વાતચીત કરનારા અને સંબંધલક્ષી હોય છે."
       }
     },
     {
@@ -641,11 +641,11 @@
         "hi": "मीन एकमात्र राशि है जो सिर-पहले और पीठ-पहले दोनों तरह उदय होती है (उभयोदय)।",
         "mai": "मीन एकमात्र राशि अछि जे माथ-पहिने आ पीठ-पहिने दुनू दिस सँ उदय होइत अछि (उभयोदय)।",
         "mr": "मीन एकमात्र राशि है जो सिर-पहले और पीठ-पहले दोनों तरह उदय होती है (उभयोदय)।",
-        "ta": "Pisces is the only sign that rises both head-first and back-first (Ubhayodaya).",
-        "te": "Pisces is the only sign that rises both head-first and back-first (Ubhayodaya).",
-        "bn": "Pisces is the only sign that rises both head-first and back-first (Ubhayodaya).",
-        "kn": "Pisces is the only sign that rises both head-first and back-first (Ubhayodaya).",
-        "gu": "Pisces is the only sign that rises both head-first and back-first (Ubhayodaya)."
+        "ta": "மீனம் மட்டுமே தலை மற்றும் பின்னால் இரண்டையும் முதலில் உயரும் ஒரே ராசி (உபயோதயம்).",
+        "te": "మీనం మాత్రమే తల ముందుగా మరియు వెనుకగా ఉదయించే ఏకైక రాశి (ఉభయోదయ).",
+        "bn": "মীন রাশিই একমাত্র রাশি যা মাথা-প্রথমে এবং পিঠ-প্রথমে উভয়ভাবেই উদিত হয় (উভয়োদয়)।",
+        "kn": "ಮೀನ ರಾಶಿಯು ತಲೆ-ಮೊದಲು ಮತ್ತು ಹಿಂಭಾಗ-ಮೊದಲು (ಉಭಯೋದಯ) ಎರಡೂ ರೀತಿಯಲ್ಲಿ ಏರುವ ಏಕೈಕ ರಾಶಿಯಾಗಿದೆ.",
+        "gu": "મીન એકમાત્ર રાશિ છે જે માથું પહેલા અને પાછળથી બંને રીતે ઉગે છે (ઉભયોદય)."
       },
       "correctAnswer": true,
       "explanation": {
@@ -653,11 +653,11 @@
         "hi": "सही। मीन उभयोदय है  –  यह अन्य कारकों के आधार पर घटनाओं को शीघ्र या धीरे प्रकट कर सकती है।",
         "mai": "सही अछि। मीन उभयोदय अछि – ई अन्य कारक सभ पर निर्भर करैत शीघ्रता सँ वा धीरे-धीरे घटना सभक अभिव्यक्ति कऽ सकैत अछि। अन्य सभ राशि या तँ शिरशोदय (माथ-पहिने, शीघ्र) या तँ पृष्ठोदय (पीठ-पहिने, धीरे) होइत अछि।",
         "mr": "सही। मीन उभयोदय है  –  यह अन्य कारकों के आधार पर घटनाओं को शीघ्र या धीरे प्रकट कर सकती है।",
-        "ta": "Correct. Pisces is Ubhayodaya  –  it can manifest events quickly or slowly depending on other factors. All other signs are either Shirshodaya (head-first, quick) or Prishtodaya (back-first, slow).",
-        "te": "Correct. Pisces is Ubhayodaya  –  it can manifest events quickly or slowly depending on other factors. All other signs are either Shirshodaya (head-first, quick) or Prishtodaya (back-first, slow).",
-        "bn": "Correct. Pisces is Ubhayodaya  –  it can manifest events quickly or slowly depending on other factors. All other signs are either Shirshodaya (head-first, quick) or Prishtodaya (back-first, slow).",
-        "kn": "Correct. Pisces is Ubhayodaya  –  it can manifest events quickly or slowly depending on other factors. All other signs are either Shirshodaya (head-first, quick) or Prishtodaya (back-first, slow).",
-        "gu": "Correct. Pisces is Ubhayodaya  –  it can manifest events quickly or slowly depending on other factors. All other signs are either Shirshodaya (head-first, quick) or Prishtodaya (back-first, slow)."
+        "ta": "சரியானது. மீனம் உபயோதயம்  –  இது மற்ற காரணிகளைப் பொறுத்து நிகழ்வுகளை விரைவாகவோ அல்லது மெதுவாகவோ வெளிப்படுத்தலாம். மற்ற அனைத்து ராசிகளும் சிரஷோதயம் (தலை முதலில், விரைவானது) அல்லது பிருஷ்டோதயம் (பின்னால் முதலில், மெதுவானது) ஆகும்.",
+        "te": "సరియైనది. మీనం ఉభయోదయ రాశి – ఇది ఇతర కారకాలపై ఆధారపడి సంఘటనలను త్వరగా లేదా నెమ్మదిగా వ్యక్తపరచగలదు. మిగిలిన అన్ని రాశులు శిర్షోదయ (తల ముందుగా, త్వరగా) లేదా పృష్ఠోదయ (వెనుకగా, నెమ్మదిగా) రాశులు.",
+        "bn": "সঠিক। মীন রাশি উভয়োদয় – এটি অন্যান্য কারণের উপর নির্ভর করে দ্রুত বা ধীরে ঘটনা প্রকাশ করতে পারে। অন্যান্য সমস্ত রাশি হয় শীর্ষোদয় (মাথা-প্রথমে, দ্রুত) অথবা পৃষ্ঠোদয় (পিঠ-প্রথমে, ধীর)।",
+        "kn": "ಸರಿ. ಮೀನ ರಾಶಿಯು ಉಭಯೋದಯವಾಗಿದೆ – ಇದು ಇತರ ಅಂಶಗಳನ್ನು ಅವಲಂಬಿಸಿ ಘಟನೆಗಳನ್ನು ವೇಗವಾಗಿ ಅಥವಾ ನಿಧಾನವಾಗಿ ಪ್ರಕಟಿಸಬಹುದು. ಇತರ ಎಲ್ಲಾ ರಾಶಿಗಳು ಶೀರ್ಷೋದಯ (ತಲೆ-ಮೊದಲು, ವೇಗ) ಅಥವಾ ಪೃಷ್ಟೋದಯ (ಹಿಂಭಾಗ-ಮೊದಲು, ನಿಧಾನ) ಆಗಿರುತ್ತವೆ.",
+        "gu": "સાચું. મીન ઉભયોદય છે  –  તે અન્ય પરિબળોના આધારે ઘટનાઓને ઝડપથી કે ધીમેથી પ્રગટ કરી શકે છે. અન્ય બધી રાશિઓ કાં તો શિર્ષોદય (માથું પહેલા, ઝડપી) અથવા પૃષ્ઠોદય (પાછળથી, ધીમી) છે."
       }
     }
   ]

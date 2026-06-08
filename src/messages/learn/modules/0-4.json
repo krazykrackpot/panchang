@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 0-5: कुण्डली क्या है?",
         "mai": "मॉड्यूल 0-5: कुंडली की अछि?",
         "mr": "मॉड्यूल 0-5: कुण्डली क्या है?",
-        "ta": "Module 0-5: What is a Kundali?",
-        "te": "Module 0-5: What is a Kundali?",
-        "bn": "Module 0-5: What is a Kundali?",
-        "kn": "Module 0-5: What is a Kundali?",
-        "gu": "Module 0-5: What is a Kundali?"
+        "ta": "தொகுதி 0-5: குண்டலி என்றால் என்ன?",
+        "te": "మాడ్యూల్ 0-5: కుండలి అంటే ఏమిటి?",
+        "bn": "মডিউল ০-৫: কুণ্ডলী কী?",
+        "kn": "ಮಾಡ್ಯೂಲ್ 0-5: ಕುಂಡಲಿ ಎಂದರೇನು?",
+        "gu": "મોડ્યુલ 0-5: કુંડળી શું છે?"
       },
       "href": "/learn/modules/0-5"
     },
@@ -42,11 +42,11 @@
         "hi": "दैनिक पंचांग",
         "mai": "दैनिक पंचांग",
         "mr": "दैनिक पंचांग",
-        "ta": "Daily Panchang",
-        "te": "Daily Panchang",
-        "bn": "Daily Panchang",
-        "kn": "Daily Panchang",
-        "gu": "Daily Panchang"
+        "ta": "தினசரி பஞ்சாங்கம்",
+        "te": "రోజువారీ పంచాంగం",
+        "bn": "দৈনিক পঞ্চাঙ্গ",
+        "kn": "ದೈನಂದಿನ ಪಂಚಾಂಗ",
+        "gu": "દૈનિક પંચાંગ"
       },
       "href": "/panchang"
     },
@@ -56,11 +56,11 @@
         "hi": "मॉड्यूल 5-1: तिथि विस्तार",
         "mai": "मॉड्यूल 5-1: तिथि गहन अध्ययन",
         "mr": "मॉड्यूल 5-1: तिथि विस्तार",
-        "ta": "Module 5-1: Tithi Deep Dive",
-        "te": "Module 5-1: Tithi Deep Dive",
-        "bn": "Module 5-1: Tithi Deep Dive",
-        "kn": "Module 5-1: Tithi Deep Dive",
-        "gu": "Module 5-1: Tithi Deep Dive"
+        "ta": "தொகுதி 5-1: திதி - ஆழமான ஆய்வு",
+        "te": "మాడ్యూల్ 5-1: తిథి లోతైన విశ్లేషణ",
+        "bn": "মডিউল ৫-১: তিথি বিশদ আলোচনা",
+        "kn": "ಮಾಡ್ಯೂಲ್ 5-1: ತಿಥಿ ಆಳವಾದ ವಿಶ್ಲೇಷಣೆ",
+        "gu": "મોડ્યુલ 5-1: તિથિનું ઊંડાણપૂર્વક વિશ્લેષણ"
       },
       "href": "/learn/modules/5-1"
     },
@@ -70,11 +70,11 @@
         "hi": "मॉड्यूल 7-1: योग पद्धति",
         "mai": "मॉड्यूल 7-1: योग प्रणाली",
         "mr": "मॉड्यूल 7-1: योग पद्धति",
-        "ta": "Module 7-1: Yoga System",
-        "te": "Module 7-1: Yoga System",
-        "bn": "Module 7-1: Yoga System",
-        "kn": "Module 7-1: Yoga System",
-        "gu": "Module 7-1: Yoga System"
+        "ta": "தொகுதி 7-1: யோக அமைப்பு",
+        "te": "మాడ్యూల్ 7-1: యోగ వ్యవస్థ",
+        "bn": "মডিউল ৭-১: যোগ পদ্ধতি",
+        "kn": "ಮಾಡ್ಯೂಲ್ 7-1: ಯೋಗ ವ್ಯವಸ್ಥೆ",
+        "gu": "મોડ્યુલ 7-1: યોગ પ્રણાલી"
       },
       "href": "/learn/modules/7-1"
     },
@@ -84,11 +84,11 @@
         "hi": "मॉड्यूल 8-1: करण पद्धति",
         "mai": "मॉड्यूल 8-1: करण प्रणाली",
         "mr": "मॉड्यूल 8-1: करण पद्धति",
-        "ta": "Module 8-1: Karana System",
-        "te": "Module 8-1: Karana System",
-        "bn": "Module 8-1: Karana System",
-        "kn": "Module 8-1: Karana System",
-        "gu": "Module 8-1: Karana System"
+        "ta": "தொகுதி 8-1: கரண அமைப்பு",
+        "te": "మాడ్యూల్ 8-1: కరణ వ్యవస్థ",
+        "bn": "মডিউল ৮-১: করণ পদ্ধতি",
+        "kn": "ಮಾಡ್ಯೂಲ್ 8-1: ಕರಣ ವ್ಯವಸ್ಥೆ",
+        "gu": "મોડ્યુલ 8-1: કરણ પ્રણાલી"
       },
       "href": "/learn/modules/8-1"
     }
@@ -100,12 +100,12 @@
       "question": {
         "en": "How many tithis are there in a complete lunar month?",
         "hi": "एक पूर्ण चान्द्र मास में कितनी तिथियाँ होती हैं?",
-        "ta": "How many tithis are there in a complete lunar month?",
-        "te": "How many tithis are there in a complete lunar month?",
-        "bn": "How many tithis are there in a complete lunar month?",
-        "kn": "How many tithis are there in a complete lunar month?",
+        "ta": "ஒரு முழு சந்திர மாதத்தில் எத்தனை திதிகள் உள்ளன?",
+        "te": "ఒక పూర్తి చాంద్రమాన మాసంలో ఎన్ని తిథులు ఉంటాయి?",
+        "bn": "একটি পূর্ণ চান্দ্র মাসে কতগুলি তিথি আছে?",
+        "kn": "ಒಂದು ಸಂಪೂರ್ಣ ಚಂದ್ರಮಾನ ಮಾಸದಲ್ಲಿ ಎಷ್ಟು ತಿಥಿಗಳು ಇವೆ?",
         "mr": "एक पूर्ण चान्द्र मास में कितनी तिथियाँ होती हैं?",
-        "gu": "How many tithis are there in a complete lunar month?",
+        "gu": "એક સંપૂર્ણ ચંદ્ર માસમાં કેટલી તિથિઓ હોય છે?",
         "mai": "एकटा पूरा चंद्र मास मे केटा तिथि होइत अछि?"
       },
       "options": [
@@ -158,12 +158,12 @@
       "explanation": {
         "en": "30 tithis: 15 in Shukla Paksha (waxing) from Pratipada to Purnima, and 15 in Krishna Paksha (waning) from Pratipada to Amavasya. Each tithi spans 12° of Moon-Sun elongation.",
         "hi": "30 तिथियाँ: शुक्ल पक्ष (बढ़ता चन्द्रमा) में प्रतिपदा से पूर्णिमा तक 15, और कृष्ण पक्ष (घटता चन्द्रमा) में प्रतिपदा से अमावस्या तक 15। प्रत्येक तिथि चन्द्र-सूर्य कोण के 12° में फैली है।",
-        "ta": "30 tithis: 15 in Shukla Paksha (waxing) from Pratipada to Purnima, and 15 in Krishna Paksha (waning) from Pratipada to Amavasya. Each tithi spans 12° of Moon-Sun elongation.",
-        "te": "30 tithis: 15 in Shukla Paksha (waxing) from Pratipada to Purnima, and 15 in Krishna Paksha (waning) from Pratipada to Amavasya. Each tithi spans 12° of Moon-Sun elongation.",
-        "bn": "30 tithis: 15 in Shukla Paksha (waxing) from Pratipada to Purnima, and 15 in Krishna Paksha (waning) from Pratipada to Amavasya. Each tithi spans 12° of Moon-Sun elongation.",
-        "kn": "30 tithis: 15 in Shukla Paksha (waxing) from Pratipada to Purnima, and 15 in Krishna Paksha (waning) from Pratipada to Amavasya. Each tithi spans 12° of Moon-Sun elongation.",
+        "ta": "30 திதிகள்: சுக்ல பக்ஷத்தில் (வளர்பிறை) பிரதமை முதல் பௌர்ணமி வரை 15, மற்றும் கிருஷ்ண பக்ஷத்தில் (தேய்பிறை) பிரதமை முதல் அமாவாசை வரை 15. ஒவ்வொரு திதியும் சந்திரன்-சூரியன் நீட்சியின் 12° பரப்பளவைக் கொண்டுள்ளது.",
+        "te": "30 తిథులు: శుక్ల పక్షంలో (వృద్ధి) పాడ్యమి నుండి పౌర్ణమి వరకు 15, మరియు కృష్ణ పక్షంలో (క్షీణత) పాడ్యమి నుండి అమావాస్య వరకు 15. ప్రతి తిథి చంద్రుడు-సూర్యుడు మధ్య 12° దూరాన్ని కలిగి ఉంటుంది.",
+        "bn": "৩০টি তিথি: ১৫টি শুক্লপক্ষে (শুক্লপক্ষ) প্রতিপদ থেকে পূর্ণিমা পর্যন্ত, এবং ১৫টি কৃষ্ণপক্ষে (কৃষ্ণপক্ষ) প্রতিপদ থেকে অমাবস্যা পর্যন্ত। প্রতিটি তিথি চন্দ্র-সূর্যের ১২° দ্রাঘিমাংশ জুড়ে বিস্তৃত।",
+        "kn": "30 ತಿಥಿಗಳು: ಶುಕ್ಲ ಪಕ್ಷದಲ್ಲಿ (ವೃದ್ಧಿ) ಪ್ರತಿಪದದಿಂದ ಪೂರ್ಣಿಮಾವರೆಗೆ 15, ಮತ್ತು ಕೃಷ್ಣ ಪಕ್ಷದಲ್ಲಿ (ಕ್ಷಯ) ಪ್ರತಿಪದದಿಂದ ಅಮಾವಾಸ್ಯೆಯವರೆಗೆ 15. ಪ್ರತಿಯೊಂದು ತಿಥಿಯು ಚಂದ್ರ-ಸೂರ್ಯರ 12° ಅಂತರವನ್ನು ವ್ಯಾಪಿಸುತ್ತದೆ.",
         "mr": "30 तिथियाँ: शुक्ल पक्ष (बढ़ता चन्द्रमा) में प्रतिपदा से पूर्णिमा तक 15, और कृष्ण पक्ष (घटता चन्द्रमा) में प्रतिपदा से अमावस्या तक 15। प्रत्येक तिथि चन्द्र-सूर्य कोण के 12° में फैली है।",
-        "gu": "30 tithis: 15 in Shukla Paksha (waxing) from Pratipada to Purnima, and 15 in Krishna Paksha (waning) from Pratipada to Amavasya. Each tithi spans 12° of Moon-Sun elongation.",
+        "gu": "૩૦ તિથિઓ: ૧૫ શુક્લ પક્ષમાં (વધતો ચંદ્ર) પ્રતિપદાથી પૂર્ણિમા સુધી, અને ૧૫ કૃષ્ણ પક્ષમાં (ઘટતો ચંદ્ર) પ્રતિપદાથી અમાવસ્યા સુધી. દરેક તિથિ ચંદ્ર-સૂર્યના ૧૨° ના અંતરને આવરી લે છે.",
         "mai": "३० तिथि: १५ शुक्ल पक्ष (उज्ज्वल) मे प्रतिपदा सँ पूर्णिमा धरि, आ १५ कृष्ण पक्ष (अंधार) मे प्रतिपदा सँ अमावस्या धरि। प्रत्येक तिथि चंद्रमा-सूर्यक १२° विस्तारक होइत अछि।"
       }
     },
@@ -173,24 +173,24 @@
       "question": {
         "en": "The 7-day week order (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) was invented independently in both India and Babylon using the same planetary hora system.",
         "hi": "7-दिवसीय सप्ताह का क्रम (सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि) भारत और बेबीलोन दोनों में एक ही ग्रह होरा पद्धति से स्वतन्त्र रूप से आविष्कृत हुआ।",
-        "ta": "The 7-day week order (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) was invented independently in both India and Babylon using the same planetary hora system.",
-        "te": "The 7-day week order (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) was invented independently in both India and Babylon using the same planetary hora system.",
-        "bn": "The 7-day week order (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) was invented independently in both India and Babylon using the same planetary hora system.",
-        "kn": "The 7-day week order (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) was invented independently in both India and Babylon using the same planetary hora system.",
+        "ta": "7 நாள் வார வரிசை (சூரியன், சந்திரன், செவ்வாய், புதன், குரு, சுக்கிரன், சனி) இந்தியா மற்றும் பாபிலோன் இரண்டிலும் ஒரே கிரக ஹோரா அமைப்பைப் பயன்படுத்தி தனித்தனியாக கண்டுபிடிக்கப்பட்டது.",
+        "te": "7 రోజుల వార క్రమం (సూర్యుడు, చంద్రుడు, అంగారకుడు, బుధుడు, బృహస్పతి, శుక్రుడు, శని) భారతదేశం మరియు బాబిలోన్లలో అదే గ్రహ హోరా వ్యవస్థను ఉపయోగించి స్వతంత్రంగా కనుగొనబడింది.",
+        "bn": "৭ দিনের সপ্তাহের ক্রম (রবি, সোম, মঙ্গল, বুধ, বৃহস্পতি, শুক্র, শনি) ভারত ও ব্যাবিলন উভয় স্থানেই একই গ্রহীয় হোরা পদ্ধতি ব্যবহার করে স্বাধীনভাবে উদ্ভাবিত হয়েছিল।",
+        "kn": "7 ದಿನಗಳ ವಾರದ ಕ್ರಮ (ಸೂರ್ಯ, ಚಂದ್ರ, ಮಂಗಳ, ಬುಧ, ಗುರು, ಶುಕ್ರ, ಶನಿ) ಭಾರತ ಮತ್ತು ಬ್ಯಾಬಿಲೋನ್ ಎರಡರಲ್ಲೂ ಅದೇ ಗ್ರಹಗಳ ಹೋರಾ ವ್ಯವಸ್ಥೆಯನ್ನು ಬಳಸಿ ಸ್ವತಂತ್ರವಾಗಿ ಕಂಡುಹಿಡಿಯಲಾಯಿತು.",
         "mr": "7-दिवसीय सप्ताह का क्रम (सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि) भारत और बेबीलोन दोनों में एक ही ग्रह होरा पद्धति से स्वतन्त्र रूप से आविष्कृत हुआ।",
-        "gu": "The 7-day week order (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) was invented independently in both India and Babylon using the same planetary hora system.",
+        "gu": "૭-દિવસના અઠવાડિયાનો ક્રમ (રવિ, સોમ, મંગળ, બુધ, ગુરુ, શુક્ર, શનિ) ભારત અને બેબીલોન બંનેમાં સમાન ગ્રહોની હોરા પ્રણાલીનો ઉપયોગ કરીને સ્વતંત્ર રીતે શોધવામાં આવ્યો હતો.",
         "mai": "७ दिनक सप्ताहक क्रम (सूर्य, चंद्र, मंगल, बुध, बृहस्पति, शुक्र, शनि) भारत आ बेबिलोन दुनू ठाम ओहि ग्रह होरा प्रणालीक उपयोग कयने स्वतंत्र रूप सँ आविष्कार कएल गेल छल।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. The weekday order emerges naturally from the planetary hora system: assign each hour to a planet in the Chaldean order (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon), and every 24th hour gives the ruler of the next day  –  yielding the familiar Sun→Moon→Mars sequence.",
         "hi": "सत्य। सप्ताह का क्रम ग्रह होरा पद्धति से स्वाभाविक रूप से निकलता है: प्रत्येक होरा को कल्डियन क्रम (शनि, गुरु, मंगल, सूर्य, शुक्र, बुध, चन्द्र) में एक ग्रह दें, और प्रत्येक 24वीं होरा अगले दिन का स्वामी देती है  –  जिससे सूर्य→चन्द्र→मंगल का परिचित क्रम बनता है।",
-        "ta": "True. The weekday order emerges naturally from the planetary hora system: assign each hour to a planet in the Chaldean order (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon), and every 24th hour gives the ruler of the next day  –  yielding the familiar Sun→Moon→Mars sequence.",
-        "te": "True. The weekday order emerges naturally from the planetary hora system: assign each hour to a planet in the Chaldean order (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon), and every 24th hour gives the ruler of the next day  –  yielding the familiar Sun→Moon→Mars sequence.",
-        "bn": "True. The weekday order emerges naturally from the planetary hora system: assign each hour to a planet in the Chaldean order (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon), and every 24th hour gives the ruler of the next day  –  yielding the familiar Sun→Moon→Mars sequence.",
-        "kn": "True. The weekday order emerges naturally from the planetary hora system: assign each hour to a planet in the Chaldean order (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon), and every 24th hour gives the ruler of the next day  –  yielding the familiar Sun→Moon→Mars sequence.",
+        "ta": "உண்மை. வார நாள் வரிசை கிரக ஹோரா அமைப்பிலிருந்து இயற்கையாகவே உருவாகிறது: ஒவ்வொரு மணிநேரத்தையும் சால்டியன் வரிசையில் (சனி, குரு, செவ்வாய், சூரியன், சுக்கிரன், புதன், சந்திரன்) ஒரு கிரகத்திற்கு ஒதுக்கவும், மேலும் ஒவ்வொரு 24வது மணிநேரமும் அடுத்த நாளின் அதிபதியைக் கொடுக்கிறது – இது பழக்கமான சூரியன்→சந்திரன்→செவ்வாய் வரிசையை உருவாக்குகிறது.",
+        "te": "నిజం. వారపు రోజు క్రమం గ్రహ హోరా వ్యవస్థ నుండి సహజంగా ఉద్భవిస్తుంది: ప్రతి గంటను చాల్డియన్ క్రమంలో (శని, బృహస్పతి, అంగారకుడు, సూర్యుడు, శుక్రుడు, బుధుడు, చంద్రుడు) ఒక గ్రహానికి కేటాయించండి, మరియు ప్రతి 24వ గంట తదుపరి రోజు పాలకుడిని ఇస్తుంది – ఇది సుపరిచితమైన సూర్యుడు→చంద్రుడు→అంగారకుడు క్రమాన్ని అందిస్తుంది.",
+        "bn": "সত্য। সপ্তাহের দিনের ক্রম গ্রহীয় হোরা পদ্ধতি থেকে স্বাভাবিকভাবেই উদ্ভূত হয়: প্রতিটি ঘণ্টাকে ক্যালডীয় ক্রম অনুসারে একটি গ্রহকে (শনি, বৃহস্পতি, মঙ্গল, সূর্য, শুক্র, বুধ, চন্দ্র) বরাদ্দ করুন, এবং প্রতি ২৪তম ঘণ্টা পরের দিনের শাসককে নির্দেশ করে – যা পরিচিত রবি→চন্দ্র→মঙ্গল ক্রম তৈরি করে।",
+        "kn": "ಸರಿ. ವಾರದ ದಿನಗಳ ಕ್ರಮವು ಗ್ರಹಗಳ ಹೋರಾ ವ್ಯವಸ್ಥೆಯಿಂದ ಸ್ವಾಭಾವಿಕವಾಗಿ ಹೊರಹೊಮ್ಮುತ್ತದೆ: ಪ್ರತಿ ಗಂಟೆಯನ್ನು ಚಾಲ್ಡಿಯನ್ ಕ್ರಮದಲ್ಲಿ (ಶನಿ, ಗುರು, ಮಂಗಳ, ಸೂರ್ಯ, ಶುಕ್ರ, ಬುಧ, ಚಂದ್ರ) ಒಂದು ಗ್ರಹಕ್ಕೆ ನಿಯೋಜಿಸಿ, ಮತ್ತು ಪ್ರತಿ 24ನೇ ಗಂಟೆಯು ಮುಂದಿನ ದಿನದ ಅಧಿಪತಿಯನ್ನು ನೀಡುತ್ತದೆ  –  ಪರಿಚಿತ ಸೂರ್ಯ→ಚಂದ್ರ→ಮಂಗಳ ಅನುಕ್ರಮವನ್ನು ನೀಡುತ್ತದೆ.",
         "mr": "सत्य। सप्ताह का क्रम ग्रह होरा पद्धति से स्वाभाविक रूप से निकलता है: प्रत्येक होरा को कल्डियन क्रम (शनि, गुरु, मंगल, सूर्य, शुक्र, बुध, चन्द्र) में एक ग्रह दें, और प्रत्येक 24वीं होरा अगले दिन का स्वामी देती है  –  जिससे सूर्य→चन्द्र→मंगल का परिचित क्रम बनता है।",
-        "gu": "True. The weekday order emerges naturally from the planetary hora system: assign each hour to a planet in the Chaldean order (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon), and every 24th hour gives the ruler of the next day  –  yielding the familiar Sun→Moon→Mars sequence.",
+        "gu": "સાચું. અઠવાડિયાનો ક્રમ ગ્રહોની હોરા પ્રણાલીમાંથી કુદરતી રીતે ઉદ્ભવે છે: દરેક કલાકને ચાલ્ડિયન ક્રમમાં (શનિ, ગુરુ, મંગળ, સૂર્ય, શુક્ર, બુધ, ચંદ્ર) એક ગ્રહને સોંપો, અને દર ૨૪મો કલાક પછીના દિવસનો શાસક આપે છે – જેના પરિણામે પરિચિત સૂર્ય→ચંદ્ર→મંગળ ક્રમ મળે છે.",
         "mai": "सत्य। सप्ताहक दिनक क्रम ग्रह होरा प्रणाली सँ स्वाभाविक रूप सँ निकलैत अछि: प्रत्येक घंटा के चाल्डियन क्रम (शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, चंद्र) मे एकटा ग्रह केँ देल जाए, आ प्रत्येक २४म घंटा अगला दिनक शासक दैत अछि – जे परिचित सूर्य→चंद्र→मंगल क्रम दैत अछि।"
       }
     },
@@ -200,12 +200,12 @@
       "question": {
         "en": "What does \"Shukla Paksha\" mean?",
         "hi": "\"शुक्ल पक्ष\" का क्या अर्थ है?",
-        "ta": "What does \"Shukla Paksha\" mean?",
-        "te": "What does \"Shukla Paksha\" mean?",
-        "bn": "What does \"Shukla Paksha\" mean?",
-        "kn": "What does \"Shukla Paksha\" mean?",
+        "ta": "\"சுக்ல பக்ஷம்\" என்றால் என்ன?",
+        "te": "\"శుక్ల పక్షం\" అంటే ఏమిటి?",
+        "bn": "\"শুক্লপক্ষ\" মানে কী?",
+        "kn": "\"ಶುಕ್ಲ ಪಕ್ಷ\" ಎಂದರೇನು?",
         "mr": "\"शुक्ल पक्ष\" का क्या अर्थ है?",
-        "gu": "What does \"Shukla Paksha\" mean?",
+        "gu": "\"શુક્લ પક્ષ\" નો શું અર્થ થાય છે?",
         "mai": "\"शुक्ल पक्ष\" क की अर्थ अछि?"
       },
       "options": [
@@ -214,56 +214,56 @@
           "hi": "घटता (अँधेरा) पखवाड़ा",
           "mai": "घटैत (अंधार) पक्ष",
           "mr": "घटता (अँधेरा) पखवाड़ा",
-          "ta": "The waning (dark) fortnight",
-          "te": "The waning (dark) fortnight",
-          "bn": "The waning (dark) fortnight",
-          "kn": "The waning (dark) fortnight",
-          "gu": "The waning (dark) fortnight"
+          "ta": "தேய்பிறை (இருண்ட) பக்ஷம்",
+          "te": "క్షీణించే (చీకటి) పక్షం",
+          "bn": "কৃষ্ণপক্ষ (অন্ধকার পক্ষ)",
+          "kn": "ಕ್ಷಯಿಸುವ (ಕತ್ತಲ) ಪಾಕ್ಷಿಕ",
+          "gu": "ઘટતો (અંધારિયો) પખવાડિયું"
         },
         {
           "en": "The waxing (bright) fortnight",
           "hi": "बढ़ता (उज्ज्वल) पखवाड़ा",
           "mai": "बढ़ैत (उज्ज्वल) पक्ष",
           "mr": "बढ़ता (उज्ज्वल) पखवाड़ा",
-          "ta": "The waxing (bright) fortnight",
-          "te": "The waxing (bright) fortnight",
-          "bn": "The waxing (bright) fortnight",
-          "kn": "The waxing (bright) fortnight",
-          "gu": "The waxing (bright) fortnight"
+          "ta": "வளர்பிறை (பிரகாசமான) பக்ஷம்",
+          "te": "వృద్ధి చెందే (ప్రకాశవంతమైన) పక్షం",
+          "bn": "শুক্লপক্ষ (উজ্জ্বল পক্ষ)",
+          "kn": "ವೃದ್ಧಿಸುವ (ಪ್ರಕಾಶಮಾನವಾದ) ಪಾಕ್ಷಿಕ",
+          "gu": "વધતો (પ્રકાશિત) પખવાડિયું"
         },
         {
           "en": "The eclipse period",
           "hi": "ग्रहण काल",
           "mai": "ग्रहण काल",
           "mr": "ग्रहण काल",
-          "ta": "The eclipse period",
-          "te": "The eclipse period",
-          "bn": "The eclipse period",
-          "kn": "The eclipse period",
-          "gu": "The eclipse period"
+          "ta": "கிரகண காலம்",
+          "te": "గ్రహణ కాలం",
+          "bn": "গ্রহণ কাল",
+          "kn": "ಗ್ರಹಣ ಅವಧಿ",
+          "gu": "ગ્રહણ કાળ"
         },
         {
           "en": "The full moon day",
           "hi": "पूर्णिमा का दिन",
           "mai": "पूर्णिमाक दिन",
           "mr": "पूर्णिमा का दिन",
-          "ta": "The full moon day",
-          "te": "The full moon day",
-          "bn": "The full moon day",
-          "kn": "The full moon day",
-          "gu": "The full moon day"
+          "ta": "பௌர்ணமி நாள்",
+          "te": "పౌర్ణమి రోజు",
+          "bn": "পূর্ণিমা তিথি",
+          "kn": "ಹುಣ್ಣಿಮೆಯ ದಿನ",
+          "gu": "પૂનમનો દિવસ"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "Shukla means \"bright\" or \"white.\" Shukla Paksha is the waxing fortnight when the Moon grows from new to full. Krishna Paksha is the waning (dark) fortnight.",
         "hi": "शुक्ल का अर्थ है \"उज्ज्वल\" या \"श्वेत।\" शुक्ल पक्ष बढ़ता पखवाड़ा है जब चन्द्रमा अमावस्या से पूर्णिमा तक बढ़ता है। कृष्ण पक्ष घटता (अँधेरा) पखवाड़ा है।",
-        "ta": "Shukla means \"bright\" or \"white.\" Shukla Paksha is the waxing fortnight when the Moon grows from new to full. Krishna Paksha is the waning (dark) fortnight.",
-        "te": "Shukla means \"bright\" or \"white.\" Shukla Paksha is the waxing fortnight when the Moon grows from new to full. Krishna Paksha is the waning (dark) fortnight.",
-        "bn": "Shukla means \"bright\" or \"white.\" Shukla Paksha is the waxing fortnight when the Moon grows from new to full. Krishna Paksha is the waning (dark) fortnight.",
-        "kn": "Shukla means \"bright\" or \"white.\" Shukla Paksha is the waxing fortnight when the Moon grows from new to full. Krishna Paksha is the waning (dark) fortnight.",
+        "ta": "சுக்ல என்றால் \"பிரகாசமான\" அல்லது \"வெள்ளை\" என்று பொருள். சுக்ல பக்ஷம் என்பது வளர்பிறை ஆகும், அப்போது சந்திரன் அமாவாசையிலிருந்து பௌர்ணமிக்கு வளர்கிறது. கிருஷ்ண பக்ஷம் என்பது தேய்பிறை (இருண்ட) பக்ஷம் ஆகும்.",
+        "te": "శుక్ల అంటే \"ప్రకాశవంతమైన\" లేదా \"తెలుపు.\" శుక్ల పక్షం అనేది చంద్రుడు అమావాస్య నుండి పౌర్ణమి వరకు వృద్ధి చెందే పక్షం. కృష్ణ పక్షం అనేది క్షీణించే (చీకటి) పక్షం.",
+        "bn": "শুক্ল মানে \"উজ্জ্বল\" বা \"সাদা\"। শুক্লপক্ষ হল বর্ধনশীল পক্ষ যখন চন্দ্র অমাবস্যা থেকে পূর্ণিমার দিকে বাড়ে। কৃষ্ণপক্ষ হল ক্ষয়িষ্ণু (অন্ধকার) পক্ষ।",
+        "kn": "ಶುಕ್ಲ ಎಂದರೆ \"ಪ್ರಕಾಶಮಾನವಾದ\" ಅಥವಾ \"ಬಿಳಿ\". ಶುಕ್ಲ ಪಕ್ಷವು ಚಂದ್ರನು ಅಮಾವಾಸ್ಯೆಯಿಂದ ಹುಣ್ಣಿಮೆಯ ಕಡೆಗೆ ಬೆಳೆಯುವ ವೃದ್ಧಿ ಪಾಕ್ಷಿಕವಾಗಿದೆ. ಕೃಷ್ಣ ಪಕ್ಷವು ಕ್ಷಯಿಸುವ (ಕತ್ತಲ) ಪಾಕ್ಷಿಕವಾಗಿದೆ.",
         "mr": "शुक्ल का अर्थ है \"उज्ज्वल\" या \"श्वेत।\" शुक्ल पक्ष बढ़ता पखवाड़ा है जब चन्द्रमा अमावस्या से पूर्णिमा तक बढ़ता है। कृष्ण पक्ष घटता (अँधेरा) पखवाड़ा है।",
-        "gu": "Shukla means \"bright\" or \"white.\" Shukla Paksha is the waxing fortnight when the Moon grows from new to full. Krishna Paksha is the waning (dark) fortnight.",
+        "gu": "શુક્લનો અર્થ \"તેજસ્વી\" અથવા \"સફેદ\" થાય છે. શુક્લ પક્ષ એ વધતો પખવાડિયું છે જ્યારે ચંદ્ર અમાસથી પૂર્ણિમા તરફ વધે છે. કૃષ્ણ પક્ષ એ ઘટતો (અંધારિયો) પખવાડિયું છે.",
         "mai": "शुक्ल क अर्थ \"उज्ज्वल\" वा \"उज्जर\" होइत अछि। शुक्ल पक्ष ओ बढ़ैत पक्ष अछि जखन चंद्रमा नव सँ पूर्ण धरि बढ़ैत अछि। कृष्ण पक्ष घटैत (अंधार) पक्ष अछि।"
       }
     },
@@ -273,12 +273,12 @@
       "question": {
         "en": "How many nakshatras does the Moon visit in approximately 27 days?",
         "hi": "चन्द्रमा लगभग 27 दिनों में कितने नक्षत्रों से होकर गुजरता है?",
-        "ta": "How many nakshatras does the Moon visit in approximately 27 days?",
-        "te": "How many nakshatras does the Moon visit in approximately 27 days?",
-        "bn": "How many nakshatras does the Moon visit in approximately 27 days?",
-        "kn": "How many nakshatras does the Moon visit in approximately 27 days?",
+        "ta": "தோராயமாக 27 நாட்களில் சந்திரன் எத்தனை நட்சத்திரங்களுக்குச் செல்கிறது?",
+        "te": "చంద్రుడు సుమారు 27 రోజులలో ఎన్ని నక్షత్రాలను సందర్శిస్తాడు?",
+        "bn": "চন্দ্র প্রায় ২৭ দিনে কতগুলি নক্ষত্র ভ্রমণ করে?",
+        "kn": "ಸುಮಾರು 27 ದಿನಗಳಲ್ಲಿ ಚಂದ್ರನು ಎಷ್ಟು ನಕ್ಷತ್ರಗಳನ್ನು ಭೇಟಿ ನೀಡುತ್ತಾನೆ?",
         "mr": "चन्द्रमा लगभग 27 दिनों में कितने नक्षत्रों से होकर गुजरता है?",
-        "gu": "How many nakshatras does the Moon visit in approximately 27 days?",
+        "gu": "ચંદ્ર આશરે ૨૭ દિવસમાં કેટલા નક્ષત્રોની મુલાકાત લે છે?",
         "mai": "चंद्रमा लगभग २७ दिन मे केटा नक्षत्र भ्रमण करैत अछि?"
       },
       "options": [
@@ -331,12 +331,12 @@
       "explanation": {
         "en": "The Moon visits all 27 nakshatras in one sidereal month (~27.3 days), spending roughly one day in each. This is why nakshatras are called \"lunar mansions.\"",
         "hi": "चन्द्रमा एक नाक्षत्र मास (~27.3 दिन) में सभी 27 नक्षत्रों से होकर गुजरता है, प्रत्येक में लगभग एक दिन रहता है। इसीलिए नक्षत्रों को \"चन्द्र भवन\" कहते हैं।",
-        "ta": "The Moon visits all 27 nakshatras in one sidereal month (~27.3 days), spending roughly one day in each. This is why nakshatras are called \"lunar mansions.\"",
-        "te": "The Moon visits all 27 nakshatras in one sidereal month (~27.3 days), spending roughly one day in each. This is why nakshatras are called \"lunar mansions.\"",
-        "bn": "The Moon visits all 27 nakshatras in one sidereal month (~27.3 days), spending roughly one day in each. This is why nakshatras are called \"lunar mansions.\"",
-        "kn": "The Moon visits all 27 nakshatras in one sidereal month (~27.3 days), spending roughly one day in each. This is why nakshatras are called \"lunar mansions.\"",
+        "ta": "சந்திரன் ஒரு நட்சத்திர மாதத்தில் (~27.3 நாட்கள்) அனைத்து 27 நட்சத்திரங்களுக்கும் செல்கிறது, ஒவ்வொன்றிலும் தோராயமாக ஒரு நாள் செலவிடுகிறது. இதனால்தான் நட்சத்திரங்கள் \"சந்திர மாளிகைகள்\" என்று அழைக்கப்படுகின்றன.",
+        "te": "చంద్రుడు ఒక నక్షత్ర మాసంలో (సుమారు 27.3 రోజులు) అన్ని 27 నక్షత్రాలను సందర్శిస్తాడు, ప్రతి నక్షత్రంలో సుమారు ఒక రోజు గడుపుతాడు. అందుకే నక్షత్రాలను \"చంద్ర గృహాలు\" అని పిలుస్తారు.",
+        "bn": "চন্দ্র একটি নাক্ষত্র মাসে (প্রায় ২৭.৩ দিন) সমস্ত ২৭টি নক্ষত্র ভ্রমণ করে, প্রতিটি নক্ষত্রে প্রায় একদিন ব্যয় করে। এই কারণেই নক্ষত্রগুলিকে \"চন্দ্র ভবন\" বলা হয়।",
+        "kn": "ಚಂದ್ರನು ಒಂದು ನಾಕ್ಷತ್ರಿಕ ಮಾಸದಲ್ಲಿ (ಸುಮಾರು 27.3 ದಿನಗಳು) ಎಲ್ಲಾ 27 ನಕ್ಷತ್ರಗಳನ್ನು ಭೇಟಿ ನೀಡುತ್ತಾನೆ, ಪ್ರತಿಯೊಂದರಲ್ಲಿ ಸುಮಾರು ಒಂದು ದಿನ ಕಳೆಯುತ್ತಾನೆ. ಇದಕ್ಕಾಗಿಯೇ ನಕ್ಷತ್ರಗಳನ್ನು \"ಚಂದ್ರನ ನಿವಾಸಗಳು\" ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ.",
         "mr": "चन्द्रमा एक नाक्षत्र मास (~27.3 दिन) में सभी 27 नक्षत्रों से होकर गुजरता है, प्रत्येक में लगभग एक दिन रहता है। इसीलिए नक्षत्रों को \"चन्द्र भवन\" कहते हैं।",
-        "gu": "The Moon visits all 27 nakshatras in one sidereal month (~27.3 days), spending roughly one day in each. This is why nakshatras are called \"lunar mansions.\"",
+        "gu": "ચંદ્ર એક નક્ષત્ર માસમાં (આશરે ૨૭.૩ દિવસ) બધા ૨૭ નક્ષત્રોની મુલાકાત લે છે, દરેક નક્ષત્રમાં લગભગ એક દિવસ વિતાવે છે. આથી નક્ષત્રોને \"ચંદ્રના ભવનો\" કહેવામાં આવે છે.",
         "mai": "चंद्रमा सभ २७ नक्षत्रक भ्रमण करैत अछि एकटा नाक्षत्र मास (~२७.३ दिन) मे, प्रत्येक मे लगभग एक दिन बिताबैत। एही कारण सँ नक्षत्र केँ \"चंद्र भवन\" कहल जाइत अछि।"
       }
     },
@@ -346,12 +346,12 @@
       "question": {
         "en": "In the Panchang, \"Yoga\" refers to:",
         "hi": "पंचांग में \"योग\" का अर्थ है:",
-        "ta": "In the Panchang, \"Yoga\" refers to:",
-        "te": "In the Panchang, \"Yoga\" refers to:",
-        "bn": "In the Panchang, \"Yoga\" refers to:",
-        "kn": "In the Panchang, \"Yoga\" refers to:",
+        "ta": "பஞ்சாங்கத்தில், \"யோகம்\" என்பது எதைக் குறிக்கிறது:",
+        "te": "పంచాంగంలో, \"యోగం\" దీనిని సూచిస్తుంది:",
+        "bn": "পঞ্চাঙ্গে, \"যোগ\" বলতে বোঝায়:",
+        "kn": "ಪಂಚಾಂಗದಲ್ಲಿ, \"ಯೋಗ\" ಎಂದರೆ:",
         "mr": "पंचांग में \"योग\" का अर्थ है:",
-        "gu": "In the Panchang, \"Yoga\" refers to:",
+        "gu": "પંચાંગમાં, \"યોગ\" નો અર્થ થાય છે:",
         "mai": "पंचांग मे, \"योग\" क अर्थ अछि:"
       },
       "options": [
@@ -360,43 +360,43 @@
           "hi": "शारीरिक खिंचाव व्यायाम",
           "mai": "शरीरक खिंचाव बला व्यायाम",
           "mr": "शारीरिक खिंचाव व्यायाम",
-          "ta": "Physical stretching exercises",
-          "te": "Physical stretching exercises",
-          "bn": "Physical stretching exercises",
-          "kn": "Physical stretching exercises",
-          "gu": "Physical stretching exercises"
+          "ta": "உடல் நீட்சிப் பயிற்சிகள்",
+          "te": "శారీరక సాగతీత వ్యాయామాలు",
+          "bn": "শারীরিক ব্যায়াম",
+          "kn": "ದೈಹಿಕ ಸ್ಟ್ರೆಚಿಂಗ್ ವ್ಯಾಯಾಮಗಳು",
+          "gu": "શારીરિક ખેંચાણ કસરતો"
         },
         {
           "en": "The combined longitude of Sun + Moon divided into 27 segments",
           "hi": "सूर्य + चन्द्र का संयुक्त देशान्तर 27 खण्डों में विभक्त",
           "mai": "सूर्य + चंद्रमाक संयुक्त देशांतर २७ खंड मे विभाजित",
           "mr": "सूर्य + चन्द्र का संयुक्त देशान्तर 27 खण्डों में विभक्त",
-          "ta": "The combined longitude of Sun + Moon divided into 27 segments",
-          "te": "The combined longitude of Sun + Moon divided into 27 segments",
-          "bn": "The combined longitude of Sun + Moon divided into 27 segments",
-          "kn": "The combined longitude of Sun + Moon divided into 27 segments",
-          "gu": "The combined longitude of Sun + Moon divided into 27 segments"
+          "ta": "சூரியன் + சந்திரன் ஆகியவற்றின் ஒருங்கிணைந்த தீர்க்கரேகை 27 பிரிவுகளாகப் பிரிக்கப்பட்டுள்ளது",
+          "te": "సూర్యుడు + చంద్రుడు కలిపిన రేఖాంశాన్ని 27 భాగాలుగా విభజించడం",
+          "bn": "সূর্য + চন্দ্রের সম্মিলিত দ্রাঘিমাংশ ২৭টি অংশে বিভক্ত",
+          "kn": "ಸೂರ್ಯ + ಚಂದ್ರನ ಸಂಯೋಜಿತ ರೇಖಾಂಶವನ್ನು 27 ವಿಭಾಗಗಳಾಗಿ ವಿಂಗಡಿಸಲಾಗಿದೆ",
+          "gu": "સૂર્ય + ચંદ્રના સંયુક્ત રેખાંશને ૨૭ ભાગમાં વિભાજીત કરવું"
         },
         {
           "en": "A type of meditation",
           "hi": "एक प्रकार का ध्यान",
           "mai": "एकटा प्रकारक ध्यान",
           "mr": "एक प्रकार का ध्यान",
-          "ta": "A type of meditation",
-          "te": "A type of meditation",
-          "bn": "A type of meditation",
-          "kn": "A type of meditation",
-          "gu": "A type of meditation"
+          "ta": "ஒரு வகை தியானம்",
+          "te": "ఒక రకమైన ధ్యానం",
+          "bn": "এক প্রকার ধ্যান",
+          "kn": "ಒಂದು ರೀತಿಯ ಧ್ಯಾನ",
+          "gu": "એક પ્રકારનું ધ્યાન"
         },
         {
           "en": "The Moon's distance from Earth",
           "hi": "चन्द्रमा की पृथ्वी से दूरी",
-          "ta": "The Moon's distance from Earth",
-          "te": "The Moon's distance from Earth",
-          "bn": "The Moon's distance from Earth",
-          "kn": "The Moon's distance from Earth",
+          "ta": "பூமியிலிருந்து சந்திரனின் தூரம்",
+          "te": "భూమి నుండి చంద్రుని దూరం",
+          "bn": "পৃথিবী থেকে চন্দ্রের দূরত্ব",
+          "kn": "ಭೂಮಿಯಿಂದ ಚಂದ್ರನ ಅಂತರ",
           "mr": "चन्द्रमा की पृथ्वी से दूरी",
-          "gu": "The Moon's distance from Earth",
+          "gu": "પૃથ્વીથી ચંદ્રનું અંતર",
           "mai": "पृथ्वी सँ चंद्रमाक दूरी"
         }
       ],
@@ -404,12 +404,12 @@
       "explanation": {
         "en": "Panchang Yoga is calculated by adding the sidereal longitudes of Sun and Moon, then dividing by 13°20' to get one of 27 yogas. The word \"yuj\" means combination  –  not the physical practice.",
         "hi": "पंचांग योग की गणना सूर्य और चन्द्रमा के निरयन देशान्तरों को जोड़कर, फिर 13°20' से विभाजित कर 27 योगों में से एक प्राप्त करने से होती है। \"युज\" शब्द का अर्थ संयोग है  –  शारीरिक अभ्यास नहीं।",
-        "ta": "Panchang Yoga is calculated by adding the sidereal longitudes of Sun and Moon, then dividing by 13°20' to get one of 27 yogas. The word \"yuj\" means combination  –  not the physical practice.",
-        "te": "Panchang Yoga is calculated by adding the sidereal longitudes of Sun and Moon, then dividing by 13°20' to get one of 27 yogas. The word \"yuj\" means combination  –  not the physical practice.",
-        "bn": "Panchang Yoga is calculated by adding the sidereal longitudes of Sun and Moon, then dividing by 13°20' to get one of 27 yogas. The word \"yuj\" means combination  –  not the physical practice.",
-        "kn": "Panchang Yoga is calculated by adding the sidereal longitudes of Sun and Moon, then dividing by 13°20' to get one of 27 yogas. The word \"yuj\" means combination  –  not the physical practice.",
+        "ta": "பஞ்சாங்க யோகம் சூரியன் மற்றும் சந்திரனின் நட்சத்திர தீர்க்கரேகைகளைச் சேர்ப்பதன் மூலம் கணக்கிடப்படுகிறது, பின்னர் 27 யோகங்களில் ஒன்றைப் பெற 13°20' ஆல் வகுக்கப்படுகிறது. \"யுஜ்\" என்ற சொல்லுக்கு \"சேர்க்கை\" என்று பொருள் – உடல் பயிற்சி அல்ல.",
+        "te": "పంచాంగ యోగం సూర్యుడు మరియు చంద్రుని నక్షత్ర రేఖాంశాలను కలిపి, ఆపై 27 యోగాలలో ఒకదాన్ని పొందడానికి 13°20'తో భాగించడం ద్వారా లెక్కించబడుతుంది. \"యుజ్\" అనే పదానికి కలయిక అని అర్థం – శారీరక అభ్యాసం కాదు.",
+        "bn": "পঞ্চাঙ্গ যোগ গণনা করা হয় সূর্য ও চন্দ্রের নাক্ষত্রিক দ্রাঘিমাংশ যোগ করে, তারপর ১৩°২০' দ্বারা ভাগ করে ২৭টি যোগের মধ্যে একটি পেতে। \"যুজ\" শব্দের অর্থ হল সংমিশ্রণ – শারীরিক অনুশীলন নয়।",
+        "kn": "ಪಂಚಾಂಗ ಯೋಗವನ್ನು ಸೂರ್ಯ ಮತ್ತು ಚಂದ್ರನ ನಾಕ್ಷತ್ರಿಕ ರೇಖಾಂಶಗಳನ್ನು ಸೇರಿಸಿ ಲೆಕ್ಕಹಾಕಲಾಗುತ್ತದೆ, ನಂತರ 27 ಯೋಗಗಳಲ್ಲಿ ಒಂದನ್ನು ಪಡೆಯಲು 13°20' ರಿಂದ ಭಾಗಿಸಲಾಗುತ್ತದೆ. \"ಯುಜ್\" ಪದದ ಅರ್ಥ ಸಂಯೋಜನೆ  –  ದೈಹಿಕ ಅಭ್ಯಾಸವಲ್ಲ.",
         "mr": "पंचांग योग की गणना सूर्य और चन्द्रमा के निरयन देशान्तरों को जोड़कर, फिर 13°20' से विभाजित कर 27 योगों में से एक प्राप्त करने से होती है। \"युज\" शब्द का अर्थ संयोग है  –  शारीरिक अभ्यास नहीं।",
-        "gu": "Panchang Yoga is calculated by adding the sidereal longitudes of Sun and Moon, then dividing by 13°20' to get one of 27 yogas. The word \"yuj\" means combination  –  not the physical practice.",
+        "gu": "પંચાંગ યોગની ગણતરી સૂર્ય અને ચંદ્રના સાયન રેખાંશને ઉમેરીને, પછી ૧૩°૨૦' વડે ભાગીને ૨૭ યોગોમાંથી એક મેળવીને કરવામાં આવે છે. \"યુજ\" શબ્દનો અર્થ સંયોજન થાય છે – શારીરિક અભ્યાસ નહીં.",
         "mai": "पंचांग योगक गणना सूर्य आ चंद्रमाक नाक्षत्र देशांतर केँ जोड़ि कय कएल जाइत अछि, फेर १३°२०' सँ भाग दय २७ योग मे सँ एकटा प्राप्त करबाक लेल। \"युज\" शब्दक अर्थ संयोजन अछि – शारीरिक अभ्यास नहि।"
       }
     },
@@ -419,24 +419,24 @@
       "question": {
         "en": "Varahamihira's Brihat Samhita (6th century CE) used Panchang elements to predict monsoon timing and crop yields.",
         "hi": "वराहमिहिर की बृहत्संहिता (छठी शताब्दी ई.) ने पंचांग तत्त्वों का उपयोग मानसून समय और फसल उपज की भविष्यवाणी के लिए किया।",
-        "ta": "Varahamihira's Brihat Samhita (6th century CE) used Panchang elements to predict monsoon timing and crop yields.",
-        "te": "Varahamihira's Brihat Samhita (6th century CE) used Panchang elements to predict monsoon timing and crop yields.",
-        "bn": "Varahamihira's Brihat Samhita (6th century CE) used Panchang elements to predict monsoon timing and crop yields.",
-        "kn": "Varahamihira's Brihat Samhita (6th century CE) used Panchang elements to predict monsoon timing and crop yields.",
+        "ta": "வராகமிஹிரரின் பிருஹத் சம்ஹிதா (கி.பி. 6 ஆம் நூற்றாண்டு) பருவமழை நேரம் மற்றும் பயிர் விளைச்சலைக் கணிக்க பஞ்சாங்க கூறுகளைப் பயன்படுத்தியது.",
+        "te": "వరాహమిహిరుని బృహత్ సంహిత (6వ శతాబ్దం CE) రుతుపవనాల సమయం మరియు పంట దిగుబడులను అంచనా వేయడానికి పంచాంగ అంశాలను ఉపయోగించింది.",
+        "bn": "বরাহমিহিরের বৃহৎ সংহিতা (৬ষ্ঠ শতাব্দী খ্রিস্টাব্দ) বর্ষার সময় এবং ফসলের ফলন ভবিষ্যদ্বাণী করতে পঞ্চাঙ্গ উপাদান ব্যবহার করেছিল।",
+        "kn": "ವರಾಹಮಿಹಿರನ ಬೃಹತ್ ಸಂಹಿತೆ (6ನೇ ಶತಮಾನ CE) ಮಳೆಗಾಲದ ಸಮಯ ಮತ್ತು ಬೆಳೆ ಇಳುವರಿಯನ್ನು ಊಹಿಸಲು ಪಂಚಾಂಗದ ಅಂಶಗಳನ್ನು ಬಳಸಿದೆ.",
         "mr": "वराहमिहिर की बृहत्संहिता (छठी शताब्दी ई.) ने पंचांग तत्त्वों का उपयोग मानसून समय और फसल उपज की भविष्यवाणी के लिए किया।",
-        "gu": "Varahamihira's Brihat Samhita (6th century CE) used Panchang elements to predict monsoon timing and crop yields.",
+        "gu": "વરાહમિહિરની બૃહત્ સંહિતા (૬ઠ્ઠી સદી ઈ.સ.) ચોમાસાનો સમય અને પાકની ઉપજની આગાહી કરવા માટે પંચાંગના તત્વોનો ઉપયોગ કરતી હતી.",
         "mai": "वराहमिहिरक बृहत् संहिता (६म शताब्दी ई.) पंचांग तत्वक उपयोग कयने छल मानसूनक समय आ फसलक उपजक भविष्यवाणी करबाक लेल।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Varahamihira devoted several chapters to weather prediction using lunar phases, nakshatras, and planetary positions. Modern studies have found statistical correlations between lunar phases and Indian rainfall patterns.",
         "hi": "सत्य। वराहमिहिर ने चन्द्र कलाओं, नक्षत्रों और ग्रह स्थितियों का उपयोग करते हुए मौसम पूर्वानुमान पर कई अध्याय समर्पित किए। आधुनिक अध्ययनों ने चन्द्र कलाओं और भारतीय वर्षा प्रतिरूपों के बीच सांख्यिकीय सहसम्बन्ध पाया है।",
-        "ta": "True. Varahamihira devoted several chapters to weather prediction using lunar phases, nakshatras, and planetary positions. Modern studies have found statistical correlations between lunar phases and Indian rainfall patterns.",
-        "te": "True. Varahamihira devoted several chapters to weather prediction using lunar phases, nakshatras, and planetary positions. Modern studies have found statistical correlations between lunar phases and Indian rainfall patterns.",
-        "bn": "True. Varahamihira devoted several chapters to weather prediction using lunar phases, nakshatras, and planetary positions. Modern studies have found statistical correlations between lunar phases and Indian rainfall patterns.",
-        "kn": "True. Varahamihira devoted several chapters to weather prediction using lunar phases, nakshatras, and planetary positions. Modern studies have found statistical correlations between lunar phases and Indian rainfall patterns.",
+        "ta": "உண்மை. வராகமிஹிரர் சந்திரனின் நிலைகள், நட்சத்திரங்கள் மற்றும் கிரக நிலைகளைப் பயன்படுத்தி வானிலை முன்னறிவிப்புக்கு பல அத்தியாயங்களை ஒதுக்கினார். நவீன ஆய்வுகள் சந்திரனின் நிலைகளுக்கும் இந்திய மழைப்பொழிவு வடிவங்களுக்கும் இடையே புள்ளிவிவரத் தொடர்புகளைக் கண்டறிந்துள்ளன.",
+        "te": "నిజం. వరాహమిహిరుడు చంద్ర దశలు, నక్షత్రాలు మరియు గ్రహ స్థానాలను ఉపయోగించి వాతావరణ అంచనాకు అనేక అధ్యాయాలను కేటాయించాడు. ఆధునిక అధ్యయనాలు చంద్ర దశలు మరియు భారతీయ వర్షపాత నమూనల మధ్య గణాంక సంబంధాలను కనుగొన్నాయి.",
+        "bn": "সত্য। বরাহমিহির চন্দ্রকলা, নক্ষত্র এবং গ্রহের অবস্থান ব্যবহার করে আবহাওয়ার পূর্বাভাসে বেশ কয়েকটি অধ্যায় উৎসর্গ করেছিলেন। আধুনিক গবেষণায় চন্দ্রকলা এবং ভারতীয় বৃষ্টিপাতের ধরণগুলির মধ্যে পরিসংখ্যানগত সম্পর্ক পাওয়া গেছে।",
+        "kn": "ಸರಿ. ವರಾಹಮಿಹಿರನು ಹವಾಮಾನ ಮುನ್ಸೂಚನೆಗಾಗಿ ಚಂದ್ರನ ಹಂತಗಳು, ನಕ್ಷತ್ರಗಳು ಮತ್ತು ಗ್ರಹಗಳ ಸ್ಥಾನಗಳನ್ನು ಬಳಸಿ ಹಲವಾರು ಅಧ್ಯಾಯಗಳನ್ನು ಮೀಸಲಿಟ್ಟಿದ್ದಾನೆ. ಆಧುನಿಕ ಅಧ್ಯಯನಗಳು ಚಂದ್ರನ ಹಂತಗಳು ಮತ್ತು ಭಾರತೀಯ ಮಳೆ ಮಾದರಿಗಳ ನಡುವೆ ಸಂಖ್ಯಾಶಾಸ್ತ್ರೀಯ ಸಂಬಂಧಗಳನ್ನು ಕಂಡುಕೊಂಡಿವೆ.",
         "mr": "सत्य। वराहमिहिर ने चन्द्र कलाओं, नक्षत्रों और ग्रह स्थितियों का उपयोग करते हुए मौसम पूर्वानुमान पर कई अध्याय समर्पित किए। आधुनिक अध्ययनों ने चन्द्र कलाओं और भारतीय वर्षा प्रतिरूपों के बीच सांख्यिकीय सहसम्बन्ध पाया है।",
-        "gu": "True. Varahamihira devoted several chapters to weather prediction using lunar phases, nakshatras, and planetary positions. Modern studies have found statistical correlations between lunar phases and Indian rainfall patterns.",
+        "gu": "સાચું. વરાહમિહિરે ચંદ્ર કળાઓ, નક્ષત્રો અને ગ્રહોની સ્થિતિનો ઉપયોગ કરીને હવામાનની આગાહી માટે ઘણા પ્રકરણો સમર્પિત કર્યા હતા. આધુનિક અભ્યાસોએ ચંદ્ર કળાઓ અને ભારતીય વરસાદની પેટર્ન વચ્ચે આંકડાકીય સંબંધો શોધી કાઢ્યા છે.",
         "mai": "सत्य। वराहमिहिर चंद्र कला, नक्षत्र आ ग्रहक स्थिति क उपयोग कयने मौसमक भविष्यवाणी पर कतेको अध्याय समर्पित कयने छलाह। आधुनिक अध्ययन मे चंद्र कला आ भारतीय वर्षाक पैटर्नक बीच सांख्यिकीय संबंध भेटल अछि।"
       }
     },
@@ -446,12 +446,12 @@
       "question": {
         "en": "What is Vishti (Bhadra) Karana known for?",
         "hi": "विष्टि (भद्रा) करण किसलिए जाना जाता है?",
-        "ta": "What is Vishti (Bhadra) Karana known for?",
-        "te": "What is Vishti (Bhadra) Karana known for?",
-        "bn": "What is Vishti (Bhadra) Karana known for?",
-        "kn": "What is Vishti (Bhadra) Karana known for?",
+        "ta": "விஷ்டி (பத்ரா) கரணம் எதற்காக அறியப்படுகிறது?",
+        "te": "విష్టి (భద్ర) కరణం దేనికి ప్రసిద్ధి?",
+        "bn": "বিষ্টি (ভদ্রা) করণ কীসের জন্য পরিচিত?",
+        "kn": "ವಿಷ್ಟಿ (ಭದ್ರ) ಕರಣ ಯಾವುದಕ್ಕೆ ಹೆಸರುವಾಸಿಯಾಗಿದೆ?",
         "mr": "विष्टि (भद्रा) करण किसलिए जाना जाता है?",
-        "gu": "What is Vishti (Bhadra) Karana known for?",
+        "gu": "વિષ્ટિ (ભદ્રા) કરણ શાના માટે જાણીતું છે?",
         "mai": "विष्टि (भद्रा) करण कोन लेल जानल जाइत अछि?"
       },
       "options": [
@@ -460,56 +460,56 @@
           "hi": "नए कार्य आरम्भ करने के लिए सर्वाधिक शुभ",
           "mai": "नव कार्य शुरू करबाक लेल सबसँ शुभ",
           "mr": "नए कार्य आरम्भ करने के लिए सर्वाधिक शुभ",
-          "ta": "Most auspicious for starting new ventures",
-          "te": "Most auspicious for starting new ventures",
-          "bn": "Most auspicious for starting new ventures",
-          "kn": "Most auspicious for starting new ventures",
-          "gu": "Most auspicious for starting new ventures"
+          "ta": "புதிய முயற்சிகளைத் தொடங்க மிகவும் சுபமானது",
+          "te": "కొత్త వ్యాపారాలు ప్రారంభించడానికి అత్యంత శుభప్రదం",
+          "bn": "নতুন উদ্যোগ শুরু করার জন্য সবচেয়ে শুভ",
+          "kn": "ಹೊಸ ಉದ್ಯಮಗಳನ್ನು ಪ್ರಾರಂಭಿಸಲು ಅತ್ಯಂತ ಶುಭ",
+          "gu": "નવા સાહસો શરૂ કરવા માટે સૌથી શુભ"
         },
         {
           "en": "Best for marriages",
           "hi": "विवाह के लिए सर्वोत्तम",
           "mai": "विवाहक लेल सबसँ नीक",
           "mr": "विवाह के लिए सर्वोत्तम",
-          "ta": "Best for marriages",
-          "te": "Best for marriages",
-          "bn": "Best for marriages",
-          "kn": "Best for marriages",
-          "gu": "Best for marriages"
+          "ta": "திருமணங்களுக்கு சிறந்தது",
+          "te": "వివాహాలకు ఉత్తమం",
+          "bn": "বিবাহের জন্য সেরা",
+          "kn": "ಮದುವೆಗಳಿಗೆ ಉತ್ತಮ",
+          "gu": "લગ્ન માટે શ્રેષ્ઠ"
         },
         {
           "en": "Inauspicious  –  avoid new beginnings",
           "hi": "अशुभ  –  नए कार्य टालें",
           "mai": "अशुभ – नव शुरुआत सँ बचू",
           "mr": "अशुभ  –  नए कार्य टालें",
-          "ta": "Inauspicious  –  avoid new beginnings",
-          "te": "Inauspicious  –  avoid new beginnings",
-          "bn": "Inauspicious  –  avoid new beginnings",
-          "kn": "Inauspicious  –  avoid new beginnings",
-          "gu": "Inauspicious  –  avoid new beginnings"
+          "ta": "அசுபமானது – புதிய தொடக்கங்களைத் தவிர்க்கவும்",
+          "te": "అశుభం – కొత్త ప్రారంభాలను నివారించండి",
+          "bn": "অশুভ – নতুন শুরু এড়িয়ে চলুন",
+          "kn": "ಅಶುಭ  –  ಹೊಸ ಆರಂಭಗಳನ್ನು ತಪ್ಪಿಸಿ",
+          "gu": "અશુભ – નવી શરૂઆત ટાળો"
         },
         {
           "en": "Ideal for travel",
           "hi": "यात्रा के लिए आदर्श",
           "mai": "यात्राक लेल आदर्श",
           "mr": "यात्रा के लिए आदर्श",
-          "ta": "Ideal for travel",
-          "te": "Ideal for travel",
-          "bn": "Ideal for travel",
-          "kn": "Ideal for travel",
-          "gu": "Ideal for travel"
+          "ta": "பயணத்திற்கு உகந்தது",
+          "te": "ప్రయాణానికి ఆదర్శం",
+          "bn": "ভ্রমণের জন্য আদর্শ",
+          "kn": "ಪ್ರಯಾಣಕ್ಕೆ ಸೂಕ್ತ",
+          "gu": "મુસાફરી માટે આદર્શ"
         }
       ],
       "correctAnswer": 2,
       "explanation": {
         "en": "Vishti (Bhadra) Karana is considered inauspicious. Traditional Panchang advice is to avoid starting important new activities during this half-tithi period.",
         "hi": "विष्टि (भद्रा) करण अशुभ माना जाता है। पारम्परिक पंचांग में इस अर्ध-तिथि काल में महत्त्वपूर्ण नए कार्य न आरम्भ करने की सलाह दी जाती है।",
-        "ta": "Vishti (Bhadra) Karana is considered inauspicious. Traditional Panchang advice is to avoid starting important new activities during this half-tithi period.",
-        "te": "Vishti (Bhadra) Karana is considered inauspicious. Traditional Panchang advice is to avoid starting important new activities during this half-tithi period.",
-        "bn": "Vishti (Bhadra) Karana is considered inauspicious. Traditional Panchang advice is to avoid starting important new activities during this half-tithi period.",
-        "kn": "Vishti (Bhadra) Karana is considered inauspicious. Traditional Panchang advice is to avoid starting important new activities during this half-tithi period.",
+        "ta": "விஷ்டி (பத்ரா) கரணம் அசுபமானதாகக் கருதப்படுகிறது. இந்த அரை திதி காலத்தில் முக்கியமான புதிய நடவடிக்கைகளைத் தொடங்குவதைத் தவிர்க்க வேண்டும் என்று பாரம்பரிய பஞ்சாங்க ஆலோசனை கூறுகிறது.",
+        "te": "విష్టి (భద్ర) కరణం అశుభకరమైనదిగా పరిగణించబడుతుంది. ఈ అర్ధ-తిథి కాలంలో ముఖ్యమైన కొత్త కార్యకలాపాలను ప్రారంభించకుండా ఉండాలని సాంప్రదాయ పంచాంగ సలహా.",
+        "bn": "বিষ্টি (ভদ্রা) করণ অশুভ বলে বিবেচিত হয়। ঐতিহ্যবাহী পঞ্চাঙ্গের পরামর্শ হল এই অর্ধ-তিথি সময়কালে গুরুত্বপূর্ণ নতুন কাজ শুরু করা এড়িয়ে চলা।",
+        "kn": "ವಿಷ್ಟಿ (ಭದ್ರ) ಕರಣವನ್ನು ಅಶುಭವೆಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ. ಈ ಅರ್ಧ-ತಿಥಿ ಅವಧಿಯಲ್ಲಿ ಪ್ರಮುಖ ಹೊಸ ಚಟುವಟಿಕೆಗಳನ್ನು ಪ್ರಾರಂಭಿಸುವುದನ್ನು ತಪ್ಪಿಸಲು ಸಾಂಪ್ರದಾಯಿಕ ಪಂಚಾಂಗ ಸಲಹೆ ನೀಡುತ್ತದೆ.",
         "mr": "विष्टि (भद्रा) करण अशुभ माना जाता है। पारम्परिक पंचांग में इस अर्ध-तिथि काल में महत्त्वपूर्ण नए कार्य न आरम्भ करने की सलाह दी जाती है।",
-        "gu": "Vishti (Bhadra) Karana is considered inauspicious. Traditional Panchang advice is to avoid starting important new activities during this half-tithi period.",
+        "gu": "વિષ્ટિ (ભદ્રા) કરણ અશુભ માનવામાં આવે છે. પરંપરાગત પંચાંગ સલાહ છે કે આ અર્ધ-તિથિ સમયગાળા દરમિયાન મહત્વપૂર્ણ નવી પ્રવૃત્તિઓ શરૂ કરવાનું ટાળવું જોઈએ.",
         "mai": "विष्टि (भद्रा) करण केँ अशुभ मानल जाइत अछि। पारंपरिक पंचांगक सलाह अछि जे एहि अर्ध-तिथि काल मे महत्वपूर्ण नव गतिविधि शुरू करबा सँ बचल जाए।"
       }
     },
@@ -519,12 +519,12 @@
       "question": {
         "en": "Rahu Kaal is approximately how long each day?",
         "hi": "राहु काल प्रतिदिन लगभग कितना लम्बा होता है?",
-        "ta": "Rahu Kaal is approximately how long each day?",
-        "te": "Rahu Kaal is approximately how long each day?",
-        "bn": "Rahu Kaal is approximately how long each day?",
-        "kn": "Rahu Kaal is approximately how long each day?",
+        "ta": "ஒவ்வொரு நாளும் ராகு காலம் தோராயமாக எவ்வளவு நேரம்?",
+        "te": "ప్రతి రోజు రాహు కాలం సుమారు ఎంత సమయం ఉంటుంది?",
+        "bn": "রাহু কাল প্রতিদিন প্রায় কতক্ষণ থাকে?",
+        "kn": "ರಾಹು ಕಾಲವು ಪ್ರತಿದಿನ ಸುಮಾರು ಎಷ್ಟು ಸಮಯ ಇರುತ್ತದೆ?",
         "mr": "राहु काल प्रतिदिन लगभग कितना लम्बा होता है?",
-        "gu": "Rahu Kaal is approximately how long each day?",
+        "gu": "રાહુ કાળ દરરોજ આશરે કેટલો લાંબો હોય છે?",
         "mai": "राहु काल प्रत्येक दिन लगभग केतेक कालक होइत अछि?"
       },
       "options": [
@@ -533,56 +533,56 @@
           "hi": "लगभग 30 मिनट",
           "mai": "लगभग ३० मिनट",
           "mr": "लगभग 30 मिनट",
-          "ta": "About 30 minutes",
-          "te": "About 30 minutes",
-          "bn": "About 30 minutes",
-          "kn": "About 30 minutes",
-          "gu": "About 30 minutes"
+          "ta": "சுமார் 30 நிமிடங்கள்",
+          "te": "సుమారు 30 నిమిషాలు",
+          "bn": "প্রায় ৩০ মিনিট",
+          "kn": "ಸುಮಾರು 30 ನಿಮಿಷಗಳು",
+          "gu": "આશરે ૩૦ મિનિટ"
         },
         {
           "en": "About 1.5 hours",
           "hi": "लगभग 1.5 घण्टे",
           "mai": "लगभग १.५ घंटा",
           "mr": "लगभग 1.5 घण्टे",
-          "ta": "About 1.5 hours",
-          "te": "About 1.5 hours",
-          "bn": "About 1.5 hours",
-          "kn": "About 1.5 hours",
-          "gu": "About 1.5 hours"
+          "ta": "சுமார் 1.5 மணிநேரம்",
+          "te": "సుమారు 1.5 గంటలు",
+          "bn": "প্রায় ১.৫ ঘণ্টা",
+          "kn": "ಸುಮಾರು 1.5 ಗಂಟೆಗಳು",
+          "gu": "આશરે ૧.૫ કલાક"
         },
         {
           "en": "About 3 hours",
           "hi": "लगभग 3 घण्टे",
           "mai": "लगभग ३ घंटा",
           "mr": "लगभग 3 घण्टे",
-          "ta": "About 3 hours",
-          "te": "About 3 hours",
-          "bn": "About 3 hours",
-          "kn": "About 3 hours",
-          "gu": "About 3 hours"
+          "ta": "சுமார் 3 மணிநேரம்",
+          "te": "సుమారు 3 గంటలు",
+          "bn": "প্রায় ৩ ঘণ্টা",
+          "kn": "ಸುಮಾರು 3 ಗಂಟೆಗಳು",
+          "gu": "આશરે ૩ કલાક"
         },
         {
           "en": "About 6 hours",
           "hi": "लगभग 6 घण्टे",
           "mai": "लगभग ६ घंटा",
           "mr": "लगभग 6 घण्टे",
-          "ta": "About 6 hours",
-          "te": "About 6 hours",
-          "bn": "About 6 hours",
-          "kn": "About 6 hours",
-          "gu": "About 6 hours"
+          "ta": "சுமார் 6 மணிநேரம்",
+          "te": "సుమారు 6 గంటలు",
+          "bn": "প্রায় ৬ ঘণ্টা",
+          "kn": "ಸುಮಾರು 6 ಗಂಟೆಗಳು",
+          "gu": "આશરે ૬ કલાક"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "Rahu Kaal is approximately 1.5 hours (one-eighth of the daytime period). It falls at a different time each weekday and is calculated based on sunrise and sunset for your location.",
         "hi": "राहु काल लगभग 1.5 घण्टे (दिन की अवधि का आठवाँ भाग) का होता है। यह प्रत्येक वार को अलग समय पर आता है और आपके स्थान के सूर्योदय-सूर्यास्त के आधार पर गणित होता है।",
-        "ta": "Rahu Kaal is approximately 1.5 hours (one-eighth of the daytime period). It falls at a different time each weekday and is calculated based on sunrise and sunset for your location.",
-        "te": "Rahu Kaal is approximately 1.5 hours (one-eighth of the daytime period). It falls at a different time each weekday and is calculated based on sunrise and sunset for your location.",
-        "bn": "Rahu Kaal is approximately 1.5 hours (one-eighth of the daytime period). It falls at a different time each weekday and is calculated based on sunrise and sunset for your location.",
-        "kn": "Rahu Kaal is approximately 1.5 hours (one-eighth of the daytime period). It falls at a different time each weekday and is calculated based on sunrise and sunset for your location.",
+        "ta": "ராகு காலம் தோராயமாக 1.5 மணிநேரம் (பகல் நேரத்தின் எட்டில் ஒரு பங்கு). இது ஒவ்வொரு வார நாளிலும் வெவ்வேறு நேரத்தில் வருகிறது மேலும் உங்கள் இருப்பிடத்திற்கான சூரிய உதயம் மற்றும் அஸ்தமனத்தின் அடிப்படையில் கணக்கிடப்படுகிறது.",
+        "te": "రాహు కాలం సుమారు 1.5 గంటలు (పగటి కాలంలో ఎనిమిదో వంతు). ఇది ప్రతి వారపు రోజున వేర్వేరు సమయాల్లో వస్తుంది మరియు మీ స్థానం కోసం సూర్యోదయం మరియు సూర్యాస్తమయం ఆధారంగా లెక్కించబడుతుంది.",
+        "bn": "রাহু কাল প্রায় ১.৫ ঘণ্টা (দিনের সময়ের এক-অষ্টমাংশ)। এটি সপ্তাহের প্রতিটি দিনে ভিন্ন সময়ে পড়ে এবং আপনার অবস্থানের সূর্যোদয় ও সূর্যাস্তের উপর ভিত্তি করে গণনা করা হয়।",
+        "kn": "ರಾಹು ಕಾಲವು ಸುಮಾರು 1.5 ಗಂಟೆಗಳು (ಹಗಲಿನ ಅವಧಿಯ ಎಂಟನೇ ಒಂದು ಭಾಗ). ಇದು ಪ್ರತಿ ವಾರದ ದಿನ ವಿಭಿನ್ನ ಸಮಯದಲ್ಲಿ ಬರುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ ಸ್ಥಳದ ಸೂರ್ಯೋದಯ ಮತ್ತು ಸೂರ್ಯಾಸ್ತವನ್ನು ಆಧರಿಸಿ ಲೆಕ್ಕಹಾಕಲಾಗುತ್ತದೆ.",
         "mr": "राहु काल लगभग 1.5 घण्टे (दिन की अवधि का आठवाँ भाग) का होता है। यह प्रत्येक वार को अलग समय पर आता है और आपके स्थान के सूर्योदय-सूर्यास्त के आधार पर गणित होता है।",
-        "gu": "Rahu Kaal is approximately 1.5 hours (one-eighth of the daytime period). It falls at a different time each weekday and is calculated based on sunrise and sunset for your location.",
+        "gu": "રાહુ કાળ આશરે ૧.૫ કલાકનો હોય છે (દિવસના સમયનો આઠમો ભાગ). તે દરેક અઠવાડિયાના દિવસે અલગ સમયે આવે છે અને તમારા સ્થાન માટે સૂર્યોદય અને સૂર્યાસ્તના આધારે ગણવામાં આવે છે.",
         "mai": "राहु काल लगभग १.५ घंटा (दिनक कालक आठम भाग) क होइत अछि। ई प्रत्येक सप्ताहक दिन अलग-अलग समय पर पड़ैत अछि आ अहाँक स्थानक लेल सूर्योदय आ सूर्यास्तक आधार पर गणना कएल जाइत अछि।"
       }
     },
@@ -592,24 +592,24 @@
       "question": {
         "en": "Abhijit Muhurta, which falls around midday, is considered universally auspicious.",
         "hi": "अभिजित मुहूर्त, जो मध्याह्न के आसपास आता है, सार्वभौमिक रूप से शुभ माना जाता है।",
-        "ta": "Abhijit Muhurta, which falls around midday, is considered universally auspicious.",
-        "te": "Abhijit Muhurta, which falls around midday, is considered universally auspicious.",
-        "bn": "Abhijit Muhurta, which falls around midday, is considered universally auspicious.",
-        "kn": "Abhijit Muhurta, which falls around midday, is considered universally auspicious.",
+        "ta": "நண்பகல் நேரத்தில் வரும் அபிஜித் முகூர்த்தம் உலகளாவிய சுபமானதாகக் கருதப்படுகிறது.",
+        "te": "మధ్యాహ్నం సమయంలో వచ్చే అభిజిత్ ముహూర్తం సార్వత్రికంగా శుభప్రదంగా పరిగణించబడుతుంది.",
+        "bn": "অভিজিৎ মুহূর্ত, যা মধ্যাহ্নের আশেপাশে পড়ে, সর্বজনীনভাবে শুভ বলে বিবেচিত হয়।",
+        "kn": "ಅಭಿಜಿತ್ ಮುಹೂರ್ತ, ಇದು ಮಧ್ಯಾಹ್ನದ ಸುಮಾರಿಗೆ ಬರುತ್ತದೆ, ಸಾರ್ವತ್ರಿಕವಾಗಿ ಶುಭವೆಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ.",
         "mr": "अभिजित मुहूर्त, जो मध्याह्न के आसपास आता है, सार्वभौमिक रूप से शुभ माना जाता है।",
-        "gu": "Abhijit Muhurta, which falls around midday, is considered universally auspicious.",
+        "gu": "અભિજિત મુહૂર્ત, જે બપોરના સમયે આવે છે, તેને સાર્વત્રિક રીતે શુભ માનવામાં આવે છે.",
         "mai": "अभिजीत मुहूर्त, जे दिनक मध्य मे पड़ैत अछि, केँ सार्वभौमिक रूप सँ शुभ मानल जाइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Abhijit Muhurta is the 8th muhurta of the day, centered around local noon. It is ruled by Vishnu and considered auspicious for virtually all activities, regardless of other Panchang factors.",
         "hi": "सत्य। अभिजित मुहूर्त दिन का 8वाँ मुहूर्त है, स्थानीय मध्याह्न के आसपास केन्द्रित। यह विष्णु शासित है और अन्य पंचांग तत्त्वों की परवाह किए बिना लगभग सभी कार्यों के लिए शुभ माना जाता है।",
-        "ta": "True. Abhijit Muhurta is the 8th muhurta of the day, centered around local noon. It is ruled by Vishnu and considered auspicious for virtually all activities, regardless of other Panchang factors.",
-        "te": "True. Abhijit Muhurta is the 8th muhurta of the day, centered around local noon. It is ruled by Vishnu and considered auspicious for virtually all activities, regardless of other Panchang factors.",
-        "bn": "True. Abhijit Muhurta is the 8th muhurta of the day, centered around local noon. It is ruled by Vishnu and considered auspicious for virtually all activities, regardless of other Panchang factors.",
-        "kn": "True. Abhijit Muhurta is the 8th muhurta of the day, centered around local noon. It is ruled by Vishnu and considered auspicious for virtually all activities, regardless of other Panchang factors.",
+        "ta": "உண்மை. அபிஜித் முகூர்த்தம் என்பது நாளின் 8வது முகூர்த்தம் ஆகும், இது உள்ளூர் நண்பகலை மையமாகக் கொண்டது. இது விஷ்ணுவால் ஆளப்படுகிறது மற்றும் மற்ற பஞ்சாங்க காரணிகளைப் பொருட்படுத்தாமல் கிட்டத்தட்ட அனைத்து நடவடிக்கைகளுக்கும் சுபமானதாகக் கருதப்படுகிறது.",
+        "te": "నిజం. అభిజిత్ ముహూర్తం రోజులోని 8వ ముహూర్తం, స్థానిక మధ్యాహ్నం చుట్టూ కేంద్రీకృతమై ఉంటుంది. ఇది విష్ణువుచే పాలించబడుతుంది మరియు ఇతర పంచాంగ కారకాలతో సంబంధం లేకుండా వాస్తవంగా అన్ని కార్యకలాపాలకు శుభప్రదంగా పరిగణించబడుతుంది.",
+        "bn": "সত্য। অভিজিৎ মুহূর্ত হল দিনের অষ্টম মুহূর্ত, যা স্থানীয় মধ্যাহ্নের আশেপাশে কেন্দ্র করে থাকে। এটি বিষ্ণু দ্বারা শাসিত এবং অন্যান্য পঞ্চাঙ্গ কারণ নির্বিশেষে কার্যত সমস্ত কাজের জন্য শুভ বলে বিবেচিত হয়।",
+        "kn": "ಸರಿ. ಅಭಿಜಿತ್ ಮುಹೂರ್ತವು ದಿನದ 8ನೇ ಮುಹೂರ್ತವಾಗಿದ್ದು, ಸ್ಥಳೀಯ ಮಧ್ಯಾಹ್ನದ ಸುತ್ತ ಕೇಂದ್ರೀಕೃತವಾಗಿರುತ್ತದೆ. ಇದು ವಿಷ್ಣುವಿನಿಂದ ಆಳಲ್ಪಡುತ್ತದೆ ಮತ್ತು ಇತರ ಪಂಚಾಂಗ ಅಂಶಗಳನ್ನು ಲೆಕ್ಕಿಸದೆ, ವಾಸ್ತವಿಕವಾಗಿ ಎಲ್ಲಾ ಚಟುವಟಿಕೆಗಳಿಗೆ ಶುಭವೆಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ.",
         "mr": "सत्य। अभिजित मुहूर्त दिन का 8वाँ मुहूर्त है, स्थानीय मध्याह्न के आसपास केन्द्रित। यह विष्णु शासित है और अन्य पंचांग तत्त्वों की परवाह किए बिना लगभग सभी कार्यों के लिए शुभ माना जाता है।",
-        "gu": "True. Abhijit Muhurta is the 8th muhurta of the day, centered around local noon. It is ruled by Vishnu and considered auspicious for virtually all activities, regardless of other Panchang factors.",
+        "gu": "સાચું. અભિજિત મુહૂર્ત દિવસનું ૮મું મુહૂર્ત છે, જે સ્થાનિક બપોરની આસપાસ કેન્દ્રિત હોય છે. તે વિષ્ણુ દ્વારા શાસિત છે અને પંચાંગના અન્ય પરિબળોને ધ્યાનમાં લીધા વિના, લગભગ તમામ પ્રવૃત્તિઓ માટે શુભ માનવામાં આવે છે.",
         "mai": "सत्य। अभिजीत मुहूर्त दिनक ८म मुहूर्त अछि, जे स्थानीय मध्याह्नक आसपास केंद्रित अछि। ई विष्णु द्वारा शासित अछि आ अन्य पंचांग कारकक बावजूद लगभग सभ गतिविधि लेल शुभ मानल जाइत अछि।"
       }
     },
@@ -619,12 +619,12 @@
       "question": {
         "en": "Each muhurta (time division) of the day is approximately how long?",
         "hi": "दिन का प्रत्येक मुहूर्त (समय विभाजन) लगभग कितना लम्बा होता है?",
-        "ta": "Each muhurta (time division) of the day is approximately how long?",
-        "te": "Each muhurta (time division) of the day is approximately how long?",
-        "bn": "Each muhurta (time division) of the day is approximately how long?",
-        "kn": "Each muhurta (time division) of the day is approximately how long?",
+        "ta": "நாளின் ஒவ்வொரு முகூர்த்தமும் (நேரப் பிரிவு) தோராயமாக எவ்வளவு நேரம்?",
+        "te": "రోజులోని ప్రతి ముహూర్తం (సమయ విభాగం) సుమారు ఎంత సమయం ఉంటుంది?",
+        "bn": "দিনের প্রতিটি মুহূর্ত (সময় বিভাগ) প্রায় কতক্ষণ?",
+        "kn": "ದಿನದ ಪ್ರತಿ ಮುಹೂರ್ತ (ಸಮಯ ವಿಭಾಗ) ಸುಮಾರು ಎಷ್ಟು ಸಮಯ ಇರುತ್ತದೆ?",
         "mr": "दिन का प्रत्येक मुहूर्त (समय विभाजन) लगभग कितना लम्बा होता है?",
-        "gu": "Each muhurta (time division) of the day is approximately how long?",
+        "gu": "દિવસનું દરેક મુહૂર્ત (સમય વિભાગ) આશરે કેટલો લાંબો હોય છે?",
         "mai": "दिनक प्रत्येक मुहूर्त (समय विभाजन) लगभग केतेक कालक होइत अछि?"
       },
       "options": [
@@ -633,56 +633,56 @@
           "hi": "लगभग 24 मिनट",
           "mai": "लगभग २४ मिनट",
           "mr": "लगभग 24 मिनट",
-          "ta": "About 24 minutes",
-          "te": "About 24 minutes",
-          "bn": "About 24 minutes",
-          "kn": "About 24 minutes",
-          "gu": "About 24 minutes"
+          "ta": "சுமார் 24 நிமிடங்கள்",
+          "te": "సుమారు 24 నిమిషాలు",
+          "bn": "প্রায় ২৪ মিনিট",
+          "kn": "ಸುಮಾರು 24 ನಿಮಿಷಗಳು",
+          "gu": "આશરે ૨૪ મિનિટ"
         },
         {
           "en": "About 48 minutes",
           "hi": "लगभग 48 मिनट",
           "mai": "लगभग ४८ मिनट",
           "mr": "लगभग 48 मिनट",
-          "ta": "About 48 minutes",
-          "te": "About 48 minutes",
-          "bn": "About 48 minutes",
-          "kn": "About 48 minutes",
-          "gu": "About 48 minutes"
+          "ta": "சுமார் 48 நிமிடங்கள்",
+          "te": "సుమారు 48 నిమిషాలు",
+          "bn": "প্রায় ৪৮ মিনিট",
+          "kn": "ಸುಮಾರು 48 ನಿಮಿಷಗಳು",
+          "gu": "આશરે ૪૮ મિનિટ"
         },
         {
           "en": "About 90 minutes",
           "hi": "लगभग 90 मिनट",
           "mai": "लगभग ९० मिनट",
           "mr": "लगभग 90 मिनट",
-          "ta": "About 90 minutes",
-          "te": "About 90 minutes",
-          "bn": "About 90 minutes",
-          "kn": "About 90 minutes",
-          "gu": "About 90 minutes"
+          "ta": "சுமார் 90 நிமிடங்கள்",
+          "te": "సుమారు 90 నిమిషాలు",
+          "bn": "প্রায় ৯০ মিনিট",
+          "kn": "ಸುಮಾರು 90 ನಿಮಿಷಗಳು",
+          "gu": "આશરે ૯૦ મિનિટ"
         },
         {
           "en": "About 2 hours",
           "hi": "लगभग 2 घण्टे",
           "mai": "लगभग २ घंटा",
           "mr": "लगभग 2 घण्टे",
-          "ta": "About 2 hours",
-          "te": "About 2 hours",
-          "bn": "About 2 hours",
-          "kn": "About 2 hours",
-          "gu": "About 2 hours"
+          "ta": "சுமார் 2 மணிநேரம்",
+          "te": "సుమారు 2 గంటలు",
+          "bn": "প্রায় ২ ঘণ্টা",
+          "kn": "ಸುಮಾರು 2 ಗಂಟೆಗಳು",
+          "gu": "આશરે ૨ કલાક"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "A day is divided into 30 muhurtas, each approximately 48 minutes long (24 hours / 30 = 48 minutes). 15 muhurtas fall in the daytime and 15 at night.",
         "hi": "एक दिन 30 मुहूर्तों में विभक्त है, प्रत्येक लगभग 48 मिनट (24 घण्टे / 30 = 48 मिनट)। 15 मुहूर्त दिन में और 15 रात में आते हैं।",
-        "ta": "A day is divided into 30 muhurtas, each approximately 48 minutes long (24 hours / 30 = 48 minutes). 15 muhurtas fall in the daytime and 15 at night.",
-        "te": "A day is divided into 30 muhurtas, each approximately 48 minutes long (24 hours / 30 = 48 minutes). 15 muhurtas fall in the daytime and 15 at night.",
-        "bn": "A day is divided into 30 muhurtas, each approximately 48 minutes long (24 hours / 30 = 48 minutes). 15 muhurtas fall in the daytime and 15 at night.",
-        "kn": "A day is divided into 30 muhurtas, each approximately 48 minutes long (24 hours / 30 = 48 minutes). 15 muhurtas fall in the daytime and 15 at night.",
+        "ta": "ஒரு நாள் 30 முகூர்த்தங்களாகப் பிரிக்கப்பட்டுள்ளது, ஒவ்வொன்றும் தோராயமாக 48 நிமிடங்கள் நீளமானது (24 மணிநேரம் / 30 = 48 நிமிடங்கள்). 15 முகூர்த்தங்கள் பகல் நேரத்திலும் 15 முகூர்த்தங்கள் இரவு நேரத்திலும் வருகின்றன.",
+        "te": "ఒక రోజు 30 ముహూర్తాలుగా విభజించబడింది, ప్రతి ముహూర్తం సుమారు 48 నిమిషాలు (24 గంటలు / 30 = 48 నిమిషాలు). పగటిపూట 15 ముహూర్తాలు మరియు రాత్రిపూట 15 ముహూర్తాలు ఉంటాయి.",
+        "bn": "একটি দিনকে ৩০টি মুহূর্তে ভাগ করা হয়, প্রতিটি প্রায় ৪৮ মিনিট দীর্ঘ (২৪ ঘণ্টা / ৩০ = ৪৮ মিনিট)। ১৫টি মুহূর্ত দিনের বেলায় এবং ১৫টি রাতে পড়ে।",
+        "kn": "ಒಂದು ದಿನವನ್ನು 30 ಮುಹೂರ್ತಗಳಾಗಿ ವಿಂಗಡಿಸಲಾಗಿದೆ, ಪ್ರತಿಯೊಂದೂ ಸುಮಾರು 48 ನಿಮಿಷಗಳ ಉದ್ದ (24 ಗಂಟೆಗಳು / 30 = 48 ನಿಮಿಷಗಳು). 15 ಮುಹೂರ್ತಗಳು ಹಗಲಿನಲ್ಲಿ ಮತ್ತು 15 ರಾತ್ರಿಯಲ್ಲಿ ಬರುತ್ತವೆ.",
         "mr": "एक दिन 30 मुहूर्तों में विभक्त है, प्रत्येक लगभग 48 मिनट (24 घण्टे / 30 = 48 मिनट)। 15 मुहूर्त दिन में और 15 रात में आते हैं।",
-        "gu": "A day is divided into 30 muhurtas, each approximately 48 minutes long (24 hours / 30 = 48 minutes). 15 muhurtas fall in the daytime and 15 at night.",
+        "gu": "એક દિવસને ૩૦ મુહૂર્તમાં વિભાજીત કરવામાં આવે છે, દરેક આશરે ૪૮ મિનિટ લાંબું હોય છે (૨૪ કલાક / ૩૦ = ૪૮ મિનિટ). ૧૫ મુહૂર્ત દિવસના સમયે અને ૧૫ રાત્રિના સમયે આવે છે.",
         "mai": "एकटा दिन केँ ३० मुहूर्त मे बाँटल जाइत अछि, प्रत्येक लगभग ४८ मिनटक होइत अछि (२४ घंटा / ३० = ४८ मिनट)। १५ मुहूर्त दिन मे आ १५ राति मे पड़ैत अछि।"
       }
     }
@@ -691,198 +691,198 @@
     "en": "Open the Panchang â The First Two Elements",
     "hi": "à¤ªà¤à¤à¤¾à¤à¤ à¤à¥à¤²à¥à¤ â à¤ªà¤¹à¤²à¥ à¤¦à¥ à¤¤à¤¤à¥à¤¤à¥à¤µ",
     "mai": "पंचांग खोलू — पहिल दूटा तत्व",
-    "mr": "Open the Panchang â The First Two Elements"
+    "mr": "पंचांग उघडा — पहिले दोन घटक"
   },
   "1TithiWhatMoonPhaseAre": {
     "en": "1. Tithi â \"What Moon phase are we in?\"",
     "hi": "1. à¤¤à¤¿à¤¥à¤¿ â \"à¤à¤¨à¥à¤¦à¥à¤°à¤®à¤¾ à¤à¤¿à¤¸ à¤à¤²à¤¾ à¤®à¥à¤ à¤¹à¥?\"",
     "mai": "१. तिथि — \"हम सब कोन चन्द्रमाक कलामे छी?\"",
-    "mr": "1. Tithi â \"What Moon phase are we in?\""
+    "mr": "१. तिथी — \"आपण कोणत्या चंद्रकलेत आहोत?\""
   },
   "westernCalendarsHaveJust4Moon": {
     "en": "Western calendars have just 4 Moon phases (new, first quarter, full, last quarter). The Vedic system has 30! Every 12Â° of Moon-Sun separation = 1 tithi. Shukla Paksha = waxing (Moon growing), Krishna Paksha = waning (Moon shrinking). Purnima = full moon, Amavasya = new moon.",
     "hi": "à¤ªà¤¶à¥à¤à¤¿à¤®à¥ à¤à¥à¤²à¥à¤à¤¡à¤° à¤®à¥à¤ à¤à¤¨à¥à¤¦à¥à¤°à¤®à¤¾ à¤à¥ à¤à¥à¤µà¤² 4 à¤à¤²à¤¾à¤à¤ à¤¹à¥à¤ (à¤¨à¤¯à¤¾, à¤ªà¤¹à¤²à¥ à¤¤à¤¿à¤®à¤¾à¤¹à¥, à¤ªà¥à¤°à¥à¤£, à¤à¤¨à¥à¤¤à¤¿à¤® à¤¤à¤¿à¤®à¤¾à¤¹à¥)à¥¤ à¤µà¥à¤¦à¤¿à¤ à¤ªà¤¦à¥à¤§à¤¤à¤¿ à¤®à¥à¤ 30 à¤à¤²à¤¾à¤à¤ à¤¹à¥à¤! à¤à¤¨à¥à¤¦à¥à¤°-à¤¸à¥à¤°à¥à¤¯ à¤ªà¥à¤¥à¤à¥à¤à¤°à¤£ à¤à¥ à¤ªà¥à¤°à¤¤à¥à¤¯à¥à¤ 12Â° = 1 à¤¤à¤¿à¤¥à¤¿à¥¤ à¤¶à¥à¤à¥à¤² à¤ªà¤à¥à¤· = à¤¬à¤¢à¤¼à¤¤à¤¾ à¤à¤¨à¥à¤¦à¥à¤°à¤®à¤¾ (à¤à¤¨à¥à¤¦à¥à¤°à¤®à¤¾ à¤¬à¤¡à¤¼à¤¾ à¤¹à¥ à¤°à¤¹à¤¾), à¤à¥à¤·à¥à¤£ à¤ªà¤à¥à¤· = à¤à¤à¤¤à¤¾ à¤à¤¨à¥à¤¦à¥à¤°à¤®à¤¾ (à¤à¤¨à¥à¤¦à¥à¤°à¤®à¤¾ à¤à¥à¤à¤¾ à¤¹à¥ à¤°à¤¹à¤¾)à¥¤ à¤ªà¥à¤°à¥à¤£à¤¿à¤®à¤¾ = à¤ªà¥à¤°à¥à¤£ à¤à¤¨à¥à¤¦à¥à¤°, à¤à¤®à¤¾à¤µà¤¸à¥à¤¯à¤¾ = à¤¨à¤¯à¤¾ à¤à¤¨à¥à¤¦à¥à¤°à¥¤",
     "mai": "पश्चिमी कैलेंडरमे मात्र ४ टा चन्द्रमाक कला (नव, पहिल चौथाई, पूर्ण, अंतिम चौथाई) अछि. वैदिक प्रणालीमे ३० टा अछि! चन्द्रमा-सूर्यक प्रत्येक १२°क अलगाव = १ तिथि. शुक्ल पक्ष = शुक्ल पक्ष (चन्द्रमा बढ़ैत), कृष्ण पक्ष = कृष्ण पक्ष (चन्द्रमा घटैत). पूर्णिमा = पूर्णिमा, अमावस्या = अमावस्या.",
-    "mr": "Western calendars have just 4 Moon phases (new, first quarter, full, last quarter). The Vedic system has 30! Every 12Â° of Moon-Sun separation = 1 tithi. Shukla Paksha = waxing (Moon growing), Krishna Paksha = waning (Moon shrinking). Purnima = full moon, Amavasya = new moon."
+    "mr": "पाश्चात्त्य दिनदर्शिकेत फक्त ४ चंद्रकला असतात (नवीन चंद्र, प्रथम चरण, पौर्णिमा, अंतिम चरण). वैदिक प्रणालीमध्ये ३० आहेत! चंद्र-सूर्य यांच्यातील प्रत्येक १२° अंतराला १ तिथी म्हणतात. शुक्ल पक्ष = वाढणारा चंद्र (चंद्र वाढत आहे), कृष्ण पक्ष = घटणारा चंद्र (चंद्र कमी होत आहे). पौर्णिमा = पूर्ण चंद्र, अमावस्या = नवीन चंद्र."
   },
   "2VaraWhatDayIsIt": {
     "en": "2. Vara â \"What day is it?\"",
     "hi": "2. à¤µà¤¾à¤° â \"à¤à¤ à¤à¥à¤¨-à¤¸à¤¾ à¤¦à¤¿à¤¨ à¤¹à¥?\"",
     "mai": "२. वार — \"आजु कोन दिन अछि?\"",
-    "mr": "2. Vara â \"What day is it?\""
+    "mr": "२. वार — \"आज कोणता वार आहे?\""
   },
   "eachDayIsRuledByA": {
     "en": "Each day is ruled by a planet. Ravivara = Sunday/Sun, Somavara = Monday/Moon, Mangalavara = Tuesday/Mars, Budhavara = Wednesday/Mercury, Guruvara = Thursday/Jupiter, Shukravara = Friday/Venus, Shanivara = Saturday/Saturn. The English names come from the same planets! Sun-day, Moon-day, etc.",
     "hi": "à¤ªà¥à¤°à¤¤à¥à¤¯à¥à¤ à¤¦à¤¿à¤¨ à¤à¤ à¤à¥à¤°à¤¹ à¤¦à¥à¤µà¤¾à¤°à¤¾ à¤¶à¤¾à¤¸à¤¿à¤¤ à¤¹à¥à¥¤ à¤°à¤µà¤¿à¤µà¤¾à¤° = à¤¸à¥à¤°à¥à¤¯ (Ravi), à¤¸à¥à¤®à¤µà¤¾à¤° = à¤à¤¨à¥à¤¦à¥à¤° (Soma), à¤®à¤à¤à¤²à¤µà¤¾à¤° = à¤®à¤à¤à¤² (Mangala), à¤¬à¥à¤§à¤µà¤¾à¤° = à¤¬à¥à¤§ (Budha), à¤à¥à¤°à¥à¤µà¤¾à¤° = à¤à¥à¤°à¥ (Guru/Brihaspati), à¤¶à¥à¤à¥à¤°à¤µà¤¾à¤° = à¤¶à¥à¤à¥à¤° (Shukra), à¤¶à¤¨à¤¿à¤µà¤¾à¤° = à¤¶à¤¨à¤¿ (Shani)à¥¤ à¤à¤à¤à¥à¤°à¥à¤à¥ à¤¨à¤¾à¤® à¤à¤¨à¥à¤¹à¥à¤ à¤à¥à¤°à¤¹à¥à¤ à¤¸à¥ à¤à¤¤à¥ à¤¹à¥à¤! Sun-day, Moon-day, à¤à¤¦à¤¿à¥¤",
     "mai": "प्रत्येक दिन एकटा ग्रह द्वारा शासित होइत अछि. रविवासर = रविवासर/सूर्य, सोमवासर = सोमवासर/चन्द्रमा, मंगलवासर = मंगलवासर/मंगल, बुधवासर = बुधवासर/बुध, गुरुवासर = गुरुवासर/बृहस्पति, शुक्रवासर = शुक्रवासर/शुक्र, शनिवासर = शनिवासर/शनि. अंग्रेजी नाम सभ एहि ग्रह सभ सँ आबैत अछि! रवि-दिन, चन्द्र-दिन, आदि.",
-    "mr": "Each day is ruled by a planet. Ravivara = Sunday/Sun, Somavara = Monday/Moon, Mangalavara = Tuesday/Mars, Budhavara = Wednesday/Mercury, Guruvara = Thursday/Jupiter, Shukravara = Friday/Venus, Shanivara = Saturday/Saturn. The English names come from the same planets! Sun-day, Moon-day, etc."
+    "mr": "प्रत्येक वार एका ग्रहाद्वारे शासित असतो. रविवार = रविवार/सूर्य, सोमवार = सोमवार/चंद्र, मंगळवार = मंगळवार/मंगळ, बुधवार = बुधवार/बुध, गुरुवार = गुरुवार/बृहस्पति, शुक्रवार = शुक्रवार/शुक्र, शनिवार = शनिवार/शनि. इंग्रजी नावे याच ग्रहांवरून आली आहेत! Sun-day, Moon-day, इत्यादी."
   },
   "keyHistoricalFact": {
     "en": "Key Historical Fact",
     "hi": "à¤°à¥à¤à¤ à¤¤à¤¥à¥à¤¯",
     "mai": "मुख्य ऐतिहासिक तथ्य",
-    "mr": "Key Historical Fact"
+    "mr": "महत्त्वाचे ऐतिहासिक सत्य"
   },
   "the7dayWeekWasInventedIndependently": {
     "en": "The 7-day week was invented independently in India and Babylon using the SAME planetary hora system. The order Sun→Moon→Mars→Mercury→Jupiter→Venus→Saturn comes from counting every 24th hora (planetary hour)  –  pure mathematics, not coincidence. Assign horas in the Chaldean order (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon), and every 24th hora gives the ruler of the next day.",
     "hi": "7-à¤¦à¤¿à¤µà¤¸à¥à¤¯ à¤¸à¤ªà¥à¤¤à¤¾à¤¹ à¤­à¤¾à¤°à¤¤ à¤à¤° à¤¬à¥à¤¬à¥à¤²à¥à¤¨ à¤¦à¥à¤¨à¥à¤ à¤®à¥à¤ à¤à¤ à¤¹à¥ à¤à¥à¤°à¤¹ à¤¹à¥à¤°à¤¾ à¤ªà¤¦à¥à¤§à¤¤à¤¿ à¤à¤¾ à¤à¤ªà¤¯à¥à¤ à¤à¤°à¤à¥ à¤¸à¥à¤µà¤¤à¤¨à¥à¤¤à¥à¤° à¤°à¥à¤ª à¤¸à¥ à¤à¤µà¤¿à¤·à¥à¤à¥à¤¤ à¤¹à¥à¤à¥¤ à¤à¥à¤°à¤® à¤¸à¥à¤°à¥à¤¯âà¤à¤¨à¥à¤¦à¥à¤°âà¤®à¤à¤à¤²âà¤¬à¥à¤§âà¤à¥à¤°à¥âà¤¶à¥à¤à¥à¤°âà¤¶à¤¨à¤¿ à¤ªà¥à¤°à¤¤à¥à¤¯à¥à¤ 24à¤µà¥à¤ à¤¹à¥à¤°à¤¾ (à¤à¥à¤°à¤¹ à¤à¤£à¥à¤à¥) à¤à¥ à¤à¤£à¤¨à¤¾ à¤¸à¥ à¤à¤¤à¤¾ à¤¹à¥ â à¤¶à¥à¤¦à¥à¤§ à¤à¤£à¤¿à¤¤, à¤¸à¤à¤¯à¥à¤ à¤¨à¤¹à¥à¤à¥¤ à¤à¤²à¥à¤¡à¤¿à¤¯à¤¨ à¤à¥à¤°à¤® (à¤¶à¤¨à¤¿, à¤à¥à¤°à¥, à¤®à¤à¤à¤², à¤¸à¥à¤°à¥à¤¯, à¤¶à¥à¤à¥à¤°, à¤¬à¥à¤§, à¤à¤¨à¥à¤¦à¥à¤°) à¤®à¥à¤ à¤¹à¥à¤°à¤¾à¤à¤ à¤¨à¤¿à¤°à¥à¤§à¤¾à¤°à¤¿à¤¤ à¤à¤°à¥à¤, à¤à¤° à¤ªà¥à¤°à¤¤à¥à¤¯à¥à¤ 24à¤µà¥à¤ à¤¹à¥à¤°à¤¾ à¤à¤à¤²à¥ à¤¦à¤¿à¤¨ à¤à¤¾ à¤¸à¥à¤µà¤¾à¤®à¥ à¤¦à¥à¤¤à¥ à¤¹à¥à¥¤",
     "mai": "७-दिनक सप्ताह भारत आ बेबिलोनमे स्वतंत्र रूप सँ एकहि ग्रहीय होरा प्रणालीक उपयोग कए आविष्कार कएल गेल छल. सूर्य→चन्द्रमा→मंगल→बुध→बृहस्पति→शुक्र→शनिक क्रम प्रत्येक २४म होरा (ग्रहीय घंटा) केँ गनि कए आबैत अछि – शुद्ध गणित, संयोग नहि. चाल्डियन क्रममे होरा सभ केँ (शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, चन्द्रमा) निर्धारित करू, आ प्रत्येक २४म होरा अगला दिनक शासक दैत अछि.",
-    "mr": "The 7-day week was invented independently in India and Babylon using the SAME planetary hora system. The order Sun→Moon→Mars→Mercury→Jupiter→Venus→Saturn comes from counting every 24th hora (planetary hour)  –  pure mathematics, not coincidence. Assign horas in the Chaldean order (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon), and every 24th hora gives the ruler of the next day."
+    "mr": "७-दिवसांचा आठवडा भारत आणि बॅबिलोनमध्ये स्वतंत्रपणे, त्याच ग्रहीय होरा प्रणालीचा वापर करून शोधला गेला. सूर्य→चंद्र→मंगळ→बुध→बृहस्पति→शुक्र→शनि हा क्रम प्रत्येक २४व्या होरेची (ग्रहीय तास) गणना करून येतो — शुद्ध गणित आहे, योगायोग नाही. कॅल्डियन क्रमाने होरा नियुक्त करा (शनि, बृहस्पति, मंगळ, सूर्य, शुक्र, बुध, चंद्र), आणि प्रत्येक २४वा होरा पुढील दिवसाचा शासक देतो."
   },
   "theRemainingThreePanchangElements": {
     "en": "The Remaining Three Panchang Elements",
     "hi": "à¤¶à¥à¤· à¤¤à¥à¤¨ à¤ªà¤à¤à¤¾à¤à¤ à¤¤à¤¤à¥à¤¤à¥à¤µ",
     "mai": "शेष तीनटा पंचांग तत्व",
-    "mr": "The Remaining Three Panchang Elements"
+    "mr": "उर्वरित तीन पंचांग घटक"
   },
   "3NakshatraWhichStarGroupIs": {
     "en": "3. Nakshatra â \"Which star group is the Moon visiting?\"",
     "hi": "3. à¤¨à¤à¥à¤·à¤¤à¥à¤° â \"à¤à¤¨à¥à¤¦à¥à¤°à¤®à¤¾ à¤à¤¿à¤¸ à¤¤à¤¾à¤°à¤¾-à¤¸à¤®à¥à¤¹ à¤®à¥à¤ à¤¹à¥?\"",
     "mai": "३. नक्षत्र — \"चन्द्रमा कोन तारा समूहक यात्रा कए रहल अछि?\"",
-    "mr": "3. Nakshatra â \"Which star group is the Moon visiting?\""
+    "mr": "३. नक्षत्र — \"चंद्र कोणत्या नक्षत्रात भ्रमण करत आहे?\""
   },
   "sunLongitudeMoonLongitudeDividedInto": {
     "en": "Sun longitude + Moon longitude, divided into 27 segments. Not the stretching kind of yoga  –  this is \"yuj\" = combination. Each of the 27 yogas has a name and nature. From Vishkambha (first) to Vaidhriti (last), some are auspicious (Siddhi, Shiva, Saubhagya) and some inauspicious (Vyatipata, Vaidhriti).",
     "hi": "à¤¸à¥à¤°à¥à¤¯ à¤à¤¾ à¤¦à¥à¤¶à¤¾à¤¨à¥à¤¤à¤° + à¤à¤¨à¥à¤¦à¥à¤°à¤®à¤¾ à¤à¤¾ à¤¦à¥à¤¶à¤¾à¤¨à¥à¤¤à¤°, 27 à¤à¤£à¥à¤¡à¥à¤ à¤®à¥à¤ à¤µà¤¿à¤­à¤à¥à¤¤à¥¤ à¤¯à¤¹ à¤µà¤¹ à¤¯à¥à¤ à¤¨à¤¹à¥à¤ à¤à¥ à¤à¤¸à¤¨ (à¤¸à¥à¤à¥à¤°à¥à¤à¤¿à¤à¤) à¤¹à¥ â à¤¯à¤¹ \"à¤¯à¥à¤\" = à¤¸à¤à¤¯à¥à¤ à¤¹à¥à¥¤ 27 à¤¯à¥à¤à¥à¤ à¤®à¥à¤ à¤¸à¥ à¤ªà¥à¤°à¤¤à¥à¤¯à¥à¤ à¤à¤¾ à¤à¤ à¤¨à¤¾à¤® à¤à¤° à¤¸à¥à¤µà¤­à¤¾à¤µ à¤¹à¥à¥¤ à¤µà¤¿à¤·à¥à¤à¤®à¥à¤­ (à¤ªà¥à¤°à¤¥à¤®) à¤¸à¥ à¤µà¥à¤§à¥à¤¤à¤¿ (à¤à¤¨à¥à¤¤à¤¿à¤®) à¤¤à¤, à¤à¥à¤ à¤¶à¥à¤­ à¤¹à¥à¤ (à¤¸à¤¿à¤¦à¥à¤§à¤¿, à¤¶à¤¿à¤µ, à¤¸à¥à¤­à¤¾à¤à¥à¤¯) à¤à¤° à¤à¥à¤ à¤à¤¶à¥à¤­ (à¤µà¥à¤¯à¤¤à¥à¤ªà¤¾à¤¤, à¤µà¥à¤§à¥à¤¤à¤¿)à¥¤",
     "mai": "सूर्यक देशांतर + चन्द्रमाक देशांतर, २७ खंडमे विभाजित. ई खिंचाव बला योग नहि – ई \"युज\" = संयोजन अछि. २७ योगमे सँ प्रत्येकक एकटा नाम आ प्रकृति अछि. विष्कंभ (पहिल) सँ वैधृति (अंतिम) धरि, किछु शुभ (सिद्धि, शिव, सौभाग्य) अछि आ किछु अशुभ (व्यतिपात, वैधृति) अछि.",
-    "mr": "Sun longitude + Moon longitude, divided into 27 segments. Not the stretching kind of yoga  –  this is \"yuj\" = combination. Each of the 27 yogas has a name and nature. From Vishkambha (first) to Vaidhriti (last), some are auspicious (Siddhi, Shiva, Saubhagya) and some inauspicious (Vyatipata, Vaidhriti)."
+    "mr": "सूर्य रेखांश + चंद्र रेखांश, २७ विभागांमध्ये विभागलेले. हे शारीरिक योगाचे प्रकार नाही — हे \"युज\" = संयोजन आहे. प्रत्येक २७ योगांना एक नाव आणि स्वरूप आहे. विष्कंभ (पहिला) पासून वैधृती (शेवटचा) पर्यंत, काही शुभ (सिद्धी, शिव, सौभाग्य) आणि काही अशुभ (व्यतिपात, वैधृती) आहेत."
   },
   "5KaranaHalfATithi": {
     "en": "5. Karana â \"Half a tithi\"",
     "hi": "5. à¤à¤°à¤£ â \"à¤à¤°à¥à¤§-à¤¤à¤¿à¤¥à¤¿\"",
     "mai": "५. करण — \"आधा तिथि\"",
-    "mr": "5. Karana â \"Half a tithi\""
+    "mr": "५. करण — \"अर्धी तिथी\""
   },
   "11TypesOfKaranasCycleThrough": {
     "en": "11 types of karanas cycle through the lunar month. Each tithi has 2 karanas (each spanning 6°). The most important thing to know: Vishti (Bhadra) karana = avoid new beginnings. It recurs regularly in every Ashtami and Ekadashi.",
     "hi": "11 à¤ªà¥à¤°à¤à¤¾à¤° à¤à¥ à¤à¤°à¤£ à¤à¤¨à¥à¤¦à¥à¤° à¤®à¤¾à¤¸ à¤®à¥à¤ à¤à¤à¥à¤°à¤¿à¤¤ à¤¹à¥à¤¤à¥ à¤¹à¥à¤à¥¤ à¤ªà¥à¤°à¤¤à¥à¤¯à¥à¤ à¤¤à¤¿à¤¥à¤¿ à¤®à¥à¤ 2 à¤à¤°à¤£ à¤¹à¥à¤¤à¥ à¤¹à¥à¤ (à¤ªà¥à¤°à¤¤à¥à¤¯à¥à¤ 6Â° à¤à¤¾)à¥¤ à¤¸à¤¬à¤¸à¥ à¤®à¤¹à¤¤à¥à¤¤à¥à¤µà¤ªà¥à¤°à¥à¤£ à¤¬à¤¾à¤¤: à¤µà¤¿à¤·à¥à¤à¤¿ (à¤­à¤¦à¥à¤°à¤¾) à¤à¤°à¤£ = à¤¨à¤ à¤¶à¥à¤°à¥à¤à¤¤ à¤¸à¥ à¤¬à¤à¥à¤à¥¤ à¤¯à¤¹ à¤ªà¥à¤°à¤¤à¥à¤¯à¥à¤ à¤à¤·à¥à¤à¤®à¥ à¤à¤° à¤à¤à¤¾à¤¦à¤¶à¥ à¤®à¥à¤ à¤¨à¤¿à¤¯à¤®à¤¿à¤¤ à¤°à¥à¤ª à¤¸à¥ à¤à¤¤à¤¾ à¤¹à¥à¥¤",
     "mai": "११ प्रकारक करण चंद्र मासमे चक्रित होइत अछि. प्रत्येक तिथिमे २ टा करण होइत अछि (प्रत्येक ६° धरि फैलल). जानबाक लेल सबसँ महत्वपूर्ण बात: विष्टि (भद्रा) करण = नव शुरुआत सँ बचू. ई प्रत्येक अष्टमी आ एकादशीमे नियमित रूप सँ पुनरावृत्ति होइत अछि.",
-    "mr": "11 types of karanas cycle through the lunar month. Each tithi has 2 karanas (each spanning 6°). The most important thing to know: Vishti (Bhadra) karana = avoid new beginnings. It recurs regularly in every Ashtami and Ekadashi."
+    "mr": "चांद्रमासात ११ प्रकारचे करण चक्राकार फिरतात. प्रत्येक तिथीमध्ये २ करण असतात (प्रत्येक ६° व्यापतो). सर्वात महत्त्वाची गोष्ट जाणून घ्या: विष्टी (भद्रा) करण = नवीन सुरुवात टाळा. ते प्रत्येक अष्टमी आणि एकादशीला नियमितपणे येते."
   },
   "keyHistoricalFact2": {
     "en": "Key Historical Fact",
     "hi": "à¤°à¥à¤à¤ à¤¤à¤¥à¥à¤¯",
     "mai": "मुख्य ऐतिहासिक तथ्य",
-    "mr": "Key Historical Fact"
+    "mr": "महत्त्वाचे ऐतिहासिक सत्य"
   },
   "thePracticalPartsTimingInformation": {
     "en": "The Practical Parts â Timing Information",
     "hi": "à¤µà¥à¤¯à¤¾à¤µà¤¹à¤¾à¤°à¤¿à¤ à¤­à¤¾à¤ â à¤¸à¤®à¤¯ à¤à¥ à¤à¤¾à¤¨à¤à¤¾à¤°à¥",
     "mai": "व्यावहारिक भाग — समयक जानकारी",
-    "mr": "The Practical Parts â Timing Information"
+    "mr": "व्यावहारिक भाग — वेळेची माहिती"
   },
   "sunriseSunset": {
     "en": "Sunrise / Sunset",
     "hi": "à¤¸à¥à¤°à¥à¤¯à¥à¤¦à¤¯ / à¤¸à¥à¤°à¥à¤¯à¤¾à¤¸à¥à¤¤",
     "mai": "सूर्योदय / सूर्यास्त",
-    "mr": "Sunrise / Sunset"
+    "mr": "सूर्योदय / सूर्यास्त"
   },
   "rahuKaal": {
     "en": "Rahu Kaal",
     "hi": "à¤°à¤¾à¤¹à¥ à¤à¤¾à¤²",
     "mai": "राहु काल",
-    "mr": "Rahu Kaal"
+    "mr": "राहू काळ"
   },
   "a15HourInauspiciousWindowEach": {
     "en": "A ~1.5 hour inauspicious window each day. Falls at a different time each weekday. Many Indians avoid starting important tasks during this time  –  new business, signing contracts, beginning travel. Calculated by dividing daylight hours (sunrise to sunset) into 8 equal parts.",
     "hi": "à¤ªà¥à¤°à¤¤à¤¿à¤¦à¤¿à¤¨ ~1.5 à¤à¤£à¥à¤à¥ à¤à¥ à¤à¤¶à¥à¤­ à¤à¤µà¤§à¤¿à¥¤ à¤ªà¥à¤°à¤¤à¥à¤¯à¥à¤ à¤µà¤¾à¤° à¤à¥ à¤à¤²à¤ à¤¸à¤®à¤¯ à¤ªà¤° à¤à¤¤à¥ à¤¹à¥à¥¤ à¤¬à¤¹à¥à¤¤ à¤¸à¥ à¤­à¤¾à¤°à¤¤à¥à¤¯ à¤à¤¸ à¤¸à¤®à¤¯ à¤®à¤¹à¤¤à¥à¤¤à¥à¤µà¤ªà¥à¤°à¥à¤£ à¤à¤¾à¤°à¥à¤¯ à¤à¤°à¤®à¥à¤­ à¤à¤°à¤¨à¥ à¤¸à¥ à¤¬à¤à¤¤à¥ à¤¹à¥à¤ â à¤¨à¤¯à¤¾ à¤µà¥à¤¯à¤¾à¤ªà¤¾à¤°, à¤à¤¨à¥à¤¬à¤¨à¥à¤§ à¤ªà¤° à¤¹à¤¸à¥à¤¤à¤¾à¤à¥à¤·à¤°, à¤¯à¤¾à¤¤à¥à¤°à¤¾ à¤ªà¥à¤°à¤¾à¤°à¤®à¥à¤­à¥¤ à¤¦à¤¿à¤¨ à¤à¥ à¤à¤µà¤§à¤¿ (à¤¸à¥à¤°à¥à¤¯à¥à¤¦à¤¯ à¤¸à¥ à¤¸à¥à¤°à¥à¤¯à¤¾à¤¸à¥à¤¤) à¤à¥ 8 à¤­à¤¾à¤à¥à¤ à¤®à¥à¤ à¤¬à¤¾à¤à¤à¤à¤° à¤à¤£à¤¿à¤¤ à¤¹à¥à¤¤à¤¾ à¤¹à¥à¥¤",
     "mai": "प्रत्येक दिन लगभग १.५ घंटाक एकटा अशुभ समय-खंड. ई प्रत्येक कार्य दिवसमे अलग-अलग समय पर पड़ैत अछि. बहुत रास भारतीय एहि समयमे महत्वपूर्ण काज शुरू करबा सँ बचैत छथि – नव व्यवसाय, अनुबंध पर हस्ताक्षर, यात्राक शुरुआत. दिनक घंटा (सूर्योदय सँ सूर्यास्त धरि) केँ ८ बराबर भागमे बाँटि कए एकर गणना कएल जाइत अछि.",
-    "mr": "A ~1.5 hour inauspicious window each day. Falls at a different time each weekday. Many Indians avoid starting important tasks during this time  –  new business, signing contracts, beginning travel. Calculated by dividing daylight hours (sunrise to sunset) into 8 equal parts."
+    "mr": "दररोज सुमारे १.५ तासांचा एक अशुभ कालावधी. प्रत्येक आठवड्याच्या दिवशी वेगवेगळ्या वेळी येतो. अनेक भारतीय या काळात महत्त्वाची कामे सुरू करणे टाळतात — नवीन व्यवसाय, करार करणे, प्रवासाला सुरुवात करणे. दिवसाचे तास (सूर्योदयापासून सूर्यास्तापर्यंत) ८ समान भागांमध्ये विभागून याची गणना केली जाते."
   },
   "choghadiyaMuhurta": {
     "en": "Choghadiya & Muhurta",
     "hi": "à¤à¥à¤à¤¡à¤¼à¤¿à¤¯à¤¾ à¤à¤° à¤®à¥à¤¹à¥à¤°à¥à¤¤",
     "mai": "चौघड़िया आ मुहूर्त",
-    "mr": "Choghadiya & Muhurta"
+    "mr": "चोघडिया आणि मुहूर्त"
   },
   "choghadiya8TimeSlotsPerHalfday": {
     "en": "Choghadiya: 8 time slots per half-day, each ruled by a different quality (Amrit = best, Kaal = worst). Muhurta: 30 time divisions per day (each ~48 minutes). Abhijit Muhurta around noon = universally auspicious  –  ruled by Vishnu, good for all activities.",
     "hi": "à¤à¥à¤à¤¡à¤¼à¤¿à¤¯à¤¾: à¤ªà¥à¤°à¤¤à¥à¤¯à¥à¤ à¤à¤°à¥à¤§-à¤¦à¤¿à¤µà¤¸ à¤®à¥à¤ 8 à¤¸à¤®à¤¯-à¤à¤£à¥à¤¡, à¤ªà¥à¤°à¤¤à¥à¤¯à¥à¤ à¤à¤ à¤­à¤¿à¤¨à¥à¤¨ à¤à¥à¤£ à¤¸à¥ à¤¶à¤¾à¤¸à¤¿à¤¤ (à¤à¤®à¥à¤¤ = à¤¸à¤°à¥à¤µà¥à¤¤à¥à¤¤à¤®, à¤à¤¾à¤² = à¤¸à¤¬à¤¸à¥ à¤à¤°à¤¾à¤¬)à¥¤ à¤®à¥à¤¹à¥à¤°à¥à¤¤: à¤ªà¥à¤°à¤¤à¤¿à¤¦à¤¿à¤¨ 30 à¤¸à¤®à¤¯ à¤µà¤¿à¤­à¤¾à¤à¤¨ (à¤ªà¥à¤°à¤¤à¥à¤¯à¥à¤ ~48 à¤®à¤¿à¤¨à¤)à¥¤ à¤®à¤§à¥à¤¯à¤¾à¤¹à¥à¤¨ à¤à¥ à¤à¤¸à¤ªà¤¾à¤¸ à¤à¤­à¤¿à¤à¤¿à¤¤ à¤®à¥à¤¹à¥à¤°à¥à¤¤ = à¤¸à¤¾à¤°à¥à¤µà¤­à¥à¤®à¤¿à¤ à¤°à¥à¤ª à¤¸à¥ à¤¶à¥à¤­ â à¤µà¤¿à¤·à¥à¤£à¥ à¤¶à¤¾à¤¸à¤¿à¤¤, à¤¸à¤­à¥ à¤à¤¾à¤°à¥à¤¯à¥à¤ à¤à¥ à¤²à¤¿à¤ à¤à¤¤à¥à¤¤à¤®à¥¤",
     "mai": "चौघड़िया: प्रति आधा दिन ८ टा समय-खंड, प्रत्येक एकटा भिन्न गुण द्वारा शासित (अमृत = सबसँ नीक, काल = सबसँ खराब). मुहूर्त: प्रति दिन ३० टा समय विभाजन (प्रत्येक लगभग ४८ मिनट). अभिजीत मुहूर्त दोपहरक आसपास = सार्वभौमिक रूप सँ शुभ – विष्णु द्वारा शासित, सभ गतिविधि सभक लेल नीक.",
-    "mr": "Choghadiya: 8 time slots per half-day, each ruled by a different quality (Amrit = best, Kaal = worst). Muhurta: 30 time divisions per day (each ~48 minutes). Abhijit Muhurta around noon = universally auspicious  –  ruled by Vishnu, good for all activities."
+    "mr": "चोघडिया: प्रत्येक अर्ध-दिवसासाठी ८ वेळचे स्लॉट, प्रत्येक वेगळ्या गुणाने शासित (अमृत = सर्वोत्तम, काळ = सर्वात वाईट). मुहूर्त: दररोज ३० वेळेचे विभाग (प्रत्येक सुमारे ४८ मिनिटे). अभिजीत मुहूर्त दुपारच्या सुमारास = सार्वत्रिक शुभ — विष्णूने शासित, सर्व कार्यांसाठी चांगला."
   },
   "proTipForBeginners": {
     "en": "Pro Tip for Beginners",
     "hi": "à¤¶à¥à¤°à¥à¤à¤¤à¥ à¤¸à¤²à¤¾à¤¹",
     "mai": "प्रो टिप शुरुआती सभक लेल",
-    "mr": "Pro Tip for Beginners"
+    "mr": "नवशिक्यांसाठी खास टीप"
   },
   "practicalExercise": {
     "en": "Practical Exercise",
     "hi": "à¤µà¥à¤¯à¤¾à¤µà¤¹à¤¾à¤°à¤¿à¤ à¤à¤­à¥à¤¯à¤¾à¤¸",
     "mai": "व्यावहारिक अभ्यास",
-    "mr": "Practical Exercise"
+    "mr": "व्यावहारिक सराव"
   },
   "openThePanchangPageOnOur": {
     "en": "Open the Panchang page on our app. You'll see five core elements  –  that's why it's called \"Panch-Anga\" (five limbs). Let's start with the first two.",
     "hi": "हमारे ऐप पर पंचांग पृष्ठ खोलें। आप पाँच मूल तत्त्व देखेंगे  –  इसीलिए इसे \"पंच-अंग\" (पाँच अंग) कहते हैं। आइए पहले दो से शुरू करें।",
     "mai": "हमर ऐप पर पंचांग पृष्ठ खोलू. अहाँ पाँचटा मुख्य तत्व देखब – एही लेल एकरा \"पंचांग\" (पाँच अंग) कहल जाइत अछि. आउ, पहिल दूटा सँ शुरू करी.",
-    "mr": "Open the Panchang page on our app. You'll see five core elements  –  that's why it's called \"Panch-Anga\" (five limbs). Let's start with the first two."
+    "mr": "आमच्या ॲपवरील पंचांग पृष्ठ उघडा. तुम्हाला पाच मुख्य घटक दिसतील — म्हणूनच याला \"पंचांग\" (पाच अंग) म्हणतात. चला, पहिल्या दोन्हींपासून सुरुवात करूया."
   },
   "thinkOfThePanchangAsA": {
     "en": "Think of the Panchang as a cosmic weather app. Just as a weather app tells you \"sunny, 25\\u00B0C, UV index high \\u2014 wear sunscreen,\" the Panchang tells you \"Shukla Dashami, Hasta Nakshatra, Shubh Yoga \\u2014 good day for new beginnings, avoid starting travel during Rahu Kaal.\" Millions of Indians check this EVERY morning, just like you check the weather.",
     "hi": "पंचांग को एक ब्रह्माण्डीय मौसम ऐप समझें। जैसे मौसम ऐप बताता है \"धूप, 25°C, UV इण्डेक्स उच्च  –  सनस्क्रीन लगाएँ,\" वैसे ही पंचांग बताता है \"शुक्ल दशमी, हस्त नक्षत्र, शुभ योग  –  नई शुरुआत के लिए अच्छा दिन, राहु काल में यात्रा आरम्भ न करें।\" करोड़ों भारतीय हर सुबह यह देखते हैं, ठीक वैसे जैसे आप मौसम देखते हैं।",
     "mai": "पंचांग केँ एकटा ब्रह्मांडीय मौसम ऐपक रूपमे सोचू. जेना एकटा मौसम ऐप अहाँ केँ कहैत अछि \"धूप, २५°C, यूवी इंडेक्स बेसी — सनस्क्रीन लगाऊ,\" पंचांग अहाँ केँ कहैत अछि \"शुक्ल दशमी, हस्त नक्षत्र, शुभ योग — नव शुरुआतक लेल नीक दिन, राहु कालक समय यात्रा शुरू करबा सँ बचू.\" लाखो भारतीय ई प्रत्येक सबेरे देखैत छथि, जेना अहाँ मौसम देखैत छी.",
-    "mr": "Think of the Panchang as a cosmic weather app. Just as a weather app tells you \"sunny, 25\\u00B0C, UV index high \\u2014 wear sunscreen,\" the Panchang tells you \"Shukla Dashami, Hasta Nakshatra, Shubh Yoga \\u2014 good day for new beginnings, avoid starting travel during Rahu Kaal.\" Millions of Indians check this EVERY morning, just like you check the weather."
+    "mr": "पंचांगाला एक वैश्विक हवामान ॲप समजा. जसे हवामान ॲप तुम्हाला सांगते की \"सूर्यप्रकाशित, २५°C, यूव्ही निर्देशांक जास्त — सनस्क्रीन लावा,\" तसेच पंचांग तुम्हाला सांगते की \"शुक्ल दशमी, हस्त नक्षत्र, शुभ योग — नवीन सुरुवातीसाठी चांगला दिवस, राहू काळात प्रवास सुरू करणे टाळा.\" तुम्ही हवामान तपासता त्याचप्रमाणे लाखो भारतीय दररोज सकाळी हे तपासतात."
   },
   "why12BecauseTheMoonGains": {
     "en": "Why 12°? Because the Moon gains about 12° on the Sun each day (Moon ~13.2°/day - Sun ~1°/day ≈ 12°/day). So roughly one new tithi per day  –  it's mathematics, not mysticism.",
     "hi": "क्यों 12°? क्योंकि चन्द्रमा सूर्य से प्रतिदिन लगभग 12° आगे बढ़ता है (चन्द्रमा ~13.2°/दिन - सूर्य ~1°/दिन ≈ 12°/दिन)। इसलिए लगभग प्रतिदिन एक नई तिथि  –  यह गणित है, रहस्यवाद नहीं।",
     "mai": "१२° किएक? किएक तँ चन्द्रमा प्रत्येक दिन सूर्य पर लगभग १२° प्राप्त करैत अछि (चन्द्रमा ~१३.२°/दिन - सूर्य ~१°/दिन ≈ १२°/दिन). ताहि लेल, प्रत्येक दिन लगभग एकटा नव तिथि – ई गणित अछि, रहस्यवाद नहि.",
-    "mr": "Why 12°? Because the Moon gains about 12° on the Sun each day (Moon ~13.2°/day - Sun ~1°/day ≈ 12°/day). So roughly one new tithi per day  –  it's mathematics, not mysticism."
+    "mr": "१२° का? कारण चंद्र दररोज सूर्यावर सुमारे १२° पुढे सरकतो (चंद्र ~१३.२°/दिवस - सूर्य ~१°/दिवस ≈ १२°/दिवस). त्यामुळे दररोज अंदाजे एक नवीन तिथी असते — हे गणित आहे, गूढवाद नाही."
   },
   "heresAMindblowingConnectionTheEnglish": {
     "en": "Here's a mind-blowing connection: the English days of the week come from the SAME planetary system. Sunday = Sun-day (Ravivara). Monday = Moon-day (Somavara). Saturday = Saturn-day (Shanivara). Tuesday = Tiw's day (Norse Mars = Mangalavara). This isn't coincidence \\u2014 the 7-day planetary week was transmitted from India through Babylon to Rome. You're already using Indian astronomy every time you say \"Monday.\"",
     "hi": "यहाँ एक चौंकाने वाला सम्बन्ध है: अंग्रेजी सप्ताह के दिन उसी ग्रह पद्धति से आते हैं। Sunday = Sun-day (रविवार)। Monday = Moon-day (सोमवार)। Saturday = Saturn-day (शनिवार)। Tuesday = Tiw's day (नॉर्स मंगल = मंगलवार)। यह संयोग नहीं है  –  7-दिवसीय ग्रह सप्ताह भारत से बेबीलोन होते हुए रोम तक पहुँचा। जब भी आप \"Monday\" कहते हैं, आप भारतीय खगोलशास्त्र का प्रयोग कर रहे हैं।",
     "mai": "एतय एकटा मन केँ चकित करय बला संबंध अछि: सप्ताहक अंग्रेजी दिन सभ एकहि ग्रहीय प्रणाली सँ आबैत अछि. रविवासर = रवि-दिन (रविवासर). सोमवासर = चन्द्र-दिन (सोमवासर). शनिवासर = शनि-दिन (शनिवासर). मंगलवासर = टिवक दिन (नर्स मंगल = मंगलवासर). ई संयोग नहि अछि — ७-दिनक ग्रहीय सप्ताह भारत सँ बेबिलोनक माध्यम सँ रोम धरि प्रसारित भेल छल. अहाँ पहिने सँ भारतीय ज्योतिषशास्त्रक उपयोग कए रहल छी प्रत्येक बेर जखन अहाँ \"सोमवासर\" कहैत छी.",
-    "mr": "Here's a mind-blowing connection: the English days of the week come from the SAME planetary system. Sunday = Sun-day (Ravivara). Monday = Moon-day (Somavara). Saturday = Saturn-day (Shanivara). Tuesday = Tiw's day (Norse Mars = Mangalavara). This isn't coincidence \\u2014 the 7-day planetary week was transmitted from India through Babylon to Rome. You're already using Indian astronomy every time you say \"Monday.\""
+    "mr": "येथे एक आश्चर्यकारक संबंध आहे: इंग्रजी आठवड्याचे दिवस त्याच ग्रहीय प्रणालीतून आले आहेत. रविवार = Sun-day (रविवार). सोमवार = Moon-day (सोमवार). शनिवार = Saturn-day (शनिवार). मंगळवार = Tiw's day (नॉर्स मंगळ = मंगळवार). हा योगायोग नाही — ७-दिवसांचा ग्रहीय आठवडा भारतातून बॅबिलोनमार्गे रोममध्ये प्रसारित झाला. तुम्ही \"सोमवार\" असे म्हणता तेव्हा तुम्ही भारतीय ज्योतिषशास्त्राचा वापर करत असता."
   },
   "nowHeresWhereThePanchangGets": {
     "en": "Now here's where the Panchang gets uniquely Indian. Western calendars stop at \"what day is it?\" The Panchang adds FOUR more dimensions of cosmic information \\u2014 dimensions that have no Western equivalent.",
     "hi": "अब यहाँ पंचांग विशिष्ट रूप से भारतीय हो जाता है। पश्चिमी कैलेंडर \"आज कौन-सा दिन है?\" पर रुक जाता है। पंचांग ब्रह्माण्डीय जानकारी के चार और आयाम जोड़ता है  –  ऐसे आयाम जिनका कोई पश्चिमी समकक्ष नहीं है।",
     "mai": "आब एतय पंचांग विशिष्ट रूप सँ भारतीय बनैत अछि. पश्चिमी कैलेंडर \"आजु कोन दिन अछि?\" पर रुकि जाइत अछि. पंचांग ब्रह्मांडीय जानकारीक चारिटा आओर आयाम जोड़ैत अछि — आयाम जेकर कोनो पश्चिमी समकक्ष नहि अछि.",
-    "mr": "Now here's where the Panchang gets uniquely Indian. Western calendars stop at \"what day is it?\" The Panchang adds FOUR more dimensions of cosmic information \\u2014 dimensions that have no Western equivalent."
+    "mr": "आता येथे पंचांग अद्वितीयपणे भारतीय कसे होते ते पहा. पाश्चात्त्य दिनदर्शिका \"आज कोणता वार आहे?\" यावर थांबतात. पंचांग वैश्विक माहितीचे आणखी चार आयाम जोडते — असे आयाम ज्यांना पाश्चात्त्य समतुल्य नाही."
   },
   "theMoonVisitsAll27Nakshatras": {
     "en": "The Moon visits all 27 nakshatras in ~27 days, spending roughly one day in each. Each nakshatra has a nature (gentle, fierce, fixed, movable) that colors the day's energy. For example, Pushya (one of the most auspicious nakshatras) is gentle \\u2014 great for starting ventures. Ardra is sharp \\u2014 better for surgery or tough tasks.",
     "hi": "चन्द्रमा ~27 दिनों में सभी 27 नक्षत्रों से होकर गुजरता है  –  प्रत्येक में लगभग एक दिन। प्रत्येक नक्षत्र का एक स्वभाव है (सौम्य, उग्र, स्थिर, चर) जो उस दिन की ऊर्जा को रंग देता है। उदाहरणार्थ, पुष्य (सबसे शुभ नक्षत्रों में से एक) सौम्य है  –  नए कार्य आरम्भ करने के लिए उत्तम। आर्द्रा तीक्ष्ण है  –  शल्य चिकित्सा या कठोर कार्यों के लिए बेहतर।",
     "mai": "चन्द्रमा लगभग २७ दिनमे सभ २७ नक्षत्रक यात्रा करैत अछि, प्रत्येकमे लगभग एक दिन बिताबैत. प्रत्येक नक्षत्रक एकटा प्रकृति (कोमल, उग्र, स्थिर, चल) होइत अछि जे दिनक ऊर्जा केँ रंगीन करैत अछि. उदाहरणक लेल, पुष्य (सबसँ शुभ नक्षत्रमे सँ एक) कोमल अछि — उद्यम शुरू करबाक लेल उत्तम. आर्द्रा तीक्ष्ण अछि — सर्जरी वा कठिन काजक लेल नीक.",
-    "mr": "The Moon visits all 27 nakshatras in ~27 days, spending roughly one day in each. Each nakshatra has a nature (gentle, fierce, fixed, movable) that colors the day's energy. For example, Pushya (one of the most auspicious nakshatras) is gentle \\u2014 great for starting ventures. Ardra is sharp \\u2014 better for surgery or tough tasks."
+    "mr": "चंद्र सुमारे २७ दिवसांत सर्व २७ नक्षत्रांना भेट देतो, प्रत्येक नक्षत्रात अंदाजे एक दिवस घालवतो. प्रत्येक नक्षत्राचे एक स्वरूप (सौम्य, उग्र, स्थिर, चल) असते जे दिवसाच्या ऊर्जेला रंग देते. उदाहरणार्थ, पुष्य (सर्वात शुभ नक्षत्रांपैकी एक) सौम्य आहे — नवीन कार्यांसाठी उत्तम. आर्द्रा तीक्ष्ण आहे — शस्त्रक्रिया किंवा कठीण कामांसाठी चांगले."
   },
   "4YogaWhatsTheCombinedSunmoon": {
     "en": "4. Yoga  –  \"What's the combined Sun+Moon mood?\"",
     "hi": "4. योग  –  \"सूर्य + चन्द्र का संयुक्त मिजाज़ क्या है?\"",
     "mai": "४. योग – \"सूर्य+चन्द्रमाक संयुक्त भाव की अछि?\"",
-    "mr": "4. Yoga  –  \"What's the combined Sun+Moon mood?\""
+    "mr": "४. योग — \"सूर्य-चंद्राचा एकत्रित भाव काय आहे?\""
   },
   "varahamihirasBrihatSamhita6thCenturyCe": {
     "en": "Varahamihira's Brihat Samhita (6th century CE) used Panchang elements to predict monsoon timing, crop yields, and even earthquakes. Modern meteorologists have found statistical correlations between lunar phases and rainfall patterns in India \\u2014 validating what Varahamihira observed 1500 years ago.",
     "hi": "वराहमिहिर की बृहत्संहिता (छठी शताब्दी ई.) ने पंचांग तत्त्वों का उपयोग मानसून समय, फसल उपज और भूकम्पों की भविष्यवाणी के लिए किया। आधुनिक मौसमविज्ञानियों ने चन्द्र कलाओं और भारत में वर्षा प्रतिरूपों के बीच सांख्यिकीय सहसम्बन्ध पाया है  –  जो वराहमिहिर ने 1500 वर्ष पहले प्रेक्षित किया था, उसे प्रमाणित करता है।",
     "mai": "वराहमिहिरक बृहत् संहिता (६म शताब्दी ईस्वी) पंचांग तत्वक उपयोग कएलक मानसूनक समय, फसलक उपज, आ एखन धरि भूकंपक भविष्यवाणी करबाक लेल. आधुनिक मौसम वैज्ञानिक भारतमे चंद्र कला आ वर्षाक पैटर्नक बीच सांख्यिकीय संबंध भेटल अछि — जे वराहमिहिर १५०० साल पहिने देखलनि छल, ओकरा प्रमाणित करैत.",
-    "mr": "Varahamihira's Brihat Samhita (6th century CE) used Panchang elements to predict monsoon timing, crop yields, and even earthquakes. Modern meteorologists have found statistical correlations between lunar phases and rainfall patterns in India \\u2014 validating what Varahamihira observed 1500 years ago."
+    "mr": "वराहमिहिराच्या बृहत्संहिता (६व्या शतकात) मध्ये पंचांग घटकांचा वापर मान्सूनची वेळ, पिकांचे उत्पादन आणि भूकंपांची भविष्यवाणी करण्यासाठी केला होता. आधुनिक हवामानशास्त्रज्ञांना भारतातील चंद्रकला आणि पर्जन्यमानातील सांख्यिकीय संबंध आढळले आहेत — वराहमिहिराने १५०० वर्षांपूर्वी जे निरीक्षण केले होते, त्याची पुष्टी करत आहेत."
   },
   "calculatedForYourLocationU2014Not": {
     "en": "Calculated for YOUR location \\u2014 not generic. The Vedic day begins at sunrise (not midnight), so sunrise time is the foundation of the Panchang. Our app uses your city's latitude and longitude to compute precise sunrise/sunset times.",
     "hi": "आपके स्थान के लिए गणित  –  सामान्य नहीं। वैदिक दिवस सूर्योदय से आरम्भ होता है (मध्यरात्रि से नहीं), इसलिए सूर्योदय का समय पंचांग का आधार है। हमारा ऐप आपके शहर के अक्षांश-देशान्तर का उपयोग करके सटीक सूर्योदय/सूर्यास्त गणित करता है।",
     "mai": "अहाँक स्थानक लेल गणना कएल गेल अछि — सामान्य नहि. वैदिक दिन सूर्योदय सँ शुरू होइत अछि (आधी रात सँ नहि), ताहि लेल सूर्योदयक समय पंचांगक आधार अछि. हमर ऐप अहाँक शहरक अक्षांश आ देशांतरक उपयोग करैत अछि सटीक सूर्योदय/सूर्यास्तक समयक गणना करबाक लेल.",
-    "mr": "Calculated for YOUR location \\u2014 not generic. The Vedic day begins at sunrise (not midnight), so sunrise time is the foundation of the Panchang. Our app uses your city's latitude and longitude to compute precise sunrise/sunset times."
+    "mr": "तुमच्या स्थानासाठी गणना केली जाते — सामान्य नाही. वैदिक दिवस सूर्योदयाने सुरू होतो (मध्यरात्री नाही), त्यामुळे सूर्योदयाची वेळ पंचांगाचा आधार आहे. आमचे ॲप तुमच्या शहराचे अक्षांश आणि रेखांश वापरून अचूक सूर्योदय/सूर्यास्ताची वेळ काढते."
   },
   "youDontNeedToUnderstandAll": {
     "en": "You don't need to understand all 5 elements on day one. Start with just TWO: the Tithi (is the Moon waxing or waning?) and Rahu Kaal (what 90-minute window should I avoid for important starts?). These two alone will connect you to 80% of practical Panchang usage.",
     "hi": "पहले दिन ही सभी 5 तत्त्व समझने की ज़रूरत नहीं। केवल दो से शुरू करें: तिथि (चन्द्रमा बढ़ रहा है या घट रहा?) और राहु काल (किस 90-मिनट की अवधि में महत्त्वपूर्ण शुरुआत से बचना चाहिए?)। ये दो अकेले आपको 80% व्यावहारिक पंचांग उपयोग से जोड़ देंगे।",
     "mai": "अहाँ केँ पहिल दिन सभ ५ टा तत्व बुझबाक आवश्यकता नहि अछि. मात्र दूटा सँ शुरू करू: तिथि (की चन्द्रमा बढ़ि रहल अछि वा घटि रहल अछि?) आ राहु काल (महत्वपूर्ण शुरुआतक लेल हमरा कोन ९०-मिनटक समय-खंड सँ बचबाक चाही?). ई दूटा मात्र अहाँ केँ ८०% व्यावहारिक पंचांग उपयोग सँ जोड़त.",
-    "mr": "You don't need to understand all 5 elements on day one. Start with just TWO: the Tithi (is the Moon waxing or waning?) and Rahu Kaal (what 90-minute window should I avoid for important starts?). These two alone will connect you to 80% of practical Panchang usage."
+    "mr": "पहिल्याच दिवशी तुम्हाला सर्व ५ घटक समजून घेण्याची गरज नाही. फक्त दोन्हींपासून सुरुवात करा: तिथी (चंद्र वाढत आहे की घटत आहे?) आणि राहू काळ (महत्त्वाच्या सुरुवातीसाठी मी कोणता ९० मिनिटांचा कालावधी टाळावा?). हे दोनच तुम्हाला ८०% व्यावहारिक पंचांग वापराशी जोडतील."
   },
   "lookAtTodaysPanchangOnOur": {
     "en": "Look at today's Panchang on our app. Find: (1) the current tithi and its nature, (2) when Rahu Kaal is today, (3) the next Abhijit Muhurta window. That's it \\u2014 you've just read a Panchang!",
     "hi": "हमारे ऐप पर आज का पंचांग देखें। ढूँढ़ें: (1) वर्तमान तिथि और उसका स्वभाव, (2) राहु काल कब है, (3) अगला अभिजित मुहूर्त। बस  –  आपने पंचांग पढ़ लिया!",
     "mai": "हमर ऐप पर आजुक पंचांग देखू. खोजू: (१) वर्तमान तिथि आ ओकर प्रकृति, (२) आजु राहु काल कहिया अछि, (३) अगला अभिजीत मुहूर्त समय-खंड. बस एतबे — अहाँ एखनहि एकटा पंचांग पढ़ने छी!",
-    "mr": "Look at today's Panchang on our app. Find: (1) the current tithi and its nature, (2) when Rahu Kaal is today, (3) the next Abhijit Muhurta window. That's it \\u2014 you've just read a Panchang!"
+    "mr": "आमच्या ॲपवर आजचे पंचांग पहा. शोधा: (१) सध्याची तिथी आणि तिचे स्वरूप, (२) आज राहू काळ कधी आहे, (३) पुढील अभिजीत मुहूर्ताचा कालावधी. बस इतकेच — तुम्ही नुकतेच एक पंचांग वाचले आहे!"
   },
   "inTheNextModuleWellUnderstand": {
     "en": "In the next module, we'll understand the Kundali (birth chart) \\u2014 the celestial map of the moment you were born.",
     "hi": "अगले मॉड्यूल में हम कुण्डली (जन्म कुण्डली) को समझेंगे  –  आपके जन्म क्षण का आकाशीय मानचित्र।",
     "mai": "अगला मॉड्यूलमे, हम सब कुंडली (जन्म कुंडली) केँ बुझब — ओ क्षणक आकाशीय नक्शा जखन अहाँक जन्म भेल छल.",
-    "mr": "In the next module, we'll understand the Kundali (birth chart) \\u2014 the celestial map of the moment you were born."
+    "mr": "पुढील मॉड्यूलमध्ये, आपण कुंडली (जन्मकुंडली) समजून घेऊ — तुमच्या जन्माच्या क्षणाचा स्वर्गीय नकाशा."
   }
 }

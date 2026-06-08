@@ -28,11 +28,11 @@
         "hi": "2.1 नवग्रह",
         "mai": "२.१ नव ग्रह",
         "mr": "2.1 नवग्रह",
-        "ta": "2.1 Nine Grahas",
-        "te": "2.1 Nine Grahas",
-        "bn": "2.1 Nine Grahas",
-        "kn": "2.1 Nine Grahas",
-        "gu": "2.1 Nine Grahas"
+        "ta": "2.1 நவ கிரகங்கள்",
+        "te": "2.1 తొమ్మిది గ్రహాలు",
+        "bn": "২.১ নয়টি গ্রহ",
+        "kn": "2.1 ನವ ಗ್ರಹಗಳು",
+        "gu": "૨.૧ નવ ગ્રહ"
       },
       "href": "/learn/modules/2-1"
     },
@@ -42,11 +42,11 @@
         "hi": "2.3 गरिमाएं",
         "mai": "२.३ गरिमा",
         "mr": "2.3 गरिमाएं",
-        "ta": "2.3 Dignities",
-        "te": "2.3 Dignities",
-        "bn": "2.3 Dignities",
-        "kn": "2.3 Dignities",
-        "gu": "2.3 Dignities"
+        "ta": "2.3 திண்மைகள்",
+        "te": "2.3 గ్రహ బలాలు",
+        "bn": "২.৩ বল",
+        "kn": "2.3 ಬಲಗಳು",
+        "gu": "૨.૩ બળ"
       },
       "href": "/learn/modules/2-3"
     }
@@ -60,11 +60,11 @@
         "hi": "पाराशर नैसर्गिक ग्रह मित्रता कैसे निकालते हैं (BPHS अ.3)?",
         "mai": "पराशर प्राकृतिक ग्रहक मित्रता कोना निकालैत छथि (बृहत् पराशर होरा शास्त्र अध्याय ३)?",
         "mr": "पाराशर नैसर्गिक ग्रह मित्रता कैसे निकालते हैं (BPHS अ.3)?",
-        "ta": "How does Parashara derive natural planetary friendships (BPHS Ch.3)?",
-        "te": "How does Parashara derive natural planetary friendships (BPHS Ch.3)?",
-        "bn": "How does Parashara derive natural planetary friendships (BPHS Ch.3)?",
-        "kn": "How does Parashara derive natural planetary friendships (BPHS Ch.3)?",
-        "gu": "How does Parashara derive natural planetary friendships (BPHS Ch.3)?"
+        "ta": "பராசரர் இயற்கையான கிரக நட்புகளை எவ்வாறு பெறுகிறார் (பிருஹத் பராசர ஹோரா சாஸ்திரம் அத்தியாயம் 3)?",
+        "te": "పరాశరుడు సహజ గ్రహ స్నేహాలను ఎలా పొందుతాడు (బృహత్ పరాశర హోరా శాస్త్రం అధ్యాయం 3)?",
+        "bn": "পরাশর কিভাবে নৈসর্গিক গ্রহ মৈত্রী নির্ণয় করেন (বৃহৎ পরাশর হোরা শাস্ত্র অধ্যায় ৩)?",
+        "kn": "ಪರಾಶರರು ನೈಸರ್ಗಿಕ ಗ್ರಹ ಮೈತ್ರಿಗಳನ್ನು ಹೇಗೆ ನಿಗದಿಪಡಿಸುತ್ತಾರೆ (ಬೃಹತ್ ಪರಾಶರ ಹೋರಾ ಶಾಸ್ತ್ರ ಅಧ್ಯಾಯ 3)?",
+        "gu": "પરાશર ગ્રહોની નૈસર્ગિક મિત્રતા કેવી રીતે તારવે છે (બૃહત્ પરાશર હોરા શાસ્ત્ર અધ્યાય ૩)?"
       },
       "options": [
         {
@@ -72,56 +72,56 @@
           "hi": "पुराण कथाओं पर आधारित",
           "mai": "पौराणिक कथाक आधार पर",
           "mr": "पुराण कथाओं पर आधारित",
-          "ta": "Based on mythology",
-          "te": "Based on mythology",
-          "bn": "Based on mythology",
-          "kn": "Based on mythology",
-          "gu": "Based on mythology"
+          "ta": "புராணங்களின் அடிப்படையில்",
+          "te": "పురాణాల ఆధారంగా",
+          "bn": "পৌরাণিক কাহিনীর উপর ভিত্তি করে",
+          "kn": "ಪುರಾಣಗಳ ಆಧಾರದ ಮೇಲೆ",
+          "gu": "પૌરાણિક કથાઓના આધારે"
         },
         {
           "en": "Lords of the 2nd, 4th, 5th, 8th, 9th, 12th signs from moolatrikona = friends",
           "hi": "मूलत्रिकोण से 2, 4, 5, 8, 9, 12वीं राशि स्वामी = मित्र",
           "mai": "मूलत्रिकोण सँ दोसर, चारिम, पाँचम, आठम, नवम, बारहम राशिक स्वामी = मित्र",
           "mr": "मूलत्रिकोण से 2, 4, 5, 8, 9, 12वीं राशि स्वामी = मित्र",
-          "ta": "Lords of the 2nd, 4th, 5th, 8th, 9th, 12th signs from moolatrikona = friends",
-          "te": "Lords of the 2nd, 4th, 5th, 8th, 9th, 12th signs from moolatrikona = friends",
-          "bn": "Lords of the 2nd, 4th, 5th, 8th, 9th, 12th signs from moolatrikona = friends",
-          "kn": "Lords of the 2nd, 4th, 5th, 8th, 9th, 12th signs from moolatrikona = friends",
-          "gu": "Lords of the 2nd, 4th, 5th, 8th, 9th, 12th signs from moolatrikona = friends"
+          "ta": "மூலத்திரிகோணத்தில் இருந்து 2, 4, 5, 8, 9, 12 ஆம் ராசிகளின் அதிபதிகள் = நண்பர்கள்",
+          "te": "మూలత్రికోణం నుండి 2వ, 4వ, 5వ, 8వ, 9వ, 12వ రాశుల అధిపతులు = స్నేహితులు",
+          "bn": "মূলত্রিকোণ থেকে দ্বিতীয়, চতুর্থ, পঞ্চম, অষ্টম, নবম, দ্বাদশ রাশির অধিপতিরা = মিত্র",
+          "kn": "ಮೂಲತ್ರಿಕೋಣದಿಂದ 2ನೇ, 4ನೇ, 5ನೇ, 8ನೇ, 9ನೇ, 12ನೇ ರಾಶಿಗಳ ಅಧಿಪತಿಗಳು = ಮಿತ್ರರು",
+          "gu": "મૂળત્રિકોણ રાશિથી ૨જા, ૪થા, ૫મા, ૮મા, ૯મા, ૧૨મા ભાવના સ્વામીઓ = મિત્રો"
         },
         {
           "en": "Based on proximity in the sky",
           "hi": "आकाश में निकटता पर आधारित",
           "mai": "आकाश मे निकटताक आधार पर",
           "mr": "आकाश में निकटता पर आधारित",
-          "ta": "Based on proximity in the sky",
-          "te": "Based on proximity in the sky",
-          "bn": "Based on proximity in the sky",
-          "kn": "Based on proximity in the sky",
-          "gu": "Based on proximity in the sky"
+          "ta": "வானத்தில் அருகாமையின் அடிப்படையில்",
+          "te": "ఆకాశంలో సామీప్యత ఆధారంగా",
+          "bn": "আকাশে নৈকট্যের উপর ভিত্তি করে",
+          "kn": "ಆಕಾಶದಲ್ಲಿನ ಸಾಮೀಪ್ಯದ ಆಧಾರದ ಮೇಲೆ",
+          "gu": "આકાશમાં નિકટતાના આધારે"
         },
         {
           "en": "Random assignment",
           "hi": "यादृच्छिक",
           "mai": "यादृच्छिक निर्धारण",
           "mr": "यादृच्छिक",
-          "ta": "Random assignment",
-          "te": "Random assignment",
-          "bn": "Random assignment",
-          "kn": "Random assignment",
-          "gu": "Random assignment"
+          "ta": "சீரற்ற ஒதுக்கீடு",
+          "te": "యాదృచ్ఛిక కేటాయింపు",
+          "bn": "এলোমেলোভাবে নির্ধারণ",
+          "kn": "ಯಾದೃಚ್ಛಿಕ ನಿಯೋಜನೆ",
+          "gu": "યાદૃચ્છિક સોંપણી"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "Parashara's method: From a planet's Moolatrikona sign, count the lords of the 2nd, 4th, 5th, 8th, 9th, and 12th signs. Those lords are its natural friends. Lords of the remaining signs (3rd, 6th, 7th, 10th, 11th) that are NOT friends are enemies. Those neither friend nor enemy are neutral. This is a mathematical derivation, not arbitrary.",
         "hi": "पाराशर विधि: ग्रह के मूलत्रिकोण से 2, 4, 5, 8, 9, 12वीं राशि स्वामी = मित्र। शेष (3, 6, 7, 10, 11) जो मित्र नहीं = शत्रु। न मित्र न शत्रु = सम।",
-        "ta": "Parashara's method: From a planet's Moolatrikona sign, count the lords of the 2nd, 4th, 5th, 8th, 9th, and 12th signs. Those lords are its natural friends. Lords of the remaining signs (3rd, 6th, 7th, 10th, 11th) that are NOT friends are enemies. Those neither friend nor enemy are neutral. This is a mathematical derivation, not arbitrary.",
-        "te": "Parashara's method: From a planet's Moolatrikona sign, count the lords of the 2nd, 4th, 5th, 8th, 9th, and 12th signs. Those lords are its natural friends. Lords of the remaining signs (3rd, 6th, 7th, 10th, 11th) that are NOT friends are enemies. Those neither friend nor enemy are neutral. This is a mathematical derivation, not arbitrary.",
-        "bn": "Parashara's method: From a planet's Moolatrikona sign, count the lords of the 2nd, 4th, 5th, 8th, 9th, and 12th signs. Those lords are its natural friends. Lords of the remaining signs (3rd, 6th, 7th, 10th, 11th) that are NOT friends are enemies. Those neither friend nor enemy are neutral. This is a mathematical derivation, not arbitrary.",
-        "kn": "Parashara's method: From a planet's Moolatrikona sign, count the lords of the 2nd, 4th, 5th, 8th, 9th, and 12th signs. Those lords are its natural friends. Lords of the remaining signs (3rd, 6th, 7th, 10th, 11th) that are NOT friends are enemies. Those neither friend nor enemy are neutral. This is a mathematical derivation, not arbitrary.",
+        "ta": "பராசரரின் முறை: ஒரு கிரகத்தின் மூலத்திரிகோண ராசியில் இருந்து, 2, 4, 5, 8, 9, மற்றும் 12 ஆம் ராசிகளின் அதிபதிகளைக் கணக்கிடுங்கள். அந்த அதிபதிகள் அதன் இயற்கையான நண்பர்கள். மீதமுள்ள ராசிகளின் (3, 6, 7, 10, 11) அதிபதிகள் நண்பர்கள் அல்லாதவர்கள் எதிரிகள். நண்பரும் அல்லாத, எதிரியும் அல்லாதவர்கள் நடுநிலையானவர்கள். இது ஒரு கணித வழித்தோன்றல், தன்னிச்சையானது அல்ல.",
+        "te": "పరాశరుని పద్ధతి: ఒక గ్రహం యొక్క మూలత్రికోణ రాశి నుండి, 2వ, 4వ, 5వ, 8వ, 9వ మరియు 12వ రాశుల అధిపతులను లెక్కించండి. ఆ అధిపతులు దాని సహజ స్నేహితులు. మిగిలిన రాశుల (3వ, 6వ, 7వ, 10వ, 11వ) అధిపతులు స్నేహితులు కానివారు శత్రువులు. స్నేహితులు లేదా శత్రువులు కానివారు తటస్థులు. ఇది గణితపరమైన ఉత్పాదన, యాదృచ్ఛికం కాదు.",
+        "bn": "পরাশরের পদ্ধতি: একটি গ্রহের মূলত্রিকোণ রাশি থেকে দ্বিতীয়, চতুর্থ, পঞ্চম, অষ্টম, নবম এবং দ্বাদশ রাশির অধিপতিদের গণনা করুন। সেই অধিপতিরা তার নৈসর্গিক মিত্র। বাকি রাশির (তৃতীয়, ষষ্ঠ, সপ্তম, দশম, একাদশ) যে অধিপতিরা মিত্র নয়, তারা শত্রু। যারা মিত্র বা শত্রু কোনোটাই নয়, তারা সম। এটি একটি গাণিতিক ব্যুৎপত্তি, স্বেচ্ছাচারী নয়।",
+        "kn": "ಪರಾಶರರ ವಿಧಾನ: ಒಂದು ಗ್ರಹದ ಮೂಲತ್ರಿಕೋಣ ರಾಶಿಯಿಂದ, 2ನೇ, 4ನೇ, 5ನೇ, 8ನೇ, 9ನೇ ಮತ್ತು 12ನೇ ರಾಶಿಗಳ ಅಧಿಪತಿಗಳನ್ನು ಎಣಿಸಿ. ಆ ಅಧಿಪತಿಗಳು ಅದರ ನೈಸರ್ಗಿಕ ಮಿತ್ರರು. ಉಳಿದ ರಾಶಿಗಳ (3ನೇ, 6ನೇ, 7ನೇ, 10ನೇ, 11ನೇ) ಅಧಿಪತಿಗಳು ಮಿತ್ರರಲ್ಲದಿದ್ದರೆ, ಅವರು ಶತ್ರುಗಳು. ಮಿತ್ರರೂ ಅಲ್ಲ, ಶತ್ರುಗಳೂ ಅಲ್ಲದವರು ಸಮ. ಇದು ಗಣಿತೀಯ ವ್ಯುತ್ಪತ್ತಿ, ಯಾದೃಚ್ಛಿಕವಲ್ಲ.",
         "mr": "पाराशर विधि: ग्रह के मूलत्रिकोण से 2, 4, 5, 8, 9, 12वीं राशि स्वामी = मित्र। शेष (3, 6, 7, 10, 11) जो मित्र नहीं = शत्रु। न मित्र न शत्रु = सम।",
-        "gu": "Parashara's method: From a planet's Moolatrikona sign, count the lords of the 2nd, 4th, 5th, 8th, 9th, and 12th signs. Those lords are its natural friends. Lords of the remaining signs (3rd, 6th, 7th, 10th, 11th) that are NOT friends are enemies. Those neither friend nor enemy are neutral. This is a mathematical derivation, not arbitrary.",
+        "gu": "પરાશરની પદ્ધતિ: ગ્રહની મૂળત્રિકોણ રાશિથી, ૨જા, ૪થા, ૫મા, ૮મા, ૯મા અને ૧૨મા ભાવના સ્વામીઓની ગણતરી કરો. તે સ્વામીઓ તેના નૈસર્ગિક મિત્રો છે. બાકીના ભાવના સ્વામીઓ (૩જા, ૬ઠા, ૭મા, ૧૦મા, ૧૧મા) જે મિત્રો નથી તે શત્રુઓ છે. જે ન તો મિત્ર કે ન તો શત્રુ છે તે સમ છે. આ ગાણિતિક તારવણી છે, મનસ્વી નથી.",
         "mai": "पराशरक विधि: कोनो ग्रहक मूलत्रिकोण राशि सँ, दोसर, चारिम, पाँचम, आठम, नवम आ बारहम राशिक स्वामी केँ गनू। ओ स्वामी सभ ओकर प्राकृतिक मित्र छथि। बाकी राशिक (तेसर, छठम, सातम्, दसम, एगारहम) स्वामी सभ जे मित्र नहि छथि, ओ शत्रु छथि। जे नहि मित्र छथि आ नहि शत्रु, ओ सम छथि। ई एकटा गणितीय व्युत्पत्ति अछि, मनमानी नहि।"
       },
       "classicalRef": "BPHS Ch.3 v.55"
@@ -134,11 +134,11 @@
         "hi": "सूर्य और शनि हैं:",
         "mai": "सूर्य आ शनि छथि:",
         "mr": "सूर्य और शनि हैं:",
-        "ta": "Sun and Saturn are:",
-        "te": "Sun and Saturn are:",
-        "bn": "Sun and Saturn are:",
-        "kn": "Sun and Saturn are:",
-        "gu": "Sun and Saturn are:"
+        "ta": "சூரியனும் சனியும்:",
+        "te": "సూర్యుడు మరియు శని:",
+        "bn": "রবি এবং শনি হল:",
+        "kn": "ಸೂರ್ಯ ಮತ್ತು ಶನಿ ಗ್ರಹಗಳು:",
+        "gu": "સૂર્ય અને શનિ છે:"
       },
       "options": [
         {
@@ -146,22 +146,22 @@
           "hi": "नैसर्गिक मित्र",
           "mai": "प्राकृतिक मित्र",
           "mr": "नैसर्गिक मित्र",
-          "ta": "Natural friends",
-          "te": "Natural friends",
-          "bn": "Natural friends",
-          "kn": "Natural friends",
-          "gu": "Natural friends"
+          "ta": "இயற்கையான நண்பர்கள்",
+          "te": "సహజ స్నేహితులు",
+          "bn": "নৈসর্গিক মিত্র",
+          "kn": "ನೈಸರ್ಗಿಕ ಮಿತ್ರರು",
+          "gu": "નૈસર્ગિક મિત્રો"
         },
         {
           "en": "Natural enemies",
           "hi": "नैसर्गिक शत्रु",
           "mai": "प्राकृतिक शत्रु",
           "mr": "नैसर्गिक शत्रु",
-          "ta": "Natural enemies",
-          "te": "Natural enemies",
-          "bn": "Natural enemies",
-          "kn": "Natural enemies",
-          "gu": "Natural enemies"
+          "ta": "இயற்கையான எதிரிகள்",
+          "te": "సహజ శత్రువులు",
+          "bn": "নৈসর্গিক শত্রু",
+          "kn": "ನೈಸರ್ಗಿಕ ಶತ್ರುಗಳು",
+          "gu": "નૈસર્ગિક શત્રુઓ"
         },
         {
           "en": "Neutral",
@@ -179,23 +179,23 @@
           "hi": "कुण्डली पर निर्भर",
           "mai": "ई कुंडली पर निर्भर करैत अछि",
           "mr": "कुण्डली पर निर्भर",
-          "ta": "It depends on the chart",
-          "te": "It depends on the chart",
-          "bn": "It depends on the chart",
-          "kn": "It depends on the chart",
-          "gu": "It depends on the chart"
+          "ta": "அது ஜாதகத்தைப் பொறுத்தது",
+          "te": "ఇది జాతకంపై ఆధారపడి ఉంటుంది",
+          "bn": "এটি কুন্ডলীর উপর নির্ভর করে",
+          "kn": "ಇದು ಜಾತಕದ ಮೇಲೆ ಅವಲಂಬಿತವಾಗಿರುತ್ತದೆ",
+          "gu": "તે કુંડળી પર આધાર રાખે છે"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "Sun and Saturn are natural enemies. Mythologically, Saturn (Shani) is the Sun's son but was rejected at birth due to his dark appearance  –  creating eternal enmity. Astronomically, their natures are opposite: Sun = authority/ego, Saturn = democracy/humility. When they conjunct or aspect in a chart, this tension manifests as father-son conflicts, authority vs rebellion dynamics.",
         "hi": "सूर्य और शनि नैसर्गिक शत्रु हैं। शनि सूर्य का पुत्र है लेकिन जन्म पर अस्वीकृत  –  शाश्वत शत्रुता।",
-        "ta": "Sun and Saturn are natural enemies. Mythologically, Saturn (Shani) is the Sun's son but was rejected at birth due to his dark appearance  –  creating eternal enmity. Astronomically, their natures are opposite: Sun = authority/ego, Saturn = democracy/humility. When they conjunct or aspect in a chart, this tension manifests as father-son conflicts, authority vs rebellion dynamics.",
-        "te": "Sun and Saturn are natural enemies. Mythologically, Saturn (Shani) is the Sun's son but was rejected at birth due to his dark appearance  –  creating eternal enmity. Astronomically, their natures are opposite: Sun = authority/ego, Saturn = democracy/humility. When they conjunct or aspect in a chart, this tension manifests as father-son conflicts, authority vs rebellion dynamics.",
-        "bn": "Sun and Saturn are natural enemies. Mythologically, Saturn (Shani) is the Sun's son but was rejected at birth due to his dark appearance  –  creating eternal enmity. Astronomically, their natures are opposite: Sun = authority/ego, Saturn = democracy/humility. When they conjunct or aspect in a chart, this tension manifests as father-son conflicts, authority vs rebellion dynamics.",
-        "kn": "Sun and Saturn are natural enemies. Mythologically, Saturn (Shani) is the Sun's son but was rejected at birth due to his dark appearance  –  creating eternal enmity. Astronomically, their natures are opposite: Sun = authority/ego, Saturn = democracy/humility. When they conjunct or aspect in a chart, this tension manifests as father-son conflicts, authority vs rebellion dynamics.",
+        "ta": "சூரியனும் சனியும் இயற்கையான எதிரிகள். புராணப்படி, சனி (சனி பகவான்) சூரியனின் மகன், ஆனால் அவரது இருண்ட தோற்றம் காரணமாக பிறக்கும்போதே நிராகரிக்கப்பட்டார் – இது நிரந்தர பகையை உருவாக்கியது. வானியல் ரீதியாக, அவற்றின் இயல்புகள் எதிர்மாறானவை: சூரியன் = அதிகாரம்/அகங்காரம், சனி = ஜனநாயகம்/தாழ்மை. அவை ஒரு ஜாதகத்தில் இணைந்தாலோ அல்லது பார்வை செய்தாலோ, இந்த பதற்றம் தந்தை-மகன் மோதல்கள், அதிகாரம் மற்றும் கிளர்ச்சி இயக்கவியலாக வெளிப்படுகிறது.",
+        "te": "సూర్యుడు మరియు శని సహజ శత్రువులు. పురాణాల ప్రకారం, శని (శని) సూర్యుని కుమారుడు, కానీ అతని చీకటి రూపం కారణంగా పుట్టినప్పుడు తిరస్కరించబడ్డాడు – ఇది శాశ్వత శత్రుత్వాన్ని సృష్టించింది. ఖగోళపరంగా, వారి స్వభావాలు వ్యతిరేకం: సూర్యుడు = అధికారం/అహం, శని = ప్రజాస్వామ్యం/వినయం. వారు జాతకంలో కలిసినప్పుడు లేదా దృష్టి సారించినప్పుడు, ఈ ఉద్రిక్తత తండ్రి-కొడుకుల సంఘర్షణలు, అధికారం వర్సెస్ తిరుగుబాటు డైనమిక్స్‌గా వ్యక్తమవుతుంది.",
+        "bn": "রবি এবং শনি নৈসর্গিক শত্রু। পৌরাণিকভাবে, শনি (শনি) হল রবির পুত্র কিন্তু তার কালো চেহারার কারণে জন্মের সময় তাকে প্রত্যাখ্যান করা হয়েছিল – যা চিরন্তন শত্রুতা সৃষ্টি করে। জ্যোতির্বিজ্ঞানের দিক থেকে, তাদের প্রকৃতি বিপরীত: রবি = কর্তৃত্ব/অহংকার, শনি = গণতন্ত্র/নম্রতা। যখন তারা একটি কুন্ডলীতে যুক্ত বা দৃষ্টি দেয়, তখন এই উত্তেজনা পিতা-পুত্রের দ্বন্দ্ব, কর্তৃত্ব বনাম বিদ্রোহের গতিশীলতা হিসাবে প্রকাশ পায়।",
+        "kn": "ಸೂರ್ಯ ಮತ್ತು ಶನಿ ನೈಸರ್ಗಿಕ ಶತ್ರುಗಳು. ಪುರಾಣಗಳ ಪ್ರಕಾರ, ಶನಿ (ಸೂರ್ಯನ ಮಗ) ತನ್ನ ಕಪ್ಪು ರೂಪದಿಂದಾಗಿ ಜನನದ ಸಮಯದಲ್ಲಿ ತಿರಸ್ಕರಿಸಲ್ಪಟ್ಟನು – ಶಾಶ್ವತ ವೈರತ್ವವನ್ನು ಸೃಷ್ಟಿಸಿತು. ಖಗೋಳೀಯವಾಗಿ, ಅವುಗಳ ಸ್ವಭಾವಗಳು ವಿರುದ್ಧವಾಗಿವೆ: ಸೂರ್ಯ = ಅಧಿಕಾರ/ಅಹಂ, ಶನಿ = ಪ್ರಜಾಪ್ರಭುತ್ವ/ವಿನಯ. ಅವು ಜಾತಕದಲ್ಲಿ ಸಂಯೋಗಗೊಂಡಾಗ ಅಥವಾ ದೃಷ್ಟಿ ಮಾಡಿದಾಗ, ಈ ಉದ್ವಿಗ್ನತೆಯು ತಂದೆ-ಮಗನ ಸಂಘರ್ಷಗಳು, ಅಧಿಕಾರ ಮತ್ತು ಬಂಡಾಯದ ಡೈನಾಮಿಕ್ಸ್ ಆಗಿ ಪ್ರಕಟವಾಗುತ್ತದೆ.",
         "mr": "सूर्य और शनि नैसर्गिक शत्रु हैं। शनि सूर्य का पुत्र है लेकिन जन्म पर अस्वीकृत  –  शाश्वत शत्रुता।",
-        "gu": "Sun and Saturn are natural enemies. Mythologically, Saturn (Shani) is the Sun's son but was rejected at birth due to his dark appearance  –  creating eternal enmity. Astronomically, their natures are opposite: Sun = authority/ego, Saturn = democracy/humility. When they conjunct or aspect in a chart, this tension manifests as father-son conflicts, authority vs rebellion dynamics.",
+        "gu": "સૂર્ય અને શનિ નૈસર્ગિક શત્રુઓ છે. પૌરાણિક રીતે, શનિ (શનિ) સૂર્યનો પુત્ર છે પરંતુ તેના શ્યામ દેખાવને કારણે જન્મ સમયે તેનો અસ્વીકાર કરવામાં આવ્યો હતો  –  જેનાથી શાશ્વત શત્રુતા ઊભી થઈ. ખગોળશાસ્ત્રીય રીતે, તેમના સ્વભાવ વિરુદ્ધ છે: સૂર્ય = સત્તા/અહંકાર, શનિ = લોકશાહી/નમ્રતા. જ્યારે તેઓ કુંડળીમાં યુતિ કરે છે અથવા દ્રષ્ટિ કરે છે, ત્યારે આ તણાવ પિતા-પુત્રના સંઘર્ષો, સત્તા વિરુદ્ધ બળવાના ગતિશીલતા તરીકે પ્રગટ થાય છે.",
         "mai": "सूर्य आ शनि प्राकृतिक शत्रु छथि। पौराणिक रूप सँ, शनि सूर्यक पुत्र छथि मुदा अपन कारी रूपक कारण जन्मक समय अस्वीकृत भेल छलाह – जे शाश्वत शत्रुता उत्पन्न करैत अछि। खगोलीय रूप सँ, हुनकर स्वभाव विपरीत अछि: सूर्य = अधिकार/अहंकार, शनि = लोकतंत्र/विनम्रता। जखन ओ कुंडली मे युति करैत छथि वा दृष्टि दैत छथि, तखन ई तनाव पिता-पुत्रक संघर्ष, अधिकार बनाम विद्रोहक गतिशीलताक रूप मे प्रकट होइत अछि।"
       },
       "classicalRef": "BPHS Ch.3"
@@ -208,11 +208,11 @@
         "hi": "ग्रहों के बीच तात्कालिक मित्रता विशिष्ट जन्म कुण्डली में उनकी स्थिति पर निर्भर करती है।",
         "mai": "ग्रह सभक बीच तात्कालिक मित्रता एकटा विशिष्ट जन्म कुंडली मे हुनकर स्थिति पर निर्भर करैत अछि।",
         "mr": "ग्रहों के बीच तात्कालिक मित्रता विशिष्ट जन्म कुण्डली में उनकी स्थिति पर निर्भर करती है।",
-        "ta": "Temporary friendship between planets depends on their positions in a specific birth chart.",
-        "te": "Temporary friendship between planets depends on their positions in a specific birth chart.",
-        "bn": "Temporary friendship between planets depends on their positions in a specific birth chart.",
-        "kn": "Temporary friendship between planets depends on their positions in a specific birth chart.",
-        "gu": "Temporary friendship between planets depends on their positions in a specific birth chart."
+        "ta": "கிரகங்களுக்கு இடையேயான தற்காலிக நட்பு ஒரு குறிப்பிட்ட ஜாதகத்தில் அவற்றின் நிலைகளைப் பொறுத்தது.",
+        "te": "గ్రహాల మధ్య తాత్కాలిక స్నేహం ఒక నిర్దిష్ట జన్మ జాతకంలో వాటి స్థానాలపై ఆధారపడి ఉంటుంది.",
+        "bn": "গ্রহদের মধ্যে তাৎকালিক মৈত্রী একটি নির্দিষ্ট জন্মকুন্ডলীতে তাদের অবস্থানের উপর নির্ভর করে।",
+        "kn": "ಗ್ರಹಗಳ ನಡುವಿನ ತಾತ್ಕಾಲಿಕ ಮೈತ್ರಿ ಒಂದು ನಿರ್ದಿಷ್ಟ ಜನ್ಮ ಜಾತಕದಲ್ಲಿ ಅವುಗಳ ಸ್ಥಾನಗಳ ಮೇಲೆ ಅವಲಂಬಿತವಾಗಿರುತ್ತದೆ.",
+        "gu": "ગ્રહો વચ્ચેની તાત્કાલિક મિત્રતા ચોક્કસ જન્મ કુંડળીમાં તેમની સ્થિતિ પર આધાર રાખે છે."
       },
       "correctAnswer": true,
       "explanation": {
@@ -220,11 +220,11 @@
         "hi": "सही। तात्कालिक मित्रता कुण्डली-विशिष्ट है। किसी ग्रह से 2, 3, 4, 10, 11, 12वें भाव में ग्रह = तात्कालिक मित्र। 1, 5, 6, 7, 8, 9 = तात्कालिक शत्रु।",
         "mai": "सही। तात्कालिक मित्रता कुंडली-विशिष्ट होइत अछि। कोनो दोसर ग्रह सँ दोसर, तेसर, चारिम, दसम, एगारहम वा बारहम भाव मे रहल कोनो ग्रह ओकर तात्कालिक मित्र बनि जाइत अछि। जे पहिल, पाँचम, छठम, सातम्, आठम वा नवम भाव मे छथि, ओ तात्कालिक शत्रु छथि। ई प्रत्येक कुंडलीक संग बदलैत अछि।",
         "mr": "सही। तात्कालिक मित्रता कुण्डली-विशिष्ट है। किसी ग्रह से 2, 3, 4, 10, 11, 12वें भाव में ग्रह = तात्कालिक मित्र। 1, 5, 6, 7, 8, 9 = तात्कालिक शत्रु।",
-        "ta": "Correct. Tatkalika (temporary) friendship is chart-specific. Any planet in the 2nd, 3rd, 4th, 10th, 11th, or 12th house FROM another planet becomes its temporary friend. Those in the 1st, 5th, 6th, 7th, 8th, or 9th house are temporary enemies. This changes with every chart.",
-        "te": "Correct. Tatkalika (temporary) friendship is chart-specific. Any planet in the 2nd, 3rd, 4th, 10th, 11th, or 12th house FROM another planet becomes its temporary friend. Those in the 1st, 5th, 6th, 7th, 8th, or 9th house are temporary enemies. This changes with every chart.",
-        "bn": "Correct. Tatkalika (temporary) friendship is chart-specific. Any planet in the 2nd, 3rd, 4th, 10th, 11th, or 12th house FROM another planet becomes its temporary friend. Those in the 1st, 5th, 6th, 7th, 8th, or 9th house are temporary enemies. This changes with every chart.",
-        "kn": "Correct. Tatkalika (temporary) friendship is chart-specific. Any planet in the 2nd, 3rd, 4th, 10th, 11th, or 12th house FROM another planet becomes its temporary friend. Those in the 1st, 5th, 6th, 7th, 8th, or 9th house are temporary enemies. This changes with every chart.",
-        "gu": "Correct. Tatkalika (temporary) friendship is chart-specific. Any planet in the 2nd, 3rd, 4th, 10th, 11th, or 12th house FROM another planet becomes its temporary friend. Those in the 1st, 5th, 6th, 7th, 8th, or 9th house are temporary enemies. This changes with every chart."
+        "ta": "சரியானது. தத்காலிகா (தற்காலிக) நட்பு ஜாதகத்திற்கு குறிப்பிட்டது. ஒரு கிரகத்தில் இருந்து 2, 3, 4, 10, 11, அல்லது 12 ஆம் பாவத்தில் உள்ள எந்த கிரகமும் அதன் தற்காலிக நண்பராகிறது. 1, 5, 6, 7, 8, அல்லது 9 ஆம் பாவத்தில் உள்ளவை தற்காலிக எதிரிகள். இது ஒவ்வொரு ஜாதகத்திற்கும் மாறுபடும்.",
+        "te": "సరియైనది. తాత్కాలిక (తాత్కాలిక) స్నేహం జాతక-నిర్దిష్టమైనది. మరొక గ్రహం నుండి 2వ, 3వ, 4వ, 10వ, 11వ లేదా 12వ భావంలో ఉన్న ఏదైనా గ్రహం దాని తాత్కాలిక స్నేహితుడు అవుతుంది. 1వ, 5వ, 6వ, 7వ, 8వ లేదా 9వ భావంలో ఉన్నవి తాత్కాలిక శత్రువులు. ఇది ప్రతి జాతకంతో మారుతుంది.",
+        "bn": "সঠিক। তাৎকালিক মৈত্রী কুন্ডলী-নির্দিষ্ট। অন্য একটি গ্রহ থেকে দ্বিতীয়, তৃতীয়, চতুর্থ, দশম, একাদশ বা দ্বাদশ ভাবে অবস্থিত যে কোনো গ্রহ তার তাৎকালিক মিত্র হয়। যারা প্রথম, পঞ্চম, ষষ্ঠ, সপ্তম, অষ্টম বা নবম ভাবে থাকে তারা তাৎকালিক শত্রু। এটি প্রতিটি কুন্ডলীর সাথে পরিবর্তিত হয়।",
+        "kn": "ಸರಿ. ತಾತ್ಕಾಲಿಕ ಮೈತ್ರಿಯು ಜಾತಕ-ನಿರ್ದಿಷ್ಟವಾಗಿದೆ. ಇನ್ನೊಂದು ಗ್ರಹದಿಂದ 2ನೇ, 3ನೇ, 4ನೇ, 10ನೇ, 11ನೇ ಅಥವಾ 12ನೇ ಭಾವದಲ್ಲಿರುವ ಯಾವುದೇ ಗ್ರಹವು ಅದರ ತಾತ್ಕಾಲಿಕ ಮಿತ್ರವಾಗುತ್ತದೆ. 1ನೇ, 5ನೇ, 6ನೇ, 7ನೇ, 8ನೇ ಅಥವಾ 9ನೇ ಭಾವದಲ್ಲಿರುವ ಗ್ರಹಗಳು ತಾತ್ಕಾಲಿಕ ಶತ್ರುಗಳಾಗಿವೆ. ಇದು ಪ್ರತಿ ಜಾತಕದೊಂದಿಗೆ ಬದಲಾಗುತ್ತದೆ.",
+        "gu": "સાચું. તાત્કાલિક (અસ્થાયી) મિત્રતા કુંડળી-વિશિષ્ટ હોય છે. અન્ય ગ્રહથી ૨જા, ૩જા, ૪થા, ૧૦મા, ૧૧મા અથવા ૧૨મા ભાવમાં રહેલો કોઈપણ ગ્રહ તેનો તાત્કાલિક મિત્ર બને છે. જેઓ ૧લા, ૫મા, ૬ઠા, ૭મા, ૮મા અથવા ૯મા ભાવમાં હોય છે તે તાત્કાલિક શત્રુઓ હોય છે. આ દરેક કુંડળી સાથે બદલાય છે."
       },
       "classicalRef": "BPHS Ch.3 v.56"
     },
@@ -236,11 +236,11 @@
         "hi": "यदि दो ग्रह नैसर्गिक मित्र भी हैं और तात्कालिक मित्र भी, तो यौगिक संबंध है:",
         "mai": "जँ दूटा ग्रह प्राकृतिक मित्र आ तात्कालिक मित्र दुनू छथि, तखन संयुक्त संबंध अछि:",
         "mr": "यदि दो ग्रह नैसर्गिक मित्र भी हैं और तात्कालिक मित्र भी, तो यौगिक संबंध है:",
-        "ta": "If two planets are natural friends AND temporary friends, the compound relationship is:",
-        "te": "If two planets are natural friends AND temporary friends, the compound relationship is:",
-        "bn": "If two planets are natural friends AND temporary friends, the compound relationship is:",
-        "kn": "If two planets are natural friends AND temporary friends, the compound relationship is:",
-        "gu": "If two planets are natural friends AND temporary friends, the compound relationship is:"
+        "ta": "இரண்டு கிரகங்கள் இயற்கையான நண்பர்களாகவும் தற்காலிக நண்பர்களாகவும் இருந்தால், கூட்டு உறவு:",
+        "te": "రెండు గ్రహాలు సహజ స్నేహితులు మరియు తాత్కాలిక స్నేహితులు అయితే, సంయుక్త సంబంధం:",
+        "bn": "যদি দুটি গ্রহ নৈসর্গিক মিত্র এবং তাৎকালিক মিত্র উভয়ই হয়, তাহলে যৌগিক সম্পর্কটি হল:",
+        "kn": "ಎರಡು ಗ್ರಹಗಳು ನೈಸರ್ಗಿಕ ಮಿತ್ರರು ಮತ್ತು ತಾತ್ಕಾಲಿಕ ಮಿತ್ರರು ಆಗಿದ್ದರೆ, ಸಂಯುಕ್ತ ಸಂಬಂಧವು ಹೀಗಿರುತ್ತದೆ:",
+        "gu": "જો બે ગ્રહો નૈસર્ગિક મિત્રો અને તાત્કાલિક મિત્રો હોય, તો સંયુક્ત સંબંધ છે:"
       },
       "options": [
         {
@@ -248,44 +248,44 @@
           "hi": "मित्र",
           "mai": "मित्र (दोस्त)",
           "mr": "मित्र",
-          "ta": "Mitra (Friend)",
-          "te": "Mitra (Friend)",
-          "bn": "Mitra (Friend)",
-          "kn": "Mitra (Friend)",
-          "gu": "Mitra (Friend)"
+          "ta": "மித்ரா (நண்பர்)",
+          "te": "మిత్ర (స్నేహితుడు)",
+          "bn": "মিত্র (বন্ধু)",
+          "kn": "ಮಿತ್ರ (ಸ್ನೇಹಿತ)",
+          "gu": "મિત્ર (મિત્ર)"
         },
         {
           "en": "Adhimitra (Great Friend)",
           "hi": "अधिमित्र (परम मित्र)",
           "mai": "अधिमित्र (महान मित्र)",
           "mr": "अधिमित्र (परम मित्र)",
-          "ta": "Adhimitra (Great Friend)",
-          "te": "Adhimitra (Great Friend)",
-          "bn": "Adhimitra (Great Friend)",
-          "kn": "Adhimitra (Great Friend)",
-          "gu": "Adhimitra (Great Friend)"
+          "ta": "அதிமித்ரா (மிகப்பெரிய நண்பர்)",
+          "te": "అధిమిత్ర (మహా స్నేహితుడు)",
+          "bn": "অধিমিত্র (পরম বন্ধু)",
+          "kn": "ಅಧಿಮಿತ್ರ (ಮಹಾ ಮಿತ್ರ)",
+          "gu": "અધિમિત્ર (પરમ મિત્ર)"
         },
         {
           "en": "Sama (Neutral)",
           "hi": "सम (तटस्थ)",
           "mai": "सम (उदासीन)",
           "mr": "सम (तटस्थ)",
-          "ta": "Sama (Neutral)",
-          "te": "Sama (Neutral)",
-          "bn": "Sama (Neutral)",
-          "kn": "Sama (Neutral)",
-          "gu": "Sama (Neutral)"
+          "ta": "சம (நடுநிலை)",
+          "te": "సమ (తటస్థ)",
+          "bn": "সম (নিরপেক্ষ)",
+          "kn": "ಸಮ (ತಟಸ್ಥ)",
+          "gu": "સમ (તટસ્થ)"
         },
         {
           "en": "Shatru (Enemy)",
           "hi": "शत्रु",
           "mai": "शत्रु (दुश्मन)",
           "mr": "शत्रु",
-          "ta": "Shatru (Enemy)",
-          "te": "Shatru (Enemy)",
-          "bn": "Shatru (Enemy)",
-          "kn": "Shatru (Enemy)",
-          "gu": "Shatru (Enemy)"
+          "ta": "சத்ரு (எதிரி)",
+          "te": "శత్రు (శత్రువు)",
+          "bn": "শত্রু (শত্রু)",
+          "kn": "ಶತ್ರು (ವೈರಿ)",
+          "gu": "શત્રુ (શત્રુ)"
         }
       ],
       "correctAnswer": 1,
@@ -294,11 +294,11 @@
         "hi": "5-स्तरीय यौगिक संबंध: नैसर्गिक मित्र + तात्कालिक मित्र = अधिमित्र। नैसर्गिक मित्र + तात्कालिक शत्रु = सम। नैसर्गिक शत्रु + तात्कालिक मित्र = सम।",
         "mai": "५-स्तरीय संयुक्त संबंध: प्राकृतिक मित्र + तात्कालिक मित्र = अधिमित्र (महान मित्र)। प्राकृतिक मित्र + तात्कालिक शत्रु = सम (तटस्थ)। प्राकृतिक शत्रु + तात्कालिक मित्र = सम। प्राकृतिक शत्रु + तात्कालिक शत्रु = अधिशत्रु (महान शत्रु)। प्राकृतिक सम + तात्कालिक मित्र = मित्र। प्राकृतिक सम + तात्कालिक शत्रु = शत्रु।",
         "mr": "5-स्तरीय यौगिक संबंध: नैसर्गिक मित्र + तात्कालिक मित्र = अधिमित्र। नैसर्गिक मित्र + तात्कालिक शत्रु = सम। नैसर्गिक शत्रु + तात्कालिक मित्र = सम।",
-        "ta": "The 5-level compound relationship: Natural Friend + Temporary Friend = Adhimitra (Great Friend). Natural Friend + Temporary Enemy = Sama (Neutral). Natural Enemy + Temporary Friend = Sama. Natural Enemy + Temporary Enemy = Adhishatru (Great Enemy). Natural Neutral + Temporary Friend = Mitra. Natural Neutral + Temporary Enemy = Shatru.",
-        "te": "The 5-level compound relationship: Natural Friend + Temporary Friend = Adhimitra (Great Friend). Natural Friend + Temporary Enemy = Sama (Neutral). Natural Enemy + Temporary Friend = Sama. Natural Enemy + Temporary Enemy = Adhishatru (Great Enemy). Natural Neutral + Temporary Friend = Mitra. Natural Neutral + Temporary Enemy = Shatru.",
-        "bn": "The 5-level compound relationship: Natural Friend + Temporary Friend = Adhimitra (Great Friend). Natural Friend + Temporary Enemy = Sama (Neutral). Natural Enemy + Temporary Friend = Sama. Natural Enemy + Temporary Enemy = Adhishatru (Great Enemy). Natural Neutral + Temporary Friend = Mitra. Natural Neutral + Temporary Enemy = Shatru.",
-        "kn": "The 5-level compound relationship: Natural Friend + Temporary Friend = Adhimitra (Great Friend). Natural Friend + Temporary Enemy = Sama (Neutral). Natural Enemy + Temporary Friend = Sama. Natural Enemy + Temporary Enemy = Adhishatru (Great Enemy). Natural Neutral + Temporary Friend = Mitra. Natural Neutral + Temporary Enemy = Shatru.",
-        "gu": "The 5-level compound relationship: Natural Friend + Temporary Friend = Adhimitra (Great Friend). Natural Friend + Temporary Enemy = Sama (Neutral). Natural Enemy + Temporary Friend = Sama. Natural Enemy + Temporary Enemy = Adhishatru (Great Enemy). Natural Neutral + Temporary Friend = Mitra. Natural Neutral + Temporary Enemy = Shatru."
+        "ta": "5-நிலை கூட்டு உறவு: இயற்கையான நண்பர் + தற்காலிக நண்பர் = அதிமித்ரா (மிகப்பெரிய நண்பர்). இயற்கையான நண்பர் + தற்காலிக எதிரி = சம (நடுநிலை). இயற்கையான எதிரி + தற்காலிக நண்பர் = சம. இயற்கையான எதிரி + தற்காலிக எதிரி = அதிசத்ரு (மிகப்பெரிய எதிரி). இயற்கையான நடுநிலை + தற்காலிக நண்பர் = மித்ரா. இயற்கையான நடுநிலை + தற்காலிக எதிரி = சத்ரு.",
+        "te": "5-స్థాయి సంయుక్త సంబంధం: సహజ స్నేహితుడు + తాత్కాలిక స్నేహితుడు = అధిమిత్ర (మహా స్నేహితుడు). సహజ స్నేహితుడు + తాత్కాలిక శత్రువు = సమ (తటస్థ). సహజ శత్రువు + తాత్కాలిక స్నేహితుడు = సమ. సహజ శత్రువు + తాత్కాలిక శత్రువు = అధిశత్రు (మహా శత్రువు). సహజ తటస్థ + తాత్కాలిక స్నేహితుడు = మిత్ర. సహజ తటస్థ + తాత్కాలిక శత్రువు = శత్రు.",
+        "bn": "৫-স্তরের যৌগিক সম্পর্ক: নৈসর্গিক মিত্র + তাৎকালিক মিত্র = অধিমিত্র (পরম বন্ধু)। নৈসর্গিক মিত্র + তাৎকালিক শত্রু = সম (নিরপেক্ষ)। নৈসর্গিক শত্রু + তাৎকালিক মিত্র = সম। নৈসর্গিক শত্রু + তাৎকালিক শত্রু = অধিশত্রু (পরম শত্রু)। নৈসর্গিক সম + তাৎকালিক মিত্র = মিত্র। নৈসর্গিক সম + তাৎকালিক শত্রু = শত্রু।",
+        "kn": "5-ಹಂತದ ಸಂಯುಕ್ತ ಸಂಬಂಧ: ನೈಸರ್ಗಿಕ ಮಿತ್ರ + ತಾತ್ಕಾಲಿಕ ಮಿತ್ರ = ಅಧಿಮಿತ್ರ (ಮಹಾ ಮಿತ್ರ). ನೈಸರ್ಗಿಕ ಮಿತ್ರ + ತಾತ್ಕಾಲಿಕ ಶತ್ರು = ಸಮ (ತಟಸ್ಥ). ನೈಸರ್ಗಿಕ ಶತ್ರು + ತಾತ್ಕಾಲಿಕ ಮಿತ್ರ = ಸಮ. ನೈಸರ್ಗಿಕ ಶತ್ರು + ತಾತ್ಕಾಲಿಕ ಶತ್ರು = ಅಧಿಶತ್ರು (ಮಹಾ ಶತ್ರು). ನೈಸರ್ಗಿಕ ಸಮ + ತಾತ್ಕಾಲಿಕ ಮಿತ್ರ = ಮಿತ್ರ. ನೈಸರ್ಗಿಕ ಸಮ + ತಾತ್ಕಾಲಿಕ ಶತ್ರು = ಶತ್ರು.",
+        "gu": "૫-સ્તરીય સંયુક્ત સંબંધ: નૈસર્ગિક મિત્ર + તાત્કાલિક મિત્ર = અધિમિત્ર (પરમ મિત્ર). નૈસર્ગિક મિત્ર + તાત્કાલિક શત્રુ = સમ (તટસ્થ). નૈસર્ગિક શત્રુ + તાત્કાલિક મિત્ર = સમ. નૈસર્ગિક શત્રુ + તાત્કાલિક શત્રુ = અધિશત્રુ (પરમ શત્રુ). નૈસર્ગિક સમ + તાત્કાલિક મિત્ર = મિત્ર. નૈસર્ગિક સમ + તાત્કાલિક શત્રુ = શત્રુ."
       },
       "classicalRef": "BPHS Ch.3 v.57"
     },
@@ -310,11 +310,11 @@
         "hi": "कुण्डली पठन में मित्रता सारणी क्यों महत्वपूर्ण है?",
         "mai": "मित्रता मैट्रिक्स कुंडली पढ़बाक लेल किए महत्वपूर्ण अछि?",
         "mr": "कुण्डली पठन में मित्रता सारणी क्यों महत्वपूर्ण है?",
-        "ta": "Why does the friendship matrix matter for chart reading?",
-        "te": "Why does the friendship matrix matter for chart reading?",
-        "bn": "Why does the friendship matrix matter for chart reading?",
-        "kn": "Why does the friendship matrix matter for chart reading?",
-        "gu": "Why does the friendship matrix matter for chart reading?"
+        "ta": "ஜாதகப் படிப்புக்கு நட்பு அணி ஏன் முக்கியமானது?",
+        "te": "జాతక పఠనానికి స్నేహ మాత్రిక ఎందుకు ముఖ్యమైనది?",
+        "bn": "কুন্ডলী পাঠের জন্য মৈত্রী ম্যাট্রিক্স কেন গুরুত্বপূর্ণ?",
+        "kn": "ಜಾತಕ ಓದುವಿಕೆಗೆ ಮೈತ್ರಿ ಮ್ಯಾಟ್ರಿಕ್ಸ್ ಏಕೆ ಮುಖ್ಯ?",
+        "gu": "કુંડળી વાંચન માટે મિત્રતા મેટ્રિક્સ શા માટે મહત્વનું છે?"
       },
       "options": [
         {
@@ -322,21 +322,21 @@
           "hi": "यह ग्रहों का रंग निर्धारित करती है",
           "mai": "ई ग्रह सभक रंग निर्धारित करैत अछि",
           "mr": "यह ग्रहों का रंग निर्धारित करती है",
-          "ta": "It determines the color of planets",
-          "te": "It determines the color of planets",
-          "bn": "It determines the color of planets",
-          "kn": "It determines the color of planets",
-          "gu": "It determines the color of planets"
+          "ta": "இது கிரகங்களின் நிறத்தை தீர்மானிக்கிறது",
+          "te": "ఇది గ్రహాల రంగును నిర్ణయిస్తుంది",
+          "bn": "এটি গ্রহদের রঙ নির্ধারণ করে",
+          "kn": "ಇದು ಗ್ರಹಗಳ ಬಣ್ಣವನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ",
+          "gu": "તે ગ્રહોનો રંગ નક્કી કરે છે"
         },
         {
           "en": "A planet in a friend's sign is strong; in an enemy's sign it's weak",
           "hi": "ग्रह मित्र राशि में बलवान; शत्रु राशि में दुर्बल",
-          "ta": "A planet in a friend's sign is strong; in an enemy's sign it's weak",
-          "te": "A planet in a friend's sign is strong; in an enemy's sign it's weak",
-          "bn": "A planet in a friend's sign is strong; in an enemy's sign it's weak",
-          "kn": "A planet in a friend's sign is strong; in an enemy's sign it's weak",
+          "ta": "நண்பரின் ராசியில் உள்ள கிரகம் பலமானது; எதிரியின் ராசியில் அது பலவீனமானது",
+          "te": "స్నేహితుని రాశిలో ఉన్న గ్రహం బలంగా ఉంటుంది; శత్రువు రాశిలో అది బలహీనంగా ఉంటుంది",
+          "bn": "একটি গ্রহ মিত্রের রাশিতে শক্তিশালী হয়; শত্রুর রাশিতে এটি দুর্বল হয়",
+          "kn": "ಮಿತ್ರ ರಾಶಿಯಲ್ಲಿರುವ ಗ್ರಹವು ಬಲವಾಗಿರುತ್ತದೆ; ಶತ್ರು ರಾಶಿಯಲ್ಲಿ ಅದು ದುರ್ಬಲವಾಗಿರುತ್ತದೆ",
           "mr": "ग्रह मित्र राशि में बलवान; शत्रु राशि में दुर्बल",
-          "gu": "A planet in a friend's sign is strong; in an enemy's sign it's weak",
+          "gu": "મિત્રની રાશિમાં ગ્રહ બળવાન હોય છે; શત્રુની રાશિમાં તે નિર્બળ હોય છે",
           "mai": "मित्रक राशि मे ग्रह बलवान होइत अछि; शत्रुक राशि मे ओ कमजोर होइत अछि।"
         },
         {
@@ -344,34 +344,34 @@
           "hi": "यह केवल मिलान के लिए महत्वपूर्ण है",
           "mai": "ई मात्र अनुकूलता मिलानक लेल महत्वपूर्ण अछि",
           "mr": "यह केवल मिलान के लिए महत्वपूर्ण है",
-          "ta": "It only matters for compatibility matching",
-          "te": "It only matters for compatibility matching",
-          "bn": "It only matters for compatibility matching",
-          "kn": "It only matters for compatibility matching",
-          "gu": "It only matters for compatibility matching"
+          "ta": "இது பொருந்தும் தன்மைக்கு மட்டுமே முக்கியமானது",
+          "te": "ఇది అనుకూలత సరిపోలికకు మాత్రమే ముఖ్యం",
+          "bn": "এটি শুধুমাত্র সামঞ্জস্য মিলানোর জন্য গুরুত্বপূর্ণ",
+          "kn": "ಇದು ಹೊಂದಾಣಿಕೆಗಾಗಿ ಮಾತ್ರ ಮುಖ್ಯ",
+          "gu": "તે ફક્ત સુસંગતતા મેચિંગ માટે જ મહત્વનું છે"
         },
         {
           "en": "It determines dasha periods",
           "hi": "यह दशा अवधि निर्धारित करती है",
           "mai": "ई दशाक अवधि निर्धारित करैत अछि",
           "mr": "यह दशा अवधि निर्धारित करती है",
-          "ta": "It determines dasha periods",
-          "te": "It determines dasha periods",
-          "bn": "It determines dasha periods",
-          "kn": "It determines dasha periods",
-          "gu": "It determines dasha periods"
+          "ta": "இது தசா காலங்களை தீர்மானிக்கிறது",
+          "te": "ఇది దశ కాలాలను నిర్ణయిస్తుంది",
+          "bn": "এটি দশা কাল নির্ধারণ করে",
+          "kn": "ಇದು ದಶಾ ಅವಧಿಗಳನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ",
+          "gu": "તે દશા કાળ નક્કી કરે છે"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "The friendship matrix directly determines a planet's dignity: a planet in a friend's sign gets \"Mitra Kshetra\" strength (stronger than neutral, weaker than own sign). In an enemy's sign, it gets \"Shatru Kshetra\" weakness. This affects the 7-level dignity hierarchy: Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated.",
         "hi": "मित्रता सारणी सीधे ग्रह की गरिमा निर्धारित करती है: मित्र राशि = मित्रक्षेत्र बल। शत्रु राशि = शत्रुक्षेत्र दुर्बलता। 7-स्तरीय पदानुक्रम प्रभावित।",
-        "ta": "The friendship matrix directly determines a planet's dignity: a planet in a friend's sign gets \"Mitra Kshetra\" strength (stronger than neutral, weaker than own sign). In an enemy's sign, it gets \"Shatru Kshetra\" weakness. This affects the 7-level dignity hierarchy: Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated.",
-        "te": "The friendship matrix directly determines a planet's dignity: a planet in a friend's sign gets \"Mitra Kshetra\" strength (stronger than neutral, weaker than own sign). In an enemy's sign, it gets \"Shatru Kshetra\" weakness. This affects the 7-level dignity hierarchy: Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated.",
-        "bn": "The friendship matrix directly determines a planet's dignity: a planet in a friend's sign gets \"Mitra Kshetra\" strength (stronger than neutral, weaker than own sign). In an enemy's sign, it gets \"Shatru Kshetra\" weakness. This affects the 7-level dignity hierarchy: Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated.",
-        "kn": "The friendship matrix directly determines a planet's dignity: a planet in a friend's sign gets \"Mitra Kshetra\" strength (stronger than neutral, weaker than own sign). In an enemy's sign, it gets \"Shatru Kshetra\" weakness. This affects the 7-level dignity hierarchy: Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated.",
+        "ta": "நட்பு அணி ஒரு கிரகத்தின் திண்மையை நேரடியாக தீர்மானிக்கிறது: நண்பரின் ராசியில் உள்ள கிரகம் \"மித்ர க்ஷேத்ர\" பலத்தைப் பெறுகிறது (நடுநிலையை விட பலமானது, சொந்த ராசியை விட பலவீனமானது). எதிரியின் ராசியில், அது \"சத்ரு க்ஷேத்ர\" பலவீனத்தைப் பெறுகிறது. இது 7-நிலை திண்மை வரிசைமுறையை பாதிக்கிறது: உச்சம் > மூலத்திரிகோணம் > சொந்தம் > நண்பர் > நடுநிலை > எதிரி > நீச்சம்.",
+        "te": "స్నేహ మాత్రిక ఒక గ్రహం యొక్క బలాన్ని నేరుగా నిర్ణయిస్తుంది: స్నేహితుని రాశిలో ఉన్న గ్రహం \"మిత్ర క్షేత్ర\" బలాన్ని పొందుతుంది (తటస్థం కంటే బలంగా, స్వంత రాశి కంటే బలహీనంగా). శత్రువు రాశిలో, అది \"శత్రు క్షేత్ర\" బలహీనతను పొందుతుంది. ఇది 7-స్థాయి బల శ్రేణిని ప్రభావితం చేస్తుంది: ఉచ్ఛ > మూలత్రికోణ > స్వంత > మిత్ర > సమ > శత్రు > నీచ.",
+        "bn": "মৈত্রী ম্যাট্রিক্স সরাসরি একটি গ্রহের বল নির্ধারণ করে: একটি গ্রহ মিত্রের রাশিতে \"মিত্র ক্ষেত্র\" বল পায় (সমের চেয়ে শক্তিশালী, স্ব-রাশির চেয়ে দুর্বল)। শত্রুর রাশিতে এটি \"শত্রু ক্ষেত্র\" দুর্বলতা পায়। এটি ৭-স্তরের বলের ক্রমকে প্রভাবিত করে: উচ্চ > মূলত্রিকোণ > স্বক্ষেত্র > মিত্র > সম > শত্রু > নীচ।",
+        "kn": "ಮೈತ್ರಿ ಮ್ಯಾಟ್ರಿಕ್ಸ್ ನೇರವಾಗಿ ಗ್ರಹದ ಬಲವನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ: ಮಿತ್ರ ರಾಶಿಯಲ್ಲಿರುವ ಗ್ರಹವು \"ಮಿತ್ರ ಕ್ಷೇತ್ರ\" ಬಲವನ್ನು ಪಡೆಯುತ್ತದೆ (ಸಮಕ್ಕಿಂತ ಬಲಶಾಲಿ, ಸ್ವಂತ ರಾಶಿಗಿಂತ ದುರ್ಬಲ). ಶತ್ರು ರಾಶಿಯಲ್ಲಿ, ಅದು \"ಶತ್ರು ಕ್ಷೇತ್ರ\" ದುರ್ಬಲತೆಯನ್ನು ಪಡೆಯುತ್ತದೆ. ಇದು 7-ಹಂತದ ಬಲದ ಶ್ರೇಣಿಯನ್ನು ಪರಿಣಾಮ ಬೀರುತ್ತದೆ: ಉಚ್ಚ > ಮೂಲತ್ರಿಕೋಣ > ಸ್ವಂತ > ಮಿತ್ರ > ಸಮ > ಶತ್ರು > ನೀಚ.",
         "mr": "मित्रता सारणी सीधे ग्रह की गरिमा निर्धारित करती है: मित्र राशि = मित्रक्षेत्र बल। शत्रु राशि = शत्रुक्षेत्र दुर्बलता। 7-स्तरीय पदानुक्रम प्रभावित।",
-        "gu": "The friendship matrix directly determines a planet's dignity: a planet in a friend's sign gets \"Mitra Kshetra\" strength (stronger than neutral, weaker than own sign). In an enemy's sign, it gets \"Shatru Kshetra\" weakness. This affects the 7-level dignity hierarchy: Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated.",
+        "gu": "મિત્રતા મેટ્રિક્સ સીધી રીતે ગ્રહનું બળ નક્કી કરે છે: મિત્રની રાશિમાં રહેલો ગ્રહ \"મિત્ર ક્ષેત્ર\" બળ મેળવે છે (સમ કરતાં વધુ બળવાન, સ્વરાશિ કરતાં નિર્બળ). શત્રુની રાશિમાં, તે \"શત્રુ ક્ષેત્ર\" નિર્બળતા મેળવે છે. આ ૭-સ્તરીય બળના ક્રમને અસર કરે છે: ઉચ્ચ > મૂળત્રિકોણ > સ્વરાશિ > મિત્ર > સમ > શત્રુ > નીચ.",
         "mai": "मित्रता मैट्रिक्स सीधा ग्रहक गरिमा निर्धारित करैत अछि: मित्रक राशि मे रहल ग्रह केँ \"मित्र क्षेत्र\" बल भेटैत अछि (सम सँ बेसी बलवान, अपन राशि सँ कमजोर)। शत्रुक राशि मे, ओकरा \"शत्रु क्षेत्र\" कमजोरी भेटैत अछि। ई ७-स्तरीय गरिमा पदानुक्रम केँ प्रभावित करैत अछि: उच्च > मूलत्रिकोण > स्वराशि > मित्र > सम > शत्रु > नीच।"
       }
     },
@@ -383,22 +383,22 @@
         "hi": "गुरु और शुक्र नैसर्गिक मित्र हैं क्योंकि दोनों शुभ ग्रह हैं।",
         "mai": "बृहस्पति आ शुक्र प्राकृतिक मित्र छथि किएक तँ ओ दुनू शुभ ग्रह छथि।",
         "mr": "गुरु और शुक्र नैसर्गिक मित्र हैं क्योंकि दोनों शुभ ग्रह हैं।",
-        "ta": "Jupiter and Venus are natural friends because they are both benefic planets.",
-        "te": "Jupiter and Venus are natural friends because they are both benefic planets.",
-        "bn": "Jupiter and Venus are natural friends because they are both benefic planets.",
-        "kn": "Jupiter and Venus are natural friends because they are both benefic planets.",
-        "gu": "Jupiter and Venus are natural friends because they are both benefic planets."
+        "ta": "குருவும் சுக்கிரனும் இயற்கையான நண்பர்கள் ஏனெனில் அவை இரண்டும் சுப கிரகங்கள்.",
+        "te": "గురువు మరియు శుక్రుడు సహజ స్నేహితులు ఎందుకంటే వారు ఇద్దరూ శుభ గ్రహాలు.",
+        "bn": "বৃহস্পতি এবং শুক্র নৈসর্গিক মিত্র কারণ তারা উভয়ই শুভ গ্রহ।",
+        "kn": "ಗುರು ಮತ್ತು ಶುಕ್ರ ನೈಸರ್ಗಿಕ ಮಿತ್ರರು ಏಕೆಂದರೆ ಅವು ಎರಡೂ ಶುಭ ಗ್ರಹಗಳು.",
+        "gu": "ગુરુ અને શુક્ર નૈસર્ગિક મિત્રો છે કારણ કે તેઓ બંને શુભ ગ્રહો છે."
       },
       "correctAnswer": false,
       "explanation": {
         "en": "Being benefic doesn't make planets friends! Jupiter and Venus are actually ENEMIES. Mythologically, Jupiter (Brihaspati) is Guru of Devas, Venus (Shukracharya) is Guru of Asuras  –  eternal opponents. Mathematically, from Jupiter's moolatrikona (Sagittarius), Venus rules signs that fall in the enemy positions.",
         "hi": "शुभ होने से मित्र नहीं बनते! गुरु और शुक्र वास्तव में शत्रु हैं। गुरु देवगुरु, शुक्र असुरगुरु  –  शाश्वत प्रतिद्वंद्वी।",
-        "ta": "Being benefic doesn't make planets friends! Jupiter and Venus are actually ENEMIES. Mythologically, Jupiter (Brihaspati) is Guru of Devas, Venus (Shukracharya) is Guru of Asuras  –  eternal opponents. Mathematically, from Jupiter's moolatrikona (Sagittarius), Venus rules signs that fall in the enemy positions.",
-        "te": "Being benefic doesn't make planets friends! Jupiter and Venus are actually ENEMIES. Mythologically, Jupiter (Brihaspati) is Guru of Devas, Venus (Shukracharya) is Guru of Asuras  –  eternal opponents. Mathematically, from Jupiter's moolatrikona (Sagittarius), Venus rules signs that fall in the enemy positions.",
-        "bn": "Being benefic doesn't make planets friends! Jupiter and Venus are actually ENEMIES. Mythologically, Jupiter (Brihaspati) is Guru of Devas, Venus (Shukracharya) is Guru of Asuras  –  eternal opponents. Mathematically, from Jupiter's moolatrikona (Sagittarius), Venus rules signs that fall in the enemy positions.",
-        "kn": "Being benefic doesn't make planets friends! Jupiter and Venus are actually ENEMIES. Mythologically, Jupiter (Brihaspati) is Guru of Devas, Venus (Shukracharya) is Guru of Asuras  –  eternal opponents. Mathematically, from Jupiter's moolatrikona (Sagittarius), Venus rules signs that fall in the enemy positions.",
+        "ta": "சுப கிரகங்களாக இருப்பது கிரகங்களை நண்பர்களாக்காது! குருவும் சுக்கிரனும் உண்மையில் எதிரிகள். புராணப்படி, குரு (பிருஹஸ்பதி) தேவர்களின் குரு, சுக்கிரன் (சுக்ராச்சாரியார்) அசுரர்களின் குரு – நிரந்தர எதிரிகள். கணித ரீதியாக, குருவின் மூலத்திரிகோணத்தில் (தனுசு) இருந்து, சுக்கிரன் எதிரி நிலைகளில் வரும் ராசிகளை ஆளுகிறார்.",
+        "te": "శుభ గ్రహాలు కావడం వల్ల గ్రహాలు స్నేహితులు కావు! గురువు మరియు శుక్రుడు వాస్తవానికి శత్రువులు. పురాణాల ప్రకారం, గురువు (బృహస్పతి) దేవతలకు గురువు, శుక్రుడు (శుక్రాచార్యుడు) అసురులకు గురువు – శాశ్వత ప్రత్యర్థులు. గణితపరంగా, గురువు యొక్క మూలత్రికోణం (ధనుస్సు) నుండి, శుక్రుడు శత్రు స్థానాల్లో పడే రాశులను పాలిస్తాడు.",
+        "bn": "শুভ গ্রহ হওয়া গ্রহদের মিত্র করে না! বৃহস্পতি এবং শুক্র আসলে শত্রু। পৌরাণিকভাবে, বৃহস্পতি (বৃহস্পতি) দেবতাদের গুরু, শুক্র (শুক্রাচার্য) অসুরদের গুরু – চিরন্তন প্রতিপক্ষ। গাণিতিকভাবে, বৃহস্পতির মূলত্রিকোণ (ধনু) থেকে, শুক্র এমন রাশির অধিপতি যা শত্রু অবস্থানে পড়ে।",
+        "kn": "ಶುಭ ಗ್ರಹಗಳಾಗಿರುವುದು ಅವುಗಳನ್ನು ಮಿತ್ರರನ್ನಾಗಿ ಮಾಡುವುದಿಲ್ಲ! ಗುರು ಮತ್ತು ಶುಕ್ರ ವಾಸ್ತವವಾಗಿ ಶತ್ರುಗಳು. ಪುರಾಣಗಳ ಪ್ರಕಾರ, ಗುರು (ಬೃಹಸ್ಪತಿ) ದೇವತೆಗಳ ಗುರು, ಶುಕ್ರ (ಶುಕ್ರಚಾರ್ಯ) ಅಸುರರ ಗುರು – ಶಾಶ್ವತ ವಿರೋಧಿಗಳು. ಗಣಿತೀಯವಾಗಿ, ಗುರುವಿನ ಮೂಲತ್ರಿಕೋಣದಿಂದ (ಧನುಸ್ಸು), ಶುಕ್ರನು ಶತ್ರು ಸ್ಥಾನಗಳಲ್ಲಿ ಬರುವ ರಾಶಿಗಳನ್ನು ಆಳುತ್ತಾನೆ.",
         "mr": "शुभ होने से मित्र नहीं बनते! गुरु और शुक्र वास्तव में शत्रु हैं। गुरु देवगुरु, शुक्र असुरगुरु  –  शाश्वत प्रतिद्वंद्वी।",
-        "gu": "Being benefic doesn't make planets friends! Jupiter and Venus are actually ENEMIES. Mythologically, Jupiter (Brihaspati) is Guru of Devas, Venus (Shukracharya) is Guru of Asuras  –  eternal opponents. Mathematically, from Jupiter's moolatrikona (Sagittarius), Venus rules signs that fall in the enemy positions.",
+        "gu": "શુભ હોવાથી ગ્રહો મિત્રો બનતા નથી! ગુરુ અને શુક્ર ખરેખર શત્રુઓ છે. પૌરાણિક રીતે, ગુરુ (બૃહસ્પતિ) દેવોના ગુરુ છે, શુક્ર (શુક્રાચાર્ય) અસુરોના ગુરુ છે  –  શાશ્વત વિરોધીઓ. ગાણિતિક રીતે, ગુરુની મૂળત્રિકોણ રાશિ (ધનુ) થી, શુક્ર એવી રાશિઓ પર શાસન કરે છે જે શત્રુ સ્થાનોમાં આવે છે.",
         "mai": "शुभ होयब सँ ग्रह मित्र नहि बनैत छथि! बृहस्पति आ शुक्र वास्तव मे शत्रु छथि। पौराणिक रूप सँ, बृहस्पति (गुरु) देव सभक गुरु छथि, शुक्र (शुक्राचार्य) असुर सभक गुरु छथि – शाश्वत विरोधी। गणितीय रूप सँ, बृहस्पतिक मूलत्रिकोण (धनु) सँ, शुक्र ओ राशिक स्वामी छथि जे शत्रु स्थान मे पड़ैत अछि।"
       },
       "classicalRef": "BPHS Ch.3"
@@ -411,11 +411,11 @@
         "hi": "चन्द्र का नैसर्गिक मित्र है:",
         "mai": "चंद्रमा प्राकृतिक मित्र छथि:",
         "mr": "चन्द्र का नैसर्गिक मित्र है:",
-        "ta": "Moon is a natural friend of:",
-        "te": "Moon is a natural friend of:",
-        "bn": "Moon is a natural friend of:",
-        "kn": "Moon is a natural friend of:",
-        "gu": "Moon is a natural friend of:"
+        "ta": "சந்திரன் இயற்கையான நண்பர்:",
+        "te": "చంద్రుడు సహజ స్నేహితుడు:",
+        "bn": "চন্দ্র হল নৈসর্গিক মিত্র:",
+        "kn": "ಚಂದ್ರನು ನೈಸರ್ಗಿಕ ಮಿತ್ರ:",
+        "gu": "ચંદ્રનો નૈસર્ગિક મિત્ર છે:"
       },
       "options": [
         {
@@ -423,56 +423,56 @@
           "hi": "सूर्य और बुध",
           "mai": "सूर्य आ बुध",
           "mr": "सूर्य और बुध",
-          "ta": "Sun and Mercury",
-          "te": "Sun and Mercury",
-          "bn": "Sun and Mercury",
-          "kn": "Sun and Mercury",
-          "gu": "Sun and Mercury"
+          "ta": "சூரியன் மற்றும் புதன்",
+          "te": "సూర్యుడు మరియు బుధుడు",
+          "bn": "রবি এবং বুধ",
+          "kn": "ಸೂರ್ಯ ಮತ್ತು ಬುಧ",
+          "gu": "સૂર્ય અને બુધ"
         },
         {
           "en": "Mars and Saturn",
           "hi": "मंगल और शनि",
           "mai": "मंगल आ शनि",
           "mr": "मंगल और शनि",
-          "ta": "Mars and Saturn",
-          "te": "Mars and Saturn",
-          "bn": "Mars and Saturn",
-          "kn": "Mars and Saturn",
-          "gu": "Mars and Saturn"
+          "ta": "செவ்வாய் மற்றும் சனி",
+          "te": "కుజుడు మరియు శని",
+          "bn": "মঙ্গল এবং শনি",
+          "kn": "ಮಂಗಳ ಮತ್ತು ಶನಿ",
+          "gu": "મંગળ અને શનિ"
         },
         {
           "en": "Venus and Rahu",
           "hi": "शुक्र और राहु",
           "mai": "शुक्र आ राहु",
           "mr": "शुक्र और राहु",
-          "ta": "Venus and Rahu",
-          "te": "Venus and Rahu",
-          "bn": "Venus and Rahu",
-          "kn": "Venus and Rahu",
-          "gu": "Venus and Rahu"
+          "ta": "சுக்கிரன் மற்றும் ராகு",
+          "te": "శుక్రుడు మరియు రాహువు",
+          "bn": "শুক্র এবং রাহু",
+          "kn": "ಶುಕ್ರ ಮತ್ತು ರಾಹು",
+          "gu": "શુક્ર અને રાહુ"
         },
         {
           "en": "Jupiter and Ketu",
           "hi": "गुरु और केतु",
           "mai": "बृहस्पति आ केतु",
           "mr": "गुरु और केतु",
-          "ta": "Jupiter and Ketu",
-          "te": "Jupiter and Ketu",
-          "bn": "Jupiter and Ketu",
-          "kn": "Jupiter and Ketu",
-          "gu": "Jupiter and Ketu"
+          "ta": "குரு மற்றும் கேது",
+          "te": "గురువు మరియు కేతువు",
+          "bn": "বৃহস্পতি এবং কেতু",
+          "kn": "ಗುರು ಮತ್ತು ಕೇತು",
+          "gu": "ગુરુ અને કેતુ"
         }
       ],
       "correctAnswer": 0,
       "explanation": {
         "en": "Moon's natural friends are Sun and Mercury. Moon's moolatrikona is Taurus  –  counting from Taurus, the lords of 2nd (Gemini=Mercury), 4th (Leo=Sun), 5th (Virgo=Mercury), 8th (Sagittarius=Jupiter), 9th (Capricorn=Saturn), 12th (Aries=Mars) are its friends. But Mercury is already a friend, so Sun and Mercury are confirmed friends.",
         "hi": "चंद्र के नैसर्गिक मित्र सूर्य और बुध हैं। चंद्र का मूलत्रिकोण वृषभ  –  वहां से गिनकर मित्र निकालें।",
-        "ta": "Moon's natural friends are Sun and Mercury. Moon's moolatrikona is Taurus  –  counting from Taurus, the lords of 2nd (Gemini=Mercury), 4th (Leo=Sun), 5th (Virgo=Mercury), 8th (Sagittarius=Jupiter), 9th (Capricorn=Saturn), 12th (Aries=Mars) are its friends. But Mercury is already a friend, so Sun and Mercury are confirmed friends.",
-        "te": "Moon's natural friends are Sun and Mercury. Moon's moolatrikona is Taurus  –  counting from Taurus, the lords of 2nd (Gemini=Mercury), 4th (Leo=Sun), 5th (Virgo=Mercury), 8th (Sagittarius=Jupiter), 9th (Capricorn=Saturn), 12th (Aries=Mars) are its friends. But Mercury is already a friend, so Sun and Mercury are confirmed friends.",
-        "bn": "Moon's natural friends are Sun and Mercury. Moon's moolatrikona is Taurus  –  counting from Taurus, the lords of 2nd (Gemini=Mercury), 4th (Leo=Sun), 5th (Virgo=Mercury), 8th (Sagittarius=Jupiter), 9th (Capricorn=Saturn), 12th (Aries=Mars) are its friends. But Mercury is already a friend, so Sun and Mercury are confirmed friends.",
-        "kn": "Moon's natural friends are Sun and Mercury. Moon's moolatrikona is Taurus  –  counting from Taurus, the lords of 2nd (Gemini=Mercury), 4th (Leo=Sun), 5th (Virgo=Mercury), 8th (Sagittarius=Jupiter), 9th (Capricorn=Saturn), 12th (Aries=Mars) are its friends. But Mercury is already a friend, so Sun and Mercury are confirmed friends.",
+        "ta": "சந்திரனின் இயற்கையான நண்பர்கள் சூரியன் மற்றும் புதன். சந்திரனின் மூலத்திரிகோணம் ரிஷபம் – ரிஷபத்தில் இருந்து கணக்கிட்டால், 2 ஆம் (மிதுனம்=புதன்), 4 ஆம் (சிம்மம்=சூரியன்), 5 ஆம் (கன்னி=புதன்), 8 ஆம் (தனுசு=குரு), 9 ஆம் (மகரம்=சனி), 12 ஆம் (மேஷம்=செவ்வாய்) ராசிகளின் அதிபதிகள் அதன் நண்பர்கள். ஆனால் புதன் ஏற்கனவே ஒரு நண்பர், எனவே சூரியன் மற்றும் புதன் உறுதிப்படுத்தப்பட்ட நண்பர்கள்.",
+        "te": "చంద్రుని సహజ స్నేహితులు సూర్యుడు మరియు బుధుడు. చంద్రుని మూలత్రికోణం వృషభం – వృషభం నుండి లెక్కించినప్పుడు, 2వ (మిథునం=బుధుడు), 4వ (సింహం=సూర్యుడు), 5వ (కన్య=బుధుడు), 8వ (ధనుస్సు=గురువు), 9వ (మకరం=శని), 12వ (మేషం=కుజుడు) రాశుల అధిపతులు దాని స్నేహితులు. కానీ బుధుడు ఇప్పటికే స్నేహితుడు, కాబట్టి సూర్యుడు మరియు బుధుడు ధృవీకరించబడిన స్నేహితులు.",
+        "bn": "চন্দ্রের নৈসর্গিক মিত্র হল রবি এবং বুধ। চন্দ্রের মূলত্রিকোণ হল বৃষ – বৃষ থেকে গণনা করলে, দ্বিতীয় (মিথুন=বুধ), চতুর্থ (সিংহ=রবি), পঞ্চম (কন্যা=বুধ), অষ্টম (ধনু=বৃহস্পতি), নবম (মকর=শনি), দ্বাদশ (মেষ=মঙ্গল) রাশির অধিপতিরা তার মিত্র। কিন্তু বুধ ইতিমধ্যেই মিত্র, তাই রবি এবং বুধ নিশ্চিত মিত্র।",
+        "kn": "ಚಂದ್ರನ ನೈಸರ್ಗಿಕ ಮಿತ್ರರು ಸೂರ್ಯ ಮತ್ತು ಬುಧ. ಚಂದ್ರನ ಮೂಲತ್ರಿಕೋಣ ವೃಷಭ ರಾಶಿ – ವೃಷಭದಿಂದ ಎಣಿಸಿದರೆ, 2ನೇ (ಮಿಥುನ=ಬುಧ), 4ನೇ (ಸಿಂಹ=ಸೂರ್ಯ), 5ನೇ (ಕನ್ಯಾ=ಬುಧ), 8ನೇ (ಧನುಸ್ಸು=ಗುರು), 9ನೇ (ಮಕರ=ಶನಿ), 12ನೇ (ಮೇಷ=ಮಂಗಳ) ರಾಶಿಗಳ ಅಧಿಪತಿಗಳು ಅದರ ಮಿತ್ರರು. ಆದರೆ ಬುಧ ಈಗಾಗಲೇ ಮಿತ್ರ, ಆದ್ದರಿಂದ ಸೂರ್ಯ ಮತ್ತು ಬುಧ ದೃಢಪಡಿಸಿದ ಮಿತ್ರರು.",
         "mr": "चंद्र के नैसर्गिक मित्र सूर्य और बुध हैं। चंद्र का मूलत्रिकोण वृषभ  –  वहां से गिनकर मित्र निकालें।",
-        "gu": "Moon's natural friends are Sun and Mercury. Moon's moolatrikona is Taurus  –  counting from Taurus, the lords of 2nd (Gemini=Mercury), 4th (Leo=Sun), 5th (Virgo=Mercury), 8th (Sagittarius=Jupiter), 9th (Capricorn=Saturn), 12th (Aries=Mars) are its friends. But Mercury is already a friend, so Sun and Mercury are confirmed friends.",
+        "gu": "ચંદ્રના નૈસર્ગિક મિત્રો સૂર્ય અને બુધ છે. ચંદ્રની મૂળત્રિકોણ રાશિ વૃષભ છે  –  વૃષભથી ગણતરી કરતા, ૨જા (મિથુન=બુધ), ૪થા (સિંહ=સૂર્ય), ૫મા (કન્યા=બુધ), ૮મા (ધનુ=ગુરુ), ૯મા (મકર=શનિ), ૧૨મા (મેષ=મંગળ) ભાવના સ્વામીઓ તેના મિત્રો છે. પરંતુ બુધ પહેલેથી જ મિત્ર છે, તેથી સૂર્ય અને બુધ પાકા મિત્રો છે.",
         "mai": "चंद्रमाक प्राकृतिक मित्र सूर्य आ बुध छथि। चंद्रमाक मूलत्रिकोण वृषभ अछि – वृषभ सँ गनला पर, दोसर (मिथुन=बुध), चारिम (सिंह=सूर्य), पाँचम (कन्या=बुध), आठम (धनु=बृहस्पति), नवम (मकर=शनि), बारहम (मेष=मंगल) राशिक स्वामी सभ ओकर मित्र छथि। मुदा बुध पहिने सँ मित्र छथि, तेँ सूर्य आ बुध निश्चित मित्र छथि।"
       }
     },
@@ -484,11 +484,11 @@
         "hi": "यौगिक (पंचधा) संबंध प्रणाली में कितने स्तर हैं?",
         "mai": "संयुक्त (पंचधा) संबंध प्रणाली मे, केतेक स्तर होइत अछि?",
         "mr": "यौगिक (पंचधा) संबंध प्रणाली में कितने स्तर हैं?",
-        "ta": "In the compound (Panchda) relationship system, how many levels are there?",
-        "te": "In the compound (Panchda) relationship system, how many levels are there?",
-        "bn": "In the compound (Panchda) relationship system, how many levels are there?",
-        "kn": "In the compound (Panchda) relationship system, how many levels are there?",
-        "gu": "In the compound (Panchda) relationship system, how many levels are there?"
+        "ta": "கூட்டு (பஞ்சதா) உறவு முறையில், எத்தனை நிலைகள் உள்ளன?",
+        "te": "సంయుక్త (పంచధా) సంబంధ వ్యవస్థలో, ఎన్ని స్థాయిలు ఉన్నాయి?",
+        "bn": "যৌগিক (পঞ্চধা) সম্পর্ক ব্যবস্থায় কতগুলি স্তর আছে?",
+        "kn": "ಸಂಯುಕ್ತ (ಪಂಚಧಾ) ಸಂಬಂಧ ವ್ಯವಸ್ಥೆಯಲ್ಲಿ, ಎಷ್ಟು ಹಂತಗಳಿವೆ?",
+        "gu": "સંયુક્ત (પંચધા) સંબંધ પ્રણાલીમાં, કેટલા સ્તરો છે?"
       },
       "options": [
         {
@@ -496,22 +496,22 @@
           "hi": "3 (मित्र, सम, शत्रु)",
           "mai": "३ (मित्र, सम, शत्रु)",
           "mr": "3 (मित्र, सम, शत्रु)",
-          "ta": "3 (Friend, Neutral, Enemy)",
-          "te": "3 (Friend, Neutral, Enemy)",
-          "bn": "3 (Friend, Neutral, Enemy)",
-          "kn": "3 (Friend, Neutral, Enemy)",
-          "gu": "3 (Friend, Neutral, Enemy)"
+          "ta": "3 (நண்பர், நடுநிலை, எதிரி)",
+          "te": "3 (స్నేహితుడు, తటస్థ, శత్రువు)",
+          "bn": "৩ (মিত্র, সম, শত্রু)",
+          "kn": "3 (ಮಿತ್ರ, ಸಮ, ಶತ್ರು)",
+          "gu": "૩ (મિત્ર, સમ, શત્રુ)"
         },
         {
           "en": "5 (Great Friend → Great Enemy)",
           "hi": "5 (अधिमित्र → अधिशत्रु)",
           "mai": "५ (महान मित्र → महान शत्रु)",
           "mr": "5 (अधिमित्र → अधिशत्रु)",
-          "ta": "5 (Great Friend → Great Enemy)",
-          "te": "5 (Great Friend → Great Enemy)",
-          "bn": "5 (Great Friend → Great Enemy)",
-          "kn": "5 (Great Friend → Great Enemy)",
-          "gu": "5 (Great Friend → Great Enemy)"
+          "ta": "5 (மிகப்பெரிய நண்பர் → மிகப்பெரிய எதிரி)",
+          "te": "5 (మహా స్నేహితుడు → మహా శత్రువు)",
+          "bn": "৫ (পরম মিত্র → পরম শত্রু)",
+          "kn": "5 (ಮಹಾ ಮಿತ್ರ → ಮಹಾ ಶತ್ರು)",
+          "gu": "૫ (પરમ મિત્ર → પરમ શત્રુ)"
         },
         {
           "en": "7",
@@ -542,11 +542,11 @@
         "hi": "पंचधा (5-गुण) प्रणाली: (1) अधिमित्र, (2) मित्र, (3) सम, (4) शत्रु, (5) अधिशत्रु। नैसर्गिक + तात्कालिक संबंध से व्युत्पन्न।",
         "mai": "पंचधा (५-गुना) प्रणाली: (१) अधिमित्र (महान मित्र), (२) मित्र (दोस्त), (३) सम (तटस्थ), (४) शत्रु (दुश्मन), (५) अधिशत्रु (महान शत्रु)। प्राकृतिक (नैसर्गिक) संबंध केँ तात्कालिक संबंधक संग मिला कय व्युत्पन्न कएल गेल अछि।",
         "mr": "पंचधा (5-गुण) प्रणाली: (1) अधिमित्र, (2) मित्र, (3) सम, (4) शत्रु, (5) अधिशत्रु। नैसर्गिक + तात्कालिक संबंध से व्युत्पन्न।",
-        "ta": "The Panchda (5-fold) system: (1) Adhimitra (Great Friend), (2) Mitra (Friend), (3) Sama (Neutral), (4) Shatru (Enemy), (5) Adhishatru (Great Enemy). Derived by combining natural (Naisargika) relationship with temporary (Tatkalika) relationship.",
-        "te": "The Panchda (5-fold) system: (1) Adhimitra (Great Friend), (2) Mitra (Friend), (3) Sama (Neutral), (4) Shatru (Enemy), (5) Adhishatru (Great Enemy). Derived by combining natural (Naisargika) relationship with temporary (Tatkalika) relationship.",
-        "bn": "The Panchda (5-fold) system: (1) Adhimitra (Great Friend), (2) Mitra (Friend), (3) Sama (Neutral), (4) Shatru (Enemy), (5) Adhishatru (Great Enemy). Derived by combining natural (Naisargika) relationship with temporary (Tatkalika) relationship.",
-        "kn": "The Panchda (5-fold) system: (1) Adhimitra (Great Friend), (2) Mitra (Friend), (3) Sama (Neutral), (4) Shatru (Enemy), (5) Adhishatru (Great Enemy). Derived by combining natural (Naisargika) relationship with temporary (Tatkalika) relationship.",
-        "gu": "The Panchda (5-fold) system: (1) Adhimitra (Great Friend), (2) Mitra (Friend), (3) Sama (Neutral), (4) Shatru (Enemy), (5) Adhishatru (Great Enemy). Derived by combining natural (Naisargika) relationship with temporary (Tatkalika) relationship."
+        "ta": "பஞ்சதா (5-மடங்கு) அமைப்பு: (1) அதிமித்ரா (மிகப்பெரிய நண்பர்), (2) மித்ரா (நண்பர்), (3) சம (நடுநிலை), (4) சத்ரு (எதிரி), (5) அதிசத்ரு (மிகப்பெரிய எதிரி). இயற்கையான (நைசர்கிகா) உறவை தற்காலிக (தத்காலிகா) உறவுடன் இணைப்பதன் மூலம் பெறப்பட்டது.",
+        "te": "పంచధా (5-రెట్లు) వ్యవస్థ: (1) అధిమిత్ర (మహా స్నేహితుడు), (2) మిత్ర (స్నేహితుడు), (3) సమ (తటస్థ), (4) శత్రు (శత్రువు), (5) అధిశత్రు (మహా శత్రువు). సహజ (నైసర్గిక) సంబంధాన్ని తాత్కాలిక (తాత్కాలిక) సంబంధంతో కలపడం ద్వారా ఉద్భవించింది.",
+        "bn": "পঞ্চধা (৫-গুণ) ব্যবস্থা: (১) অধিমিত্র (পরম বন্ধু), (২) মিত্র (বন্ধু), (৩) সম (নিরপেক্ষ), (৪) শত্রু (শত্রু), (৫) অধিশত্রু (পরম শত্রু)। নৈসর্গিক (নৈসর্গিক) সম্পর্ককে তাৎকালিক (তাৎকালিক) সম্পর্কের সাথে একত্রিত করে এটি উদ্ভূত হয়।",
+        "kn": "ಪಂಚಧಾ (5-ಪಟ್ಟು) ವ್ಯವಸ್ಥೆ: (1) ಅಧಿಮಿತ್ರ (ಮಹಾ ಮಿತ್ರ), (2) ಮಿತ್ರ (ಮಿತ್ರ), (3) ಸಮ (ತಟಸ್ಥ), (4) ಶತ್ರು (ಶತ್ರು), (5) ಅಧಿಶತ್ರು (ಮಹಾ ಶತ್ರು). ನೈಸರ್ಗಿಕ ಸಂಬಂಧವನ್ನು ತಾತ್ಕಾಲಿಕ ಸಂಬಂಧದೊಂದಿಗೆ ಸಂಯೋಜಿಸುವ ಮೂಲಕ ಪಡೆಯಲಾಗಿದೆ.",
+        "gu": "પંચધા (૫-ગણું) પ્રણાલી: (૧) અધિમિત્ર (પરમ મિત્ર), (૨) મિત્ર (મિત્ર), (૩) સમ (તટસ્થ), (૪) શત્રુ (શત્રુ), (૫) અધિશત્રુ (પરમ શત્રુ). નૈસર્ગિક (નૈસર્ગિક) સંબંધને તાત્કાલિક (તાત્કાલિક) સંબંધ સાથે જોડીને તારવવામાં આવે છે."
       }
     },
     {
@@ -555,12 +555,12 @@
       "question": {
         "en": "A planet in the 7th house from another planet is that planet's temporary friend.",
         "hi": "किसी ग्रह से 7वें भाव में ग्रह उसका तात्कालिक मित्र है।",
-        "ta": "A planet in the 7th house from another planet is that planet's temporary friend.",
-        "te": "A planet in the 7th house from another planet is that planet's temporary friend.",
-        "bn": "A planet in the 7th house from another planet is that planet's temporary friend.",
-        "kn": "A planet in the 7th house from another planet is that planet's temporary friend.",
+        "ta": "ஒரு கிரகத்தில் இருந்து 7 ஆம் பாவத்தில் உள்ள ஒரு கிரகம் அந்த கிரகத்தின் தற்காலிக நண்பர்.",
+        "te": "మరొక గ్రహం నుండి 7వ భావంలో ఉన్న గ్రహం ఆ గ్రహం యొక్క తాత్కాలిక స్నేహితుడు.",
+        "bn": "অন্য একটি গ্রহ থেকে সপ্তম ভাবে অবস্থিত একটি গ্রহ সেই গ্রহের তাৎকালিক মিত্র।",
+        "kn": "ಇನ್ನೊಂದು ಗ್ರಹದಿಂದ 7ನೇ ಭಾವದಲ್ಲಿರುವ ಗ್ರಹವು ಆ ಗ್ರಹದ ತಾತ್ಕಾಲಿಕ ಮಿತ್ರವಾಗಿರುತ್ತದೆ.",
         "mr": "किसी ग्रह से 7वें भाव में ग्रह उसका तात्कालिक मित्र है।",
-        "gu": "A planet in the 7th house from another planet is that planet's temporary friend.",
+        "gu": "અન્ય ગ્રહથી ૭મા ભાવમાં રહેલો ગ્રહ તે ગ્રહનો તાત્કાલિક મિત્ર છે.",
         "mai": "कोनो दोसर ग्रह सँ सातम् भाव मे रहल ग्रह ओ ग्रहक तात्कालिक मित्र होइत अछि।"
       },
       "correctAnswer": false,
@@ -569,11 +569,11 @@
         "hi": "7वें भाव में ग्रह तात्कालिक शत्रु है। तात्कालिक मित्र = 2, 3, 4, 10, 11, 12 (\"निकटवर्ती\" भाव)। तात्कालिक शत्रु = 1, 5, 6, 7, 8, 9।",
         "mai": "कोनो दोसर सँ सातम् भाव मे रहल ग्रह तात्कालिक शत्रु होइत अछि। तात्कालिक मित्र दोसर, तेसर, चारिम, दसम, एगारहम, बारहम भाव मे (जे \"निकट\" भाव छथि) रहैत छथि। तात्कालिक शत्रु पहिल, पाँचम, छठम, सातम्, आठम, नवम भाव मे रहैत छथि। सातम् भाव विरोध केँ दर्शाबैत अछि – शाब्दिक रूप सँ कुंडली मे एक दोसरक सामने।",
         "mr": "7वें भाव में ग्रह तात्कालिक शत्रु है। तात्कालिक मित्र = 2, 3, 4, 10, 11, 12 (\"निकटवर्ती\" भाव)। तात्कालिक शत्रु = 1, 5, 6, 7, 8, 9।",
-        "ta": "A planet in the 7th house from another is a temporary ENEMY. Temporary friends are in houses 2, 3, 4, 10, 11, 12 (the \"nearby\" houses). Temporary enemies are in houses 1, 5, 6, 7, 8, 9. The 7th house represents opposition  –  literally facing each other across the chart.",
-        "te": "A planet in the 7th house from another is a temporary ENEMY. Temporary friends are in houses 2, 3, 4, 10, 11, 12 (the \"nearby\" houses). Temporary enemies are in houses 1, 5, 6, 7, 8, 9. The 7th house represents opposition  –  literally facing each other across the chart.",
-        "bn": "A planet in the 7th house from another is a temporary ENEMY. Temporary friends are in houses 2, 3, 4, 10, 11, 12 (the \"nearby\" houses). Temporary enemies are in houses 1, 5, 6, 7, 8, 9. The 7th house represents opposition  –  literally facing each other across the chart.",
-        "kn": "A planet in the 7th house from another is a temporary ENEMY. Temporary friends are in houses 2, 3, 4, 10, 11, 12 (the \"nearby\" houses). Temporary enemies are in houses 1, 5, 6, 7, 8, 9. The 7th house represents opposition  –  literally facing each other across the chart.",
-        "gu": "A planet in the 7th house from another is a temporary ENEMY. Temporary friends are in houses 2, 3, 4, 10, 11, 12 (the \"nearby\" houses). Temporary enemies are in houses 1, 5, 6, 7, 8, 9. The 7th house represents opposition  –  literally facing each other across the chart."
+        "ta": "ஒரு கிரகத்தில் இருந்து 7 ஆம் பாவத்தில் உள்ள ஒரு கிரகம் ஒரு தற்காலிக எதிரி. தற்காலிக நண்பர்கள் 2, 3, 4, 10, 11, 12 ஆம் பாவங்களில் (அருகிலுள்ள பாவங்கள்) உள்ளனர். தற்காலிக எதிரிகள் 1, 5, 6, 7, 8, 9 ஆம் பாவங்களில் உள்ளனர். 7 ஆம் பாவம் எதிர்ப்பைக் குறிக்கிறது – அதாவது ஜாதகத்தில் ஒருவருக்கொருவர் நேருக்கு நேர் எதிர்கொள்வது.",
+        "te": "మరొక గ్రహం నుండి 7వ భావంలో ఉన్న గ్రహం తాత్కాలిక శత్రువు. తాత్కాలిక స్నేహితులు 2, 3, 4, 10, 11, 12 భావాలలో (''సమీప'' భావాలు) ఉంటారు. తాత్కాలిక శత్రువులు 1, 5, 6, 7, 8, 9 భావాలలో ఉంటారు. 7వ భావం వ్యతిరేకతను సూచిస్తుంది – అక్షరాలా జాతకంలో ఒకదానికొకటి ఎదురుగా ఉంటాయి.",
+        "bn": "অন্য একটি গ্রহ থেকে সপ্তম ভাবে অবস্থিত একটি গ্রহ হল তাৎকালিক শত্রু। তাৎকালিক মিত্ররা দ্বিতীয়, তৃতীয়, চতুর্থ, দশম, একাদশ, দ্বাদশ ভাবে (নিকটবর্তী ভাব) থাকে। তাৎকালিক শত্রুরা প্রথম, পঞ্চম, ষষ্ঠ, সপ্তম, অষ্টম, নবম ভাবে থাকে। সপ্তম ভাব বিরোধিতা নির্দেশ করে – আক্ষরিক অর্থে কুন্ডলীতে একে অপরের মুখোমুখি।",
+        "kn": "ಇನ್ನೊಂದು ಗ್ರಹದಿಂದ 7ನೇ ಭಾವದಲ್ಲಿರುವ ಗ್ರಹವು ತಾತ್ಕಾಲಿಕ ಶತ್ರುವಾಗಿರುತ್ತದೆ. ತಾತ್ಕಾಲಿಕ ಮಿತ್ರರು 2, 3, 4, 10, 11, 12ನೇ ಭಾವಗಳಲ್ಲಿರುತ್ತಾರೆ (\"ಹತ್ತಿರದ\" ಭಾವಗಳು). ತಾತ್ಕಾಲಿಕ ಶತ್ರುಗಳು 1, 5, 6, 7, 8, 9ನೇ ಭಾವಗಳಲ್ಲಿರುತ್ತಾರೆ. 7ನೇ ಭಾವವು ವಿರೋಧವನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತದೆ – ಅಕ್ಷರಶಃ ಜಾತಕದಲ್ಲಿ ಪರಸ್ಪರ ಎದುರಿಸುವುದು.",
+        "gu": "અન્ય ગ્રહથી ૭મા ભાવમાં રહેલો ગ્રહ તાત્કાલિક શત્રુ છે. તાત્કાલિક મિત્રો ૨જા, ૩જા, ૪થા, ૧૦મા, ૧૧મા, ૧૨મા ભાવમાં હોય છે (\"નજીકના\" ભાવ). તાત્કાલિક શત્રુઓ ૧લા, ૫મા, ૬ઠા, ૭મા, ૮મા, ૯મા ભાવમાં હોય છે. ૭મો ભાવ વિરોધ દર્શાવે છે  –  શાબ્દિક રીતે કુંડળીમાં એકબીજાની સામે હોય છે."
       }
     },
     {
@@ -584,11 +584,11 @@
         "hi": "सूर्य चन्द्र को मानता है:",
         "mai": "सूर्य चंद्रमा केँ मानैत छथि:",
         "mr": "सूर्य चन्द्र को मानता है:",
-        "ta": "Sun considers Moon as:",
-        "te": "Sun considers Moon as:",
-        "bn": "Sun considers Moon as:",
-        "kn": "Sun considers Moon as:",
-        "gu": "Sun considers Moon as:"
+        "ta": "சூரியன் சந்திரனை கருதுகிறார்:",
+        "te": "సూర్యుడు చంద్రుడిని ఇలా భావిస్తాడు:",
+        "bn": "রবি চন্দ্রকে বিবেচনা করে:",
+        "kn": "ಸೂರ್ಯನು ಚಂದ್ರನನ್ನು ಹೀಗೆ ಪರಿಗಣಿಸುತ್ತಾನೆ:",
+        "gu": "સૂર્ય ચંદ્રને માને છે:"
       },
       "options": [
         {
@@ -629,11 +629,11 @@
           "hi": "अधिमित्र",
           "mai": "महान मित्र",
           "mr": "अधिमित्र",
-          "ta": "Great Friend",
-          "te": "Great Friend",
-          "bn": "Great Friend",
-          "kn": "Great Friend",
-          "gu": "Great Friend"
+          "ta": "மிகப்பெரிய நண்பர்",
+          "te": "మహా స్నేహితుడు",
+          "bn": "পরম মিত্র",
+          "kn": "ಮಹಾ ಮಿತ್ರ",
+          "gu": "પરમ મિત્ર"
         }
       ],
       "correctAnswer": 0,
@@ -642,11 +642,11 @@
         "hi": "सूर्य चंद्र को मित्र मानता है। यह पारस्परिक है  –  चंद्र भी सूर्य को मित्र मानता है। लेकिन ध्यान दें: सूर्य शुक्र को शत्रु मानता है, शुक्र सूर्य को सम।",
         "mai": "सूर्य चंद्रमा केँ मित्र मानैत छथि। ई पारस्परिक नहि अछि – संबंध एकतरफा भऽ सकैत अछि! चंद्रमा सेहो सूर्य केँ मित्र मानैत छथि, तेँ ई आपसी अछि। मुदा ध्यान दियौ: सूर्य शुक्र केँ शत्रु मानैत छथि, जखन कि शुक्र सूर्य केँ सम मानैत छथि। ई असममित संबंध कुंडली व्याख्या मे जटिल गतिशीलता उत्पन्न करैत अछि।",
         "mr": "सूर्य चंद्र को मित्र मानता है। यह पारस्परिक है  –  चंद्र भी सूर्य को मित्र मानता है। लेकिन ध्यान दें: सूर्य शुक्र को शत्रु मानता है, शुक्र सूर्य को सम।",
-        "ta": "Sun considers Moon a friend. This is NOT reciprocal  –  relationships can be one-sided! Moon also considers Sun a friend, so this is mutual. But note: Sun considers Venus an enemy, while Venus considers Sun neutral. These asymmetric relationships create complex dynamics in chart interpretation.",
-        "te": "Sun considers Moon a friend. This is NOT reciprocal  –  relationships can be one-sided! Moon also considers Sun a friend, so this is mutual. But note: Sun considers Venus an enemy, while Venus considers Sun neutral. These asymmetric relationships create complex dynamics in chart interpretation.",
-        "bn": "Sun considers Moon a friend. This is NOT reciprocal  –  relationships can be one-sided! Moon also considers Sun a friend, so this is mutual. But note: Sun considers Venus an enemy, while Venus considers Sun neutral. These asymmetric relationships create complex dynamics in chart interpretation.",
-        "kn": "Sun considers Moon a friend. This is NOT reciprocal  –  relationships can be one-sided! Moon also considers Sun a friend, so this is mutual. But note: Sun considers Venus an enemy, while Venus considers Sun neutral. These asymmetric relationships create complex dynamics in chart interpretation.",
-        "gu": "Sun considers Moon a friend. This is NOT reciprocal  –  relationships can be one-sided! Moon also considers Sun a friend, so this is mutual. But note: Sun considers Venus an enemy, while Venus considers Sun neutral. These asymmetric relationships create complex dynamics in chart interpretation."
+        "ta": "சூரியன் சந்திரனை ஒரு நண்பராக கருதுகிறார். இது பரஸ்பரமானது அல்ல – உறவுகள் ஒருதலைப்பட்சமாக இருக்கலாம்! சந்திரனும் சூரியனை ஒரு நண்பராக கருதுகிறார், எனவே இது பரஸ்பரமானது. ஆனால் கவனிக்கவும்: சூரியன் சுக்கிரனை ஒரு எதிரியாக கருதுகிறார், அதே நேரத்தில் சுக்கிரன் சூரியனை நடுநிலையாக கருதுகிறார். இந்த சமச்சீரற்ற உறவுகள் ஜாதக விளக்கத்தில் சிக்கலான இயக்கவியலை உருவாக்குகின்றன.",
+        "te": "సూర్యుడు చంద్రుడిని స్నేహితుడిగా భావిస్తాడు. ఇది పరస్పరం కాదు – సంబంధాలు ఏకపక్షంగా ఉండవచ్చు! చంద్రుడు కూడా సూర్యుడిని స్నేహితుడిగా భావిస్తాడు, కాబట్టి ఇది పరస్పరం. అయితే గమనించండి: సూర్యుడు శుక్రుడిని శత్రువుగా భావిస్తాడు, అయితే శుక్రుడు సూర్యుడిని తటస్థంగా భావిస్తాడు. ఈ అసమాన సంబంధాలు జాతక వివరణలో సంక్లిష్ట డైనమిక్స్‌ను సృష్టిస్తాయి.",
+        "bn": "রবি চন্দ্রকে মিত্র বিবেচনা করে। এটি পারস্পরিক নয় – সম্পর্ক একতরফা হতে পারে! চন্দ্রও রবিকে মিত্র বিবেচনা করে, তাই এটি পারস্পরিক। তবে মনে রাখবেন: রবি শুক্রকে শত্রু বিবেচনা করে, যখন শুক্র রবিকে সম বিবেচনা করে। এই অসম সম্পর্কগুলি কুন্ডলী ব্যাখ্যায় জটিল গতিশীলতা তৈরি করে।",
+        "kn": "ಸೂರ್ಯನು ಚಂದ್ರನನ್ನು ಮಿತ್ರ ಎಂದು ಪರಿಗಣಿಸುತ್ತಾನೆ. ಇದು ಪರಸ್ಪರ ಅಲ್ಲ – ಸಂಬಂಧಗಳು ಏಕಪಕ್ಷೀಯವಾಗಿರಬಹುದು! ಚಂದ್ರನು ಸಹ ಸೂರ್ಯನನ್ನು ಮಿತ್ರ ಎಂದು ಪರಿಗಣಿಸುತ್ತಾನೆ, ಆದ್ದರಿಂದ ಇದು ಪರಸ್ಪರ. ಆದರೆ ಗಮನಿಸಿ: ಸೂರ್ಯನು ಶುಕ್ರನನ್ನು ಶತ್ರು ಎಂದು ಪರಿಗಣಿಸುತ್ತಾನೆ, ಆದರೆ ಶುಕ್ರನು ಸೂರ್ಯನನ್ನು ಸಮ ಎಂದು ಪರಿಗಣಿಸುತ್ತಾನೆ. ಈ ಅಸಮಪಾರ್ಶ್ವದ ಸಂಬಂಧಗಳು ಜಾತಕದ ವ್ಯಾಖ್ಯಾನದಲ್ಲಿ ಸಂಕೀರ್ಣ ಡೈನಾಮಿಕ್ಸ್ ಅನ್ನು ಸೃಷ್ಟಿಸುತ್ತವೆ.",
+        "gu": "સૂર્ય ચંદ્રને મિત્ર માને છે. આ પરસ્પર નથી  –  સંબંધો એકતરફી હોઈ શકે છે! ચંદ્ર પણ સૂર્યને મિત્ર માને છે, તેથી આ પરસ્પર છે. પરંતુ નોંધ લો: સૂર્ય શુક્રને શત્રુ માને છે, જ્યારે શુક્ર સૂર્યને સમ માને છે. આ અસમપ્રમાણ સંબંધો કુંડળીના અર્થઘટનમાં જટિલ ગતિશીલતા બનાવે છે."
       }
     }
   ]

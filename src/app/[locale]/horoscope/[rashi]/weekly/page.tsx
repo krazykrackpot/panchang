@@ -9,6 +9,7 @@ import type { LocaleText } from '@/types/panchang';
 import { getUpcomingFestivals } from '@/lib/calendar/next-festival';
 import { getSeoCityForLocale } from '@/lib/constants/cities';
 import { tl as trilingual } from '@/lib/utils/trilingual';
+import { pickHoroscopeLabel as HL, formatHoroscopeLabel } from '@/lib/content/horoscope-labels';
 import Link from 'next/link';
 
 export const revalidate = 86400;
@@ -55,8 +56,6 @@ export default async function WeeklyRashiPage({ params }: { params: Promise<{ lo
   const westernName = rashi.name.en;
   const week = getWeekRange();
 
-  const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
-
   return (
     <main className="min-h-screen bg-[#0a0e27] pb-20">
       {/* SSR: H1 with rashi name and week range  –  Google indexes this */}
@@ -65,18 +64,21 @@ export default async function WeeklyRashiPage({ params }: { params: Promise<{ lo
             HTML stays stable through the week. suppressHydrationWarning
             removed (Lesson ZD cleanup — was masking the old day-drifting
             getWeekRange). Residual risk: brief Sunday→Monday cache
-            straddle before the ISR refresh fires. */}
+            straddle before the ISR refresh fires.
+
+            Per-locale templates ship via horoscope-labels — H1 and desc
+            both render in the user's native script for all 9 locales. */}
         <h1 className="text-2xl sm:text-3xl font-bold text-gold-light text-center">
-          {isHi
-            ? `${vedicName} साप्ताहिक राशिफल  –  ${week.fullLabel}`
-            : `${vedicName} (${westernName}) Weekly Horoscope  –  ${week.fullLabel}`}
+          {formatHoroscopeLabel('weeklyH1Template', locale, {
+            NAME: vedicName, WESTERN_NAME: westernName, RANGE: week.fullLabel,
+          })}
         </h1>
 
         {/* SSR: Brief description paragraph for indexing */}
         <p className="mt-4 text-center text-text-secondary text-sm max-w-2xl mx-auto">
-          {isHi
-            ? `${vedicName} राशि का साप्ताहिक राशिफल ${week.fullLabel} के लिए। वास्तविक ग्रह गोचर पर आधारित दैनिक स्कोर, करियर, प्रेम, स्वास्थ्य एवं वित्त भविष्यवाणी।`
-            : `${westernName} (${vedicName}) weekly horoscope for ${week.fullLabel}. Day-by-day scores, career, love, health and finance predictions based on actual Vedic planetary transits.`}
+          {formatHoroscopeLabel('weeklyDescTemplate', locale, {
+            NAME: vedicName, WESTERN_NAME: westernName, RANGE: week.fullLabel,
+          })}
         </p>
       </div>
 
@@ -98,7 +100,7 @@ export default async function WeeklyRashiPage({ params }: { params: Promise<{ lo
           <div className="max-w-4xl mx-auto px-4 mt-6">
             <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-5 sm:p-6">
               <h2 className="text-gold-light text-base sm:text-lg font-semibold mb-3">
-                {isHi ? 'इस सप्ताह के पर्व एवं व्रत' : 'Festivals & Vrats This Week'}
+                {HL('festivalsThisWeek', locale)}
               </h2>
               <ul className="space-y-1.5 text-sm">
                 {upcoming.map((u, i) => (

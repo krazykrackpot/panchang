@@ -2,6 +2,7 @@
 
 import { RASHI_EDITORIAL } from '@/lib/horoscope/rashi-editorial';
 import type { LocaleText } from '@/types/panchang';
+import { formatHoroscopeLabel } from '@/lib/content/horoscope-labels';
 
 function tl(obj: LocaleText | undefined, locale: string): string {
   if (!obj) return '';
@@ -19,10 +20,9 @@ export function RashiArticle({ rashiId, vedicName, westernName, locale }: Props)
   const editorial = RASHI_EDITORIAL[rashiId];
   if (!editorial) return null;
 
-  const isHi = locale === 'hi' || locale === 'mai' || locale === 'mr' || locale === 'sa';
-  const h2 = isHi
-    ? `${vedicName} राशि  –  व्यक्तित्व और लक्षण`
-    : `About ${westernName} (${vedicName})  –  Personality & Traits`;
+  const h2 = formatHoroscopeLabel('aboutRashiTemplate', locale, {
+    NAME: vedicName, WESTERN_NAME: westernName,
+  });
 
   return (
     <section className="mt-12 space-y-6 max-w-3xl mx-auto px-4">

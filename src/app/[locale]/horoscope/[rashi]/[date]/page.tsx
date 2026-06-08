@@ -8,6 +8,7 @@ import { HoroscopeClient } from '../HoroscopeClient';
 import { RashiArticle } from '../RashiArticle';
 import type { LocaleText } from '@/types/panchang';
 import { formatSeoDate, isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { pickHoroscopeLabel as HL, formatHoroscopeLabel } from '@/lib/content/horoscope-labels';
 import { isStrictYmd } from '@/lib/seo/date-validation';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -59,30 +60,26 @@ export default async function DateHoroscopePage({ params }: { params: Promise<{ 
           {/* Marathi spells it राशीफल (with ी) vs Hindi राशिफल (with ि).
               The metadata title above already does this; the H1 needs to
               match so Google indexes consistent text. */}
-          {locale === 'mr'
-            ? `${vedicName} राशीफल  –  ${weekday}, ${formatted}`
-            : isHi
-              ? `${vedicName} राशिफल  –  ${weekday}, ${formatted}`
-              : `${vedicName} (${westernName}) Horoscope  –  ${weekday}, ${formatted}`}
+          {formatHoroscopeLabel('dailyDateH1Template', locale, {
+            NAME: vedicName, WESTERN_NAME: westernName, WEEKDAY: weekday, DATE: formatted,
+          })}
         </h1>
 
         {/* SSR: Key horoscope data rendered as visible text for indexing */}
         <div className="mt-4 text-center text-text-secondary text-sm">
           <p>
-            {isHi
-              ? `समग्र स्कोर: ${horoscope.overallScore}/10`
-              : `Overall score: ${horoscope.overallScore}/10`}
+            {formatHoroscopeLabel('overallScoreTemplate', locale, { SCORE: String(horoscope.overallScore) })}
           </p>
           <p className="mt-2">{tl(horoscope.insight, locale)}</p>
         </div>
 
         {/* SSR: Area scores as indexable text */}
         <div className="mt-4 text-xs text-text-secondary/70 text-center space-x-3">
-          <span>{isHi ? 'करियर' : 'Career'}: {horoscope.areas.career.score}/10</span>
-          <span>{isHi ? 'प्रेम' : 'Love'}: {horoscope.areas.love.score}/10</span>
-          <span>{isHi ? 'स्वास्थ्य' : 'Health'}: {horoscope.areas.health.score}/10</span>
-          <span>{isHi ? 'वित्त' : 'Finance'}: {horoscope.areas.finance.score}/10</span>
-          <span>{isHi ? 'आध्यात्म' : 'Spirituality'}: {horoscope.areas.spirituality.score}/10</span>
+          <span>{HL('areaCareer', locale)}: {horoscope.areas.career.score}/10</span>
+          <span>{HL('areaLove', locale)}: {horoscope.areas.love.score}/10</span>
+          <span>{HL('areaHealth', locale)}: {horoscope.areas.health.score}/10</span>
+          <span>{HL('areaFinance', locale)}: {horoscope.areas.finance.score}/10</span>
+          <span>{HL('areaSpirituality', locale)}: {horoscope.areas.spirituality.score}/10</span>
         </div>
       </div>
 

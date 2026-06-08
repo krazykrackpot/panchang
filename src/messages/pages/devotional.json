@@ -57,12 +57,12 @@
   "today": {
     "en": "TODAY",
     "hi": "आज",
-    "ta": "TODAY",
-    "te": "TODAY",
-    "bn": "TODAY",
-    "kn": "TODAY",
-    "mr": "TODAY",
-    "gu": "TODAY",
-    "mai": "TODAY"
+    "ta": "இன்று",
+    "te": "నేడు",
+    "bn": "আজ",
+    "kn": "ಇಂದು",
+    "mr": "आज",
+    "gu": "આજ",
+    "mai": "आज"
   }
 }

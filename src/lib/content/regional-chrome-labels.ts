@@ -26,6 +26,16 @@ const AUTHORED: Record<string, Record<string, string>> = {
     colMonth: 'Month',
     colRashi: 'Rashi (Zodiac)',
     colGregorian: 'Gregorian',
+    // Festival/event-list table column headers (telugu, tamil, etc.
+    // share these on their per-region pages — currently inline
+    // `isXX ? "..." : isHi ? "..." : "..."` ternaries with mai/mr gaps).
+    colFestival: 'Festival',
+    colDate: 'Date',
+    colTithi: 'Tithi',
+    colNakshatra: 'Nakshatra',
+    // Start/End range labels (year-range or muhurta range)
+    rangeStart: 'Start',
+    rangeEnd: 'End',
     // Related Regional Calendars cross-links section
     relatedHeading: 'Related Regional Calendars',
     linkTamil: 'Tamil Calendar (Panchangam)',
@@ -42,6 +52,12 @@ const AUTHORED: Record<string, Record<string, string>> = {
     colMonth: 'मास',
     colRashi: 'राशि',
     colGregorian: 'ग्रेगोरियन',
+    colFestival: 'त्योहार',
+    colDate: 'दिनांक',
+    colTithi: 'तिथि',
+    colNakshatra: 'नक्षत्र',
+    rangeStart: 'प्रारम्भ',
+    rangeEnd: 'समाप्ति',
     relatedHeading: 'सम्बन्धित कैलेंडर',
     linkTamil: 'तमिल कैलेंडर',
     linkTelugu: 'तेलुगु कैलेंडर',

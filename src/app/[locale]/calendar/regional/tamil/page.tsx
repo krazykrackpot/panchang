@@ -402,10 +402,10 @@ export default async function TamilCalendarPage({ params }: { params: Promise<{ 
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'திருவிழா' : isHi ? 'त्योहार' : 'Festival'}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'தேதி' : isHi ? 'दिनांक' : 'Date'}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'திதி' : isHi ? 'तिथि' : 'Tithi'}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'நட்சத்திரம்' : isHi ? 'नक्षत्र' : 'Nakshatra'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colFestival', locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colDate', locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colTithi', locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colNakshatra', locale)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -438,10 +438,10 @@ export default async function TamilCalendarPage({ params }: { params: Promise<{ 
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'திருவிழா' : isHi ? 'त्योहार' : 'Festival'}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'தேதி' : isHi ? 'दिनांक' : 'Date'}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'திதி' : isHi ? 'तिथि' : 'Tithi'}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'நட்சத்திரம்' : isHi ? 'नक्षत्र' : 'Nakshatra'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colFestival', locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colDate', locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colTithi', locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colNakshatra', locale)}</th>
                 </tr>
               </thead>
               <tbody>

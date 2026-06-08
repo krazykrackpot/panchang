@@ -1,0 +1,22 @@
+{
+  "brahmacharya.description": "ब्रह्मचारी — तुमचा आताचा धर्म म्हणजे ज्ञानार्जन करणे, शिस्तबद्धता अंगीकारणे आणि पुढील वाटचालीसाठी भक्कम पाया रचणे.",
+  "brahmacharya.focusAreas[0]": "शिक्षण",
+  "brahmacharya.focusAreas[1]": "कौशल्य विकास",
+  "brahmacharya.focusAreas[2]": "आत्म-शिस्त",
+  "brahmacharya.focusAreas[3]": "पाया",
+  "grihastha.description": "गृहस्थ — हा सर्वात क्रियाशील आश्रम आहे. धन संपादन करा, कुटुंब वाढवा, समाजाची सेवा करा. चारही पुरुषार्थ एकाच वेळी साधले जातात.",
+  "grihastha.focusAreas[0]": "व्यावसायिक प्रगती",
+  "grihastha.focusAreas[1]": "कुटुंब निर्मिती",
+  "grihastha.focusAreas[2]": "धन निर्मिती",
+  "grihastha.focusAreas[3]": "धर्म सेवा",
+  "sannyasa.description": "ऋषी — ऐहिक फळांवरील आसक्ती सोडा. आत्मिक शांती, मोक्ष आणि ज्ञानाच्या संक्रमणावर लक्ष केंद्रित करा.",
+  "sannyasa.focusAreas[0]": "आत्मिक शांती",
+  "sannyasa.focusAreas[1]": "मोक्ष",
+  "sannyasa.focusAreas[2]": "ज्ञान संक्रमण",
+  "sannyasa.focusAreas[3]": "आध्यात्मिक वारसा",
+  "vanaprastha.description": "गुरु — सक्रिय संचयनातून माघार घ्या. ज्ञान वाटा, तरुणांना मार्गदर्शन करा, आध्यात्मिक साधना वृद्धिंगत करा.",
+  "vanaprastha.focusAreas[0]": "मार्गदर्शन",
+  "vanaprastha.focusAreas[1]": "योगदान",
+  "vanaprastha.focusAreas[2]": "आध्यात्मिक साधना",
+  "vanaprastha.focusAreas[3]": "वारसा निर्मिती"
+}

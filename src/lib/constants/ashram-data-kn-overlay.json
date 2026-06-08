@@ -1,0 +1,22 @@
+{
+  "brahmacharya.description": "ವಿದ್ಯಾರ್ಥಿ — ನಿಮ್ಮ ಧರ್ಮ ಈಗ ಕಲಿಯುವುದು, ಶಿಸ್ತು ಬೆಳೆಸುವುದು, ಮತ್ತು ಮುಂದೆ ಬರುವ ಎಲ್ಲದಕ್ಕೂ ಅಡಿಪಾಯ ಹಾಕುವುದು.",
+  "brahmacharya.focusAreas[0]": "ಶಿಕ್ಷಣ",
+  "brahmacharya.focusAreas[1]": "ಕೌಶಲ್ಯ ವೃದ್ಧಿ",
+  "brahmacharya.focusAreas[2]": "ಆತ್ಮಶಿಸ್ತು",
+  "brahmacharya.focusAreas[3]": "ಅಡಿಪಾಯ",
+  "grihastha.description": "ಗೃಹಸ್ಥ — ಅತ್ಯಂತ ಸಕ್ರಿಯ ಆಶ್ರಮ. ಸಂಪತ್ತು ಗಳಿಸಿ, ಕುಟುಂಬವನ್ನು ಪೋಷಿಸಿ, ಸಮಾಜಕ್ಕೆ ಸೇವೆ ಸಲ್ಲಿಸಿ. ನಾಲ್ಕು ಪುರುಷಾರ್ಥಗಳನ್ನು ಏಕಕಾಲದಲ್ಲಿ ಅನುಸರಿಸಲಾಗುತ್ತದೆ.",
+  "grihastha.focusAreas[0]": "ವೃತ್ತಿ ಬೆಳವಣಿಗೆ",
+  "grihastha.focusAreas[1]": "ಕುಟುಂಬ ನಿರ್ಮಾಣ",
+  "grihastha.focusAreas[2]": "ಸಂಪತ್ತು ಸೃಷ್ಟಿ",
+  "grihastha.focusAreas[3]": "ಧಾರ್ಮಿಕ ಸೇವೆ",
+  "sannyasa.description": "ಜ್ಞಾನಿ — ಲೌಕಿಕ ಫಲಿತಾಂಶಗಳ ಮೇಲಿನ ಅಂಟನ್ನು ಬಿಟ್ಟುಬಿಡಿ. ಆಂತರಿಕ ಶಾಂತಿ, ಮೋಕ್ಷ ಮತ್ತು ಜ್ಞಾನದ ಪ್ರಸಾರದತ್ತ ಗಮನಹರಿಸಿ.",
+  "sannyasa.focusAreas[0]": "ಆಂತರಿಕ ಶಾಂತಿ",
+  "sannyasa.focusAreas[1]": "ಮೋಕ್ಷ",
+  "sannyasa.focusAreas[2]": "ಜ್ಞಾನ ಹಂಚಿಕೆ",
+  "sannyasa.focusAreas[3]": "ಆಧ್ಯಾತ್ಮಿಕ ಪರಂಪರೆ",
+  "vanaprastha.description": "ಮಾರ್ಗದರ್ಶಕ — ಭೌತಿಕ ಸಂಗ್ರಹಣೆಯಿಂದ ದೂರವಿರಿ. ಜ್ಞಾನವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ, ಯುವ ಪೀಳಿಗೆಗೆ ಮಾರ್ಗದರ್ಶನ ನೀಡಿ, ನಿಮ್ಮ ಆಧ್ಯಾತ್ಮಿಕ ಅಭ್ಯಾಸವನ್ನು ಆಳವಾಗಿಸಿ.",
+  "vanaprastha.focusAreas[0]": "ಮಾರ್ಗದರ್ಶನ",
+  "vanaprastha.focusAreas[1]": "ಕೊಡುಗೆ ನೀಡುವುದು",
+  "vanaprastha.focusAreas[2]": "ಆಧ್ಯಾತ್ಮಿಕ ಅಭ್ಯಾಸ",
+  "vanaprastha.focusAreas[3]": "ಪರಂಪರೆ ನಿರ್ಮಾಣ"
+}

@@ -10,6 +10,14 @@ import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
+// Schema.org `inLanguage` BCP 47 codes for the 9 visible locales.
+// Falls back to 'en' on unknown locale. mai/sa share the umbrella 'hi'
+// code (no separate ISO 639-1 entry on Schema.org's accepted list).
+const INLANGUAGE_TAGS: Record<string, string> = {
+  en: 'en', hi: 'hi', sa: 'hi', mai: 'hi', mr: 'mr',
+  ta: 'ta', te: 'te', bn: 'bn', gu: 'gu', kn: 'kn',
+};
+
 interface Props {
   params: Promise<{ locale: string; type: string; slug: string }>;
 }
@@ -141,8 +149,12 @@ export default async function Layout({ children, params }: { children: React.Rea
   if (!item) return children;
 
   const typeLabel = TYPE_LABELS[type as DevotionalType];
-  const title = locale === 'hi' ? item.title.hi : item.title.en;
-  const description = locale === 'hi'
+  // Devanagari-script locales (hi/sa/mai/mr) keep the Hindi headline +
+  // description; everyone else gets the English title for clean SERP
+  // legibility (per-locale SEO chrome lives in devoCopyForLocale above).
+  const isDevanagariScript = locale === 'hi' || locale === 'sa' || locale === 'mai' || locale === 'mr';
+  const title = isDevanagariScript ? item.title.hi : item.title.en;
+  const description = isDevanagariScript
     ? `${item.title.hi} (${typeLabel?.hi ?? type})  –  पूर्ण देवनागरी पाठ, अर्थ सहित।`
     : `Read ${item.title.en} (${typeLabel?.en ?? type})  –  complete text, transliteration, and meaning.`;
 
@@ -155,7 +167,7 @@ export default async function Layout({ children, params }: { children: React.Rea
     publisher: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
     datePublished: '2026-04-20',
     dateModified: '2026-04-28',
-    inLanguage: locale === 'hi' ? 'hi' : 'en',
+    inLanguage: INLANGUAGE_TAGS[locale] ?? 'en',
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${BASE_URL}/${locale}/devotional/${type}/${slug}` },
     isAccessibleForFree: true,
     about: [

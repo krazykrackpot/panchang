@@ -11,8 +11,11 @@
  * `docs/specs/2026-06-08-seo-audit-followups.md` item #3.
  *
  * Source: `scripts/generate-nakshatra-pada-extras.py` (Gemini 2.5 Flash on
- * Vertex AI). The /learn/nakshatra-pada/* prefix is en+hi indexable per
- * `INDEXABLE_BY_PREFIX['/learn/']` — no need to translate the other 7.
+ * Vertex AI) for en+hi. The other 7 locales (ta/te/bn/gu/kn/mai/mr)
+ * arrive via the runtime overlay layer in
+ * `nakshatra-pada-extras-with-overlay.ts` — consumers should import from
+ * that variant. PR #555 promoted `/learn/nakshatra-pada/` to full
+ * 9-locale indexability, superseding the earlier en+hi-only policy.
  *
  * Key shape: "<nakshatraId>-<pada>", e.g. "1-1" through "27-4".
  */

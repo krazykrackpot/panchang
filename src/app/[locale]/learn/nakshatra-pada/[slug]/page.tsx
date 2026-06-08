@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { NAKSHATRA_PADA_PROFILES, type NakshatraPadaProfile } from '@/lib/constants/nakshatra-pada-profiles-with-overlay';
-import { getNakshatraPadaExtras } from '@/lib/constants/nakshatra-pada-extras';
+import { getNakshatraPadaExtras } from '@/lib/constants/nakshatra-pada-extras-with-overlay';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
@@ -128,8 +128,8 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
         ];
         if (extras) {
           sections.push(
-            { icon: Flame, title: isHi ? 'आध्यात्मिक साधना' : 'Spiritual Practice', body: isHi ? extras.spiritualPractice.hi : extras.spiritualPractice.en },
-            { icon: Compass, title: isHi ? 'निर्णय शैली' : 'Decision-Making Style', body: isHi ? extras.decisions.hi : extras.decisions.en },
+            { icon: Flame, title: isHi ? 'आध्यात्मिक साधना' : 'Spiritual Practice', body: tl(extras.spiritualPractice, locale) },
+            { icon: Compass, title: isHi ? 'निर्णय शैली' : 'Decision-Making Style', body: tl(extras.decisions, locale) },
           );
         }
         return sections;

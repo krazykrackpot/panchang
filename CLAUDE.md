@@ -183,6 +183,25 @@ endpoints → `vercel logs` for runtime errors.
 - Never regex/sed `t(...)` calls (Lesson H).
 - 9 visible locales (en/hi/ta/te/bn/gu/kn/mai/mr); `sa` retired (301 → /en/). Regional values may fall back to en/hi — but **the key must exist**.
 
+### User-visible data tables: ALWAYS `LocaleText`, never `*Hi` paired fields
+
+When you introduce a *data-layer constant table* whose values are rendered to users (`src/lib/{kundali,panchang,muhurta,…}/*.ts`), the value type for every user-visible string MUST be `LocaleText` — never `{ x: string; xHi: string }`, never `{ en, hi }`, never `{ en, hi, sa }`. We learned this the hard way: PRs #571 / #574 / #576 / #578 each retro-fitted a table from en/hi → 9 locales after Latin-script users (ta/te/kn/gu/bn) saw English bleeding into native-script pages and Devanagari users (mai/mr) got Hindi instead of Maithili/Marathi.
+
+The canonical pattern is `authored EN+HI inline` + `Gemini overlay JSON for the other 7 locales` + `consumer reads via tlScript()`. To scaffold the boilerplate (typed module, empty overlay stub, parameterised Gemini translator):
+
+```bash
+# Single LocaleText per row (e.g. NAMED_WINDOW_LABELS):
+python3 scripts/scaffold-locale-table.py named-window-labels --domain panchang
+
+# Per-row sub-axes (e.g. PLANET_THEMES with strong/weak):
+python3 scripts/scaffold-locale-table.py planet-themes --domain kundali \
+    --key-type number --axes strong,weak
+```
+
+Then fill in `AUTHORED_EN` + `AUTHORED_HI`, edit the script's `CONTEXT` line, run `python3 scripts/translate-<slug>-via-gemini.py`. The Gemini script is idempotent — partial runs resume cleanly.
+
+**Existing exemption:** `ActiveFactor.{name, nameHi}` in `src/lib/muhurta/verdict-types.ts` is kept as legacy back-compat next to the new `nameLT?: LocaleText`. Consumers prefer `tlScript(x.nameLT, locale)` and only fall back to `x.name`/`x.nameHi` when `nameLT` is absent. Do not add new `*Hi`-paired fields elsewhere.
+
 ## Testing
 
 - Vitest. Files in `src/lib/__tests__/*.test.ts` and co-located `*.test.ts`.

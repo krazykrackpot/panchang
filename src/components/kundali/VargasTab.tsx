@@ -4,7 +4,7 @@ import { useState, useMemo, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS, GRAHA_ABBREVIATIONS } from '@/lib/constants/grahas';
-import { tl } from '@/lib/utils/trilingual';
+import { tl, tlScript } from '@/lib/utils/trilingual';
 import {
   pickVargasTabLabel as VTL,
   formatVargasTabLabel,
@@ -466,9 +466,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                 <div className="mb-2 text-sm">
                   <span className="text-text-secondary">{VTL('finalDispositor', locale)}</span>
                   <span className="text-gold-light font-semibold">
-                    {isHi
-                      ? PLANET_NAMES[deepAnalysis.crossCorrelation.dispositorChain.finalDispositor]?.hi
-                      : PLANET_NAMES[deepAnalysis.crossCorrelation.dispositorChain.finalDispositor]?.en}
+                    {tlScript(PLANET_NAMES[deepAnalysis.crossCorrelation.dispositorChain.finalDispositor], locale)}
                   </span>
                 </div>
               )}
@@ -758,11 +756,11 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-gold-light font-bold text-sm">{yoga.name}</span>
                       <span className="text-text-secondary/50 text-[10px]">
-                        {yoga.planets.map(pid => isHi ? PLANET_NAMES[pid]?.hi : PLANET_NAMES[pid]?.en).join(', ')}
+                        {yoga.planets.map(pid => tlScript(PLANET_NAMES[pid], locale)).join(', ')}
                       </span>
                     </div>
                     <p className="text-text-secondary text-xs leading-relaxed">
-                      {isHi ? yoga.significance.hi : yoga.significance.en}
+                      {tlScript(yoga.significance, locale)}
                     </p>
                   </div>
                 ))}
@@ -813,11 +811,11 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                         </div>
                         {/* Classical image */}
                         <p className="text-amber-300/70 text-xs italic leading-relaxed mb-1.5">
-                          &ldquo;{isHi ? face.image.hi : face.image.en}&rdquo;
+                          &ldquo;{tlScript(face.image, locale)}&rdquo;
                         </p>
                         {/* Interpretation */}
                         <p className="text-text-secondary/80 text-xs leading-relaxed">
-                          {isHi ? face.interpretation.hi : face.interpretation.en}
+                          {tlScript(face.interpretation, locale)}
                         </p>
                         {/* Keywords */}
                         <div className="flex flex-wrap gap-1 mt-2">
@@ -937,7 +935,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                           <span className="text-gold-light font-semibold">
                             {isHi ? `${khl.house}वाँ भाव` : `House ${khl.house}`}:
                           </span>{' '}
-                          {isHi ? khl.narrative.hi : khl.narrative.en}
+                          {tlScript(khl.narrative, locale)}
                         </div>
                       ))}
                     </div>
@@ -961,14 +959,14 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                           {arg.supporting.length > 0 && (
                             <span className="text-emerald-400/80">
                               {VTL('supporting', locale)}
-                              {arg.supporting.map(pid => isHi ? PLANET_NAMES[pid]?.hi : PLANET_NAMES[pid]?.en).join(', ')}
+                              {arg.supporting.map(pid => tlScript(PLANET_NAMES[pid], locale)).join(', ')}
                             </span>
                           )}
                           {arg.supporting.length > 0 && arg.obstructing.length > 0 && ' | '}
                           {arg.obstructing.length > 0 && (
                             <span className="text-red-400/80">
                               {VTL('obstructing', locale)}
-                              {arg.obstructing.map(pid => isHi ? PLANET_NAMES[pid]?.hi : PLANET_NAMES[pid]?.en).join(', ')}
+                              {arg.obstructing.map(pid => tlScript(PLANET_NAMES[pid], locale)).join(', ')}
                             </span>
                           )}
                           {arg.supporting.length === 0 && arg.obstructing.length === 0 && (
@@ -994,8 +992,8 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                       {deepAnalysis.crossCorrelation.jaiminiKarakas.map((jk, i) => (
                         <div key={i} className="text-xs text-text-secondary">
                           <span className="text-gold-light font-semibold">{jk.karaka}</span>
-                          {' '}({isHi ? PLANET_NAMES[jk.planetId]?.hi : PLANET_NAMES[jk.planetId]?.en}):{' '}
-                          {isHi ? jk.narrative.hi : jk.narrative.en}
+                          {' '}({tlScript(PLANET_NAMES[jk.planetId], locale)}):{' '}
+                          {tlScript(jk.narrative, locale)}
                         </div>
                       ))}
                     </div>
@@ -1014,11 +1012,11 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                       {deepAnalysis.crossCorrelation.parivartanas.map((pv, i) => (
                         <div key={i} className="text-xs text-text-secondary">
                           <span className="text-gold-light font-semibold">
-                            {isHi ? PLANET_NAMES[pv.planet1Id]?.hi : PLANET_NAMES[pv.planet1Id]?.en}
+                            {tlScript(PLANET_NAMES[pv.planet1Id], locale)}
                             {' \u2194 '}
-                            {isHi ? PLANET_NAMES[pv.planet2Id]?.hi : PLANET_NAMES[pv.planet2Id]?.en}
+                            {tlScript(PLANET_NAMES[pv.planet2Id], locale)}
                           </span>:{' '}
-                          {isHi ? pv.significance.hi : pv.significance.en}
+                          {tlScript(pv.significance, locale)}
                         </div>
                       ))}
                     </div>
@@ -1038,16 +1036,14 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                         <span key={i} className="flex items-center gap-1">
                           {i > 0 && <span className="text-gold-dark">{'\u2192'}</span>}
                           <span className="text-gold-light font-semibold">
-                            {isHi ? PLANET_NAMES[node.planetId]?.hi : PLANET_NAMES[node.planetId]?.en}
+                            {tlScript(PLANET_NAMES[node.planetId], locale)}
                           </span>
                           <span className="text-text-secondary/40">({signNameStr(node.sign)})</span>
                         </span>
                       ))}
                     </div>
                     <p className="leading-relaxed">
-                      {isHi
-                        ? deepAnalysis.crossCorrelation.dispositorChain.narrative.hi
-                        : deepAnalysis.crossCorrelation.dispositorChain.narrative.en}
+                      {tlScript(deepAnalysis.crossCorrelation.dispositorChain.narrative, locale)}
                     </p>
                   </div>
                 </ExpandableSection>
@@ -1072,7 +1068,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                               <span key={j}>
                                 {j > 0 && ', '}
                                 <span className={ap.type === 'benefic' ? 'text-emerald-400/80' : 'text-red-400/80'}>
-                                  {isHi ? PLANET_NAMES[ap.id]?.hi : PLANET_NAMES[ap.id]?.en}
+                                  {tlScript(PLANET_NAMES[ap.id], locale)}
                                 </span>
                               </span>
                             ))}
@@ -1117,9 +1113,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                     toggle={toggleSection}
                   >
                     <p className="text-xs text-text-secondary leading-relaxed">
-                      {isHi
-                        ? deepAnalysis.crossCorrelation.dashaLordPlacement.narrative.hi
-                        : deepAnalysis.crossCorrelation.dashaLordPlacement.narrative.en}
+                      {tlScript(deepAnalysis.crossCorrelation.dashaLordPlacement.narrative, locale)}
                     </p>
                   </ExpandableSection>
                 )}
@@ -1134,7 +1128,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                 {VTL('synthesizedPrognosis', locale)}
               </h4>
               <div className="text-text-secondary text-sm leading-relaxed whitespace-pre-line">
-                {isHi ? deepAnalysis.narrative.hi : deepAnalysis.narrative.en}
+                {tlScript(deepAnalysis.narrative, locale)}
               </div>
             </div>
           )}

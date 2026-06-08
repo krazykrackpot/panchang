@@ -1,5 +1,5 @@
 'use client';
-import { tl } from '@/lib/utils/trilingual';
+import { tl, tlScript } from '@/lib/utils/trilingual';
 import type { LocaleText } from '@/types/panchang';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText as LT } from '@/lib/learn/translations';
@@ -533,7 +533,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
                     {isHi ? PLANET_THEMES[wp.planetId]?.weakHi : PLANET_THEMES[wp.planetId]?.weak}
                   </p>
                   <p className="text-gold-primary/70 text-xs italic">
-                    {msg('remedy', locale)}{isHi ? PLANET_REMEDIES[wp.planetId]?.hi : PLANET_REMEDIES[wp.planetId]?.en}
+                    {msg('remedy', locale)}{tlScript(PLANET_REMEDIES[wp.planetId], locale)}
                   </p>
                   {PLANET_REMEDIES[wp.planetId]?.whyEn && (
                     <p className="text-text-secondary/50 text-xs mt-1">
@@ -643,7 +643,7 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
             {auspicious.map(y => (
               <div key={y.id} className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="font-semibold text-emerald-400 text-sm">{isHi ? y.name.hi : y.name.en}</span>
+                  <span className="font-semibold text-emerald-400 text-sm">{tlScript(y.name, locale)}</span>
                   <span className={`text-xs px-2 py-0.5 rounded-full ${
                     y.strength === 'Strong' ? 'bg-green-500/20 text-green-400' :
                     y.strength === 'Moderate' ? 'bg-yellow-500/20 text-yellow-400' :
@@ -654,11 +654,11 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
                 </div>
                 <p className="text-xs text-text-primary leading-relaxed mb-1">
                   <span className="text-text-secondary/60">{msg('whatItMeansForYou', locale)}</span>
-                  {isHi ? y.description.hi : y.description.en}
+                  {tlScript(y.description, locale)}
                 </p>
                 <p className="text-xs text-text-secondary">
                   <span className="text-text-secondary/60">{msg('formation', locale)}</span>
-                  {isHi ? y.formationRule.hi : y.formationRule.en}
+                  {tlScript(y.formationRule, locale)}
                 </p>
                 <p className="text-xs text-sky-400 mt-1">
                   {msg('howToMaximize', locale)}
@@ -677,7 +677,7 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
             {inauspicious.map(y => (
               <div key={y.id} className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="font-semibold text-amber-400 text-sm">{isHi ? y.name.hi : y.name.en}</span>
+                  <span className="font-semibold text-amber-400 text-sm">{tlScript(y.name, locale)}</span>
                   <span className={`text-xs px-2 py-0.5 rounded-full ${
                     y.strength === 'Strong' ? 'bg-green-500/20 text-green-400' :
                     y.strength === 'Moderate' ? 'bg-yellow-500/20 text-yellow-400' :
@@ -688,14 +688,14 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
                 </div>
                 <p className="text-xs text-text-primary leading-relaxed mb-1">
                   <span className="text-text-secondary/60">{msg('whatThisIndicates', locale)}</span>
-                  {isHi ? y.description.hi : y.description.en}
+                  {tlScript(y.description, locale)}
                 </p>
                 <p className="text-xs text-emerald-400/80 italic mb-1">
                   {msg('notACurse', locale)}
                 </p>
                 <p className="text-xs text-text-secondary">
                   <span className="text-text-secondary/60">{msg('formationLabel', locale)}</span>
-                  {isHi ? y.formationRule.hi : y.formationRule.en}
+                  {tlScript(y.formationRule, locale)}
                 </p>
               </div>
             ))}
@@ -1229,7 +1229,7 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
                 {/* House label */}
                 <span className={`w-8 text-right font-bold text-sm ${textColor}`}>H{bh.bhava}</span>
                 {/* Signification */}
-                <span className="w-20 sm:w-24 text-xs text-text-secondary truncate">{isHi ? sig?.hi : sig?.en}</span>
+                <span className="w-20 sm:w-24 text-xs text-text-secondary truncate">{tlScript(sig, locale)}</span>
                 {/* Bar */}
                 <div className="flex-1 h-5 bg-bg-tertiary/30 rounded-md overflow-hidden relative">
                   <div
@@ -1356,7 +1356,7 @@ export function PlanetsInterpretation({ planets, ascendant, locale }: PlanetsInt
       <SectionCard border="border-[#d4a853]/20" className="bg-[#d4a853]/5">
         <SectionHeading>{msg('overallTakeaway', locale)}</SectionHeading>
         <p className="text-sm text-gray-200 leading-relaxed">
-          {isHi ? overallTakeaway.hi : overallTakeaway.en}
+          {tlScript(overallTakeaway, locale)}
         </p>
       </SectionCard>
 
@@ -1501,7 +1501,7 @@ export function DashaInterpretation({ dashas, planets, locale }: DashaInterpreta
 
   if (!currentMaha) return null;
 
-  const mahaPlanet = currentMaha.planet || (isHi ? currentMaha.planetName?.hi : currentMaha.planetName?.en) || '(data unavailable)';
+  const mahaPlanet = currentMaha.planet || (tlScript(currentMaha.planetName, locale)) || '(data unavailable)';
   const mahaTheme = MAHADASHA_THEMES[mahaPlanet];
   const mahaDuration = DASHA_DURATIONS[mahaPlanet] ?? '?';
 
@@ -1547,7 +1547,7 @@ export function DashaInterpretation({ dashas, planets, locale }: DashaInterpreta
         </p>
         {mahaTheme && (
           <p className="text-sm text-text-primary/80 leading-relaxed">
-            {isHi ? mahaTheme.hi : mahaTheme.en}
+            {tlScript(mahaTheme, locale)}
           </p>
         )}
       </div>

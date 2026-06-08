@@ -26,7 +26,7 @@ import type { FullTrajectory } from '@/lib/kundali/domain-synthesis/trajectory';
 import type { HealthDiagnosis } from '@/lib/kundali/health-diagnosis/types';
 import { getDomainConfig } from '@/lib/kundali/domain-synthesis/config';
 import type { KundaliData } from '@/types/kundali';
-import { tl } from '@/lib/utils/trilingual';
+import { tl, tlScript } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
 import {
   pickKundaliSummaryLabel as SL,
@@ -254,7 +254,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
       {tip.chartNarrative && (
         <section className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] border border-gold-primary/20 p-6 sm:p-8 space-y-5">
           <h2 className="text-xl sm:text-2xl text-gold-light font-bold leading-tight" style={headingFont}>
-            {isHi ? tip.chartNarrative.headline.hi : tip.chartNarrative.headline.en}
+            {tlScript(tip.chartNarrative.headline, locale)}
           </h2>
 
           {/* Improvement #5: Chart Vitality Badge */}
@@ -269,7 +269,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
             {tip.chartNarrative.threads.map((thread, i) => {
               // Improvement #9: human-friendly thread labels
               const label = THREAD_LABELS[thread.theme];
-              const displayTheme = label ? (isHi ? label.hi : label.en) : thread.theme;
+              const displayTheme = label ? (tlScript(label, locale)) : thread.theme;
 
               return (
                 <div key={i} className="border-l-2 border-gold-primary/30 pl-4">
@@ -277,10 +277,10 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
                     <span className="text-xs text-gold-dark uppercase tracking-widest font-semibold">{displayTheme}</span>
                   </div>
                   <p className="text-text-primary text-sm leading-relaxed" style={isHi ? bodyFont : undefined}>
-                    {isHi ? thread.narrative.hi : thread.narrative.en}
+                    {tlScript(thread.narrative, locale)}
                   </p>
                   <p className="text-gold-primary/80 text-xs mt-1 font-medium">
-                    {isHi ? thread.action.hi : thread.action.en}
+                    {tlScript(thread.action, locale)}
                   </p>
                 </div>
               );
@@ -288,7 +288,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           </div>
           <div className="pt-3 border-t border-gold-primary/10">
             <p className="text-text-secondary text-sm leading-relaxed italic" style={isHi ? bodyFont : undefined}>
-              {isHi ? tip.chartNarrative.synthesis.hi : tip.chartNarrative.synthesis.en}
+              {tlScript(tip.chartNarrative.synthesis, locale)}
             </p>
           </div>
         </section>
@@ -659,7 +659,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
                     title={conn.explanation}
                   >
                     <span className="capitalize">{conn.from}</span>
-                    <span className="opacity-60">{isHi ? typeLabel.hi : typeLabel.en}</span>
+                    <span className="opacity-60">{tlScript(typeLabel, locale)}</span>
                     <span className="capitalize">{conn.to}</span>
                   </span>
                 );

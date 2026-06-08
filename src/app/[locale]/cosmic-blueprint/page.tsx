@@ -123,7 +123,7 @@ export default function CosmicBlueprintPage() {
         ketuLongitude: ketuP?.longitude,
         lagnaLordId,
         moonLongitude: moonP?.longitude,
-      });
+      }, locale);
 
       setBlueprint(result);
     } catch (err) {

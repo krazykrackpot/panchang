@@ -1,8 +1,14 @@
 // archetype-engine.ts  –  Cosmic Blueprint synthesis engine
 // Combines Shadbala, Dasha, and Yoga data into a psychological archetype profile.
-import { ARCHETYPES, YOGA_PSYCH_INSIGHTS, LAGNA_MODIFIERS, type ArchetypeId } from '@/lib/constants/archetype-data';
+import { ARCHETYPES, YOGA_PSYCH_INSIGHTS, LAGNA_MODIFIERS, type ArchetypeId } from '@/lib/constants/archetype-data-with-overlay';
 import type { ShadBalaComplete } from './shadbala';
-import type { LocaleText } from '@/types/panchang';
+import type { LocaleText, Locale } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
+import {
+  renderHeadline,
+  renderTransitionNote,
+  renderExpression,
+} from './archetype-engine-messages';
 
 // Planet name -> ID mapping (0=Sun through 8=Ketu)
 const PLANET_NAME_TO_ID: Record<string, number> = {
@@ -116,8 +122,16 @@ function shouldRahuKetuOverride(input: BlueprintInput): number | null {
  * Shadow archetype = lowest Shadbala strengthRatio planet (Sun-Saturn).
  * Current chapter = active Vimshottari Mahadasha lord's archetype.
  * Next chapter = next Mahadasha lord's archetype.
+ *
+ * `locale` selects the language for description, traits, blindSpot,
+ * growthArea, theme labels, and the three narrative templates
+ * (headline / transitionNote / expression). Defaults to 'en' so older
+ * callers stay backwards-compatible.
  */
-export function generateCosmicBlueprint(input: BlueprintInput): CosmicBlueprint {
+export function generateCosmicBlueprint(
+  input: BlueprintInput,
+  locale: Locale = 'en',
+): CosmicBlueprint {
   const now = new Date();
 
   // --- Primary archetype ---
@@ -162,23 +176,56 @@ export function generateCosmicBlueprint(input: BlueprintInput): CosmicBlueprint 
   const nextChapterDef = ARCHETYPES[nextDashaLordId];
 
   // --- Persona modifier (lagna sign) ---
-  const lagnaModifier = LAGNA_MODIFIERS[input.ascendantSign] ?? '';
+  const lagnaModifier = tl(LAGNA_MODIFIERS[input.ascendantSign], locale) || '';
 
   // --- Yoga influences (top 3 present yogas with psychological insights) ---
   const presentYogas = input.yogas.filter(y => y.present);
   const activeYogas = presentYogas
     .map(y => {
-      const insight = YOGA_PSYCH_INSIGHTS[y.id];
-      if (!insight) return null;
-      return { name: y.name, influence: insight };
+      const insightLt = YOGA_PSYCH_INSIGHTS[y.id];
+      if (!insightLt) return null;
+      return { name: y.name, influence: tl(insightLt, locale) };
     })
     .filter((y): y is { name: LocaleText; influence: string } => y !== null)
     .slice(0, 3);
 
+  // --- Locale-resolved archetype names for templates ---
+  const primaryName = tl(primaryDef.name, locale);
+  const currentName = tl(currentChapterDef.name, locale);
+  const nextName = tl(nextChapterDef.name, locale);
+
   // --- Headline ---
-  const headline = `${primaryDef.name.en} soul in ${currentChapterDef.name.en} phase${
-    nextDasha ? `, approaching ${nextChapterDef.name.en} shift in ${nextDasha.startDate.getFullYear()}` : ''
-  }`;
+  const headline = renderHeadline({
+    primary: primaryName,
+    current: currentName,
+    next: nextDasha ? nextName : undefined,
+    year: nextDasha ? nextDasha.startDate.getFullYear() : undefined,
+  }, locale);
+
+  // --- Transition note ---
+  // EN-specific cleanup of "The " prefix + lowercase only applies to en;
+  // other locales' archetype names don't carry an English article so
+  // we pass the locale-rendered name straight through.
+  const stripPrefix = (n: string): string =>
+    locale === 'en' ? n.replace(/^The /, '').toLowerCase() : n;
+  const currentTheme = currentChapterDef.chapterThemes[0]
+    ? tl(currentChapterDef.chapterThemes[0], locale)
+    : '';
+  const nextTheme = nextChapterDef.chapterThemes[0]
+    ? tl(nextChapterDef.chapterThemes[0], locale)
+    : '';
+  const transitionNote = renderTransitionNote({
+    fromName: stripPrefix(currentName),
+    toName: stripPrefix(nextName),
+    fromTheme: currentTheme,
+    toTheme: nextTheme,
+  }, locale);
+
+  // --- Expression ---
+  const expression = renderExpression({
+    primaryName,
+    lagnaModifier,
+  }, locale);
 
   return {
     primary: {
@@ -186,17 +233,17 @@ export function generateCosmicBlueprint(input: BlueprintInput): CosmicBlueprint 
       name: primaryDef.name,
       planet: primaryPlanetId,
       strength: primaryStrength,
-      description: primaryDef.coreDescription,
-      traits: primaryDef.traits,
-      blindSpot: primaryDef.blindSpot,
+      description: tl(primaryDef.coreDescription, locale),
+      traits: primaryDef.traits.map(t => tl(t, locale)),
+      blindSpot: tl(primaryDef.blindSpot, locale),
     },
     shadow: {
       archetype: shadowDef.id,
       name: shadowDef.name,
       planet: shadowPlanetId,
       strength: shadowStrength,
-      description: shadowDef.shadowDescription,
-      growthArea: shadowDef.growthArea,
+      description: tl(shadowDef.shadowDescription, locale),
+      growthArea: tl(shadowDef.growthArea, locale),
     },
     currentChapter: {
       archetype: currentChapterDef.id,
@@ -205,20 +252,19 @@ export function generateCosmicBlueprint(input: BlueprintInput): CosmicBlueprint 
       startDate: currentDasha?.startDate ?? now,
       endDate: currentDasha?.endDate ?? now,
       yearsRemaining: Math.round(yearsRemaining * 10) / 10,
-      description: currentChapterDef.chapterDescription,
-      themes: currentChapterDef.chapterThemes,
+      description: tl(currentChapterDef.chapterDescription, locale),
+      themes: currentChapterDef.chapterThemes.map(t => tl(t, locale)),
     },
     nextChapter: {
       archetype: nextChapterDef.id,
       name: nextChapterDef.name,
       dashaLord: nextDashaLordId,
       startDate: nextDasha?.startDate ?? now,
-      transitionNote: `Shifting from ${currentChapterDef.name.en.replace('The ', '').toLowerCase()} to ${nextChapterDef.name.en.replace('The ', '').toLowerCase()}  –  ${
-        currentChapterDef.chapterThemes[0]} gives way to ${nextChapterDef.chapterThemes[0]}.`,
+      transitionNote,
     },
     persona: {
       lagnaSign: input.ascendantSign,
-      expression: `Your ${primaryDef.name.en} nature expresses ${lagnaModifier}`,
+      expression,
     },
     activeYogas,
     headline,

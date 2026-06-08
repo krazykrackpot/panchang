@@ -62,11 +62,11 @@ export default function PatrikaPage() {
       </LessonSection>
 
       {/* New: Chart Layout Deep Dive */}
-      <LessonSection number={0} title={isHi ? 'कुण्डली प्रारूप  –  उत्तर, दक्षिण और पूर्व भारतीय' : 'Chart Layouts  –  North, South, and East Indian'}>
+      <LessonSection number={0} title={t('chartLayoutsTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
             <h4 className="text-gold-light font-bold text-sm mb-2" style={headingFont}>
-              {isHi ? 'उत्तर भारतीय हीरा प्रारूप' : 'North Indian Diamond Format'}
+              {t('northIndianFormat')}
             </h4>
             <p className="text-text-secondary text-xs leading-relaxed mb-2">
               {isHi
@@ -76,7 +76,7 @@ export default function PatrikaPage() {
           </div>
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
             <h4 className="text-gold-light font-bold text-sm mb-2" style={headingFont}>
-              {isHi ? 'दक्षिण भारतीय वर्ग प्रारूप' : 'South Indian Square Format'}
+              {t('southIndianFormat')}
             </h4>
             <p className="text-text-secondary text-xs leading-relaxed mb-2">
               {isHi
@@ -86,7 +86,7 @@ export default function PatrikaPage() {
           </div>
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
             <h4 className="text-gold-light font-bold text-sm mb-2" style={headingFont}>
-              {isHi ? 'पूर्व भारतीय प्रारूप' : 'East Indian (Bengal) Format'}
+              {t('eastIndianFormat')}
             </h4>
             <p className="text-text-secondary text-xs leading-relaxed mb-2">
               {isHi
@@ -96,7 +96,7 @@ export default function PatrikaPage() {
           </div>
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
             <h4 className="text-blue-300 font-bold text-sm mb-2" style={headingFont}>
-              {isHi ? 'हमारा ऐप किसे प्रयोग करता है?' : 'Which Does Our App Use?'}
+              {t('whichDoesAppUse')}
             </h4>
             <p className="text-text-secondary text-xs leading-relaxed">
               {isHi
@@ -140,17 +140,17 @@ export default function PatrikaPage() {
       </LessonSection>
 
       {/* New: Reading Tips */}
-      <LessonSection number={0} title={isHi ? 'कुण्डली पठन सुझाव' : 'Chart Reading Tips'}>
+      <LessonSection number={0} title={t('chartReadingTipsTitle')}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-            <h4 className="text-emerald-400 font-bold text-xs uppercase tracking-widest mb-2">{isHi ? 'प्रथम दृष्टि में क्या देखें' : 'What to Look for at First Glance'}</h4>
+            <h4 className="text-emerald-400 font-bold text-xs uppercase tracking-widest mb-2">{t('firstGlanceHeader')}</h4>
             <ul className="text-text-secondary text-xs space-y-2">
-              <li>{isHi ? '• लग्न (प्रथम भाव)  –  जातक का मूल स्वभाव और शारीरिक बनावट' : '• Lagna (1st house)  –  the native\'s core personality and physical constitution'}</li>
-              <li>{isHi ? '• चन्द्र राशि  –  मानसिक प्रकृति, भावनात्मक प्रतिक्रिया' : '• Moon sign  –  mental nature, emotional responses'}</li>
-              <li>{isHi ? '• सूर्य राशि  –  आत्मा, पिता, अधिकार, जीवन उद्देश्य' : '• Sun sign  –  soul, father, authority, life purpose'}</li>
-              <li>{isHi ? '• केन्द्र भाव (1, 4, 7, 10) में ग्रह  –  जीवन के स्तम्भ' : '• Planets in Kendra houses (1, 4, 7, 10)  –  pillars of life'}</li>
-              <li>{isHi ? '• त्रिकोण भाव (1, 5, 9) में ग्रह  –  पुण्य और भाग्य' : '• Planets in Trikona houses (1, 5, 9)  –  merit and fortune'}</li>
-              <li>{isHi ? '• दुष्टस्थान (6, 8, 12) में ग्रह  –  चुनौतियाँ और रूपान्तरण' : '• Planets in Dusthana (6, 8, 12)  –  challenges and transformation'}</li>
+              <li>{t('firstGlanceLagna')}</li>
+              <li>{t('firstGlanceMoon')}</li>
+              <li>{t('firstGlanceSun')}</li>
+              <li>{t('firstGlanceKendra')}</li>
+              <li>{t('firstGlanceTrikona')}</li>
+              <li>{t('firstGlanceDusthana')}</li>
             </ul>
           </div>
         </div>

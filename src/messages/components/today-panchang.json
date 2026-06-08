@@ -46,13 +46,13 @@
   "change": {
     "en": "Change",
     "hi": "बदलें",
-    "ta": "Change",
-    "te": "Change",
-    "bn": "Change",
-    "kn": "Change",
-    "mr": "Change",
-    "gu": "Change",
-    "mai": "Change"
+    "ta": "மாற்று",
+    "te": "మార్చు",
+    "bn": "পরিবর্তন করুন",
+    "kn": "ಬದಲಾಯಿಸಿ",
+    "mr": "बदला",
+    "gu": "બદલો",
+    "mai": "बदलू"
   },
   "setLocationToSeePanchang": {
     "en": "Set your location to see Panchang",
@@ -101,24 +101,24 @@
   "starts": {
     "en": "Starts",
     "hi": "आरम्भ",
-    "ta": "Starts",
-    "te": "Starts",
-    "bn": "Starts",
-    "kn": "Starts",
-    "mr": "Starts",
-    "gu": "Starts",
-    "mai": "Starts"
+    "ta": "ஆரம்பம்",
+    "te": "ఆరంభం",
+    "bn": "আরম্ভ",
+    "kn": "ಆರಂಭ",
+    "mr": "आरंभ",
+    "gu": "આરંભ",
+    "mai": "आरम्भ"
   },
   "ends": {
     "en": "Ends",
     "hi": "समाप्ति",
-    "ta": "Ends",
-    "te": "Ends",
-    "bn": "Ends",
-    "kn": "Ends",
-    "mr": "Ends",
-    "gu": "Ends",
-    "mai": "Ends"
+    "ta": "முடிவு",
+    "te": "ముగింపు",
+    "bn": "সমাপ্তি",
+    "kn": "ಸಮಾಪ್ತಿ",
+    "mr": "समाप्ती",
+    "gu": "સમાપ્તિ",
+    "mai": "समाप्ति"
   },
   "onwards": {
     "en": "onwards",

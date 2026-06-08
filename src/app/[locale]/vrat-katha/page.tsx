@@ -7,7 +7,7 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import { Link } from '@/lib/i18n/navigation';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import AuthorByline from '@/components/ui/AuthorByline';
-import { VRAT_KATHAS } from '@/lib/content/vrat-kathas';
+import { VRAT_KATHAS } from '@/lib/content/vrat-kathas-with-overlay';
 
 const LABELS = {
   title: { en: 'Vrat Katha Reference', hi: 'व्रत कथा संदर्भ' },

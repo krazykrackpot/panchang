@@ -23,7 +23,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
 import VratFollowButton from '@/components/vrat/VratFollowButton';
 import { TRACKABLE_VRATS } from '@/lib/vrat/trackable-vrats';
-import { getVratKathaByFestivalSlug } from '@/lib/content/vrat-kathas';
+import { getVratKathaByFestivalSlug } from '@/lib/content/vrat-kathas-with-overlay';
 import { BookOpen } from 'lucide-react';
 import AuthorByline from '@/components/ui/AuthorByline';
 
@@ -934,7 +934,10 @@ export default function PujaVidhiPage() {
         {(() => {
           const katha = getVratKathaByFestivalSlug(slug);
           if (!katha) return null;
-          const kathaTitle = locale === 'hi' ? katha.title.hi : katha.title.en;
+          // After PR for vrat-kathas-with-overlay, katha.title carries
+          // all 9 locale keys. Use the locale-aware lookup so non-en/hi
+          // visitors see the translated title.
+          const kathaTitle = (katha.title as Record<string, string>)[locale] || katha.title.en;
           return (
             <Link
               href={`/${locale}/vrat-katha/${katha.slug}`}

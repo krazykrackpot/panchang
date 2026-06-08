@@ -156,12 +156,12 @@
   "backLink": {
     "en": "← Back to Learn",
     "hi": "← सीखने पर वापस",
-    "ta": "← Back to Learn",
-    "te": "← Back to Learn",
-    "bn": "← Back to Learn",
-    "kn": "← Back to Learn",
+    "ta": "← கற்றலுக்குத் திரும்பு",
+    "te": "← నేర్చుకోవడానికి తిరిగి",
+    "bn": "← শিক্ষায় ফিরে যান",
+    "kn": "← ಕಲಿಯಲು ಹಿಂತಿರುಗಿ",
     "mr": "← सीखने पर वापस",
-    "gu": "← Back to Learn",
+    "gu": "← શીખવા પર પાછા",
     "mai": "← सीखबाक लेल वापस"
   },
   "gravity": {
@@ -178,12 +178,12 @@
   "vedicTime": {
     "en": "Vedic Time Tool",
     "hi": "वैदिक समय उपकरण",
-    "ta": "Vedic Time Tool",
-    "te": "Vedic Time Tool",
-    "bn": "Vedic Time Tool",
-    "kn": "Vedic Time Tool",
+    "ta": "வேத காலக் கருவி",
+    "te": "వైదిక కాల సాధనం",
+    "bn": "বৈদিক সময় উপকরণ",
+    "kn": "ವೈದಿಕ ಸಮಯ ಉಪಕರಣ",
     "mr": "वैदिक समय उपकरण",
-    "gu": "Vedic Time Tool",
+    "gu": "વૈદિક સમય સાધન",
     "mai": "वैदिक समय उपकरण"
   }
 }

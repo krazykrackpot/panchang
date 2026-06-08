@@ -39,13 +39,13 @@
     "en": "The 8 Gauri Periods",
     "hi": "8 गौरी काल",
     "ta": "8 கௌரி காலங்கள்",
-    "te": "The 8 Gauri Periods",
-    "kn": "The 8 Gauri Periods",
+    "te": "అష్ట గౌరీ కాలాలు",
+    "kn": "೮ ಗೌರಿ ಕಾಲಗಳು",
     "ml": "The 8 Gauri Periods",
     "bn": "৮টি গৌরী পর্ব",
     "mai": "८ गौरी काल",
-    "gu": "The 8 Gauri Periods",
-    "mr": "The 8 Gauri Periods"
+    "gu": "૮ ગૌરી કાળ",
+    "mr": "८ गौरी काळ"
   },
   "eightTypesContent": {
     "en": "The 8 periods cycle in this canonical order: Amritha (nectar — most auspicious), Siddha (achievement), Marana (death — inauspicious), Rogam (disease — inauspicious), Laabha (gain), Dhanam (wealth), Sugam (comfort), Sokam (sorrow — inauspicious). Each weekday starts at a different position in the cycle (e.g., Monday starts with Amritha because Soma=Moon=Amritha is a classical association). After 8 slots the cycle completes; the night follows the same cycle but starting 4 positions later — the classical 'opposite face' of the day.",
@@ -63,13 +63,13 @@
     "en": "Weekday Starting Period",
     "hi": "वारानुसार प्रारम्भिक काल",
     "ta": "வாரநாள் தொடக்க காலம்",
-    "te": "Weekday Starting Period",
-    "kn": "Weekday Starting Period",
+    "te": "వార ప్రారంభ కాలం",
+    "kn": "ವಾರದ ಪ್ರಾರಂಭಿಕ ಕಾಲ",
     "ml": "Weekday Starting Period",
     "bn": "সাপ্তাহিক শুরুর পর্ব",
     "mai": "दिन आरम्भिक काल",
-    "gu": "Weekday Starting Period",
-    "mr": "Weekday Starting Period"
+    "gu": "વારનો પ્રારંભિક કાળ",
+    "mr": "आठवड्याच्या दिवसाचा सुरुवातीचा काळ"
   },
   "rotationContent": {
     "en": "Each weekday begins the day-Gauri cycle at a different position. Sunday starts with Sokam (sorrow), Monday with Amritha (nectar), Tuesday with Marana (death), Wednesday with Laabha (gain), Thursday with Sugam (comfort), Friday with Siddha (achievement), Saturday with Rogam (disease). After the 8 slots are filled in cycle order, the night Gauri begins at the position 4 steps ahead of the day's starting position.",
@@ -87,13 +87,13 @@
     "en": "Practical Daily Use",
     "hi": "दैनिक उपयोग",
     "ta": "தினசரி பயன்பாடு",
-    "te": "Practical Daily Use",
-    "kn": "Practical Daily Use",
+    "te": "ఆచరణీయ దైనందిన వినియోగం",
+    "kn": "ಪ್ರಾಯೋಗಿಕ ದೈನಂದಿನ ಉಪಯೋಗ",
     "ml": "Practical Daily Use",
     "bn": "ব্যবহারিক প্রয়োগ",
     "mai": "व्यावहारिक दैनिक उपयोग",
-    "gu": "Practical Daily Use",
-    "mr": "Practical Daily Use"
+    "gu": "વ્યવહારિક દૈનિક ઉપયોગ",
+    "mr": "व्यावहारिक दैनंदिन वापर"
   },
   "dailyUseContent": {
     "en": "For starting a new business or moving home, Amritha is universally most powerful. Financial decisions: Laabha (gain) or Dhanam (wealth). Travel and family gatherings: Sugam (comfort). Exams, agreements, signing contracts: Siddha (achievement). Avoid Marana, Rogam, and Sokam for any auspicious work — they are best used for rest, routine maintenance, or activities you want to conclude rather than begin. Even an Amritha Gauri overlapping with Rahu Kaalam, Yamagandam, or Gulika Kaalam should be treated with caution — the inauspicious overlay takes precedence in classical Tamil and Kannada panchang practice.",
@@ -111,13 +111,13 @@
     "en": "Gauri vs Choghadiya",
     "hi": "गौरी और चौघड़िया की तुलना",
     "ta": "கௌரி vs சௌகாடியா",
-    "te": "Gauri vs Choghadiya",
-    "kn": "Gauri vs Choghadiya",
+    "te": "గౌరీ – చోఘడియా పోలిక",
+    "kn": "ಗೌರಿ ಮತ್ತು ಚೌಘಡಿಯಾ ಹೋಲಿಕೆ",
     "ml": "Gauri vs Choghadiya",
     "bn": "গৌরী বনাম চৌঘড়িয়া",
     "mai": "गौरी आ चौघड़िया कें तुलना",
-    "gu": "Gauri vs Choghadiya",
-    "mr": "Gauri vs Choghadiya"
+    "gu": "ગૌરી અને ચોઘડિયાની તુલના",
+    "mr": "गौरी विरुद्ध चौघडिया"
   },
   "choghadiyaComparisonContent": {
     "en": "Both systems share the same time-division shape — 8 day slots, 8 night slots, computed from sunrise and sunset. The differences: (1) Gauri has 8 distinct period names; Choghadiya has 7 (Char repeats to fill 8 slots). (2) Gauri has no neutral tier; every period is auspicious or inauspicious. (3) The weekday rotation differs. (4) Gauri is the traditional South-Indian system used in Tamil Nadu, Karnataka, Andhra, Telangana and Kerala; Choghadiya is the North/West Indian version more common in Gujarat, Rajasthan, and Madhya Pradesh. Many printed panchangs in South India publish both side by side; the local language tradition of the family usually decides which one is used at home.",

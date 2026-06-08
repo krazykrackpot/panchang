@@ -156,12 +156,12 @@
   "s5Title": {
     "en": "Who Was Sayana?",
     "hi": "सायण कौन थे?",
-    "ta": "Who Was Sayana?",
-    "te": "Who Was Sayana?",
-    "bn": "Who Was Sayana?",
-    "kn": "Who Was Sayana?",
+    "ta": "சாயனர் யார்?",
+    "te": "సాయన ఎవరు?",
+    "bn": "সায়না কে ছিলেন?",
+    "kn": "ಸಾಯಣ ಯಾರು?",
     "mr": "सायण कौन थे?",
-    "gu": "Who Was Sayana?",
+    "gu": "સાયણ કોણ હતા?",
     "mai": "सायण के छलाह?"
   },
   "s5Body": {
@@ -211,23 +211,23 @@
   "backLink": {
     "en": "← Back to Learn",
     "hi": "← सीखने पर वापस",
-    "ta": "← Back to Learn",
-    "te": "← Back to Learn",
-    "bn": "← Back to Learn",
-    "kn": "← Back to Learn",
+    "ta": "← கற்றலுக்குத் திரும்பு",
+    "te": "← నేర్చుకోవడానికి తిరిగి",
+    "bn": "← শেখার পৃষ্ঠায় ফিরে যান",
+    "kn": "← ಕಲಿಕೆಗೆ ಹಿಂದಿರುಗಿ",
     "mr": "← सीखने पर वापस",
-    "gu": "← Back to Learn",
+    "gu": "← શીખવા પર પાછા",
     "mai": "← सीखबा दिस वापस"
   },
   "prevPage": {
     "en": "Calculus in Kerala",
     "hi": "केरल में कलनशास्त्र",
-    "ta": "Calculus in Kerala",
-    "te": "Calculus in Kerala",
-    "bn": "Calculus in Kerala",
-    "kn": "Calculus in Kerala",
+    "ta": "கேரளாவில் நுண்கணிதம்",
+    "te": "కేరళలో కలన గణితం",
+    "bn": "কেরালার ক্যালকুলাস",
+    "kn": "ಕೇರಳದಲ್ಲಿ ಕಲನಶಾಸ್ತ್ರ",
     "mr": "केरल में कलनशास्त्र",
-    "gu": "Calculus in Kerala",
+    "gu": "કેરળમાં કલનશાસ્ત્ર",
     "mai": "केरल मे कलन"
   },
   "nextPage": {

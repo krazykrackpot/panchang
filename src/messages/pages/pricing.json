@@ -2,13 +2,13 @@
   "signInFirst": {
     "en": "Please sign in first",
     "hi": "पहले साइन इन करें",
-    "ta": "Please sign in first",
-    "te": "Please sign in first",
-    "bn": "Please sign in first",
-    "kn": "Please sign in first",
-    "mr": "Please sign in first",
-    "gu": "Please sign in first",
-    "mai": "Please sign in first"
+    "ta": "முதலில் உள்நுழையவும்",
+    "te": "దయచేసి ముందుగా లాగిన్ అవ్వండి",
+    "bn": "অনুগ্রহ করে প্রথমে সাইন ইন করুন",
+    "kn": "ದಯವಿಟ್ಟು ಮೊದಲು ಲಾಗಿನ್ ಮಾಡಿ",
+    "mr": "कृपया प्रथम साइन इन करा",
+    "gu": "કૃપા કરીને પહેલાં લૉગ ઇન કરો",
+    "mai": "कृपया पहिने साइन इन करू"
   },
   "free": {
     "en": "Free",

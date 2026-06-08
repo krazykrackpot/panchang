@@ -222,11 +222,11 @@
   "praharDurationMin": {
     "en": "${vedic.praharDurationMin} min each",
     "hi": "${vedic.praharDurationMin} मिनट प्रत्येक",
-    "ta": "${vedic.praharDurationMin} min each",
-    "te": "${vedic.praharDurationMin} min each",
-    "bn": "${vedic.praharDurationMin} min each",
-    "kn": "${vedic.praharDurationMin} min each",
-    "gu": "${vedic.praharDurationMin} min each",
+    "ta": "ஒவ்வொன்றும் ${vedic.praharDurationMin} நிமிடங்கள்",
+    "te": "${vedic.praharDurationMin} నిమిషాలు చొప్పున",
+    "bn": "${vedic.praharDurationMin} মিনিট করে",
+    "kn": "ಪ್ರತಿ ${vedic.praharDurationMin} ನಿಮಿಷಗಳು",
+    "gu": "દરેક ${vedic.praharDurationMin} મિનિટ",
     "mai": "${vedic.praharDurationMin} मिनट प्रत्येक",
     "mr": "${vedic.praharDurationMin} मिनट प्रत्येक"
   },
@@ -244,11 +244,11 @@
   "muhurtaDurationMin": {
     "en": "${vedic.muhurtaDurationMin} min each",
     "hi": "${vedic.muhurtaDurationMin} मिनट प्रत्येक",
-    "ta": "${vedic.muhurtaDurationMin} min each",
-    "te": "${vedic.muhurtaDurationMin} min each",
-    "bn": "${vedic.muhurtaDurationMin} min each",
-    "kn": "${vedic.muhurtaDurationMin} min each",
-    "gu": "${vedic.muhurtaDurationMin} min each",
+    "ta": "ஒவ்வொன்றும் ${vedic.muhurtaDurationMin} நிமிடங்கள்",
+    "te": "${vedic.muhurtaDurationMin} నిమిషాలు చొప్పున",
+    "bn": "${vedic.muhurtaDurationMin} মিনিট করে",
+    "kn": "ಪ್ರತಿ ${vedic.muhurtaDurationMin} ನಿಮಿಷಗಳು",
+    "gu": "દરેક ${vedic.muhurtaDurationMin} મિનિટ",
     "mai": "${vedic.muhurtaDurationMin} मिनट प्रत्येक",
     "mr": "${vedic.muhurtaDurationMin} मिनट प्रत्येक"
   },

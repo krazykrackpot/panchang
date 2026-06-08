@@ -13,13 +13,13 @@
   "prashnaChartName": {
     "en": "Prashna Chart",
     "hi": "प्रश्न कुण्डली",
-    "ta": "Prashna Chart",
-    "te": "Prashna Chart",
-    "bn": "Prashna Chart",
-    "kn": "Prashna Chart",
-    "mr": "Prashna Chart",
-    "gu": "Prashna Chart",
-    "mai": "Prashna Chart"
+    "ta": "பிரஸ்ன சக்கரம்",
+    "te": "ప్రశ్న కుండలి",
+    "bn": "প্রশ্ন কুণ্ডলী",
+    "kn": "ಪ್ರಶ್ನ ಕುಂಡಲಿ",
+    "mr": "प्रश्न कुंडली",
+    "gu": "પ્રશ્ન કુંડળી",
+    "mai": "प्रश्न कुंडली"
   },
   "ascendantLabel": {
     "en": "Ascendant",

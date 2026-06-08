@@ -8,6 +8,7 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { FEATURED_YOGAS, INDEXABLE_LAGNA_LOCALES } from '@/lib/seo/lagna-seo';
 import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
 import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
+import { tl } from '@/lib/utils/trilingual';
 
 // Strip trailing slash defensively (Gemini #266 leftover MED) — without
 // this, a misconfigured env var (`https://example.com/`) yields
@@ -59,16 +60,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // textbook soft 404. (GSC flagged /learn/yoga/lagna_mallika 2026-05-28/29.)
   if (!yoga) notFound();
 
-  const isHi = locale === 'hi';
-  const name = isHi ? yoga.name.hi : yoga.name.en;
+  const name = tl(yoga.name, locale);
   // Optional-chained: a future YOGA_DETAIL_DATA entry with an empty
   // detailedDescription array would crash `.slice` on undefined.
   // Gemini #250 MED — defensive fallback to the EN copy, then ''.
-  const desc = (
-    (isHi ? yoga.detailedDescription.hi?.[0] : yoga.detailedDescription.en?.[0])
-    ?? yoga.detailedDescription.en?.[0]
-    ?? ''
-  ).slice(0, 155);
+  const descArr =
+    (yoga.detailedDescription as Record<string, string[] | undefined>)[locale]
+    ?? yoga.detailedDescription.en;
+  const desc = (descArr?.[0] ?? yoga.detailedDescription.en?.[0] ?? '').slice(0, 155);
   // Indexability now sourced from the central per-route policy in
   // src/lib/seo/indexable-locales.ts. The /learn/ prefix declares en+hi
   // indexable; this layout used to read the same set from a local
@@ -88,9 +87,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // Polished title — leads with "{name} in Vedic Astrology" pattern
   // that matches "what is X yoga" / "X yoga meaning" intent queries.
   // Brand suffix lives in the root layout title template.
-  const title = isHi
-    ? `${name} — अर्थ, गठन, प्रभाव और उपाय`
-    : `${name} in Vedic Astrology — Meaning, Formation, Effects & Remedies`;
+  const TITLE_SUFFIX: Record<string, string> = {
+    en: 'in Vedic Astrology — Meaning, Formation, Effects & Remedies',
+    hi: '— अर्थ, गठन, प्रभाव और उपाय',
+  };
+  const OG_SUFFIX: Record<string, string> = {
+    en: '— Vedic Astrology Yoga',
+    hi: '— वैदिक ज्योतिष योग',
+  };
+  const title = `${name} ${TITLE_SUFFIX[locale] ?? TITLE_SUFFIX.en}`;
 
   return {
     title,
@@ -113,9 +118,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       ? { index: true, follow: true }
       : { index: false, follow: true },
     openGraph: {
-      title: isHi
-        ? `${name} — वैदिक ज्योतिष योग`
-        : `${name} — Vedic Astrology Yoga`,
+      title: `${name} ${OG_SUFFIX[locale] ?? OG_SUFFIX.en}`,
       description: desc,
       url: canonicalUrl,
       type: 'article',
@@ -164,9 +167,12 @@ export default async function Layout({ children, params }: { children: React.Rea
   // not-found.tsx with a proper 404 status.
   if (!yoga) notFound();
 
-  const name = locale === 'hi' ? yoga.name.hi : yoga.name.en;
-  const desc = locale === 'hi' ? yoga.detailedDescription.hi[0] : yoga.detailedDescription.en[0];
-  const rule = locale === 'hi' ? yoga.formationRule.hi : yoga.formationRule.en;
+  const name = tl(yoga.name, locale);
+  const desc = (
+    (yoga.detailedDescription as Record<string, string[] | undefined>)[locale]
+    ?? yoga.detailedDescription.en
+  )[0];
+  const rule = tl(yoga.formationRule, locale);
 
   const articleLD = generateYogaArticleLD({
     name,
@@ -191,8 +197,8 @@ export default async function Layout({ children, params }: { children: React.Rea
   });
   if (yoga.effects?.length > 0) {
     const effectsSummary = yoga.effects.slice(0, 3).map(e => {
-      const area = locale === 'hi' ? e.area.hi : e.area.en;
-      const edesc = locale === 'hi' ? e.description.hi : e.description.en;
+      const area = tl(e.area, locale);
+      const edesc = tl(e.description, locale);
       return `${area}: ${edesc}`;
     }).join('. ');
     faqQuestions.push({
@@ -203,8 +209,8 @@ export default async function Layout({ children, params }: { children: React.Rea
   if (yoga.remedies) {
     const parts: string[] = [];
     if (yoga.remedies.mantra) parts.push(`Mantra: ${yoga.remedies.mantra}`);
-    if (yoga.remedies.gemstone) parts.push(`Gemstone: ${locale === 'hi' ? yoga.remedies.gemstone.hi : yoga.remedies.gemstone.en}`);
-    if (yoga.remedies.charity) parts.push(`Charity: ${locale === 'hi' ? yoga.remedies.charity.hi : yoga.remedies.charity.en}`);
+    if (yoga.remedies.gemstone) parts.push(`Gemstone: ${tl(yoga.remedies.gemstone, locale)}`);
+    if (yoga.remedies.charity) parts.push(`Charity: ${tl(yoga.remedies.charity, locale)}`);
     if (parts.length > 0) {
       faqQuestions.push({
         q: `What are the remedies for ${name}?`,

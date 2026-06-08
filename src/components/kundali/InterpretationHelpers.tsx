@@ -18,6 +18,10 @@ import { GRAHAS } from '@/lib/constants/grahas';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { PLANET_THEMES } from '@/lib/kundali/planet-themes';
 import { PLANET_REMEDIES } from '@/lib/kundali/planet-remedies';
+import { HOUSE_SIGNIFICATIONS } from '@/lib/kundali/house-significations';
+import { COMMON_YOGA_REMEDIES } from '@/lib/kundali/common-yoga-remedies';
+import { RAHU_KETU_FORECAST } from '@/lib/kundali/rahu-ketu-forecast';
+import { PLANET_DASHA_FORECAST } from '@/lib/kundali/planet-dasha-forecast';
 
 // ─── Planet metadata ────────────────────────────────────────────────────────
 
@@ -31,123 +35,9 @@ function pName(id: number, isHi: boolean): string {
 // PLANET_THEMES / PLANET_REMEDIES are now imported from @/lib/kundali/*
 // (9-locale via Gemini overlay + tlScript Devanagari fallback).
 
-// ─── Per-planet dasha forecasts ─────────────────────────────────────────────
-
-const PLANET_DASHA_FORECAST: Record<number, {
-  strongEn: string; strongHi: string;
-  adequateEn: string; adequateHi: string;
-  weakEn: string; weakHi: string;
-  actionEn: string; actionHi: string;
-}> = {
-  0: {
-    strongEn: 'Career breakthroughs, government recognition, leadership roles. Authority figures support you.',
-    strongHi: 'करियर में उन्नति, सरकारी मान्यता, नेतृत्व भूमिकाएं। अधिकारी आपका समर्थन करते हैं।',
-    adequateEn: 'Steady career growth, father relationships improve, vitality is reliable.',
-    adequateHi: 'करियर में स्थिर प्रगति, पिता संबंध सुधरते हैं, स्वास्थ्य विश्वसनीय।',
-    weakEn: 'Career setbacks likely, eye/heart health needs attention. Avoid conflicts with authority figures.',
-    weakHi: 'करियर में बाधा संभव, नेत्र/हृदय स्वास्थ्य पर ध्यान दें। अधिकारियों से विवाद से बचें।',
-    actionEn: 'Apply for promotions, take on leadership roles, strengthen relationship with father.',
-    actionHi: 'पदोन्नति के लिए आवेदन करें, नेतृत्व भूमिकाएं लें, पिता से संबंध सुधारें।',
-  },
-  1: {
-    strongEn: 'Emotional peace, public popularity, mother relationship flourishes. Best period for public-facing work.',
-    strongHi: 'भावनात्मक शांति, लोकप्रियता, माता से अच्छे संबंध। जनसेवा के लिए उत्तम काल।',
-    adequateEn: 'Emotional stability, modest public recognition, family life pleasant.',
-    adequateHi: 'भावनात्मक स्थिरता, मध्यम सार्वजनिक मान्यता, पारिवारिक जीवन सुखद।',
-    weakEn: 'Mental fluctuations, sleep issues, mother\'s health may be a concern. Avoid major decisions in emotional states.',
-    weakHi: 'मानसिक उतार-चढ़ाव, नींद की समस्या, माता के स्वास्थ्य की चिंता। भावनात्मक स्थिति में बड़े निर्णय न लें।',
-    actionEn: 'Launch public ventures, nurture close relationships, work with the public or media.',
-    actionHi: 'सार्वजनिक उद्यम शुरू करें, करीबी रिश्तों को पोषित करें, जनसेवा/मीडिया में कार्य करें।',
-  },
-  2: {
-    strongEn: 'Property acquisition, physical achievement, courage rewarded. Siblings and allies are supportive.',
-    strongHi: 'संपत्ति अर्जन, शारीरिक उपलब्धि, साहस पुरस्कृत। भाई-बहन और सहयोगी सहायक।',
-    adequateEn: 'Energy and initiative carry you forward in concrete, material goals.',
-    adequateHi: 'ऊर्जा और पहल ठोस, भौतिक लक्ष्यों में मदद करती है।',
-    weakEn: 'Injury risk, property disputes, temper issues. Avoid impulsive decisions and risky physical activities.',
-    weakHi: 'चोट का खतरा, संपत्ति विवाद, क्रोध की समस्या। आवेगी निर्णयों और जोखिम भरी गतिविधियों से बचें।',
-    actionEn: 'Buy property, start a fitness regimen, take bold but calculated risks.',
-    actionHi: 'संपत्ति खरीदें, फिटनेस शुरू करें, साहसिक लेकिन सोचे-समझे जोखिम लें।',
-  },
-  3: {
-    strongEn: 'Business success, communication wins, education thrives. Writing, media, and analytical work excel.',
-    strongHi: 'व्यापार सफलता, संवाद में जीत, शिक्षा फलती है। लेखन, मीडिया और विश्लेषणात्मक कार्य श्रेष्ठ।',
-    adequateEn: 'Good for studies, business deals, networking, and intellectual pursuits.',
-    adequateHi: 'अध्ययन, व्यापार सौदों, नेटवर्किंग और बौद्धिक कार्यों के लिए अच्छा।',
-    weakEn: 'Miscommunication, nervous system sensitivity, indecision. Double-check all agreements before signing.',
-    weakHi: 'संवाद में गलतफहमी, तंत्रिका तंत्र की संवेदनशीलता। हस्ताक्षर से पहले सभी समझौतों की जांच करें।',
-    actionEn: 'Start studies, sign contracts, launch media or writing projects, network actively.',
-    actionHi: 'अध्ययन शुरू करें, अनुबंध हस्ताक्षर करें, लेखन/मीडिया परियोजनाएं शुरू करें।',
-  },
-  4: {
-    strongEn: 'Wisdom grows, wealth expands, children succeed. Excellent judgment and spiritual advancement. Best period for higher education and investment.',
-    strongHi: 'ज्ञान बढ़ता है, धन का विस्तार, संतान की सफलता। उत्कृष्ट निर्णय और आध्यात्मिक उन्नति। उच्च शिक्षा और निवेश के लिए उत्तम।',
-    adequateEn: 'Growth and expansion in key life areas. Guidance and good fortune come when needed.',
-    adequateHi: 'जीवन के प्रमुख क्षेत्रों में विकास। जरूरत पड़ने पर मार्गदर्शन और सौभाग्य मिलता है।',
-    weakEn: 'Poor advice leads to costly mistakes, financial misjudgments, children may face challenges. Consult trusted mentors before major decisions.',
-    weakHi: 'खराब सलाह से महंगी गलतियां, आर्थिक गलत निर्णय, संतान को चुनौतियां। बड़े निर्णयों से पहले विश्वसनीय गुरुओं से परामर्श करें।',
-    actionEn: 'Invest for the long term, pursue higher education, have children, find a guru or mentor.',
-    actionHi: 'दीर्घकालिक निवेश करें, उच्च शिक्षा लें, संतान प्राप्ति, गुरु की खोज करें।',
-  },
-  5: {
-    strongEn: 'Happy marriage or relationship, artistic success, financial gains from beauty/art/luxury. Life feels pleasurable.',
-    strongHi: 'सुखी विवाह/रिश्ता, कलात्मक सफलता, सौंदर्य/कला/विलास से आर्थिक लाभ। जीवन आनंदपूर्ण।',
-    adequateEn: 'Relationships are pleasant, creative projects succeed moderately, comforts increase.',
-    adequateHi: 'रिश्ते सुखद, रचनात्मक परियोजनाएं मध्यम सफलता, सुख-सुविधाएं बढ़ती हैं।',
-    weakEn: 'Relationship friction, kidney or reproductive health needs monitoring, overspending risk. Be deliberate in romantic decisions.',
-    weakHi: 'रिश्तों में तनाव, गुर्दे/प्रजनन स्वास्थ्य की निगरानी, अत्यधिक खर्च का खतरा।',
-    actionEn: 'Get married, launch creative ventures, invest in beauty or luxury sector, deepen artistic practice.',
-    actionHi: 'विवाह करें, रचनात्मक उद्यम शुरू करें, सौंदर्य/विलास क्षेत्र में निवेश करें।',
-  },
-  6: {
-    strongEn: 'Career stability, disciplined wealth building, longevity confirmed. Hard work is consistently rewarded.',
-    strongHi: 'करियर स्थिरता, अनुशासित धन निर्माण, दीर्घायु सिद्ध। परिश्रम का फल निरंतर मिलता है।',
-    adequateEn: 'Slow but steady progress. Discipline and persistence reliably pay off.',
-    adequateHi: 'धीमी लेकिन स्थिर प्रगति। अनुशासन और दृढ़ता विश्वसनीय रूप से फलदायक।',
-    weakEn: 'Delays, chronic health issues (joints, bones, teeth), career obstacles. Extra patience and persistence are essential.',
-    weakHi: 'विलम्ब, दीर्घकालिक स्वास्थ्य समस्याएं (जोड़/हड्डी/दांत), करियर में बाधाएं। अतिरिक्त धैर्य और दृढ़ता आवश्यक।',
-    actionEn: 'Build long-term assets, establish daily routines, take on serious responsibilities, do inner work.',
-    actionHi: 'दीर्घकालिक संपत्ति बनाएं, दिनचर्या स्थापित करें, गंभीर जिम्मेदारियां लें, आत्मिक कार्य करें।',
-  },
-};
-
-const RAHU_KETU_FORECAST: Record<number, LocaleText> = {
-  7: {
-    en: 'Unusual opportunities, foreign connections, sudden gains or disruptions. Ambition peaks  –  but verify carefully before acting. Excellent for unconventional paths.',
-    hi: 'असामान्य अवसर, विदेशी संपर्क, अचानक लाभ या व्यवधान। महत्वाकांक्षा चरम पर  –  कार्य से पहले सावधानी से जांचें।',
-  },
-  8: {
-    en: 'Detachment, spiritual insight, past-life patterns surfacing. Career may feel directionless but inner wisdom and intuition grow strongly.',
-    hi: 'विरक्ति, आध्यात्मिक अंतर्दृष्टि, पूर्व जन्म के संस्कार उभरते हैं। करियर अनिश्चित लेकिन आंतरिक ज्ञान और अंतर्ज्ञान बढ़ता है।',
-  },
-};
-
-// ─── House significations ────────────────────────────────────────────────────
-
-const HOUSE_SIGNIFICATIONS: Record<number, { en: string; hi: string; remedy_en: string; remedy_hi: string }> = {
-  1: { en: 'Self, personality, health, vitality', hi: 'आत्म, व्यक्तित्व, स्वास्थ्य', remedy_en: 'Strengthen lagna lord, Sun worship', remedy_hi: 'लग्नेश को बलवान करें, सूर्य उपासना' },
-  2: { en: 'Wealth, family, speech, food habits', hi: 'धन, परिवार, वाणी, भोजन', remedy_en: 'Donate food, strengthen 2nd lord', remedy_hi: 'अन्न दान, द्वितीयेश को बलवान करें' },
-  3: { en: 'Courage, siblings, short travel, efforts', hi: 'साहस, भाई-बहन, छोटी यात्रा', remedy_en: 'Mars remedies, regular exercise', remedy_hi: 'मंगल उपाय, नियमित व्यायाम' },
-  4: { en: 'Mother, home, vehicles, inner peace', hi: 'माता, घर, वाहन, मानसिक शांति', remedy_en: 'Moon remedies, serve mother, plant trees', remedy_hi: 'चन्द्र उपाय, माता की सेवा, वृक्ष लगाएं' },
-  5: { en: 'Children, education, intellect, romance', hi: 'संतान, शिक्षा, बुद्धि, प्रेम', remedy_en: 'Jupiter remedies, Saraswati puja', remedy_hi: 'गुरु उपाय, सरस्वती पूजा' },
-  6: { en: 'Enemies, disease, debts, daily work', hi: 'शत्रु, रोग, ऋण, दैनिक कार्य', remedy_en: 'Mars/Saturn remedies, Hanuman worship', remedy_hi: 'मंगल/शनि उपाय, हनुमान उपासना' },
-  7: { en: 'Marriage, partnerships, public dealings', hi: 'विवाह, साझेदारी, सार्वजनिक व्यवहार', remedy_en: 'Venus remedies, Gauri puja for marriage', remedy_hi: 'शुक्र उपाय, विवाह हेतु गौरी पूजा' },
-  8: { en: 'Longevity, transformation, hidden matters', hi: 'आयु, रूपांतरण, गुप्त विषय', remedy_en: 'Mahamrityunjaya mantra, donate black items on Saturday', remedy_hi: 'महामृत्युंजय मंत्र, शनिवार काले वस्तुओं का दान' },
-  9: { en: 'Fortune, father, dharma, higher education', hi: 'भाग्य, पिता, धर्म, उच्च शिक्षा', remedy_en: 'Jupiter remedies, pilgrimage, serve guru', remedy_hi: 'गुरु उपाय, तीर्थयात्रा, गुरु सेवा' },
-  10: { en: 'Career, reputation, authority, karma', hi: 'करियर, प्रतिष्ठा, अधिकार, कर्म', remedy_en: 'Sun + Saturn remedies, Shani Stotra', remedy_hi: 'सूर्य + शनि उपाय, शनि स्तोत्र' },
-  11: { en: 'Gains, income, elder siblings, desires', hi: 'लाभ, आय, बड़े भाई-बहन, इच्छाएं', remedy_en: 'Jupiter remedies, donate on Thursdays', remedy_hi: 'गुरु उपाय, गुरुवार दान' },
-  12: { en: 'Losses, expenses, foreign travel, moksha', hi: 'हानि, खर्च, विदेश यात्रा, मोक्ष', remedy_en: 'Ketu remedies, meditation, spiritual practice', remedy_hi: 'केतु उपाय, ध्यान, आध्यात्मिक साधना' },
-};
-
-// ─── Yoga remedies table ─────────────────────────────────────────────────────
-
-const COMMON_YOGA_REMEDIES = [
-  { yoga: 'Kemadruma', issue: 'Loneliness, isolation', issueHi: 'अकेलापन, एकांत', remedy: 'Strengthen Moon  –  pearl, Monday fasting', remedyHi: 'चन्द्र बलवान करें  –  मोती, सोमवार व्रत' },
-  { yoga: 'Mangal Dosha', issue: 'Marital conflict', issueHi: 'वैवाहिक विवाद', remedy: 'Mars remedies  –  red coral, Hanuman worship', remedyHi: 'मंगल उपाय  –  मूंगा, हनुमान पूजा' },
-  { yoga: 'Kala Sarpa', issue: 'Career blocks', issueHi: 'करियर में बाधा', remedy: 'Rahu-Ketu remedies  –  Nag puja, Saturday charity', remedyHi: 'राहु-केतु उपाय  –  नाग पूजा, शनिवार दान' },
-  { yoga: 'Guru Chandal', issue: 'Poor judgment', issueHi: 'खराब निर्णय', remedy: 'Jupiter remedies  –  yellow sapphire, Thursday puja', remedyHi: 'गुरु उपाय  –  पुखराज, गुरुवार पूजा' },
-  { yoga: 'Daridra', issue: 'Financial struggle', issueHi: 'आर्थिक कठिनाई', remedy: '2nd/11th lord remedies, charity on Saturdays', remedyHi: '२/११ भावेश उपाय, शनिवार दान' },
-];
+// PLANET_DASHA_FORECAST / RAHU_KETU_FORECAST / HOUSE_SIGNIFICATIONS /
+// COMMON_YOGA_REMEDIES are now imported from @/lib/kundali/* (9-locale
+// via Gemini overlay + tlScript Devanagari fallback).
 
 // ─── Avastha quick reference ─────────────────────────────────────────────────
 
@@ -248,18 +138,18 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
   function getDashaForecast(d: DashaEntry, tier: 'strong' | 'adequate' | 'weak' | 'node'): string {
     const name = d.planetName?.en || d.planet;
     const id = PLANET_ALL_NAMES.indexOf(name);
-    if (tier === 'node') return isHi ? (RAHU_KETU_FORECAST[id]?.hi ?? '') : (RAHU_KETU_FORECAST[id]?.en ?? '');
+    if (tier === 'node') return tlScript(RAHU_KETU_FORECAST[id], locale);
     const f = PLANET_DASHA_FORECAST[id];
     if (!f) return '';
-    if (tier === 'strong') return isHi ? f.strongHi : f.strongEn;
-    if (tier === 'adequate') return isHi ? f.adequateHi : f.adequateEn;
-    return isHi ? f.weakHi : f.weakEn;
+    if (tier === 'strong') return tlScript(f.strong, locale);
+    if (tier === 'adequate') return tlScript(f.adequate, locale);
+    return tlScript(f.weak, locale);
   }
 
   function getDashaAction(d: DashaEntry): string {
     const name = d.planetName?.en || d.planet;
     const id = PLANET_ALL_NAMES.indexOf(name);
-    return isHi ? (PLANET_DASHA_FORECAST[id]?.actionHi ?? '') : (PLANET_DASHA_FORECAST[id]?.actionEn ?? '');
+    return tlScript(PLANET_DASHA_FORECAST[id]?.action, locale);
   }
 
   if (!sorted.length) return null;
@@ -406,7 +296,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
               {PLANET_DASHA_FORECAST[strongest.planetId] && (
                 <p className="text-gold-primary/80 text-xs italic">
                   {msg('duringMahadasha', locale)}
-                  {isHi ? PLANET_DASHA_FORECAST[strongest.planetId].strongHi : PLANET_DASHA_FORECAST[strongest.planetId].strongEn}
+                  {tlScript(PLANET_DASHA_FORECAST[strongest.planetId].strong, locale)}
                 </p>
               )}
             </div>
@@ -435,7 +325,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
                     <span className="text-text-secondary text-xs ml-2">{msg('goldenPeriod', locale)}</span>
                     {PLANET_DASHA_FORECAST[id] && (
                       <p className="text-text-secondary/75 text-xs mt-0.5">
-                        {isHi ? PLANET_DASHA_FORECAST[id].actionHi : PLANET_DASHA_FORECAST[id].actionEn}
+                        {tlScript(PLANET_DASHA_FORECAST[id].action, locale)}
                       </p>
                     )}
                   </div>
@@ -674,10 +564,10 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
             </thead>
             <tbody>
               {COMMON_YOGA_REMEDIES.map(r => (
-                <tr key={r.yoga} className="border-b border-white/5">
-                  <td className="py-2 px-2 text-[#d4a853] font-medium">{r.yoga}</td>
-                  <td className="py-2 px-2 text-text-primary">{isHi ? r.issueHi : r.issue}</td>
-                  <td className="py-2 px-2 text-emerald-400/80">{isHi ? r.remedyHi : r.remedy}</td>
+                <tr key={r.name} className="border-b border-white/5">
+                  <td className="py-2 px-2 text-[#d4a853] font-medium">{r.name}</td>
+                  <td className="py-2 px-2 text-text-primary">{tlScript(r.issue, locale)}</td>
+                  <td className="py-2 px-2 text-emerald-400/80">{tlScript(r.remedy, locale)}</td>
                 </tr>
               ))}
             </tbody>
@@ -1138,7 +1028,14 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
               <span className="text-emerald-300 text-xs font-bold">{strongest.total.toFixed(1)} {msg('pts', locale)}</span>
             </div>
             <p className="text-sm text-gray-200 leading-relaxed">
-              {tl({ en: `Your strongest house is House ${strongest.bhava} (${strongSig?.en ?? ''}). This is where life comes most easily to you. Activities related to this house bring natural success with less effort.`, hi: `आपका सबसे बलवान भाव ${strongest.bhava}वां भाव है (${strongSig?.hi ?? ''})। यही वह क्षेत्र है जहां जीवन सबसे सहज रूप से आता है। इस भाव से जुड़े कार्यों में आपको स्वाभाविक सफलता मिलती है।`, sa: `आपका सबसे बलवान भाव ${strongest.bhava}वां भाव है (${strongSig?.hi ?? ''})। यही वह क्षेत्र है जहां जीवन सबसे सहज रूप से आता है। इस भाव से जुड़े कार्यों में आपको स्वाभाविक सफलता मिलती है।` }, locale)}
+              {(() => {
+                const sigLocal = tlScript(strongSig?.signif, locale);
+                return tl({
+                  en: `Your strongest house is House ${strongest.bhava} (${tlScript(strongSig?.signif, 'en')}). This is where life comes most easily to you. Activities related to this house bring natural success with less effort.`,
+                  hi: `आपका सबसे बलवान भाव ${strongest.bhava}वां भाव है (${sigLocal})। यही वह क्षेत्र है जहां जीवन सबसे सहज रूप से आता है। इस भाव से जुड़े कार्यों में आपको स्वाभाविक सफलता मिलती है।`,
+                  sa: `आपका सबसे बलवान भाव ${strongest.bhava}वां भाव है (${sigLocal})। यही वह क्षेत्र है जहां जीवन सबसे सहज रूप से आता है। इस भाव से जुड़े कार्यों में आपको स्वाभाविक सफलता मिलती है।`,
+                }, locale);
+              })()}
             </p>
           </div>
         </div>
@@ -1155,11 +1052,18 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
               <span className="text-amber-300 text-xs font-bold">{weakest.total.toFixed(1)} {msg('pts', locale)}</span>
             </div>
             <p className="text-sm text-gray-200 leading-relaxed">
-              {tl({ en: `Your weakest house is House ${weakest.bhava} (${weakSig?.en ?? ''}). This area needs conscious effort.`, hi: `आपका सबसे कमजोर भाव ${weakest.bhava}वां भाव है (${weakSig?.hi ?? ''})। इस क्षेत्र में सचेत प्रयास की आवश्यकता है।`, sa: `आपका सबसे कमजोर भाव ${weakest.bhava}वां भाव है (${weakSig?.hi ?? ''})। इस क्षेत्र में सचेत प्रयास की आवश्यकता है।` }, locale)}
+              {(() => {
+                const sigLocal = tlScript(weakSig?.signif, locale);
+                return tl({
+                  en: `Your weakest house is House ${weakest.bhava} (${tlScript(weakSig?.signif, 'en')}). This area needs conscious effort.`,
+                  hi: `आपका सबसे कमजोर भाव ${weakest.bhava}वां भाव है (${sigLocal})। इस क्षेत्र में सचेत प्रयास की आवश्यकता है।`,
+                  sa: `आपका सबसे कमजोर भाव ${weakest.bhava}वां भाव है (${sigLocal})। इस क्षेत्र में सचेत प्रयास की आवश्यकता है।`,
+                }, locale);
+              })()}
             </p>
             <p className="text-xs text-emerald-400 mt-1">
               {msg('remediesLabel', locale)}
-              {isHi ? weakSig?.remedy_hi : weakSig?.remedy_en}
+              {tlScript(weakSig?.remedy, locale)}
             </p>
           </div>
         </div>
@@ -1186,7 +1090,7 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
                 {/* House label */}
                 <span className={`w-8 text-right font-bold text-sm ${textColor}`}>H{bh.bhava}</span>
                 {/* Signification */}
-                <span className="w-20 sm:w-24 text-xs text-text-secondary truncate">{tlScript(sig, locale)}</span>
+                <span className="w-20 sm:w-24 text-xs text-text-secondary truncate">{tlScript(sig?.signif, locale)}</span>
                 {/* Bar */}
                 <div className="flex-1 h-5 bg-bg-tertiary/30 rounded-md overflow-hidden relative">
                   <div

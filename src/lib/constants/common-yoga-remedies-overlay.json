@@ -1,0 +1,98 @@
+{
+  "hi": {
+    "kemadruma_issue": "अकेलापन, एकांत",
+    "kemadruma_remedy": "चन्द्र बलवान करें  –  मोती, सोमवार व्रत",
+    "mangal_dosha_issue": "वैवाहिक विवाद",
+    "mangal_dosha_remedy": "मंगल उपाय  –  मूंगा, हनुमान पूजा",
+    "kala_sarpa_issue": "करियर में बाधा",
+    "kala_sarpa_remedy": "राहु-केतु उपाय  –  नाग पूजा, शनिवार दान",
+    "guru_chandal_issue": "खराब निर्णय",
+    "guru_chandal_remedy": "गुरु उपाय  –  पुखराज, गुरुवार पूजा",
+    "daridra_issue": "आर्थिक कठिनाई",
+    "daridra_remedy": "२/११ भावेश उपाय, शनिवार दान"
+  },
+  "mai": {
+    "kemadruma_issue": "एकाकीपन, अलगाव",
+    "kemadruma_remedy": "चन्द्रमा केँ बलवान करू – मोती, सोमदिनक उपवास",
+    "mangal_dosha_issue": "वैवाहिक कलह",
+    "mangal_dosha_remedy": "मंगलक उपाय – मूंगा, हनुमानक पूजा",
+    "kala_sarpa_issue": "करियर मे बाधा",
+    "kala_sarpa_remedy": "राहु-केतुक उपाय – नाग पूजा, शनिदिनक दान",
+    "guru_chandal_issue": "खराब निर्णय क्षमता",
+    "guru_chandal_remedy": "बृहस्पतिक उपाय – पुखराज, बृहस्पतिदिनक पूजा",
+    "daridra_issue": "आर्थिक संघर्ष",
+    "daridra_remedy": "दोसर/एगारहम भावक स्वामीक उपाय, शनिदिनक दान"
+  },
+  "mr": {
+    "kemadruma_issue": "एकाकीपणा, अलिप्तता",
+    "kemadruma_remedy": "चंद्राला बळकट करा – मोती, सोमवारचे उपवास",
+    "mangal_dosha_issue": "वैवाहिक संघर्ष",
+    "mangal_dosha_remedy": "मंगळाचे उपाय – प्रवाळ, हनुमानाची पूजा",
+    "kala_sarpa_issue": "करिअरमधील अडथळे",
+    "kala_sarpa_remedy": "राहू-केतूचे उपाय – नाग पूजा, शनिवारी दान",
+    "guru_chandal_issue": "निर्णय क्षमतेचा अभाव",
+    "guru_chandal_remedy": "गुरूचे उपाय – पुष्कराज, गुरुवारची पूजा",
+    "daridra_issue": "आर्थिक संघर्ष",
+    "daridra_remedy": "द्वितीय/एकादश भावेशाचे उपाय, शनिवारी दान"
+  },
+  "ta": {
+    "kemadruma_issue": "தனிமை",
+    "kemadruma_remedy": "சந்திரனை பலப்படுத்துதல் – முத்து, திங்கட்கிழமை விரதம்",
+    "mangal_dosha_issue": "திருமண தகராறு",
+    "mangal_dosha_remedy": "செவ்வாய் பரிகாரங்கள் – பவளம், ஆஞ்சநேயர் வழிபாடு",
+    "kala_sarpa_issue": "தொழில் தடைகள்",
+    "kala_sarpa_remedy": "ராகு-கேது பரிகாரங்கள் – நாக பூஜை, சனிக்கிழமை தானம்",
+    "guru_chandal_issue": "தவறான தீர்ப்பு",
+    "guru_chandal_remedy": "குரு பரிகாரங்கள் – கனக புஷ்பராகம், வியாழக்கிழமை பூஜை",
+    "daridra_issue": "பணக் கஷ்டம்",
+    "daridra_remedy": "2 மற்றும் 11 ஆம் அதிபதி பரிகாரங்கள், சனிக்கிழமைகளில் தானம்"
+  },
+  "te": {
+    "kemadruma_issue": "ఏకాంతం, ఒంటరితనం",
+    "kemadruma_remedy": "చంద్రుడిని బలపరచండి – ముత్యం, సోమవార ఉపవాసం",
+    "mangal_dosha_issue": "దాంపత్య కలహాలు",
+    "mangal_dosha_remedy": "కుజుడి పరిహారాలు – పగడం, హనుమాన్ ఆరాధన",
+    "kala_sarpa_issue": "వృత్తిపరమైన ఆటంకాలు",
+    "kala_sarpa_remedy": "రాహు-కేతువుల పరిహారాలు – నాగ పూజ, శనివార దానం",
+    "guru_chandal_issue": "వివేక లోపం",
+    "guru_chandal_remedy": "గురుడి పరిహారాలు – కనక పుష్యరాగం, గురువార పూజ",
+    "daridra_issue": "ఆర్థిక కష్టాలు",
+    "daridra_remedy": "ధన గ్రహ పరిహారాలు, శనివార దానాలు"
+  },
+  "kn": {
+    "kemadruma_issue": "ಏಕಾಂತ, ಒಂಟಿತನ",
+    "kemadruma_remedy": "ಚಂದ್ರನನ್ನು ಬಲಪಡಿಸಿ – ಮುತ್ತು, ಸೋಮವಾರ ಉಪವಾಸ",
+    "mangal_dosha_issue": "ವೈವಾಹಿಕ ಕಲಹ",
+    "mangal_dosha_remedy": "ಮಂಗಳ ದೋಷ ಪರಿಹಾರಗಳು – ಕೆಂಪು ಹವಳ, ಹನುಮಾನ್ ಪೂಜೆ",
+    "kala_sarpa_issue": "ವೃತ್ತಿಜೀವನದ ಅಡೆತಡೆಗಳು",
+    "kala_sarpa_remedy": "ರಾಹು-ಕೇತು ಪರಿಹಾರಗಳು – ನಾಗ ಪೂಜೆ, ಶನಿವಾರ ದಾನ",
+    "guru_chandal_issue": "ಕಳಪೆ ವಿವೇಚನೆ",
+    "guru_chandal_remedy": "ಗುರು ಪರಿಹಾರಗಳು – ಹಳದಿ ಪುಷ್ಯರಾಗ, ಗುರುವಾರ ಪೂಜೆ",
+    "daridra_issue": "ಆರ್ಥಿಕ ಸಂಕಷ್ಟ",
+    "daridra_remedy": "2ನೇ/11ನೇ ಅಧಿಪತಿ ಪರಿಹಾರಗಳು, ಶನಿವಾರ ದಾನ"
+  },
+  "gu": {
+    "kemadruma_issue": "એકાંત, વિરહ",
+    "kemadruma_remedy": "ચંદ્રને બળવાન બનાવો – મોતી, સોમવારનું વ્રત",
+    "mangal_dosha_issue": "વૈવાહિક સંઘર્ષ",
+    "mangal_dosha_remedy": "મંગળના ઉપાયો – મૂંગા, હનુમાનજીની પૂજા",
+    "kala_sarpa_issue": "કારકિર્દીમાં અવરોધો",
+    "kala_sarpa_remedy": "રાહુ-કેતુના ઉપાયો – નાગ પૂજા, શનિવારે દાન",
+    "guru_chandal_issue": "વિવેકબુદ્ધિનો અભાવ",
+    "guru_chandal_remedy": "ગુરુના ઉપાયો – પુખરાજ, ગુરુવારે પૂજા",
+    "daridra_issue": "આર્થિક સંઘર્ષ",
+    "daridra_remedy": "બીજા/અગિયારમા ભાવના સ્વામીના ઉપાયો, શનિવારે દાન"
+  },
+  "bn": {
+    "kemadruma_issue": "একাকীত্ব, বিচ্ছিন্নতা",
+    "kemadruma_remedy": "চন্দ্রের শক্তি বৃদ্ধি – মুক্তা, সোমবার ব্রত",
+    "mangal_dosha_issue": "দাম্পত্য কলহ",
+    "mangal_dosha_remedy": "মঙ্গলের প্রতিকার – প্রবাল, হনুমান পূজা",
+    "kala_sarpa_issue": "কর্মক্ষেত্রে বাধা",
+    "kala_sarpa_remedy": "রাহু-কেতুর প্রতিকার – নাগ পূজা, শনিবার দান",
+    "guru_chandal_issue": "দুর্বল বিচারশক্তি",
+    "guru_chandal_remedy": "বৃহস্পতির প্রতিকার – পোখরাজ, বৃহস্পতিবার পূজা",
+    "daridra_issue": "আর্থিক কষ্ট",
+    "daridra_remedy": "দ্বিতীয়/একাদশ পতির প্রতিকার, শনিবার দান"
+  }
+}

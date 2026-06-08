@@ -12,7 +12,8 @@ import {
   pickBestWindowsLabel as BWL,
   formatBestWindowsLabel,
 } from '@/lib/content/best-windows-card-labels';
-import { tl } from '@/lib/utils/trilingual';
+import { tl, tlScript } from '@/lib/utils/trilingual';
+import { NAMED_WINDOW_LABELS } from '@/lib/panchang/named-window-labels';
 import { nowMinutesInTimezone, todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { useLocationStore } from '@/stores/location-store';
 import { computeBalam, TARA_NAMES, FAVORABLE_TARAS } from '@/lib/panchang/balam';
@@ -76,8 +77,7 @@ const SECONDARY_ACTIVITIES = ALL_ACTIVITY_IDS.filter(id => !PRIMARY_ACTIVITIES.i
 
 interface NamedWindow {
   id: string;
-  name: string;
-  nameHi: string;
+  labelKey: keyof typeof NAMED_WINDOW_LABELS;
   start: number; // minutes
   end: number;
   colour: string; // hex
@@ -88,28 +88,28 @@ function collectInauspicious(p: PanchangData): NamedWindow[] {
   // Day-level yoga doshas: Vyatipata (#17) and Vaidhriti (#27) block sunrise→sunset
   const sunriseM = toMin(p.sunrise);
   const sunsetM = toMin(p.sunset);
-  if (p.yoga?.number === 17) windows.push({ id: 'vyati', name: 'Vyatipata', nameHi: 'व्यतीपात', start: sunriseM, end: sunsetM, colour: '#581c87' });
-  if (p.yoga?.number === 27) windows.push({ id: 'vaidh', name: 'Vaidhriti', nameHi: 'वैधृति', start: sunriseM, end: sunsetM, colour: '#581c87' });
-  if (p.rahuKaal) windows.push({ id: 'rk', name: 'Rahu Kaal', nameHi: 'राहु काल', start: toMin(p.rahuKaal.start), end: toMin(p.rahuKaal.end), colour: '#dc2626' });
-  if (p.yamaganda) windows.push({ id: 'ym', name: 'Yamaganda', nameHi: 'यमगण्ड', start: toMin(p.yamaganda.start), end: toMin(p.yamaganda.end), colour: '#b91c1c' });
-  if (p.gulikaKaal) windows.push({ id: 'gk', name: 'Gulika', nameHi: 'गुलिक', start: toMin(p.gulikaKaal.start), end: toMin(p.gulikaKaal.end), colour: '#991b1b' });
+  if (p.yoga?.number === 17) windows.push({ id: 'vyati', labelKey: 'vyatipata', start: sunriseM, end: sunsetM, colour: '#581c87' });
+  if (p.yoga?.number === 27) windows.push({ id: 'vaidh', labelKey: 'vaidhriti', start: sunriseM, end: sunsetM, colour: '#581c87' });
+  if (p.rahuKaal) windows.push({ id: 'rk', labelKey: 'rahu_kaal', start: toMin(p.rahuKaal.start), end: toMin(p.rahuKaal.end), colour: '#dc2626' });
+  if (p.yamaganda) windows.push({ id: 'ym', labelKey: 'yamaganda', start: toMin(p.yamaganda.start), end: toMin(p.yamaganda.end), colour: '#b91c1c' });
+  if (p.gulikaKaal) windows.push({ id: 'gk', labelKey: 'gulika', start: toMin(p.gulikaKaal.start), end: toMin(p.gulikaKaal.end), colour: '#991b1b' });
   const varjyam = p.varjyamAll ?? (p.varjyam ? [p.varjyam] : []);
-  varjyam.forEach((v, i) => windows.push({ id: `vj${i}`, name: 'Varjyam', nameHi: 'वर्ज्यम्', start: toMin(v.start), end: toMin(v.end), colour: '#d97706' }));
+  varjyam.forEach((v, i) => windows.push({ id: `vj${i}`, labelKey: 'varjyam', start: toMin(v.start), end: toMin(v.end), colour: '#d97706' }));
   const bhadra = p.bhadraAll ?? (p.bhadra ? [p.bhadra] : []);
-  bhadra.forEach((b, i) => windows.push({ id: `bh${i}`, name: 'Vishti', nameHi: 'विष्टि', start: toMin(b.start), end: toMin(b.end), colour: '#7f1d1d' }));
-  if (p.durMuhurtam) p.durMuhurtam.forEach((d, i) => windows.push({ id: `dm${i}`, name: 'Durmuhurta', nameHi: 'दुर्मुहूर्त', start: toMin(d.start), end: toMin(d.end), colour: '#92400e' }));
-  if (p.vishaGhatika) windows.push({ id: 'vg', name: 'Visha Ghatika', nameHi: 'विष घटिका', start: toMin(p.vishaGhatika.start), end: toMin(p.vishaGhatika.end), colour: '#78350f' });
+  bhadra.forEach((b, i) => windows.push({ id: `bh${i}`, labelKey: 'vishti', start: toMin(b.start), end: toMin(b.end), colour: '#7f1d1d' }));
+  if (p.durMuhurtam) p.durMuhurtam.forEach((d, i) => windows.push({ id: `dm${i}`, labelKey: 'durmuhurta', start: toMin(d.start), end: toMin(d.end), colour: '#92400e' }));
+  if (p.vishaGhatika) windows.push({ id: 'vg', labelKey: 'visha_ghatika', start: toMin(p.vishaGhatika.start), end: toMin(p.vishaGhatika.end), colour: '#78350f' });
   return windows;
 }
 
 function collectAuspicious(p: PanchangData): NamedWindow[] {
   const windows: NamedWindow[] = [];
-  if (p.brahmaMuhurta) windows.push({ id: 'bm', name: 'Brahma Muhurta', nameHi: 'ब्रह्म मुहूर्त', start: toMin(p.brahmaMuhurta.start), end: toMin(p.brahmaMuhurta.end), colour: '#6d28d9' });
-  if (p.abhijitMuhurta && p.abhijitMuhurta.available !== false) windows.push({ id: 'ab', name: 'Abhijit', nameHi: 'अभिजित', start: toMin(p.abhijitMuhurta.start), end: toMin(p.abhijitMuhurta.end), colour: '#d4a853' });
+  if (p.brahmaMuhurta) windows.push({ id: 'bm', labelKey: 'brahma_muhurta', start: toMin(p.brahmaMuhurta.start), end: toMin(p.brahmaMuhurta.end), colour: '#6d28d9' });
+  if (p.abhijitMuhurta && p.abhijitMuhurta.available !== false) windows.push({ id: 'ab', labelKey: 'abhijit', start: toMin(p.abhijitMuhurta.start), end: toMin(p.abhijitMuhurta.end), colour: '#d4a853' });
   const amrit = p.amritKalamAll ?? (p.amritKalam ? [p.amritKalam] : []);
-  amrit.forEach((a, i) => windows.push({ id: `ak${i}`, name: 'Amrit Kalam', nameHi: 'अमृत काल', start: toMin(a.start), end: toMin(a.end), colour: '#059669' }));
-  if (p.vijayaMuhurta) windows.push({ id: 'vj', name: 'Vijaya', nameHi: 'विजय', start: toMin(p.vijayaMuhurta.start), end: toMin(p.vijayaMuhurta.end), colour: '#10b981' });
-  if (p.godhuli) windows.push({ id: 'gd', name: 'Godhuli', nameHi: 'गोधूलि', start: toMin(p.godhuli.start), end: toMin(p.godhuli.end), colour: '#f59e0b' });
+  amrit.forEach((a, i) => windows.push({ id: `ak${i}`, labelKey: 'amrit_kalam', start: toMin(a.start), end: toMin(a.end), colour: '#059669' }));
+  if (p.vijayaMuhurta) windows.push({ id: 'vj', labelKey: 'vijaya', start: toMin(p.vijayaMuhurta.start), end: toMin(p.vijayaMuhurta.end), colour: '#10b981' });
+  if (p.godhuli) windows.push({ id: 'gd', labelKey: 'godhuli', start: toMin(p.godhuli.start), end: toMin(p.godhuli.end), colour: '#f59e0b' });
   return windows;
 }
 
@@ -125,16 +125,18 @@ interface BestWindowsCardProps {
 
 // ── Lane Bar sub-component ──
 
-function LaneBar({ windows, label, labelHi, isHi, tlStart, tlSpan, emptyColour }: {
+function LaneBar({ windows, label, labelHi, isHi, locale, tlStart, tlSpan, emptyColour }: {
   windows: NamedWindow[];
   label: string;
   labelHi: string;
   isHi: boolean;
+  locale: string;
   tlStart: number;
   tlSpan: number;
   emptyColour: string;
 }) {
   const pct = (min: number) => Math.max(0, Math.min(100, ((min - tlStart) / tlSpan) * 100));
+  const nameFor = (w: NamedWindow) => tlScript(NAMED_WINDOW_LABELS[w.labelKey], locale);
 
   return (
     <div>
@@ -147,16 +149,17 @@ function LaneBar({ windows, label, labelHi, isHi, tlStart, tlSpan, emptyColour }
           const right = pct(Math.min(w.end, tlStart + tlSpan));
           const width = right - left;
           if (width <= 0) return null;
+          const localised = nameFor(w);
           return (
             <div
               key={w.id}
               className="absolute top-0 bottom-0 flex items-center justify-center overflow-hidden rounded-sm"
               style={{ left: `${left}%`, width: `${width}%`, backgroundColor: w.colour }}
-              title={`${isHi ? w.nameHi : w.name}: ${fmt12(toHHMM(w.start))} – ${fmt12(toHHMM(w.end))}`}
+              title={`${localised}: ${fmt12(toHHMM(w.start))} – ${fmt12(toHHMM(w.end))}`}
             >
               {width > 6 && (
                 <span className="text-[8px] font-bold text-white/90 truncate px-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
-                  {isHi ? w.nameHi : w.name}
+                  {localised}
                 </span>
               )}
             </div>
@@ -570,6 +573,7 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
           label="Inauspicious"
           labelHi="अशुभ काल"
           isHi={isHi}
+          locale={locale}
           tlStart={tlStart}
           tlSpan={tlSpan}
           emptyColour="rgba(255,255,255,0.02)"
@@ -581,6 +585,7 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
           label="Auspicious"
           labelHi="शुभ काल"
           isHi={isHi}
+          locale={locale}
           tlStart={tlStart}
           tlSpan={tlSpan}
           emptyColour="rgba(255,255,255,0.02)"

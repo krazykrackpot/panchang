@@ -8,6 +8,7 @@ import { useBirthDataStatus } from '@/hooks/useBirthDataStatus';
 import { LEVEL_BY_ORDINAL } from '@/lib/constants/levels';
 import { tl } from '@/lib/utils/trilingual';
 import type { UserProgress } from '@/lib/gamification/types';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 const SS_KEY = 'sadhakaBannerDismissed';
 
@@ -72,8 +73,8 @@ export function SadhakaBanner({ locale }: { locale: string }) {
     return (
       <div className="w-full bg-gradient-to-r from-gold-primary/15 to-[#2d1b69]/40 border-b border-gold-primary/25 px-4 py-2 flex items-center gap-3 text-sm">
         <Link href={`/${locale}/settings`} className="flex-1 flex items-center gap-3 text-gold-light no-underline">
-          <span className="font-bold">{locale === 'hi' ? 'शिष्य · चरण 2/5' : 'Shishya · Step 2 of 5'}</span>
-          <span className="text-text-secondary text-xs">{locale === 'hi' ? 'जन्म विवरण जोड़ें →' : 'Add birth details to unlock your kundali →'}</span>
+          <span className="font-bold">{pickByScript('Shishya · Step 2 of 5', 'शिष्य · चरण 2/5', locale)}</span>
+          <span className="text-text-secondary text-xs">{pickByScript('Add birth details to unlock your kundali →', 'जन्म विवरण जोड़ें →', locale)}</span>
         </Link>
         <button onClick={handleDismiss} aria-label="Dismiss" className="text-gold-primary/60 hover:text-gold-light px-2">×</button>
       </div>
@@ -84,7 +85,7 @@ export function SadhakaBanner({ locale }: { locale: string }) {
     <div className="w-full bg-gradient-to-r from-gold-primary/15 to-[#2d1b69]/40 border-b border-gold-primary/25 px-4 py-2 flex items-center gap-3 text-sm">
       <Link href={`/${locale}/path`} className="flex-1 flex items-center gap-3 text-gold-light no-underline">
         <span className="font-bold">{lvl ? tl(lvl.name, locale) : ''}</span>
-        <span className="text-text-secondary text-xs">{streak}-{locale === 'hi' ? 'दिन निरंतरता' : 'day streak'} · {badgeCount}/18 {locale === 'hi' ? 'बैज' : 'badges'}</span>
+        <span className="text-text-secondary text-xs">{streak}-{pickByScript('day streak', 'दिन निरंतरता', locale)} · {badgeCount}/18 {pickByScript('badges', 'बैज', locale)}</span>
       </Link>
       <button onClick={handleDismiss} aria-label="Dismiss" className="text-gold-primary/60 hover:text-gold-light px-2">×</button>
     </div>

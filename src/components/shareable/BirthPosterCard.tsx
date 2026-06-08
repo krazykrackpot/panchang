@@ -1,6 +1,7 @@
 'use client';
 
 import type { BirthPosterData } from '@/lib/shareable/birth-poster';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 /* ════════════════════════════════════════════════════════════════
    BirthPosterCard  –  Astro-Aesthetic Birth Poster
@@ -138,7 +139,7 @@ export default function BirthPosterCard({ data, format, locale }: BirthPosterCar
   const isOg = format === 'og';
 
   const elementLabel = ELEMENT_LABELS[data.elementDist.dominant] || 'BALANCED';
-  const archLabel = locale === 'hi' ? data.elementDist.archetype.hi : data.elementDist.archetype.en;
+  const archLabel = pickByScript(data.elementDist.archetype.en, data.elementDist.archetype.hi, locale);
 
   // Percentage bar width (capped at 100)
   const pct = Math.min(data.elementDist.percentage, 100);

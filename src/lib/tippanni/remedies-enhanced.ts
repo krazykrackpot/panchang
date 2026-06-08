@@ -14,6 +14,7 @@ import { triLocale } from './utils';
 import type { RemedySection, RemedyItem } from '@/lib/kundali/tippanni-types';
 import { GRAHAS } from '@/lib/constants/grahas';
 import type { LifeStage } from '@/lib/kundali/life-stage';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 export interface PlanetRemedyFull {
   gemstone: {
@@ -273,27 +274,21 @@ export function getRemediesForWeakPlanets(
     gemstones.push({
       name: triLocale(remedy.gemstone.name, locale),
       planet: planetName || '',
-      description: locale === 'hi'
-        ? `${graha.name.hi} को मजबूत करने के लिए ${triLocale(remedy.gemstone.name, 'hi')} ${triLocale(remedy.gemstone.metal, 'hi')} में ${triLocale(remedy.gemstone.finger, 'hi')} में ${remedy.gemstone.weight} धारण करें। ${triLocale(remedy.charity.day, 'hi')} को धारण करें।`
-        : `Wear ${triLocale(remedy.gemstone.name, 'en')} (${remedy.gemstone.weight}) in ${triLocale(remedy.gemstone.metal, 'en')} on ${triLocale(remedy.gemstone.finger, 'en')} on a ${triLocale(remedy.charity.day, 'en')} to strengthen ${graha.name.en}. Alternatives: ${remedy.gemstone.alternates.map(a => triLocale(a, 'en')).join(', ')}.`,
+      description: pickByScript(`Wear ${triLocale(remedy.gemstone.name, 'en')} (${remedy.gemstone.weight}) in ${triLocale(remedy.gemstone.metal, 'en')} on ${triLocale(remedy.gemstone.finger, 'en')} on a ${triLocale(remedy.charity.day, 'en')} to strengthen ${graha.name.en}. Alternatives: ${remedy.gemstone.alternates.map(a => triLocale(a, 'en')).join(', ')}.`, `${graha.name.hi} को मजबूत करने के लिए ${triLocale(remedy.gemstone.name, 'hi')} ${triLocale(remedy.gemstone.metal, 'hi')} में ${triLocale(remedy.gemstone.finger, 'hi')} में ${remedy.gemstone.weight} धारण करें। ${triLocale(remedy.charity.day, 'hi')} को धारण करें।`, locale),
     });
 
     // Mantra
     mantras.push({
       name: triLocale(remedy.beejMantra, locale),
       planet: planetName || '',
-      description: locale === 'hi'
-        ? `बीज मन्त्र: ${remedy.beejMantra.hi}  –  ${remedy.count} बार जप करें, ${triLocale(remedy.charity.day, 'hi')} से प्रारम्भ करें। ${triLocale(remedy.charity.deity, 'hi')} को समर्पित।`
-        : `Beej Mantra: ${remedy.beejMantra.en}  –  chant ${remedy.count} times starting on ${triLocale(remedy.charity.day, 'en')}. Dedicated to ${triLocale(remedy.charity.deity, 'en')}.`,
+      description: pickByScript(`Beej Mantra: ${remedy.beejMantra.en}  –  chant ${remedy.count} times starting on ${triLocale(remedy.charity.day, 'en')}. Dedicated to ${triLocale(remedy.charity.deity, 'en')}.`, `बीज मन्त्र: ${remedy.beejMantra.hi}  –  ${remedy.count} बार जप करें, ${triLocale(remedy.charity.day, 'hi')} से प्रारम्भ करें। ${triLocale(remedy.charity.deity, 'hi')} को समर्पित।`, locale),
     });
 
     // Practices
     practices.push({
-      name: locale === 'hi' ? `${graha.name.hi} उपचार` : `${graha.name.en} Remedy`,
+      name: pickByScript(`${graha.name.en} Remedy`, `${graha.name.hi} उपचार`, locale),
       planet: planetName || '',
-      description: locale === 'hi'
-        ? `व्रत: ${triLocale(remedy.fasting, 'hi')}। दान: ${triLocale(remedy.charity.items, 'hi')}  –  ${triLocale(remedy.charity.day, 'hi')} को। रंग: ${triLocale(remedy.color, 'hi')}। दिशा: ${triLocale(remedy.direction, 'hi')}।`
-        : `Fast: ${triLocale(remedy.fasting, 'en')}. Donate: ${triLocale(remedy.charity.items, 'en')} on ${triLocale(remedy.charity.day, 'en')}. Wear ${triLocale(remedy.color, 'en')} colors. Face ${triLocale(remedy.direction, 'en')} for meditation.`,
+      description: pickByScript(`Fast: ${triLocale(remedy.fasting, 'en')}. Donate: ${triLocale(remedy.charity.items, 'en')} on ${triLocale(remedy.charity.day, 'en')}. Wear ${triLocale(remedy.color, 'en')} colors. Face ${triLocale(remedy.direction, 'en')} for meditation.`, `व्रत: ${triLocale(remedy.fasting, 'hi')}। दान: ${triLocale(remedy.charity.items, 'hi')}  –  ${triLocale(remedy.charity.day, 'hi')} को। रंग: ${triLocale(remedy.color, 'hi')}। दिशा: ${triLocale(remedy.direction, 'hi')}।`, locale),
     });
   }
 
@@ -326,9 +321,7 @@ export function getRemediesForWeakPlanets(
 
     // For elder/sage stages, append fasting advisory to fasting-related practice items
     if (stage === 'elder' || stage === 'sage') {
-      const fastingAdvisory = locale === 'hi'
-        ? ' ध्यान दें: इस आयु में कठोर व्रत की अनुशंसा नहीं है। हल्का भोजन या फलाहार पर्याप्त है  –  चिकित्सक से परामर्श लें।'
-        : ' Note: Strict fasting is not recommended at this stage of life. Light meals or fruit-based fasting is sufficient  –  consult your physician.';
+      const fastingAdvisory = pickByScript(' Note: Strict fasting is not recommended at this stage of life. Light meals or fruit-based fasting is sufficient  –  consult your physician.', ' ध्यान दें: इस आयु में कठोर व्रत की अनुशंसा नहीं है। हल्का भोजन या फलाहार पर्याप्त है  –  चिकित्सक से परामर्श लें।', locale);
       for (const item of practices) {
         if (item.description.toLowerCase().includes('fast') || item.description.toLowerCase().includes('व्रत')) {
           item.description += fastingAdvisory;

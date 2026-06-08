@@ -11,9 +11,10 @@ import type { Locale } from '@/types/panchang';
 import type { YogaInsight } from '@/lib/kundali/tippanni-types';
 import { getSignLord, getHouseLord, isKendra, isTrikona, isDusthana, isUpachaya, isBenefic, houseDistance, tri, triLocale } from './utils';
 import { getPlanetaryAspects, doesPlanetAspectHouse } from './aspects';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 function t(locale: Locale, en: string, hi: string, _sa?: string): string {
-  return locale === 'hi' ? hi : en;
+  return pickByScript(en, hi, locale);
 }
 
 function getP(planets: PlanetPosition[], id: number): PlanetPosition | undefined {

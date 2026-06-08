@@ -16,7 +16,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { resolveBirthTimezone } from '@/lib/utils/timezone';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import type { Locale } from '@/types/panchang';
@@ -166,7 +166,7 @@ export default function TithiPraveshaPage() {
   // ─── Calculate ───
   const handleCalculate = useCallback(() => {
     if (!dateStr || placeLat === null || placeLng === null) {
-      setError(locale === 'hi' ? 'कृपया सभी फ़ील्ड भरें।' : 'Please fill in all fields.');
+      setError(pickByScript('Please fill in all fields.', 'कृपया सभी फ़ील्ड भरें।', locale));
       return;
     }
     setError('');
@@ -196,7 +196,7 @@ export default function TithiPraveshaPage() {
         setHasCalculated(true);
       } catch (err) {
         console.error('[tithi-pravesha] Calculation error:', err);
-        setError(locale === 'hi' ? 'गणना में त्रुटि। कृपया पुनः प्रयास करें।' : 'Calculation error. Please try again.');
+        setError(pickByScript('Calculation error. Please try again.', 'गणना में त्रुटि। कृपया पुनः प्रयास करें।', locale));
       } finally {
         setCalculating(false);
       }
@@ -216,7 +216,7 @@ export default function TithiPraveshaPage() {
 
     const praveshaDateFormatted = (() => {
       const d = new Date(result.praveshaDate + 'T00:00:00');
-      return d.toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-US', {
+      return d.toLocaleDateString(pickByScript('en-US', 'hi-IN', locale), {
         weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
       });
     })();
@@ -317,7 +317,7 @@ export default function TithiPraveshaPage() {
                 setPlaceLng(loc.lng);
                 setPlaceTimezone(loc.timezone);
               }}
-              placeholder={locale === 'hi' ? 'जन्म स्थान खोजें...' : 'Search birth place...'}
+              placeholder={pickByScript('Search birth place...', 'जन्म स्थान खोजें...', locale)}
             />
           </div>
 
@@ -380,9 +380,7 @@ export default function TithiPraveshaPage() {
                   {/* Header */}
                   <div className="bg-gradient-to-r from-[#2d1b69]/50 to-bg-secondary px-6 py-5">
                     <h2 className="text-2xl md:text-3xl font-bold text-gold-light" style={headingFont}>
-                      {locale === 'hi'
-                        ? `${result.year} ${l(LABELS.resultHeading)}`
-                        : `${l(LABELS.resultHeading)} ${result.year}`
+                      {pickByScript(`${l(LABELS.resultHeading)} ${result.year}`, `${result.year} ${l(LABELS.resultHeading)}`, locale)
                       }
                     </h2>
                   </div>
@@ -400,7 +398,7 @@ export default function TithiPraveshaPage() {
                         {displayData.praveshaDateFormatted}
                       </p>
                       <p className="text-lg text-gold-primary mt-1" style={bodyFont}>
-                        {result.praveshaTime} {locale === 'hi' ? '(स्थानीय समय)' : '(local time)'}
+                        {result.praveshaTime} {pickByScript('(local time)', '(स्थानीय समय)', locale)}
                       </p>
                     </div>
 
@@ -437,9 +435,7 @@ export default function TithiPraveshaPage() {
                         </h3>
                       </div>
                       <p className="text-xl font-bold text-gold-primary mb-3" style={headingFont}>
-                        {locale === 'hi'
-                          ? displayData.lordData.lordHi
-                          : displayData.lordData.lord
+                        {pickByScript(displayData.lordData.lord, displayData.lordData.lordHi, locale)
                         }
                       </p>
                       <div className="flex items-start gap-2">
@@ -447,7 +443,7 @@ export default function TithiPraveshaPage() {
                           {l(LABELS.yearTheme)}:
                         </span>
                         <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>
-                          {locale === 'hi' ? displayData.lordData.themeHi : displayData.lordData.theme}
+                          {pickByScript(displayData.lordData.theme, displayData.lordData.themeHi, locale)}
                         </p>
                       </div>
                     </div>

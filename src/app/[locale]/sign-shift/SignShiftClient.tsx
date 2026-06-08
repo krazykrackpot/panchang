@@ -24,7 +24,7 @@ import { comparisonToSignShift, decodeSignShiftParams, encodeSignShiftParams } f
 import type { SignShiftData } from '@/lib/shareable/sign-shift';
 import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import LocationSearch from '@/components/ui/LocationSearch';
 import GoldDivider from '@/components/ui/GoldDivider';
 import RelatedLinks from '@/components/ui/RelatedLinks';
@@ -302,13 +302,13 @@ export default function SignShiftClient() {
                   </p>
                   <div className="mt-4 flex items-center justify-center gap-6">
                     <div className="text-center">
-                      <div className="text-text-secondary text-xs uppercase tracking-wider mb-1">{locale === 'hi' ? 'पश्चिमी' : 'Western'}</div>
+                      <div className="text-text-secondary text-xs uppercase tracking-wider mb-1">{pickByScript('Western', 'पश्चिमी', locale)}</div>
                       <div className="text-2xl font-bold text-amber-400">{shiftData.elementContrast.tropical.dominant}</div>
                       <div className="text-text-secondary text-xs">{shiftData.elementContrast.tropical.fire}🔥 {shiftData.elementContrast.tropical.earth}🌍 {shiftData.elementContrast.tropical.air}💨 {shiftData.elementContrast.tropical.water}💧</div>
                     </div>
                     <div className="text-2xl text-gold-primary">→</div>
                     <div className="text-center">
-                      <div className="text-text-secondary text-xs uppercase tracking-wider mb-1">{locale === 'hi' ? 'वैदिक' : 'Vedic'}</div>
+                      <div className="text-text-secondary text-xs uppercase tracking-wider mb-1">{pickByScript('Vedic', 'वैदिक', locale)}</div>
                       <div className="text-2xl font-bold text-emerald-400">{shiftData.elementContrast.sidereal.dominant}</div>
                       <div className="text-text-secondary text-xs">{shiftData.elementContrast.sidereal.fire}🔥 {shiftData.elementContrast.sidereal.earth}🌍 {shiftData.elementContrast.sidereal.air}💨 {shiftData.elementContrast.sidereal.water}💧</div>
                     </div>
@@ -335,7 +335,7 @@ export default function SignShiftClient() {
                   <div className="w-1/4 text-center">{tl(LABELS.western, locale)}</div>
                   <div className="w-8 text-center" />
                   <div className="w-1/4 text-center">{tl(LABELS.vedic, locale)}</div>
-                  <div className="w-1/6 text-center">{locale === 'hi' ? 'स्थिति' : 'Status'}</div>
+                  <div className="w-1/6 text-center">{pickByScript('Status', 'स्थिति', locale)}</div>
                 </div>
 
                 {/* Planet rows */}
@@ -407,7 +407,7 @@ export default function SignShiftClient() {
                   className="inline-flex items-center gap-2 rounded-lg border border-gold-primary/40 bg-gold-primary/10 px-5 py-2.5 text-sm font-medium text-gold-light transition-colors hover:bg-gold-primary/20"
                 >
                   <Share2 className="h-4 w-4" />
-                  {copied ? (locale === 'hi' ? 'लिंक कॉपी हुआ!' : 'Link copied!') : tl(LABELS.shareTitle, locale)}
+                  {copied ? (pickByScript('Link copied!', 'लिंक कॉपी हुआ!', locale)) : tl(LABELS.shareTitle, locale)}
                 </button>
 
                 <button
@@ -469,7 +469,7 @@ export default function SignShiftClient() {
                       onChange={(e) => setName(e.target.value)}
                       className={inputClass}
                       style={bodyFont}
-                      placeholder={locale === 'hi' ? 'आपका नाम' : 'Your name'}
+                      placeholder={pickByScript('Your name', 'आपका नाम', locale)}
                     />
                   </div>
 
@@ -536,7 +536,7 @@ export default function SignShiftClient() {
                     {computing ? (
                       <span className="inline-flex items-center gap-2">
                         <span className="h-4 w-4 animate-spin rounded-full border-2 border-bg-primary/30 border-t-bg-primary" />
-                        {locale === 'hi' ? 'गणना हो रही है...' : 'Computing...'}
+                        {pickByScript('Computing...', 'गणना हो रही है...', locale)}
                       </span>
                     ) : (
                       <span className="inline-flex items-center gap-2">
@@ -597,17 +597,17 @@ function ExplainerSection({
         <div className="flex flex-col items-center gap-4 sm:flex-row">
           <div className="flex flex-col items-center gap-1">
             <span className="text-3xl font-bold text-gold-light">~285 AD</span>
-            <span className="text-xs text-text-secondary">{locale === 'hi' ? 'शून्य अयनांश' : '0\u00B0 ayanamsha'}</span>
+            <span className="text-xs text-text-secondary">{pickByScript('0\u00B0 ayanamsha', 'शून्य अयनांश', locale)}</span>
           </div>
           <div className="flex-1 border-t border-dashed border-gold-primary/30 sm:border-l sm:border-t-0" />
           <div className="flex flex-col items-center gap-1">
             <span className="text-3xl font-bold text-amber-400">{'~24.2°'}</span>
-            <span className="text-xs text-text-secondary">{locale === 'hi' ? 'वर्तमान अयनांश (2026)' : 'Current ayanamsha (2026)'}</span>
+            <span className="text-xs text-text-secondary">{pickByScript('Current ayanamsha (2026)', 'वर्तमान अयनांश (2026)', locale)}</span>
           </div>
           <div className="flex-1 border-t border-dashed border-gold-primary/30 sm:border-l sm:border-t-0" />
           <div className="flex flex-col items-center gap-1">
             <span className="text-3xl font-bold text-text-secondary/60">~25,920 yr</span>
-            <span className="text-xs text-text-secondary">{locale === 'hi' ? 'पूर्ण चक्र' : 'Full cycle'}</span>
+            <span className="text-xs text-text-secondary">{pickByScript('Full cycle', 'पूर्ण चक्र', locale)}</span>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { CheckCircle2, XCircle, MinusCircle, Info } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import type { FactorVerdict } from '@/types/muhurta-ai';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 interface FactorVerdictsProps {
   factors: FactorVerdict[];
@@ -41,7 +42,7 @@ export default function FactorVerdicts({
   return (
     <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-5 sm:p-6">
       <h3 className="text-xs text-gold-dark font-bold uppercase tracking-widest mb-4">
-        {locale === 'hi' ? 'पंचांग कारक विश्लेषण' : 'Panchanga Factor Analysis'}
+        {pickByScript('Panchanga Factor Analysis', 'पंचांग कारक विश्लेषण', locale)}
       </h3>
 
       <div className="space-y-2">
@@ -86,13 +87,11 @@ export default function FactorVerdicts({
       {hasLagnaFactor && showLagnaNote && (
         <div className="mt-3 p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/15 text-xs text-text-secondary leading-relaxed">
           <span className="font-semibold text-gold-light">
-            {locale === 'hi' ? 'लग्न क्या है?' : 'What is Lagna?'}
+            {pickByScript('What is Lagna?', 'लग्न क्या है?', locale)}
           </span>{' '}
-          {locale === 'hi'
-            ? 'लग्न आपकी गतिविधि के आरम्भ में पूर्वी क्षितिज पर उदित राशि है। उचित और बलवान लग्न लघु अशुभ कारकों की क्षतिपूर्ति कर सकता है।'
-            : 'Lagna is the zodiac sign rising at the start of your activity. A strong, appropriate lagna can compensate for minor inauspicious factors.'}{' '}
+          {pickByScript('Lagna is the zodiac sign rising at the start of your activity. A strong, appropriate lagna can compensate for minor inauspicious factors.', 'लग्न आपकी गतिविधि के आरम्भ में पूर्वी क्षितिज पर उदित राशि है। उचित और बलवान लग्न लघु अशुभ कारकों की क्षतिपूर्ति कर सकता है।', locale)}{' '}
           <Link href="/learn/lagna" className="text-gold-light underline hover:text-gold-primary">
-            {locale === 'hi' ? 'और जानें →' : 'Learn more →'}
+            {pickByScript('Learn more →', 'और जानें →', locale)}
           </Link>
         </div>
       )}

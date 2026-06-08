@@ -18,7 +18,7 @@ import InfoBlock from "@/components/ui/InfoBlock";
 import LessonSection from "@/components/learn/LessonSection";
 import { Link } from "@/lib/i18n/navigation";
 import type { Locale } from "@/types/panchang";
-import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { isDevanagariLocale, pickByScript } from "@/lib/utils/locale-fonts";
 
 // ─── Labels ────────────────────────────────────────────────────
 const LABELS: Record<string, Record<string, string>> = {
@@ -601,14 +601,14 @@ export default function LearnPanchakPage() {
                       className="font-semibold text-text-primary"
                       style={headingFont}
                     >
-                      {locale === "hi" ? nak.name.hi : nak.name.en}
+                      {pickByScript(nak.name.en, nak.name.hi, locale)}
                     </h4>
                   </div>
                   <p className={`text-sm font-medium ${nak.color} mb-1`}>
-                    {locale === "hi" ? nak.fear.hi : nak.fear.en}
+                    {pickByScript(nak.fear.en, nak.fear.hi, locale)}
                   </p>
                   <p className="text-text-secondary text-sm">
-                    {locale === "hi" ? nak.avoid.hi : nak.avoid.en}
+                    {pickByScript(nak.avoid.en, nak.avoid.hi, locale)}
                   </p>
                 </div>
               );
@@ -619,34 +619,34 @@ export default function LearnPanchakPage() {
         {/* Detailed Nakshatra sections */}
         <LessonSection
           number={4}
-          title={locale === "hi" ? L.dhanishtha : L.dhanishtha}
+          title={pickByScript(L.dhanishtha, L.dhanishtha, locale)}
         >
           <p className="text-text-primary leading-relaxed">
             {L.dhanishthaText}
           </p>
         </LessonSection>
 
-        <LessonSection title={locale === "hi" ? L.shatabhisha : L.shatabhisha}>
+        <LessonSection title={pickByScript(L.shatabhisha, L.shatabhisha, locale)}>
           <p className="text-text-primary leading-relaxed">
             {L.shatabhishaText}
           </p>
         </LessonSection>
 
-        <LessonSection title={locale === "hi" ? L.purvaBhadra : L.purvaBhadra}>
+        <LessonSection title={pickByScript(L.purvaBhadra, L.purvaBhadra, locale)}>
           <p className="text-text-primary leading-relaxed">
             {L.purvaBhadraText}
           </p>
         </LessonSection>
 
         <LessonSection
-          title={locale === "hi" ? L.uttaraBhadra : L.uttaraBhadra}
+          title={pickByScript(L.uttaraBhadra, L.uttaraBhadra, locale)}
         >
           <p className="text-text-primary leading-relaxed">
             {L.uttaraBhadraText}
           </p>
         </LessonSection>
 
-        <LessonSection title={locale === "hi" ? L.revati : L.revati}>
+        <LessonSection title={pickByScript(L.revati, L.revati, locale)}>
           <p className="text-text-primary leading-relaxed">{L.revatiText}</p>
         </LessonSection>
 
@@ -699,9 +699,7 @@ export default function LearnPanchakPage() {
             <InfoBlock
               id="panchak-myth1"
               title={
-                locale === "hi"
-                  ? '"पंचक में कुछ भी अच्छा नहीं हो सकता"'
-                  : '"Nothing good can happen during Panchak"'
+                pickByScript('"Nothing good can happen during Panchak"', '"पंचक में कुछ भी अच्छा नहीं हो सकता"', locale)
               }
               defaultOpen
             >
@@ -712,9 +710,7 @@ export default function LearnPanchakPage() {
             <InfoBlock
               id="panchak-myth2"
               title={
-                locale === "hi"
-                  ? '"पंचक हर जगह समान"'
-                  : '"Panchak applies equally everywhere"'
+                pickByScript('"Panchak applies equally everywhere"', '"पंचक हर जगह समान"', locale)
               }
             >
               <p className="text-text-primary text-sm leading-relaxed">
@@ -724,9 +720,7 @@ export default function LearnPanchakPage() {
             <InfoBlock
               id="panchak-myth3"
               title={
-                locale === "hi"
-                  ? '"सभी यात्राएँ वर्जित"'
-                  : '"All travel is forbidden"'
+                pickByScript('"All travel is forbidden"', '"सभी यात्राएँ वर्जित"', locale)
               }
             >
               <p className="text-text-primary text-sm leading-relaxed">
@@ -756,19 +750,19 @@ export default function LearnPanchakPage() {
             {[
               {
                 href: "/panchak" as const,
-                label: locale === "hi" ? "आज का पंचक" : "Panchak Today",
+                label: pickByScript("Panchak Today", "आज का पंचक", locale),
               },
               {
                 href: "/panchang" as const,
-                label: locale === "hi" ? "पंचांग" : "Panchang",
+                label: pickByScript("Panchang", "पंचांग", locale),
               },
               {
                 href: "/learn/nakshatras" as const,
-                label: locale === "hi" ? "नक्षत्र" : "Nakshatras",
+                label: pickByScript("Nakshatras", "नक्षत्र", locale),
               },
               {
                 href: "/learn/holashtak" as const,
-                label: locale === "hi" ? "होलाष्टक" : "Holashtak",
+                label: pickByScript("Holashtak", "होलाष्टक", locale),
               },
             ].map((link) => (
               <Link

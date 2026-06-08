@@ -4,6 +4,7 @@ import Script from 'next/script';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 import { BASE_URL } from '@/lib/seo/base-url';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 export async function generateMetadata({
   params,
@@ -15,14 +16,10 @@ export async function generateMetadata({
   const url = `${BASE_URL}/${locale}/panchang/locations`;
 
   const title =
-    locale === 'hi'
-      ? 'शहर के अनुसार पंचांग  –  55+ स्थानों के लिए सटीक समय'
-      : 'Panchang by City  –  Accurate Timings for 55+ Locations';
+    pickByScript('Panchang by City  –  Accurate Timings for 55+ Locations', 'शहर के अनुसार पंचांग  –  55+ स्थानों के लिए सटीक समय', locale);
 
   const description =
-    locale === 'hi'
-      ? 'अपने शहर के लिए दैनिक पंचांग समय खोजें। भारत और हिंदू डायस्पोरा के 55+ शहरों में सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, राहु काल और मुहूर्त।'
-      : 'Find daily Panchang timings computed for your exact city. Sunrise, sunset, Tithi, Nakshatra, Rahu Kaal, and Muhurta for 55+ cities across India and the Hindu diaspora.';
+    pickByScript('Find daily Panchang timings computed for your exact city. Sunrise, sunset, Tithi, Nakshatra, Rahu Kaal, and Muhurta for 55+ cities across India and the Hindu diaspora.', 'अपने शहर के लिए दैनिक पंचांग समय खोजें। भारत और हिंदू डायस्पोरा के 55+ शहरों में सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, राहु काल और मुहूर्त।', locale);
 
   return {
     title,
@@ -73,7 +70,7 @@ export default async function LocationsLayout({
       {
         '@type': 'ListItem',
         position: 3,
-        name: locale === 'hi' ? 'शहर के अनुसार पंचांग' : 'Panchang by City',
+        name: pickByScript('Panchang by City', 'शहर के अनुसार पंचांग', locale),
         item: `${BASE_URL}/${locale}/panchang/locations`,
       },
     ],

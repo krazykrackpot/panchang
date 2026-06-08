@@ -8,7 +8,7 @@ import InfoBlock from "@/components/ui/InfoBlock";
 import LessonSection from "@/components/learn/LessonSection";
 import { Link } from "@/lib/i18n/navigation";
 import type { Locale } from "@/types/panchang";
-import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { isDevanagariLocale, pickByScript } from "@/lib/utils/locale-fonts";
 
 // ─── Labels ────────────────────────────────────────────────────
 const LABELS: Record<string, Record<string, string>> = {
@@ -389,13 +389,13 @@ export default function LearnAmritSiddhiYogaPage() {
                     className="font-semibold text-gold-light"
                     style={headingFont}
                   >
-                    {locale === "hi" ? combo.vara.hi : combo.vara.en}
+                    {pickByScript(combo.vara.en, combo.vara.hi, locale)}
                   </h4>
                 </div>
                 <p className="text-text-primary text-sm">
-                  {locale === "hi" ? combo.nakshatra.hi : combo.nakshatra.en}
+                  {pickByScript(combo.nakshatra.en, combo.nakshatra.hi, locale)}
                   <span className="text-text-secondary ml-1">
-                    ({locale === "hi" ? combo.ruler.hi : combo.ruler.en})
+                    ({pickByScript(combo.ruler.en, combo.ruler.hi, locale)})
                   </span>
                 </p>
               </div>
@@ -437,9 +437,7 @@ export default function LearnAmritSiddhiYogaPage() {
             <InfoBlock
               id="as-myth1"
               title={
-                locale === "hi"
-                  ? '"अमृत सिद्धि = सर्वार्थ सिद्धि"'
-                  : '"Same as Sarvartha Siddhi"'
+                pickByScript('"Same as Sarvartha Siddhi"', '"अमृत सिद्धि = सर्वार्थ सिद्धि"', locale)
               }
               defaultOpen
             >
@@ -450,9 +448,7 @@ export default function LearnAmritSiddhiYogaPage() {
             <InfoBlock
               id="as-myth2"
               title={
-                locale === "hi"
-                  ? '"सब कुछ रद्द करता है"'
-                  : '"Overrides everything"'
+                pickByScript('"Overrides everything"', '"सब कुछ रद्द करता है"', locale)
               }
             >
               <p className="text-text-primary text-sm leading-relaxed">
@@ -462,9 +458,7 @@ export default function LearnAmritSiddhiYogaPage() {
             <InfoBlock
               id="as-myth3"
               title={
-                locale === "hi"
-                  ? '"इसकी प्रतीक्षा ज़रूरी"'
-                  : '"Must wait for it"'
+                pickByScript('"Must wait for it"', '"इसकी प्रतीक्षा ज़रूरी"', locale)
               }
             >
               <p className="text-text-primary text-sm leading-relaxed">
@@ -494,21 +488,19 @@ export default function LearnAmritSiddhiYogaPage() {
               {
                 href: "/learn/sarvartha-siddhi-yoga" as const,
                 label:
-                  locale === "hi"
-                    ? "सर्वार्थ सिद्धि योग"
-                    : "Sarvartha Siddhi Yoga",
+                  pickByScript("Sarvartha Siddhi Yoga", "सर्वार्थ सिद्धि योग", locale),
               },
               {
                 href: "/learn/siddha-yoga" as const,
-                label: locale === "hi" ? "सिद्ध योग" : "Siddha Yoga",
+                label: pickByScript("Siddha Yoga", "सिद्ध योग", locale),
               },
               {
                 href: "/learn/guru-pushya-yoga" as const,
-                label: locale === "hi" ? "गुरु पुष्य योग" : "Guru Pushya Yoga",
+                label: pickByScript("Guru Pushya Yoga", "गुरु पुष्य योग", locale),
               },
               {
                 href: "/learn/muhurtas" as const,
-                label: locale === "hi" ? "मुहूर्त" : "Muhurtas",
+                label: pickByScript("Muhurtas", "मुहूर्त", locale),
               },
             ].map((link) => (
               <Link

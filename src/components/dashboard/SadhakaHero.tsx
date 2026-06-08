@@ -8,6 +8,7 @@ import { StreakGrid } from '@/components/gamification/StreakGrid';
 import { LEVEL_BY_ORDINAL } from '@/lib/constants/levels';
 import { tl } from '@/lib/utils/trilingual';
 import type { UserProgress } from '@/lib/gamification/types';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 interface ProgressResponse { progress: UserProgress | null; badges: { badge_slug: string; earned_at: string }[] }
 
@@ -59,19 +60,17 @@ export function SadhakaHero({ locale, profileFields }: Props) {
         <LevelPortrait ordinal={2} locked size={120} />
         <div className="flex-1">
           <h2 className="text-gold-light text-lg sm:text-xl font-bold leading-tight">
-            {locale === 'hi' ? 'साधक तक पहुँचें' : 'Reach Sadhaka साधक'}
+            {pickByScript('Reach Sadhaka साधक', 'साधक तक पहुँचें', locale)}
           </h2>
           <p className="text-text-secondary text-xs mt-1 mb-3">
-            {locale === 'hi'
-              ? `${fieldsDone} / ${total} चरण पूर्ण · व्यक्तिगत कुंडली अनलॉक करें`
-              : `${fieldsDone} of ${total} steps · unlock your personal chart`}
+            {pickByScript(`${fieldsDone} of ${total} steps · unlock your personal chart`, `${fieldsDone} / ${total} चरण पूर्ण · व्यक्तिगत कुंडली अनलॉक करें`, locale)}
           </p>
           <div className="h-2 bg-white/[0.06] rounded-full overflow-hidden mb-3">
             <div className="h-full bg-gradient-to-r from-gold-dark to-gold-primary rounded-full" style={{ width: `${pct}%` }}/>
           </div>
           {nextField && (
             <Link href={`/${locale}/settings`} className="inline-flex items-center gap-1.5 px-3 py-2 bg-gold-primary/15 hover:bg-gold-primary/25 border border-gold-primary/30 rounded-lg text-gold-light text-sm font-semibold transition-colors">
-              + {locale === 'hi' ? `${tl(nextField, 'hi')} जोड़ें` : `Add ${tl(nextField, 'en')}`} →
+              + {pickByScript(`Add ${tl(nextField, 'en')}`, `${tl(nextField, 'hi')} जोड़ें`, locale)} →
             </Link>
           )}
         </div>
@@ -92,7 +91,7 @@ export function SadhakaHero({ locale, profileFields }: Props) {
         <div className="flex-1">
           <div className="text-gold-light text-4xl sm:text-5xl font-black leading-none">
             {streakDays}
-            <span className="text-gold-primary/70 text-xs font-bold ml-2 tracking-[0.15em] uppercase">{locale === 'hi' ? 'दिन निरंतरता' : 'day streak'}</span>
+            <span className="text-gold-primary/70 text-xs font-bold ml-2 tracking-[0.15em] uppercase">{pickByScript('day streak', 'दिन निरंतरता', locale)}</span>
           </div>
           {lvl && (
             <div className="inline-block mt-2 px-2.5 py-0.5 bg-gold-primary/15 border border-gold-primary/30 rounded-full text-gold-light text-xs font-bold">

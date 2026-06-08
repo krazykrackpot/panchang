@@ -1,5 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
-import { getHeadingFont } from '@/lib/utils/locale-fonts';
+import { getHeadingFont, pickByScript } from '@/lib/utils/locale-fonts';
 import { Code, Globe, Clock, Shield, Zap, MonitorSmartphone } from 'lucide-react';
 import WidgetConfigurator from './WidgetConfigurator';
 
@@ -143,7 +143,7 @@ export default async function WidgetPage({
   // Feature copy stays en + hi only (longer paragraphs — editorial pass
   // for the other 7 locales is a separate sprint). Non-hi locales see
   // the English copy — better than Hindi-grammar fallback per the bug.
-  const featureCopy = locale === 'hi' ? PAGE_COPY.hi : PAGE_COPY.en;
+  const featureCopy = pickByScript(PAGE_COPY.en, PAGE_COPY.hi, locale);
   const isHiFeatures = locale === 'hi';
 
   const FEATURES = [

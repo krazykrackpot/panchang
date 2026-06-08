@@ -14,7 +14,7 @@ import {
   ArrowRight,
   Heart,
 } from "lucide-react";
-import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { isDevanagariLocale, pickByScript } from "@/lib/utils/locale-fonts";
 import { tl } from "@/lib/utils/trilingual";
 import { ShareRow } from "@/components/ui/ShareButton";
 import AdUnit from "@/components/ads/AdUnit";
@@ -771,9 +771,7 @@ export default function DashaSandhiPage() {
                 fontSize="11"
                 fontWeight="bold"
               >
-                {locale === "hi"
-                  ? "शनि महादशा (19 वर्ष)"
-                  : "Saturn Maha Dasha (19y)"}
+                {pickByScript("Saturn Maha Dasha (19y)", "शनि महादशा (19 वर्ष)", locale)}
               </text>
 
               {/* Sandhi zone overlay on Saturn side */}
@@ -815,9 +813,7 @@ export default function DashaSandhiPage() {
                 fontSize="11"
                 fontWeight="bold"
               >
-                {locale === "hi"
-                  ? "बुध महादशा (17 वर्ष)"
-                  : "Mercury Maha Dasha (17y)"}
+                {pickByScript("Mercury Maha Dasha (17y)", "बुध महादशा (17 वर्ष)", locale)}
               </text>
 
               {/* Transition line */}
@@ -838,7 +834,7 @@ export default function DashaSandhiPage() {
                 fontSize="9"
                 fontWeight="bold"
               >
-                {locale === "hi" ? "संक्रमण तिथि" : "TRANSITION DATE"}
+                {pickByScript("TRANSITION DATE", "संक्रमण तिथि", locale)}
               </text>
 
               {/* Sandhi bracket */}
@@ -874,7 +870,7 @@ export default function DashaSandhiPage() {
                 fontSize="10"
                 fontWeight="bold"
               >
-                {locale === "hi" ? "सन्धि (3.6 वर्ष)" : "SANDHI (3.6 years)"}
+                {pickByScript("SANDHI (3.6 years)", "सन्धि (3.6 वर्ष)", locale)}
               </text>
 
               {/* Duration labels */}
@@ -966,7 +962,7 @@ export default function DashaSandhiPage() {
                         style={{ backgroundColor: PLANET_COLORS[planet] }}
                       />
                       <span className="text-text-primary font-medium">
-                        {locale === "hi" ? PLANET_HI[planet] : planet}
+                        {pickByScript(planet, PLANET_HI[planet], locale)}
                       </span>
                     </td>
                     <td className="text-center py-2 px-3 text-text-secondary">
@@ -1065,7 +1061,7 @@ export default function DashaSandhiPage() {
                     style={{ backgroundColor: PLANET_COLORS[eff.from] }}
                   />
                   <span className="text-text-primary font-bold text-sm">
-                    {locale === "hi" ? PLANET_HI[eff.from] : eff.from}
+                    {pickByScript(eff.from, PLANET_HI[eff.from], locale)}
                   </span>
                   <ArrowRight className="w-4 h-4 text-gold-dark" />
                   <span
@@ -1073,7 +1069,7 @@ export default function DashaSandhiPage() {
                     style={{ backgroundColor: PLANET_COLORS[eff.to] }}
                   />
                   <span className="text-text-primary font-bold text-sm">
-                    {locale === "hi" ? PLANET_HI[eff.to] : eff.to}
+                    {pickByScript(eff.to, PLANET_HI[eff.to], locale)}
                   </span>
                   <span
                     className={`text-xs px-2 py-0.5 rounded-full ml-auto ${relColor}`}
@@ -1119,9 +1115,7 @@ export default function DashaSandhiPage() {
                     className="p-1.5 border border-gold-primary/10 bg-gold-primary/5"
                     style={{ color: PLANET_COLORS[p] }}
                   >
-                    {locale === "hi"
-                      ? PLANET_HI[p]?.slice(0, 3)
-                      : p.slice(0, 3)}
+                    {pickByScript(p.slice(0, 3), PLANET_HI[p]?.slice(0, 3), locale)}
                   </th>
                 ))}
               </tr>
@@ -1133,9 +1127,7 @@ export default function DashaSandhiPage() {
                     className="p-1.5 font-bold border border-gold-primary/10 bg-gold-primary/5"
                     style={{ color: PLANET_COLORS[from] }}
                   >
-                    {locale === "hi"
-                      ? PLANET_HI[from]?.slice(0, 3)
-                      : from.slice(0, 3)}
+                    {pickByScript(from.slice(0, 3), PLANET_HI[from]?.slice(0, 3), locale)}
                   </td>
                   {matrixPlanets.map((to) => {
                     if (from === to)
@@ -1156,16 +1148,10 @@ export default function DashaSandhiPage() {
                           : "bg-amber-500/10 text-amber-400";
                     const label =
                       rel === "friend"
-                        ? locale === "hi"
-                          ? "मि"
-                          : "F"
+                        ? pickByScript("F", "मि", locale)
                         : rel === "enemy"
-                          ? locale === "hi"
-                            ? "श"
-                            : "E"
-                          : locale === "hi"
-                            ? "त"
-                            : "N";
+                          ? pickByScript("E", "श", locale)
+                          : pickByScript("N", "त", locale);
                     return (
                       <td
                         key={to}

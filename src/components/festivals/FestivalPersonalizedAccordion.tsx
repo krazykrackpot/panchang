@@ -24,6 +24,7 @@ import { BRIHASPATI_OPEN_EVENT, type BrihaspatiOpenEventDetail } from '@/compone
 import { Link } from '@/lib/i18n/navigation';
 import type { LocaleText, Locale } from '@/types/panchang';
 import type { PersonalizedFestivalReading } from '@/lib/festivals/types';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 const RASHI_NAMES: Record<number, LocaleText> = {
   1:  { en: 'Aries',       hi: 'मेष'    },
@@ -65,17 +66,11 @@ export default function FestivalPersonalizedAccordion({
 }: Props) {
   const [openRashi, setOpenRashi] = useState<number | null>(null);
 
-  const sectionTitle = locale === 'hi'
-    ? `${festivalNameHi} ${year} आपकी राशि के लिए क्या लाता है?`
-    : `How will ${festivalNameEn} ${year} affect your sign?`;
+  const sectionTitle = pickByScript(`How will ${festivalNameEn} ${year} affect your sign?`, `${festivalNameHi} ${year} आपकी राशि के लिए क्या लाता है?`, locale);
 
-  const subtitle = locale === 'hi'
-    ? 'अपनी चन्द्र राशि चुनें — मन्दगति ग्रहों के गोचर के आधार पर पर्व का व्यक्तिगत संकेत'
-    : `Pick your Moon sign — slow-planet transits read the festival's pull on your chart.`;
+  const subtitle = pickByScript(`Pick your Moon sign — slow-planet transits read the festival's pull on your chart.`, 'अपनी चन्द्र राशि चुनें — मन्दगति ग्रहों के गोचर के आधार पर पर्व का व्यक्तिगत संकेत', locale);
 
-  const dontKnowSign = locale === 'hi'
-    ? 'अपनी राशि नहीं जानते? चन्द्र राशि कैलकुलेटर खोलें →'
-    : 'Don\'t know your sign? Open the Moon-sign calculator →';
+  const dontKnowSign = pickByScript('Don\'t know your sign? Open the Moon-sign calculator →', 'अपनी राशि नहीं जानते? चन्द्र राशि कैलकुलेटर खोलें →', locale);
 
   // Sort readings by rashi (defensive — server should already pass them
   // in order, but the accordion's stable order is part of the visual
@@ -83,9 +78,7 @@ export default function FestivalPersonalizedAccordion({
   const sortedReadings = [...readings].sort((a, b) => a.rashi - b.rashi);
 
   const openBrihaspati = () => {
-    const question = locale === 'hi'
-      ? `${festivalNameHi} ${year} मेरी राशि के लिए क्या लेकर आ रहा है? पर्व के दिन की व्यक्तिगत भविष्यवाणी चाहिए।`
-      : `What does ${festivalNameEn} ${year} mean for my chart? I'd like a personalised reading for the festival day.`;
+    const question = pickByScript(`What does ${festivalNameEn} ${year} mean for my chart? I'd like a personalised reading for the festival day.`, `${festivalNameHi} ${year} मेरी राशि के लिए क्या लेकर आ रहा है? पर्व के दिन की व्यक्तिगत भविष्यवाणी चाहिए।`, locale);
     const detail: BrihaspatiOpenEventDetail = {
       question,
       entry: 'festival-personalized-cta' as never, // PanelEntry is a string union; this entry is added in the analytics layer.
@@ -157,14 +150,10 @@ export default function FestivalPersonalizedAccordion({
       <div className="mt-6 rounded-xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] p-5 text-center">
         <Sparkles className="w-6 h-6 text-gold-primary mx-auto mb-2" />
         <h3 className="text-gold-light font-bold text-base mb-1" style={{ fontFamily: 'var(--font-heading)' }}>
-          {locale === 'hi'
-            ? `${festivalNameHi} ${year} के लिए विस्तृत व्यक्तिगत पाठ चाहिए?`
-            : `Want a full personalised reading for ${festivalNameEn} ${year}?`}
+          {pickByScript(`Want a full personalised reading for ${festivalNameEn} ${year}?`, `${festivalNameHi} ${year} के लिए विस्तृत व्यक्तिगत पाठ चाहिए?`, locale)}
         </h3>
         <p className="text-text-secondary text-xs max-w-md mx-auto mb-3">
-          {locale === 'hi'
-            ? 'बृहस्पति आपकी पूरी कुण्डली, गोचर एवं दशा का विश्लेषण करके पर्व-दिवस का सटीक मार्गदर्शन देंगे।'
-            : 'Brihaspati reads your full chart, transits, and current dasha to give a precise festival-day guidance.'}
+          {pickByScript('Brihaspati reads your full chart, transits, and current dasha to give a precise festival-day guidance.', 'बृहस्पति आपकी पूरी कुण्डली, गोचर एवं दशा का विश्लेषण करके पर्व-दिवस का सटीक मार्गदर्शन देंगे।', locale)}
         </p>
         <button
           type="button"
@@ -173,9 +162,7 @@ export default function FestivalPersonalizedAccordion({
           className="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-gold-primary/20 hover:bg-gold-primary/30 border border-gold-primary/40 text-gold-light text-sm font-semibold transition-colors"
         >
           <Sparkles className="w-4 h-4" />
-          {locale === 'hi'
-            ? 'बृहस्पति से पूछें — ₹49 / $2'
-            : 'Ask Brihaspati — INR 49 / USD 2'}
+          {pickByScript('Ask Brihaspati — INR 49 / USD 2', 'बृहस्पति से पूछें — ₹49 / $2', locale)}
         </button>
       </div>
     </section>

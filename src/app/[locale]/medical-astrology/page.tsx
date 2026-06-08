@@ -22,6 +22,7 @@ import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import BodyMapVisual from '@/components/medical/BodyMapVisual';
 import { ChevronDown } from 'lucide-react';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 // ─── Inline labels (4 active locales: en, hi, ta, bn) ────────────────────────
 const LABELS = {
@@ -879,12 +880,10 @@ export default function MedicalAstrologyPage() {
               {result.healthDiagnosis && result.healthDiagnosis.natalElements.length > 0 && (
                 <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
                   <h2 className="text-xl font-bold text-gold-light mb-1">
-                    {locale === 'hi' ? 'स्वास्थ्य तत्व निदान' : 'Health Element Diagnosis'}
+                    {pickByScript('Health Element Diagnosis', 'स्वास्थ्य तत्व निदान', locale)}
                   </h2>
                   <p className="text-text-secondary text-sm mb-6">
-                    {locale === 'hi'
-                      ? 'जन्म कुण्डली से प्रत्येक स्वास्थ्य तत्व की जन्मजात शक्ति और संवेदनशीलता।'
-                      : 'Natal baseline vulnerability for each health element derived from your birth chart.'}
+                    {pickByScript('Natal baseline vulnerability for each health element derived from your birth chart.', 'जन्म कुण्डली से प्रत्येक स्वास्थ्य तत्व की जन्मजात शक्ति और संवेदनशीलता।', locale)}
                   </p>
                   <HealthElementGrid
                     natalElements={result.healthDiagnosis.natalElements}

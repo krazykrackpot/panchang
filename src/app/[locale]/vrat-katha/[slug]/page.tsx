@@ -8,7 +8,7 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import { Link } from '@/lib/i18n/navigation';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import AuthorByline from '@/components/ui/AuthorByline';
 import { getVratKatha, VRAT_KATHAS } from '@/lib/content/vrat-kathas-with-overlay';
 
@@ -68,17 +68,17 @@ export default function VratKathaPage() {
     for (const festSlug of katha.linkedFestivalSlugs) {
       relatedLinks.push({
         href: `/puja/${festSlug}`,
-        label: locale === 'hi' ? `${festSlug} पूजा विधि` : `${festSlug} Puja Guide`,
+        label: pickByScript(`${festSlug} Puja Guide`, `${festSlug} पूजा विधि`, locale),
       });
     }
   }
   relatedLinks.push({
     href: '/devotional',
-    label: locale === 'hi' ? 'मन्त्र, स्तोत्र एवं आरती' : 'Mantras, Stotras & Aartis',
+    label: pickByScript('Mantras, Stotras & Aartis', 'मन्त्र, स्तोत्र एवं आरती', locale),
   });
   relatedLinks.push({
     href: '/vrat-calendar',
-    label: locale === 'hi' ? 'व्रत पंचांग' : 'Vrat Calendar',
+    label: pickByScript('Vrat Calendar', 'व्रत पंचांग', locale),
   });
 
   return (

@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og';
 import { getCityBySlugExtended } from '@/lib/constants/cities-extended';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 export const runtime = 'edge';
 export const alt = 'Panchang Today — Dekho Panchang';
@@ -9,7 +10,7 @@ export const contentType = 'image/png';
 export default async function Image({ params }: { params: Promise<{ locale: string; city: string }> }) {
   const { locale, city: slug } = await params;
   const city = getCityBySlugExtended(slug);
-  const cityName = city ? (locale === 'hi' ? (city.name.hi || city.name.en) : city.name.en) : slug;
+  const cityName = city ? (pickByScript(city.name.en, (city.name.hi || city.name.en), locale)) : slug;
   const stateName = city?.state || '';
   const today = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
 
@@ -50,7 +51,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
 
         {/* Panchang Today */}
         <div style={{ fontSize: 32, fontWeight: 600, color: '#e6e2d8', marginBottom: 8, display: 'flex' }}>
-          {locale === 'hi' ? 'आज का पंचांग' : 'Panchang Today'}
+          {pickByScript('Panchang Today', 'आज का पंचांग', locale)}
         </div>
 
         {/* Date */}

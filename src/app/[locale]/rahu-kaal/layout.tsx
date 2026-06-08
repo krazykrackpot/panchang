@@ -6,6 +6,7 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateFAQLD } from '@/lib/seo/faq-data';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 // Ujjain — reference city for India-wide Rahu Kaal
 const REF_LAT = 23.1765;
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const day = istDate.getUTCDate();
 
     const p = computePanchang({ year, month, day, lat: REF_LAT, lng: REF_LNG, tzOffset, timezone: REF_TZ, locationName: 'Ujjain' });
-    const dateStr = istDate.toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+    const dateStr = istDate.toLocaleDateString(pickByScript('en-US', 'hi-IN', locale), { month: 'short', day: 'numeric', timeZone: 'UTC' });
 
     const isHi = locale === 'hi' || locale === 'sa';
     const title = isHi

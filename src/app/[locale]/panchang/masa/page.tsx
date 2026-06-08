@@ -12,7 +12,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { MasaIcon } from '@/components/icons/PanchangIcons';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import AuthorByline from '@/components/ui/AuthorByline';
 
 const MASA_DETAILS: { gregApprox: string; nakshatraLink: string }[] = [
@@ -352,7 +352,7 @@ function MasaCalendarTable({ locale, headingFont }: { locale: Locale; headingFon
                   const end = new Date(r.endDate);
                   const days = Math.max(1, Math.round((end.getTime() - start.getTime()) / 86400000));
                   const isCurrent = todayStr >= r.startDate && todayStr < r.endDate;
-                  const monthName = locale === 'hi' ? r.hi : r.en;
+                  const monthName = pickByScript(r.en, r.hi, locale);
                   const layerStyle = r.sandwichLayer === 'top' ? 'border-l-3 border-l-amber-500/40'
                     : r.sandwichLayer === 'filling' ? 'border-l-3 border-l-violet-500/60 bg-violet-500/[0.03]'
                     : r.sandwichLayer === 'bottom' ? 'border-l-3 border-l-amber-500/40'

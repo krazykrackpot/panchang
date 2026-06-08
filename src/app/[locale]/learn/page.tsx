@@ -9,7 +9,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { BookOpen, ChevronRight, ChevronDown, Clock, Star, CheckCircle, Sparkles, Library, ArrowRight, Flame, GraduationCap } from 'lucide-react';
 import { ShareRow } from '@/components/ui/ShareButton';
 import AdUnit from '@/components/ads/AdUnit';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
@@ -203,9 +203,7 @@ export default function LearnPage() {
           </h1>
           <p className="text-text-secondary text-lg max-w-2xl mb-3" style={bf}>{t('heroSub')}</p>
           <p className="text-text-secondary/80 text-sm italic max-w-2xl mb-6" style={bf}>
-            {locale === 'hi'
-              ? 'ग्रहों की कक्षाओं के गणित से कर्म और चेतना के दर्शन तक  –  ज्योतिष वेद का नेत्र है, और यह पाठ्यक्रम आपको देखना सिखाता है।'
-              : 'From the mathematics of planetary orbits to the philosophy of karma and consciousness  –  Jyotish is the eye of the Veda, and this course teaches you to see.'}
+            {pickByScript('From the mathematics of planetary orbits to the philosophy of karma and consciousness  –  Jyotish is the eye of the Veda, and this course teaches you to see.', 'ग्रहों की कक्षाओं के गणित से कर्म और चेतना के दर्शन तक  –  ज्योतिष वेद का नेत्र है, और यह पाठ्यक्रम आपको देखना सिखाता है।', locale)}
           </p>
 
           {/* Item 1: Progress-aware CTA + Item 4: Streak badge */}
@@ -222,8 +220,8 @@ export default function LearnPage() {
                   <Sparkles className="w-6 h-6" />
                   <span>
                     {hasMastered
-                      ? (locale === 'hi' ? 'सीखना जारी रखें' : 'Continue Learning')
-                      : (locale === 'hi' ? 'सीखना शुरू करें' : 'Start Learning')
+                      ? (pickByScript('Continue Learning', 'सीखना जारी रखें', locale))
+                      : (pickByScript('Start Learning', 'सीखना शुरू करें', locale))
                     }
                     {nextTitle && <span className="text-sm font-normal opacity-70 ml-2">— {nextTitle}</span>}
                   </span>
@@ -482,7 +480,7 @@ export default function LearnPage() {
                   <Link key={yoga.slug} href={`/learn/yoga/${yoga.slug}`}
                     className="group rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 hover:border-gold-primary/40 p-4 transition-all hover:shadow-lg hover:shadow-gold-primary/5">
                     <h3 className="text-gold-light font-bold text-sm mb-2 group-hover:text-gold-primary transition-colors leading-tight" style={bf}>
-                      {locale === 'hi' ? yoga.name.hi : yoga.name.en}
+                      {pickByScript(yoga.name.en, yoga.name.hi, locale)}
                     </h3>
                     <div className="flex items-center gap-2">
                       <span className={`text-[10px] px-1.5 py-0.5 rounded-full border font-medium ${CATEGORY_COLOURS[yoga.category] || CATEGORY_COLOURS.other}`}>

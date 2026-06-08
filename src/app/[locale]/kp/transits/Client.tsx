@@ -22,6 +22,7 @@ import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { tl } from '@/lib/utils/trilingual';
 import KpNavStrip from '@/components/kp/KpNavStrip';
 import { getCurrentRPsAction, type ClientRulingNowResult } from './actions';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 const REFRESH_INTERVAL_MS = 60_000;
 
@@ -178,7 +179,7 @@ export default function TransitsClient({
                 lng: l.lng,
                 timezone: l.timezone,
               })}
-              placeholder={locale === 'hi' ? 'नगर खोजें…' : 'Search city or place…'}
+              placeholder={pickByScript('Search city or place…', 'नगर खोजें…', locale)}
             />
             <p className="text-text-secondary/70 text-xs mt-1.5">
               {location.name} · {location.lat.toFixed(2)}, {location.lng.toFixed(2)}

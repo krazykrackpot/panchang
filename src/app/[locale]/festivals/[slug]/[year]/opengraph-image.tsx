@@ -1,6 +1,7 @@
 import { ImageResponse } from 'next/og';
 import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details-with-overlay';
 import { tl } from '@/lib/utils/trilingual';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 export const runtime = 'edge';
 export const alt = 'Festival Date — Dekho Panchang';
@@ -47,7 +48,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
 
         {/* Subtitle */}
         <div style={{ fontSize: 22, color: '#8a8478', display: 'flex' }}>
-          {locale === 'hi' ? 'तिथि, मुहूर्त एवं पूजा समय' : 'Date, Muhurta & Puja Timings'}
+          {pickByScript('Date, Muhurta & Puja Timings', 'तिथि, मुहूर्त एवं पूजा समय', locale)}
         </div>
 
         {/* Gold decorative line */}

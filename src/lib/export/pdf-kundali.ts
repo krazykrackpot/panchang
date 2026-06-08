@@ -6,6 +6,7 @@ import { GRAHAS, GRAHA_ABBREVIATIONS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
 import { computePersonalTransits, computeUpcomingTransitions } from '@/lib/transit/personal-transits';
 import type { ConvergenceResult } from '@/lib/tippanni/convergence/types';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 // ─── Theme Constants ───────────────────────────────────────────────────────
 const NAVY       = [10, 14, 39]   as const;  // #0a0e27
@@ -1093,7 +1094,7 @@ function renderSadeSati(doc: jsPDF, kundali: KundaliData, locale: Locale) {
   y = sectionHeading(doc, 'Sade Sati Analysis', y);
 
   const ss = kundali.sadeSati!;
-  const lk = locale === 'hi' ? 'hi' as const : 'en' as const;
+  const lk = pickByScript('en' as const, 'hi' as const, locale);
 
   // Status card
   if (ss.isActive) {
@@ -1266,7 +1267,7 @@ function renderConvergenceInsights(doc: jsPDF, convergence: ConvergenceResult, l
 
   y = sectionHeading(doc, 'Chart Synthesis  –  Convergence', y);
 
-  const lk = locale === 'hi' ? 'hi' as const : 'en' as const;
+  const lk = pickByScript('en' as const, 'hi' as const, locale);
   const exec = convergence.executive;
 
   // Overview card

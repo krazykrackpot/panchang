@@ -27,6 +27,7 @@ import {
   Share2,
 } from "lucide-react";
 import CrossSellCTA from "@/components/cta/CrossSellCTA";
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 // ─── Valid years ────────────────────────────────────────────────
 const VALID_YEARS = [2026, 2027];
@@ -215,11 +216,11 @@ function formatDate(
   // Use Date.UTC to avoid timezone issues (Lesson L)
   const date = new Date(Date.UTC(y, m - 1, d));
   const weekdayIdx = date.getUTCDay(); // 0=Sun (Lesson O)
-  const weekdays = locale === "hi" ? WEEKDAY_HI : WEEKDAY_EN;
+  const weekdays = pickByScript(WEEKDAY_EN, WEEKDAY_HI, locale);
   return {
     day: d.toString(),
     weekday: weekdays[weekdayIdx],
-    monthDay: `${weekdays[weekdayIdx]}, ${d} ${locale === "hi" ? MONTH_NAMES_HI[m - 1] : MONTH_NAMES_EN[m - 1]}`,
+    monthDay: `${weekdays[weekdayIdx]}, ${d} ${pickByScript(MONTH_NAMES_EN[m - 1], MONTH_NAMES_HI[m - 1], locale)}`,
   };
 }
 
@@ -247,7 +248,7 @@ export default async function HinduCalendarPage({
   const byMonth = groupByMonth(festivals);
   const totalCount = festivals.length;
 
-  const monthNames = locale === "hi" ? MONTH_NAMES_HI : MONTH_NAMES_EN;
+  const monthNames = pickByScript(MONTH_NAMES_EN, MONTH_NAMES_HI, locale);
 
   const shareUrl = `https://dekhopanchang.com/${locale}/hindu-calendar/${year}`;
   const whatsappText = encodeURIComponent(
@@ -285,9 +286,7 @@ export default async function HinduCalendarPage({
         {/* ─── Philosophical Context  –  server-rendered for SEO ─── */}
         <div className="mb-8 text-text-secondary text-sm leading-relaxed">
           <p>
-            {locale === "hi"
-              ? "हिन्दू कैलेंडर एक साथ खगोलीय और आध्यात्मिक है। प्रत्येक त्योहार की तिथि वास्तविक खगोलीय घटनाओं से गणित होती है — दीपावली कार्तिक की अमावस्या (नवचन्द्र) पर आती है, होली फाल्गुन की पूर्णिमा पर, गणेश चतुर्थी भाद्रपद की चतुर्थी पर। ये मनमानी तिथियाँ नहीं हैं — ये सटीक चन्द्र-सौर संरेखण हैं। यह कैलेंडर वैदिक समझ की एक जीवन्त अभिव्यक्ति है कि मानव जीवन ब्रह्माण्डीय लय से अन्तर्गुन्थित है।"
-              : "The Hindu calendar is simultaneously astronomical and spiritual. Every festival date is computed from real celestial events — Diwali falls on the Amavasya (new moon) of Kartik, Holi on the Purnima (full moon) of Phalguna, Ganesh Chaturthi on the Chaturthi of Bhadrapada. These are not arbitrary dates — they are precise lunar-solar alignments. The calendar is a living expression of the Vedic understanding that human life is interwoven with cosmic rhythm."}
+            {pickByScript("The Hindu calendar is simultaneously astronomical and spiritual. Every festival date is computed from real celestial events — Diwali falls on the Amavasya (new moon) of Kartik, Holi on the Purnima (full moon) of Phalguna, Ganesh Chaturthi on the Chaturthi of Bhadrapada. These are not arbitrary dates — they are precise lunar-solar alignments. The calendar is a living expression of the Vedic understanding that human life is interwoven with cosmic rhythm.", "हिन्दू कैलेंडर एक साथ खगोलीय और आध्यात्मिक है। प्रत्येक त्योहार की तिथि वास्तविक खगोलीय घटनाओं से गणित होती है — दीपावली कार्तिक की अमावस्या (नवचन्द्र) पर आती है, होली फाल्गुन की पूर्णिमा पर, गणेश चतुर्थी भाद्रपद की चतुर्थी पर। ये मनमानी तिथियाँ नहीं हैं — ये सटीक चन्द्र-सौर संरेखण हैं। यह कैलेंडर वैदिक समझ की एक जीवन्त अभिव्यक्ति है कि मानव जीवन ब्रह्माण्डीय लय से अन्तर्गुन्थित है।", locale)}
           </p>
         </div>
 
@@ -322,7 +321,7 @@ export default async function HinduCalendarPage({
                 {monthNames[monthIdx]} {year}
               </h2>
               <span className="text-text-secondary text-sm ml-auto">
-                {entries.length} {locale === "hi" ? "तिथियाँ" : "events"}
+                {entries.length} {pickByScript("events", "तिथियाँ", locale)}
               </span>
             </div>
 
@@ -359,12 +358,8 @@ export default async function HinduCalendarPage({
                               <span className="text-xs text-red-400">
                                 (
                                 {festival.eclipseType === "solar"
-                                  ? locale === "hi"
-                                    ? "सूर्य"
-                                    : "Solar"
-                                  : locale === "hi"
-                                    ? "चन्द्र"
-                                    : "Lunar"}
+                                  ? pickByScript("Solar", "सूर्य", locale)
+                                  : pickByScript("Lunar", "चन्द्र", locale)}
                                 )
                               </span>
                             )}
@@ -378,12 +373,8 @@ export default async function HinduCalendarPage({
                             <p className="text-xs text-text-secondary/70 mt-1">
                               {festival.masa.amanta}{" "}
                               {festival.paksha === "shukla"
-                                ? locale === "hi"
-                                  ? "शुक्ल"
-                                  : "Shukla"
-                                : locale === "hi"
-                                  ? "कृष्ण"
-                                  : "Krishna"}
+                                ? pickByScript("Shukla", "शुक्ल", locale)
+                                : pickByScript("Krishna", "कृष्ण", locale)}
                             </p>
                           )}
                         </div>
@@ -449,17 +440,13 @@ export default async function HinduCalendarPage({
         <div className="mb-10">
           <CrossSellCTA
             headline={
-              locale === "hi"
-                ? "अपने शहर का व्यक्तिगत पंचांग + राशिफल पाएँ"
-                : "Get daily panchang for YOUR city + personalised rashifal"
+              pickByScript("Get daily panchang for YOUR city + personalised rashifal", "अपने शहर का व्यक्तिगत पंचांग + राशिफल पाएँ", locale)
             }
             subtext={
-              locale === "hi"
-                ? "मुफ़्त खाता बनाएँ  –  सूर्योदय पर ईमेल से दैनिक पंचांग प्राप्त करें"
-                : "Free account  –  daily panchang delivered to your inbox at sunrise"
+              pickByScript("Free account  –  daily panchang delivered to your inbox at sunrise", "मुफ़्त खाता बनाएँ  –  सूर्योदय पर ईमेल से दैनिक पंचांग प्राप्त करें", locale)
             }
             href={"/dashboard" as any}
-            buttonLabel={locale === "hi" ? "डैशबोर्ड देखें" : "View Dashboard"}
+            buttonLabel={pickByScript("View Dashboard", "डैशबोर्ड देखें", locale)}
             triggerAuth
           />
         </div>

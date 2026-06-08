@@ -19,7 +19,7 @@ import { Link } from "@/lib/i18n/navigation";
 import { tl } from "@/lib/utils/trilingual";
 import { generateBreadcrumbLD } from "@/lib/seo/structured-data";
 import type { Locale, LocaleText } from "@/types/panchang";
-import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { isDevanagariLocale, pickByScript } from "@/lib/utils/locale-fonts";
 import { safeJsonLd } from "@/lib/seo/safe-jsonld";
 import { useLocationStore } from "@/stores/location-store";
 import AuthorByline from "@/components/ui/AuthorByline";
@@ -1665,7 +1665,7 @@ export default function DateCategoryClient() {
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div>
                         <h4 className="text-sm font-semibold text-emerald-400 uppercase tracking-wider mb-3">
-                          {locale === "hi" ? "क्या करें" : "Do"}
+                          {pickByScript("Do", "क्या करें", locale)}
                         </h4>
                         <ul className="space-y-2">
                           {[1, 2, 3, 4].map((n) => {
@@ -1685,7 +1685,7 @@ export default function DateCategoryClient() {
                       </div>
                       <div>
                         <h4 className="text-sm font-semibold text-red-400 uppercase tracking-wider mb-3">
-                          {locale === "hi" ? "क्या न करें" : "Don't"}
+                          {pickByScript("Don't", "क्या न करें", locale)}
                         </h4>
                         <ul className="space-y-2">
                           {[1, 2, 3, 4].map((n) => {

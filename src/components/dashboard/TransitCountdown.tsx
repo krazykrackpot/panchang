@@ -9,7 +9,7 @@ import { findArticleSlug } from '@/lib/content/transit-articles';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import type { Locale } from '@/types/panchang';
 
 // ---------------------------------------------------------------------------
@@ -293,7 +293,7 @@ export default function TransitCountdown({ ascendantSign, savTable, reducedSavTa
                   className="mt-2 flex items-center gap-1.5 text-xs text-gold-primary/70 hover:text-gold-light transition-colors"
                 >
                   <BookOpen className="w-3 h-3" />
-                  {locale === 'hi' ? 'विस्तृत विश्लेषण पढ़ें' : 'Read detailed analysis'}
+                  {pickByScript('Read detailed analysis', 'विस्तृत विश्लेषण पढ़ें', locale)}
                   <ArrowRight className="w-3 h-3" />
                 </Link>
               )}

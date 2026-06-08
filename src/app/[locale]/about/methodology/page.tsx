@@ -1,5 +1,5 @@
 import { getLocale, setRequestLocale } from 'next-intl/server';
-import { isDevanagariLocale, pickByLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { TOTAL_MODULES } from '@/lib/learn/module-sequence';
@@ -597,13 +597,11 @@ export default async function MethodologyPage({
           <div className="flex items-center gap-3 mb-2">
             <BookOpen className="w-5 h-5 text-gold-primary" />
             <span className="text-gold-light font-semibold group-hover:text-gold-primary transition-colors">
-              {locale === 'hi' ? 'हमारे बारे में' : 'About Us'}
+              {pickByScript('About Us', 'हमारे बारे में', locale)}
             </span>
           </div>
           <p className="text-text-secondary text-sm leading-relaxed">
-            {locale === 'hi'
-              ? 'परियोजना की कहानी, लेखक और दर्शन।'
-              : 'The story behind the project, the author, and the philosophy.'}
+            {pickByScript('The story behind the project, the author, and the philosophy.', 'परियोजना की कहानी, लेखक और दर्शन।', locale)}
           </p>
         </a>
         <a
@@ -613,13 +611,11 @@ export default async function MethodologyPage({
           <div className="flex items-center gap-3 mb-2">
             <Star className="w-5 h-5 text-gold-primary" />
             <span className="text-gold-light font-semibold group-hover:text-gold-primary transition-colors">
-              {locale === 'hi' ? 'जाें सीखें' : 'Learn Jyotish'}
+              {pickByScript('Learn Jyotish', 'जाें सीखें', locale)}
             </span>
           </div>
           <p className="text-text-secondary text-sm leading-relaxed">
-            {locale === 'hi'
-              ? `${TOTAL_MODULES} मॉड्यूल  –  पंचांग मूल बातों से लेकर उन्नत Shadbala तक।`
-              : `${TOTAL_MODULES} modules covering Panchang basics to advanced Shadbala and Jaimini.`}
+            {pickByScript(`${TOTAL_MODULES} modules covering Panchang basics to advanced Shadbala and Jaimini.`, `${TOTAL_MODULES} मॉड्यूल  –  पंचांग मूल बातों से लेकर उन्नत Shadbala तक।`, locale)}
           </p>
         </a>
       </div>

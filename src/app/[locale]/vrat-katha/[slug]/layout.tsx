@@ -6,6 +6,7 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { locales } from '@/lib/i18n/config';
 
 import { BASE_URL } from '@/lib/seo/base-url';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 // Schema.org `inLanguage` codes for the 9 visible locales. mai+sa
 // fold into the umbrella 'hi' code; others get their own ISO 639-1.
@@ -21,9 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!katha) return {};
 
   const title = (katha.title as Record<string, string>)[locale] || katha.title.en;
-  const description = locale === 'hi'
-    ? `${title}  –  विधि, फल और कब करें। Dekho Panchang पर पढ़ें।`
-    : `${title}  –  Vidhi, benefits, and when to observe. Read on Dekho Panchang.`;
+  const description = pickByScript(`${title}  –  Vidhi, benefits, and when to observe. Read on Dekho Panchang.`, `${title}  –  विधि, फल और कब करें। Dekho Panchang पर पढ़ें।`, locale);
 
   // Build hreflang alternates for ALL locales
   const alternateLanguages: Record<string, string> = {};
@@ -73,9 +72,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   if (!katha) return <>{children}</>;
 
   const title = (katha.title as Record<string, string>)[locale] || katha.title.en;
-  const description = locale === 'hi'
-    ? `${title}  –  विधि, फल और कब करें।`
-    : `${title}  –  Vidhi, benefits, and when to observe.`;
+  const description = pickByScript(`${title}  –  Vidhi, benefits, and when to observe.`, `${title}  –  विधि, फल और कब करें।`, locale);
 
   const articleLD = {
     '@context': 'https://schema.org',

@@ -22,7 +22,7 @@ import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { tl } from '@/lib/utils/trilingual';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import { ShareCardButton } from '@/components/shareable/ShareCardButton';
 import { selectHighlightKutas, getKutaInsight, getOverallVerdict } from '@/lib/constants/kuta-insights';
 import { trackMatchingComputed, trackUtmEvent } from '@/lib/analytics';
@@ -823,8 +823,8 @@ export default function MatchingClient() {
                     const scoreColor = pct >= 0.75 ? 'text-emerald-400' : pct >= 0.5 ? 'text-amber-400' : pct >= 0.25 ? 'text-orange-400' : 'text-red-400';
                     const barColor = scoreBarColor(kuta.scored, kuta.maxPoints);
                     const scale = KUTA_SCALES[kuta.name.en];
-                    const boyName = boyBirth.name || (locale === 'hi' ? 'वर' : 'Partner 1');
-                    const girlName = girlBirth.name || (locale === 'hi' ? 'कन्या' : 'Partner 2');
+                    const boyName = boyBirth.name || (pickByScript('Partner 1', 'वर', locale));
+                    const girlName = girlBirth.name || (pickByScript('Partner 2', 'कन्या', locale));
 
                     return (
                       <motion.div
@@ -841,7 +841,7 @@ export default function MatchingClient() {
                               {tl(kuta.name, locale)}
                             </span>
                             {isMajor && <span className="text-[9px] uppercase tracking-wider text-gold-primary/50 font-bold border border-gold-primary/20 px-1.5 py-0.5 rounded">
-                              {locale === 'hi' ? 'प्रमुख' : 'Major'}
+                              {pickByScript('Major', 'प्रमुख', locale)}
                             </span>}
                             <span className="text-text-secondary/60 text-[11px] hidden sm:inline">{tl(kuta.description, locale)}</span>
                           </div>
@@ -928,7 +928,7 @@ export default function MatchingClient() {
                   {/* Tally */}
                   <div className="bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] border border-gold-primary/20 rounded-xl p-4 flex items-center justify-between">
                     <span className="text-gold-light font-bold text-sm" style={headingFont}>
-                      {locale === 'hi' ? 'कुल अंक' : 'Total Score'}
+                      {pickByScript('Total Score', 'कुल अंक', locale)}
                     </span>
                     <span className="font-mono font-black text-gold-primary text-xl">
                       {result.totalScore} <span className="text-text-secondary text-sm font-normal">/ 36</span>

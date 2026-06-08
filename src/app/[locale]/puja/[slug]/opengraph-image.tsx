@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 export const runtime = 'edge';
 export const alt = 'Puja Vidhi — Dekho Panchang';
@@ -43,12 +44,12 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
 
         {/* Subtitle */}
         <div style={{ fontSize: 26, color: '#e6e2d8', display: 'flex' }}>
-          {locale === 'hi' ? 'पूजा विधि' : 'Puja Vidhi'}
+          {pickByScript('Puja Vidhi', 'पूजा विधि', locale)}
         </div>
 
         {/* Description */}
         <div style={{ fontSize: 18, color: '#8a8478', marginTop: 12, display: 'flex' }}>
-          {locale === 'hi' ? 'मंत्र · सामग्री · विधि · संकल्प' : 'Mantras · Samagri · Vidhi · Sankalpa'}
+          {pickByScript('Mantras · Samagri · Vidhi · Sankalpa', 'मंत्र · सामग्री · विधि · संकल्प', locale)}
         </div>
 
         {/* Gold line */}

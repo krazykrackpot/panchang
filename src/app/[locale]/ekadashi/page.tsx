@@ -4,6 +4,7 @@ import { resolveEkadashiDetail } from '@/lib/constants/festival-details-with-ove
 import { tl } from '@/lib/utils/trilingual';
 import type { LocaleText } from '@/types/panchang';
 import Link from 'next/link';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 // ─── Static labels (EN + HI) ───
 
@@ -136,7 +137,7 @@ function getEkadashiData(): EkadashiCard[] {
 function formatDate(dateStr: string, locale: string): string {
   const [y, m, d] = dateStr.split('-').map(Number);
   const date = new Date(Date.UTC(y, m - 1, d));
-  const lang = locale === 'hi' ? 'hi-IN' : 'en-GB';
+  const lang = pickByScript('en-GB', 'hi-IN', locale);
   return date.toLocaleDateString(lang, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 }
 

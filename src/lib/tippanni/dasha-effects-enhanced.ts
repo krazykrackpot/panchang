@@ -10,9 +10,10 @@ import type { PlanetPosition, HouseCusp } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { getPlanetDignity } from './dignity';
 import { isKendra, isTrikona, isDusthana, getHouseLord, triLocale, PLANET_NAMES } from './utils';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 function t(locale: Locale, en: string, hi: string, _sa?: string): string {
-  return locale === 'hi' ? hi : en;
+  return pickByScript(en, hi, locale);
 }
 
 interface DashaLordResult {

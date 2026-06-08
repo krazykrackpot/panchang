@@ -7,6 +7,7 @@ import { computeBhavaChalit, type BhavaChalitResult } from '@/lib/kundali/bhava-
 import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 interface BhavaChalitTabProps {
   ascendant: number;  // sidereal degree 0-360
@@ -104,7 +105,7 @@ function getSentimentLabel(sentiment: 'positive' | 'negative' | 'neutral' | 'mix
     mixed:    { en: 'Powerful Shift', hi: 'शक्तिशाली परिवर्तन', color: 'text-amber-400' },
   };
   const entry = labels[sentiment];
-  return { text: locale === 'hi' ? entry.hi : entry.en, color: entry.color };
+  return { text: pickByScript(entry.en, entry.hi, locale), color: entry.color };
 }
 
 // ─── Shift interpretation generator ─────────────────────────────────────
@@ -219,7 +220,7 @@ const LABELS = {
 };
 
 function l(obj: { en: string; hi: string }, locale: string): string {
-  return locale === 'hi' ? obj.hi : obj.en;
+  return pickByScript(obj.en, obj.hi, locale);
 }
 
 function formatDeg(deg: number): string {
@@ -383,10 +384,10 @@ export default function BhavaChalitTab({ ascendant, planets, locale }: BhavaChal
                     {getGrahaName(p.planetId)}
                   </span>
                   <span className="text-text-secondary text-sm flex items-center gap-1.5">
-                    {locale === 'hi' ? 'भाव' : 'House'} {p.rashiHouse}
+                    {pickByScript('House', 'भाव', locale)} {p.rashiHouse}
                     <span className="text-text-secondary/50">({fromH ? l({ en: fromH.keywords_en, hi: fromH.keywords_hi }, locale) : ''})</span>
                     <ArrowRight className="w-3.5 h-3.5 text-gold-primary" />
-                    {locale === 'hi' ? 'भाव' : 'House'} {p.bhavaHouse}
+                    {pickByScript('House', 'भाव', locale)} {p.bhavaHouse}
                     <span className="text-text-secondary/50">({toH ? l({ en: toH.keywords_en, hi: toH.keywords_hi }, locale) : ''})</span>
                   </span>
                   <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${sentimentLabel.color} bg-white/5 border border-white/10`}>

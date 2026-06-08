@@ -8,6 +8,7 @@
 
 import type { Locale } from '@/types/panchang';
 import type { Tri } from './utils';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 interface HouseTriInterp {
   general: Tri;
@@ -85,7 +86,7 @@ export function getPlanetInHouseEnhanced(
   if (!entry) return null;
 
   const resolve = (tri: Tri): string => {
-    return locale === 'hi' ? tri.hi || "" : tri.en;
+    return pickByScript(tri.en, tri.hi || "", locale);
   };
 
   return {

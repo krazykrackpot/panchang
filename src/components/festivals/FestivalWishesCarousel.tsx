@@ -18,6 +18,7 @@ import { Copy, Check, Share2, Quote } from 'lucide-react';
 import { tl } from '@/lib/utils/trilingual';
 import type { Locale, LocaleText } from '@/types/panchang';
 import type { FestivalWish } from '@/lib/festivals/types';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 const TONE_LABELS: Record<FestivalWish['tone'], LocaleText> = {
   traditional: { en: 'Traditional', hi: 'पारम्परिक' },
@@ -44,13 +45,9 @@ interface Props {
 export default function FestivalWishesCarousel({ wishes, festivalNameEn, festivalNameHi, year, locale }: Props) {
   const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
 
-  const sectionTitle = locale === 'hi'
-    ? `${festivalNameHi} ${year} शुभकामनाएँ — साझा करने योग्य संदेश`
-    : `${festivalNameEn} ${year} Wishes & Greetings`;
+  const sectionTitle = pickByScript(`${festivalNameEn} ${year} Wishes & Greetings`, `${festivalNameHi} ${year} शुभकामनाएँ — साझा करने योग्य संदेश`, locale);
 
-  const hint = locale === 'hi'
-    ? 'क्लिक करें — साझा करने के लिए तैयार। ये सभी मूल रचनाएँ हैं — व्यावसायिक उपयोग के लिए स्वतन्त्र।'
-    : 'One click to copy. All original — free to share, even for business.';
+  const hint = pickByScript('One click to copy. All original — free to share, even for business.', 'क्लिक करें — साझा करने के लिए तैयार। ये सभी मूल रचनाएँ हैं — व्यावसायिक उपयोग के लिए स्वतन्त्र।', locale);
 
   const copyToClipboard = async (text: string, idx: number) => {
     try {
@@ -116,22 +113,22 @@ export default function FestivalWishesCarousel({ wishes, festivalNameEn, festiva
                 <button
                   type="button"
                   onClick={() => copyToClipboard(text, idx)}
-                  aria-label={locale === 'hi' ? 'प्रतिलिपि बनाएँ' : 'Copy to clipboard'}
+                  aria-label={pickByScript('Copy to clipboard', 'प्रतिलिपि बनाएँ', locale)}
                   className="inline-flex items-center gap-1.5 text-xs text-gold-light hover:text-gold-primary transition-colors"
                 >
                   {isCopied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                   <span>{isCopied
-                    ? (locale === 'hi' ? 'प्रतिलिपि बन गई' : 'Copied')
-                    : (locale === 'hi' ? 'प्रतिलिपि' : 'Copy')}</span>
+                    ? (pickByScript('Copied', 'प्रतिलिपि बन गई', locale))
+                    : (pickByScript('Copy', 'प्रतिलिपि', locale))}</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => share(text)}
-                  aria-label={locale === 'hi' ? 'साझा करें' : 'Share'}
+                  aria-label={pickByScript('Share', 'साझा करें', locale)}
                   className="inline-flex items-center gap-1.5 text-xs text-gold-light hover:text-gold-primary transition-colors ml-auto"
                 >
                   <Share2 className="w-3.5 h-3.5" />
-                  <span>{locale === 'hi' ? 'साझा करें' : 'Share'}</span>
+                  <span>{pickByScript('Share', 'साझा करें', locale)}</span>
                 </button>
               </div>
             </article>

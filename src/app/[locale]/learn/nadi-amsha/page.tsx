@@ -7,13 +7,13 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import InfoBlock from '@/components/ui/InfoBlock';
 import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import { computeNadiAmsha } from '@/lib/kundali/nadi-amsha';
 import { NADI_TABLE, NADI_GROUP_DESCRIPTIONS } from '@/lib/constants/nadi-reference';
 
 // ─── Bilingual helper ──────────────────────────────────────────────────────
 const tl = (obj: { en: string; hi: string }, locale: string) =>
-  locale === 'hi' ? obj.hi : obj.en;
+  pickByScript(obj.en, obj.hi, locale);
 
 // ─── Sign Names ────────────────────────────────────────────────────────────
 const SIGN_NAMES: { en: string; hi: string }[] = [

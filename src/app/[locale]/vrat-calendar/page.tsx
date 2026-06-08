@@ -10,7 +10,7 @@ import { TRACKABLE_VRATS, getWeeklyVratDay, getNextWeeklyDates, type TrackableVr
 import { tl } from '@/lib/utils/trilingual';
 import { generateVratAlerts } from '@/lib/notifications/vrat-alerts';
 import { scheduleAlerts, requestNotificationPermission } from '@/lib/notifications/panchang-alerts';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import type { LocaleText } from '@/types/panchang';
 import GoldDivider from '@/components/ui/GoldDivider';
 
@@ -72,7 +72,7 @@ interface CalendarEntry {
 function formatDate(dateStr: string, locale: string): string {
   try {
     const d = new Date(dateStr + 'T12:00:00');
-    return d.toLocaleDateString(locale === 'sa' ? 'hi-IN' : locale === 'hi' ? 'hi-IN' : 'en-IN', {
+    return d.toLocaleDateString(locale === 'sa' ? 'hi-IN' : pickByScript('en-IN', 'hi-IN', locale), {
       weekday: 'short',
       day: 'numeric',
       month: 'short',

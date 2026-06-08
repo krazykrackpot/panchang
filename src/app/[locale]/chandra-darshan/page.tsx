@@ -23,7 +23,7 @@ import { Link } from "@/lib/i18n/navigation";
 import { useLocationStore } from "@/stores/location-store";
 import { getUTCOffsetForDate } from "@/lib/utils/timezone";
 import { todayInTimezone } from "@/lib/utils/now-in-timezone";
-import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { isDevanagariLocale, pickByScript } from "@/lib/utils/locale-fonts";
 import { safeJsonLd } from "@/lib/seo/safe-jsonld";
 import { generateBreadcrumbLD } from "@/lib/seo/structured-data";
 import {
@@ -509,7 +509,7 @@ function formatDateLocal(isoDate: string, locale: string): string {
   try {
     const [y, m, d] = isoDate.split("-").map(Number);
     const date = new Date(Date.UTC(y, m - 1, d));
-    return date.toLocaleDateString(locale === "hi" ? "hi-IN" : "en-GB", {
+    return date.toLocaleDateString(pickByScript("en-GB", "hi-IN", locale), {
       weekday: "short",
       day: "numeric",
       month: "short",
@@ -692,9 +692,7 @@ export default function ChandraDarshanPage() {
                 className="text-text-secondary text-sm leading-relaxed"
                 style={bf}
               >
-                {locale === "hi"
-                  ? todayInfo.description.hi
-                  : todayInfo.description.en}
+                {pickByScript(todayInfo.description.en, todayInfo.description.hi, locale)}
               </p>
             </div>
 
@@ -730,9 +728,7 @@ export default function ChandraDarshanPage() {
                 icon={<Compass size={16} />}
                 label={l("direction", locale)}
                 value={
-                  locale === "hi"
-                    ? todayInfo.direction.hi
-                    : todayInfo.direction.en
+                  pickByScript(todayInfo.direction.en, todayInfo.direction.hi, locale)
                 }
                 locale={locale}
               />

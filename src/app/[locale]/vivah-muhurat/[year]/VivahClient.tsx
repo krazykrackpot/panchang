@@ -11,6 +11,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useLocationStore } from '@/stores/location-store';
 import { MapPin, Loader2, Share2, ChevronUp } from 'lucide-react';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 // Default location for initial scan: Delhi, India
 const DEFAULT_LAT = 28.6139;
@@ -36,7 +37,7 @@ const MONTH_NAMES_EN = ['January', 'February', 'March', 'April', 'May', 'June', 
 const MONTH_NAMES_HI = ['जनवरी', 'फरवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितम्बर', 'अक्टूबर', 'नवम्बर', 'दिसम्बर'];
 
 function getMonthName(month: number, locale: string): string {
-  const names = locale === 'hi' ? MONTH_NAMES_HI : MONTH_NAMES_EN;
+  const names = pickByScript(MONTH_NAMES_EN, MONTH_NAMES_HI, locale);
   return names[month - 1] ?? '';
 }
 
@@ -173,9 +174,7 @@ export default function VivahClient({ year, locale }: VivahClientProps) {
 
   // Share handler
   const shareDate = async (dateStr: string, score: number) => {
-    const text = locale === 'hi'
-      ? `शुभ विवाह मुहूर्त: ${dateStr} (स्कोर: ${score}/100)`
-      : `Auspicious Marriage Date: ${dateStr} (Score: ${score}/100)`;
+    const text = pickByScript(`Auspicious Marriage Date: ${dateStr} (Score: ${score}/100)`, `शुभ विवाह मुहूर्त: ${dateStr} (स्कोर: ${score}/100)`, locale);
     const url = `${window.location.origin}${window.location.pathname}#date-${dateStr}`;
 
     if (navigator.share) {
@@ -200,23 +199,23 @@ export default function VivahClient({ year, locale }: VivahClientProps) {
         <div className="flex items-center gap-2 rounded-xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] px-4 py-2.5">
           <MapPin className="h-4 w-4 text-gold-primary" />
           <span className="text-sm text-text-primary">
-            {locationName || (locale === 'hi' ? 'दिल्ली, भारत' : 'Delhi, India')}
+            {locationName || (pickByScript('Delhi, India', 'दिल्ली, भारत', locale))}
           </span>
         </div>
 
         {loading && (
           <div className="flex items-center gap-2 text-sm text-text-secondary">
             <Loader2 className="h-4 w-4 animate-spin text-gold-primary" />
-            {locale === 'hi' ? 'गणना हो रही है...' : 'Scanning...'}
+            {pickByScript('Scanning...', 'गणना हो रही है...', locale)}
           </div>
         )}
 
         {!loading && !error && (
           <p className="text-sm text-text-primary">
             <span className="text-lg font-bold text-gold-primary">{totalDates}</span>{' '}
-            {locale === 'hi' ? 'शुभ तिथियाँ' : 'auspicious dates'}{' '}
+            {pickByScript('auspicious dates', 'शुभ तिथियाँ', locale)}{' '}
             <span className="text-text-secondary">
-              {locale === 'hi' ? `${monthsWithDates} महीनों में` : `across ${monthsWithDates} months`}
+              {pickByScript(`across ${monthsWithDates} months`, `${monthsWithDates} महीनों में`, locale)}
             </span>
           </p>
         )}
@@ -263,17 +262,17 @@ export default function VivahClient({ year, locale }: VivahClientProps) {
           <div key={m} id={`month-${m}`} className="mb-10">
             <h2
               className="mb-4 text-xl font-bold text-gold-light md:text-2xl"
-              style={{ fontFamily: locale === 'hi' ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' }}
+              style={{ fontFamily: pickByScript('var(--font-heading)', 'var(--font-devanagari-heading)', locale) }}
             >
               {getMonthName(m, locale)} {year}{' '}
               <span className="text-base font-normal text-text-secondary">
-                &mdash; {dates.length} {locale === 'hi' ? 'शुभ तिथियाँ' : 'auspicious dates'}
+                &mdash; {dates.length} {pickByScript('auspicious dates', 'शुभ तिथियाँ', locale)}
               </span>
             </h2>
 
             {dates.length === 0 ? (
               <div className="rounded-2xl border border-gold-primary/8 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] p-6 text-center text-text-secondary">
-                {locale === 'hi' ? 'इस माह कोई शुभ विवाह तिथि नहीं' : 'No auspicious marriage dates this month'}
+                {pickByScript('No auspicious marriage dates this month', 'इस माह कोई शुभ विवाह तिथि नहीं', locale)}
               </div>
             ) : (
               <div className="space-y-3">
@@ -308,23 +307,23 @@ export default function VivahClient({ year, locale }: VivahClientProps) {
                         <div className="border-t border-gold-primary/8 px-5 pb-5 pt-4">
                           <div className="grid gap-3 text-sm sm:grid-cols-2">
                             <div>
-                              <span className="text-text-secondary">{locale === 'hi' ? 'नक्षत्र' : 'Nakshatra'}:</span>{' '}
+                              <span className="text-text-secondary">{pickByScript('Nakshatra', 'नक्षत्र', locale)}:</span>{' '}
                               <span className="text-text-primary">{d.nakshatraName}</span>
                             </div>
                             <div>
-                              <span className="text-text-secondary">{locale === 'hi' ? 'तिथि' : 'Tithi'}:</span>{' '}
+                              <span className="text-text-secondary">{pickByScript('Tithi', 'तिथि', locale)}:</span>{' '}
                               <span className="text-text-primary">
-                                {d.tithiName} ({d.paksha === 'shukla' ? (locale === 'hi' ? 'शुक्ल' : 'Shukla') : (locale === 'hi' ? 'कृष्ण' : 'Krishna')})
+                                {d.tithiName} ({d.paksha === 'shukla' ? (pickByScript('Shukla', 'शुक्ल', locale)) : (pickByScript('Krishna', 'कृष्ण', locale))})
                               </span>
                             </div>
                             {d.lagnaSign && (
                               <div>
-                                <span className="text-text-secondary">{locale === 'hi' ? 'लग्न' : 'Lagna'}:</span>{' '}
+                                <span className="text-text-secondary">{pickByScript('Lagna', 'लग्न', locale)}:</span>{' '}
                                 <span className="text-text-primary">{d.lagnaSign}</span>
                               </div>
                             )}
                             <div>
-                              <span className="text-text-secondary">{locale === 'hi' ? 'सर्वोत्तम समय' : 'Best window'}:</span>{' '}
+                              <span className="text-text-secondary">{pickByScript('Best window', 'सर्वोत्तम समय', locale)}:</span>{' '}
                               <span className="font-medium text-gold-primary">{d.startTime} &mdash; {d.endTime}</span>
                             </div>
                           </div>
@@ -334,7 +333,7 @@ export default function VivahClient({ year, locale }: VivahClientProps) {
                             className="mt-4 inline-flex items-center gap-2 rounded-lg border border-gold-primary/20 bg-gold-primary/10 px-3 py-1.5 text-xs font-medium text-gold-light transition-colors hover:bg-gold-primary/20"
                           >
                             <Share2 className="h-3.5 w-3.5" />
-                            {locale === 'hi' ? 'शेयर करें' : 'Share'}
+                            {pickByScript('Share', 'शेयर करें', locale)}
                           </button>
                         </div>
                       )}

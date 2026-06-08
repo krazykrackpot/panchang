@@ -20,6 +20,7 @@ import {
   Info,
 } from "lucide-react";
 import VivahClient from "./VivahClient";
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 // Only allow 2026 and 2027
 const VALID_YEARS = [2026, 2027];
@@ -125,9 +126,7 @@ export default async function VivahMuhuratPage({
             className="text-3xl font-bold text-gold-light md:text-5xl"
             style={{
               fontFamily:
-                locale === "hi"
-                  ? "var(--font-devanagari-heading)"
-                  : "var(--font-heading)",
+                pickByScript("var(--font-heading)", "var(--font-devanagari-heading)", locale),
             }}
           >
             {t("title", locale)} {year}
@@ -147,9 +146,7 @@ export default async function VivahMuhuratPage({
           {t("seoIntro", locale)}
         </p>
         <p className="mb-8 text-text-secondary text-sm leading-relaxed">
-          {locale === "hi"
-            ? "विवाह मुहूर्त चयन फलित ज्योतिष का सबसे कठोर अनुप्रयोग है। यह सिद्धान्तिक खगोल विज्ञान (सटीक ग्रह स्थितियाँ, सौर मास सीमाएँ, अस्त गणना) को मुहूर्त चिन्तामणि और धर्मसिन्धु के शास्त्रीय व्याख्यात्मक नियमों के साथ संयोजित करता है। यह अन्धविश्वास नहीं है — यह एक व्यवस्थित ढाँचा है जहाँ प्रत्येक नियम का खगोलीय आधार है: शुक्र अस्त का अर्थ है प्रेम का ग्रह अदृश्य है, चातुर्मास मानसून से मेल खाता है जब यात्रा असम्भव थी, और 11 शुभ नक्षत्र उनके प्रमाणित स्थिरता गुणों के लिए चुने गए हैं।"
-            : "Marriage muhurta selection is the most rigorous application of Phalit Jyotish. It combines Siddhantic astronomy (exact planetary positions, solar month boundaries, combustion calculations) with classical interpretive rules from the Muhurta Chintamani and Dharmasindhu. The result is not superstition — it is a systematic framework where every rule has an astronomical basis: Venus combustion means the planet of love is invisible, Chaturmas coincides with the monsoon when travel was impossible, and the 11 auspicious nakshatras are selected for their demonstrated stability characteristics."}
+          {pickByScript("Marriage muhurta selection is the most rigorous application of Phalit Jyotish. It combines Siddhantic astronomy (exact planetary positions, solar month boundaries, combustion calculations) with classical interpretive rules from the Muhurta Chintamani and Dharmasindhu. The result is not superstition — it is a systematic framework where every rule has an astronomical basis: Venus combustion means the planet of love is invisible, Chaturmas coincides with the monsoon when travel was impossible, and the 11 auspicious nakshatras are selected for their demonstrated stability characteristics.", "विवाह मुहूर्त चयन फलित ज्योतिष का सबसे कठोर अनुप्रयोग है। यह सिद्धान्तिक खगोल विज्ञान (सटीक ग्रह स्थितियाँ, सौर मास सीमाएँ, अस्त गणना) को मुहूर्त चिन्तामणि और धर्मसिन्धु के शास्त्रीय व्याख्यात्मक नियमों के साथ संयोजित करता है। यह अन्धविश्वास नहीं है — यह एक व्यवस्थित ढाँचा है जहाँ प्रत्येक नियम का खगोलीय आधार है: शुक्र अस्त का अर्थ है प्रेम का ग्रह अदृश्य है, चातुर्मास मानसून से मेल खाता है जब यात्रा असम्भव थी, और 11 शुभ नक्षत्र उनके प्रमाणित स्थिरता गुणों के लिए चुने गए हैं।", locale)}
         </p>
       </section>
 
@@ -162,7 +159,7 @@ export default async function VivahMuhuratPage({
         <div className="grid gap-3 md:grid-cols-3">
           <div className="rounded-xl border border-red-500/20 bg-red-500/8 p-4">
             <span className="mb-1 inline-block rounded-full bg-red-500/20 px-2 py-0.5 text-xs font-medium text-red-300">
-              {locale === "hi" ? "शुक्र/गुरु अस्त" : "Venus/Jupiter Combustion"}
+              {pickByScript("Venus/Jupiter Combustion", "शुक्र/गुरु अस्त", locale)}
             </span>
             <p className="mt-2 text-sm text-text-secondary">
               {t("combustionNote", locale)}
@@ -170,7 +167,7 @@ export default async function VivahMuhuratPage({
           </div>
           <div className="rounded-xl border border-amber-500/20 bg-amber-500/8 p-4">
             <span className="mb-1 inline-block rounded-full bg-amber-500/20 px-2 py-0.5 text-xs font-medium text-amber-300">
-              {locale === "hi" ? "चातुर्मास" : "Chaturmas"}
+              {pickByScript("Chaturmas", "चातुर्मास", locale)}
             </span>
             <p className="mt-2 text-sm text-text-secondary">
               {t("chaturmasNote", locale)}
@@ -178,7 +175,7 @@ export default async function VivahMuhuratPage({
           </div>
           <div className="rounded-xl border border-amber-500/20 bg-amber-500/8 p-4">
             <span className="mb-1 inline-block rounded-full bg-amber-500/20 px-2 py-0.5 text-xs font-medium text-amber-300">
-              {locale === "hi" ? "खरमास" : "Kharmas"}
+              {pickByScript("Kharmas", "खरमास", locale)}
             </span>
             <p className="mt-2 text-sm text-text-secondary">
               {t("kharmasNote", locale)}
@@ -202,7 +199,7 @@ export default async function VivahMuhuratPage({
             <Calendar className="h-6 w-6 text-gold-primary" />
             <div className="flex-1">
               <p className="font-medium text-gold-light">
-                {locale === "hi" ? "मुहूर्त AI" : "Muhurta AI"}
+                {pickByScript("Muhurta AI", "मुहूर्त AI", locale)}
               </p>
               <p className="text-sm text-text-secondary">
                 {t("crossLinkMuhurtaAi", locale)}
@@ -218,7 +215,7 @@ export default async function VivahMuhuratPage({
             <Sparkles className="h-6 w-6 text-gold-primary" />
             <div className="flex-1">
               <p className="font-medium text-gold-light">
-                {locale === "hi" ? "कुण्डली मिलान" : "Kundali Matching"}
+                {pickByScript("Kundali Matching", "कुण्डली मिलान", locale)}
               </p>
               <p className="text-sm text-text-secondary">
                 {t("crossLinkMatching", locale)}
@@ -234,9 +231,7 @@ export default async function VivahMuhuratPage({
             <Info className="h-6 w-6 text-gold-primary" />
             <div className="flex-1">
               <p className="font-medium text-gold-light">
-                {locale === "hi"
-                  ? "विवाह मुहूर्त सीखें"
-                  : "Learn Vivah Muhurta"}
+                {pickByScript("Learn Vivah Muhurta", "विवाह मुहूर्त सीखें", locale)}
               </p>
               <p className="text-sm text-text-secondary">
                 {t("crossLinkLearn", locale)}
@@ -253,9 +248,7 @@ export default async function VivahMuhuratPage({
             className="inline-flex items-center gap-2 rounded-full border border-gold-primary/20 bg-gold-primary/10 px-5 py-2 text-sm font-medium text-gold-light transition-colors hover:bg-gold-primary/20"
           >
             <Calendar className="h-4 w-4" />
-            {locale === "hi"
-              ? `शुभ विवाह मुहूर्त ${year === 2026 ? 2027 : 2026} देखें`
-              : `View Vivah Muhurat ${year === 2026 ? 2027 : 2026}`}
+            {pickByScript(`View Vivah Muhurat ${year === 2026 ? 2027 : 2026}`, `शुभ विवाह मुहूर्त ${year === 2026 ? 2027 : 2026} देखें`, locale)}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

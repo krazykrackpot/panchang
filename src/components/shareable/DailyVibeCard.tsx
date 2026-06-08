@@ -11,6 +11,7 @@
 
 import type { DailyVibeData } from '@/lib/shareable/daily-vibe';
 import { CARD_COLORS, CARD_DIMENSIONS, WATERMARK_URL, type CardFormat } from '@/lib/shareable/card-base';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 interface DailyVibeCardProps {
   data: DailyVibeData;
@@ -27,7 +28,7 @@ export default function DailyVibeCard({ data, format, locale }: DailyVibeCardPro
   // Card is rendered at a scaled-down size; the actual export will be full-res
   const scale = isOg ? 0.5 : isStory ? 0.35 : 0.45;
 
-  const vibeTitle = locale === 'hi' ? data.vibeTitle.hi : data.vibeTitle.en;
+  const vibeTitle = pickByScript(data.vibeTitle.en, data.vibeTitle.hi, locale);
 
   // Energy bar color
   const barColor =

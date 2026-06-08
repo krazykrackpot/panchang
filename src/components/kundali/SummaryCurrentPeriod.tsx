@@ -7,6 +7,7 @@ import type { DashaInsightSection, YearPredictionSection } from '@/lib/kundali/t
 import type { CurrentPeriodReading, DomainType } from '@/lib/kundali/domain-synthesis/types';
 import type { KeyDate, KeyDateImpact } from '@/lib/kundali/domain-synthesis/key-dates';
 import type { DashaSynthesis } from '@/lib/tippanni/dasha-synthesis-types';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -141,7 +142,7 @@ function CurrentDashaSection({
           <Zap className="w-4 h-4 text-gold-light" />
         </div>
         <h3 className="text-lg font-semibold text-gold-light">
-          {locale === 'hi' ? 'वर्तमान दशा' : 'Current Dasha'}
+          {pickByScript('Current Dasha', 'वर्तमान दशा', locale)}
         </h3>
       </div>
 
@@ -149,7 +150,7 @@ function CurrentDashaSection({
       <div className="space-y-3 mb-4">
         <div className="flex items-baseline gap-2">
           <span className="text-xs uppercase tracking-wider text-text-secondary">
-            {locale === 'hi' ? 'महादशा' : 'Mahadasha'}
+            {pickByScript('Mahadasha', 'महादशा', locale)}
           </span>
           <span className="text-sm font-medium text-gold-primary">{dashaInsight.currentMaha}</span>
         </div>
@@ -162,7 +163,7 @@ function CurrentDashaSection({
       <div className="space-y-3 mb-4">
         <div className="flex items-baseline gap-2">
           <span className="text-xs uppercase tracking-wider text-text-secondary">
-            {locale === 'hi' ? 'अन्तर्दशा' : 'Antardasha'}
+            {pickByScript('Antardasha', 'अन्तर्दशा', locale)}
           </span>
           <span className="text-sm font-medium text-gold-primary">{dashaInsight.currentAntar}</span>
         </div>
@@ -175,7 +176,7 @@ function CurrentDashaSection({
       {dashaInsight.upcoming && (
         <div className="rounded-xl bg-gold-primary/5 border border-gold-primary/10 p-3 mb-4">
           <p className="text-xs text-text-secondary mb-1">
-            {locale === 'hi' ? 'आगामी' : 'Coming Up'}
+            {pickByScript('Coming Up', 'आगामी', locale)}
           </p>
           <p className="text-sm text-text-primary">{dashaInsight.upcoming}</p>
         </div>
@@ -187,7 +188,7 @@ function CurrentDashaSection({
           {activeNow.length > 0 && (
             <div>
               <p className="text-xs uppercase tracking-wider text-text-secondary mb-2">
-                {locale === 'hi' ? 'सक्रिय क्षेत्र' : 'Domains Active Now'}
+                {pickByScript('Domains Active Now', 'सक्रिय क्षेत्र', locale)}
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {activeNow.map((d) => (
@@ -199,7 +200,7 @@ function CurrentDashaSection({
           {challengedNow.length > 0 && (
             <div>
               <p className="text-xs uppercase tracking-wider text-text-secondary mb-2">
-                {locale === 'hi' ? 'चुनौतीपूर्ण क्षेत्र' : 'Domains Challenged'}
+                {pickByScript('Domains Challenged', 'चुनौतीपूर्ण क्षेत्र', locale)}
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {challengedNow.map((d) => (
@@ -258,7 +259,7 @@ function YearAheadSection({
           <Calendar className="w-4 h-4 text-gold-light" />
         </div>
         <h3 className="text-lg font-semibold text-gold-light">
-          {locale === 'hi' ? `${yearPredictions.year}  –  वर्ष का पूर्वानुमान` : `${yearPredictions.year}  –  Year Ahead`}
+          {pickByScript(`${yearPredictions.year}  –  Year Ahead`, `${yearPredictions.year}  –  वर्ष का पूर्वानुमान`, locale)}
         </h3>
       </div>
 
@@ -293,7 +294,7 @@ function YearAheadSection({
       {yearPredictions.keyAdvice && (
         <div className="mt-4 rounded-xl bg-gold-primary/5 border border-gold-primary/10 p-3">
           <p className="text-xs text-text-secondary mb-1">
-            {locale === 'hi' ? 'मुख्य सलाह' : 'Key Advice'}
+            {pickByScript('Key Advice', 'मुख्य सलाह', locale)}
           </p>
           <p className="text-sm text-text-primary">{yearPredictions.keyAdvice}</p>
         </div>
@@ -320,7 +321,7 @@ export function KeyDatesSection({ keyDates, locale }: { keyDates: KeyDate[]; loc
           <Clock className="w-4 h-4 text-gold-light" />
         </div>
         <h3 className="text-lg font-semibold text-gold-light">
-          {locale === 'hi' ? 'मुख्य तिथियाँ' : 'Key Dates'}
+          {pickByScript('Key Dates', 'मुख्य तिथियाँ', locale)}
         </h3>
       </div>
 
@@ -369,8 +370,8 @@ export function KeyDatesSection({ keyDates, locale }: { keyDates: KeyDate[]; loc
           className="mt-4 flex items-center gap-1 text-xs text-gold-primary hover:text-gold-light transition-colors"
         >
           {expanded
-            ? (locale === 'hi' ? 'कम दिखाएँ' : 'Show less')
-            : (locale === 'hi' ? `और ${keyDates.length - visibleCount} तिथियाँ दिखाएँ` : `Show ${keyDates.length - visibleCount} more dates`)}
+            ? (pickByScript('Show less', 'कम दिखाएँ', locale))
+            : (pickByScript(`Show ${keyDates.length - visibleCount} more dates`, `और ${keyDates.length - visibleCount} तिथियाँ दिखाएँ`, locale))}
           <ChevronDown className={`w-3.5 h-3.5 transition-transform ${expanded ? 'rotate-180' : ''}`} />
         </button>
       )}
@@ -403,7 +404,7 @@ function DashaTimelineExpandable({
             <AlertTriangle className="w-4 h-4 text-gold-light" />
           </div>
           <h3 className="text-lg font-semibold text-gold-light">
-            {locale === 'hi' ? 'सम्पूर्ण दशा समयरेखा (प्रत्यन्तर स्तर)' : 'Full Dasha Timeline (Pratyantar level)'}
+            {pickByScript('Full Dasha Timeline (Pratyantar level)', 'सम्पूर्ण दशा समयरेखा (प्रत्यन्तर स्तर)', locale)}
           </h3>
         </div>
         {isOpen ? (
@@ -419,7 +420,7 @@ function DashaTimelineExpandable({
           {/* Mahadasha overview */}
           <div className="pt-4">
             <p className="text-xs uppercase tracking-wider text-text-secondary mb-1">
-              {locale === 'hi' ? 'महादशा' : 'Mahadasha'}
+              {pickByScript('Mahadasha', 'महादशा', locale)}
             </p>
             <p className="text-sm font-medium text-gold-primary">
               {tl(dashaSynthesis.currentMaha.planetName, locale)} ({formatDateRange(dashaSynthesis.currentMaha.startDate, dashaSynthesis.currentMaha.endDate)})
@@ -433,7 +434,7 @@ function DashaTimelineExpandable({
           {dashaSynthesis.lifetimeSummary.length > 0 && (
             <div>
               <p className="text-xs uppercase tracking-wider text-text-secondary mb-2">
-                {locale === 'hi' ? 'जीवनकालीन दशा क्रम' : 'Lifetime Dasha Sequence'}
+                {pickByScript('Lifetime Dasha Sequence', 'जीवनकालीन दशा क्रम', locale)}
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {dashaSynthesis.lifetimeSummary.map((m) => (
@@ -460,7 +461,7 @@ function DashaTimelineExpandable({
           {dashaSynthesis.currentMaha.antardashas.length > 0 && (
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-wider text-text-secondary">
-                {locale === 'hi' ? 'अन्तर्दशा विवरण' : 'Antardasha Periods'}
+                {pickByScript('Antardasha Periods', 'अन्तर्दशा विवरण', locale)}
               </p>
               {dashaSynthesis.currentMaha.antardashas.map((ad) => (
                 <AntardashaCard key={ad.planet + ad.startDate} antar={ad} locale={locale} />
@@ -508,7 +509,7 @@ function AntardashaCard({
         {antar.isCurrent && (
           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gold-primary/15 border border-gold-primary/25 text-gold-light">
             <span className="w-1.5 h-1.5 rounded-full bg-gold-primary animate-pulse" />
-            {locale === 'hi' ? 'वर्तमान' : 'Current'}
+            {pickByScript('Current', 'वर्तमान', locale)}
           </span>
         )}
       </div>
@@ -531,9 +532,7 @@ function AntardashaCard({
             ) : (
               <ChevronRight className="w-3 h-3" />
             )}
-            {locale === 'hi'
-              ? `${antar.pratyantardashas.length} प्रत्यन्तर्दशा`
-              : `${antar.pratyantardashas.length} Pratyantar periods`}
+            {pickByScript(`${antar.pratyantardashas.length} Pratyantar periods`, `${antar.pratyantardashas.length} प्रत्यन्तर्दशा`, locale)}
           </button>
 
           {showPratyantar && (

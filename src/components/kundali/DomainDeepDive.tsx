@@ -11,6 +11,7 @@ import type {
 import { narrateWithEmpathy, narrateStrength, generateActionPlan } from '@/lib/kundali/domain-synthesis/narrator-v2';
 import type { ActionPlan } from '@/lib/kundali/domain-synthesis/narrator-v2';
 import type { LocaleText } from '@/types/panchang';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 // ---------------------------------------------------------------------------
 // Props
@@ -386,10 +387,10 @@ export default function DomainDeepDive({
               ca.overallActivationScore >= 2 ? 'bg-amber-400' : 'bg-text-secondary/30'
             }`} />
             <span className="text-gold-light text-sm font-semibold">
-              {ca.overallActivationScore >= 7 ? (locale === 'hi' ? 'इस समय अत्यधिक सक्रिय' : 'Highly active right now')
-                : ca.overallActivationScore >= 4 ? (locale === 'hi' ? 'इस समय सक्रिय' : 'Moderately active right now')
-                : ca.overallActivationScore >= 2 ? (locale === 'hi' ? 'हल्की सक्रियता' : 'Mildly active')
-                : (locale === 'hi' ? 'पृष्ठभूमि में  –  वर्तमान में प्रमुख फोकस नहीं' : 'Background level  –  not a primary focus currently')}
+              {ca.overallActivationScore >= 7 ? (pickByScript('Highly active right now', 'इस समय अत्यधिक सक्रिय', locale))
+                : ca.overallActivationScore >= 4 ? (pickByScript('Moderately active right now', 'इस समय सक्रिय', locale))
+                : ca.overallActivationScore >= 2 ? (pickByScript('Mildly active', 'हल्की सक्रियता', locale))
+                : (pickByScript('Background level  –  not a primary focus currently', 'पृष्ठभूमि में  –  वर्तमान में प्रमुख फोकस नहीं', locale))}
             </span>
           </div>
           <div className="flex-1 h-1.5 rounded-full bg-white/5 overflow-hidden">
@@ -409,7 +410,7 @@ export default function DomainDeepDive({
         {ca.transitInfluences.length > 0 && (
           <div>
             <h3 className="text-sm font-semibold text-gold-light mb-2">
-              {locale === 'hi' ? 'वर्तमान गोचर प्रभाव' : 'Current Transit Influences'}
+              {pickByScript('Current Transit Influences', 'वर्तमान गोचर प्रभाव', locale)}
             </h3>
             <div className="space-y-2">
               {ca.transitInfluences.map((t, i) => {
@@ -429,15 +430,15 @@ export default function DomainDeepDive({
                       <div className={`w-2 h-2 rounded-full ${dotColor}`} />
                       <span className="text-text-primary text-sm font-medium">{planetName}</span>
                       <span className="text-text-secondary text-xs">
-                        {locale === 'hi' ? 'गोचर' : 'transiting'} {locale === 'hi' ? `भाव ${t.transitHouse}` : houseDesc}
+                        {pickByScript('transiting', 'गोचर', locale)} {pickByScript(houseDesc, `भाव ${t.transitHouse}`, locale)}
                       </span>
                     </div>
                     <p className="text-text-secondary/70 text-xs mt-1 ml-4">
                       {t.nature === 'benefic'
-                        ? (locale === 'hi' ? 'शुभ प्रभाव  –  इस क्षेत्र को सहायता और विकास मिल रहा है।' : 'Benefic influence  –  this area of life is receiving support and growth energy.')
+                        ? (pickByScript('Benefic influence  –  this area of life is receiving support and growth energy.', 'शुभ प्रभाव  –  इस क्षेत्र को सहायता और विकास मिल रहा है।', locale))
                         : t.nature === 'malefic'
-                        ? (locale === 'hi' ? 'चुनौतीपूर्ण प्रभाव  –  धैर्य और अनुशासन आवश्यक।' : 'Challenging influence  –  patience and discipline are needed in this area.')
-                        : (locale === 'hi' ? 'मिश्रित प्रभाव  –  परिणाम प्रयास पर निर्भर।' : 'Mixed influence  –  outcomes depend on effort and awareness.')}
+                        ? (pickByScript('Challenging influence  –  patience and discipline are needed in this area.', 'चुनौतीपूर्ण प्रभाव  –  धैर्य और अनुशासन आवश्यक।', locale))
+                        : (pickByScript('Mixed influence  –  outcomes depend on effort and awareness.', 'मिश्रित प्रभाव  –  परिणाम प्रयास पर निर्भर।', locale))}
                     </p>
                   </div>
                 );
@@ -497,7 +498,7 @@ export default function DomainDeepDive({
       {/* ----------------------------------------------------------------- */}
       <section aria-labelledby="section-action-plan">
       <SectionHeading id="section-action-plan">
-        {locale === 'hi' ? 'आपकी कार्य योजना' : 'Your Action Plan'}
+        {pickByScript('Your Action Plan', 'आपकी कार्य योजना', locale)}
       </SectionHeading>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Lifestyle Tip */}
@@ -507,7 +508,7 @@ export default function DomainDeepDive({
               <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V5h2v4z" /></svg>
             </div>
             <h3 className="text-gold-light text-sm font-semibold">
-              {locale === 'hi' ? 'जीवनशैली मार्गदर्शन' : 'Lifestyle Guidance'}
+              {pickByScript('Lifestyle Guidance', 'जीवनशैली मार्गदर्शन', locale)}
             </h3>
           </div>
           <p className="text-text-primary text-sm leading-relaxed">{tl(actionPlan.lifestyle, locale)}</p>
@@ -521,13 +522,13 @@ export default function DomainDeepDive({
                 <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5"><path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" /></svg>
               </div>
               <h3 className="text-gold-light text-sm font-semibold">
-                {locale === 'hi' ? 'शुभ दिन' : 'Best Days'}
+                {pickByScript('Best Days', 'शुभ दिन', locale)}
               </h3>
             </div>
             <div className="flex flex-wrap gap-2">
               {actionPlan.bestDays.map((day, i) => (
                 <span key={i} className="px-3 py-1 rounded-full text-xs font-medium border border-gold-primary/30 text-gold-light bg-gold-primary/8">
-                  {new Date(day + 'T00:00:00').toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
+                  {new Date(day + 'T00:00:00').toLocaleDateString(pickByScript('en-US', 'hi-IN', locale), { weekday: 'short', month: 'short', day: 'numeric' })}
                 </span>
               ))}
             </div>
@@ -541,7 +542,7 @@ export default function DomainDeepDive({
               <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5"><path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" /></svg>
             </div>
             <h3 className="text-red-400 text-sm font-semibold">
-              {locale === 'hi' ? 'सावधानी' : 'Avoid'}
+              {pickByScript('Avoid', 'सावधानी', locale)}
             </h3>
           </div>
           <p className="text-text-primary text-sm leading-relaxed">{tl(actionPlan.avoid, locale)}</p>
@@ -554,7 +555,7 @@ export default function DomainDeepDive({
               <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5"><path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" /></svg>
             </div>
             <h3 className="text-gold-light text-sm font-semibold">
-              {locale === 'hi' ? 'साप्ताहिक अभ्यास' : 'Weekly Practice'}
+              {pickByScript('Weekly Practice', 'साप्ताहिक अभ्यास', locale)}
             </h3>
           </div>
           <p className="text-text-primary text-sm leading-relaxed">{tl(actionPlan.weeklyPractice, locale)}</p>
@@ -564,7 +565,7 @@ export default function DomainDeepDive({
       {/* Affirmation  –  full width */}
       <div className="mt-4 rounded-xl border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 via-bg-secondary to-bg-secondary p-5 text-center">
         <p className="text-text-secondary text-xs uppercase tracking-widest mb-2">
-          {locale === 'hi' ? 'आपका प्रतिज्ञान' : 'Your Affirmation'}
+          {pickByScript('Your Affirmation', 'आपका प्रतिज्ञान', locale)}
         </p>
         <p className="text-gold-light text-base font-medium italic leading-relaxed">
           &ldquo;{tl(actionPlan.affirmation, locale)}&rdquo;

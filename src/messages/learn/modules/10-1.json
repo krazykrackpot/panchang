@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 10-2: नवांश विस्तार",
         "mai": "मॉड्यूल १०-२: नवमांशक गहन अध्ययन",
         "mr": "मॉड्यूल 10-2: नवांश विस्तार",
-        "ta": "Module 10-2: Navamsha Deep Dive",
-        "te": "Module 10-2: Navamsha Deep Dive",
-        "bn": "Module 10-2: Navamsha Deep Dive",
-        "kn": "Module 10-2: Navamsha Deep Dive",
-        "gu": "Module 10-2: Navamsha Deep Dive"
+        "ta": "தொகுதி 10-2: நவாம்சம் ஆழமான ஆய்வு",
+        "te": "మాడ్యూల్ 10-2: నవాంశ లోతైన విశ్లేషణ",
+        "bn": "মডিউল ১০-২: নবমশা গভীর বিশ্লেষণ",
+        "kn": "ಮಾಡ್ಯೂಲ್ 10-2: ನವಾಂಶದ ಆಳವಾದ ವಿಶ್ಲೇಷಣೆ",
+        "gu": "મોડ્યુલ 10-2: નવમાંશનું ઊંડાણપૂર્વક વિશ્લેષણ"
       },
       "href": "/learn/modules/10-2"
     },
@@ -42,11 +42,11 @@
         "hi": "मॉड्यूल 10-3: दशांश एवं अन्य वर्ग",
         "mai": "मॉड्यूल १०-३: दशमांश आ आन वर्ग",
         "mr": "मॉड्यूल 10-3: दशांश एवं अन्य वर्ग",
-        "ta": "Module 10-3: Dasamsha & Other Vargas",
-        "te": "Module 10-3: Dasamsha & Other Vargas",
-        "bn": "Module 10-3: Dasamsha & Other Vargas",
-        "kn": "Module 10-3: Dasamsha & Other Vargas",
-        "gu": "Module 10-3: Dasamsha & Other Vargas"
+        "ta": "தொகுதி 10-3: தசாம்சம் மற்றும் பிற வர்க்கங்கள்",
+        "te": "మాడ్యూల్ 10-3: దశమాంశ మరియు ఇతర వర్గలు",
+        "bn": "মডিউল ১০-৩: দশমশা ও অন্যান্য বর্গ",
+        "kn": "ಮಾಡ್ಯೂಲ್ 10-3: ದಶಾಂಶ ಮತ್ತು ಇತರ ವರ್ಗಗಳು",
+        "gu": "મોડ્યુલ 10-3: દશમાંશ અને અન્ય વર્ગો"
       },
       "href": "/learn/modules/10-3"
     },
@@ -56,11 +56,11 @@
         "hi": "वर्ग सन्दर्भ",
         "mai": "वर्ग संदर्भ",
         "mr": "वर्ग सन्दर्भ",
-        "ta": "Vargas Reference",
-        "te": "Vargas Reference",
-        "bn": "Vargas Reference",
-        "kn": "Vargas Reference",
-        "gu": "Vargas Reference"
+        "ta": "வர்க்கங்கள் குறிப்பு",
+        "te": "వర్గాల సూచన",
+        "bn": "বর্গ নির্দেশিকা",
+        "kn": "ವರ್ಗಗಳ ಉಲ್ಲೇಖ",
+        "gu": "વર્ગો સંદર્ભ"
       },
       "href": "/learn/vargas"
     }
@@ -72,24 +72,24 @@
       "question": {
         "en": "Which divisional chart is specifically used to analyze marriage, dharma, and the inner nature of planets?",
         "hi": "कौन सी विभागीय कुण्डली विशेष रूप से विवाह, धर्म और ग्रहों के आन्तरिक स्वभाव के विश्लेषण में प्रयुक्त होती है?",
-        "ta": "Which divisional chart is specifically used to analyze marriage, dharma, and the inner nature of planets?",
-        "te": "Which divisional chart is specifically used to analyze marriage, dharma, and the inner nature of planets?",
-        "bn": "Which divisional chart is specifically used to analyze marriage, dharma, and the inner nature of planets?",
-        "kn": "Which divisional chart is specifically used to analyze marriage, dharma, and the inner nature of planets?",
+        "ta": "திருமணம், தர்மம் மற்றும் கிரகங்களின் உள் இயல்பை பகுப்பாய்வு செய்ய குறிப்பாக எந்த வர்க்க சக்கரம் பயன்படுத்தப்படுகிறது?",
+        "te": "వివాహం, ధర్మం మరియు గ్రహాల అంతర్గత స్వభావాన్ని విశ్లేషించడానికి ప్రత్యేకంగా ఏ విభాగ చక్రం ఉపయోగించబడుతుంది?",
+        "bn": "বিবাহ, ধর্ম এবং গ্রহের অভ্যন্তরীণ প্রকৃতি বিশ্লেষণ করতে কোন বর্গ কুণ্ডলী বিশেষভাবে ব্যবহৃত হয়?",
+        "kn": "ವಿವಾಹ, ಧರ್ಮ ಮತ್ತು ಗ್ರಹಗಳ ಆಂತರಿಕ ಸ್ವರೂಪವನ್ನು ವಿಶ್ಲೇಷಿಸಲು ಯಾವ ವಿಭಾಗೀಯ ಚಾರ್ಟ್ ಅನ್ನು ನಿರ್ದಿಷ್ಟವಾಗಿ ಬಳಸಲಾಗುತ್ತದೆ?",
         "mr": "कौन सी विभागीय कुण्डली विशेष रूप से विवाह, धर्म और ग्रहों के आन्तरिक स्वभाव के विश्लेषण में प्रयुक्त होती है?",
-        "gu": "Which divisional chart is specifically used to analyze marriage, dharma, and the inner nature of planets?",
+        "gu": "લગ્ન, ધર્મ અને ગ્રહોના આંતરિક સ્વભાવનું વિશ્લેષણ કરવા માટે ખાસ કરીને કયા વિભાગીય ચાર્ટનો ઉપયોગ થાય છે?",
         "mai": "विवाह, धर्म आ ग्रहक आंतरिक स्वभावक विश्लेषण करबाक लेल कोन वर्ग कुंडलीक विशेष रूप सँ उपयोग कएल जाइत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The Navamsha (D9) is the single most important divisional chart. It reveals the inner strength of planets, governs marriage/partnerships, and shows dharmic orientation. It is sometimes called \"the chart behind the chart.\"",
         "hi": "नवांश (D9) सबसे महत्त्वपूर्ण विभागीय कुण्डली है। यह ग्रहों की आन्तरिक शक्ति, विवाह/साझेदारी और धार्मिक प्रवृत्ति को प्रकट करती है। इसे कभी-कभी \"कुण्डली के पीछे की कुण्डली\" कहा जाता है।",
-        "ta": "The Navamsha (D9) is the single most important divisional chart. It reveals the inner strength of planets, governs marriage/partnerships, and shows dharmic orientation. It is sometimes called \"the chart behind the chart.\"",
-        "te": "The Navamsha (D9) is the single most important divisional chart. It reveals the inner strength of planets, governs marriage/partnerships, and shows dharmic orientation. It is sometimes called \"the chart behind the chart.\"",
-        "bn": "The Navamsha (D9) is the single most important divisional chart. It reveals the inner strength of planets, governs marriage/partnerships, and shows dharmic orientation. It is sometimes called \"the chart behind the chart.\"",
-        "kn": "The Navamsha (D9) is the single most important divisional chart. It reveals the inner strength of planets, governs marriage/partnerships, and shows dharmic orientation. It is sometimes called \"the chart behind the chart.\"",
+        "ta": "நவாம்சம் (D9) மிகவும் முக்கியமான ஒரே வர்க்க சக்கரம் ஆகும். இது கிரகங்களின் உள் வலிமையை வெளிப்படுத்துகிறது, திருமணம்/கூட்டாண்மைகளை நிர்வகிக்கிறது, மற்றும் தர்ம நோக்குநிலையைக் காட்டுகிறது. இது சில சமயங்களில் \"சக்கரத்திற்குப் பின்னால் உள்ள சக்கரம்\" என்று அழைக்கப்படுகிறது.",
+        "te": "నవాంశ (D9) అత్యంత ముఖ్యమైన విభాగ చక్రం. ఇది గ్రహాల అంతర్గత బలాన్ని వెల్లడిస్తుంది, వివాహం/భాగస్వామ్యాలను నియంత్రిస్తుంది మరియు ధార్మిక ధోరణిని చూపుతుంది. దీనిని కొన్నిసార్లు \"చక్రం వెనుక ఉన్న చక్రం\" అని పిలుస్తారు.",
+        "bn": "নবমশা (D9) হল সবচেয়ে গুরুত্বপূর্ণ বিভাগীয় কুণ্ডলী। এটি গ্রহের অভ্যন্তরীণ শক্তি প্রকাশ করে, বিবাহ/অংশীদারিত্ব নিয়ন্ত্রণ করে এবং ধার্মিক প্রবণতা দেখায়। এটিকে কখনও কখনও \"কুণ্ডলীর পেছনের কুণ্ডলী\" বলা হয়।",
+        "kn": "ನವಾಂಶ (D9) ಅತ್ಯಂತ ಪ್ರಮುಖವಾದ ವಿಭಾಗೀಯ ಚಾರ್ಟ್ ಆಗಿದೆ. ಇದು ಗ್ರಹಗಳ ಆಂತರಿಕ ಶಕ್ತಿಯನ್ನು ಬಹಿರಂಗಪಡಿಸುತ್ತದೆ, ವಿವಾಹ/ಪಾಲುದಾರಿಕೆಗಳನ್ನು ನಿಯಂತ್ರಿಸುತ್ತದೆ ಮತ್ತು ಧಾರ್ಮಿಕ ದೃಷ್ಟಿಕೋನವನ್ನು ತೋರಿಸುತ್ತದೆ. ಇದನ್ನು ಕೆಲವೊಮ್ಮೆ \"ಚಾರ್ಟ್ ಹಿಂದಿನ ಚಾರ್ಟ್\" ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ.",
         "mr": "नवांश (D9) सबसे महत्त्वपूर्ण विभागीय कुण्डली है। यह ग्रहों की आन्तरिक शक्ति, विवाह/साझेदारी और धार्मिक प्रवृत्ति को प्रकट करती है। इसे कभी-कभी \"कुण्डली के पीछे की कुण्डली\" कहा जाता है।",
-        "gu": "The Navamsha (D9) is the single most important divisional chart. It reveals the inner strength of planets, governs marriage/partnerships, and shows dharmic orientation. It is sometimes called \"the chart behind the chart.\"",
+        "gu": "નવમાંશ (D9) એકમાત્ર સૌથી મહત્વપૂર્ણ વિભાગીય ચાર્ટ છે. તે ગ્રહોની આંતરિક શક્તિ દર્શાવે છે, લગ્ન/ભાગીદારીનું સંચાલન કરે છે અને ધાર્મિક અભિગમ દર્શાવે છે. તેને ક્યારેક \"ચાર્ટ પાછળનો ચાર્ટ\" કહેવામાં આવે છે.",
         "mai": "नवमांश (D9) सभसँ महत्वपूर्ण वर्ग कुंडली अछि। ई ग्रहक आंतरिक शक्ति देखाबैत अछि, विवाह/साझेदारीक नियंत्रित करैत अछि, आ धार्मिक झुकाव देखाबैत अछि। एकरा कहियो-कहियो \"कुंडलीक पाछूक कुंडली\" सेहो कहल जाइत अछि।"
       },
       "options": [
@@ -98,44 +98,44 @@
           "hi": "D10  –  दशांश",
           "mai": "D10 – दशमांश",
           "mr": "D10  –  दशांश",
-          "ta": "D10  –  Dasamsha",
-          "te": "D10  –  Dasamsha",
-          "bn": "D10  –  Dasamsha",
-          "kn": "D10  –  Dasamsha",
-          "gu": "D10  –  Dasamsha"
+          "ta": "D10 – தசாம்சம்",
+          "te": "D10 – దశమాంశ",
+          "bn": "D10 – দশমশা",
+          "kn": "D10 – ದಶಾಂಶ",
+          "gu": "D10 – દશમાંશ"
         },
         {
           "en": "D9  –  Navamsha",
           "hi": "D9  –  नवांश",
           "mai": "D9 – नवमांश",
           "mr": "D9  –  नवांश",
-          "ta": "D9  –  Navamsha",
-          "te": "D9  –  Navamsha",
-          "bn": "D9  –  Navamsha",
-          "kn": "D9  –  Navamsha",
-          "gu": "D9  –  Navamsha"
+          "ta": "D9 – நவாம்சம்",
+          "te": "D9 – నవాంశ",
+          "bn": "D9 – নবমশা",
+          "kn": "D9 – ನವಾಂಶ",
+          "gu": "D9 – નવમાંશ"
         },
         {
           "en": "D7  –  Saptamsha",
           "hi": "D7  –  सप्तांश",
           "mai": "D7 – सप्तमांश",
           "mr": "D7  –  सप्तांश",
-          "ta": "D7  –  Saptamsha",
-          "te": "D7  –  Saptamsha",
-          "bn": "D7  –  Saptamsha",
-          "kn": "D7  –  Saptamsha",
-          "gu": "D7  –  Saptamsha"
+          "ta": "D7 – சப்தாம்சம்",
+          "te": "D7 – సప్తమాంశ",
+          "bn": "D7 – সপ্তমাংশা",
+          "kn": "D7 – ಸಪ್ತಾಂಶ",
+          "gu": "D7 – સપ્તમાંશ"
         },
         {
           "en": "D12  –  Dwadashamsha",
           "hi": "D12  –  द्वादशांश",
           "mai": "D12 – द्वादशांश",
           "mr": "D12  –  द्वादशांश",
-          "ta": "D12  –  Dwadashamsha",
-          "te": "D12  –  Dwadashamsha",
-          "bn": "D12  –  Dwadashamsha",
-          "kn": "D12  –  Dwadashamsha",
-          "gu": "D12  –  Dwadashamsha"
+          "ta": "D12 – துவாதசாம்சம்",
+          "te": "D12 – ద్వాదశాంశ",
+          "bn": "D12 – দ্বাদশাংশা",
+          "kn": "D12 – ದ್ವಾದಶಾಂಶ",
+          "gu": "D12 – દ્વાદશાંશ"
         }
       ]
     },
@@ -145,24 +145,24 @@
       "question": {
         "en": "How many divisional charts comprise the Shodasvarga system?",
         "hi": "षोडशवर्ग पद्धति में कितनी विभागीय कुण्डलियाँ होती हैं?",
-        "ta": "How many divisional charts comprise the Shodasvarga system?",
-        "te": "How many divisional charts comprise the Shodasvarga system?",
-        "bn": "How many divisional charts comprise the Shodasvarga system?",
-        "kn": "How many divisional charts comprise the Shodasvarga system?",
+        "ta": "ஷோடச வர்க்க அமைப்பில் எத்தனை வர்க்க சக்கரங்கள் உள்ளன?",
+        "te": "షోడశవర్గ వ్యవస్థలో ఎన్ని విభాగ చక్రాలు ఉన్నాయి?",
+        "bn": "ষোড়শ বর্গ পদ্ধতিতে কতগুলি বিভাগীয় কুণ্ডলী রয়েছে?",
+        "kn": "ಷೋಡಶವರ್ಗ ಪದ್ಧತಿಯು ಎಷ್ಟು ವಿಭಾಗೀಯ ಚಾರ್ಟ್‌ಗಳನ್ನು ಒಳಗೊಂಡಿದೆ?",
         "mr": "षोडशवर्ग पद्धति में कितनी विभागीय कुण्डलियाँ होती हैं?",
-        "gu": "How many divisional charts comprise the Shodasvarga system?",
+        "gu": "ષોડશવર્ગ પ્રણાલીમાં કેટલા વિભાગીય ચાર્ટ સમાવિષ્ટ છે?",
         "mai": "षोडशवर्ग प्रणाली मे केटा वर्ग कुंडली शामिल अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "The Shodasvarga system comprises 16 divisional charts: D1 (Rashi), D2 (Hora), D3 (Drekkana), D4 (Chaturthamsha), D7 (Saptamsha), D9 (Navamsha), D10 (Dasamsha), D12 (Dwadashamsha), D16 (Shodashamsha), D20 (Vimshamsha), D24 (Chaturvimshamsha), D27 (Saptavimshamsha), D30 (Trimshamsha), D40 (Khavedamsha), D45 (Akshavedamsha), and D60 (Shashtiamsha).",
         "hi": "षोडशवर्ग पद्धति में 16 विभागीय कुण्डलियाँ हैं: D1 (राशि), D2 (होरा), D3 (द्रेक्काण), D4 (चतुर्थांश), D7 (सप्तांश), D9 (नवांश), D10 (दशांश), D12 (द्वादशांश), D16 (षोडशांश), D20 (विंशांश), D24 (चतुर्विंशांश), D27 (सप्तविंशांश), D30 (त्रिंशांश), D40 (खवेदांश), D45 (अक्षवेदांश) और D60 (षष्ट्यंश)।",
-        "ta": "The Shodasvarga system comprises 16 divisional charts: D1 (Rashi), D2 (Hora), D3 (Drekkana), D4 (Chaturthamsha), D7 (Saptamsha), D9 (Navamsha), D10 (Dasamsha), D12 (Dwadashamsha), D16 (Shodashamsha), D20 (Vimshamsha), D24 (Chaturvimshamsha), D27 (Saptavimshamsha), D30 (Trimshamsha), D40 (Khavedamsha), D45 (Akshavedamsha), and D60 (Shashtiamsha).",
-        "te": "The Shodasvarga system comprises 16 divisional charts: D1 (Rashi), D2 (Hora), D3 (Drekkana), D4 (Chaturthamsha), D7 (Saptamsha), D9 (Navamsha), D10 (Dasamsha), D12 (Dwadashamsha), D16 (Shodashamsha), D20 (Vimshamsha), D24 (Chaturvimshamsha), D27 (Saptavimshamsha), D30 (Trimshamsha), D40 (Khavedamsha), D45 (Akshavedamsha), and D60 (Shashtiamsha).",
-        "bn": "The Shodasvarga system comprises 16 divisional charts: D1 (Rashi), D2 (Hora), D3 (Drekkana), D4 (Chaturthamsha), D7 (Saptamsha), D9 (Navamsha), D10 (Dasamsha), D12 (Dwadashamsha), D16 (Shodashamsha), D20 (Vimshamsha), D24 (Chaturvimshamsha), D27 (Saptavimshamsha), D30 (Trimshamsha), D40 (Khavedamsha), D45 (Akshavedamsha), and D60 (Shashtiamsha).",
-        "kn": "The Shodasvarga system comprises 16 divisional charts: D1 (Rashi), D2 (Hora), D3 (Drekkana), D4 (Chaturthamsha), D7 (Saptamsha), D9 (Navamsha), D10 (Dasamsha), D12 (Dwadashamsha), D16 (Shodashamsha), D20 (Vimshamsha), D24 (Chaturvimshamsha), D27 (Saptavimshamsha), D30 (Trimshamsha), D40 (Khavedamsha), D45 (Akshavedamsha), and D60 (Shashtiamsha).",
+        "ta": "ஷோடச வர்க்க அமைப்பு 16 வர்க்க சக்கரங்களை உள்ளடக்கியது: D1 (ராசி), D2 (ஹோரா), D3 (திரேக்காணம்), D4 (சதுர்த்தாம்சம்), D7 (சப்தாம்சம்), D9 (நவாம்சம்), D10 (தசாம்சம்), D12 (துவாதசாம்சம்), D16 (ஷோடசாம்சம்), D20 (விம்சாம்சம்), D24 (சதுர்விம்சாம்சம்), D27 (சப்தவிம்சாம்சம்), D30 (திரிம்சாம்சம்), D40 (கவேதாம்சம்), D45 (அக்ஷவேதாம்சம்), மற்றும் D60 (சஷ்டியாம்சம்).",
+        "te": "షోడశవర్గ వ్యవస్థ 16 విభాగ చక్రాలను కలిగి ఉంటుంది: D1 (రాశి), D2 (హోరా), D3 (ద్రేక్కాణ), D4 (చతుర్ధాంశ), D7 (సప్తమాంశ), D9 (నవాంశ), D10 (దశమాంశ), D12 (ద్వాదశాంశ), D16 (షోడశాంశ), D20 (వింశాంశ), D24 (చతుర్వింశాంశ), D27 (సప్తవింశాంశ), D30 (త్రింశాంశ), D40 (ఖవేదాంశ), D45 (అక్షవేదాంశ), మరియు D60 (షష్ఠ్యంశ).",
+        "bn": "ষোড়শ বর্গ পদ্ধতিতে ১৬টি বিভাগীয় কুণ্ডলী রয়েছে: D1 (রাশি), D2 (হোরা), D3 (দ্রেক্কানা), D4 (চতুর্থামশা), D7 (সপ্তমাংশা), D9 (নবমশা), D10 (দশমশা), D12 (দ্বাদশাংশা), D16 (ষোড়শাংশা), D20 (বিংশাংশা), D24 (চতুর্বিংশাংশা), D27 (সপ্তবিংশাংশা), D30 (ত্রিংশাংশা), D40 (খাবেদাংশা), D45 (অক্ষবেদাংশা), এবং D60 (ষষ্ঠাংশা)।",
+        "kn": "ಷೋಡಶವರ್ಗ ಪದ್ಧತಿಯು 16 ವಿಭಾಗೀಯ ಚಾರ್ಟ್‌ಗಳನ್ನು ಒಳಗೊಂಡಿದೆ: D1 (ರಾಶಿ), D2 (ಹೋರಾ), D3 (ದ್ರೇಕಾಣ), D4 (ಚತುರ್ಥಾಂಶ), D7 (ಸಪ್ತಾಂಶ), D9 (ನವಾಂಶ), D10 (ದಶಾಂಶ), D12 (ದ್ವಾದಶಾಂಶ), D16 (ಷೋಡಶಾಂಶ), D20 (ವಿಂಶಾಂಶ), D24 (ಚತುರ್ವಿಂಶಾಂಶ), D27 (ಸಪ್ತವಿಂಶಾಂಶ), D30 (ತ್ರಿಂಶಾಂಶ), D40 (ಖವೇದಾಂಶ), D45 (ಅಕ್ಷವೇದಾಂಶ), ಮತ್ತು D60 (ಷಷ್ಟ್ಯಂಶ).",
         "mr": "षोडशवर्ग पद्धति में 16 विभागीय कुण्डलियाँ हैं: D1 (राशि), D2 (होरा), D3 (द्रेक्काण), D4 (चतुर्थांश), D7 (सप्तांश), D9 (नवांश), D10 (दशांश), D12 (द्वादशांश), D16 (षोडशांश), D20 (विंशांश), D24 (चतुर्विंशांश), D27 (सप्तविंशांश), D30 (त्रिंशांश), D40 (खवेदांश), D45 (अक्षवेदांश) और D60 (षष्ट्यंश)।",
-        "gu": "The Shodasvarga system comprises 16 divisional charts: D1 (Rashi), D2 (Hora), D3 (Drekkana), D4 (Chaturthamsha), D7 (Saptamsha), D9 (Navamsha), D10 (Dasamsha), D12 (Dwadashamsha), D16 (Shodashamsha), D20 (Vimshamsha), D24 (Chaturvimshamsha), D27 (Saptavimshamsha), D30 (Trimshamsha), D40 (Khavedamsha), D45 (Akshavedamsha), and D60 (Shashtiamsha).",
+        "gu": "ષોડશવર્ગ પ્રણાલીમાં 16 વિભાગીય ચાર્ટનો સમાવેશ થાય છે: D1 (રાશિ), D2 (હોરા), D3 (દ્રેકાણ), D4 (ચતુર્થાંશ), D7 (સપ્તમાંશ), D9 (નવમાંશ), D10 (દશમાંશ), D12 (દ્વાદશાંશ), D16 (ષોડશાંશ), D20 (વિંશાંશ), D24 (ચતુર્વિંશાંશ), D27 (સપ્તવિંશાંશ), D30 (ત્રિશાંશ), D40 (ખવેદાંશ), D45 (અક્ષવેદાંશ), અને D60 (ષષ્ટ્યાંશ).",
         "mai": "षोडशवर्ग प्रणाली मे १६ वर्ग कुंडली शामिल अछि: D1 (राशि), D2 (होरा), D3 (द्रेष्काण), D4 (चतुर्थांश), D7 (सप्तमांश), D9 (नवमांश), D10 (दशमांश), D12 (द्वादशांश), D16 (षोडशांश), D20 (विंशांश), D24 (चतुर्विंशांश), D27 (सप्तविंशांश), D30 (त्रिंशांश), D40 (खवेदांश), D45 (अक्षवेदांश), आ D60 (षष्ट्यंश)।"
       },
       "options": [
@@ -218,24 +218,24 @@
       "question": {
         "en": "A planet that is strong in D1 (rashi chart) will always give good results regardless of its placement in divisional charts.",
         "hi": "जो ग्रह D1 (राशि कुण्डली) में बलवान हो, वह विभागीय कुण्डलियों में अपने स्थान से निरपेक्ष सदैव शुभ फल देगा।",
-        "ta": "A planet that is strong in D1 (rashi chart) will always give good results regardless of its placement in divisional charts.",
-        "te": "A planet that is strong in D1 (rashi chart) will always give good results regardless of its placement in divisional charts.",
-        "bn": "A planet that is strong in D1 (rashi chart) will always give good results regardless of its placement in divisional charts.",
-        "kn": "A planet that is strong in D1 (rashi chart) will always give good results regardless of its placement in divisional charts.",
+        "ta": "D1 (ராசி சக்கரம்) இல் வலிமையாக இருக்கும் ஒரு கிரகம், வர்க்க சக்கரங்களில் அதன் நிலை எதுவாக இருந்தாலும் எப்போதும் நல்ல பலன்களைத் தரும்.",
+        "te": "D1 (రాశి చక్రం)లో బలంగా ఉన్న గ్రహం, విభాగ చక్రాలలో దాని స్థానం ఎలా ఉన్నా ఎల్లప్పుడూ మంచి ఫలితాలను ఇస్తుంది.",
+        "bn": "D1 (রাশি কুণ্ডলী)-তে শক্তিশালী একটি গ্রহ বিভাগীয় কুণ্ডলীতে তার অবস্থান নির্বিশেষে সর্বদা ভালো ফল দেবে।",
+        "kn": "D1 (ರಾಶಿ ಚಾರ್ಟ್) ನಲ್ಲಿ ಬಲವಾಗಿರುವ ಗ್ರಹವು ವಿಭಾಗೀಯ ಚಾರ್ಟ್‌ಗಳಲ್ಲಿ ಅದರ ಸ್ಥಾನವನ್ನು ಲೆಕ್ಕಿಸದೆ ಯಾವಾಗಲೂ ಉತ್ತಮ ಫಲಿತಾಂಶಗಳನ್ನು ನೀಡುತ್ತದೆ.",
         "mr": "जो ग्रह D1 (राशि कुण्डली) में बलवान हो, वह विभागीय कुण्डलियों में अपने स्थान से निरपेक्ष सदैव शुभ फल देगा।",
-        "gu": "A planet that is strong in D1 (rashi chart) will always give good results regardless of its placement in divisional charts.",
+        "gu": "D1 (રાશિ ચાર્ટ) માં બળવાન ગ્રહ વિભાગીય ચાર્ટમાં તેની સ્થિતિને ધ્યાનમાં લીધા વિના હંમેશા સારા પરિણામ આપશે.",
         "mai": "जे ग्रह D1 (राशि कुंडली) मे बलवान अछि, ओ वर्ग कुंडली मे ओकर स्थिति कियो हो, हमेशा नीक फल देत।"
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. A planet strong in D1 but weak in the relevant varga will give mixed results. For example, Venus exalted in D1 but debilitated in D9 suggests that romantic relationships appear promising externally but face deep inner challenges. Both charts must be read together.",
         "hi": "असत्य। D1 में बलवान परन्तु सम्बन्धित वर्ग में दुर्बल ग्रह मिश्रित फल देता है। उदाहरणार्थ, D1 में उच्च का शुक्र परन्तु D9 में नीच  –  बाहर से सम्बन्ध आशाजनक दिखें पर भीतर से गहरी चुनौतियाँ हों। दोनों कुण्डलियाँ साथ पढ़नी चाहिए।",
-        "ta": "False. A planet strong in D1 but weak in the relevant varga will give mixed results. For example, Venus exalted in D1 but debilitated in D9 suggests that romantic relationships appear promising externally but face deep inner challenges. Both charts must be read together.",
-        "te": "False. A planet strong in D1 but weak in the relevant varga will give mixed results. For example, Venus exalted in D1 but debilitated in D9 suggests that romantic relationships appear promising externally but face deep inner challenges. Both charts must be read together.",
-        "bn": "False. A planet strong in D1 but weak in the relevant varga will give mixed results. For example, Venus exalted in D1 but debilitated in D9 suggests that romantic relationships appear promising externally but face deep inner challenges. Both charts must be read together.",
-        "kn": "False. A planet strong in D1 but weak in the relevant varga will give mixed results. For example, Venus exalted in D1 but debilitated in D9 suggests that romantic relationships appear promising externally but face deep inner challenges. Both charts must be read together.",
+        "ta": "தவறு. D1 இல் வலிமையாகவும், ஆனால் தொடர்புடைய வர்க்கத்தில் பலவீனமாகவும் இருக்கும் ஒரு கிரகம் கலவையான பலன்களைத் தரும். உதாரணமாக, D1 இல் உச்சம் பெற்ற சுக்கிரன், ஆனால் D9 இல் நீச்சம் பெற்றிருந்தால், காதல் உறவுகள் வெளிப்படையாக நம்பிக்கைக்குரியதாகத் தோன்றினாலும், ஆழமான உள் சவால்களை எதிர்கொள்ளும் என்பதைக் குறிக்கிறது. இரண்டு சக்கரங்களையும் ஒன்றாகப் படிக்க வேண்டும்.",
+        "te": "తప్పు. D1లో బలంగా ఉండి, సంబంధిత వర్గంలో బలహీనంగా ఉన్న గ్రహం మిశ్రమ ఫలితాలను ఇస్తుంది. ఉదాహరణకు, D1లో ఉచ్ఛస్థితిలో ఉన్న శుక్రుడు D9లో నీచస్థితిలో ఉంటే, ప్రేమ సంబంధాలు బాహ్యంగా ఆశాజనకంగా కనిపించినా, లోతైన అంతర్గత సవాళ్లను ఎదుర్కొంటాయని సూచిస్తుంది. రెండు చక్రాలను కలిపి చదవాలి.",
+        "bn": "মিথ্যা। D1-এ শক্তিশালী কিন্তু সংশ্লিষ্ট বর্গে দুর্বল একটি গ্রহ মিশ্র ফল দেবে। উদাহরণস্বরূপ, D1-এ উচ্চস্থ শুক্র কিন্তু D9-এ নীচস্থ হলে বোঝায় যে রোমান্টিক সম্পর্কগুলি বাহ্যিকভাবে আশাব্যঞ্জক মনে হলেও গভীর অভ্যন্তরীণ চ্যালেঞ্জের সম্মুখীন হয়। উভয় কুণ্ডলী একসাথে পড়তে হবে।",
+        "kn": "ತಪ್ಪು. D1 ನಲ್ಲಿ ಬಲವಾಗಿರುವ ಆದರೆ ಸಂಬಂಧಿತ ವರ್ಗದಲ್ಲಿ ದುರ್ಬಲವಾಗಿರುವ ಗ್ರಹವು ಮಿಶ್ರ ಫಲಿತಾಂಶಗಳನ್ನು ನೀಡುತ್ತದೆ. ಉದಾಹರಣೆಗೆ, D1 ನಲ್ಲಿ ಉಚ್ಚನಾಗಿರುವ ಶುಕ್ರನು D9 ನಲ್ಲಿ ನೀಚನಾಗಿದ್ದರೆ, ಪ್ರಣಯ ಸಂಬಂಧಗಳು ಬಾಹ್ಯವಾಗಿ ಭರವಸೆ ನೀಡುವಂತೆ ಕಂಡರೂ ಆಳವಾದ ಆಂತರಿಕ ಸವಾಲುಗಳನ್ನು ಎದುರಿಸುತ್ತವೆ ಎಂದು ಸೂಚಿಸುತ್ತದೆ. ಎರಡೂ ಚಾರ್ಟ್‌ಗಳನ್ನು ಒಟ್ಟಾಗಿ ಓದಬೇಕು.",
         "mr": "असत्य। D1 में बलवान परन्तु सम्बन्धित वर्ग में दुर्बल ग्रह मिश्रित फल देता है। उदाहरणार्थ, D1 में उच्च का शुक्र परन्तु D9 में नीच  –  बाहर से सम्बन्ध आशाजनक दिखें पर भीतर से गहरी चुनौतियाँ हों। दोनों कुण्डलियाँ साथ पढ़नी चाहिए।",
-        "gu": "False. A planet strong in D1 but weak in the relevant varga will give mixed results. For example, Venus exalted in D1 but debilitated in D9 suggests that romantic relationships appear promising externally but face deep inner challenges. Both charts must be read together.",
+        "gu": "ખોટું. D1 માં બળવાન પરંતુ સંબંધિત વર્ગમાં નબળો ગ્રહ મિશ્ર પરિણામ આપશે. ઉદાહરણ તરીકે, D1 માં ઉચ્ચનો શુક્ર પરંતુ D9 માં નીચનો હોય તો તે સૂચવે છે કે રોમેન્ટિક સંબંધો બાહ્ય રીતે આશાસ્પદ લાગે છે પરંતુ ઊંડા આંતરિક પડકારોનો સામનો કરે છે. બંને ચાર્ટ એકસાથે વાંચવા જોઈએ.",
         "mai": "गलत। D1 मे बलवान मुदा संबंधित वर्ग मे कमजोर ग्रह मिश्रित फल देत। जेना कि, D1 मे उच्चक शुक्र मुदा D9 मे नीचक ई देखाबैत अछि जे प्रेम संबंध बाहरी रूप सँ आशाजनक देखा दैत अछि मुदा गहन आंतरिक चुनौतीक सामना करैत अछि। दुनू कुंडलीक एक संगे पढ़बाक चाही।"
       }
     },
@@ -245,12 +245,12 @@
       "question": {
         "en": "The D10 (Dasamsha) chart is primarily used to analyze which life area?",
         "hi": "D10 (दशांश) कुण्डली मुख्य रूप से किस जीवन क्षेत्र के विश्लेषण में प्रयुक्त होती है?",
-        "ta": "The D10 (Dasamsha) chart is primarily used to analyze which life area?",
-        "te": "The D10 (Dasamsha) chart is primarily used to analyze which life area?",
-        "bn": "The D10 (Dasamsha) chart is primarily used to analyze which life area?",
-        "kn": "The D10 (Dasamsha) chart is primarily used to analyze which life area?",
+        "ta": "D10 (தசாம்சம்) சக்கரம் முதன்மையாக எந்த வாழ்க்கை பகுதியைப் பகுப்பாய்வு செய்யப் பயன்படுகிறது?",
+        "te": "D10 (దశమాంశ) చక్రం ప్రధానంగా ఏ జీవిత రంగాన్ని విశ్లేషించడానికి ఉపయోగించబడుతుంది?",
+        "bn": "D10 (দশমশা) কুণ্ডলী প্রাথমিকভাবে কোন জীবন ক্ষেত্র বিশ্লেষণ করতে ব্যবহৃত হয়?",
+        "kn": "D10 (ದಶಾಂಶ) ಚಾರ್ಟ್ ಅನ್ನು ಪ್ರಾಥಮಿಕವಾಗಿ ಯಾವ ಜೀವನ ಕ್ಷೇತ್ರವನ್ನು ವಿಶ್ಲೇಷಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ?",
         "mr": "D10 (दशांश) कुण्डली मुख्य रूप से किस जीवन क्षेत्र के विश्लेषण में प्रयुक्त होती है?",
-        "gu": "The D10 (Dasamsha) chart is primarily used to analyze which life area?",
+        "gu": "D10 (દશમાંશ) ચાર્ટ મુખ્યત્વે કયા જીવન ક્ષેત્રનું વિશ્લેષણ કરવા માટે ઉપયોગમાં લેવાય છે?",
         "mai": "D10 (दशमांश) कुंडलीक मुख्य रूप सँ कोन जीवन क्षेत्रक विश्लेषण करबाक लेल उपयोग कएल जाइत अछि?"
       },
       "correctAnswer": 2,
@@ -258,11 +258,11 @@
         "en": "The Dasamsha (D10) is the career chart. It reveals the nature of one's profession, career trajectory, achievements in the public sphere, and professional reputation. The 10th house of D10 is especially critical.",
         "hi": "दशांश (D10) व्यवसाय कुण्डली है। यह व्यक्ति के पेशे की प्रकृति, व्यावसायिक दिशा, सार्वजनिक क्षेत्र में उपलब्धियाँ और व्यावसायिक प्रतिष्ठा को प्रकट करती है। D10 का दसवाँ भाव विशेष रूप से महत्त्वपूर्ण है।",
         "ta": "The Dasamsha (D10) is the career chart. It reveals the nature of one's profession, career trajectory, achievements in the public sphere, and professional reputation. The 10th house of D10 is especially critical.",
-        "te": "The Dasamsha (D10) is the career chart. It reveals the nature of one's profession, career trajectory, achievements in the public sphere, and professional reputation. The 10th house of D10 is especially critical.",
-        "bn": "The Dasamsha (D10) is the career chart. It reveals the nature of one's profession, career trajectory, achievements in the public sphere, and professional reputation. The 10th house of D10 is especially critical.",
-        "kn": "The Dasamsha (D10) is the career chart. It reveals the nature of one's profession, career trajectory, achievements in the public sphere, and professional reputation. The 10th house of D10 is especially critical.",
+        "te": "దశమాంశ (D10) వృత్తి చక్రం. ఇది ఒకరి వృత్తి స్వభావం, వృత్తి మార్గం, ప్రజా రంగంలో విజయాలు మరియు వృత్తిపరమైన కీర్తిని వెల్లడిస్తుంది. D10లోని 10వ భావం ముఖ్యంగా కీలకమైనది.",
+        "bn": "দশমশা (D10) হল কর্মজীবনের কুণ্ডলী। এটি ব্যক্তির পেশার প্রকৃতি, কর্মজীবনের গতিপথ, জনজীবনে অর্জন এবং পেশাগত খ্যাতি প্রকাশ করে। D10-এর দশম ভাব বিশেষভাবে গুরুত্বপূর্ণ।",
+        "kn": "ದಶಾಂಶ (D10) ವೃತ್ತಿ ಚಾರ್ಟ್ ಆಗಿದೆ. ಇದು ಒಬ್ಬರ ವೃತ್ತಿಯ ಸ್ವರೂಪ, ವೃತ್ತಿ ಪಥ, ಸಾರ್ವಜನಿಕ ಕ್ಷೇತ್ರದಲ್ಲಿನ ಸಾಧನೆಗಳು ಮತ್ತು ವೃತ್ತಿಪರ ಖ್ಯಾತಿಯನ್ನು ಬಹಿರಂಗಪಡಿಸುತ್ತದೆ. D10 ರ 10ನೇ ಭಾವವು ವಿಶೇಷವಾಗಿ ನಿರ್ಣಾಯಕವಾಗಿದೆ.",
         "mr": "दशांश (D10) व्यवसाय कुण्डली है। यह व्यक्ति के पेशे की प्रकृति, व्यावसायिक दिशा, सार्वजनिक क्षेत्र में उपलब्धियाँ और व्यावसायिक प्रतिष्ठा को प्रकट करती है। D10 का दसवाँ भाव विशेष रूप से महत्त्वपूर्ण है।",
-        "gu": "The Dasamsha (D10) is the career chart. It reveals the nature of one's profession, career trajectory, achievements in the public sphere, and professional reputation. The 10th house of D10 is especially critical.",
+        "gu": "દશમાંશ (D10) એ કારકિર્દીનો ચાર્ટ છે. તે વ્યક્તિના વ્યવસાયનો સ્વભાવ, કારકિર્દીનો માર્ગ, જાહેર ક્ષેત્રમાં સિદ્ધિઓ અને વ્યાવસાયિક પ્રતિષ્ઠા દર્શાવે છે. D10 નો 10મો ભાવ ખાસ કરીને નિર્ણાયક છે.",
         "mai": "दशमांश (D10) करियर कुंडली अछि। ई व्यक्तिक पेशाक प्रकृति, करियरक मार्ग, सार्वजनिक क्षेत्र मे उपलब्धि, आ व्यावसायिक प्रतिष्ठा देखाबैत अछि। D10 क दशम भाव विशेष रूप सँ महत्वपूर्ण अछि।"
       },
       "options": [
@@ -271,44 +271,44 @@
           "hi": "सन्तान और वंश",
           "mai": "संतान आ संतति",
           "mr": "सन्तान और वंश",
-          "ta": "Children and progeny",
-          "te": "Children and progeny",
-          "bn": "Children and progeny",
-          "kn": "Children and progeny",
-          "gu": "Children and progeny"
+          "ta": "குழந்தைகள் மற்றும் சந்ததி",
+          "te": "పిల్లలు మరియు సంతానం",
+          "bn": "সন্তান এবং বংশধর",
+          "kn": "ಮಕ್ಕಳು ಮತ್ತು ಸಂತಾನ",
+          "gu": "સંતાન અને વંશ"
         },
         {
           "en": "Parents and ancestry",
           "hi": "माता-पिता और पूर्वज",
           "mai": "माता-पिता आ पूर्वज",
           "mr": "माता-पिता और पूर्वज",
-          "ta": "Parents and ancestry",
-          "te": "Parents and ancestry",
-          "bn": "Parents and ancestry",
-          "kn": "Parents and ancestry",
-          "gu": "Parents and ancestry"
+          "ta": "பெற்றோர்கள் மற்றும் மூதாதையர்",
+          "te": "తల్లిదండ్రులు మరియు వంశపారంపర్యం",
+          "bn": "পিতামাতা এবং পূর্বপুরুষ",
+          "kn": "ಪೋಷಕರು ಮತ್ತು ಪೂರ್ವಜರು",
+          "gu": "માતાપિતા અને વંશાવળી"
         },
         {
           "en": "Career, profession, and public standing",
           "hi": "व्यवसाय, पेशा और सामाजिक प्रतिष्ठा",
           "mai": "करियर, पेशा आ सार्वजनिक प्रतिष्ठा",
           "mr": "व्यवसाय, पेशा और सामाजिक प्रतिष्ठा",
-          "ta": "Career, profession, and public standing",
-          "te": "Career, profession, and public standing",
-          "bn": "Career, profession, and public standing",
-          "kn": "Career, profession, and public standing",
-          "gu": "Career, profession, and public standing"
+          "ta": "தொழில், பணி மற்றும் சமூக நிலை",
+          "te": "వృత్తి, ఉద్యోగం మరియు ప్రజా గౌరవం",
+          "bn": "কর্মজীবন, পেশা এবং জনজীবনে অবস্থান",
+          "kn": "ವೃತ್ತಿ, ಉದ್ಯೋಗ ಮತ್ತು ಸಾರ್ವಜನಿಕ ಸ್ಥಾನಮಾನ",
+          "gu": "કારકિર્દી, વ્યવસાય અને જાહેર પ્રતિષ્ઠા"
         },
         {
           "en": "Spiritual progress and moksha",
           "hi": "आध्यात्मिक प्रगति और मोक्ष",
           "mai": "आध्यात्मिक प्रगति आ मोक्ष",
           "mr": "आध्यात्मिक प्रगति और मोक्ष",
-          "ta": "Spiritual progress and moksha",
-          "te": "Spiritual progress and moksha",
-          "bn": "Spiritual progress and moksha",
-          "kn": "Spiritual progress and moksha",
-          "gu": "Spiritual progress and moksha"
+          "ta": "ஆன்மீக முன்னேற்றம் மற்றும் மோட்சம்",
+          "te": "ఆధ్యాత్మిక పురోగతి మరియు మోక్షం",
+          "bn": "আধ্যাত্মিক অগ্রগতি এবং মোক্ষ",
+          "kn": "ಆಧ್ಯಾತ್ಮಿಕ ಪ್ರಗತಿ ಮತ್ತು ಮೋಕ್ಷ",
+          "gu": "આધ્યાત્મિક પ્રગતિ અને મોક્ષ"
         }
       ]
     },
@@ -318,24 +318,24 @@
       "question": {
         "en": "What does \"Vargottama\" mean in Jyotish?",
         "hi": "ज्योतिष में \"वर्गोत्तम\" का क्या अर्थ है?",
-        "ta": "What does \"Vargottama\" mean in Jyotish?",
-        "te": "What does \"Vargottama\" mean in Jyotish?",
-        "bn": "What does \"Vargottama\" mean in Jyotish?",
-        "kn": "What does \"Vargottama\" mean in Jyotish?",
+        "ta": "ஜோதிடத்தில் \"வர்கோத்தமம்\" என்றால் என்ன?",
+        "te": "జ్యోతిషశాస్త్రంలో \"వర్గోత్తమం\" అంటే ఏమిటి?",
+        "bn": "জ্যোতিষে \"বর্গোত্তম\" বলতে কী বোঝায়?",
+        "kn": "ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ \"ವರ್ಗೋತ್ತಮ\" ಎಂದರೆ ಏನು?",
         "mr": "ज्योतिष में \"वर्गोत्तम\" का क्या अर्थ है?",
-        "gu": "What does \"Vargottama\" mean in Jyotish?",
+        "gu": "જ્યોતિષમાં \"વર્ગોત્તમ\" નો અર્થ શું થાય છે?",
         "mai": "ज्योतिष मे \"वर्गोत्तम\" क की अर्थ अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Vargottama means a planet is placed in the same sign in both the Rashi (D1) and Navamsha (D9) charts. This is considered very powerful  –  the planet's outer expression and inner nature are aligned, giving it the strength equivalent to being in its own sign.",
         "hi": "वर्गोत्तम का अर्थ है कि ग्रह राशि (D1) और नवांश (D9) दोनों कुण्डलियों में एक ही राशि में स्थित है। यह अत्यन्त बलवान माना जाता है  –  ग्रह की बाह्य अभिव्यक्ति और आन्तरिक प्रकृति एकरूप होती है, जो स्वराशि बल के समतुल्य शक्ति देती है।",
-        "ta": "Vargottama means a planet is placed in the same sign in both the Rashi (D1) and Navamsha (D9) charts. This is considered very powerful  –  the planet's outer expression and inner nature are aligned, giving it the strength equivalent to being in its own sign.",
-        "te": "Vargottama means a planet is placed in the same sign in both the Rashi (D1) and Navamsha (D9) charts. This is considered very powerful  –  the planet's outer expression and inner nature are aligned, giving it the strength equivalent to being in its own sign.",
-        "bn": "Vargottama means a planet is placed in the same sign in both the Rashi (D1) and Navamsha (D9) charts. This is considered very powerful  –  the planet's outer expression and inner nature are aligned, giving it the strength equivalent to being in its own sign.",
-        "kn": "Vargottama means a planet is placed in the same sign in both the Rashi (D1) and Navamsha (D9) charts. This is considered very powerful  –  the planet's outer expression and inner nature are aligned, giving it the strength equivalent to being in its own sign.",
+        "ta": "வர்கோத்தமம் என்பது ஒரு கிரகம் ராசி (D1) மற்றும் நவாம்சம் (D9) ஆகிய இரண்டு சக்கரங்களிலும் ஒரே ராசியில் அமைந்திருப்பதைக் குறிக்கிறது. இது மிகவும் சக்திவாய்ந்ததாகக் கருதப்படுகிறது – கிரகத்தின் வெளிப்படையான வெளிப்பாடு மற்றும் உள் இயல்பு சீரமைக்கப்பட்டு, அதற்கு சொந்த ராசியில் இருப்பது போன்ற வலிமையைத் தருகிறது.",
+        "te": "వర్గోత్తమం అంటే ఒక గ్రహం రాశి (D1) మరియు నవాంశ (D9) చక్రాలు రెండింటిలోనూ ఒకే రాశిలో ఉండటం. ఇది చాలా శక్తివంతమైనదిగా పరిగణించబడుతుంది – గ్రహం యొక్క బాహ్య వ్యక్తీకరణ మరియు అంతర్గత స్వభావం సమలేఖనం చేయబడి, దాని స్వంత రాశిలో ఉన్నంత బలాన్ని ఇస్తుంది.",
+        "bn": "বর্গোত্তম মানে হল একটি গ্রহ রাশি (D1) এবং নবমশা (D9) উভয় কুণ্ডলীতে একই রাশিতে অবস্থিত। এটি অত্যন্ত শক্তিশালী বলে বিবেচিত হয় – গ্রহের বাহ্যিক প্রকাশ এবং অভ্যন্তরীণ প্রকৃতি একত্রিত হয়, যা এটিকে স্ব-রাশিগত হওয়ার সমতুল্য শক্তি দেয়।",
+        "kn": "ವರ್ಗೋತ್ತಮ ಎಂದರೆ ಒಂದು ಗ್ರಹವು ರಾಶಿ (D1) ಮತ್ತು ನವಾಂಶ (D9) ಚಾರ್ಟ್‌ಗಳೆರಡರಲ್ಲೂ ಒಂದೇ ರಾಶಿ/ಚಿಹ್ನೆಯಲ್ಲಿ ಇರುವುದು. ಇದನ್ನು ಬಹಳ ಶಕ್ತಿಶಾಲಿ ಎಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ – ಗ್ರಹದ ಬಾಹ್ಯ ಅಭಿವ್ಯಕ್ತಿ ಮತ್ತು ಆಂತರಿಕ ಸ್ವರೂಪವು ಹೊಂದಿಕೆಯಾಗುತ್ತದೆ, ಇದು ತನ್ನದೇ ಆದ ರಾಶಿಯಲ್ಲಿ ಇರುವ ಶಕ್ತಿಗೆ ಸಮನಾದ ಶಕ್ತಿಯನ್ನು ನೀಡುತ್ತದೆ.",
         "mr": "वर्गोत्तम का अर्थ है कि ग्रह राशि (D1) और नवांश (D9) दोनों कुण्डलियों में एक ही राशि में स्थित है। यह अत्यन्त बलवान माना जाता है  –  ग्रह की बाह्य अभिव्यक्ति और आन्तरिक प्रकृति एकरूप होती है, जो स्वराशि बल के समतुल्य शक्ति देती है।",
-        "gu": "Vargottama means a planet is placed in the same sign in both the Rashi (D1) and Navamsha (D9) charts. This is considered very powerful  –  the planet's outer expression and inner nature are aligned, giving it the strength equivalent to being in its own sign.",
+        "gu": "વર્ગોત્તમનો અર્થ છે કે ગ્રહ રાશિ (D1) અને નવમાંશ (D9) બંને ચાર્ટમાં એક જ રાશિમાં સ્થિત છે. આ ખૂબ શક્તિશાળી માનવામાં આવે છે – ગ્રહની બાહ્ય અભિવ્યક્તિ અને આંતરિક સ્વભાવ સુસંગત હોય છે, જે તેને તેની પોતાની રાશિમાં હોવા જેટલી શક્તિ આપે છે.",
         "mai": "वर्गोत्तमक अर्थ अछि जे एकटा ग्रह राशि (D1) आ नवमांश (D9) दुनू कुंडली मे एकहि राशि मे स्थित अछि। ई बहुत शक्तिशाली मानल जाइत अछि – ग्रहक बाहरी अभिव्यक्ति आ आंतरिक स्वभाव संरेखित होइत अछि, जेकरा सँ ओकरा अपन राशि मे होमयवला शक्ति भेटैत अछि।"
       },
       "options": [
@@ -344,44 +344,44 @@
           "hi": "उच्च राशि में स्थित ग्रह",
           "mai": "एकटा ग्रह अपन उच्च राशि मे",
           "mr": "उच्च राशि में स्थित ग्रह",
-          "ta": "A planet in its exaltation sign",
-          "te": "A planet in its exaltation sign",
-          "bn": "A planet in its exaltation sign",
-          "kn": "A planet in its exaltation sign",
-          "gu": "A planet in its exaltation sign"
+          "ta": "ஒரு கிரகம் அதன் உச்ச ராசியில்",
+          "te": "ఒక గ్రహం దాని ఉచ్ఛ రాశిలో ఉండటం",
+          "bn": "একটি গ্রহ তার উচ্চস্থ রাশিতে",
+          "kn": "ಒಂದು ಗ್ರಹವು ತನ್ನ ಉಚ್ಚ ರಾಶಿಯಲ್ಲಿರುವುದು",
+          "gu": "તેના ઉચ્ચ રાશિમાં ગ્રહ"
         },
         {
           "en": "A planet occupying the same sign in both D1 and D9",
           "hi": "D1 और D9 दोनों में एक ही राशि में स्थित ग्रह",
           "mai": "एकटा ग्रह जे D1 आ D9 दुनू मे एकहि राशि मे स्थित अछि",
           "mr": "D1 और D9 दोनों में एक ही राशि में स्थित ग्रह",
-          "ta": "A planet occupying the same sign in both D1 and D9",
-          "te": "A planet occupying the same sign in both D1 and D9",
-          "bn": "A planet occupying the same sign in both D1 and D9",
-          "kn": "A planet occupying the same sign in both D1 and D9",
-          "gu": "A planet occupying the same sign in both D1 and D9"
+          "ta": "D1 மற்றும் D9 இரண்டிலும் ஒரே ராசியில் இருக்கும் ஒரு கிரகம்",
+          "te": "D1 మరియు D9 రెండింటిలోనూ ఒకే రాశిలో ఉన్న గ్రహం",
+          "bn": "একটি গ্রহ D1 এবং D9 উভয় কুণ্ডলীতে একই রাশিতে অবস্থিত",
+          "kn": "D1 ಮತ್ತು D9 ಎರಡರಲ್ಲೂ ಒಂದೇ ರಾಶಿಯನ್ನು ಆಕ್ರಮಿಸಿಕೊಂಡಿರುವ ಗ್ರಹ",
+          "gu": "D1 અને D9 બંનેમાં એક જ રાશિમાં સ્થિત ગ્રહ"
         },
         {
           "en": "A planet in retrograde motion",
           "hi": "वक्री गति में ग्रह",
           "mai": "एकटा ग्रह वक्री गति मे",
           "mr": "वक्री गति में ग्रह",
-          "ta": "A planet in retrograde motion",
-          "te": "A planet in retrograde motion",
-          "bn": "A planet in retrograde motion",
-          "kn": "A planet in retrograde motion",
-          "gu": "A planet in retrograde motion"
+          "ta": "வக்ர கதியில் உள்ள ஒரு கிரகம்",
+          "te": "వక్ర గమనంలో ఉన్న గ్రహం",
+          "bn": "একটি গ্রহ বক্রী গতিতে",
+          "kn": "ವಕ್ರ ಗತಿಯಲ್ಲಿರುವ ಗ್ರಹ",
+          "gu": "વક્રી ગતિમાં ગ્રહ"
         },
         {
           "en": "A planet conjunct its dispositor",
           "hi": "अपने राशि स्वामी के साथ युत ग्रह",
           "mai": "एकटा ग्रह अपन डिस्पोजिटरक संग युति मे",
           "mr": "अपने राशि स्वामी के साथ युत ग्रह",
-          "ta": "A planet conjunct its dispositor",
-          "te": "A planet conjunct its dispositor",
-          "bn": "A planet conjunct its dispositor",
-          "kn": "A planet conjunct its dispositor",
-          "gu": "A planet conjunct its dispositor"
+          "ta": "ஒரு கிரகம் அதன் அதிபதியுடன் இணைந்திருப்பது",
+          "te": "దాని అధిపతితో కలిసి ఉన్న గ్రహం",
+          "bn": "একটি গ্রহ তার অধিপতির সাথে যুক্ত",
+          "kn": "ತನ್ನ ಅಧಿಪತಿಯೊಂದಿಗೆ ಸಂಯೋಗದಲ್ಲಿರುವ ಗ್ರಹ",
+          "gu": "તેના ડિસ્પોઝિટર સાથે યુતિ કરતો ગ્રહ"
         }
       ]
     },
@@ -391,24 +391,24 @@
       "question": {
         "en": "The D7 (Saptamsha) chart is used to analyze career and professional life.",
         "hi": "D7 (सप्तांश) कुण्डली का उपयोग व्यवसाय और पेशेवर जीवन के विश्लेषण में होता है।",
-        "ta": "The D7 (Saptamsha) chart is used to analyze career and professional life.",
-        "te": "The D7 (Saptamsha) chart is used to analyze career and professional life.",
-        "bn": "The D7 (Saptamsha) chart is used to analyze career and professional life.",
-        "kn": "The D7 (Saptamsha) chart is used to analyze career and professional life.",
+        "ta": "D7 (சப்தாம்சம்) சக்கரம் தொழில் மற்றும் பணி வாழ்க்கையை பகுப்பாய்வு செய்யப் பயன்படுகிறது.",
+        "te": "D7 (సప్తమాంశ) చక్రం వృత్తి మరియు వృత్తిపరమైన జీవితాన్ని విశ్లేషించడానికి ఉపయోగించబడుతుంది.",
+        "bn": "D7 (সপ্তমাংশা) কুণ্ডলী কর্মজীবন এবং পেশাগত জীবন বিশ্লেষণ করতে ব্যবহৃত হয়।",
+        "kn": "D7 (ಸಪ್ತಾಂಶ) ಚಾರ್ಟ್ ಅನ್ನು ವೃತ್ತಿ ಮತ್ತು ವೃತ್ತಿಪರ ಜೀವನವನ್ನು ವಿಶ್ಲೇಷಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ.",
         "mr": "D7 (सप्तांश) कुण्डली का उपयोग व्यवसाय और पेशेवर जीवन के विश्लेषण में होता है।",
-        "gu": "The D7 (Saptamsha) chart is used to analyze career and professional life.",
+        "gu": "D7 (સપ્તમાંશ) ચાર્ટ કારકિર્દી અને વ્યાવસાયિક જીવનનું વિશ્લેષણ કરવા માટે ઉપયોગમાં લેવાય છે.",
         "mai": "D7 (सप्तमांश) कुंडलीक करियर आ व्यावसायिक जीवनक विश्लेषण करबाक लेल उपयोग कएल जाइत अछि।"
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. The D7 (Saptamsha) chart is used for children and progeny. Career analysis uses D10 (Dasamsha). Each varga has a specific life domain  –  mixing them up leads to incorrect predictions.",
         "hi": "असत्य। D7 (सप्तांश) कुण्डली सन्तान एवं वंश के लिए प्रयुक्त होती है। व्यवसाय विश्लेषण D10 (दशांश) से किया जाता है। प्रत्येक वर्ग का एक विशिष्ट जीवन क्षेत्र है  –  उनमें भ्रम करने से गलत भविष्यवाणी होती है।",
-        "ta": "False. The D7 (Saptamsha) chart is used for children and progeny. Career analysis uses D10 (Dasamsha). Each varga has a specific life domain  –  mixing them up leads to incorrect predictions.",
-        "te": "False. The D7 (Saptamsha) chart is used for children and progeny. Career analysis uses D10 (Dasamsha). Each varga has a specific life domain  –  mixing them up leads to incorrect predictions.",
-        "bn": "False. The D7 (Saptamsha) chart is used for children and progeny. Career analysis uses D10 (Dasamsha). Each varga has a specific life domain  –  mixing them up leads to incorrect predictions.",
-        "kn": "False. The D7 (Saptamsha) chart is used for children and progeny. Career analysis uses D10 (Dasamsha). Each varga has a specific life domain  –  mixing them up leads to incorrect predictions.",
+        "ta": "தவறு. D7 (சப்தாம்சம்) சக்கரம் குழந்தைகள் மற்றும் சந்ததிக்கு பயன்படுத்தப்படுகிறது. தொழில் பகுப்பாய்வு D10 (தசாம்சம்) ஐப் பயன்படுத்துகிறது. ஒவ்வொரு வர்க்கத்திற்கும் ஒரு குறிப்பிட்ட வாழ்க்கை பகுதி உள்ளது – அவற்றை குழப்புவது தவறான கணிப்புகளுக்கு வழிவகுக்கும்.",
+        "te": "తప్పు. D7 (సప్తమాంశ) చక్రం పిల్లలు మరియు సంతానం కోసం ఉపయోగించబడుతుంది. వృత్తి విశ్లేషణ D10 (దశమాంశ)ను ఉపయోగిస్తుంది. ప్రతి వర్గానికి ఒక నిర్దిష్ట జీవిత రంగం ఉంటుంది – వాటిని కలపడం తప్పు అంచనాలకు దారితీస్తుంది.",
+        "bn": "মিথ্যা। D7 (সপ্তমাংশা) কুণ্ডলী সন্তান এবং বংশধরদের জন্য ব্যবহৃত হয়। কর্মজীবন বিশ্লেষণে D10 (দশমশা) ব্যবহৃত হয়। প্রতিটি বর্গের একটি নির্দিষ্ট জীবন ক্ষেত্র রয়েছে – এগুলিকে গুলিয়ে ফেললে ভুল ভবিষ্যদ্বাণী হয়।",
+        "kn": "ತಪ್ಪು. D7 (ಸಪ್ತಾಂಶ) ಚಾರ್ಟ್ ಅನ್ನು ಮಕ್ಕಳು ಮತ್ತು ಸಂತಾನಕ್ಕಾಗಿ ಬಳಸಲಾಗುತ್ತದೆ. ವೃತ್ತಿ ವಿಶ್ಲೇಷಣೆಗೆ D10 (ದಶಾಂಶ) ಅನ್ನು ಬಳಸಲಾಗುತ್ತದೆ. ಪ್ರತಿಯೊಂದು ವರ್ಗಕ್ಕೂ ನಿರ್ದಿಷ್ಟ ಜೀವನ ಕ್ಷೇತ್ರವಿದೆ – ಅವುಗಳನ್ನು ಮಿಶ್ರಣ ಮಾಡುವುದರಿಂದ ತಪ್ಪಾದ ಭವಿಷ್ಯವಾಣಿಗಳಿಗೆ ಕಾರಣವಾಗುತ್ತದೆ.",
         "mr": "असत्य। D7 (सप्तांश) कुण्डली सन्तान एवं वंश के लिए प्रयुक्त होती है। व्यवसाय विश्लेषण D10 (दशांश) से किया जाता है। प्रत्येक वर्ग का एक विशिष्ट जीवन क्षेत्र है  –  उनमें भ्रम करने से गलत भविष्यवाणी होती है।",
-        "gu": "False. The D7 (Saptamsha) chart is used for children and progeny. Career analysis uses D10 (Dasamsha). Each varga has a specific life domain  –  mixing them up leads to incorrect predictions.",
+        "gu": "ખોટું. D7 (સપ્તમાંશ) ચાર્ટ સંતાન અને વંશ માટે ઉપયોગમાં લેવાય છે. કારકિર્દી વિશ્લેષણ માટે D10 (દશમાંશ) નો ઉપયોગ થાય છે. દરેક વર્ગનું એક વિશિષ્ટ જીવન ક્ષેત્ર હોય છે – તેમને ભેળવી દેવાથી ખોટી ભવિષ્યવાણીઓ થાય છે.",
         "mai": "गलत। D7 (सप्तमांश) कुंडलीक संतान आ संततिक लेल उपयोग कएल जाइत अछि। करियर विश्लेषण D10 (दशमांश) क उपयोग करैत अछि। प्रत्येक वर्गक एकटा विशिष्ट जीवन क्षेत्र होइत अछि – ओकरा मिलायब सँ गलत भविष्यवाणी होइत अछि।"
       }
     },
@@ -418,24 +418,24 @@
       "question": {
         "en": "In the Shodasvarga Vimshopaka strength system, which varga receives the highest weightage?",
         "hi": "षोडशवर्ग विंशोपक बल पद्धति में किस वर्ग को सर्वाधिक भारांक मिलता है?",
-        "ta": "In the Shodasvarga Vimshopaka strength system, which varga receives the highest weightage?",
-        "te": "In the Shodasvarga Vimshopaka strength system, which varga receives the highest weightage?",
-        "bn": "In the Shodasvarga Vimshopaka strength system, which varga receives the highest weightage?",
-        "kn": "In the Shodasvarga Vimshopaka strength system, which varga receives the highest weightage?",
+        "ta": "ஷோடச வர்க்க விம்சபாக பல அமைப்பில், எந்த வர்க்கம் அதிக எடையைப் பெறுகிறது?",
+        "te": "షోడశవర్గ వింశోపక బల వ్యవస్థలో, ఏ వర్గానికి అత్యధిక ప్రాధాన్యత లభిస్తుంది?",
+        "bn": "ষোড়শ বর্গ বিংশোপক বল পদ্ধতিতে কোন বর্গ সর্বোচ্চ গুরুত্ব পায়?",
+        "kn": "ಷೋಡಶವರ್ಗ ವಿಂಶೋಪಕ ಬಲ ಪದ್ಧತಿಯಲ್ಲಿ, ಯಾವ ವರ್ಗವು ಅತಿ ಹೆಚ್ಚು ತೂಕವನ್ನು ಪಡೆಯುತ್ತದೆ?",
         "mr": "षोडशवर्ग विंशोपक बल पद्धति में किस वर्ग को सर्वाधिक भारांक मिलता है?",
-        "gu": "In the Shodasvarga Vimshopaka strength system, which varga receives the highest weightage?",
+        "gu": "ષોડશવર્ગ વિંશોપક બળ પ્રણાલીમાં, કયા વર્ગને સૌથી વધુ ભારણ મળે છે?",
         "mai": "षोडशवर्ग विंशोपक शक्ति प्रणाली मे कोन वर्गक सभसँ बेसी भार भेटैत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "In the Shodasvarga scheme, D60 (Shashtiamsha) receives the highest weightage of 4 points out of 20. This subtle chart (divisions of 0.5 degrees) is considered the most refined indicator of karmic merit. D1 and D9 each receive 3.5 and 3 points respectively.",
         "hi": "षोडशवर्ग योजना में D60 (षष्ट्यंश) को 20 में से सर्वाधिक 4 अंक का भारांक मिलता है। यह सूक्ष्म कुण्डली (0.5 अंश के विभाग) कार्मिक पुण्य का सबसे परिष्कृत सूचक मानी जाती है। D1 और D9 को क्रमशः 3.5 और 3 अंक मिलते हैं।",
-        "ta": "In the Shodasvarga scheme, D60 (Shashtiamsha) receives the highest weightage of 4 points out of 20. This subtle chart (divisions of 0.5 degrees) is considered the most refined indicator of karmic merit. D1 and D9 each receive 3.5 and 3 points respectively.",
-        "te": "In the Shodasvarga scheme, D60 (Shashtiamsha) receives the highest weightage of 4 points out of 20. This subtle chart (divisions of 0.5 degrees) is considered the most refined indicator of karmic merit. D1 and D9 each receive 3.5 and 3 points respectively.",
-        "bn": "In the Shodasvarga scheme, D60 (Shashtiamsha) receives the highest weightage of 4 points out of 20. This subtle chart (divisions of 0.5 degrees) is considered the most refined indicator of karmic merit. D1 and D9 each receive 3.5 and 3 points respectively.",
-        "kn": "In the Shodasvarga scheme, D60 (Shashtiamsha) receives the highest weightage of 4 points out of 20. This subtle chart (divisions of 0.5 degrees) is considered the most refined indicator of karmic merit. D1 and D9 each receive 3.5 and 3 points respectively.",
+        "ta": "ஷோடச வர்க்க திட்டத்தில், D60 (சஷ்டியாம்சம்) 20 புள்ளிகளில் 4 புள்ளிகள் என்ற அதிகபட்ச எடையைப் பெறுகிறது. இந்த நுட்பமான சக்கரம் (0.5 டிகிரி பிரிவுகள்) கர்ம பலனின் மிகவும் சுத்திகரிக்கப்பட்ட குறிகாட்டியாகக் கருதப்படுகிறது. D1 மற்றும் D9 முறையே 3.5 மற்றும் 3 புள்ளிகளைப் பெறுகின்றன.",
+        "te": "షోడశవర్గ పథకంలో, D60 (షష్ఠ్యంశ) 20 పాయింట్లలో 4 పాయింట్ల అత్యధిక ప్రాధాన్యతను పొందుతుంది. ఈ సూక్ష్మ చక్రం (0.5 డిగ్రీల విభాగాలు) కర్మ యోగ్యతకు అత్యంత శుద్ధి చేయబడిన సూచికగా పరిగణించబడుతుంది. D1 మరియు D9 వరుసగా 3.5 మరియు 3 పాయింట్లను పొందుతాయి.",
+        "bn": "ষোড়শ বর্গ পদ্ধতিতে, D60 (ষষ্ঠাংশা) ২০টির মধ্যে ৪ পয়েন্টের সর্বোচ্চ গুরুত্ব পায়। এই সূক্ষ্ম কুণ্ডলী (০.৫ ডিগ্রির বিভাজন) কর্মফল বিচারের সবচেয়ে পরিমার্জিত সূচক হিসাবে বিবেচিত হয়। D1 এবং D9 যথাক্রমে ৩.৫ এবং ৩ পয়েন্ট পায়।",
+        "kn": "ಷೋಡಶವರ್ಗ ಯೋಜನೆಯಲ್ಲಿ, D60 (ಷಷ್ಟ್ಯಂಶ) 20 ರಲ್ಲಿ 4 ಅಂಕಗಳ ಅತಿ ಹೆಚ್ಚು ತೂಕವನ್ನು ಪಡೆಯುತ್ತದೆ. ಈ ಸೂಕ್ಷ್ಮ ಚಾರ್ಟ್ (0.5 ಡಿಗ್ರಿಗಳ ವಿಭಾಗಗಳು) ಕರ್ಮಿಕ ಅರ್ಹತೆಯ ಅತ್ಯಂತ ಸಂಸ್ಕರಿಸಿದ ಸೂಚಕವೆಂದು ಪರಿಗಣಿಸಲಾಗಿದೆ. D1 ಮತ್ತು D9 ಕ್ರಮವಾಗಿ 3.5 ಮತ್ತು 3 ಅಂಕಗಳನ್ನು ಪಡೆಯುತ್ತವೆ.",
         "mr": "षोडशवर्ग योजना में D60 (षष्ट्यंश) को 20 में से सर्वाधिक 4 अंक का भारांक मिलता है। यह सूक्ष्म कुण्डली (0.5 अंश के विभाग) कार्मिक पुण्य का सबसे परिष्कृत सूचक मानी जाती है। D1 और D9 को क्रमशः 3.5 और 3 अंक मिलते हैं।",
-        "gu": "In the Shodasvarga scheme, D60 (Shashtiamsha) receives the highest weightage of 4 points out of 20. This subtle chart (divisions of 0.5 degrees) is considered the most refined indicator of karmic merit. D1 and D9 each receive 3.5 and 3 points respectively.",
+        "gu": "ષોડશવર્ગ યોજનામાં, D60 (ષષ્ટ્યાંશ) ને 20 માંથી 4 પોઈન્ટનું સૌથી વધુ ભારણ મળે છે. આ સૂક્ષ્મ ચાર્ટ (0.5 ડિગ્રીના વિભાજન) ને કર્મિક પુણ્યનો સૌથી શુદ્ધ સૂચક માનવામાં આવે છે. D1 અને D9 ને અનુક્રમે 3.5 અને 3 પોઈન્ટ મળે છે.",
         "mai": "षोडशवर्ग योजना मे, D60 (षष्ट्यंश) क २० मे सँ ४ अंकक सभसँ बेसी भार भेटैत अछि। ई सूक्ष्म कुंडली (०.५ डिग्रीक विभाजन) कर्मिक योग्यताक सभसँ परिष्कृत संकेतक मानल जाइत अछि। D1 आ D9 क क्रमशः ३.५ आ ३ अंक भेटैत अछि।"
       },
       "options": [
@@ -444,44 +444,44 @@
           "hi": "D9 (नवांश)  –  3 अंक",
           "mai": "D9 (नवमांश) – ३ अंक",
           "mr": "D9 (नवांश)  –  3 अंक",
-          "ta": "D9 (Navamsha)  –  3 points",
-          "te": "D9 (Navamsha)  –  3 points",
-          "bn": "D9 (Navamsha)  –  3 points",
-          "kn": "D9 (Navamsha)  –  3 points",
-          "gu": "D9 (Navamsha)  –  3 points"
+          "ta": "D9 (நவாம்சம்) – 3 புள்ளிகள்",
+          "te": "D9 (నవాంశ) – 3 పాయింట్లు",
+          "bn": "D9 (নবমশা) – ৩ পয়েন্ট",
+          "kn": "D9 (ನವಾಂಶ) – 3 ಅಂಕಗಳು",
+          "gu": "D9 (નવમાંશ) – 3 પોઈન્ટ"
         },
         {
           "en": "D1 (Rashi)  –  3.5 points",
           "hi": "D1 (राशि)  –  3.5 अंक",
           "mai": "D1 (राशि) – ३.५ अंक",
           "mr": "D1 (राशि)  –  3.5 अंक",
-          "ta": "D1 (Rashi)  –  3.5 points",
-          "te": "D1 (Rashi)  –  3.5 points",
-          "bn": "D1 (Rashi)  –  3.5 points",
-          "kn": "D1 (Rashi)  –  3.5 points",
-          "gu": "D1 (Rashi)  –  3.5 points"
+          "ta": "D1 (ராசி) – 3.5 புள்ளிகள்",
+          "te": "D1 (రాశి) – 3.5 పాయింట్లు",
+          "bn": "D1 (রাশি) – ৩.৫ পয়েন্ট",
+          "kn": "D1 (ರಾಶಿ) – 3.5 ಅಂಕಗಳು",
+          "gu": "D1 (રાશિ) – 3.5 પોઈન્ટ"
         },
         {
           "en": "D60 (Shashtiamsha)  –  4 points",
           "hi": "D60 (षष्ट्यंश)  –  4 अंक",
           "mai": "D60 (षष्ट्यंश) – ४ अंक",
           "mr": "D60 (षष्ट्यंश)  –  4 अंक",
-          "ta": "D60 (Shashtiamsha)  –  4 points",
-          "te": "D60 (Shashtiamsha)  –  4 points",
-          "bn": "D60 (Shashtiamsha)  –  4 points",
-          "kn": "D60 (Shashtiamsha)  –  4 points",
-          "gu": "D60 (Shashtiamsha)  –  4 points"
+          "ta": "D60 (சஷ்டியாம்சம்) – 4 புள்ளிகள்",
+          "te": "D60 (షష్ఠ్యంశ) – 4 పాయింట్లు",
+          "bn": "D60 (ষষ্ঠাংশা) – ৪ পয়েন্ট",
+          "kn": "D60 (ಷಷ್ಟ್ಯಂಶ) – 4 ಅಂಕಗಳು",
+          "gu": "D60 (ષષ્ટ્યાંશ) – 4 પોઈન્ટ"
         },
         {
           "en": "D10 (Dasamsha)  –  3 points",
           "hi": "D10 (दशांश)  –  3 अंक",
           "mai": "D10 (दशमांश) – ३ अंक",
           "mr": "D10 (दशांश)  –  3 अंक",
-          "ta": "D10 (Dasamsha)  –  3 points",
-          "te": "D10 (Dasamsha)  –  3 points",
-          "bn": "D10 (Dasamsha)  –  3 points",
-          "kn": "D10 (Dasamsha)  –  3 points",
-          "gu": "D10 (Dasamsha)  –  3 points"
+          "ta": "D10 (தசாம்சம்) – 3 புள்ளிகள்",
+          "te": "D10 (దశమాంశ) – 3 పాయింట్లు",
+          "bn": "D10 (দশমশা) – ৩ পয়েন্ট",
+          "kn": "D10 (ದಶಾಂಶ) – 3 ಅಂಕಗಳು",
+          "gu": "D10 (દશમાંશ) – 3 પોઈન્ટ"
         }
       ]
     },
@@ -491,24 +491,24 @@
       "question": {
         "en": "The D12 (Dwadashamsha) chart is primarily used to analyze:",
         "hi": "D12 (द्वादशांश) कुण्डली मुख्यतः किसके विश्लेषण में प्रयुक्त होती है?",
-        "ta": "The D12 (Dwadashamsha) chart is primarily used to analyze:",
-        "te": "The D12 (Dwadashamsha) chart is primarily used to analyze:",
-        "bn": "The D12 (Dwadashamsha) chart is primarily used to analyze:",
-        "kn": "The D12 (Dwadashamsha) chart is primarily used to analyze:",
+        "ta": "D12 (துவாதசாம்சம்) சக்கரம் முதன்மையாக பகுப்பாய்வு செய்யப் பயன்படுகிறது:",
+        "te": "D12 (ద్వాదశాంశ) చక్రం ప్రధానంగా విశ్లేషించడానికి ఉపయోగించబడుతుంది:",
+        "bn": "D12 (দ্বাদশাংশা) কুণ্ডলী প্রাথমিকভাবে বিশ্লেষণ করতে ব্যবহৃত হয়:",
+        "kn": "D12 (ದ್ವಾದಶಾಂಶ) ಚಾರ್ಟ್ ಅನ್ನು ಪ್ರಾಥಮಿಕವಾಗಿ ವಿಶ್ಲೇಷಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ:",
         "mr": "D12 (द्वादशांश) कुण्डली मुख्यतः किसके विश्लेषण में प्रयुक्त होती है?",
-        "gu": "The D12 (Dwadashamsha) chart is primarily used to analyze:",
+        "gu": "D12 (દ્વાદશાંશ) ચાર્ટ મુખ્યત્વે વિશ્લેષણ કરવા માટે ઉપયોગમાં લેવાય છે:",
         "mai": "D12 (द्वादशांश) कुंडलीक मुख्य रूप सँ विश्लेषण करबाक लेल उपयोग कएल जाइत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The Dwadashamsha (D12) is the chart of parents and lineage. The 4th house of D12 represents the mother, the 9th house represents the father. It is used to understand parental relationships and inherited karmic patterns.",
         "hi": "द्वादशांश (D12) माता-पिता और वंश की कुण्डली है। D12 का चतुर्थ भाव माता का और नवम भाव पिता का प्रतिनिधित्व करता है। इसका उपयोग माता-पिता से सम्बन्ध और विरासत में मिले कार्मिक प्रतिरूपों को समझने में होता है।",
-        "ta": "The Dwadashamsha (D12) is the chart of parents and lineage. The 4th house of D12 represents the mother, the 9th house represents the father. It is used to understand parental relationships and inherited karmic patterns.",
-        "te": "The Dwadashamsha (D12) is the chart of parents and lineage. The 4th house of D12 represents the mother, the 9th house represents the father. It is used to understand parental relationships and inherited karmic patterns.",
-        "bn": "The Dwadashamsha (D12) is the chart of parents and lineage. The 4th house of D12 represents the mother, the 9th house represents the father. It is used to understand parental relationships and inherited karmic patterns.",
-        "kn": "The Dwadashamsha (D12) is the chart of parents and lineage. The 4th house of D12 represents the mother, the 9th house represents the father. It is used to understand parental relationships and inherited karmic patterns.",
+        "ta": "துவாதசாம்சம் (D12) என்பது பெற்றோர்கள் மற்றும் பரம்பரைக்கான சக்கரம். D12 இன் 4வது பாவம் தாயையும், 9வது பாவம் தந்தையையும் குறிக்கிறது. இது பெற்றோருடனான உறவுகளையும், மரபுவழி கர்ம வடிவங்களையும் புரிந்துகொள்ளப் பயன்படுகிறது.",
+        "te": "ద్వాదశాంశ (D12) తల్లిదండ్రులు మరియు వంశపారంపర్య చక్రం. D12లోని 4వ భావం తల్లిని, 9వ భావం తండ్రిని సూచిస్తుంది. ఇది తల్లిదండ్రుల సంబంధాలను మరియు వంశపారంపర్య కర్మ నమూనాలను అర్థం చేసుకోవడానికి ఉపయోగించబడుతుంది.",
+        "bn": "দ্বাদশাংশা (D12) হল পিতামাতা এবং বংশের কুণ্ডলী। D12-এর চতুর্থ ভাব মাকে, নবম ভাব বাবাকে নির্দেশ করে। এটি পিতামাতার সম্পর্ক এবং উত্তরাধিকার সূত্রে প্রাপ্ত কর্মফল বুঝতে ব্যবহৃত হয়।",
+        "kn": "ದ್ವಾದಶಾಂಶ (D12) ಪೋಷಕರು ಮತ್ತು ವಂಶಾವಳಿಯ ಚಾರ್ಟ್ ಆಗಿದೆ. D12 ರ 4ನೇ ಭಾವವು ತಾಯಿಯನ್ನು, 9ನೇ ಭಾವವು ತಂದೆಯನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತದೆ. ಇದನ್ನು ಪೋಷಕರ ಸಂಬಂಧಗಳು ಮತ್ತು ಆನುವಂಶಿಕ ಕರ್ಮಿಕ ಮಾದರಿಗಳನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಬಳಸಲಾಗುತ್ತದೆ.",
         "mr": "द्वादशांश (D12) माता-पिता और वंश की कुण्डली है। D12 का चतुर्थ भाव माता का और नवम भाव पिता का प्रतिनिधित्व करता है। इसका उपयोग माता-पिता से सम्बन्ध और विरासत में मिले कार्मिक प्रतिरूपों को समझने में होता है।",
-        "gu": "The Dwadashamsha (D12) is the chart of parents and lineage. The 4th house of D12 represents the mother, the 9th house represents the father. It is used to understand parental relationships and inherited karmic patterns.",
+        "gu": "દ્વાદશાંશ (D12) એ માતાપિતા અને વંશાવળીનો ચાર્ટ છે. D12 નો ચોથો ભાવ માતાનું પ્રતિનિધિત્વ કરે છે, નવમો ભાવ પિતાનું પ્રતિનિધિત્વ કરે છે. તેનો ઉપયોગ માતાપિતાના સંબંધો અને વારસાગત કર્મિક દાખલાઓને સમજવા માટે થાય છે.",
         "mai": "द्वादशांश (D12) माता-पिता आ वंशक कुंडली अछि। D12 क चतुर्थ भाव माताक प्रतिनिधित्व करैत अछि, नवम भाव पिताक प्रतिनिधित्व करैत अछि। एकर उपयोग माता-पिताक संबंध आ विरासत मे भेटल कर्मिक पैटर्न बुझबाक लेल कएल जाइत अछि।"
       },
       "options": [
@@ -517,44 +517,44 @@
           "hi": "वाहन और यातायात साधन",
           "mai": "वाहन आ सवारी",
           "mr": "वाहन और यातायात साधन",
-          "ta": "Vehicles and conveyances",
-          "te": "Vehicles and conveyances",
-          "bn": "Vehicles and conveyances",
-          "kn": "Vehicles and conveyances",
-          "gu": "Vehicles and conveyances"
+          "ta": "வாகனங்கள் மற்றும் போக்குவரத்து",
+          "te": "వాహనాలు మరియు రవాణా",
+          "bn": "যানবাহন এবং পরিবহণ",
+          "kn": "ವಾಹನಗಳು ಮತ್ತು ಸಾರಿಗೆ",
+          "gu": "વાહનો અને પરિવહન"
         },
         {
           "en": "Parents, ancestry, and inherited karma",
           "hi": "माता-पिता, पूर्वज और विरासत में मिला कर्म",
           "mai": "माता-पिता, पूर्वज आ विरासत मे भेटल कर्म",
           "mr": "माता-पिता, पूर्वज और विरासत में मिला कर्म",
-          "ta": "Parents, ancestry, and inherited karma",
-          "te": "Parents, ancestry, and inherited karma",
-          "bn": "Parents, ancestry, and inherited karma",
-          "kn": "Parents, ancestry, and inherited karma",
-          "gu": "Parents, ancestry, and inherited karma"
+          "ta": "பெற்றோர்கள், மூதாதையர் மற்றும் மரபுவழி கர்மா",
+          "te": "తల్లిదండ్రులు, వంశపారంపర్యం మరియు వారసత్వ కర్మ",
+          "bn": "পিতামাতা, পূর্বপুরুষ এবং উত্তরাধিকার সূত্রে প্রাপ্ত কর্মফল",
+          "kn": "ಪೋಷಕರು, ಪೂರ್ವಜರು ಮತ್ತು ಆನುವಂಶಿಕ ಕರ್ಮ",
+          "gu": "માતાપિતા, વંશાવળી અને વારસાગત કર્મ"
         },
         {
           "en": "Spouse and partnerships",
           "hi": "पति/पत्नी और साझेदारी",
           "mai": "जीवनसाथी आ साझेदारी",
           "mr": "पति/पत्नी और साझेदारी",
-          "ta": "Spouse and partnerships",
-          "te": "Spouse and partnerships",
-          "bn": "Spouse and partnerships",
-          "kn": "Spouse and partnerships",
-          "gu": "Spouse and partnerships"
+          "ta": "மனைவி/கணவன் மற்றும் கூட்டாண்மைகள்",
+          "te": "జీవిత భాగస్వామి మరియు భాగస్వామ్యాలు",
+          "bn": "জীবনসঙ্গী এবং অংশীদারিত্ব",
+          "kn": "ಸಂಗಾತಿ ಮತ್ತು ಪಾಲುದಾರಿಕೆಗಳು",
+          "gu": "જીવનસાથી અને ભાગીદારી"
         },
         {
           "en": "Education and learning",
           "hi": "शिक्षा और विद्या",
           "mai": "शिक्षा आ अध्ययन",
           "mr": "शिक्षा और विद्या",
-          "ta": "Education and learning",
-          "te": "Education and learning",
-          "bn": "Education and learning",
-          "kn": "Education and learning",
-          "gu": "Education and learning"
+          "ta": "கல்வி மற்றும் கற்றல்",
+          "te": "విద్య మరియు అభ్యాసం",
+          "bn": "শিক্ষা এবং জ্ঞানার্জন",
+          "kn": "ಶಿಕ್ಷಣ ಮತ್ತು ಕಲಿಕೆ",
+          "gu": "શિક્ષણ અને અધ્યયન"
         }
       ]
     },
@@ -564,24 +564,24 @@
       "question": {
         "en": "The Navamsha is sometimes called \"the chart behind the chart\" because it reveals the hidden, inner dimensions of planetary placements.",
         "hi": "नवांश को कभी-कभी \"कुण्डली के पीछे की कुण्डली\" कहा जाता है क्योंकि यह ग्रह स्थितियों के छिपे आन्तरिक आयामों को प्रकट करती है।",
-        "ta": "The Navamsha is sometimes called \"the chart behind the chart\" because it reveals the hidden, inner dimensions of planetary placements.",
-        "te": "The Navamsha is sometimes called \"the chart behind the chart\" because it reveals the hidden, inner dimensions of planetary placements.",
-        "bn": "The Navamsha is sometimes called \"the chart behind the chart\" because it reveals the hidden, inner dimensions of planetary placements.",
-        "kn": "The Navamsha is sometimes called \"the chart behind the chart\" because it reveals the hidden, inner dimensions of planetary placements.",
+        "ta": "நவாம்சம் சில சமயங்களில் \"சக்கரத்திற்குப் பின்னால் உள்ள சக்கரம்\" என்று அழைக்கப்படுகிறது, ஏனெனில் இது கிரக அமைப்புகளின் மறைக்கப்பட்ட, உள் பரிமாணங்களை வெளிப்படுத்துகிறது.",
+        "te": "నవాంశను కొన్నిసార్లు \"చక్రం వెనుక ఉన్న చక్రం\" అని పిలుస్తారు, ఎందుకంటే ఇది గ్రహ స్థానాల యొక్క దాచిన, అంతర్గత కోణాలను వెల్లడిస్తుంది.",
+        "bn": "নবমশাকে কখনও কখনও \"কুণ্ডলীর পেছনের কুণ্ডলী\" বলা হয় কারণ এটি গ্রহের অবস্থানের লুকানো, অভ্যন্তরীণ মাত্রা প্রকাশ করে।",
+        "kn": "ನವಾಂಶವನ್ನು ಕೆಲವೊಮ್ಮೆ \"ಚಾರ್ಟ್ ಹಿಂದಿನ ಚಾರ್ಟ್\" ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ ಏಕೆಂದರೆ ಇದು ಗ್ರಹಗಳ ಸ್ಥಾನಗಳ ಗುಪ್ತ, ಆಂತರಿಕ ಆಯಾಮಗಳನ್ನು ಬಹಿರಂಗಪಡಿಸುತ್ತದೆ.",
         "mr": "नवांश को कभी-कभी \"कुण्डली के पीछे की कुण्डली\" कहा जाता है क्योंकि यह ग्रह स्थितियों के छिपे आन्तरिक आयामों को प्रकट करती है।",
-        "gu": "The Navamsha is sometimes called \"the chart behind the chart\" because it reveals the hidden, inner dimensions of planetary placements.",
+        "gu": "નવમાંશને ક્યારેક \"ચાર્ટ પાછળનો ચાર્ટ\" કહેવામાં આવે છે કારણ કે તે ગ્રહોની સ્થિતિના છુપાયેલા, આંતરિક પરિમાણોને દર્શાવે છે.",
         "mai": "नवमांशक कहियो-कहियो \"कुंडलीक पाछूक कुंडली\" कहल जाइत अछि किएक तँ ई ग्रहक स्थिति क गुप्त, आंतरिक आयाम देखाबैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. The rashi chart (D1) shows the outer, manifest reality  –  what people see. The Navamsha (D9) shows the inner truth  –  the real strength, the deeper motivations, and the soul-level patterns. A planet might look strong in D1 but be compromised in D9, and vice versa.",
         "hi": "सत्य। राशि कुण्डली (D1) बाह्य, प्रकट वास्तविकता दिखाती है  –  जो लोग देखते हैं। नवांश (D9) आन्तरिक सत्य दिखाती है  –  वास्तविक बल, गहरी प्रेरणाएँ और आत्मा-स्तरीय प्रतिरूप। कोई ग्रह D1 में बलवान दिख सकता है पर D9 में दुर्बल हो, और इसके विपरीत भी।",
-        "ta": "True. The rashi chart (D1) shows the outer, manifest reality  –  what people see. The Navamsha (D9) shows the inner truth  –  the real strength, the deeper motivations, and the soul-level patterns. A planet might look strong in D1 but be compromised in D9, and vice versa.",
-        "te": "True. The rashi chart (D1) shows the outer, manifest reality  –  what people see. The Navamsha (D9) shows the inner truth  –  the real strength, the deeper motivations, and the soul-level patterns. A planet might look strong in D1 but be compromised in D9, and vice versa.",
-        "bn": "True. The rashi chart (D1) shows the outer, manifest reality  –  what people see. The Navamsha (D9) shows the inner truth  –  the real strength, the deeper motivations, and the soul-level patterns. A planet might look strong in D1 but be compromised in D9, and vice versa.",
-        "kn": "True. The rashi chart (D1) shows the outer, manifest reality  –  what people see. The Navamsha (D9) shows the inner truth  –  the real strength, the deeper motivations, and the soul-level patterns. A planet might look strong in D1 but be compromised in D9, and vice versa.",
+        "ta": "உண்மை. ராசி சக்கரம் (D1) வெளிப்படையான, வெளிப்படும் யதார்த்தத்தைக் காட்டுகிறது – மக்கள் பார்ப்பது. நவாம்சம் (D9) உள் உண்மையை – உண்மையான வலிமை, ஆழமான உந்துதல்கள் மற்றும் ஆன்ம-நிலை வடிவங்களைக் காட்டுகிறது. ஒரு கிரகம் D1 இல் வலிமையாகத் தோன்றினாலும், D9 இல் பலவீனமாக இருக்கலாம், மற்றும் நேர்மாறாகவும் இருக்கலாம்.",
+        "te": "నిజం. రాశి చక్రం (D1) బాహ్య, వ్యక్తమైన వాస్తవికతను చూపుతుంది – ప్రజలు చూసేది. నవాంశ (D9) అంతర్గత సత్యాన్ని చూపుతుంది – నిజమైన బలం, లోతైన ప్రేరణలు మరియు ఆత్మ-స్థాయి నమూనాలు. ఒక గ్రహం D1లో బలంగా కనిపించినా D9లో బలహీనపడవచ్చు, మరియు దీనికి విరుద్ధంగా కూడా.",
+        "bn": "সত্য। রাশি কুণ্ডলী (D1) বাহ্যিক, প্রকাশিত বাস্তবতা দেখায় – যা মানুষ দেখে। নবমশা (D9) অভ্যন্তরীণ সত্য দেখায় – প্রকৃত শক্তি, গভীর প্রেরণা এবং আত্মিক স্তরের বিন্যাস। একটি গ্রহ D1-এ শক্তিশালী দেখালেও D9-এ দুর্বল হতে পারে এবং এর বিপরীতও হতে পারে।",
+        "kn": "ಸರಿ. ರಾಶಿ ಚಾರ್ಟ್ (D1) ಬಾಹ್ಯ, ಪ್ರಕಟವಾದ ವಾಸ್ತವವನ್ನು ತೋರಿಸುತ್ತದೆ – ಜನರು ಏನನ್ನು ನೋಡುತ್ತಾರೆ. ನವಾಂಶ (D9) ಆಂತರಿಕ ಸತ್ಯವನ್ನು ತೋರಿಸುತ್ತದೆ – ನಿಜವಾದ ಶಕ್ತಿ, ಆಳವಾದ ಪ್ರೇರಣೆಗಳು ಮತ್ತು ಆತ್ಮ-ಮಟ್ಟದ ಮಾದರಿಗಳು. ಒಂದು ಗ್ರಹವು D1 ನಲ್ಲಿ ಬಲವಾಗಿ ಕಾಣಿಸಬಹುದು ಆದರೆ D9 ನಲ್ಲಿ ದುರ್ಬಲವಾಗಿರಬಹುದು, ಮತ್ತು ಪ್ರತಿಯಾಗಿ.",
         "mr": "सत्य। राशि कुण्डली (D1) बाह्य, प्रकट वास्तविकता दिखाती है  –  जो लोग देखते हैं। नवांश (D9) आन्तरिक सत्य दिखाती है  –  वास्तविक बल, गहरी प्रेरणाएँ और आत्मा-स्तरीय प्रतिरूप। कोई ग्रह D1 में बलवान दिख सकता है पर D9 में दुर्बल हो, और इसके विपरीत भी।",
-        "gu": "True. The rashi chart (D1) shows the outer, manifest reality  –  what people see. The Navamsha (D9) shows the inner truth  –  the real strength, the deeper motivations, and the soul-level patterns. A planet might look strong in D1 but be compromised in D9, and vice versa.",
+        "gu": "સાચું. રાશિ ચાર્ટ (D1) બાહ્ય, પ્રગટ વાસ્તવિકતા દર્શાવે છે – જે લોકો જુએ છે. નવમાંશ (D9) આંતરિક સત્ય દર્શાવે છે – વાસ્તવિક શક્તિ, ઊંડી પ્રેરણાઓ અને આત્મ-સ્તરના દાખલાઓ. એક ગ્રહ D1 માં બળવાન દેખાઈ શકે છે પરંતુ D9 માં નબળો હોઈ શકે છે, અને ઊલટું પણ.",
         "mai": "सत्य। राशि कुंडली (D1) बाहरी, प्रकट वास्तविकता देखाबैत अछि – जे लोक देखैत अछि। नवमांश (D9) आंतरिक सत्य देखाबैत अछि – वास्तविक शक्ति, गहन प्रेरणा, आ आत्म-स्तरक पैटर्न। एकटा ग्रह D1 मे बलवान देखा सकैत अछि मुदा D9 मे कमजोर भऽ सकैत अछि, आ एकर विपरीत सेहो।"
       }
     },
@@ -591,24 +591,24 @@
       "question": {
         "en": "What is Vimshopaka Bala?",
         "hi": "विंशोपक बल क्या है?",
-        "ta": "What is Vimshopaka Bala?",
-        "te": "What is Vimshopaka Bala?",
-        "bn": "What is Vimshopaka Bala?",
-        "kn": "What is Vimshopaka Bala?",
+        "ta": "விம்சபாக பலம் என்றால் என்ன?",
+        "te": "వింశోపక బలం అంటే ఏమిటి?",
+        "bn": "বিংশোপক বল কী?",
+        "kn": "ವಿಂಶೋಪಕ ಬಲ ಎಂದರೇನು?",
         "mr": "विंशोपक बल क्या है?",
-        "gu": "What is Vimshopaka Bala?",
+        "gu": "વિંશોપક બળ શું છે?",
         "mai": "विंशोपक बल की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Vimshopaka Bala is a 20-point composite strength score. It evaluates a planet's sign placement (own, exalted, friendly, enemy, debilitated) across all 16 vargas of the Shodasvarga system, applying specific weightage to each chart. A score above 15 is excellent; below 5 is very weak.",
         "hi": "विंशोपक बल 20 अंकों का समग्र बल मापदण्ड है। यह षोडशवर्ग पद्धति की सभी 16 वर्ग कुण्डलियों में ग्रह की राशि स्थिति (स्वगृह, उच्च, मित्र, शत्रु, नीच) का मूल्यांकन करता है, प्रत्येक कुण्डली को विशिष्ट भारांक देकर। 15 से अधिक अंक उत्कृष्ट और 5 से कम अत्यन्त दुर्बल माना जाता है।",
-        "ta": "Vimshopaka Bala is a 20-point composite strength score. It evaluates a planet's sign placement (own, exalted, friendly, enemy, debilitated) across all 16 vargas of the Shodasvarga system, applying specific weightage to each chart. A score above 15 is excellent; below 5 is very weak.",
-        "te": "Vimshopaka Bala is a 20-point composite strength score. It evaluates a planet's sign placement (own, exalted, friendly, enemy, debilitated) across all 16 vargas of the Shodasvarga system, applying specific weightage to each chart. A score above 15 is excellent; below 5 is very weak.",
-        "bn": "Vimshopaka Bala is a 20-point composite strength score. It evaluates a planet's sign placement (own, exalted, friendly, enemy, debilitated) across all 16 vargas of the Shodasvarga system, applying specific weightage to each chart. A score above 15 is excellent; below 5 is very weak.",
-        "kn": "Vimshopaka Bala is a 20-point composite strength score. It evaluates a planet's sign placement (own, exalted, friendly, enemy, debilitated) across all 16 vargas of the Shodasvarga system, applying specific weightage to each chart. A score above 15 is excellent; below 5 is very weak.",
+        "ta": "விம்சபாக பலம் என்பது 20 புள்ளிகள் கொண்ட ஒரு கூட்டு வலிமை மதிப்பெண் ஆகும். இது ஷோடச வர்க்க அமைப்பின் அனைத்து 16 வர்க்கங்களிலும் ஒரு கிரகத்தின் ராசி அமைப்பை (சொந்த, உச்சம், நட்பு, பகை, நீச்சம்) மதிப்பிடுகிறது, ஒவ்வொரு சக்கரத்திற்கும் குறிப்பிட்ட எடையைப் பயன்படுத்துகிறது. 15 க்கு மேல் உள்ள மதிப்பெண் சிறந்தது; 5 க்கு கீழ் உள்ள மதிப்பெண் மிகவும் பலவீனமானது.",
+        "te": "వింశోపక బలం అనేది 20 పాయింట్ల మిశ్రమ బల స్కోరు. ఇది షోడశవర్గ వ్యవస్థలోని అన్ని 16 వర్గాలలో ఒక గ్రహం యొక్క రాశి స్థానాన్ని (స్వక్షేత్రం, ఉచ్ఛ, మిత్ర, శత్రు, నీచ) మూల్యాంకనం చేస్తుంది, ప్రతి చక్రానికి నిర్దిష్ట ప్రాధాన్యతను వర్తింపజేస్తుంది. 15 కంటే ఎక్కువ స్కోరు అద్భుతమైనది; 5 కంటే తక్కువ చాలా బలహీనమైనది.",
+        "bn": "বিংশোপক বল হল একটি ২০-পয়েন্টের সম্মিলিত শক্তি স্কোর। এটি ষোড়শ বর্গ পদ্ধতির সমস্ত ১৬টি বর্গে একটি গ্রহের রাশিগত অবস্থান (নিজস্ব, উচ্চস্থ, মিত্র, শত্রু, নীচস্থ) মূল্যায়ন করে, প্রতিটি কুণ্ডলীতে নির্দিষ্ট গুরুত্ব প্রয়োগ করে। ১৫-এর উপরে স্কোর চমৎকার; ৫-এর নিচে খুব দুর্বল।",
+        "kn": "ವಿಂಶೋಪಕ ಬಲವು 20 ಅಂಕಗಳ ಸಂಯೋಜಿತ ಶಕ್ತಿ ಸ್ಕೋರ್ ಆಗಿದೆ. ಇದು ಷೋಡಶವರ್ಗ ಪದ್ಧತಿಯ ಎಲ್ಲಾ 16 ವರ್ಗಗಳಲ್ಲಿ ಗ್ರಹದ ರಾಶಿ ಸ್ಥಾನವನ್ನು (ಸ್ವಂತ, ಉಚ್ಚ, ಮಿತ್ರ, ಶತ್ರು, ನೀಚ) ಮೌಲ್ಯಮಾಪನ ಮಾಡುತ್ತದೆ, ಪ್ರತಿ ಚಾರ್ಟ್‌ಗೆ ನಿರ್ದಿಷ್ಟ ತೂಕವನ್ನು ಅನ್ವಯಿಸುತ್ತದೆ. 15 ಕ್ಕಿಂತ ಹೆಚ್ಚಿನ ಸ್ಕೋರ್ ಅತ್ಯುತ್ತಮವಾಗಿದೆ; 5 ಕ್ಕಿಂತ ಕಡಿಮೆ ಸ್ಕೋರ್ ಬಹಳ ದುರ್ಬಲವಾಗಿದೆ.",
         "mr": "विंशोपक बल 20 अंकों का समग्र बल मापदण्ड है। यह षोडशवर्ग पद्धति की सभी 16 वर्ग कुण्डलियों में ग्रह की राशि स्थिति (स्वगृह, उच्च, मित्र, शत्रु, नीच) का मूल्यांकन करता है, प्रत्येक कुण्डली को विशिष्ट भारांक देकर। 15 से अधिक अंक उत्कृष्ट और 5 से कम अत्यन्त दुर्बल माना जाता है।",
-        "gu": "Vimshopaka Bala is a 20-point composite strength score. It evaluates a planet's sign placement (own, exalted, friendly, enemy, debilitated) across all 16 vargas of the Shodasvarga system, applying specific weightage to each chart. A score above 15 is excellent; below 5 is very weak.",
+        "gu": "વિંશોપક બળ એ 20-પોઈન્ટનો સંયુક્ત શક્તિ સ્કોર છે. તે ષોડશવર્ગ પ્રણાલીના તમામ 16 વર્ગોમાં ગ્રહની રાશિ સ્થિતિ (સ્વગૃહી, ઉચ્ચ, મિત્ર, શત્રુ, નીચ) નું મૂલ્યાંકન કરે છે, જેમાં દરેક ચાર્ટને ચોક્કસ ભારણ લાગુ પડે છે. 15 થી ઉપરનો સ્કોર ઉત્તમ છે; 5 થી નીચેનો સ્કોર ખૂબ નબળો છે.",
         "mai": "विंशोपक बल एकटा २०-अंकक समग्र शक्ति स्कोर अछि। ई एकटा ग्रहक राशि स्थिति (अपन, उच्चक, मित्र, शत्रु, नीचक) क मूल्यांकन षोडशवर्ग प्रणालीक सभ १६ वर्ग मे करैत अछि, प्रत्येक कुंडलीक लेल विशिष्ट भार लागू करैत। १५ सँ बेसी स्कोर उत्कृष्ट अछि; ५ सँ कम बहुत कमजोर अछि।"
       },
       "options": [
@@ -617,21 +617,21 @@
           "hi": "गति के आधार पर ग्रह का बल",
           "mai": "एकटा ग्रहक शक्ति ओकर गति क आधार पर",
           "mr": "गति के आधार पर ग्रह का बल",
-          "ta": "The strength of a planet based on its speed of motion",
-          "te": "The strength of a planet based on its speed of motion",
-          "bn": "The strength of a planet based on its speed of motion",
-          "kn": "The strength of a planet based on its speed of motion",
-          "gu": "The strength of a planet based on its speed of motion"
+          "ta": "ஒரு கிரகத்தின் இயக்க வேகத்தின் அடிப்படையில் அதன் வலிமை",
+          "te": "ఒక గ్రహం యొక్క గమన వేగం ఆధారంగా దాని బలం",
+          "bn": "একটি গ্রহের গতির উপর ভিত্তি করে তার শক্তি",
+          "kn": "ಗ್ರಹದ ಚಲನೆಯ ವೇಗವನ್ನು ಆಧರಿಸಿದ ಅದರ ಶಕ್ತಿ",
+          "gu": "ગ્રહની ગતિની ઝડપના આધારે તેની શક્તિ"
         },
         {
           "en": "A composite strength score derived from a planet's dignity across multiple varga charts",
           "hi": "अनेक वर्ग कुण्डलियों में ग्रह की गरिमा से प्राप्त समग्र बल अंक",
-          "ta": "A composite strength score derived from a planet's dignity across multiple varga charts",
-          "te": "A composite strength score derived from a planet's dignity across multiple varga charts",
-          "bn": "A composite strength score derived from a planet's dignity across multiple varga charts",
-          "kn": "A composite strength score derived from a planet's dignity across multiple varga charts",
+          "ta": "பல வர்க்க சக்கரங்களில் ஒரு கிரகத்தின் வலிமையிலிருந்து பெறப்பட்ட ஒரு கூட்டு வலிமை மதிப்பெண்",
+          "te": "బహుళ వర్గ చక్రాలలో ఒక గ్రహం యొక్క గౌరవం నుండి పొందిన మిశ్రమ బల స్కోరు",
+          "bn": "একাধিক বর্গ কুণ্ডলীতে একটি গ্রহের মর্যাদার উপর ভিত্তি করে প্রাপ্ত একটি সম্মিলিত শক্তি স্কোর",
+          "kn": "ಬಹು ವರ್ಗ ಚಾರ್ಟ್‌ಗಳಲ್ಲಿ ಗ್ರಹದ ಘನತೆಯಿಂದ ಪಡೆದ ಸಂಯೋಜಿತ ಶಕ್ತಿ ಸ್ಕೋರ್",
           "mr": "अनेक वर्ग कुण्डलियों में ग्रह की गरिमा से प्राप्त समग्र बल अंक",
-          "gu": "A composite strength score derived from a planet's dignity across multiple varga charts",
+          "gu": "બહુવિધ વર્ગ ચાર્ટમાં ગ્રહની ગૌરવતામાંથી મેળવેલ સંયુક્ત શક્તિ સ્કોર",
           "mai": "एकटा समग्र शक्ति स्कोर जे अनेक वर्ग कुंडली मे एकटा ग्रहक गरिमा सँ प्राप्त कएल गेल अछि"
         },
         {
@@ -639,22 +639,22 @@
           "hi": "सूर्य से दूरी के आधार पर ग्रह का बल",
           "mai": "एकटा ग्रहक शक्ति सूर्य सँ ओकर दूरी क आधार पर",
           "mr": "सूर्य से दूरी के आधार पर ग्रह का बल",
-          "ta": "The strength of a planet based on its distance from the Sun",
-          "te": "The strength of a planet based on its distance from the Sun",
-          "bn": "The strength of a planet based on its distance from the Sun",
-          "kn": "The strength of a planet based on its distance from the Sun",
-          "gu": "The strength of a planet based on its distance from the Sun"
+          "ta": "சூரியனில் இருந்து அதன் தூரத்தின் அடிப்படையில் ஒரு கிரகத்தின் வலிமை",
+          "te": "సూర్యుడి నుండి దాని దూరం ఆధారంగా ఒక గ్రహం యొక్క బలం",
+          "bn": "সূর্যের থেকে তার দূরত্বের উপর ভিত্তি করে একটি গ্রহের শক্তি",
+          "kn": "ಸೂರ್ಯನಿಂದ ಅದರ ದೂರವನ್ನು ಆಧರಿಸಿದ ಗ್ರಹದ ಶಕ್ತಿ",
+          "gu": "સૂર્યથી તેના અંતરના આધારે ગ્રહની શક્તિ"
         },
         {
           "en": "The number of benefic aspects a planet receives",
           "hi": "ग्रह पर पड़ने वाली शुभ दृष्टियों की संख्या",
           "mai": "शुभ दृष्टिक संख्या जे एकटा ग्रह प्राप्त करैत अछि",
           "mr": "ग्रह पर पड़ने वाली शुभ दृष्टियों की संख्या",
-          "ta": "The number of benefic aspects a planet receives",
-          "te": "The number of benefic aspects a planet receives",
-          "bn": "The number of benefic aspects a planet receives",
-          "kn": "The number of benefic aspects a planet receives",
-          "gu": "The number of benefic aspects a planet receives"
+          "ta": "ஒரு கிரகம் பெறும் சுப பார்வைகளின் எண்ணிக்கை",
+          "te": "ఒక గ్రహం పొందే శుభ దృష్టి సంఖ్య",
+          "bn": "একটি গ্রহ যে শুভ দৃষ্টি পায় তার সংখ্যা",
+          "kn": "ಒಂದು ಗ್ರಹವು ಪಡೆಯುವ ಶುಭ ದೃಷ್ಟಿಗಳ ಸಂಖ್ಯೆ",
+          "gu": "ગ્રહને મળતા શુભ દ્રષ્ટિની સંખ્યા"
         }
       ]
     }

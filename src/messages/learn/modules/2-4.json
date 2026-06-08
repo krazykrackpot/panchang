@@ -28,11 +28,11 @@
         "hi": "2.3 गरिमाएं",
         "mai": "2.3 गरिमा",
         "mr": "2.3 गरिमाएं",
-        "ta": "2.3 Dignities",
-        "te": "2.3 Dignities",
-        "bn": "2.3 Dignities",
-        "kn": "2.3 Dignities",
-        "gu": "2.3 Dignities"
+        "ta": "2.3 பலம்",
+        "te": "2.3 బలాలు",
+        "bn": "২.৩ বল",
+        "kn": "2.3 ಬಲಗಳು",
+        "gu": "૨.૩ ગ્રહનું ગૌરવ"
       },
       "href": "/learn/modules/2-3"
     },
@@ -42,11 +42,11 @@
         "hi": "वक्री कैलेंडर",
         "mai": "वक्री पंचांग",
         "mr": "वक्री कैलेंडर",
-        "ta": "Retrograde Calendar",
-        "te": "Retrograde Calendar",
-        "bn": "Retrograde Calendar",
-        "kn": "Retrograde Calendar",
-        "gu": "Retrograde Calendar"
+        "ta": "வக்ர நாட்காட்டி",
+        "te": "వక్ర క్యాలెండర్",
+        "bn": "বক্রী পঞ্জিকা",
+        "kn": "ವಕ್ರ ಪಂಚಾಂಗ",
+        "gu": "વક્રી ગ્રહનું પંચાંગ"
       },
       "href": "/learn/../retrograde"
     },
@@ -56,11 +56,11 @@
         "hi": "3.1 राशियाँ",
         "mai": "3.1 बारह राशि",
         "mr": "3.1 राशियाँ",
-        "ta": "3.1 The 12 Rashis",
-        "te": "3.1 The 12 Rashis",
-        "bn": "3.1 The 12 Rashis",
-        "kn": "3.1 The 12 Rashis",
-        "gu": "3.1 The 12 Rashis"
+        "ta": "3.1 12 ராசிகள்",
+        "te": "3.1 12 రాశులు",
+        "bn": "৩.১ দ্বাদশ রাশি",
+        "kn": "3.1 ೧೨ ರಾಶಿಗಳು",
+        "gu": "૩.૧ ૧૨ રાશિઓ"
       },
       "href": "/learn/modules/3-1"
     }
@@ -74,11 +74,11 @@
         "hi": "ग्रह वक्री क्यों दिखता है?",
         "mai": "की कारण अछि जे कोनो ग्रह वक्री देखाइत अछि?",
         "mr": "ग्रह वक्री क्यों दिखता है?",
-        "ta": "What causes a planet to appear retrograde?",
-        "te": "What causes a planet to appear retrograde?",
-        "bn": "What causes a planet to appear retrograde?",
-        "kn": "What causes a planet to appear retrograde?",
-        "gu": "What causes a planet to appear retrograde?"
+        "ta": "ஒரு கிரகம் வக்ரமாகத் தோன்ற எதனால் ஏற்படுகிறது?",
+        "te": "ఒక గ్రహం వక్రంగా కనిపించడానికి కారణం ఏమిటి?",
+        "bn": "কোনো গ্রহ বক্রী প্রতীয়মান হওয়ার কারণ কী?",
+        "kn": "ಒಂದು ಗ್ರಹವು ವಕ್ರವಾಗಿ ಕಾಣಲು ಯಾವುದು ಕಾರಣ?",
+        "gu": "ગ્રહ વક્રી શા માટે દેખાય છે?"
       },
       "options": [
         {
@@ -86,32 +86,32 @@
           "hi": "ग्रह वास्तव में अपनी कक्षा उलटता है",
           "mai": "ग्रह वास्तव मे अपन कक्षा केँ उल्टा करैत अछि",
           "mr": "ग्रह वास्तव में अपनी कक्षा उलटता है",
-          "ta": "The planet actually reverses its orbit",
-          "te": "The planet actually reverses its orbit",
-          "bn": "The planet actually reverses its orbit",
-          "kn": "The planet actually reverses its orbit",
-          "gu": "The planet actually reverses its orbit"
+          "ta": "கிரகம் உண்மையில் அதன் சுற்றுப்பாதையை மாற்றுகிறது",
+          "te": "గ్రహం నిజానికి దాని కక్ష్యలో వెనుకకు ప్రయాణిస్తుంది",
+          "bn": "গ্রহটি প্রকৃতপক্ষে তার কক্ষপথে বিপরীত দিকে চলে",
+          "kn": "ಗ್ರಹವು ವಾಸ್ತವವಾಗಿ ತನ್ನ ಕಕ್ಷೆಯಲ್ಲಿ ಹಿಮ್ಮುಖವಾಗಿ ಚಲಿಸುತ್ತದೆ",
+          "gu": "ગ્રહ ખરેખર તેની કક્ષા ઉલટાવે છે"
         },
         {
           "en": "Earth overtakes or is overtaken by the planet, creating an optical illusion of backward motion",
           "hi": "पृथ्वी ग्रह से आगे निकलती है या पीछे रहती है, पीछे चलने का आभास",
           "mai": "पृथ्वी ग्रह केँ आगू निकलैत अछि वा ग्रह द्वारा आगू निकलल जाइत अछि, जाहि सँ पाछू दिस गति केँ एकटा प्रकाशीय भ्रम उत्पन्न होइत अछि",
           "mr": "पृथ्वी ग्रह से आगे निकलती है या पीछे रहती है, पीछे चलने का आभास",
-          "ta": "Earth overtakes or is overtaken by the planet, creating an optical illusion of backward motion",
-          "te": "Earth overtakes or is overtaken by the planet, creating an optical illusion of backward motion",
-          "bn": "Earth overtakes or is overtaken by the planet, creating an optical illusion of backward motion",
-          "kn": "Earth overtakes or is overtaken by the planet, creating an optical illusion of backward motion",
-          "gu": "Earth overtakes or is overtaken by the planet, creating an optical illusion of backward motion"
+          "ta": "பூமி கிரகத்தை முந்துகிறது அல்லது கிரகத்தால் முந்தப்படுகிறது, இது பின்னோக்கிய இயக்கத்தின் ஒரு ஒளியியல் மாயையை உருவாக்குகிறது",
+          "te": "భూమి గ్రహాన్ని అధిగమించినప్పుడు లేదా గ్రహం భూమిని అధిగమించినప్పుడు, వెనుకకు కదులుతున్నట్లు ఒక దృశ్య భ్రమను సృష్టిస్తుంది",
+          "bn": "পৃথিবী গ্রহটিকে অতিক্রম করে বা গ্রহটি পৃথিবীকে অতিক্রম করে, যা পেছনের দিকে চলার একটি আলোকীয় বিভ্রম সৃষ্টি করে",
+          "kn": "ಭೂಮಿಯು ಗ್ರಹವನ್ನು ಹಿಂದಿಕ್ಕುತ್ತದೆ ಅಥವಾ ಗ್ರಹದಿಂದ ಹಿಂದಿಕ್ಕಲ್ಪಡುತ್ತದೆ, ಇದು ಹಿಮ್ಮುಖ ಚಲನೆಯ ದೃಷ್ಟಿ ಭ್ರಮೆಯನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ",
+          "gu": "પૃથ્વી ગ્રહથી આગળ નીકળી જાય છે અથવા ગ્રહ પૃથ્વીથી આગળ નીકળી જાય છે, જેના કારણે પાછળની ગતિનો દ્રષ્ટિભ્રમ થાય છે"
         },
         {
           "en": "The Sun's gravity pulls the planet backward",
           "hi": "सूर्य का गुरुत्व ग्रह को पीछे खींचता है",
-          "ta": "The Sun's gravity pulls the planet backward",
-          "te": "The Sun's gravity pulls the planet backward",
-          "bn": "The Sun's gravity pulls the planet backward",
-          "kn": "The Sun's gravity pulls the planet backward",
+          "ta": "சூரியனின் ஈர்ப்பு விசை கிரகத்தை பின்னோக்கி இழுக்கிறது",
+          "te": "సూర్యుని గురుత్వాకర్షణ గ్రహాన్ని వెనుకకు లాగుతుంది",
+          "bn": "সূর্যের মহাকর্ষ গ্রহটিকে পেছনের দিকে টানে",
+          "kn": "ಸೂರ್ಯನ ಗುರುತ್ವಾಕರ್ಷಣೆಯು ಗ್ರಹವನ್ನು ಹಿಮ್ಮುಖವಾಗಿ ಎಳೆಯುತ್ತದೆ",
           "mr": "सूर्य का गुरुत्व ग्रह को पीछे खींचता है",
-          "gu": "The Sun's gravity pulls the planet backward",
+          "gu": "સૂર્યનું ગુરુત્વાકર્ષણ ગ્રહને પાછળ ખેંચે છે",
           "mai": "सूर्यक गुरुत्वाकर्षण ग्रह केँ पाछू दिस खींचैत अछि"
         },
         {
@@ -119,11 +119,11 @@
           "hi": "ग्रह ब्लैक होल में प्रवेश करता है",
           "mai": "ग्रह एकटा ब्लैक होल मे प्रवेश करैत अछि",
           "mr": "ग्रह ब्लैक होल में प्रवेश करता है",
-          "ta": "The planet enters a black hole",
-          "te": "The planet enters a black hole",
-          "bn": "The planet enters a black hole",
-          "kn": "The planet enters a black hole",
-          "gu": "The planet enters a black hole"
+          "ta": "கிரகம் ஒரு கருந்துளைக்குள் நுழைகிறது",
+          "te": "గ్రహం ఒక బ్లాక్ హోల్‌లోకి ప్రవేశిస్తుంది",
+          "bn": "গ্রহটি একটি কৃষ্ণগহ্বরে প্রবেশ করে",
+          "kn": "ಗ್ರಹವು ಕಪ್ಪು ಕುಳಿಯನ್ನು ಪ್ರವೇಶಿಸುತ್ತದೆ",
+          "gu": "ગ્રહ બ્લેક હોલમાં પ્રવેશે છે"
         }
       ],
       "correctAnswer": 1,
@@ -132,11 +132,11 @@
         "hi": "वक्री गति एक दृष्टि भ्रम है  –  सापेक्ष कक्षीय गति के कारण। जब पृथ्वी बाहरी ग्रह से आगे निकलती है, ग्रह तारों के विरुद्ध पीछे चलता प्रतीत होता है  –  जैसे धीमी कार को पार करने पर वह पीछे जाती लगती है।",
         "mai": "वक्री गति सापेक्ष कक्षीय गति के कारण होइ बला एकटा प्रकाशीय भ्रम अछि। जखन पृथ्वी कोनो बाहरी ग्रह (जेना मंगल वा बृहस्पति) केँ आगू निकलैत अछि, तँ ग्रह ताराक विरुद्ध पाछू दिस चलैत देखाइत अछि – जेना राजमार्ग पर कोनो धीमा गाड़ी केँ पार करय काल ओ पाछू दिस जाइत देखाइत अछि। ग्रह कहियो वास्तव मे दिशा नहि बदलैत अछि।",
         "mr": "वक्री गति एक दृष्टि भ्रम है  –  सापेक्ष कक्षीय गति के कारण। जब पृथ्वी बाहरी ग्रह से आगे निकलती है, ग्रह तारों के विरुद्ध पीछे चलता प्रतीत होता है  –  जैसे धीमी कार को पार करने पर वह पीछे जाती लगती है।",
-        "ta": "Retrograde is an OPTICAL ILLUSION caused by relative orbital speeds. When Earth overtakes an outer planet (like Mars or Jupiter), the planet appears to move backward against the stars  –  like a slower car seeming to go backward when you pass it on the highway. The planet never actually reverses direction.",
-        "te": "Retrograde is an OPTICAL ILLUSION caused by relative orbital speeds. When Earth overtakes an outer planet (like Mars or Jupiter), the planet appears to move backward against the stars  –  like a slower car seeming to go backward when you pass it on the highway. The planet never actually reverses direction.",
-        "bn": "Retrograde is an OPTICAL ILLUSION caused by relative orbital speeds. When Earth overtakes an outer planet (like Mars or Jupiter), the planet appears to move backward against the stars  –  like a slower car seeming to go backward when you pass it on the highway. The planet never actually reverses direction.",
-        "kn": "Retrograde is an OPTICAL ILLUSION caused by relative orbital speeds. When Earth overtakes an outer planet (like Mars or Jupiter), the planet appears to move backward against the stars  –  like a slower car seeming to go backward when you pass it on the highway. The planet never actually reverses direction.",
-        "gu": "Retrograde is an OPTICAL ILLUSION caused by relative orbital speeds. When Earth overtakes an outer planet (like Mars or Jupiter), the planet appears to move backward against the stars  –  like a slower car seeming to go backward when you pass it on the highway. The planet never actually reverses direction."
+        "ta": "வக்ரம் என்பது சார்பு சுற்றுப்பாதை வேகங்களால் ஏற்படும் ஒரு ஒளியியல் மாயை. பூமி ஒரு வெளி கிரகத்தை (செவ்வாய் அல்லது குரு போன்ற) முந்தும்போது, கிரகம் நட்சத்திரங்களுக்கு எதிராக பின்னோக்கி நகர்வது போல் தோன்றும் – நெடுஞ்சாலையில் நீங்கள் ஒரு மெதுவான காரைக் கடக்கும்போது அது பின்னோக்கிச் செல்வது போல் தோன்றுவது போல. கிரகம் உண்மையில் ஒருபோதும் திசையை மாற்றுவதில்லை.",
+        "te": "వక్ర గమనం అనేది సాపేక్ష కక్ష్య వేగాల వల్ల కలిగే ఒక దృశ్య భ్రమ. భూమి ఒక బాహ్య గ్రహాన్ని (అంగారకుడు లేదా బృహస్పతి వంటివి) అధిగమించినప్పుడు, గ్రహం నక్షత్రాలకు వ్యతిరేకంగా వెనుకకు కదులుతున్నట్లు కనిపిస్తుంది – మీరు హైవేపై నెమ్మదిగా వెళ్లే కారును దాటినప్పుడు అది వెనుకకు వెళ్తున్నట్లు కనిపించినట్లు. గ్రహం నిజానికి ఎప్పుడూ దిశను మార్చుకోదు.",
+        "bn": "বক্রী গতি একটি আলোকীয় বিভ্রম যা আপেক্ষিক কক্ষপথের গতির কারণে ঘটে। যখন পৃথিবী একটি বাইরের গ্রহকে (যেমন মঙ্গল বা বৃহস্পতি) অতিক্রম করে, তখন গ্রহটিকে নক্ষত্রমণ্ডলের বিপরীতে পেছনের দিকে চলতে দেখা যায় – যেমন মহাসড়কে একটি ধীরগতির গাড়িকে অতিক্রম করার সময় সেটিকে পেছনের দিকে যেতে দেখা যায়। গ্রহটি প্রকৃতপক্ষে কখনো তার গতিপথ পরিবর্তন করে না।",
+        "kn": "ವಕ್ರ ಚಲನೆಯು ಸಾಪೇಕ್ಷ ಕಕ್ಷೀಯ ವೇಗಗಳಿಂದ ಉಂಟಾಗುವ ಒಂದು ದೃಷ್ಟಿ ಭ್ರಮೆ. ಭೂಮಿಯು ಹೊರಗಿನ ಗ್ರಹವನ್ನು (ಉದಾಹರಣೆಗೆ ಮಂಗಳ ಅಥವಾ ಗುರು) ಹಿಂದಿಕ್ಕಿದಾಗ, ಗ್ರಹವು ನಕ್ಷತ್ರಗಳ ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಹಿಮ್ಮುಖವಾಗಿ ಚಲಿಸುವಂತೆ ಕಾಣುತ್ತದೆ – ಹೆದ್ದಾರಿಯಲ್ಲಿ ನೀವು ನಿಧಾನವಾದ ಕಾರನ್ನು ಹಿಂದಿಕ್ಕಿದಾಗ ಅದು ಹಿಮ್ಮುಖವಾಗಿ ಚಲಿಸುವಂತೆ ಕಾಣುವ ಹಾಗೆ. ಗ್ರಹವು ವಾಸ್ತವವಾಗಿ ಎಂದಿಗೂ ದಿಕ್ಕನ್ನು ಬದಲಾಯಿಸುವುದಿಲ್ಲ.",
+        "gu": "વક્રી ગતિ એ સાપેક્ષ કક્ષીય ગતિને કારણે થતો દ્રષ્ટિભ્રમ છે. જ્યારે પૃથ્વી કોઈ બાહ્ય ગ્રહ (જેમ કે મંગળ અથવા ગુરુ) થી આગળ નીકળી જાય છે, ત્યારે તે ગ્રહ તારાઓની સાપેક્ષમાં પાછળ જતો દેખાય છે – જેમ કે તમે હાઈવે પર ધીમી કારને પસાર કરો ત્યારે તે પાછળ જતી દેખાય છે. ગ્રહ ક્યારેય ખરેખર તેની દિશા ઉલટાવતો નથી."
       },
       "classicalRef": "Surya Siddhanta Ch.2"
     },
@@ -148,11 +148,11 @@
         "hi": "सूर्य और चन्द्र वक्री हो सकते हैं।",
         "mai": "सूर्य आ चन्द्रमा वक्री भऽ सकैत अछि।",
         "mr": "सूर्य और चन्द्र वक्री हो सकते हैं।",
-        "ta": "Sun and Moon can be retrograde.",
-        "te": "Sun and Moon can be retrograde.",
-        "bn": "Sun and Moon can be retrograde.",
-        "kn": "Sun and Moon can be retrograde.",
-        "gu": "Sun and Moon can be retrograde."
+        "ta": "சூரியனும் சந்திரனும் வக்ரமாக இருக்க முடியும்.",
+        "te": "సూర్యుడు మరియు చంద్రుడు వక్రంగా ఉండగలవు.",
+        "bn": "সূর্য ও চন্দ্র বক্রী হতে পারে।",
+        "kn": "ಸೂರ್ಯ ಮತ್ತು ಚಂದ್ರ ವಕ್ರವಾಗಿರಬಹುದು.",
+        "gu": "સૂર્ય અને ચંદ્ર વક્રી હોઈ શકે છે."
       },
       "correctAnswer": false,
       "explanation": {
@@ -160,11 +160,11 @@
         "hi": "सूर्य कभी वक्री नहीं (पृथ्वी सूर्य की कक्षा करती है)। चंद्र कभी वक्री नहीं। राहु-केतु सदैव वक्री। केवल मंगल, बुध, गुरु, शुक्र, शनि वक्री हो सकते हैं।",
         "mai": "सूर्य पृथ्वी सँ कहियो वक्री नहि देखाइत अछि (किएक तँ पृथ्वी सूर्यक परिक्रमा करैत अछि, उल्टे नहि)। चन्द्रमा कहियो वक्री नहि देखाइत अछि किएक तँ ई पृथ्वीक सापेक्ष मे हमेशा एकहि दिस चलैत अछि। राहु आ केतु स्वभाव सँ हमेशा वक्री होइत अछि (ओ राशिचक्र मे प्रति वर्ष ~19.4° पाछू दिस चलैत अछि)। केवल मंगल, बुध, बृहस्पति, शुक्र, शनि वक्री देखाइ सकैत अछि।",
         "mr": "सूर्य कभी वक्री नहीं (पृथ्वी सूर्य की कक्षा करती है)। चंद्र कभी वक्री नहीं। राहु-केतु सदैव वक्री। केवल मंगल, बुध, गुरु, शुक्र, शनि वक्री हो सकते हैं।",
-        "ta": "Sun NEVER appears retrograde from Earth (since Earth orbits the Sun, not the other way). Moon never appears retrograde because it always moves in the same direction relative to Earth. Rahu and Ketu are always retrograde by nature (they move backward through the zodiac at ~19.4°/year). Only Mars, Mercury, Jupiter, Venus, Saturn can appear retrograde.",
-        "te": "Sun NEVER appears retrograde from Earth (since Earth orbits the Sun, not the other way). Moon never appears retrograde because it always moves in the same direction relative to Earth. Rahu and Ketu are always retrograde by nature (they move backward through the zodiac at ~19.4°/year). Only Mars, Mercury, Jupiter, Venus, Saturn can appear retrograde.",
-        "bn": "Sun NEVER appears retrograde from Earth (since Earth orbits the Sun, not the other way). Moon never appears retrograde because it always moves in the same direction relative to Earth. Rahu and Ketu are always retrograde by nature (they move backward through the zodiac at ~19.4°/year). Only Mars, Mercury, Jupiter, Venus, Saturn can appear retrograde.",
-        "kn": "Sun NEVER appears retrograde from Earth (since Earth orbits the Sun, not the other way). Moon never appears retrograde because it always moves in the same direction relative to Earth. Rahu and Ketu are always retrograde by nature (they move backward through the zodiac at ~19.4°/year). Only Mars, Mercury, Jupiter, Venus, Saturn can appear retrograde.",
-        "gu": "Sun NEVER appears retrograde from Earth (since Earth orbits the Sun, not the other way). Moon never appears retrograde because it always moves in the same direction relative to Earth. Rahu and Ketu are always retrograde by nature (they move backward through the zodiac at ~19.4°/year). Only Mars, Mercury, Jupiter, Venus, Saturn can appear retrograde."
+        "ta": "சூரியன் பூமியில் இருந்து ஒருபோதும் வக்ரமாகத் தோன்றுவதில்லை (ஏனெனில் பூமி சூரியனைச் சுற்றுகிறது, மாறாக அல்ல). சந்திரன் ஒருபோதும் வக்ரமாகத் தோன்றுவதில்லை, ஏனெனில் அது எப்போதும் பூமிக்கு சார்பாக ஒரே திசையில் நகர்கிறது. ராகுவும் கேதுவும் இயற்கையாகவே எப்போதும் வக்ரமாக இருக்கும் (அவை ராசி மண்டலத்தில் ஆண்டுக்கு ~19.4° பின்னோக்கி நகரும்). செவ்வாய், புதன், குரு, சுக்கிரன், சனி மட்டுமே வக்ரமாகத் தோன்ற முடியும்.",
+        "te": "సూర్యుడు భూమి నుండి ఎప్పుడూ వక్రంగా కనిపించడు (ఎందుకంటే భూమి సూర్యుని చుట్టూ తిరుగుతుంది, సూర్యుడు భూమి చుట్టూ కాదు). చంద్రుడు ఎప్పుడూ వక్రంగా కనిపించడు ఎందుకంటే అది భూమికి సంబంధించి ఎల్లప్పుడూ ఒకే దిశలో కదులుతుంది. రాహువు మరియు కేతువు స్వభావరీత్యా ఎల్లప్పుడూ వక్రంగా ఉంటాయి (అవి రాశిచక్రంలో సంవత్సరానికి సుమారు 19.4° వెనుకకు కదులుతాయి). అంగారకుడు, బుధుడు, బృహస్పతి, శుక్రుడు, శని మాత్రమే వక్రంగా కనిపించగలవు.",
+        "bn": "পৃথিবী থেকে সূর্যকে কখনো বক্রী দেখা যায় না (কারণ পৃথিবী সূর্যের চারদিকে ঘোরে, উল্টোটা নয়)। চন্দ্রকেও কখনো বক্রী দেখা যায় না কারণ এটি পৃথিবীর সাপেক্ষে সর্বদা একই দিকে চলে। রাহু ও কেতু স্বভাবতই সর্বদা বক্রী (তারা প্রতি বছর প্রায় ১৯.৪° হারে রাশিচক্রের বিপরীত দিকে চলে)। শুধুমাত্র মঙ্গল, বুধ, বৃহস্পতি, শুক্র, শনি বক্রী প্রতীয়মান হতে পারে।",
+        "kn": "ಸೂರ್ಯನು ಭೂಮಿಯಿಂದ ಎಂದಿಗೂ ವಕ್ರವಾಗಿ ಕಾಣುವುದಿಲ್ಲ (ಏಕೆಂದರೆ ಭೂಮಿಯು ಸೂರ್ಯನನ್ನು ಸುತ್ತುತ್ತದೆ, ಸೂರ್ಯ ಭೂಮಿಯನ್ನಲ್ಲ). ಚಂದ್ರನು ಎಂದಿಗೂ ವಕ್ರವಾಗಿ ಕಾಣುವುದಿಲ್ಲ ಏಕೆಂದರೆ ಅದು ಭೂಮಿಗೆ ಸಂಬಂಧಿಸಿದಂತೆ ಯಾವಾಗಲೂ ಒಂದೇ ದಿಕ್ಕಿನಲ್ಲಿ ಚಲಿಸುತ್ತದೆ. ರಾಹು ಮತ್ತು ಕೇತುಗಳು ಸ್ವಭಾವತಃ ಯಾವಾಗಲೂ ವಕ್ರವಾಗಿರುತ್ತವೆ (ಅವು ರಾಶಿಚಕ್ರದಲ್ಲಿ ವರ್ಷಕ್ಕೆ ಸುಮಾರು ೧೯.೪° ಹಿಮ್ಮುಖವಾಗಿ ಚಲಿಸುತ್ತವೆ). ಮಂಗಳ, ಬುಧ, ಗುರು, ಶುಕ್ರ, ಶನಿ ಮಾತ್ರ ವಕ್ರವಾಗಿ ಕಾಣಬಹುದು.",
+        "gu": "સૂર્ય પૃથ્વી પરથી ક્યારેય વક્રી દેખાતો નથી (કારણ કે પૃથ્વી સૂર્યની પરિક્રમા કરે છે, ઊલટું નહીં). ચંદ્ર ક્યારેય વક્રી દેખાતો નથી કારણ કે તે હંમેશા પૃથ્વીની સાપેક્ષમાં એક જ દિશામાં ગતિ કરે છે. રાહુ અને કેતુ સ્વભાવથી હંમેશા વક્રી હોય છે (તેઓ રાશિચક્રમાં પ્રતિ વર્ષ આશરે ૧૯.૪° પાછળની તરફ ગતિ કરે છે). ફક્ત મંગળ, બુધ, ગુરુ, શુક્ર, શનિ જ વક્રી દેખાઈ શકે છે."
       }
     },
     {
@@ -175,11 +175,11 @@
         "hi": "ज्योतिष में वक्री ग्रह सामान्यतः माना जाता है:",
         "mai": "ज्योतिष मे, एकटा वक्री ग्रह केँ सामान्यतः मानल जाइत अछि:",
         "mr": "ज्योतिष में वक्री ग्रह सामान्यतः माना जाता है:",
-        "ta": "In Jyotish, a retrograde planet is generally considered:",
-        "te": "In Jyotish, a retrograde planet is generally considered:",
-        "bn": "In Jyotish, a retrograde planet is generally considered:",
-        "kn": "In Jyotish, a retrograde planet is generally considered:",
-        "gu": "In Jyotish, a retrograde planet is generally considered:"
+        "ta": "ஜோதிடத்தில், ஒரு வக்ர கிரகம் பொதுவாகக் கருதப்படுவது:",
+        "te": "జ్యోతిష్యశాస్త్రంలో, ఒక వక్ర గ్రహం సాధారణంగా ఇలా పరిగణించబడుతుంది:",
+        "bn": "জ্যোতিষে, একটি বক্রী গ্রহকে সাধারণত বিবেচনা করা হয়:",
+        "kn": "ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ, ಒಂದು ವಕ್ರ ಗ್ರಹವನ್ನು ಸಾಮಾನ್ಯವಾಗಿ ಹೀಗೆ ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ:",
+        "gu": "જ્યોતિષમાં, વક્રી ગ્રહને સામાન્ય રીતે ગણવામાં આવે છે:"
       },
       "options": [
         {
@@ -187,44 +187,44 @@
           "hi": "सदैव दुर्बल",
           "mai": "हमेशा कमजोर",
           "mr": "सदैव दुर्बल",
-          "ta": "Always weak",
-          "te": "Always weak",
-          "bn": "Always weak",
-          "kn": "Always weak",
-          "gu": "Always weak"
+          "ta": "எப்போதும் பலவீனமானது",
+          "te": "ఎల్లప్పుడూ బలహీనంగా",
+          "bn": "সর্বদা দুর্বল",
+          "kn": "ಯಾವಾಗಲೂ ದುರ್ಬಲ",
+          "gu": "હંમેશા નબળો"
         },
         {
           "en": "Always strong",
           "hi": "सदैव बलवान",
           "mai": "हमेशा बलवान",
           "mr": "सदैव बलवान",
-          "ta": "Always strong",
-          "te": "Always strong",
-          "bn": "Always strong",
-          "kn": "Always strong",
-          "gu": "Always strong"
+          "ta": "எப்போதும் பலமானது",
+          "te": "ఎల్లప్పుడూ బలంగా",
+          "bn": "সর্বদা শক্তিশালী",
+          "kn": "ಯಾವಾಗಲೂ ಬಲಶಾಲಿ",
+          "gu": "હંમેશા બળવાન"
         },
         {
           "en": "Strong in some ways (intensified, internalized energy) but expressing differently",
           "hi": "कुछ मायनों में बलवान (तीव्र, आंतरिक ऊर्जा) लेकिन भिन्न अभिव्यक्ति",
           "mai": "किछु तरीका सँ बलवान (तीव्र, आंतरिक ऊर्जा) मुदा भिन्न रूप सँ व्यक्त होइत",
           "mr": "कुछ मायनों में बलवान (तीव्र, आंतरिक ऊर्जा) लेकिन भिन्न अभिव्यक्ति",
-          "ta": "Strong in some ways (intensified, internalized energy) but expressing differently",
-          "te": "Strong in some ways (intensified, internalized energy) but expressing differently",
-          "bn": "Strong in some ways (intensified, internalized energy) but expressing differently",
-          "kn": "Strong in some ways (intensified, internalized energy) but expressing differently",
-          "gu": "Strong in some ways (intensified, internalized energy) but expressing differently"
+          "ta": "சில வழிகளில் பலமானது (தீவிரப்படுத்தப்பட்ட, உள்ளிழுக்கப்பட்ட ஆற்றல்) ஆனால் வித்தியாசமாக வெளிப்படும்",
+          "te": "కొన్ని విధాలుగా బలంగా (తీవ్రమైన, అంతర్గత శక్తి) కానీ విభిన్నంగా వ్యక్తమవుతుంది",
+          "bn": "কিছু ক্ষেত্রে শক্তিশালী (তীব্র, অভ্যন্তরীণ শক্তি) তবে ভিন্নভাবে প্রকাশ পায়",
+          "kn": "ಕೆಲವು ವಿಧಗಳಲ್ಲಿ ಬಲಶಾಲಿ (ತೀವ್ರಗೊಂಡ, ಆಂತರಿಕ ಶಕ್ತಿ) ಆದರೆ ವಿಭಿನ್ನವಾಗಿ ವ್ಯಕ್ತವಾಗುತ್ತದೆ",
+          "gu": "અમુક રીતે બળવાન (તીવ્ર, આંતરિક ઊર્જા) પરંતુ અલગ રીતે વ્યક્ત થાય છે"
         },
         {
           "en": "Neutral  –  no effect",
           "hi": "तटस्थ  –  कोई प्रभाव नहीं",
           "mai": "तटस्थ – कोनो प्रभाव नहि",
           "mr": "तटस्थ  –  कोई प्रभाव नहीं",
-          "ta": "Neutral  –  no effect",
-          "te": "Neutral  –  no effect",
-          "bn": "Neutral  –  no effect",
-          "kn": "Neutral  –  no effect",
-          "gu": "Neutral  –  no effect"
+          "ta": "நடுநிலையானது – எந்த விளைவும் இல்லை",
+          "te": "తటస్థం – ప్రభావం లేదు",
+          "bn": "নিরপেক্ষ – কোনো প্রভাব নেই",
+          "kn": "ತಟಸ್ಥ – ಯಾವುದೇ ಪರಿಣಾಮವಿಲ್ಲ",
+          "gu": "તટસ્થ – કોઈ અસર નહીં"
         }
       ],
       "correctAnswer": 2,
@@ -233,11 +233,11 @@
         "hi": "ज्योतिष दृष्टिकोण सूक्ष्म है। वक्री ग्रह पृथ्वी के निकट (अधिक चमकीले)  –  अतिरिक्त चेष्टा बल। लेकिन अभिव्यक्ति आंतरिक, अपरंपरागत, विलंबित। वक्री नीच भंग भी करता है (शर्त #4)।",
         "mai": "वक्री ग्रहक ज्योतिषीय दृष्टिकोण सूक्ष्म अछि। वक्री ग्रह वास्तव मे पृथ्वीक बेसी नजदीक होइत अछि (आ एहि लेल बेसी चमकदार) – जे ओकरा अतिरिक्त चेष्टा बल (गतिक शक्ति) दैत अछि। मुदा हुनकर अभिव्यक्ति आंतरिक, अपरंपरागत, आ प्रायः विलंबित होइत अछि। एकटा वक्री ग्रह काज भिन्न तरीका सँ करैत अछि – कमजोर नहि, मुदा अप्रत्याशित तरीका सँ। वक्री नीच भंग (नीच भंग स्थिति #4) केँ सेहो रद्द करैत अछि।",
         "mr": "ज्योतिष दृष्टिकोण सूक्ष्म है। वक्री ग्रह पृथ्वी के निकट (अधिक चमकीले)  –  अतिरिक्त चेष्टा बल। लेकिन अभिव्यक्ति आंतरिक, अपरंपरागत, विलंबित। वक्री नीच भंग भी करता है (शर्त #4)।",
-        "ta": "The Jyotish view of retrograde is nuanced. Retrograde planets are actually CLOSER to Earth (and therefore BRIGHTER)  –  giving them extra Cheshta Bala (motional strength). But their expression is internalized, unconventional, and often delayed. A retrograde planet does things differently  –  not weaker, but in an unexpected way. Retrograde also cancels debilitation (Neecha Bhanga condition #4).",
-        "te": "The Jyotish view of retrograde is nuanced. Retrograde planets are actually CLOSER to Earth (and therefore BRIGHTER)  –  giving them extra Cheshta Bala (motional strength). But their expression is internalized, unconventional, and often delayed. A retrograde planet does things differently  –  not weaker, but in an unexpected way. Retrograde also cancels debilitation (Neecha Bhanga condition #4).",
-        "bn": "The Jyotish view of retrograde is nuanced. Retrograde planets are actually CLOSER to Earth (and therefore BRIGHTER)  –  giving them extra Cheshta Bala (motional strength). But their expression is internalized, unconventional, and often delayed. A retrograde planet does things differently  –  not weaker, but in an unexpected way. Retrograde also cancels debilitation (Neecha Bhanga condition #4).",
-        "kn": "The Jyotish view of retrograde is nuanced. Retrograde planets are actually CLOSER to Earth (and therefore BRIGHTER)  –  giving them extra Cheshta Bala (motional strength). But their expression is internalized, unconventional, and often delayed. A retrograde planet does things differently  –  not weaker, but in an unexpected way. Retrograde also cancels debilitation (Neecha Bhanga condition #4).",
-        "gu": "The Jyotish view of retrograde is nuanced. Retrograde planets are actually CLOSER to Earth (and therefore BRIGHTER)  –  giving them extra Cheshta Bala (motional strength). But their expression is internalized, unconventional, and often delayed. A retrograde planet does things differently  –  not weaker, but in an unexpected way. Retrograde also cancels debilitation (Neecha Bhanga condition #4)."
+        "ta": "வக்ர கிரகங்கள் பற்றிய ஜோதிடக் கண்ணோட்டம் நுணுக்கமானது. வக்ர கிரகங்கள் உண்மையில் பூமிக்கு நெருக்கமாக உள்ளன (அதனால் பிரகாசமாக இருக்கும்) – அவற்றுக்கு கூடுதல் சேஷ்டா பலம் (இயக்க பலம்) அளிக்கிறது. ஆனால் அவற்றின் வெளிப்பாடு உள்ளிழுக்கப்பட்டது, வழக்கத்திற்கு மாறானது மற்றும் பெரும்பாலும் தாமதமானது. ஒரு வக்ர கிரகம் காரியங்களை வித்தியாசமாகச் செய்கிறது – பலவீனமாக அல்ல, ஆனால் எதிர்பாராத விதத்தில். வக்ரம் நீச்ச பங்கத்தையும் ரத்து செய்கிறது (நீச்ச பங்கம் நிலை #4).",
+        "te": "వక్ర గ్రహంపై జ్యోతిష్య దృక్పథం సూక్ష్మంగా ఉంటుంది. వక్ర గ్రహాలు నిజానికి భూమికి దగ్గరగా ఉంటాయి (మరియు అందువల్ల ప్రకాశవంతంగా ఉంటాయి) – వాటికి అదనపు చేష్టా బలం (చలన బలం) ఇస్తుంది. కానీ వాటి వ్యక్తీకరణ అంతర్గతంగా, అసాధారణంగా మరియు తరచుగా ఆలస్యంగా ఉంటుంది. ఒక వక్ర గ్రహం పనులను విభిన్నంగా చేస్తుంది – బలహీనంగా కాదు, కానీ ఊహించని విధంగా. వక్ర గమనం నీచత్వాన్ని కూడా రద్దు చేస్తుంది (నీచ భంగ స్థితి #4).",
+        "bn": "বক্রী গ্রহ সম্পর্কে জ্যোতিষের ধারণা সূক্ষ্ম। বক্রী গ্রহগুলি প্রকৃতপক্ষে পৃথিবীর কাছাকাছি থাকে (এবং তাই উজ্জ্বলতর হয়) – যা তাদের অতিরিক্ত চেষ্টা বল (গতিজনিত শক্তি) প্রদান করে। তবে তাদের প্রকাশ অভ্যন্তরীণ, অপ্রচলিত এবং প্রায়শই বিলম্বিত হয়। একটি বক্রী গ্রহ ভিন্নভাবে কাজ করে – দুর্বলভাবে নয়, বরং অপ্রত্যাশিত উপায়ে। বক্রী গতি নীচ ভঙ্গ যোগকেও বাতিল করে (নীচ ভঙ্গ অবস্থা #৪)।",
+        "kn": "ವಕ್ರ ಗ್ರಹಗಳ ಬಗ್ಗೆ ಜ್ಯೋತಿಷ್ಯದ ದೃಷ್ಟಿಕೋನವು ಸೂಕ್ಷ್ಮವಾಗಿದೆ. ವಕ್ರ ಗ್ರಹಗಳು ವಾಸ್ತವವಾಗಿ ಭೂಮಿಗೆ ಹತ್ತಿರವಾಗಿರುತ್ತವೆ (ಮತ್ತು ಆದ್ದರಿಂದ ಹೆಚ್ಚು ಪ್ರಕಾಶಮಾನವಾಗಿರುತ್ತವೆ) – ಅವುಗಳಿಗೆ ಹೆಚ್ಚುವರಿ ಚೇಷ್ಟಾ ಬಲವನ್ನು (ಚಲನೆಯ ಬಲ) ನೀಡುತ್ತದೆ. ಆದರೆ ಅವುಗಳ ಅಭಿವ್ಯಕ್ತಿ ಆಂತರಿಕ, ಅಸಾಂಪ್ರದಾಯಿಕ ಮತ್ತು ಸಾಮಾನ್ಯವಾಗಿ ವಿಳಂಬವಾಗಿರುತ್ತದೆ. ಒಂದು ವಕ್ರ ಗ್ರಹವು ವಿಷಯಗಳನ್ನು ವಿಭಿನ್ನವಾಗಿ ಮಾಡುತ್ತದೆ – ದುರ್ಬಲವಾಗಿಲ್ಲ, ಆದರೆ ಅನಿರೀಕ್ಷಿತ ರೀತಿಯಲ್ಲಿ. ವಕ್ರ ಚಲನೆಯು ನೀಚ ಭಂಗವನ್ನು (ನೀಚ ಭಂಗ ಸ್ಥಿತಿ #೪) ಸಹ ರದ್ದುಗೊಳಿಸುತ್ತದೆ.",
+        "gu": "વક્રી ગ્રહ વિશે જ્યોતિષનો દૃષ્ટિકોણ સૂક્ષ્મ છે. વક્રી ગ્રહો ખરેખર પૃથ્વીની નજીક હોય છે (અને તેથી વધુ તેજસ્વી હોય છે) – જેનાથી તેમને વધારાનું ચેષ્ટા બળ (ગતિજન્ય શક્તિ) મળે છે. પરંતુ તેમની અભિવ્યક્તિ આંતરિક, અપરંપરાગત અને ઘણીવાર વિલંબિત હોય છે. વક્રી ગ્રહ કાર્યો અલગ રીતે કરે છે – નબળો નહીં, પરંતુ અણધારી રીતે. વક્રી ગ્રહ નીચ ભંગ (નીચ ભંગની ચોથી સ્થિતિ) પણ રદ કરે છે."
       },
       "classicalRef": "BPHS, Saravali Ch.33"
     },
@@ -249,11 +249,11 @@
         "hi": "बुध सूर्य से कितने अंश के भीतर अस्त होता है?",
         "mai": "बुध सूर्य सँ केतेक डिग्रीक भीतर होयबा पर अस्त होइत अछि?",
         "mr": "बुध सूर्य से कितने अंश के भीतर अस्त होता है?",
-        "ta": "Mercury is combust when within how many degrees of the Sun?",
-        "te": "Mercury is combust when within how many degrees of the Sun?",
-        "bn": "Mercury is combust when within how many degrees of the Sun?",
-        "kn": "Mercury is combust when within how many degrees of the Sun?",
-        "gu": "Mercury is combust when within how many degrees of the Sun?"
+        "ta": "புதன் சூரியனில் இருந்து எத்தனை பாகைகளுக்குள் இருக்கும்போது அஸ்தமனமாகிறது?",
+        "te": "బుధుడు సూర్యునికి ఎన్ని డిగ్రీల దూరంలో ఉన్నప్పుడు అస్తంగత్వం చెందుతాడు?",
+        "bn": "সূর্যের কত ডিগ্রির মধ্যে থাকলে বুধ অস্তগত হয়?",
+        "kn": "ಬುಧವು ಸೂರ್ಯನಿಂದ ಎಷ್ಟು ಡಿಗ್ರಿಗಳ ಒಳಗೆ ಇದ್ದಾಗ ಅಸ್ತಂಗತವಾಗುತ್ತದೆ?",
+        "gu": "બુધ સૂર્યથી કેટલા અંશના અંતરે હોય ત્યારે અસ્ત થાય છે?"
       },
       "options": [
         {
@@ -261,22 +261,22 @@
           "hi": "12° (वक्री हो तो 14°)",
           "mai": "12° (वा 14° जँ वक्री)",
           "mr": "12° (वक्री हो तो 14°)",
-          "ta": "12° (or 14° if retrograde)",
-          "te": "12° (or 14° if retrograde)",
-          "bn": "12° (or 14° if retrograde)",
-          "kn": "12° (or 14° if retrograde)",
-          "gu": "12° (or 14° if retrograde)"
+          "ta": "12° (அல்லது வக்ரமாக இருந்தால் 14°)",
+          "te": "12° (లేదా వక్రంగా ఉంటే 14°)",
+          "bn": "১২° (বা ১৪° যদি বক্রী হয়)",
+          "kn": "೧೨° (ಅಥವಾ ೧೪° ವಕ್ರವಾಗಿದ್ದರೆ)",
+          "gu": "૧૨° (અથવા ૧૪° જો વક્રી હોય)"
         },
         {
           "en": "14° (or 12° if retrograde)",
           "hi": "14° (वक्री हो तो 12°)",
           "mai": "14° (वा 12° जँ वक्री)",
           "mr": "14° (वक्री हो तो 12°)",
-          "ta": "14° (or 12° if retrograde)",
-          "te": "14° (or 12° if retrograde)",
-          "bn": "14° (or 12° if retrograde)",
-          "kn": "14° (or 12° if retrograde)",
-          "gu": "14° (or 12° if retrograde)"
+          "ta": "14° (அல்லது வக்ரமாக இருந்தால் 12°)",
+          "te": "14° (లేదా వక్రంగా ఉంటే 12°)",
+          "bn": "১৪° (বা ১২° যদি বক্রী হয়)",
+          "kn": "೧೪° (ಅಥವಾ ೧೨° ವಕ್ರವಾಗಿದ್ದರೆ)",
+          "gu": "૧૪° (અથવા ૧૨° જો વક્રી હોય)"
         },
         {
           "en": "17°",
@@ -305,12 +305,12 @@
       "explanation": {
         "en": "Mercury combustion orb: 14° normally, 12° if retrograde (retrograde Mercury is brighter, so the orb shrinks). Full combustion orbs: Moon 12°, Mars 17°, Mercury 14°/12°(R), Jupiter 11°, Venus 10°/8°(R), Saturn 15°. These are from BPHS and represent the distance within which the planet becomes invisible due to Sun's glare.",
         "hi": "बुध अस्त सीमा: सामान्यतः 14°, वक्री हो तो 12°। सभी सीमाएं: चंद्र 12°, मंगल 17°, बुध 14°/12°(वक्री), गुरु 11°, शुक्र 10°/8°(वक्री), शनि 15°।",
-        "ta": "Mercury combustion orb: 14° normally, 12° if retrograde (retrograde Mercury is brighter, so the orb shrinks). Full combustion orbs: Moon 12°, Mars 17°, Mercury 14°/12°(R), Jupiter 11°, Venus 10°/8°(R), Saturn 15°. These are from BPHS and represent the distance within which the planet becomes invisible due to Sun's glare.",
-        "te": "Mercury combustion orb: 14° normally, 12° if retrograde (retrograde Mercury is brighter, so the orb shrinks). Full combustion orbs: Moon 12°, Mars 17°, Mercury 14°/12°(R), Jupiter 11°, Venus 10°/8°(R), Saturn 15°. These are from BPHS and represent the distance within which the planet becomes invisible due to Sun's glare.",
-        "bn": "Mercury combustion orb: 14° normally, 12° if retrograde (retrograde Mercury is brighter, so the orb shrinks). Full combustion orbs: Moon 12°, Mars 17°, Mercury 14°/12°(R), Jupiter 11°, Venus 10°/8°(R), Saturn 15°. These are from BPHS and represent the distance within which the planet becomes invisible due to Sun's glare.",
-        "kn": "Mercury combustion orb: 14° normally, 12° if retrograde (retrograde Mercury is brighter, so the orb shrinks). Full combustion orbs: Moon 12°, Mars 17°, Mercury 14°/12°(R), Jupiter 11°, Venus 10°/8°(R), Saturn 15°. These are from BPHS and represent the distance within which the planet becomes invisible due to Sun's glare.",
+        "ta": "புதனின் அஸ்தமன பாகை: சாதாரணமாக 14°, வக்ரமாக இருந்தால் 12° (வக்ர புதன் பிரகாசமாக இருப்பதால், பாகை குறைகிறது). முழு அஸ்தமன பாகைகள்: சந்திரன் 12°, செவ்வாய் 17°, புதன் 14°/12°(வ), குரு 11°, சுக்கிரன் 10°/8°(வ), சனி 15°. இவை பிருஹத் பராசர ஹோரா சாஸ்திரத்தில் இருந்து எடுக்கப்பட்டவை மற்றும் சூரியனின் பிரகாசத்தால் கிரகம் கண்ணுக்குத் தெரியாமல் போகும் தூரத்தைக் குறிக்கின்றன.",
+        "te": "బుధుని అస్తంగత్వ పరిధి: సాధారణంగా 14°, వక్రంగా ఉంటే 12° (వక్ర బుధుడు ప్రకాశవంతంగా ఉంటాడు, కాబట్టి పరిధి తగ్గుతుంది). పూర్తి అస్తంగత్వ పరిధులు: చంద్రుడు 12°, అంగారకుడు 17°, బుధుడు 14°/12°(వ), బృహస్పతి 11°, శుక్రుడు 10°/8°(వ), శని 15°. ఇవి బృహత్ పరాశర హోరా శాస్త్రం (BPHS) నుండి తీసుకోబడ్డాయి మరియు సూర్యుని కాంతి వల్ల గ్రహం కనిపించకుండా పోయే దూరాన్ని సూచిస్తాయి.",
+        "bn": "বুধের অস্তগত হওয়ার কক্ষপথের দূরত্ব: সাধারণত ১৪°, বক্রী হলে ১২° (বক্রী বুধ উজ্জ্বলতর হয়, তাই কক্ষপথের দূরত্ব কমে যায়)। সম্পূর্ণ অস্তগত হওয়ার কক্ষপথের দূরত্ব: চন্দ্র ১২°, মঙ্গল ১৭°, বুধ ১৪°/১২°(ব), বৃহস্পতি ১১°, শুক্র ১০°/৮°(ব), শনি ১৫°। এগুলি বৃহৎ পরাশর হোরা শাস্ত্র (BPHS) থেকে নেওয়া হয়েছে এবং সেই দূরত্বকে বোঝায় যার মধ্যে গ্রহটি সূর্যের তীব্র আলোর কারণে অদৃশ্য হয়ে যায়।",
+        "kn": "ಬುಧದ ಅಸ್ತಂಗತ ಕಕ್ಷೆ: ಸಾಮಾನ್ಯವಾಗಿ ೧೪°, ವಕ್ರವಾಗಿದ್ದರೆ ೧೨° (ವಕ್ರ ಬುಧವು ಹೆಚ್ಚು ಪ್ರಕಾಶಮಾನವಾಗಿರುತ್ತದೆ, ಆದ್ದರಿಂದ ಕಕ್ಷೆ ಕುಗ್ಗುತ್ತದೆ). ಪೂರ್ಣ ಅಸ್ತಂಗತ ಕಕ್ಷೆಗಳು: ಚಂದ್ರ ೧೨°, ಮಂಗಳ ೧೭°, ಬುಧ ೧೪°/೧೨°(ವ), ಗುರು ೧೧°, ಶುಕ್ರ ೧೦°/೮°(ವ), ಶನಿ ೧೫°. ಇವು ಬೃಹತ್ ಪರಾಶರ ಹೋರಾ ಶಾಸ್ತ್ರದಿಂದ ಬಂದವು ಮತ್ತು ಸೂರ್ಯನ ಪ್ರಖರತೆಯಿಂದ ಗ್ರಹವು ಅದೃಶ್ಯವಾಗುವ ಅಂತರವನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತವೆ.",
         "mr": "बुध अस्त सीमा: सामान्यतः 14°, वक्री हो तो 12°। सभी सीमाएं: चंद्र 12°, मंगल 17°, बुध 14°/12°(वक्री), गुरु 11°, शुक्र 10°/8°(वक्री), शनि 15°।",
-        "gu": "Mercury combustion orb: 14° normally, 12° if retrograde (retrograde Mercury is brighter, so the orb shrinks). Full combustion orbs: Moon 12°, Mars 17°, Mercury 14°/12°(R), Jupiter 11°, Venus 10°/8°(R), Saturn 15°. These are from BPHS and represent the distance within which the planet becomes invisible due to Sun's glare.",
+        "gu": "બુધનો અસ્તનો અંશ: સામાન્ય રીતે ૧૪°, વક્રી હોય તો ૧૨° (વક્રી બુધ વધુ તેજસ્વી હોય છે, તેથી અંશ ઘટે છે). સંપૂર્ણ અસ્તના અંશ: ચંદ્ર ૧૨°, મંગળ ૧૭°, બુધ ૧૪°/૧૨°(વ), ગુરુ ૧૧°, શુક્ર ૧૦°/૮°(વ), શનિ ૧૫°. આ BPHS માંથી છે અને તે અંતર દર્શાવે છે જેની અંદર ગ્રહ સૂર્યના તેજને કારણે અદ્રશ્ય થઈ જાય છે.",
         "mai": "बुध अस्तक कक्षा: सामान्यतः 14°, जँ वक्री तँ 12° (वक्री बुध बेसी चमकदार होइत अछि, तेँ कक्षा छोट भऽ जाइत अछि)। पूर्ण अस्तक कक्षा: चन्द्रमा 12°, मंगल 17°, बुध 14°/12°(R), बृहस्पति 11°, शुक्र 10°/8°(R), शनि 15°। ई सब BPHS सँ लेल गेल अछि आ ओ दूरी केँ दर्शाबैत अछि जाहि भीतर ग्रह सूर्यक चमकक कारण अदृश्य भऽ जाइत अछि।"
       },
       "classicalRef": "BPHS Ch.3 v.42"
@@ -323,11 +323,11 @@
         "hi": "\"ग्रह युद्ध\" क्या है?",
         "mai": "की अछि \"ग्रह युद्ध\"?",
         "mr": "\"ग्रह युद्ध\" क्या है?",
-        "ta": "What is \"Graha Yuddha\" (Planetary War)?",
-        "te": "What is \"Graha Yuddha\" (Planetary War)?",
-        "bn": "What is \"Graha Yuddha\" (Planetary War)?",
-        "kn": "What is \"Graha Yuddha\" (Planetary War)?",
-        "gu": "What is \"Graha Yuddha\" (Planetary War)?"
+        "ta": "\"கிரக யுத்தம்\" (கிரகப் போர்) என்றால் என்ன?",
+        "te": "గ్రహ యుద్ధం అంటే ఏమిటి?",
+        "bn": "\"গ্রহ যুদ্ধ\" কী?",
+        "kn": "\"ಗ್ರಹ ಯುದ್ಧ\" ಎಂದರೇನು?",
+        "gu": "ગ્રહ યુદ્ધ (ગ્રહોનું યુદ્ધ) શું છે?"
       },
       "options": [
         {
@@ -335,56 +335,56 @@
           "hi": "जब दो ग्रह एक ही राशि में हों",
           "mai": "जखन दू ग्रह एकहि राशि मे होइत अछि",
           "mr": "जब दो ग्रह एक ही राशि में हों",
-          "ta": "When two planets are in the same sign",
-          "te": "When two planets are in the same sign",
-          "bn": "When two planets are in the same sign",
-          "kn": "When two planets are in the same sign",
-          "gu": "When two planets are in the same sign"
+          "ta": "இரண்டு கிரகங்கள் ஒரே ராசியில் இருக்கும்போது",
+          "te": "రెండు గ్రహాలు ఒకే రాశిలో ఉన్నప్పుడు",
+          "bn": "যখন দুটি গ্রহ একই রাশিতে থাকে",
+          "kn": "ಎರಡು ಗ್ರಹಗಳು ಒಂದೇ ರಾಶಿಯಲ್ಲಿ ಇದ್ದಾಗ",
+          "gu": "જ્યારે બે ગ્રહ એક જ રાશિમાં હોય"
         },
         {
           "en": "When two planets are within 1° of each other",
           "hi": "जब दो ग्रह एक दूसरे से 1° के भीतर हों",
           "mai": "जखन दू ग्रह एक दोसर सँ 1° कऽ भीतर होइत अछि",
           "mr": "जब दो ग्रह एक दूसरे से 1° के भीतर हों",
-          "ta": "When two planets are within 1° of each other",
-          "te": "When two planets are within 1° of each other",
-          "bn": "When two planets are within 1° of each other",
-          "kn": "When two planets are within 1° of each other",
-          "gu": "When two planets are within 1° of each other"
+          "ta": "இரண்டு கிரகங்கள் ஒன்றுக்கொன்று 1°க்குள் இருக்கும்போது",
+          "te": "రెండు గ్రహాలు ఒకదానికొకటి 1° లోపల ఉన్నప్పుడు",
+          "bn": "যখন দুটি গ্রহ পরস্পরের ১° এর মধ্যে থাকে",
+          "kn": "ಎರಡು ಗ್ರಹಗಳು ಪರಸ್ಪರ ೧° ಒಳಗೆ ಇದ್ದಾಗ",
+          "gu": "જ્યારે બે ગ્રહ એકબીજાથી ૧° ની અંદર હોય"
         },
         {
           "en": "When a planet is debilitated",
           "hi": "जब ग्रह नीच हो",
           "mai": "जखन कोनो ग्रह नीच होइत अछि",
           "mr": "जब ग्रह नीच हो",
-          "ta": "When a planet is debilitated",
-          "te": "When a planet is debilitated",
-          "bn": "When a planet is debilitated",
-          "kn": "When a planet is debilitated",
-          "gu": "When a planet is debilitated"
+          "ta": "ஒரு கிரகம் நீச்சம் அடையும்போது",
+          "te": "ఒక గ్రహం నీచ స్థితిలో ఉన్నప్పుడు",
+          "bn": "যখন একটি গ্রহ নীচস্থ হয়",
+          "kn": "ಒಂದು ಗ್ರಹವು ನೀಚ ಸ್ಥಿತಿಯಲ್ಲಿದ್ದಾಗ",
+          "gu": "જ્યારે કોઈ ગ્રહ નીચનો હોય"
         },
         {
           "en": "When a planet is retrograde",
           "hi": "जब ग्रह वक्री हो",
           "mai": "जखन कोनो ग्रह वक्री होइत अछि",
           "mr": "जब ग्रह वक्री हो",
-          "ta": "When a planet is retrograde",
-          "te": "When a planet is retrograde",
-          "bn": "When a planet is retrograde",
-          "kn": "When a planet is retrograde",
-          "gu": "When a planet is retrograde"
+          "ta": "ஒரு கிரகம் வக்ரமாக இருக்கும்போது",
+          "te": "ఒక గ్రహం వక్రంగా ఉన్నప్పుడు",
+          "bn": "যখন একটি গ্রহ বক্রী হয়",
+          "kn": "ಒಂದು ಗ್ರಹವು ವಕ್ರವಾಗಿದ್ದಾಗ",
+          "gu": "જ્યારે કોઈ ગ્રહ વક્રી હોય"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "Graha Yuddha occurs when two planets (excluding Sun, Moon, Rahu, Ketu) are within 1° of each other. The planet with higher declination (more northerly position) is considered the WINNER. The loser's karakatvas suffer. Only true planets (Mars-Saturn) participate; luminaries and nodes don't \"war.\"",
         "hi": "ग्रह युद्ध तब होता है जब दो ग्रह (सूर्य, चंद्र, राहु, केतु छोड़कर) 1° के भीतर हों। अधिक उत्तरी क्रांति वाला विजयी। हारने वाले के कारकत्व पीड़ित।",
-        "ta": "Graha Yuddha occurs when two planets (excluding Sun, Moon, Rahu, Ketu) are within 1° of each other. The planet with higher declination (more northerly position) is considered the WINNER. The loser's karakatvas suffer. Only true planets (Mars-Saturn) participate; luminaries and nodes don't \"war.\"",
-        "te": "Graha Yuddha occurs when two planets (excluding Sun, Moon, Rahu, Ketu) are within 1° of each other. The planet with higher declination (more northerly position) is considered the WINNER. The loser's karakatvas suffer. Only true planets (Mars-Saturn) participate; luminaries and nodes don't \"war.\"",
-        "bn": "Graha Yuddha occurs when two planets (excluding Sun, Moon, Rahu, Ketu) are within 1° of each other. The planet with higher declination (more northerly position) is considered the WINNER. The loser's karakatvas suffer. Only true planets (Mars-Saturn) participate; luminaries and nodes don't \"war.\"",
-        "kn": "Graha Yuddha occurs when two planets (excluding Sun, Moon, Rahu, Ketu) are within 1° of each other. The planet with higher declination (more northerly position) is considered the WINNER. The loser's karakatvas suffer. Only true planets (Mars-Saturn) participate; luminaries and nodes don't \"war.\"",
+        "ta": "கிரக யுத்தம் இரண்டு கிரகங்கள் (சூரியன், சந்திரன், ராகு, கேது தவிர) ஒன்றுக்கொன்று 1°க்குள் இருக்கும்போது நிகழ்கிறது. அதிக சாய்வு (அதிக வடக்குப் பகுதி) கொண்ட கிரகம் வெற்றியாளராகக் கருதப்படுகிறது. தோற்ற கிரகத்தின் காரகத்துவங்கள் பாதிக்கப்படும். உண்மையான கிரகங்கள் (செவ்வாய்-சனி) மட்டுமே பங்கேற்கின்றன; ஒளி கிரகங்களும் மற்றும் சாயா கிரகங்களும் \"போரிடுவதில்லை.\"",
+        "te": "రెండు గ్రహాలు (సూర్యుడు, చంద్రుడు, రాహువు, కేతువు మినహా) ఒకదానికొకటి 1° లోపల ఉన్నప్పుడు గ్రహ యుద్ధం జరుగుతుంది. ఎక్కువ డిక్లినేషన్ (ఎక్కువ ఉత్తర స్థానం) ఉన్న గ్రహం విజేతగా పరిగణించబడుతుంది. ఓడిపోయిన గ్రహం యొక్క కారకత్వాలు బాధపడతాయి. నిజమైన గ్రహాలు (అంగారకుడు-శని) మాత్రమే పాల్గొంటాయి; ప్రకాశకాలు మరియు నోడ్స్ \"యుద్ధం\" చేయవు.",
+        "bn": "গ্রহ যুদ্ধ ঘটে যখন দুটি গ্রহ (সূর্য, চন্দ্র, রাহু, কেতু ব্যতীত) পরস্পরের ১° এর মধ্যে থাকে। যে গ্রহের ক্রান্তিবৃত্তে উচ্চতর অবস্থান (বেশি উত্তরমুখী অবস্থান) থাকে, তাকে বিজয়ী বলে গণ্য করা হয়। পরাজিত গ্রহের কারকতা ক্ষতিগ্রস্ত হয়। শুধুমাত্র প্রকৃত গ্রহগুলি (মঙ্গল থেকে শনি) এতে অংশ নেয়; আলোকপিণ্ড ও নোডগুলি \"যুদ্ধ\" করে না।",
+        "kn": "ಎರಡು ಗ್ರಹಗಳು (ಸೂರ್ಯ, ಚಂದ್ರ, ರಾಹು, ಕೇತು ಹೊರತುಪಡಿಸಿ) ಪರಸ್ಪರ ೧° ಒಳಗೆ ಇದ್ದಾಗ ಗ್ರಹ ಯುದ್ಧ ಸಂಭವಿಸುತ್ತದೆ. ಹೆಚ್ಚು ಡಿಕ್ಲಿನೇಷನ್ (ಹೆಚ್ಚು ಉತ್ತರದ ಸ್ಥಾನ) ಹೊಂದಿರುವ ಗ್ರಹವನ್ನು ವಿಜೇತ ಎಂದು ಪರಿಗಣಿಸಲಾಗುತ್ತದೆ. ಸೋತ ಗ್ರಹದ ಕಾರಕತ್ವಗಳು ನರಳುತ್ತವೆ. ನಿಜವಾದ ಗ್ರಹಗಳು (ಮಂಗಳ-ಶನಿ) ಮಾತ್ರ ಭಾಗವಹಿಸುತ್ತವೆ; ಪ್ರಕಾಶಮಾನ ಗ್ರಹಗಳು ಮತ್ತು ನೋಡ್‌ಗಳು \"ಯುದ್ಧ\" ಮಾಡುವುದಿಲ್ಲ.",
         "mr": "ग्रह युद्ध तब होता है जब दो ग्रह (सूर्य, चंद्र, राहु, केतु छोड़कर) 1° के भीतर हों। अधिक उत्तरी क्रांति वाला विजयी। हारने वाले के कारकत्व पीड़ित।",
-        "gu": "Graha Yuddha occurs when two planets (excluding Sun, Moon, Rahu, Ketu) are within 1° of each other. The planet with higher declination (more northerly position) is considered the WINNER. The loser's karakatvas suffer. Only true planets (Mars-Saturn) participate; luminaries and nodes don't \"war.\"",
+        "gu": "ગ્રહ યુદ્ધ ત્યારે થાય છે જ્યારે બે ગ્રહ (સૂર્ય, ચંદ્ર, રાહુ, કેતુ સિવાય) એકબીજાથી ૧° ની અંદર હોય. ઉચ્ચ ક્રાંતિવાળો ગ્રહ (વધુ ઉત્તરીય સ્થાન) વિજેતા ગણાય છે. હારનારના કારકત્વને નુકસાન થાય છે. ફક્ત વાસ્તવિક ગ્રહો (મંગળ-શનિ) ભાગ લે છે; પ્રકાશમાન ગ્રહો અને નોડ્સ \"યુદ્ધ\" કરતા નથી.",
         "mai": "ग्रह युद्ध तखन होइत अछि जखन दू ग्रह (सूर्य, चन्द्रमा, राहु, केतु केँ छोड़ि) एक दोसर सँ 1° कऽ भीतर होइत अछि। बेसी उच्च क्रांति (बेसी उत्तरी स्थिति) बला ग्रह केँ विजेता मानल जाइत अछि। हारनिहारक कारकत्व प्रभावित होइत अछि। केवल वास्तविक ग्रह (मंगल-शनि) भाग लैत अछि; प्रकाशमान ग्रह आ नोड \"युद्ध\" नहि करैत अछि।"
       },
       "classicalRef": "Surya Siddhanta Ch.6"
@@ -397,11 +397,11 @@
         "hi": "बुध प्रति वर्ष लगभग कितनी बार वक्री होता है?",
         "mai": "प्रति वर्ष बुध केतेक बेर वक्री होइत अछि (लगभग)?",
         "mr": "बुध प्रति वर्ष लगभग कितनी बार वक्री होता है?",
-        "ta": "How many times per year is Mercury retrograde (approximately)?",
-        "te": "How many times per year is Mercury retrograde (approximately)?",
-        "bn": "How many times per year is Mercury retrograde (approximately)?",
-        "kn": "How many times per year is Mercury retrograde (approximately)?",
-        "gu": "How many times per year is Mercury retrograde (approximately)?"
+        "ta": "ஆண்டுக்கு எத்தனை முறை புதன் வக்ரமாகிறது (தோராயமாக)?",
+        "te": "సంవత్సరానికి ఎన్ని సార్లు బుధుడు వక్రంగా ఉంటాడు (సుమారుగా)?",
+        "bn": "প্রতি বছর বুধ আনুমানিক কতবার বক্রী হয়?",
+        "kn": "ವರ್ಷಕ್ಕೆ ಎಷ್ಟು ಬಾರಿ ಬುಧವು ವಕ್ರವಾಗುತ್ತದೆ (ಸುಮಾರು)?",
+        "gu": "વર્ષમાં કેટલી વાર બુધ વક્રી થાય છે (આશરે)?"
       },
       "options": [
         {
@@ -420,45 +420,45 @@
           "hi": "लगभग 3 बार",
           "mai": "लगभग 3 बेर",
           "mr": "लगभग 3 बार",
-          "ta": "About 3 times",
-          "te": "About 3 times",
-          "bn": "About 3 times",
-          "kn": "About 3 times",
-          "gu": "About 3 times"
+          "ta": "சுமார் 3 முறை",
+          "te": "సుమారు 3 సార్లు",
+          "bn": "প্রায় ৩ বার",
+          "kn": "ಸುಮಾರು ೩ ಬಾರಿ",
+          "gu": "આશરે ૩ વાર"
         },
         {
           "en": "About 6 times",
           "hi": "लगभग 6 बार",
           "mai": "लगभग 6 बेर",
           "mr": "लगभग 6 बार",
-          "ta": "About 6 times",
-          "te": "About 6 times",
-          "bn": "About 6 times",
-          "kn": "About 6 times",
-          "gu": "About 6 times"
+          "ta": "சுமார் 6 முறை",
+          "te": "సుమారు 6 సార్లు",
+          "bn": "প্রায় ৬ বার",
+          "kn": "ಸುಮಾರು ೬ ಬಾರಿ",
+          "gu": "આશરે ૬ વાર"
         },
         {
           "en": "Every month",
           "hi": "हर महीने",
           "mai": "प्रत्येक मास",
           "mr": "हर महीने",
-          "ta": "Every month",
-          "te": "Every month",
-          "bn": "Every month",
-          "kn": "Every month",
-          "gu": "Every month"
+          "ta": "ஒவ்வொரு மாதமும்",
+          "te": "ప్రతి నెల",
+          "bn": "প্রতি মাসে",
+          "kn": "ಪ್ರತಿ ತಿಂಗಳು",
+          "gu": "દર મહિને"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "Mercury retrogrades ~3 times per year, each lasting ~3 weeks. This is because Mercury's orbital period (88 days) means it \"laps\" its synodic cycle with Earth frequently. Saturn retrogrades only ~once per year (for ~4.5 months), Jupiter ~once per year (for ~4 months). Mars retrogrades ~every 26 months (for ~2.5 months).",
         "hi": "बुध ~3 बार/वर्ष वक्री, प्रत्येक ~3 सप्ताह। बुध की कक्षीय अवधि (88 दिन) छोटी होने से बार-बार। शनि ~1/वर्ष (~4.5 माह), गुरु ~1/वर्ष (~4 माह), मंगल ~1/26 माह (~2.5 माह)।",
-        "ta": "Mercury retrogrades ~3 times per year, each lasting ~3 weeks. This is because Mercury's orbital period (88 days) means it \"laps\" its synodic cycle with Earth frequently. Saturn retrogrades only ~once per year (for ~4.5 months), Jupiter ~once per year (for ~4 months). Mars retrogrades ~every 26 months (for ~2.5 months).",
-        "te": "Mercury retrogrades ~3 times per year, each lasting ~3 weeks. This is because Mercury's orbital period (88 days) means it \"laps\" its synodic cycle with Earth frequently. Saturn retrogrades only ~once per year (for ~4.5 months), Jupiter ~once per year (for ~4 months). Mars retrogrades ~every 26 months (for ~2.5 months).",
-        "bn": "Mercury retrogrades ~3 times per year, each lasting ~3 weeks. This is because Mercury's orbital period (88 days) means it \"laps\" its synodic cycle with Earth frequently. Saturn retrogrades only ~once per year (for ~4.5 months), Jupiter ~once per year (for ~4 months). Mars retrogrades ~every 26 months (for ~2.5 months).",
-        "kn": "Mercury retrogrades ~3 times per year, each lasting ~3 weeks. This is because Mercury's orbital period (88 days) means it \"laps\" its synodic cycle with Earth frequently. Saturn retrogrades only ~once per year (for ~4.5 months), Jupiter ~once per year (for ~4 months). Mars retrogrades ~every 26 months (for ~2.5 months).",
+        "ta": "புதன் ஆண்டுக்கு சுமார் 3 முறை வக்ரமாகிறது, ஒவ்வொன்றும் சுமார் 3 வாரங்கள் நீடிக்கும். இது புதனின் சுற்றுப்பாதை காலம் (88 நாட்கள்) பூமியுடன் அதன் சினோடிக் சுழற்சியை அடிக்கடி \"முந்துகிறது\" என்பதைக் குறிக்கிறது. சனி ஆண்டுக்கு ஒரு முறை மட்டுமே வக்ரமாகிறது (சுமார் 4.5 மாதங்களுக்கு), குரு ஆண்டுக்கு ஒரு முறை (சுமார் 4 மாதங்களுக்கு). செவ்வாய் சுமார் 26 மாதங்களுக்கு ஒரு முறை வக்ரமாகிறது (சுமார் 2.5 மாதங்களுக்கு).",
+        "te": "బుధుడు సంవత్సరానికి సుమారు 3 సార్లు వక్రంగా ఉంటాడు, ప్రతిసారి సుమారు 3 వారాలు ఉంటుంది. ఇది బుధుని కక్ష్య కాలం (88 రోజులు) వల్ల, ఇది భూమితో దాని సైనోడిక్ చక్రాన్ని తరచుగా \"పూర్తి చేస్తుంది\". శని సంవత్సరానికి సుమారు ఒకసారి మాత్రమే వక్రంగా ఉంటాడు (సుమారు 4.5 నెలలు), బృహస్పతి సంవత్సరానికి సుమారు ఒకసారి (సుమారు 4 నెలలు). అంగారకుడు సుమారు ప్రతి 26 నెలలకు ఒకసారి వక్రంగా ఉంటాడు (సుమారు 2.5 నెలలు).",
+        "bn": "বুধ প্রতি বছর প্রায় ৩ বার বক্রী হয়, প্রতিটি প্রায় ৩ সপ্তাহ স্থায়ী হয়। এর কারণ বুধের কক্ষপথের সময়কাল (৮৮ দিন), যার অর্থ এটি পৃথিবীর সাথে তার সিনোডিক চক্রকে ঘন ঘন \"সম্পূর্ণ\" করে। শনি প্রতি বছর প্রায় একবার বক্রী হয় (প্রায় ৪.৫ মাসের জন্য), বৃহস্পতি প্রতি বছর প্রায় একবার (প্রায় ৪ মাসের জন্য)। মঙ্গল প্রায় ২৬ মাস অন্তর বক্রী হয় (প্রায় ২.৫ মাসের জন্য)।",
+        "kn": "ಬುಧವು ವರ್ಷಕ್ಕೆ ಸುಮಾರು ೩ ಬಾರಿ ವಕ್ರವಾಗುತ್ತದೆ, ಪ್ರತಿಯೊಂದೂ ಸುಮಾರು ೩ ವಾರಗಳ ಕಾಲ ಇರುತ್ತದೆ. ಇದು ಬುಧದ ಕಕ್ಷೀಯ ಅವಧಿ (೮೮ ದಿನಗಳು) ಭೂಮಿಯೊಂದಿಗೆ ತನ್ನ ಸೈನೋಡಿಕ್ ಚಕ್ರವನ್ನು ಆಗಾಗ್ಗೆ \"ಮುಗಿಸುತ್ತದೆ\" ಎಂದರ್ಥ. ಶನಿಯು ವರ್ಷಕ್ಕೆ ಸುಮಾರು ೧ ಬಾರಿ ಮಾತ್ರ ವಕ್ರವಾಗುತ್ತದೆ (ಸುಮಾರು ೪.೫ ತಿಂಗಳುಗಳ ಕಾಲ), ಗುರುವು ವರ್ಷಕ್ಕೆ ಸುಮಾರು ೧ ಬಾರಿ (ಸುಮಾರು ೪ ತಿಂಗಳುಗಳ ಕಾಲ). ಮಂಗಳವು ಸುಮಾರು ೨೬ ತಿಂಗಳಿಗೊಮ್ಮೆ ವಕ್ರವಾಗುತ್ತದೆ (ಸುಮಾರು ೨.೫ ತಿಂಗಳುಗಳ ಕಾಲ).",
         "mr": "बुध ~3 बार/वर्ष वक्री, प्रत्येक ~3 सप्ताह। बुध की कक्षीय अवधि (88 दिन) छोटी होने से बार-बार। शनि ~1/वर्ष (~4.5 माह), गुरु ~1/वर्ष (~4 माह), मंगल ~1/26 माह (~2.5 माह)।",
-        "gu": "Mercury retrogrades ~3 times per year, each lasting ~3 weeks. This is because Mercury's orbital period (88 days) means it \"laps\" its synodic cycle with Earth frequently. Saturn retrogrades only ~once per year (for ~4.5 months), Jupiter ~once per year (for ~4 months). Mars retrogrades ~every 26 months (for ~2.5 months).",
+        "gu": "બુધ વર્ષમાં આશરે ૩ વાર વક્રી થાય છે, દરેક આશરે ૩ અઠવાડિયા ચાલે છે. આ એટલા માટે છે કારણ કે બુધનો કક્ષીય સમયગાળો (૮૮ દિવસ) એટલે કે તે પૃથ્વી સાથે તેના સિનોડિક ચક્રને વારંવાર \"પાર કરે છે\". શનિ વર્ષમાં ફક્ત આશરે એક વાર વક્રી થાય છે (આશરે ૪.૫ મહિના માટે), ગુરુ વર્ષમાં આશરે એક વાર (આશરે ૪ મહિના માટે). મંગળ દર ૨૬ મહિને આશરે એક વાર વક્રી થાય છે (આશરે ૨.૫ મહિના માટે).",
         "mai": "बुध प्रति वर्ष लगभग 3 बेर वक्री होइत अछि, प्रत्येक लगभग 3 सप्ताह धरि रहैत अछि। ई एहि लेल जे बुधक कक्षीय अवधि (88 दिन) कऽ मतलब अछि जे ई पृथ्वीक संग अपन सिनोडिक चक्र केँ बार-बार \"पूरा करैत अछि\"। शनि प्रति वर्ष केवल लगभग एक बेर (लगभग 4.5 मास धरि) वक्री होइत अछि, बृहस्पति प्रति वर्ष लगभग एक बेर (लगभग 4 मास धरि)। मंगल लगभग प्रत्येक 26 मास मे (लगभग 2.5 मास धरि) वक्री होइत अछि।"
       }
     },
@@ -470,22 +470,22 @@
         "hi": "अस्त ग्रह परिणाम देने की क्षमता पूरी तरह खो देता है।",
         "mai": "एकटा अस्त ग्रह परिणाम देबाक अपन क्षमता केँ पूर्ण रूप सँ खो दैत अछि।",
         "mr": "अस्त ग्रह परिणाम देने की क्षमता पूरी तरह खो देता है।",
-        "ta": "A combust planet completely loses its ability to give results.",
-        "te": "A combust planet completely loses its ability to give results.",
-        "bn": "A combust planet completely loses its ability to give results.",
-        "kn": "A combust planet completely loses its ability to give results.",
-        "gu": "A combust planet completely loses its ability to give results."
+        "ta": "ஒரு அஸ்தமன கிரகம் பலன்களை வழங்கும் அதன் திறனை முழுமையாக இழக்கிறது.",
+        "te": "అస్తంగత్వం చెందిన గ్రహం ఫలితాలను ఇచ్చే సామర్థ్యాన్ని పూర్తిగా కోల్పోతుందా?",
+        "bn": "একটি অস্তগত গ্রহ সম্পূর্ণরূপে ফল দেওয়ার ক্ষমতা হারায়।",
+        "kn": "ಒಂದು ಅಸ್ತಂಗತ ಗ್ರಹವು ಫಲಿತಾಂಶಗಳನ್ನು ನೀಡುವ ತನ್ನ ಸಾಮರ್ಥ್ಯವನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ಕಳೆದುಕೊಳ್ಳುತ್ತದೆ.",
+        "gu": "અસ્ત ગ્રહ ફળ આપવાની તેની ક્ષમતા સંપૂર્ણપણે ગુમાવે છે."
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. A combust planet is weakened  –  its significations may struggle  –  but it doesn't become zero. Combustion is like an employee overshadowed by a dominant boss (the Sun). The employee still works but gets no credit. If the Sun is benefic for the chart, combustion can even be mitigated further. Some authorities say Mercury combust is barely affected since Mercury is always near the Sun anyway.",
         "hi": "गलत। अस्त ग्रह दुर्बल होता है लेकिन शून्य नहीं। अस्त ऐसे है जैसे एक कर्मचारी प्रभावी बॉस (सूर्य) की छाया में। कुछ विद्वान कहते हैं बुध अस्त का कम प्रभाव क्योंकि बुध सदैव सूर्य के निकट रहता है।",
-        "ta": "False. A combust planet is weakened  –  its significations may struggle  –  but it doesn't become zero. Combustion is like an employee overshadowed by a dominant boss (the Sun). The employee still works but gets no credit. If the Sun is benefic for the chart, combustion can even be mitigated further. Some authorities say Mercury combust is barely affected since Mercury is always near the Sun anyway.",
-        "te": "False. A combust planet is weakened  –  its significations may struggle  –  but it doesn't become zero. Combustion is like an employee overshadowed by a dominant boss (the Sun). The employee still works but gets no credit. If the Sun is benefic for the chart, combustion can even be mitigated further. Some authorities say Mercury combust is barely affected since Mercury is always near the Sun anyway.",
-        "bn": "False. A combust planet is weakened  –  its significations may struggle  –  but it doesn't become zero. Combustion is like an employee overshadowed by a dominant boss (the Sun). The employee still works but gets no credit. If the Sun is benefic for the chart, combustion can even be mitigated further. Some authorities say Mercury combust is barely affected since Mercury is always near the Sun anyway.",
-        "kn": "False. A combust planet is weakened  –  its significations may struggle  –  but it doesn't become zero. Combustion is like an employee overshadowed by a dominant boss (the Sun). The employee still works but gets no credit. If the Sun is benefic for the chart, combustion can even be mitigated further. Some authorities say Mercury combust is barely affected since Mercury is always near the Sun anyway.",
+        "ta": "தவறு. ஒரு அஸ்தமன கிரகம் பலவீனமடைகிறது – அதன் காரகத்துவங்கள் போராடலாம் – ஆனால் அது பூஜ்ஜியமாகாது. அஸ்தமனம் என்பது ஒரு ஆதிக்கம் செலுத்தும் முதலாளியால் (சூரியன்) மறைக்கப்பட்ட ஒரு ஊழியரைப் போன்றது. ஊழியர் இன்னும் வேலை செய்கிறார் ஆனால் எந்தப் பெருமையும் பெறுவதில்லை. சூரியன் ஜாதகத்திற்கு சுபமாக இருந்தால், அஸ்தமனம் மேலும் குறைக்கப்படலாம். சில நிபுணர்கள் புதன் அஸ்தமனம் அரிதாகவே பாதிக்கப்படுகிறது என்று கூறுகிறார்கள், ஏனெனில் புதன் எப்படியும் எப்போதும் சூரியனுக்கு அருகில் உள்ளது.",
+        "te": "తప్పు. అస్తంగత్వం చెందిన గ్రహం బలహీనపడుతుంది – దాని కారకత్వాలు కష్టపడవచ్చు – కానీ అది సున్నా అవ్వదు. అస్తంగత్వం అనేది ఆధిపత్య యజమాని (సూర్యుడు) చేత కప్పబడిన ఉద్యోగి లాంటిది. ఉద్యోగి ఇంకా పని చేస్తాడు కానీ గుర్తింపు పొందడు. సూర్యుడు జాతకానికి శుభకరుడైతే, అస్తంగత్వం మరింత తగ్గించబడవచ్చు. కొందరు పండితులు బుధుడు ఎప్పుడూ సూర్యునికి దగ్గరగా ఉంటాడు కాబట్టి, అస్తంగత్వం చెందిన బుధుడు పెద్దగా ప్రభావితం కాడని అంటారు.",
+        "bn": "ভুল। একটি অস্তগত গ্রহ দুর্বল হয়ে পড়ে – এর কারকতাগুলি সংগ্রাম করতে পারে – তবে তা শূন্য হয়ে যায় না। অস্তগত হওয়াটা এমন একজন কর্মচারীর মতো যাকে একজন প্রভাবশালী বস (সূর্য) দ্বারা আচ্ছন্ন করা হয়েছে। কর্মচারী এখনও কাজ করে কিন্তু কোনো কৃতিত্ব পায় না। যদি সূর্য কুণ্ডলীর জন্য শুভ হয়, তবে অস্তগত হওয়ার প্রভাব আরও প্রশমিত হতে পারে। কিছু পণ্ডিত বলেন যে বুধের অস্তগত হওয়ার প্রভাব খুব কমই পড়ে, কারণ বুধ এমনিতেই সর্বদা সূর্যের কাছাকাছি থাকে।",
+        "kn": "ಸುಳ್ಳು. ಅಸ್ತಂಗತ ಗ್ರಹವು ದುರ್ಬಲಗೊಳ್ಳುತ್ತದೆ – ಅದರ ಕಾರಕತ್ವಗಳು ಕಷ್ಟಪಡಬಹುದು – ಆದರೆ ಅದು ಶೂನ್ಯವಾಗುವುದಿಲ್ಲ. ಅಸ್ತಂಗತವು ಪ್ರಬಲ ಮೇಲಧಿಕಾರಿಯಿಂದ (ಸೂರ್ಯ) ಮರೆಮಾಚಲ್ಪಟ್ಟ ನೌಕರನಂತೆ. ನೌಕರನು ಇನ್ನೂ ಕೆಲಸ ಮಾಡುತ್ತಾನೆ ಆದರೆ ಯಾವುದೇ ಮನ್ನಣೆ ಪಡೆಯುವುದಿಲ್ಲ. ಸೂರ್ಯನು ಜಾತಕಕ್ಕೆ ಶುಭಕಾರಕನಾಗಿದ್ದರೆ, ಅಸ್ತಂಗತವನ್ನು ಇನ್ನಷ್ಟು ಕಡಿಮೆ ಮಾಡಬಹುದು. ಕೆಲವು ವಿದ್ವಾಂಸರು ಬುಧವು ಯಾವಾಗಲೂ ಸೂರ್ಯನ ಹತ್ತಿರ ಇರುವುದರಿಂದ ಅಸ್ತಂಗತ ಬುಧವು ಅಷ್ಟಾಗಿ ಪರಿಣಾಮ ಬೀರುವುದಿಲ್ಲ ಎಂದು ಹೇಳುತ್ತಾರೆ.",
         "mr": "गलत। अस्त ग्रह दुर्बल होता है लेकिन शून्य नहीं। अस्त ऐसे है जैसे एक कर्मचारी प्रभावी बॉस (सूर्य) की छाया में। कुछ विद्वान कहते हैं बुध अस्त का कम प्रभाव क्योंकि बुध सदैव सूर्य के निकट रहता है।",
-        "gu": "False. A combust planet is weakened  –  its significations may struggle  –  but it doesn't become zero. Combustion is like an employee overshadowed by a dominant boss (the Sun). The employee still works but gets no credit. If the Sun is benefic for the chart, combustion can even be mitigated further. Some authorities say Mercury combust is barely affected since Mercury is always near the Sun anyway.",
+        "gu": "ખોટું. અસ્ત ગ્રહ નબળો પડે છે – તેના કારકત્વને મુશ્કેલી પડી શકે છે – પરંતુ તે શૂન્ય થતું નથી. અસ્ત એ પ્રભાવી બોસ (સૂર્ય) દ્વારા છવાયેલા કર્મચારી જેવું છે. કર્મચારી હજુ પણ કામ કરે છે પરંતુ તેને કોઈ શ્રેય મળતો નથી. જો સૂર્ય કુંડળી માટે શુભ હોય, તો અસ્તની અસર વધુ ઓછી થઈ શકે છે. કેટલાક વિદ્વાનો કહે છે કે બુધ અસ્ત હોય ત્યારે ભાગ્યે જ અસરગ્રસ્ત થાય છે કારણ કે બુધ હંમેશા સૂર્યની નજીક જ હોય છે.",
         "mai": "गलत। एकटा अस्त ग्रह कमजोर भऽ जाइत अछि – ओकर कारकत्व संघर्ष कऽ सकैत अछि – मुदा ई शून्य नहि होइत अछि। अस्त एकटा प्रभावशाली मालिक (सूर्य) द्वारा छाया मे पड़ल कर्मचारी जेकाँ अछि। कर्मचारी काज तँ करैत अछि मुदा कोनो श्रेय नहि भेटैत अछि। जँ सूर्य कुंडलीक लेल शुभ अछि, तँ अस्त केँ आओर बेसी कम कएल जा सकैत अछि। किछु अधिकारी कहैत अछि जे बुध अस्त सँ मुश्किल सँ प्रभावित होइत अछि किएक तँ बुध हमेशा सूर्यक नजदीक रहैत अछि।"
       }
     },
@@ -497,11 +497,11 @@
         "hi": "वक्री ग्रह वास्तव में पृथ्वी से सामान्य से _____ होते हैं:",
         "mai": "वक्री ग्रह सामान्य सँ पृथ्वीक वास्तव मे _____ होइत अछि:",
         "mr": "वक्री ग्रह वास्तव में पृथ्वी से सामान्य से _____ होते हैं:",
-        "ta": "Retrograde planets are actually _____ to Earth than normal:",
-        "te": "Retrograde planets are actually _____ to Earth than normal:",
-        "bn": "Retrograde planets are actually _____ to Earth than normal:",
-        "kn": "Retrograde planets are actually _____ to Earth than normal:",
-        "gu": "Retrograde planets are actually _____ to Earth than normal:"
+        "ta": "வக்ர கிரகங்கள் உண்மையில் சாதாரணத்தை விட பூமிக்கு _____:",
+        "te": "వక్ర గ్రహాలు నిజానికి సాధారణం కంటే భూమికి _____:",
+        "bn": "বক্রী গ্রহগুলি প্রকৃতপক্ষে স্বাভাবিকের চেয়ে পৃথিবীর _____ থাকে:",
+        "kn": "ವಕ್ರ ಗ್ರಹಗಳು ವಾಸ್ತವವಾಗಿ ಸಾಮಾನ್ಯಕ್ಕಿಂತ ಭೂಮಿಗೆ _____:",
+        "gu": "વક્રી ગ્રહો સામાન્ય કરતાં પૃથ્વીની _____ હોય છે:"
       },
       "options": [
         {
@@ -531,34 +531,34 @@
           "hi": "समान दूरी",
           "mai": "समान दूरी",
           "mr": "समान दूरी",
-          "ta": "Same distance",
-          "te": "Same distance",
-          "bn": "Same distance",
-          "kn": "Same distance",
-          "gu": "Same distance"
+          "ta": "அதே தூரம்",
+          "te": "అదే దూరం",
+          "bn": "একই দূরত্বে",
+          "kn": "ಅದೇ ಅಂತರ",
+          "gu": "સમાન અંતરે"
         },
         {
           "en": "It varies randomly",
           "hi": "यह यादृच्छिक रूप से बदलता है",
           "mai": "ई यादृच्छिक रूप सँ भिन्न होइत अछि",
           "mr": "यह यादृच्छिक रूप से बदलता है",
-          "ta": "It varies randomly",
-          "te": "It varies randomly",
-          "bn": "It varies randomly",
-          "kn": "It varies randomly",
-          "gu": "It varies randomly"
+          "ta": "இது தோராயமாக மாறுபடும்",
+          "te": "ఇది యాదృచ్ఛికంగా మారుతుంది",
+          "bn": "এটি এলোমেলোভাবে পরিবর্তিত হয়",
+          "kn": "ಇದು ಯಾದೃಚ್ಛಿಕವಾಗಿ ಬದಲಾಗುತ್ತದೆ",
+          "gu": "તે અવ્યવસ્થિત રીતે બદલાય છે"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "Retrograde planets are CLOSER to Earth  –  that's why they appear to move backward (Earth is passing them or they're passing us). Being closer also means they're BRIGHTER. This is why Jyotish considers retrograde planets to have extra Cheshta Bala (strength of motion). The paradox: moving backward = closer = brighter = stronger in some ways.",
         "hi": "वक्री ग्रह पृथ्वी के निकट होते हैं  –  इसीलिए पीछे चलते प्रतीत। निकट = अधिक चमकीले। इसलिए ज्योतिष वक्री ग्रहों को अतिरिक्त चेष्टा बल देता है। विरोधाभास: पीछे = निकट = चमकीला = कुछ तरह से बलवान।",
-        "ta": "Retrograde planets are CLOSER to Earth  –  that's why they appear to move backward (Earth is passing them or they're passing us). Being closer also means they're BRIGHTER. This is why Jyotish considers retrograde planets to have extra Cheshta Bala (strength of motion). The paradox: moving backward = closer = brighter = stronger in some ways.",
-        "te": "Retrograde planets are CLOSER to Earth  –  that's why they appear to move backward (Earth is passing them or they're passing us). Being closer also means they're BRIGHTER. This is why Jyotish considers retrograde planets to have extra Cheshta Bala (strength of motion). The paradox: moving backward = closer = brighter = stronger in some ways.",
-        "bn": "Retrograde planets are CLOSER to Earth  –  that's why they appear to move backward (Earth is passing them or they're passing us). Being closer also means they're BRIGHTER. This is why Jyotish considers retrograde planets to have extra Cheshta Bala (strength of motion). The paradox: moving backward = closer = brighter = stronger in some ways.",
-        "kn": "Retrograde planets are CLOSER to Earth  –  that's why they appear to move backward (Earth is passing them or they're passing us). Being closer also means they're BRIGHTER. This is why Jyotish considers retrograde planets to have extra Cheshta Bala (strength of motion). The paradox: moving backward = closer = brighter = stronger in some ways.",
+        "ta": "வக்ர கிரகங்கள் பூமிக்கு நெருக்கமாக உள்ளன – அதனால்தான் அவை பின்னோக்கி நகர்வது போல் தோன்றும் (பூமி அவற்றைக் கடந்து செல்கிறது அல்லது அவை நம்மைக் கடந்து செல்கின்றன). நெருக்கமாக இருப்பது அவை பிரகாசமாக இருப்பதையும் குறிக்கிறது. இதனால்தான் ஜோதிடம் வக்ர கிரகங்களுக்கு கூடுதல் சேஷ்டா பலம் (இயக்க பலம்) இருப்பதாகக் கருதுகிறது. முரண்பாடு: பின்னோக்கி நகர்தல் = நெருக்கமாக = பிரகாசமாக = சில வழிகளில் பலமானது.",
+        "te": "వక్ర గ్రహాలు భూమికి దగ్గరగా ఉంటాయి – అందుకే అవి వెనుకకు కదులుతున్నట్లు కనిపిస్తాయి (భూమి వాటిని దాటుతోంది లేదా అవి మనల్ని దాటుతున్నాయి). దగ్గరగా ఉండటం వల్ల అవి ప్రకాశవంతంగా కూడా ఉంటాయి. అందుకే జ్యోతిష్యశాస్త్రం వక్ర గ్రహాలకు అదనపు చేష్టా బలం (చలన బలం) ఉందని పరిగణిస్తుంది. విరుద్ధాంశం: వెనుకకు కదలడం = దగ్గరగా ఉండటం = ప్రకాశవంతంగా ఉండటం = కొన్ని విధాలుగా బలంగా ఉండటం.",
+        "bn": "বক্রী গ্রহগুলি পৃথিবীর কাছাকাছি থাকে – এই কারণেই তাদের পেছনের দিকে চলতে দেখা যায় (পৃথিবী তাদের অতিক্রম করছে বা তারা আমাদের অতিক্রম করছে)। কাছাকাছি থাকার অর্থ তারা উজ্জ্বলতরও হয়। এই কারণেই জ্যোতিষে বক্রী গ্রহগুলিকে অতিরিক্ত চেষ্টা বল (গতিজনিত শক্তি) সম্পন্ন বলে মনে করা হয়। বিপরীত ধারণা: পেছনের দিকে চলা = কাছাকাছি = উজ্জ্বলতর = কিছু ক্ষেত্রে শক্তিশালী।",
+        "kn": "ವಕ್ರ ಗ್ರಹಗಳು ಭೂಮಿಗೆ ಹತ್ತಿರವಾಗಿರುತ್ತವೆ – ಅದಕ್ಕಾಗಿಯೇ ಅವು ಹಿಮ್ಮುಖವಾಗಿ ಚಲಿಸುವಂತೆ ಕಾಣುತ್ತವೆ (ಭೂಮಿಯು ಅವುಗಳನ್ನು ಹಿಂದಿಕ್ಕುತ್ತಿದೆ ಅಥವಾ ಅವು ನಮ್ಮನ್ನು ಹಿಂದಿಕ್ಕುತ್ತಿವೆ). ಹತ್ತಿರವಿರುವುದು ಅವು ಹೆಚ್ಚು ಪ್ರಕಾಶಮಾನವಾಗಿವೆ ಎಂದರ್ಥ. ಇದಕ್ಕಾಗಿಯೇ ಜ್ಯೋತಿಷ್ಯವು ವಕ್ರ ಗ್ರಹಗಳಿಗೆ ಹೆಚ್ಚುವರಿ ಚೇಷ್ಟಾ ಬಲವನ್ನು (ಚಲನೆಯ ಬಲ) ಹೊಂದಿದೆ ಎಂದು ಪರಿಗಣಿಸುತ್ತದೆ. ವಿರೋಧಾಭಾಸ: ಹಿಮ್ಮುಖವಾಗಿ ಚಲಿಸುವುದು = ಹತ್ತಿರ = ಪ್ರಕಾಶಮಾನ = ಕೆಲವು ವಿಧಗಳಲ್ಲಿ ಬಲಶಾಲಿ.",
         "mr": "वक्री ग्रह पृथ्वी के निकट होते हैं  –  इसीलिए पीछे चलते प्रतीत। निकट = अधिक चमकीले। इसलिए ज्योतिष वक्री ग्रहों को अतिरिक्त चेष्टा बल देता है। विरोधाभास: पीछे = निकट = चमकीला = कुछ तरह से बलवान।",
-        "gu": "Retrograde planets are CLOSER to Earth  –  that's why they appear to move backward (Earth is passing them or they're passing us). Being closer also means they're BRIGHTER. This is why Jyotish considers retrograde planets to have extra Cheshta Bala (strength of motion). The paradox: moving backward = closer = brighter = stronger in some ways.",
+        "gu": "વક્રી ગ્રહો પૃથ્વીની નજીક હોય છે – તેથી જ તેઓ પાછળની તરફ ગતિ કરતા દેખાય છે (પૃથ્વી તેમને પસાર કરી રહી છે અથવા તેઓ આપણને પસાર કરી રહ્યા છે). નજીક હોવાનો અર્થ એ પણ છે કે તેઓ વધુ તેજસ્વી હોય છે. આ જ કારણ છે કે જ્યોતિષ વક્રી ગ્રહોને વધારાનું ચેષ્ટા બળ (ગતિની શક્તિ) ધરાવતા માને છે. વિરોધાભાસ: પાછળની તરફ ગતિ = નજીક = વધુ તેજસ્વી = અમુક રીતે વધુ બળવાન.",
         "mai": "वक्री ग्रह पृथ्वीक बेसी नजदीक होइत अछि – एहि लेल ओ पाछू दिस चलैत देखाइत अछि (पृथ्वी ओकरा पार करैत अछि वा ओ हमरा सभ केँ पार करैत अछि)। नजदीक होयबाक मतलब ई सेहो अछि जे ओ बेसी चमकदार होइत अछि। एहि लेल ज्योतिष वक्री ग्रह केँ अतिरिक्त चेष्टा बल (गतिक शक्ति) बला मानैत अछि। विरोधाभास: पाछू दिस चलब = नजदीक = बेसी चमकदार = किछु तरीका सँ बेसी बलवान।"
       }
     },
@@ -570,11 +570,11 @@
         "hi": "राहु और केतु सदैव वक्री (राशिचक्र में पीछे) चलते हैं।",
         "mai": "राहु आ केतु हमेशा वक्री होइत अछि (राशिचक्र मे पाछू दिस चलैत अछि)।",
         "mr": "राहु और केतु सदैव वक्री (राशिचक्र में पीछे) चलते हैं।",
-        "ta": "Rahu and Ketu are always retrograde (moving backward through the zodiac).",
-        "te": "Rahu and Ketu are always retrograde (moving backward through the zodiac).",
-        "bn": "Rahu and Ketu are always retrograde (moving backward through the zodiac).",
-        "kn": "Rahu and Ketu are always retrograde (moving backward through the zodiac).",
-        "gu": "Rahu and Ketu are always retrograde (moving backward through the zodiac)."
+        "ta": "ராகுவும் கேதுவும் எப்போதும் வக்ரமாகவே இருக்கும் (ராசி மண்டலத்தில் பின்னோக்கி நகரும்).",
+        "te": "రాహువు మరియు కేతువు ఎల్లప్పుడూ వక్రంగా ఉంటాయి (రాశిచక్రంలో వెనుకకు కదులుతాయి).",
+        "bn": "রাহু ও কেতু সর্বদা বক্রী থাকে (রাশিচক্রের বিপরীত দিকে চলে)।",
+        "kn": "ರಾಹು ಮತ್ತು ಕೇತುಗಳು ಯಾವಾಗಲೂ ವಕ್ರವಾಗಿರುತ್ತವೆ (ರಾಶಿಚಕ್ರದಲ್ಲಿ ಹಿಮ್ಮುಖವಾಗಿ ಚಲಿಸುತ್ತವೆ).",
+        "gu": "રાહુ અને કેતુ હંમેશા વક્રી હોય છે (રાશિચક્રમાં પાછળની તરફ ગતિ કરતા)."
       },
       "correctAnswer": true,
       "explanation": {
@@ -582,11 +582,11 @@
         "hi": "सही। चंद्र नोड (राहु/केतु) ~19.4°/वर्ष की दर से राशिचक्र में पीछे चलते हैं, ~18.6 वर्षों में एक पूर्ण चक्र। यह उनकी प्राकृतिक अवस्था है।",
         "mai": "सही। चंद्र नोड (राहु/केतु) वक्री गति सँ चलैत अछि – राशिचक्र मे पाछू दिस – प्रति वर्ष लगभग 19.4° कऽ दर सँ, लगभग 18.6 वर्ष मे एकटा पूर्ण चक्र पूरा करैत अछि। ई शाश्वत वक्री गति हुनकर प्राकृतिक अवस्था अछि (हुनकर कोनो \"सीधा\" अवधि नहि होइत अछि)। किछु ग्रंथ मे संक्षिप्त \"सीधा\" स्थिर अवधि केँ उल्लेख कएल गेल अछि, मुदा प्रमुख गति हमेशा वक्री होइत अछि।",
         "mr": "सही। चंद्र नोड (राहु/केतु) ~19.4°/वर्ष की दर से राशिचक्र में पीछे चलते हैं, ~18.6 वर्षों में एक पूर्ण चक्र। यह उनकी प्राकृतिक अवस्था है।",
-        "ta": "Correct. The lunar nodes (Rahu/Ketu) move retrograde  –  backward through the zodiac  –  at ~19.4° per year, completing one full cycle in ~18.6 years. This perpetual retrograde motion is their natural state (they have no \"direct\" period). Some texts note brief \"direct\" stationary periods, but the dominant motion is always retrograde.",
-        "te": "Correct. The lunar nodes (Rahu/Ketu) move retrograde  –  backward through the zodiac  –  at ~19.4° per year, completing one full cycle in ~18.6 years. This perpetual retrograde motion is their natural state (they have no \"direct\" period). Some texts note brief \"direct\" stationary periods, but the dominant motion is always retrograde.",
-        "bn": "Correct. The lunar nodes (Rahu/Ketu) move retrograde  –  backward through the zodiac  –  at ~19.4° per year, completing one full cycle in ~18.6 years. This perpetual retrograde motion is their natural state (they have no \"direct\" period). Some texts note brief \"direct\" stationary periods, but the dominant motion is always retrograde.",
-        "kn": "Correct. The lunar nodes (Rahu/Ketu) move retrograde  –  backward through the zodiac  –  at ~19.4° per year, completing one full cycle in ~18.6 years. This perpetual retrograde motion is their natural state (they have no \"direct\" period). Some texts note brief \"direct\" stationary periods, but the dominant motion is always retrograde.",
-        "gu": "Correct. The lunar nodes (Rahu/Ketu) move retrograde  –  backward through the zodiac  –  at ~19.4° per year, completing one full cycle in ~18.6 years. This perpetual retrograde motion is their natural state (they have no \"direct\" period). Some texts note brief \"direct\" stationary periods, but the dominant motion is always retrograde."
+        "ta": "சரியானது. சந்திரனின் சாயா கிரகங்கள் (ராகு/கேது) வக்ரமாக நகரும் – ராசி மண்டலத்தில் ஆண்டுக்கு ~19.4° பின்னோக்கி – சுமார் 18.6 ஆண்டுகளில் ஒரு முழு சுழற்சியை நிறைவு செய்கின்றன. இந்த நிரந்தர வக்ர இயக்கம் அவற்றின் இயல்பான நிலை (அவற்றிற்கு \"நேரடி\" காலம் இல்லை). சில நூல்கள் சுருக்கமான \"நேரடி\" ஸ்திர காலங்களைக் குறிப்பிடுகின்றன, ஆனால் ஆதிக்கம் செலுத்தும் இயக்கம் எப்போதும் வக்ரமாகவே இருக்கும்.",
+        "te": "సరియైనది. చంద్ర నోడ్స్ (రాహువు/కేతువు) వక్రంగా కదులుతాయి – రాశిచక్రంలో వెనుకకు – సంవత్సరానికి సుమారు 19.4° చొప్పున, సుమారు 18.6 సంవత్సరాలలో ఒక పూర్తి చక్రాన్ని పూర్తి చేస్తాయి. ఈ నిరంతర వక్ర గమనం వాటి సహజ స్థితి (వాటికి \"నేరుగా\" కదిలే కాలం లేదు). కొన్ని గ్రంథాలు స్వల్ప \"నేరుగా\" స్థిర కాలాలను పేర్కొన్నప్పటికీ, ప్రధాన గమనం ఎల్లప్పుడూ వక్రంగానే ఉంటుంది.",
+        "bn": "সঠিক। চন্দ্র নোডগুলি (রাহু/কেতু) বক্রী গতিতে চলে – প্রতি বছর প্রায় ১৯.৪° হারে রাশিচক্রের বিপরীত দিকে, প্রায় ১৮.৬ বছরে একটি পূর্ণ চক্র সম্পন্ন করে। এই চিরস্থায়ী বক্রী গতি তাদের স্বাভাবিক অবস্থা (তাদের কোনো \"প্রত্যক্ষ\" সময়কাল নেই)। কিছু গ্রন্থে সংক্ষিপ্ত \"প্রত্যক্ষ\" স্থির সময়ের উল্লেখ থাকলেও, প্রধান গতি সর্বদা বক্রী।",
+        "kn": "ಸರಿ. ಚಂದ್ರನ ನೋಡ್‌ಗಳು (ರಾಹು/ಕೇತು) ವಕ್ರವಾಗಿ ಚಲಿಸುತ್ತವೆ – ರಾಶಿಚಕ್ರದಲ್ಲಿ ಹಿಮ್ಮುಖವಾಗಿ – ವರ್ಷಕ್ಕೆ ಸುಮಾರು ೧೯.೪°, ಸುಮಾರು ೧೮.೬ ವರ್ಷಗಳಲ್ಲಿ ಒಂದು ಪೂರ್ಣ ಚಕ್ರವನ್ನು ಪೂರ್ಣಗೊಳಿಸುತ್ತವೆ. ಈ ನಿರಂತರ ವಕ್ರ ಚಲನೆಯು ಅವುಗಳ ನೈಸರ್ಗಿಕ ಸ್ಥಿತಿಯಾಗಿದೆ (ಅವುಗಳಿಗೆ ಯಾವುದೇ \"ನೇರ\" ಅವಧಿ ಇಲ್ಲ). ಕೆಲವು ಗ್ರಂಥಗಳು ಸಂಕ್ಷಿಪ್ತ \"ನೇರ\" ಸ್ಥಿರ ಅವಧಿಗಳನ್ನು ಗಮನಿಸುತ್ತವೆ, ಆದರೆ ಪ್ರಬಲ ಚಲನೆಯು ಯಾವಾಗಲೂ ವಕ್ರವಾಗಿರುತ್ತದೆ.",
+        "gu": "સાચું. ચંદ્રના નોડ્સ (રાહુ/કેતુ) વક્રી ગતિ કરે છે – રાશિચક્રમાં પાછળની તરફ – પ્રતિ વર્ષ આશરે ૧૯.૪° ની ગતિએ, આશરે ૧૮.૬ વર્ષમાં એક સંપૂર્ણ ચક્ર પૂર્ણ કરે છે. આ શાશ્વત વક્રી ગતિ તેમની કુદરતી અવસ્થા છે (તેમનો કોઈ \"માર્ગી\" સમયગાળો નથી). કેટલાક ગ્રંથો ટૂંકા \"માર્ગી\" સ્થિર સમયગાળાની નોંધ લે છે, પરંતુ પ્રભાવી ગતિ હંમેશા વક્રી હોય છે."
       },
       "classicalRef": "Surya Siddhanta Ch.2"
     },
@@ -598,11 +598,11 @@
         "hi": "किस ग्रह की सबसे बड़ी अस्त सीमा है (सूर्य से सबसे दूर अस्त होता है)?",
         "mai": "कोन ग्रहक अस्तक कक्षा सबसँ पैघ अछि (सूर्य सँ सबसँ बेसी दूर अस्त होइत अछि)?",
         "mr": "किस ग्रह की सबसे बड़ी अस्त सीमा है (सूर्य से सबसे दूर अस्त होता है)?",
-        "ta": "Which planet has the LARGEST combustion orb (gets combust furthest from the Sun)?",
-        "te": "Which planet has the LARGEST combustion orb (gets combust furthest from the Sun)?",
-        "bn": "Which planet has the LARGEST combustion orb (gets combust furthest from the Sun)?",
-        "kn": "Which planet has the LARGEST combustion orb (gets combust furthest from the Sun)?",
-        "gu": "Which planet has the LARGEST combustion orb (gets combust furthest from the Sun)?"
+        "ta": "எந்த கிரகம் மிகப்பெரிய அஸ்தமன பாகையைக் கொண்டுள்ளது (சூரியனில் இருந்து மிகத் தொலைவில் அஸ்தமனமாகிறது)?",
+        "te": "ఏ గ్రహానికి అతి పెద్ద అస్తంగత్వ పరిధి ఉంది (సూర్యుని నుండి అత్యంత దూరంలో అస్తంగత్వం చెందుతుంది)?",
+        "bn": "কোন গ্রহের সবচেয়ে বড় অস্তগত কক্ষপথের দূরত্ব রয়েছে (সূর্য থেকে সবচেয়ে দূরে থাকাকালীন অস্তগত হয়)?",
+        "kn": "ಯಾವ ಗ್ರಹವು ಅತಿ ದೊಡ್ಡ ಅಸ್ತಂಗತ ಕಕ್ಷೆಯನ್ನು ಹೊಂದಿದೆ (ಸೂರ್ಯನಿಂದ ಅತಿ ದೂರದಲ್ಲಿ ಅಸ್ತಂಗತವಾಗುತ್ತದೆ)?",
+        "gu": "કયો ગ્રહ સૌથી મોટો અસ્તનો અંશ ધરાવે છે (સૂર્યથી સૌથી દૂર હોય ત્યારે અસ્ત થાય છે)?"
       },
       "options": [
         {
@@ -610,56 +610,56 @@
           "hi": "शुक्र (10°)",
           "mai": "शुक्र (10°)",
           "mr": "शुक्र (10°)",
-          "ta": "Venus (10°)",
-          "te": "Venus (10°)",
-          "bn": "Venus (10°)",
-          "kn": "Venus (10°)",
-          "gu": "Venus (10°)"
+          "ta": "சுக்கிரன் (10°)",
+          "te": "శుక్రుడు (10°)",
+          "bn": "শুক্র (১০°)",
+          "kn": "ಶುಕ್ರ (೧೦°)",
+          "gu": "શુક્ર (૧૦°)"
         },
         {
           "en": "Mars (17°)",
           "hi": "मंगल (17°)",
           "mai": "मंगल (17°)",
           "mr": "मंगल (17°)",
-          "ta": "Mars (17°)",
-          "te": "Mars (17°)",
-          "bn": "Mars (17°)",
-          "kn": "Mars (17°)",
-          "gu": "Mars (17°)"
+          "ta": "செவ்வாய் (17°)",
+          "te": "అంగారకుడు (17°)",
+          "bn": "মঙ্গল (১৭°)",
+          "kn": "ಮಂಗಳ (೧೭°)",
+          "gu": "મંગળ (૧૭°)"
         },
         {
           "en": "Jupiter (11°)",
           "hi": "गुरु (11°)",
           "mai": "बृहस्पति (11°)",
           "mr": "गुरु (11°)",
-          "ta": "Jupiter (11°)",
-          "te": "Jupiter (11°)",
-          "bn": "Jupiter (11°)",
-          "kn": "Jupiter (11°)",
-          "gu": "Jupiter (11°)"
+          "ta": "குரு (11°)",
+          "te": "బృహస్పతి (11°)",
+          "bn": "বৃহস্পতি (১১°)",
+          "kn": "ಗುರು (೧೧°)",
+          "gu": "ગુરુ (૧૧°)"
         },
         {
           "en": "Saturn (15°)",
           "hi": "शनि (15°)",
           "mai": "शनि (15°)",
           "mr": "शनि (15°)",
-          "ta": "Saturn (15°)",
-          "te": "Saturn (15°)",
-          "bn": "Saturn (15°)",
-          "kn": "Saturn (15°)",
-          "gu": "Saturn (15°)"
+          "ta": "சனி (15°)",
+          "te": "శని (15°)",
+          "bn": "শনি (১৫°)",
+          "kn": "ಶನಿ (೧೫°)",
+          "gu": "શનિ (૧૫°)"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "Mars has the largest combustion orb at 17°. This means Mars becomes combust (invisible due to Sun's brightness) when within 17° of the Sun  –  a larger zone than any other planet. The orbs reflect each planet's apparent brightness: dimmer planets (Mars can be dim) get overwhelmed by the Sun at greater distances.",
         "hi": "मंगल की सबसे बड़ी अस्त सीमा 17° है। सूर्य से 17° के भीतर आने पर मंगल अस्त। सीमाएं ग्रह की आभासी चमक दर्शाती हैं: धुंधले ग्रह अधिक दूरी पर सूर्य से दब जाते हैं।",
-        "ta": "Mars has the largest combustion orb at 17°. This means Mars becomes combust (invisible due to Sun's brightness) when within 17° of the Sun  –  a larger zone than any other planet. The orbs reflect each planet's apparent brightness: dimmer planets (Mars can be dim) get overwhelmed by the Sun at greater distances.",
-        "te": "Mars has the largest combustion orb at 17°. This means Mars becomes combust (invisible due to Sun's brightness) when within 17° of the Sun  –  a larger zone than any other planet. The orbs reflect each planet's apparent brightness: dimmer planets (Mars can be dim) get overwhelmed by the Sun at greater distances.",
-        "bn": "Mars has the largest combustion orb at 17°. This means Mars becomes combust (invisible due to Sun's brightness) when within 17° of the Sun  –  a larger zone than any other planet. The orbs reflect each planet's apparent brightness: dimmer planets (Mars can be dim) get overwhelmed by the Sun at greater distances.",
-        "kn": "Mars has the largest combustion orb at 17°. This means Mars becomes combust (invisible due to Sun's brightness) when within 17° of the Sun  –  a larger zone than any other planet. The orbs reflect each planet's apparent brightness: dimmer planets (Mars can be dim) get overwhelmed by the Sun at greater distances.",
+        "ta": "செவ்வாய் 17° என்ற மிகப்பெரிய அஸ்தமன பாகையைக் கொண்டுள்ளது. இதன் பொருள் செவ்வாய் சூரியனில் இருந்து 17°க்குள் இருக்கும்போது அஸ்தமனமாகிறது (சூரியனின் பிரகாசத்தால் கண்ணுக்குத் தெரியாமல்) – வேறு எந்த கிரகத்தையும் விட பெரிய பகுதி. இந்த பாகைகள் ஒவ்வொரு கிரகத்தின் வெளிப்படையான பிரகாசத்தையும் பிரதிபலிக்கின்றன: மங்கலான கிரகங்கள் (செவ்வாய் மங்கலாக இருக்கலாம்) அதிக தூரத்திலேயே சூரியனால் மறைக்கப்படுகின்றன.",
+        "te": "అంగారకుడికి 17° వద్ద అతి పెద్ద అస్తంగత్వ పరిధి ఉంది. దీని అర్థం అంగారకుడు సూర్యునికి 17° లోపల ఉన్నప్పుడు అస్తంగత్వం చెందుతాడు (సూర్యుని ప్రకాశం వల్ల కనిపించడు) – ఇది ఇతర గ్రహాల కంటే పెద్ద పరిధి. ఈ పరిధులు ప్రతి గ్రహం యొక్క కనిపించే ప్రకాశాన్ని ప్రతిబింబిస్తాయి: మసకబారిన గ్రహాలు (అంగారకుడు మసకగా ఉండవచ్చు) ఎక్కువ దూరాల వద్ద సూర్యునిచే కప్పబడతాయి.",
+        "bn": "মঙ্গলের অস্তগত কক্ষপথের দূরত্ব সবচেয়ে বড়, ১৭°। এর অর্থ মঙ্গল অস্তগত হয় (সূর্যের উজ্জ্বলতার কারণে অদৃশ্য) যখন সূর্যের ১৭° এর মধ্যে থাকে – যা অন্য যেকোনো গ্রহের চেয়ে বড় একটি অঞ্চল। এই দূরত্বগুলি প্রতিটি গ্রহের আপাত উজ্জ্বলতা প্রতিফলিত করে: কম উজ্জ্বল গ্রহগুলি (মঙ্গল অনুজ্জ্বল হতে পারে) বেশি দূরত্বে সূর্য দ্বারা আচ্ছন্ন হয়ে পড়ে।",
+        "kn": "ಮಂಗಳವು ೧೭° ನಲ್ಲಿ ಅತಿ ದೊಡ್ಡ ಅಸ್ತಂಗತ ಕಕ್ಷೆಯನ್ನು ಹೊಂದಿದೆ. ಇದರರ್ಥ ಮಂಗಳವು ಸೂರ್ಯನಿಂದ ೧೭° ಒಳಗೆ ಇದ್ದಾಗ ಅಸ್ತಂಗತವಾಗುತ್ತದೆ (ಸೂರ್ಯನ ಪ್ರಖರತೆಯಿಂದ ಅದೃಶ್ಯವಾಗುತ್ತದೆ) – ಇದು ಯಾವುದೇ ಇತರ ಗ್ರಹಕ್ಕಿಂತ ದೊಡ್ಡ ವಲಯವಾಗಿದೆ. ಕಕ್ಷೆಗಳು ಪ್ರತಿ ಗ್ರಹದ ಗೋಚರ ಪ್ರಕಾಶಮಾನತೆಯನ್ನು ಪ್ರತಿಬಿಂಬಿಸುತ್ತವೆ: ಮಂದ ಗ್ರಹಗಳು (ಮಂಗಳವು ಮಂದವಾಗಿರಬಹುದು) ಹೆಚ್ಚು ದೂರದಲ್ಲಿ ಸೂರ್ಯನಿಂದ ಆವರಿಸಲ್ಪಡುತ್ತವೆ.",
         "mr": "मंगल की सबसे बड़ी अस्त सीमा 17° है। सूर्य से 17° के भीतर आने पर मंगल अस्त। सीमाएं ग्रह की आभासी चमक दर्शाती हैं: धुंधले ग्रह अधिक दूरी पर सूर्य से दब जाते हैं।",
-        "gu": "Mars has the largest combustion orb at 17°. This means Mars becomes combust (invisible due to Sun's brightness) when within 17° of the Sun  –  a larger zone than any other planet. The orbs reflect each planet's apparent brightness: dimmer planets (Mars can be dim) get overwhelmed by the Sun at greater distances.",
+        "gu": "મંગળનો સૌથી મોટો અસ્તનો અંશ ૧૭° છે. આનો અર્થ એ છે કે મંગળ અસ્ત થાય છે (સૂર્યના તેજને કારણે અદ્રશ્ય) જ્યારે સૂર્યથી ૧૭° ની અંદર હોય – અન્ય કોઈપણ ગ્રહ કરતાં મોટો વિસ્તાર. આ અંશ દરેક ગ્રહની દેખીતી તેજસ્વીતા દર્શાવે છે: ઓછા તેજસ્વી ગ્રહો (મંગળ ઓછો તેજસ્વી હોઈ શકે છે) સૂર્ય દ્વારા વધુ અંતરે પણ પ્રભાવિત થાય છે.",
         "mai": "मंगलक अस्तक कक्षा 17° पर सबसँ पैघ अछि। एकर मतलब अछि जे मंगल सूर्य सँ 17° कऽ भीतर होयबा पर अस्त भऽ जाइत अछि (सूर्यक चमकक कारण अदृश्य) – जे कोनो आन ग्रह सँ पैघ क्षेत्र अछि। ई कक्षा प्रत्येक ग्रहक स्पष्ट चमक केँ दर्शाबैत अछि: मंद ग्रह (मंगल मंद भऽ सकैत अछि) बेसी दूरी पर सूर्य द्वारा अभिभूत भऽ जाइत अछि।"
       },
       "classicalRef": "BPHS Ch.3 v.42"

@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 13-1: योग अवलोकन",
         "mai": "मोड्यूल १३-१: योग अवलोकन",
         "mr": "मॉड्यूल 13-1: योग अवलोकन",
-        "ta": "Module 13-1: Yogas Overview",
-        "te": "Module 13-1: Yogas Overview",
-        "bn": "Module 13-1: Yogas Overview",
-        "kn": "Module 13-1: Yogas Overview",
-        "gu": "Module 13-1: Yogas Overview"
+        "ta": "தொகுதி 13-1: யோகங்களின் கண்ணோட்டம்",
+        "te": "మాడ్యూల్ 13-1: యోగాల పరిచయం",
+        "bn": "মডিউল ১৩-১: যোগের সংক্ষিপ্ত বিবরণ",
+        "kn": "ಮಾಡ್ಯೂಲ್ 13-1: ಯೋಗಗಳ ಅವಲೋಕನ",
+        "gu": "મોડ્યુલ 13-1: યોગોની ઝાંખી"
       },
       "href": "/learn/modules/13-1"
     },
@@ -42,11 +42,11 @@
         "hi": "मॉड्यूल 13-3: दोष पहचान",
         "mai": "मोड्यूल १३-३: दोष पहचान",
         "mr": "मॉड्यूल 13-3: दोष पहचान",
-        "ta": "Module 13-3: Dosha Detection",
-        "te": "Module 13-3: Dosha Detection",
-        "bn": "Module 13-3: Dosha Detection",
-        "kn": "Module 13-3: Dosha Detection",
-        "gu": "Module 13-3: Dosha Detection"
+        "ta": "தொகுதி 13-3: தோஷ கண்டறிதல்",
+        "te": "మాడ్యూల్ 13-3: దోష నిర్ధారణ",
+        "bn": "মডিউল ১৩-৩: দোষ নির্ণয়",
+        "kn": "ಮಾಡ್ಯೂಲ್ 13-3: ದೋಷ ಪತ್ತೆ",
+        "gu": "મોડ્યુલ 13-3: દોષ શોધ"
       },
       "href": "/learn/modules/13-3"
     },
@@ -56,11 +56,11 @@
         "hi": "योग विस्तार",
         "mai": "योग गहन अध्ययन",
         "mr": "योग विस्तार",
-        "ta": "Yogas Deep Dive",
-        "te": "Yogas Deep Dive",
-        "bn": "Yogas Deep Dive",
-        "kn": "Yogas Deep Dive",
-        "gu": "Yogas Deep Dive"
+        "ta": "யோகங்கள் ஆழமான ஆய்வு",
+        "te": "యోగాల లోతైన విశ్లేషణ",
+        "bn": "যোগের গভীর বিশ্লেষণ",
+        "kn": "ಯೋಗಗಳ ಆಳವಾದ ವಿಶ್ಲೇಷಣೆ",
+        "gu": "યોગોનું ઊંડાણપૂર્વક વિશ્લેષણ"
       },
       "href": "/learn/yoga"
     }
@@ -72,24 +72,24 @@
       "question": {
         "en": "The \"wealth axis\" in Vedic astrology primarily involves which houses?",
         "hi": "वैदिक ज्योतिष में \"धन अक्ष\" मुख्यतः किन भावों से सम्बन्धित है?",
-        "ta": "The \"wealth axis\" in Vedic astrology primarily involves which houses?",
-        "te": "The \"wealth axis\" in Vedic astrology primarily involves which houses?",
-        "bn": "The \"wealth axis\" in Vedic astrology primarily involves which houses?",
-        "kn": "The \"wealth axis\" in Vedic astrology primarily involves which houses?",
+        "ta": "வேத ஜோதிடத்தில் \"செல்வ அச்சு\" முதன்மையாக எந்த பாவங்களை உள்ளடக்கியது?",
+        "te": "వేద జ్యోతిషశాస్త్రంలో \"ధన అక్షం\" ప్రధానంగా ఏ భావాలను కలిగి ఉంటుంది?",
+        "bn": "বৈদিক জ্যোতিষশাস্ত্রে \"ধন ভাব অক্ষ\" প্রধানত কোন ভাবগুলিকে জড়িত করে?",
+        "kn": "ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯದಲ್ಲಿ \"ಸಂಪತ್ತಿನ ಅಕ್ಷ\" ಮುಖ್ಯವಾಗಿ ಯಾವ ಭಾವಗಳನ್ನು ಒಳಗೊಂಡಿದೆ?",
         "mr": "वैदिक ज्योतिष में \"धन अक्ष\" मुख्यतः किन भावों से सम्बन्धित है?",
-        "gu": "The \"wealth axis\" in Vedic astrology primarily involves which houses?",
+        "gu": "વૈદિક જ્યોતિષમાં \"ધન ધરી\" માં મુખ્યત્વે કયા ભાવોનો સમાવેશ થાય છે?",
         "mai": "वैदिक ज्योतिष मे \"धनक अक्ष\" मुख्य रूप सँ कोन-कोन भाव शामिल अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The wealth axis comprises the 2nd (accumulated wealth, family resources), 5th (speculative gains, past merit), 9th (fortune, divine grace), and 11th (income, fulfillment of desires) houses. Lords of these houses interacting create Dhana Yogas.",
         "hi": "धन अक्ष में 2रा (संचित धन, पारिवारिक संसाधन), 5वाँ (सट्टा लाभ, पूर्व पुण्य), 9वाँ (भाग्य, दैवी कृपा) और 11वाँ (आय, इच्छापूर्ति) भाव सम्मिलित हैं। इन भावों के स्वामियों की परस्पर क्रिया धन योग बनाती है।",
-        "ta": "The wealth axis comprises the 2nd (accumulated wealth, family resources), 5th (speculative gains, past merit), 9th (fortune, divine grace), and 11th (income, fulfillment of desires) houses. Lords of these houses interacting create Dhana Yogas.",
-        "te": "The wealth axis comprises the 2nd (accumulated wealth, family resources), 5th (speculative gains, past merit), 9th (fortune, divine grace), and 11th (income, fulfillment of desires) houses. Lords of these houses interacting create Dhana Yogas.",
-        "bn": "The wealth axis comprises the 2nd (accumulated wealth, family resources), 5th (speculative gains, past merit), 9th (fortune, divine grace), and 11th (income, fulfillment of desires) houses. Lords of these houses interacting create Dhana Yogas.",
-        "kn": "The wealth axis comprises the 2nd (accumulated wealth, family resources), 5th (speculative gains, past merit), 9th (fortune, divine grace), and 11th (income, fulfillment of desires) houses. Lords of these houses interacting create Dhana Yogas.",
+        "ta": "செல்வ அச்சு 2 ஆம் (சேர்ந்த செல்வம், குடும்ப வளங்கள்), 5 ஆம் (ஊக லாபங்கள், பூர்வ புண்ணியம்), 9 ஆம் (அதிர்ஷ்டம், தெய்வீக அருள்) மற்றும் 11 ஆம் (வருமானம், விருப்பங்கள் நிறைவேறுதல்) பாவங்களை உள்ளடக்கியது. இந்த பாவங்களின் அதிபதிகள் ஒன்றிணைந்து தன யோகங்களை உருவாக்குகின்றன.",
+        "te": "ధన అక్షం 2వ భావం (సంచిత ధనం, కుటుంబ వనరులు), 5వ భావం (ఊహాజనిత లాభాలు, పూర్వ పుణ్యం), 9వ భావం (అదృష్టం, దైవ కృప), మరియు 11వ భావం (ఆదాయం, కోరికల నెరవేర్పు) లను కలిగి ఉంటుంది. ఈ భావాల అధిపతులు పరస్పరం సంబంధం కలిగి ఉండటం ధన యోగాలను సృష్టిస్తుంది.",
+        "bn": "ধন ভাব অক্ষটি ২য় ভাব (সঞ্চিত ধন, পারিবারিক সম্পদ), ৫ম ভাব (অনুমানমূলক লাভ, পূর্বজন্মের পুণ্য), ৯ম ভাব (ভাগ্য, ঐশ্বরিক কৃপা) এবং ১১শ ভাব (আয়, ইচ্ছাপূরণ) নিয়ে গঠিত। এই ভাবগুলির অধিপতিদের পারস্পরিক সম্পর্ক ধন যোগ তৈরি করে।",
+        "kn": "ಸಂಪತ್ತಿನ ಅಕ್ಷವು 2ನೇ (ಸಂಗ್ರಹವಾದ ಸಂಪತ್ತು, ಕುಟುಂಬದ ಸಂಪನ್ಮೂಲಗಳು), 5ನೇ (ಊಹಾತ್ಮಕ ಲಾಭಗಳು, ಪೂರ್ವ ಪುಣ್ಯ), 9ನೇ (ಭಾಗ್ಯ, ದೈವಿಕ ಅನುಗ್ರಹ), ಮತ್ತು 11ನೇ (ಆದಾಯ, ಆಸೆಗಳ ಈಡೇರಿಕೆ) ಭಾವಗಳನ್ನು ಒಳಗೊಂಡಿದೆ. ಈ ಭಾವಗಳ ಅಧಿಪತಿಗಳು ಪರಸ್ಪರ ಸಂಬಂಧಿಸಿದಾಗ ಧನ ಯೋಗಗಳನ್ನು ಸೃಷ್ಟಿಸುತ್ತವೆ.",
         "mr": "धन अक्ष में 2रा (संचित धन, पारिवारिक संसाधन), 5वाँ (सट्टा लाभ, पूर्व पुण्य), 9वाँ (भाग्य, दैवी कृपा) और 11वाँ (आय, इच्छापूर्ति) भाव सम्मिलित हैं। इन भावों के स्वामियों की परस्पर क्रिया धन योग बनाती है।",
-        "gu": "The wealth axis comprises the 2nd (accumulated wealth, family resources), 5th (speculative gains, past merit), 9th (fortune, divine grace), and 11th (income, fulfillment of desires) houses. Lords of these houses interacting create Dhana Yogas.",
+        "gu": "ધન ધરીમાં બીજો (સંચિત ધન, કૌટુંબિક સંસાધનો), પાંચમો (અટકળભર્યા લાભ, પૂર્વ પુણ્ય), નવમો (ભાગ્ય, દૈવી કૃપા), અને અગિયારમો (આવક, ઈચ્છાઓની પૂર્તિ) ભાવનો સમાવેશ થાય છે. આ ભાવોના સ્વામીઓની ક્રિયાપ્રતિક્રિયા ધન યોગો બનાવે છે.",
         "mai": "धनक अक्ष मे दोसर (संचित धन, पारिवारिक संसाधन), पाँचम (सट्टा लाभ, पूर्व पुण्य), नवम (भाग्य, दैवीय कृपा), आ एकादश (आय, इच्छा पूर्ति) भाव शामिल अछि. ई सभ भावक स्वामीक अंतःक्रिया सँ धन योग बनैत अछि."
       },
       "options": [
@@ -145,24 +145,24 @@
       "question": {
         "en": "Lakshmi Yoga is formed when the 9th lord is:",
         "hi": "लक्ष्मी योग तब बनता है जब 9वें भाव का स्वामी:",
-        "ta": "Lakshmi Yoga is formed when the 9th lord is:",
-        "te": "Lakshmi Yoga is formed when the 9th lord is:",
-        "bn": "Lakshmi Yoga is formed when the 9th lord is:",
-        "kn": "Lakshmi Yoga is formed when the 9th lord is:",
+        "ta": "9 ஆம் அதிபதி பின்வருமாறு இருக்கும்போது லட்சுமி யோகம் உருவாகிறது:",
+        "te": "లక్ష్మీ యోగం ఎప్పుడు ఏర్పడుతుంది, 9వ భావాధిపతి:",
+        "bn": "লক্ষ্মী যোগ গঠিত হয় যখন ৯ম ভাবের অধিপতি:",
+        "kn": "ಲಕ್ಷ್ಮೀ ಯೋಗವು ರೂಪುಗೊಳ್ಳುತ್ತದೆ, ಯಾವಾಗ 9ನೇ ಭಾವದ ಅಧಿಪತಿಯು ಹೀಗಿರುತ್ತಾನೆ:",
         "mr": "लक्ष्मी योग तब बनता है जब 9वें भाव का स्वामी:",
-        "gu": "Lakshmi Yoga is formed when the 9th lord is:",
+        "gu": "લક્ષ્મી યોગ ત્યારે બને છે જ્યારે નવમા ભાવનો સ્વામી હોય:",
         "mai": "लक्ष्मी योग तखन बनैत अछि जखन नवमेश:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Lakshmi Yoga forms when the 9th lord (house of fortune) is strong  –  in its own or exalted sign  –  and placed in a Kendra (1, 4, 7, 10). Additionally, the Lagna lord should also be strong. This yoga bestows lasting wealth, prosperity, and divine grace.",
         "hi": "लक्ष्मी योग तब बनता है जब 9वाँ स्वामी (भाग्य भाव) बलवान हो  –  स्वराशि या उच्च में  –  और केन्द्र (1, 4, 7, 10) में स्थित हो। साथ ही लग्न स्वामी भी बलवान हो। यह योग स्थायी धन, समृद्धि और दैवी कृपा प्रदान करता है।",
-        "ta": "Lakshmi Yoga forms when the 9th lord (house of fortune) is strong  –  in its own or exalted sign  –  and placed in a Kendra (1, 4, 7, 10). Additionally, the Lagna lord should also be strong. This yoga bestows lasting wealth, prosperity, and divine grace.",
-        "te": "Lakshmi Yoga forms when the 9th lord (house of fortune) is strong  –  in its own or exalted sign  –  and placed in a Kendra (1, 4, 7, 10). Additionally, the Lagna lord should also be strong. This yoga bestows lasting wealth, prosperity, and divine grace.",
-        "bn": "Lakshmi Yoga forms when the 9th lord (house of fortune) is strong  –  in its own or exalted sign  –  and placed in a Kendra (1, 4, 7, 10). Additionally, the Lagna lord should also be strong. This yoga bestows lasting wealth, prosperity, and divine grace.",
-        "kn": "Lakshmi Yoga forms when the 9th lord (house of fortune) is strong  –  in its own or exalted sign  –  and placed in a Kendra (1, 4, 7, 10). Additionally, the Lagna lord should also be strong. This yoga bestows lasting wealth, prosperity, and divine grace.",
+        "ta": "9 ஆம் அதிபதி (அதிர்ஷ்ட பாவம்) வலிமையாக – சொந்த ராசியிலோ அல்லது உச்ச ராசியிலோ – கேந்திரத்தில் (1, 4, 7, 10) அமர்ந்திருக்கும்போது லட்சுமி யோகம் உருவாகிறது. கூடுதலாக, லக்ன அதிபதியும் வலிமையாக இருக்க வேண்டும். இந்த யோகம் நீடித்த செல்வம், செழிப்பு மற்றும் தெய்வீக அருளை வழங்குகிறது.",
+        "te": "లక్ష్మీ యోగం ఏర్పడుతుంది, ఎప్పుడు 9వ భావాధిపతి (అదృష్ట భావం) బలంగా ఉండి – స్వక్షేత్రంలో లేదా ఉచ్చ రాశిలో – మరియు కేంద్రంలో (1, 4, 7, 10) ఉన్నప్పుడు. అదనంగా, లగ్నాధిపతి కూడా బలంగా ఉండాలి. ఈ యోగం శాశ్వత ధనం, శ్రేయస్సు మరియు దైవ కృపను ప్రసాదిస్తుంది.",
+        "bn": "লক্ষ্মী যোগ গঠিত হয় যখন ৯ম ভাবের অধিপতি (ভাগ্য ভাব) শক্তিশালী হয় – স্বক্ষেত্রস্থ বা উচ্চস্থ রাশিতে – এবং কেন্দ্র ভাবে (১, ৪, ৭, ১০) অবস্থান করে। উপরন্তু, লগ্ন অধিপতিও শক্তিশালী হওয়া উচিত। এই যোগ স্থায়ী ধন, সমৃদ্ধি এবং ঐশ্বরিক কৃপা প্রদান করে।",
+        "kn": "ಲಕ್ಷ್ಮೀ ಯೋಗವು ರೂಪುಗೊಳ್ಳುತ್ತದೆ, ಯಾವಾಗ 9ನೇ ಭಾವದ ಅಧಿಪತಿಯು (ಭಾಗ್ಯ ಭಾವ) ಬಲಶಾಲಿಯಾಗಿರುತ್ತಾನೆ – ತನ್ನ ಸ್ವಂತ ರಾಶಿಯಲ್ಲಿ ಅಥವಾ ಉಚ್ಚ ರಾಶಿಯಲ್ಲಿ – ಮತ್ತು ಕೇಂದ್ರ ಭಾವದಲ್ಲಿ (1, 4, 7, 10) ಇರುತ್ತಾನೆ. ಹೆಚ್ಚುವರಿಯಾಗಿ, ಲಗ್ನ ಅಧಿಪತಿಯೂ ಬಲಶಾಲಿಯಾಗಿರಬೇಕು. ಈ ಯೋಗವು ಶಾಶ್ವತ ಸಂಪತ್ತು, ಸಮೃದ್ಧಿ ಮತ್ತು ದೈವಿಕ ಅನುಗ್ರಹವನ್ನು ನೀಡುತ್ತದೆ.",
         "mr": "लक्ष्मी योग तब बनता है जब 9वाँ स्वामी (भाग्य भाव) बलवान हो  –  स्वराशि या उच्च में  –  और केन्द्र (1, 4, 7, 10) में स्थित हो। साथ ही लग्न स्वामी भी बलवान हो। यह योग स्थायी धन, समृद्धि और दैवी कृपा प्रदान करता है।",
-        "gu": "Lakshmi Yoga forms when the 9th lord (house of fortune) is strong  –  in its own or exalted sign  –  and placed in a Kendra (1, 4, 7, 10). Additionally, the Lagna lord should also be strong. This yoga bestows lasting wealth, prosperity, and divine grace.",
+        "gu": "લક્ષ્મી યોગ ત્યારે બને છે જ્યારે નવમા ભાવનો સ્વામી (ભાગ્યનો ભાવ) બળવાન હોય  –  સ્વગૃહી અથવા ઉચ્ચ રાશિમાં  –  અને કેન્દ્ર (1, 4, 7, 10) માં સ્થિત હોય. વધુમાં, લગ્ન સ્વામી પણ બળવાન હોવો જોઈએ. આ યોગ કાયમી ધન, સમૃદ્ધિ અને દૈવી કૃપા પ્રદાન કરે છે.",
         "mai": "लक्ष्मी योग तखन बनैत अछि जखन नवमेश (भाग्यक भाव) बलवान होइत अछि – अपन वा उच्च राशि मे – आ केन्द्र (१, ४, ७, १०) मे स्थित होइत अछि. संगहि, लग्नेश सेहो बलवान हेबाक चाही. ई योग स्थायी धन, समृद्धि, आ दैवीय कृपा प्रदान करैत अछि."
       },
       "options": [
@@ -171,44 +171,44 @@
           "hi": "12वें भाव में नीच हो",
           "mai": "द्वादश भाव मे नीच",
           "mr": "12वें भाव में नीच हो",
-          "ta": "Debilitated in the 12th house",
-          "te": "Debilitated in the 12th house",
-          "bn": "Debilitated in the 12th house",
-          "kn": "Debilitated in the 12th house",
-          "gu": "Debilitated in the 12th house"
+          "ta": "12 ஆம் பாவத்தில் நீச்சம் அடைந்தால்",
+          "te": "12వ భావంలో నీచ స్థితిలో",
+          "bn": "দ্বাদশ ভাবে নীচস্থ",
+          "kn": "12ನೇ ಭಾವದಲ್ಲಿ ನೀಚನಾಗಿ",
+          "gu": "બારમા ભાવમાં નીચનો"
         },
         {
           "en": "Strong (own/exalted sign) and placed in a Kendra",
           "hi": "बलवान (स्वराशि/उच्च) और केन्द्र में स्थित हो",
           "mai": "बलवान (अपन/उच्च राशि) आ केन्द्र मे स्थित",
           "mr": "बलवान (स्वराशि/उच्च) और केन्द्र में स्थित हो",
-          "ta": "Strong (own/exalted sign) and placed in a Kendra",
-          "te": "Strong (own/exalted sign) and placed in a Kendra",
-          "bn": "Strong (own/exalted sign) and placed in a Kendra",
-          "kn": "Strong (own/exalted sign) and placed in a Kendra",
-          "gu": "Strong (own/exalted sign) and placed in a Kendra"
+          "ta": "வலிமையாக (சொந்த/உச்ச ராசி) மற்றும் கேந்திரத்தில் அமர்ந்திருந்தால்",
+          "te": "బలంగా (స్వక్షేత్రం/ఉచ్చ రాశి) మరియు కేంద్రంలో ఉన్నప్పుడు",
+          "bn": "শক্তিশালী (স্বক্ষেত্রস্থ/উচ্চস্থ রাশি) এবং কেন্দ্রে অবস্থিত",
+          "kn": "ಬಲಶಾಲಿ (ಸ್ವಂತ/ಉಚ್ಚ ರಾಶಿ) ಮತ್ತು ಕೇಂದ್ರದಲ್ಲಿ ಇರುವುದು",
+          "gu": "બળવાન (સ્વગૃહી/ઉચ્ચ રાશિમાં) અને કેન્દ્રમાં સ્થિત"
         },
         {
           "en": "Combust with the Sun",
           "hi": "सूर्य के साथ अस्त हो",
           "mai": "सूर्यक संग अस्त",
           "mr": "सूर्य के साथ अस्त हो",
-          "ta": "Combust with the Sun",
-          "te": "Combust with the Sun",
-          "bn": "Combust with the Sun",
-          "kn": "Combust with the Sun",
-          "gu": "Combust with the Sun"
+          "ta": "சூரியனுடன் அஸ்தமனம் அடைந்தால்",
+          "te": "సూర్యునితో అస్తంగత్వం పొంది",
+          "bn": "সূর্যের সাথে অস্তমিত",
+          "kn": "ಸೂರ್ಯನೊಂದಿಗೆ ಅಸ್ತಂಗತನಾಗಿ",
+          "gu": "સૂર્ય સાથે અસ્ત"
         },
         {
           "en": "In the 8th house",
           "hi": "8वें भाव में हो",
           "mai": "अष्टम भाव मे",
           "mr": "8वें भाव में हो",
-          "ta": "In the 8th house",
-          "te": "In the 8th house",
-          "bn": "In the 8th house",
-          "kn": "In the 8th house",
-          "gu": "In the 8th house"
+          "ta": "8 ஆம் பாவத்தில்",
+          "te": "8వ భావంలో",
+          "bn": "অষ্টম ভাবে",
+          "kn": "8ನೇ ಭಾವದಲ್ಲಿ",
+          "gu": "આઠમા ભાવમાં"
         }
       ]
     },
@@ -218,24 +218,24 @@
       "question": {
         "en": "A Jupiter-Mercury conjunction in the 2nd or 11th house forms a Dhana Yoga.",
         "hi": "गुरु-बुध संयोग 2रे या 11वें भाव में धन योग बनाता है।",
-        "ta": "A Jupiter-Mercury conjunction in the 2nd or 11th house forms a Dhana Yoga.",
-        "te": "A Jupiter-Mercury conjunction in the 2nd or 11th house forms a Dhana Yoga.",
-        "bn": "A Jupiter-Mercury conjunction in the 2nd or 11th house forms a Dhana Yoga.",
-        "kn": "A Jupiter-Mercury conjunction in the 2nd or 11th house forms a Dhana Yoga.",
+        "ta": "2 ஆம் அல்லது 11 ஆம் பாவத்தில் குரு-புதன் சேர்க்கை ஒரு தன யோகத்தை உருவாக்குகிறது.",
+        "te": "2వ లేదా 11వ భావంలో గురు-బుధ సంయోగం ధన యోగాన్ని ఏర్పరుస్తుంది.",
+        "bn": "২য় বা ১১শ ভাবে বৃহস্পতি-বুধের যুতি একটি ধন যোগ তৈরি করে।",
+        "kn": "ಗುರು-ಬುಧ ಸಂಯೋಗವು 2ನೇ ಅಥವಾ 11ನೇ ಭಾವದಲ್ಲಿ ಧನ ಯೋಗವನ್ನು ರೂಪಿಸುತ್ತದೆ.",
         "mr": "गुरु-बुध संयोग 2रे या 11वें भाव में धन योग बनाता है।",
-        "gu": "A Jupiter-Mercury conjunction in the 2nd or 11th house forms a Dhana Yoga.",
+        "gu": "બીજા અથવા અગિયારમા ભાવમાં ગુરુ-બુધની યુતિ ધન યોગ બનાવે છે.",
         "mai": "दोसर वा एकादश भाव मे गुरु-बुधक युति धन योग बनबैत अछि."
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Jupiter (the great benefic of expansion) combined with Mercury (the planet of commerce and calculation) in wealth houses (2nd = accumulated wealth, 11th = income/gains) creates a powerful Dhana Yoga. Both planets enhance each other's wealth-giving capacity.",
         "hi": "सत्य। गुरु (विस्तार का महाशुभ) और बुध (वाणिज्य और गणना का ग्रह) धन भावों (2रा = संचित धन, 11वाँ = आय/लाभ) में संयुक्त शक्तिशाली धन योग बनाते हैं। दोनों ग्रह एक-दूसरे की धन-देने की क्षमता को बढ़ाते हैं।",
-        "ta": "True. Jupiter (the great benefic of expansion) combined with Mercury (the planet of commerce and calculation) in wealth houses (2nd = accumulated wealth, 11th = income/gains) creates a powerful Dhana Yoga. Both planets enhance each other's wealth-giving capacity.",
-        "te": "True. Jupiter (the great benefic of expansion) combined with Mercury (the planet of commerce and calculation) in wealth houses (2nd = accumulated wealth, 11th = income/gains) creates a powerful Dhana Yoga. Both planets enhance each other's wealth-giving capacity.",
-        "bn": "True. Jupiter (the great benefic of expansion) combined with Mercury (the planet of commerce and calculation) in wealth houses (2nd = accumulated wealth, 11th = income/gains) creates a powerful Dhana Yoga. Both planets enhance each other's wealth-giving capacity.",
-        "kn": "True. Jupiter (the great benefic of expansion) combined with Mercury (the planet of commerce and calculation) in wealth houses (2nd = accumulated wealth, 11th = income/gains) creates a powerful Dhana Yoga. Both planets enhance each other's wealth-giving capacity.",
+        "ta": "உண்மை. குரு (விரிவாக்கத்தின் மகா சுப கிரகம்) புதனுடன் (வர்த்தகம் மற்றும் கணக்கீட்டின் கிரகம்) செல்வ பாவங்களில் (2 ஆம் பாவம் = சேர்ந்த செல்வம், 11 ஆம் பாவம் = வருமானம்/லாபங்கள்) இணையும்போது ஒரு சக்திவாய்ந்த தன யோகத்தை உருவாக்குகிறது. இரு கிரகங்களும் ஒன்றையொன்று செல்வம் அளிக்கும் திறனை மேம்படுத்துகின்றன.",
+        "te": "నిజం. గురువు (విస్తరణకు గొప్ప శుభ గ్రహం) బుధునితో (వాణిజ్యం మరియు గణన గ్రహం) ధన భావాలలో (2వ భావం = సంచిత ధనం, 11వ భావం = ఆదాయం/లాభాలు) కలిసి శక్తివంతమైన ధన యోగాన్ని సృష్టిస్తుంది. రెండు గ్రహాలు ఒకదానికొకటి ధన ప్రదాన సామర్థ్యాన్ని పెంచుతాయి.",
+        "bn": "সত্য। বৃহস্পতি (সম্প্রসারণের মহান শুভ গ্রহ) বুধের (বাণিজ্য ও গণনার গ্রহ) সাথে ধন ভাবগুলিতে (২য় = সঞ্চিত ধন, ১১শ = আয়/লাভ) মিলিত হয়ে একটি শক্তিশালী ধন যোগ তৈরি করে। উভয় গ্রহ একে অপরের ধন প্রদানের ক্ষমতা বৃদ্ধি করে।",
+        "kn": "ಸರಿ. ಗುರು (ವಿಸ್ತರಣೆಯ ಮಹಾ ಶುಭ ಗ್ರಹ) ಬುಧನೊಂದಿಗೆ (ವಾಣಿಜ್ಯ ಮತ್ತು ಲೆಕ್ಕಾಚಾರದ ಗ್ರಹ) ಸಂಪತ್ತಿನ ಭಾವಗಳಲ್ಲಿ (2ನೇ = ಸಂಗ್ರಹವಾದ ಸಂಪತ್ತು, 11ನೇ = ಆದಾಯ/ಲಾಭಗಳು) ಸಂಯೋಜಿಸಿದಾಗ ಪ್ರಬಲ ಧನ ಯೋಗವನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ. ಎರಡೂ ಗ್ರಹಗಳು ಪರಸ್ಪರ ಸಂಪತ್ತು ನೀಡುವ ಸಾಮರ್ಥ್ಯವನ್ನು ಹೆಚ್ಚಿಸುತ್ತವೆ.",
         "mr": "सत्य। गुरु (विस्तार का महाशुभ) और बुध (वाणिज्य और गणना का ग्रह) धन भावों (2रा = संचित धन, 11वाँ = आय/लाभ) में संयुक्त शक्तिशाली धन योग बनाते हैं। दोनों ग्रह एक-दूसरे की धन-देने की क्षमता को बढ़ाते हैं।",
-        "gu": "True. Jupiter (the great benefic of expansion) combined with Mercury (the planet of commerce and calculation) in wealth houses (2nd = accumulated wealth, 11th = income/gains) creates a powerful Dhana Yoga. Both planets enhance each other's wealth-giving capacity.",
+        "gu": "સાચું. ગુરુ (વિસ્તરણનો મહાન શુભ ગ્રહ) બુધ (વાણિજ્ય અને ગણતરીનો ગ્રહ) સાથે ધન ભાવોમાં (બીજો = સંચિત ધન, અગિયારમો = આવક/લાભ) શક્તિશાળી ધન યોગ બનાવે છે. બંને ગ્રહો એકબીજાની ધન આપવાની ક્ષમતામાં વધારો કરે છે.",
         "mai": "सत्य. गुरु (विस्तारक महान शुभ ग्रह) बुध (वाणिज्य आ गणनाक ग्रह) क संग मिल कय धनक भाव सभ मे (दोसर = संचित धन, एकादश = आय/लाभ) एकटा शक्तिशाली धन योग बनबैत अछि. दुनू ग्रह एक दोसरक धन देबाक क्षमता केँ बढ़ाबैत अछि."
       }
     },
@@ -245,24 +245,24 @@
       "question": {
         "en": "Daridra Yoga (poverty indication) forms when the 11th lord is placed in:",
         "hi": "दारिद्र योग (दरिद्रता सूचक) तब बनता है जब 11वें भाव का स्वामी स्थित हो:",
-        "ta": "Daridra Yoga (poverty indication) forms when the 11th lord is placed in:",
-        "te": "Daridra Yoga (poverty indication) forms when the 11th lord is placed in:",
-        "bn": "Daridra Yoga (poverty indication) forms when the 11th lord is placed in:",
-        "kn": "Daridra Yoga (poverty indication) forms when the 11th lord is placed in:",
+        "ta": "11 ஆம் அதிபதி பின்வரும் பாவத்தில் அமர்ந்திருக்கும்போது தாரித்ர யோகம் (வறுமைக்கான அறிகுறி) உருவாகிறது:",
+        "te": "దారిద్ర్య యోగం (పేదరికాన్ని సూచించేది) ఎప్పుడు ఏర్పడుతుంది, 11వ భావాధిపతి ఉన్నప్పుడు:",
+        "bn": "দারিদ্র যোগ (দারিদ্র্যের ইঙ্গিত) গঠিত হয় যখন ১১শ ভাবের অধিপতি অবস্থিত হয়:",
+        "kn": "ದಾರಿದ್ರ್ಯ ಯೋಗವು (ಬಡತನದ ಸೂಚನೆ) ರೂಪುಗೊಳ್ಳುತ್ತದೆ, ಯಾವಾಗ 11ನೇ ಭಾವದ ಅಧಿಪತಿಯು ಇರುತ್ತಾನೆ:",
         "mr": "दारिद्र योग (दरिद्रता सूचक) तब बनता है जब 11वें भाव का स्वामी स्थित हो:",
-        "gu": "Daridra Yoga (poverty indication) forms when the 11th lord is placed in:",
+        "gu": "દરિદ્ર યોગ (ગરીબીનો સંકેત) ત્યારે બને છે જ્યારે અગિયારમા ભાવનો સ્વામી સ્થિત હોય:",
         "mai": "दरिद्र योग (गरीबीक संकेत) तखन बनैत अछि जखन एकादशेश स्थित होइत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "When the 11th lord (income and gains) is placed in dusthana houses (6th = debt/enemies, 8th = obstacles/losses, 12th = expenses/foreign lands), the natural flow of income is obstructed, indicating financial struggle.",
         "hi": "जब 11वाँ स्वामी (आय और लाभ) दुःस्थान भावों (6वाँ = ऋण/शत्रु, 8वाँ = बाधा/हानि, 12वाँ = व्यय/विदेश) में हो, तो आय का स्वाभाविक प्रवाह अवरुद्ध होता है, जो आर्थिक संघर्ष इंगित करता है।",
-        "ta": "When the 11th lord (income and gains) is placed in dusthana houses (6th = debt/enemies, 8th = obstacles/losses, 12th = expenses/foreign lands), the natural flow of income is obstructed, indicating financial struggle.",
-        "te": "When the 11th lord (income and gains) is placed in dusthana houses (6th = debt/enemies, 8th = obstacles/losses, 12th = expenses/foreign lands), the natural flow of income is obstructed, indicating financial struggle.",
-        "bn": "When the 11th lord (income and gains) is placed in dusthana houses (6th = debt/enemies, 8th = obstacles/losses, 12th = expenses/foreign lands), the natural flow of income is obstructed, indicating financial struggle.",
-        "kn": "When the 11th lord (income and gains) is placed in dusthana houses (6th = debt/enemies, 8th = obstacles/losses, 12th = expenses/foreign lands), the natural flow of income is obstructed, indicating financial struggle.",
+        "ta": "11 ஆம் அதிபதி (வருமானம் மற்றும் லாபங்கள்) துஸ்தான பாவங்களில் (6 ஆம் பாவம் = கடன்/எதிரிகள், 8 ஆம் பாவம் = தடைகள்/இழப்புகள், 12 ஆம் பாவம் = செலவுகள்/வெளிநாடுகள்) அமர்ந்திருக்கும்போது, வருமானத்தின் இயல்பான ஓட்டம் தடைபடுகிறது, இது நிதிப் போராட்டத்தைக் குறிக்கிறது.",
+        "te": "11వ భావాధిపతి (ఆదాయం మరియు లాభాలు) దుస్థాన భావాలలో (6వ భావం = అప్పులు/శత్రువులు, 8వ భావం = అడ్డంకులు/నష్టాలు, 12వ భావం = ఖర్చులు/విదేశీ భూములు) ఉన్నప్పుడు, ఆదాయం యొక్క సహజ ప్రవాహం అడ్డుకుంటుంది, ఇది ఆర్థిక ఇబ్బందులను సూచిస్తుంది.",
+        "bn": "যখন ১১শ ভাবের অধিপতি (আয় ও লাভ) দুস্থান ভাবগুলিতে (৬ষ্ঠ = ঋণ/শত্রু, ৮ম = বাধা/ক্ষতি, ১২শ = ব্যয়/বিদেশ) অবস্থিত হয়, তখন আয়ের স্বাভাবিক প্রবাহ বাধাগ্রস্ত হয়, যা আর্থিক সংগ্রাম নির্দেশ করে।",
+        "kn": "11ನೇ ಭಾವದ ಅಧಿಪತಿಯು (ಆದಾಯ ಮತ್ತು ಲಾಭಗಳು) ದುಸ್ಥಾನ ಭಾವಗಳಲ್ಲಿ (6ನೇ = ಸಾಲ/ಶತ್ರುಗಳು, 8ನೇ = ಅಡೆತಡೆಗಳು/ನಷ್ಟಗಳು, 12ನೇ = ಖರ್ಚುಗಳು/ವಿದೇಶಿ ಭೂಮಿಗಳು) ಇರುತ್ತಾನೆ, ಆಗ ಆದಾಯದ ಸಹಜ ಹರಿವು ಅಡ್ಡಿಪಡುತ್ತದೆ, ಇದು ಆರ್ಥಿಕ ಸಂಕಷ್ಟವನ್ನು ಸೂಚಿಸುತ್ತದೆ.",
         "mr": "जब 11वाँ स्वामी (आय और लाभ) दुःस्थान भावों (6वाँ = ऋण/शत्रु, 8वाँ = बाधा/हानि, 12वाँ = व्यय/विदेश) में हो, तो आय का स्वाभाविक प्रवाह अवरुद्ध होता है, जो आर्थिक संघर्ष इंगित करता है।",
-        "gu": "When the 11th lord (income and gains) is placed in dusthana houses (6th = debt/enemies, 8th = obstacles/losses, 12th = expenses/foreign lands), the natural flow of income is obstructed, indicating financial struggle.",
+        "gu": "જ્યારે અગિયારમા ભાવનો સ્વામી (આવક અને લાભ) દુષ્ટ ભાવોમાં (છઠ્ઠો = દેવું/શત્રુ, આઠમો = અવરોધો/નુકસાન, બારમો = ખર્ચ/વિદેશી ભૂમિ) સ્થિત હોય, ત્યારે આવકનો કુદરતી પ્રવાહ અવરોધાય છે, જે આર્થિક સંઘર્ષ દર્શાવે છે.",
         "mai": "जखन एकादशेश (आय आ लाभ) दुष्ट भाव सभ मे (छठम = ऋण/शत्रु, अष्टम = बाधा/हानि, द्वादश = खर्च/विदेशी भूमि) स्थित होइत अछि, तखन आयक स्वाभाविक प्रवाह बाधित होइत अछि, जे वित्तीय संघर्षक संकेत दैत अछि."
       },
       "options": [
@@ -271,44 +271,44 @@
           "hi": "केन्द्र भाव में",
           "mai": "एकटा केन्द्र भाव",
           "mr": "केन्द्र भाव में",
-          "ta": "A Kendra house",
-          "te": "A Kendra house",
-          "bn": "A Kendra house",
-          "kn": "A Kendra house",
-          "gu": "A Kendra house"
+          "ta": "ஒரு கேந்திர பாவம்",
+          "te": "కేంద్ర భావం",
+          "bn": "একটি কেন্দ্র ভাব",
+          "kn": "ಒಂದು ಕೇಂದ್ರ ಭಾವ",
+          "gu": "કેન્દ્ર ભાવમાં"
         },
         {
           "en": "The 6th, 8th, or 12th house",
           "hi": "6वें, 8वें या 12वें भाव में",
           "mai": "छठम, अष्टम, वा द्वादश भाव",
           "mr": "6वें, 8वें या 12वें भाव में",
-          "ta": "The 6th, 8th, or 12th house",
-          "te": "The 6th, 8th, or 12th house",
-          "bn": "The 6th, 8th, or 12th house",
-          "kn": "The 6th, 8th, or 12th house",
-          "gu": "The 6th, 8th, or 12th house"
+          "ta": "6 ஆம், 8 ஆம் அல்லது 12 ஆம் பாவம்",
+          "te": "6వ, 8వ, లేదా 12వ భావం",
+          "bn": "৬ষ্ঠ, ৮ম, বা ১২শ ভাব",
+          "kn": "6ನೇ, 8ನೇ, ಅಥವಾ 12ನೇ ಭಾವ",
+          "gu": "છઠ્ઠા, આઠમા અથવા બારમા ભાવમાં"
         },
         {
           "en": "The 5th house",
           "hi": "5वें भाव में",
           "mai": "पाँचम भाव",
           "mr": "5वें भाव में",
-          "ta": "The 5th house",
-          "te": "The 5th house",
-          "bn": "The 5th house",
-          "kn": "The 5th house",
-          "gu": "The 5th house"
+          "ta": "5 ஆம் பாவம்",
+          "te": "5వ భావం",
+          "bn": "৫ম ভাব",
+          "kn": "5ನೇ ಭಾವ",
+          "gu": "પાંચમા ભાવમાં"
         },
         {
           "en": "The 9th house",
           "hi": "9वें भाव में",
           "mai": "नवम भाव",
           "mr": "9वें भाव में",
-          "ta": "The 9th house",
-          "te": "The 9th house",
-          "bn": "The 9th house",
-          "kn": "The 9th house",
-          "gu": "The 9th house"
+          "ta": "9 ஆம் பாவம்",
+          "te": "9వ భావం",
+          "bn": "৯ম ভাব",
+          "kn": "9ನೇ ಭಾವ",
+          "gu": "નવમા ભાવમાં"
         }
       ]
     },
@@ -318,24 +318,24 @@
       "question": {
         "en": "Daridra Yoga indicates permanent, unchangeable poverty throughout life.",
         "hi": "दारिद्र योग जीवनभर स्थायी, अपरिवर्तनीय दरिद्रता इंगित करता है।",
-        "ta": "Daridra Yoga indicates permanent, unchangeable poverty throughout life.",
-        "te": "Daridra Yoga indicates permanent, unchangeable poverty throughout life.",
-        "bn": "Daridra Yoga indicates permanent, unchangeable poverty throughout life.",
-        "kn": "Daridra Yoga indicates permanent, unchangeable poverty throughout life.",
+        "ta": "தாரித்ர யோகம் வாழ்நாள் முழுவதும் நிரந்தரமான, மாற்ற முடியாத வறுமையைக் குறிக்கிறது.",
+        "te": "దారిద్ర్య యోగం జీవితాంతం శాశ్వత, మార్పులేని పేదరికాన్ని సూచిస్తుంది.",
+        "bn": "দারিদ্র যোগ সারা জীবন স্থায়ী, অপরিবর্তনীয় দারিদ্র্য নির্দেশ করে।",
+        "kn": "ದಾರಿದ್ರ್ಯ ಯೋಗವು ಜೀವನದುದ್ದಕ್ಕೂ ಶಾಶ್ವತ, ಬದಲಾಯಿಸಲಾಗದ ಬಡತನವನ್ನು ಸೂಚಿಸುತ್ತದೆ.",
         "mr": "दारिद्र योग जीवनभर स्थायी, अपरिवर्तनीय दरिद्रता इंगित करता है।",
-        "gu": "Daridra Yoga indicates permanent, unchangeable poverty throughout life.",
+        "gu": "દરિદ્ર યોગ જીવનભર કાયમી, અપરિવર્તનશીલ ગરીબી દર્શાવે છે.",
         "mai": "दरिद्र योग जीवन भरि स्थायी, अपरिवर्तनीय गरीबीक संकेत दैत अछि."
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. Daridra Yoga indicates a tendency toward financial struggle, not permanent poverty. It is dasha-dependent  –  during favorable dasha periods, the struggle may ease significantly. Strong Jupiter aspect can cancel or mitigate the yoga. Remedial measures also help.",
         "hi": "असत्य। दारिद्र योग आर्थिक संघर्ष की प्रवृत्ति इंगित करता है, स्थायी दरिद्रता नहीं। यह दशा-निर्भर है  –  अनुकूल दशा काल में संघर्ष काफी कम हो सकता है। गुरु की दृष्टि योग को निरस्त या शमित कर सकती है। उपचारात्मक उपाय भी सहायक हैं।",
-        "ta": "False. Daridra Yoga indicates a tendency toward financial struggle, not permanent poverty. It is dasha-dependent  –  during favorable dasha periods, the struggle may ease significantly. Strong Jupiter aspect can cancel or mitigate the yoga. Remedial measures also help.",
-        "te": "False. Daridra Yoga indicates a tendency toward financial struggle, not permanent poverty. It is dasha-dependent  –  during favorable dasha periods, the struggle may ease significantly. Strong Jupiter aspect can cancel or mitigate the yoga. Remedial measures also help.",
-        "bn": "False. Daridra Yoga indicates a tendency toward financial struggle, not permanent poverty. It is dasha-dependent  –  during favorable dasha periods, the struggle may ease significantly. Strong Jupiter aspect can cancel or mitigate the yoga. Remedial measures also help.",
-        "kn": "False. Daridra Yoga indicates a tendency toward financial struggle, not permanent poverty. It is dasha-dependent  –  during favorable dasha periods, the struggle may ease significantly. Strong Jupiter aspect can cancel or mitigate the yoga. Remedial measures also help.",
+        "ta": "தவறு. தாரித்ர யோகம் நிரந்தர வறுமையைக் குறிக்கவில்லை, மாறாக நிதிப் போராட்டத்திற்கான ஒரு போக்கைக் குறிக்கிறது. இது தசா-சார்ந்தது – சாதகமான தசா காலங்களில், போராட்டம் கணிசமாக குறையலாம். வலிமையான குருவின் பார்வை யோகத்தை ரத்து செய்யலாம் அல்லது குறைக்கலாம். பரிகாரங்களும் உதவுகின்றன.",
+        "te": "తప్పు. దారిద్ర్య యోగం ఆర్థిక ఇబ్బందుల ధోరణిని సూచిస్తుంది, శాశ్వత పేదరికాన్ని కాదు. ఇది దశపై ఆధారపడి ఉంటుంది – అనుకూల దశ కాలాలలో, ఇబ్బందులు గణనీయంగా తగ్గుతాయి. బలమైన గురు దృష్టి యోగాన్ని రద్దు చేయగలదు లేదా తగ్గించగలదు. పరిహార చర్యలు కూడా సహాయపడతాయి.",
+        "bn": "মিথ্যা। দারিদ্র যোগ আর্থিক সংগ্রামের প্রবণতা নির্দেশ করে, স্থায়ী দারিদ্র্য নয়। এটি দশা-নির্ভর – অনুকূল দশা চলাকালীন সংগ্রাম উল্লেখযোগ্যভাবে সহজ হতে পারে। শক্তিশালী বৃহস্পতির দৃষ্টি এই যোগকে বাতিল বা প্রশমিত করতে পারে। প্রতিকারমূলক ব্যবস্থাও সাহায্য করে।",
+        "kn": "ತಪ್ಪು. ದಾರಿದ್ರ್ಯ ಯೋಗವು ಆರ್ಥಿಕ ಸಂಕಷ್ಟದ ಪ್ರವೃತ್ತಿಯನ್ನು ಸೂಚಿಸುತ್ತದೆ, ಶಾಶ್ವತ ಬಡತನವನ್ನಲ್ಲ. ಇದು ದಶಾ-ಅವಲಂಬಿತವಾಗಿದೆ – ಅನುಕೂಲಕರ ದಶಾ ಅವಧಿಗಳಲ್ಲಿ, ಸಂಕಷ್ಟವು ಗಣನೀಯವಾಗಿ ಕಡಿಮೆಯಾಗಬಹುದು. ಬಲವಾದ ಗುರು ದೃಷ್ಟಿಯು ಯೋಗವನ್ನು ರದ್ದುಗೊಳಿಸಬಹುದು ಅಥವಾ ತಗ್ಗಿಸಬಹುದು. ಪರಿಹಾರ ಕ್ರಮಗಳು ಸಹ ಸಹಾಯ ಮಾಡುತ್ತವೆ.",
         "mr": "असत्य। दारिद्र योग आर्थिक संघर्ष की प्रवृत्ति इंगित करता है, स्थायी दरिद्रता नहीं। यह दशा-निर्भर है  –  अनुकूल दशा काल में संघर्ष काफी कम हो सकता है। गुरु की दृष्टि योग को निरस्त या शमित कर सकती है। उपचारात्मक उपाय भी सहायक हैं।",
-        "gu": "False. Daridra Yoga indicates a tendency toward financial struggle, not permanent poverty. It is dasha-dependent  –  during favorable dasha periods, the struggle may ease significantly. Strong Jupiter aspect can cancel or mitigate the yoga. Remedial measures also help.",
+        "gu": "ખોટું. દરિદ્ર યોગ આર્થિક સંઘર્ષ તરફની વૃત્તિ દર્શાવે છે, કાયમી ગરીબી નહીં. તે દશા-આધારિત છે  –  અનુકૂળ દશા કાળ દરમિયાન, સંઘર્ષ નોંધપાત્ર રીતે હળવો થઈ શકે છે. બળવાન ગુરુની દ્રષ્ટિ યોગને રદ કરી શકે છે અથવા ઘટાડી શકે છે. ઉપચારાત્મક ઉપાયો પણ મદદ કરે છે.",
         "mai": "असत्य. दरिद्र योग वित्तीय संघर्षक प्रवृत्ति केँ संकेत दैत अछि, स्थायी गरीबी केँ नहि. ई दशा पर निर्भर करैत अछि – अनुकूल दशा काल मे, संघर्ष काफी कम भ' सकैत अछि. बलवान गुरुक दृष्टि योग केँ रद्द वा कम क' सकैत अछि. उपाय सेहो मदद करैत अछि."
       }
     },
@@ -345,24 +345,24 @@
       "question": {
         "en": "Balarishta Yoga (danger to children/infants) is indicated by:",
         "hi": "बालारिष्ट योग (शिशु/बालकों को खतरा) किससे सूचित होता है?",
-        "ta": "Balarishta Yoga (danger to children/infants) is indicated by:",
-        "te": "Balarishta Yoga (danger to children/infants) is indicated by:",
-        "bn": "Balarishta Yoga (danger to children/infants) is indicated by:",
-        "kn": "Balarishta Yoga (danger to children/infants) is indicated by:",
+        "ta": "பாலாரிஷ்ட யோகம் (குழந்தைகள்/கைக்குழந்தைகளுக்கு ஆபத்து) பின்வருவனவற்றால் குறிக்கப்படுகிறது:",
+        "te": "బాలారిష్ట యోగం (పిల్లలు/శిశువులకు ప్రమాదం) దీని ద్వారా సూచించబడుతుంది:",
+        "bn": "বালারিষ্ট যোগ (শিশু/নবজাতকদের বিপদ) দ্বারা নির্দেশিত হয়:",
+        "kn": "ಬಾಲಾರಿಷ್ಟ ಯೋಗವು (ಮಕ್ಕಳು/ಶಿಶುಗಳಿಗೆ ಅಪಾಯ) ಸೂಚಿಸಲ್ಪಡುತ್ತದೆ:",
         "mr": "बालारिष्ट योग (शिशु/बालकों को खतरा) किससे सूचित होता है?",
-        "gu": "Balarishta Yoga (danger to children/infants) is indicated by:",
+        "gu": "બાલારિષ્ટ યોગ (બાળકો/શિશુઓ માટે સંકટ) દ્વારા સૂચવવામાં આવે છે:",
         "mai": "बालारिष्ट योग (बच्चा/शिशु लेल खतरा) संकेतित होइत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Balarishta Yoga forms when the Moon (significator of nurturing, early life) is afflicted by malefics (Saturn, Mars, Rahu, Ketu) without the protective aspect of benefics (Jupiter, Venus). In children's charts, this indicates health vulnerabilities in early years.",
         "hi": "बालारिष्ट योग तब बनता है जब चन्द्रमा (पोषण, प्रारम्भिक जीवन का कारक) शुभ ग्रहों (गुरु, शुक्र) की रक्षात्मक दृष्टि बिना पापी ग्रहों (शनि, मंगल, राहु, केतु) से पीड़ित हो। बालकों की कुण्डली में यह प्रारम्भिक वर्षों में स्वास्थ्य सम्वेदनशीलता इंगित करता है।",
-        "ta": "Balarishta Yoga forms when the Moon (significator of nurturing, early life) is afflicted by malefics (Saturn, Mars, Rahu, Ketu) without the protective aspect of benefics (Jupiter, Venus). In children's charts, this indicates health vulnerabilities in early years.",
-        "te": "Balarishta Yoga forms when the Moon (significator of nurturing, early life) is afflicted by malefics (Saturn, Mars, Rahu, Ketu) without the protective aspect of benefics (Jupiter, Venus). In children's charts, this indicates health vulnerabilities in early years.",
-        "bn": "Balarishta Yoga forms when the Moon (significator of nurturing, early life) is afflicted by malefics (Saturn, Mars, Rahu, Ketu) without the protective aspect of benefics (Jupiter, Venus). In children's charts, this indicates health vulnerabilities in early years.",
-        "kn": "Balarishta Yoga forms when the Moon (significator of nurturing, early life) is afflicted by malefics (Saturn, Mars, Rahu, Ketu) without the protective aspect of benefics (Jupiter, Venus). In children's charts, this indicates health vulnerabilities in early years.",
+        "ta": "சந்திரன் (வளர்ப்பு, ஆரம்ப வாழ்க்கைக்கான காரகர்) அசுப கிரகங்களால் (சனி, செவ்வாய், ராகு, கேது) பாதிக்கப்பட்டு, சுப கிரகங்களின் (குரு, சுக்கிரன்) பாதுகாப்புப் பார்வை இல்லாமல் இருக்கும்போது பாலாரிஷ்ட யோகம் உருவாகிறது. குழந்தைகளின் ஜாதகங்களில், இது ஆரம்ப ஆண்டுகளில் உடல்நலக் குறைபாடுகளைக் குறிக்கிறது.",
+        "te": "బాలారిష్ట యోగం ఏర్పడుతుంది, ఎప్పుడు చంద్రుడు (పోషణ, బాల్య జీవితానికి కారకుడు) పాప గ్రహాలచే (శని, కుజుడు, రాహువు, కేతువు) పీడితమై శుభ గ్రహాల (గురువు, శుక్రుడు) రక్షణాత్మక దృష్టి లేకుండా ఉన్నప్పుడు. పిల్లల జాతకాలలో, ఇది బాల్యంలో ఆరోగ్యపరమైన బలహీనతలను సూచిస్తుంది.",
+        "bn": "বালারিষ্ট যোগ গঠিত হয় যখন চন্দ্র (পালন, শৈশবের কারক) অশুভ গ্রহ (শনি, মঙ্গল, রাহু, কেতু) দ্বারা পীড়িত হয় শুভ গ্রহের (বৃহস্পতি, শুক্র) রক্ষামূলক দৃষ্টি ছাড়া। শিশুদের জন্মকুণ্ডলীতে, এটি শৈশবে স্বাস্থ্যগত দুর্বলতা নির্দেশ করে।",
+        "kn": "ಬಾಲಾರಿಷ್ಟ ಯೋಗವು ರೂಪುಗೊಳ್ಳುತ್ತದೆ, ಯಾವಾಗ ಚಂದ್ರನು (ಪೋಷಣೆ, ಆರಂಭಿಕ ಜೀವನದ ಕಾರಕ) ಪಾಪ ಗ್ರಹಗಳಿಂದ (ಶನಿ, ಮಂಗಳ, ರಾಹು, ಕೇತು) ಪೀಡಿತನಾಗಿರುತ್ತಾನೆ, ಶುಭ ಗ್ರಹಗಳ (ಗುರು, ಶುಕ್ರ) ರಕ್ಷಣಾತ್ಮಕ ದೃಷ್ಟಿ ಇಲ್ಲದೆ. ಮಕ್ಕಳ ಜಾತಕಗಳಲ್ಲಿ, ಇದು ಆರಂಭಿಕ ವರ್ಷಗಳಲ್ಲಿ ಆರೋಗ್ಯದ ದುರ್ಬಲತೆಗಳನ್ನು ಸೂಚಿಸುತ್ತದೆ.",
         "mr": "बालारिष्ट योग तब बनता है जब चन्द्रमा (पोषण, प्रारम्भिक जीवन का कारक) शुभ ग्रहों (गुरु, शुक्र) की रक्षात्मक दृष्टि बिना पापी ग्रहों (शनि, मंगल, राहु, केतु) से पीड़ित हो। बालकों की कुण्डली में यह प्रारम्भिक वर्षों में स्वास्थ्य सम्वेदनशीलता इंगित करता है।",
-        "gu": "Balarishta Yoga forms when the Moon (significator of nurturing, early life) is afflicted by malefics (Saturn, Mars, Rahu, Ketu) without the protective aspect of benefics (Jupiter, Venus). In children's charts, this indicates health vulnerabilities in early years.",
+        "gu": "બાલારિષ્ટ યોગ ત્યારે બને છે જ્યારે ચંદ્ર (પોષણ, પ્રારંભિક જીવનનો કારક) પાપ ગ્રહો (શનિ, મંગળ, રાહુ, કેતુ) દ્વારા પીડિત હોય અને શુભ ગ્રહો (ગુરુ, શુક્ર) ની રક્ષણાત્મક દ્રષ્ટિ ન હોય. બાળકોના જન્મકુંડળીમાં, આ પ્રારંભિક વર્ષોમાં સ્વાસ્થ્ય સંબંધી નબળાઈઓ દર્શાવે છે.",
         "mai": "बालारिष्ट योग तखन बनैत अछि जखन चन्द्रमा (पोषण, प्रारंभिक जीवनक कारक) क्रूर ग्रह सभ (शनि, मंगल, राहु, केतु) सँ पीड़ित होइत अछि, शुभ ग्रह सभ (गुरु, शुक्र) क सुरक्षात्मक दृष्टि बिना. बच्चाक कुण्डली मे, ई प्रारंभिक वर्ष सभ मे स्वास्थ्य संबंधी कमजोरी केँ संकेत दैत अछि."
       },
       "options": [
@@ -371,44 +371,44 @@
           "hi": "गुरु 5वें भाव में",
           "mai": "गुरु पाँचम भाव मे",
           "mr": "गुरु 5वें भाव में",
-          "ta": "Jupiter in the 5th house",
-          "te": "Jupiter in the 5th house",
-          "bn": "Jupiter in the 5th house",
-          "kn": "Jupiter in the 5th house",
-          "gu": "Jupiter in the 5th house"
+          "ta": "5 ஆம் பாவத்தில் குரு",
+          "te": "గురువు 5వ భావంలో",
+          "bn": "৫ম ভাবে বৃহস্পতি",
+          "kn": "ಗುರು 5ನೇ ಭಾವದಲ್ಲಿ",
+          "gu": "ગુરુ પાંચમા ભાવમાં"
         },
         {
           "en": "Moon with malefics without benefic aspect",
           "hi": "शुभ दृष्टि बिना पापी ग्रहों के साथ चन्द्रमा",
           "mai": "चन्द्रमा क्रूर ग्रह सभक संग शुभ दृष्टिक बिना",
           "mr": "शुभ दृष्टि बिना पापी ग्रहों के साथ चन्द्रमा",
-          "ta": "Moon with malefics without benefic aspect",
-          "te": "Moon with malefics without benefic aspect",
-          "bn": "Moon with malefics without benefic aspect",
-          "kn": "Moon with malefics without benefic aspect",
-          "gu": "Moon with malefics without benefic aspect"
+          "ta": "சுப பார்வை இல்லாமல் அசுப கிரகங்களுடன் சந்திரன்",
+          "te": "చంద్రుడు పాప గ్రహాలతో శుభ దృష్టి లేకుండా",
+          "bn": "অশুভ গ্রহের সাথে চন্দ্র, শুভ দৃষ্টি ছাড়া",
+          "kn": "ಚಂದ್ರನು ಪಾಪ ಗ್ರಹಗಳೊಂದಿಗೆ ಶುಭ ದೃಷ್ಟಿ ಇಲ್ಲದೆ",
+          "gu": "ચંદ્ર પાપ ગ્રહો સાથે શુભ દ્રષ્ટિ વિના"
         },
         {
           "en": "Venus in own sign",
           "hi": "शुक्र स्वराशि में",
           "mai": "शुक्र अपन राशि मे",
           "mr": "शुक्र स्वराशि में",
-          "ta": "Venus in own sign",
-          "te": "Venus in own sign",
-          "bn": "Venus in own sign",
-          "kn": "Venus in own sign",
-          "gu": "Venus in own sign"
+          "ta": "சொந்த ராசியில் சுக்கிரன்",
+          "te": "శుక్రుడు స్వక్షేత్రంలో",
+          "bn": "স্বক্ষেত্রস্থ শুক্র",
+          "kn": "ಶುಕ್ರ ಸ್ವಂತ ರಾಶಿಯಲ್ಲಿ",
+          "gu": "શુક્ર સ્વગૃહી રાશિમાં"
         },
         {
           "en": "Mercury in the 9th house",
           "hi": "बुध 9वें भाव में",
           "mai": "बुध नवम भाव मे",
           "mr": "बुध 9वें भाव में",
-          "ta": "Mercury in the 9th house",
-          "te": "Mercury in the 9th house",
-          "bn": "Mercury in the 9th house",
-          "kn": "Mercury in the 9th house",
-          "gu": "Mercury in the 9th house"
+          "ta": "9 ஆம் பாவத்தில் புதன்",
+          "te": "బుధుడు 9వ భావంలో",
+          "bn": "৯ম ভাবে বুধ",
+          "kn": "ಬುಧ 9ನೇ ಭಾವದಲ್ಲಿ",
+          "gu": "બુધ નવમા ભાવમાં"
         }
       ]
     },
@@ -418,24 +418,24 @@
       "question": {
         "en": "Venus in own or exalted sign in the 2nd house forms which type of yoga?",
         "hi": "2रे भाव में शुक्र स्वराशि या उच्च में कौन-सा योग बनाता है?",
-        "ta": "Venus in own or exalted sign in the 2nd house forms which type of yoga?",
-        "te": "Venus in own or exalted sign in the 2nd house forms which type of yoga?",
-        "bn": "Venus in own or exalted sign in the 2nd house forms which type of yoga?",
-        "kn": "Venus in own or exalted sign in the 2nd house forms which type of yoga?",
+        "ta": "2 ஆம் பாவத்தில் சுக்கிரன் சொந்த அல்லது உச்ச ராசியில் இருக்கும்போது எந்த வகையான யோகம் உருவாகிறது?",
+        "te": "2వ భావంలో శుక్రుడు స్వక్షేత్రంలో లేదా ఉచ్చ రాశిలో ఏ రకమైన యోగాన్ని ఏర్పరుస్తుంది?",
+        "bn": "২য় ভাবে স্বক্ষেত্রস্থ বা উচ্চস্থ রাশিতে শুক্র কোন ধরনের যোগ তৈরি করে?",
+        "kn": "ಶುಕ್ರ ಸ್ವಂತ ಅಥವಾ ಉಚ್ಚ ರಾಶಿಯಲ್ಲಿ 2ನೇ ಭಾವದಲ್ಲಿ ಯಾವ ರೀತಿಯ ಯೋಗವನ್ನು ರೂಪಿಸುತ್ತದೆ?",
         "mr": "2रे भाव में शुक्र स्वराशि या उच्च में कौन-सा योग बनाता है?",
-        "gu": "Venus in own or exalted sign in the 2nd house forms which type of yoga?",
+        "gu": "શુક્ર સ્વગૃહી અથવા ઉચ્ચ રાશિમાં બીજા ભાવમાં કયા પ્રકારનો યોગ બનાવે છે?",
         "mai": "शुक्र दोसर भाव मे अपन वा उच्च राशि मे कोन प्रकारक योग बनबैत अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Venus (planet of luxury, wealth, and material comfort) strong in its own or exalted sign in the 2nd house (accumulated wealth, family resources) creates a Dhana Yoga. The native enjoys material prosperity, fine possessions, and a comfortable family life.",
         "hi": "शुक्र (विलासिता, धन और भौतिक सुख का ग्रह) 2रे भाव (संचित धन, पारिवारिक संसाधन) में स्वराशि या उच्च में बलवान धन योग बनाता है। जातक भौतिक समृद्धि, सुन्दर सम्पत्तियाँ और आरामदायक पारिवारिक जीवन भोगता है।",
-        "ta": "Venus (planet of luxury, wealth, and material comfort) strong in its own or exalted sign in the 2nd house (accumulated wealth, family resources) creates a Dhana Yoga. The native enjoys material prosperity, fine possessions, and a comfortable family life.",
-        "te": "Venus (planet of luxury, wealth, and material comfort) strong in its own or exalted sign in the 2nd house (accumulated wealth, family resources) creates a Dhana Yoga. The native enjoys material prosperity, fine possessions, and a comfortable family life.",
-        "bn": "Venus (planet of luxury, wealth, and material comfort) strong in its own or exalted sign in the 2nd house (accumulated wealth, family resources) creates a Dhana Yoga. The native enjoys material prosperity, fine possessions, and a comfortable family life.",
-        "kn": "Venus (planet of luxury, wealth, and material comfort) strong in its own or exalted sign in the 2nd house (accumulated wealth, family resources) creates a Dhana Yoga. The native enjoys material prosperity, fine possessions, and a comfortable family life.",
+        "ta": "சுக்கிரன் (ஆடம்பரம், செல்வம் மற்றும் பொருள் வசதிகளின் கிரகம்) 2 ஆம் பாவத்தில் (சேர்ந்த செல்வம், குடும்ப வளங்கள்) சொந்த அல்லது உச்ச ராசியில் வலிமையாக இருக்கும்போது ஒரு தன யோகத்தை உருவாக்குகிறது. ஜாதகர் பொருள் செழிப்பு, சிறந்த உடைமைகள் மற்றும் வசதியான குடும்ப வாழ்க்கையை அனுபவிக்கிறார்.",
+        "te": "శుక్రుడు (విలాసం, ధనం మరియు భౌతిక సౌకర్యాలకు గ్రహం) స్వక్షేత్రంలో లేదా ఉచ్చ రాశిలో బలంగా ఉండి 2వ భావంలో (సంచిత ధనం, కుటుంబ వనరులు) ధన యోగాన్ని సృష్టిస్తుంది. జాతకుడు భౌతిక శ్రేయస్సు, మంచి ఆస్తులు మరియు సౌకర్యవంతమైన కుటుంబ జీవితాన్ని అనుభవిస్తాడు.",
+        "bn": "শুক্র (বিলাসিতা, ধন এবং বস্তুগত আরামের গ্রহ) ২য় ভাবে (সঞ্চিত ধন, পারিবারিক সম্পদ) স্বক্ষেত্রস্থ বা উচ্চস্থ রাশিতে শক্তিশালী হয়ে একটি ধন যোগ তৈরি করে। জাতক বস্তুগত সমৃদ্ধি, সুন্দর সম্পত্তি এবং একটি আরামদায়ক পারিবারিক জীবন উপভোগ করে।",
+        "kn": "ಶುಕ್ರ (ಐಷಾರಾಮಿ, ಸಂಪತ್ತು ಮತ್ತು ಭೌತಿಕ ಸೌಕರ್ಯದ ಗ್ರಹ) ತನ್ನ ಸ್ವಂತ ಅಥವಾ ಉಚ್ಚ ರಾಶಿಯಲ್ಲಿ ಬಲಶಾಲಿಯಾಗಿ 2ನೇ ಭಾವದಲ್ಲಿ (ಸಂಗ್ರಹವಾದ ಸಂಪತ್ತು, ಕುಟುಂಬದ ಸಂಪನ್ಮೂಲಗಳು) ಧನ ಯೋಗವನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ. ಜಾತಕನು ಭೌತಿಕ ಸಮೃದ್ಧಿ, ಉತ್ತಮ ಆಸ್ತಿಪಾಸ್ತಿಗಳು ಮತ್ತು ಆರಾಮದಾಯಕ ಕೌಟುಂಬಿಕ ಜೀವನವನ್ನು ಅನುಭವಿಸುತ್ತಾನೆ.",
         "mr": "शुक्र (विलासिता, धन और भौतिक सुख का ग्रह) 2रे भाव (संचित धन, पारिवारिक संसाधन) में स्वराशि या उच्च में बलवान धन योग बनाता है। जातक भौतिक समृद्धि, सुन्दर सम्पत्तियाँ और आरामदायक पारिवारिक जीवन भोगता है।",
-        "gu": "Venus (planet of luxury, wealth, and material comfort) strong in its own or exalted sign in the 2nd house (accumulated wealth, family resources) creates a Dhana Yoga. The native enjoys material prosperity, fine possessions, and a comfortable family life.",
+        "gu": "શુક્ર (વિલાસ, ધન અને ભૌતિક સુખનો ગ્રહ) સ્વગૃહી અથવા ઉચ્ચ રાશિમાં બીજા ભાવમાં (સંચિત ધન, કૌટુંબિક સંસાધનો) બળવાન હોય ત્યારે ધન યોગ બનાવે છે. જાતક ભૌતિક સમૃદ્ધિ, ઉત્તમ સંપત્તિ અને આરામદાયક કૌટુંબિક જીવનનો આનંદ માણે છે.",
         "mai": "शुक्र (विलासिता, धन, आ भौतिक सुखक ग्रह) दोसर भाव मे (संचित धन, पारिवारिक संसाधन) अपन वा उच्च राशि मे बलवान भ' कय धन योग बनबैत अछि. जातक भौतिक समृद्धि, उत्तम संपत्ति, आ आरामदायक पारिवारिक जीवनक आनंद लैत अछि."
       },
       "options": [
@@ -444,44 +444,44 @@
           "hi": "अरिष्ट योग",
           "mai": "अरिष्ट योग",
           "mr": "अरिष्ट योग",
-          "ta": "Arishta Yoga",
-          "te": "Arishta Yoga",
-          "bn": "Arishta Yoga",
-          "kn": "Arishta Yoga",
-          "gu": "Arishta Yoga"
+          "ta": "அரிஷ்ட யோகம்",
+          "te": "అరిష్ట యోగం",
+          "bn": "অরিষ্ট যোগ",
+          "kn": "ಅರಿಷ್ಟ ಯೋಗ",
+          "gu": "અરિષ્ટ યોગ"
         },
         {
           "en": "Dhana Yoga",
           "hi": "धन योग",
           "mai": "धन योग",
           "mr": "धन योग",
-          "ta": "Dhana Yoga",
-          "te": "Dhana Yoga",
-          "bn": "Dhana Yoga",
-          "kn": "Dhana Yoga",
-          "gu": "Dhana Yoga"
+          "ta": "தன யோகம்",
+          "te": "ధన యోగం",
+          "bn": "ধন যোগ",
+          "kn": "ಧನ ಯೋಗ",
+          "gu": "ધન યોગ"
         },
         {
           "en": "Kala Sarpa Yoga",
           "hi": "काल सर्प योग",
           "mai": "कालसर्प योग",
           "mr": "काल सर्प योग",
-          "ta": "Kala Sarpa Yoga",
-          "te": "Kala Sarpa Yoga",
-          "bn": "Kala Sarpa Yoga",
-          "kn": "Kala Sarpa Yoga",
-          "gu": "Kala Sarpa Yoga"
+          "ta": "கால சர்ப்ப யோகம்",
+          "te": "కాల సర్ప యోగం",
+          "bn": "কালসর্প যোগ",
+          "kn": "ಕಾಲ ಸರ್ಪ ಯೋಗ",
+          "gu": "કાલ સર્પ યોગ"
         },
         {
           "en": "Grahan Dosha",
           "hi": "ग्रहण दोष",
           "mai": "ग्रहण दोष",
           "mr": "ग्रहण दोष",
-          "ta": "Grahan Dosha",
-          "te": "Grahan Dosha",
-          "bn": "Grahan Dosha",
-          "kn": "Grahan Dosha",
-          "gu": "Grahan Dosha"
+          "ta": "கிரகண தோஷம்",
+          "te": "గ్రహణ దోషం",
+          "bn": "গ্রহণ দোষ",
+          "kn": "ಗ್ರಹಣ ದೋಷ",
+          "gu": "ગ્રહણ દોષ"
         }
       ]
     },
@@ -491,24 +491,24 @@
       "question": {
         "en": "The 8th lord placed in the Lagna (1st house) is an indicator of:",
         "hi": "8वें भाव का स्वामी लग्न (1ले भाव) में किसका सूचक है?",
-        "ta": "The 8th lord placed in the Lagna (1st house) is an indicator of:",
-        "te": "The 8th lord placed in the Lagna (1st house) is an indicator of:",
-        "bn": "The 8th lord placed in the Lagna (1st house) is an indicator of:",
-        "kn": "The 8th lord placed in the Lagna (1st house) is an indicator of:",
+        "ta": "லக்னத்தில் (1 ஆம் பாவம்) 8 ஆம் அதிபதி அமர்ந்திருப்பது எதைக் குறிக்கிறது:",
+        "te": "8వ భావాధిపతి లగ్నంలో (1వ భావం) ఉన్నప్పుడు దీనికి సూచిక:",
+        "bn": "লগ্নে (১ম ভাবে) অবস্থিত ৮ম ভাবের অধিপতি কিসের নির্দেশক:",
+        "kn": "8ನೇ ಭಾವದ ಅಧಿಪತಿಯು ಲಗ್ನದಲ್ಲಿ (1ನೇ ಭಾವ) ಇರುವುದು ಸೂಚಕವಾಗಿದೆ:",
         "mr": "8वें भाव का स्वामी लग्न (1ले भाव) में किसका सूचक है?",
-        "gu": "The 8th lord placed in the Lagna (1st house) is an indicator of:",
+        "gu": "આઠમા ભાવનો સ્વામી લગ્ન (પ્રથમ ભાવ) માં સ્થિત હોય તે નો સૂચક છે:",
         "mai": "अष्टमेश लग्न (प्रथम भाव) मे स्थित कोन बातक संकेत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The 8th lord (house of chronic disease, obstacles, longevity issues) placed in the Lagna (self, body, vitality) creates an Arishta Yoga  –  bringing the 8th house's challenging energy directly to the native's body and sense of self. It indicates potential for chronic health issues or life disruptions.",
         "hi": "8वाँ स्वामी (जीर्ण रोग, बाधा, आयु समस्या का भाव) लग्न (स्वयं, शरीर, जीवनशक्ति) में अरिष्ट योग बनाता है  –  8वें भाव की चुनौतीपूर्ण ऊर्जा सीधे जातक के शरीर और आत्मबोध तक लाता है। यह जीर्ण स्वास्थ्य समस्याओं या जीवन अवरोधों की सम्भावना इंगित करता है।",
-        "ta": "The 8th lord (house of chronic disease, obstacles, longevity issues) placed in the Lagna (self, body, vitality) creates an Arishta Yoga  –  bringing the 8th house's challenging energy directly to the native's body and sense of self. It indicates potential for chronic health issues or life disruptions.",
-        "te": "The 8th lord (house of chronic disease, obstacles, longevity issues) placed in the Lagna (self, body, vitality) creates an Arishta Yoga  –  bringing the 8th house's challenging energy directly to the native's body and sense of self. It indicates potential for chronic health issues or life disruptions.",
-        "bn": "The 8th lord (house of chronic disease, obstacles, longevity issues) placed in the Lagna (self, body, vitality) creates an Arishta Yoga  –  bringing the 8th house's challenging energy directly to the native's body and sense of self. It indicates potential for chronic health issues or life disruptions.",
-        "kn": "The 8th lord (house of chronic disease, obstacles, longevity issues) placed in the Lagna (self, body, vitality) creates an Arishta Yoga  –  bringing the 8th house's challenging energy directly to the native's body and sense of self. It indicates potential for chronic health issues or life disruptions.",
+        "ta": "8 ஆம் அதிபதி (நாள்பட்ட நோய், தடைகள், ஆயுள் பிரச்சனைகளின் பாவம்) லக்னத்தில் (சுயம், உடல், உயிர்சக்தி) அமர்ந்திருப்பது ஒரு அரிஷ்ட யோகத்தை உருவாக்குகிறது – 8 ஆம் பாவத்தின் சவாலான ஆற்றலை ஜாதகரின் உடல் மற்றும் சுய உணர்வுக்கு நேரடியாகக் கொண்டுவருகிறது. இது நாள்பட்ட உடல்நலப் பிரச்சனைகள் அல்லது வாழ்க்கையில் இடையூறுகளுக்கான சாத்தியக்கூறுகளைக் குறிக்கிறது.",
+        "te": "8వ భావాధిపతి (దీర్ఘకాలిక వ్యాధులు, అడ్డంకులు, దీర్ఘాయుష్య సమస్యల భావం) లగ్నంలో (స్వయం, శరీరం, జీవశక్తి) ఉన్నప్పుడు అరిష్ట యోగాన్ని సృష్టిస్తుంది – 8వ భావం యొక్క సవాలు చేసే శక్తిని నేరుగా జాతకుని శరీరం మరియు ఆత్మవిశ్వాసానికి తీసుకువస్తుంది. ఇది దీర్ఘకాలిక ఆరోగ్య సమస్యలు లేదా జీవిత అంతరాయాలకు అవకాశం ఉందని సూచిస్తుంది.",
+        "bn": "৮ম ভাবের অধিপতি (দীর্ঘস্থায়ী রোগ, বাধা, আয়ু সংক্রান্ত সমস্যাগুলির ভাব) লগ্নে (আত্মা, শরীর, জীবনীশক্তি) অবস্থিত হয়ে একটি অরিষ্ট যোগ তৈরি করে – ৮ম ভাবের চ্যালেঞ্জিং শক্তি সরাসরি জাতকের শরীর এবং আত্ম-অনুভূতির উপর নিয়ে আসে। এটি দীর্ঘস্থায়ী স্বাস্থ্য সমস্যা বা জীবন বিঘ্নের সম্ভাবনা নির্দেশ করে।",
+        "kn": "8ನೇ ಭಾವದ ಅಧಿಪತಿಯು (ದೀರ್ಘಕಾಲದ ರೋಗ, ಅಡೆತಡೆಗಳು, ದೀರ್ಘಾಯುಷ್ಯದ ಸಮಸ್ಯೆಗಳ ಭಾವ) ಲಗ್ನದಲ್ಲಿ (ಸ್ವಯಂ, ದೇಹ, ಚೈತನ್ಯ) ಇರುವುದು ಅರಿಷ್ಟ ಯೋಗವನ್ನು ಸೃಷ್ಟಿಸುತ್ತದೆ – 8ನೇ ಭಾವದ ಸವಾಲಿನ ಶಕ್ತಿಯನ್ನು ನೇರವಾಗಿ ಜಾತಕನ ದೇಹ ಮತ್ತು ಆತ್ಮಕ್ಕೆ ತರುತ್ತದೆ. ಇದು ದೀರ್ಘಕಾಲದ ಆರೋಗ್ಯ ಸಮಸ್ಯೆಗಳು ಅಥವಾ ಜೀವನದಲ್ಲಿ ಅಡೆತಡೆಗಳ ಸಾಧ್ಯತೆಯನ್ನು ಸೂಚಿಸುತ್ತದೆ.",
         "mr": "8वाँ स्वामी (जीर्ण रोग, बाधा, आयु समस्या का भाव) लग्न (स्वयं, शरीर, जीवनशक्ति) में अरिष्ट योग बनाता है  –  8वें भाव की चुनौतीपूर्ण ऊर्जा सीधे जातक के शरीर और आत्मबोध तक लाता है। यह जीर्ण स्वास्थ्य समस्याओं या जीवन अवरोधों की सम्भावना इंगित करता है।",
-        "gu": "The 8th lord (house of chronic disease, obstacles, longevity issues) placed in the Lagna (self, body, vitality) creates an Arishta Yoga  –  bringing the 8th house's challenging energy directly to the native's body and sense of self. It indicates potential for chronic health issues or life disruptions.",
+        "gu": "આઠમા ભાવનો સ્વામી (ક્રોનિક રોગ, અવરોધો, દીર્ધાયુષ્યના મુદ્દાઓનો ભાવ) લગ્ન (સ્વ, શરીર, જીવંતતા) માં સ્થિત હોય ત્યારે અરિષ્ટ યોગ બનાવે છે  –  જે આઠમા ભાવની પડકારજનક ઊર્જા સીધી જાતકના શરીર અને સ્વયંની ભાવના પર લાવે છે. તે ક્રોનિક સ્વાસ્થ્ય સમસ્યાઓ અથવા જીવનમાં વિક્ષેપોની સંભાવના દર્શાવે છે.",
         "mai": "अष्टमेश (दीर्घकालिक रोग, बाधा, दीर्घायु संबंधी समस्याक भाव) लग्न (स्वयं, शरीर, जीवन शक्ति) मे स्थित भ' कय एकटा अरिष्ट योग बनबैत अछि – अष्टम भावक चुनौतीपूर्ण ऊर्जा केँ सीधे जातकक शरीर आ आत्म-बोध पर ल' आबैत अछि. ई दीर्घकालिक स्वास्थ्य समस्या वा जीवन मे व्यवधानक संभावना केँ संकेत दैत अछि."
       },
       "options": [
@@ -517,44 +517,44 @@
           "hi": "महान धन और प्रसिद्धि",
           "mai": "महान धन आ प्रसिद्धि",
           "mr": "महान धन और प्रसिद्धि",
-          "ta": "Great wealth and fame",
-          "te": "Great wealth and fame",
-          "bn": "Great wealth and fame",
-          "kn": "Great wealth and fame",
-          "gu": "Great wealth and fame"
+          "ta": "பெரும் செல்வம் மற்றும் புகழ்",
+          "te": "గొప్ప ధనం మరియు కీర్తి",
+          "bn": "প্রচুর ধন ও খ্যাতি",
+          "kn": "ಮಹಾನ್ ಸಂಪತ್ತು ಮತ್ತು ಕೀರ್ತಿ",
+          "gu": "મહાન ધન અને ખ્યાતિ"
         },
         {
           "en": "Arishta Yoga  –  health vulnerabilities and life challenges",
           "hi": "अरिष्ट योग  –  स्वास्थ्य सम्वेदनशीलता और जीवन चुनौतियाँ",
           "mai": "अरिष्ट योग – स्वास्थ्य संबंधी कमजोरी आ जीवनक चुनौती",
           "mr": "अरिष्ट योग  –  स्वास्थ्य सम्वेदनशीलता और जीवन चुनौतियाँ",
-          "ta": "Arishta Yoga  –  health vulnerabilities and life challenges",
-          "te": "Arishta Yoga  –  health vulnerabilities and life challenges",
-          "bn": "Arishta Yoga  –  health vulnerabilities and life challenges",
-          "kn": "Arishta Yoga  –  health vulnerabilities and life challenges",
-          "gu": "Arishta Yoga  –  health vulnerabilities and life challenges"
+          "ta": "அரிஷ்ட யோகம் – உடல்நலக் குறைபாடுகள் மற்றும் வாழ்க்கைப் போராட்டங்கள்",
+          "te": "అరిష్ట యోగం – ఆరోగ్య బలహీనతలు మరియు జీవిత సవాళ్లు",
+          "bn": "অরিষ্ট যোগ – স্বাস্থ্যগত দুর্বলতা এবং জীবনের চ্যালেঞ্জ",
+          "kn": "ಅರಿಷ್ಟ ಯೋಗ – ಆರೋಗ್ಯದ ದುರ್ಬಲತೆಗಳು ಮತ್ತು ಜೀವನದ ಸವಾಲುಗಳು",
+          "gu": "અરિષ્ટ યોગ  –  સ્વાસ્થ્ય સંબંધી નબળાઈઓ અને જીવનના પડકારો"
         },
         {
           "en": "Spiritual liberation",
           "hi": "आध्यात्मिक मुक्ति",
           "mai": "आध्यात्मिक मोक्ष",
           "mr": "आध्यात्मिक मुक्ति",
-          "ta": "Spiritual liberation",
-          "te": "Spiritual liberation",
-          "bn": "Spiritual liberation",
-          "kn": "Spiritual liberation",
-          "gu": "Spiritual liberation"
+          "ta": "ஆன்மீக விடுதலை",
+          "te": "ఆధ్యాత్మిక విముక్తి",
+          "bn": "আধ্যাত্মিক মুক্তি",
+          "kn": "ಆಧ್ಯಾತ್ಮಿಕ ವಿಮೋಚನೆ",
+          "gu": "આધ્યાત્મિક મુક્તિ"
         },
         {
           "en": "Foreign settlement",
           "hi": "विदेश बसावट",
           "mai": "विदेश मे बसोबास",
           "mr": "विदेश बसावट",
-          "ta": "Foreign settlement",
-          "te": "Foreign settlement",
-          "bn": "Foreign settlement",
-          "kn": "Foreign settlement",
-          "gu": "Foreign settlement"
+          "ta": "வெளிநாட்டு குடியேற்றம்",
+          "te": "విదేశీ స్థిరనివాసం",
+          "bn": "বিদেশ বসতি",
+          "kn": "ವಿದೇಶಿ ನೆಲೆಸುವಿಕೆ",
+          "gu": "વિદેશી વસવાટ"
         }
       ]
     },
@@ -564,24 +564,24 @@
       "question": {
         "en": "A strong Jupiter aspect can cancel or significantly mitigate Daridra Yoga.",
         "hi": "गुरु की शक्तिशाली दृष्टि दारिद्र योग को निरस्त या काफी शमित कर सकती है।",
-        "ta": "A strong Jupiter aspect can cancel or significantly mitigate Daridra Yoga.",
-        "te": "A strong Jupiter aspect can cancel or significantly mitigate Daridra Yoga.",
-        "bn": "A strong Jupiter aspect can cancel or significantly mitigate Daridra Yoga.",
-        "kn": "A strong Jupiter aspect can cancel or significantly mitigate Daridra Yoga.",
+        "ta": "வலிமையான குருவின் பார்வை தாரித்ர யோகத்தை ரத்து செய்யலாம் அல்லது கணிசமாக குறைக்கலாம்.",
+        "te": "బలమైన గురు దృష్టి దారిద్ర్య యోగాన్ని రద్దు చేయగలదు లేదా గణనీయంగా తగ్గించగలదు.",
+        "bn": "একটি শক্তিশালী বৃহস্পতির দৃষ্টি দারিদ্র যোগকে বাতিল বা উল্লেখযোগ্যভাবে প্রশমিত করতে পারে।",
+        "kn": "ಬಲವಾದ ಗುರು ದೃಷ್ಟಿಯು ದಾರಿದ್ರ್ಯ ಯೋಗವನ್ನು ರದ್ದುಗೊಳಿಸಬಹುದು ಅಥವಾ ಗಣನೀಯವಾಗಿ ತಗ್ಗಿಸಬಹುದು.",
         "mr": "गुरु की शक्तिशाली दृष्टि दारिद्र योग को निरस्त या काफी शमित कर सकती है।",
-        "gu": "A strong Jupiter aspect can cancel or significantly mitigate Daridra Yoga.",
+        "gu": "બળવાન ગુરુની દ્રષ્ટિ દરિદ્ર યોગને રદ કરી શકે છે અથવા નોંધપાત્ર રીતે ઘટાડી શકે છે.",
         "mai": "एकटा बलवान गुरुक दृष्टि दरिद्र योग केँ रद्द वा काफी कम क' सकैत अछि."
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Jupiter is the great benefic and significator of wealth, wisdom, and divine protection. Its aspect on afflicted wealth houses or on the 11th lord in dusthana can significantly reduce the poverty indication. Jupiter's dasha period often brings relief from financial struggles indicated by Daridra Yoga.",
         "hi": "सत्य। गुरु महाशुभ और धन, ज्ञान तथा दैवी सुरक्षा का कारक है। पीड़ित धन भावों या दुःस्थान में 11वें स्वामी पर इसकी दृष्टि दरिद्रता संकेत को काफी कम कर सकती है। गुरु की दशा काल में प्रायः दारिद्र योग द्वारा इंगित आर्थिक संघर्षों से राहत मिलती है।",
-        "ta": "True. Jupiter is the great benefic and significator of wealth, wisdom, and divine protection. Its aspect on afflicted wealth houses or on the 11th lord in dusthana can significantly reduce the poverty indication. Jupiter's dasha period often brings relief from financial struggles indicated by Daridra Yoga.",
-        "te": "True. Jupiter is the great benefic and significator of wealth, wisdom, and divine protection. Its aspect on afflicted wealth houses or on the 11th lord in dusthana can significantly reduce the poverty indication. Jupiter's dasha period often brings relief from financial struggles indicated by Daridra Yoga.",
-        "bn": "True. Jupiter is the great benefic and significator of wealth, wisdom, and divine protection. Its aspect on afflicted wealth houses or on the 11th lord in dusthana can significantly reduce the poverty indication. Jupiter's dasha period often brings relief from financial struggles indicated by Daridra Yoga.",
-        "kn": "True. Jupiter is the great benefic and significator of wealth, wisdom, and divine protection. Its aspect on afflicted wealth houses or on the 11th lord in dusthana can significantly reduce the poverty indication. Jupiter's dasha period often brings relief from financial struggles indicated by Daridra Yoga.",
+        "ta": "உண்மை. குரு செல்வம், ஞானம் மற்றும் தெய்வீக பாதுகாப்பின் மகா சுப கிரகமும் காரகரும் ஆவார். பாதிக்கப்பட்ட செல்வ பாவங்கள் அல்லது துஸ்தானத்தில் உள்ள 11 ஆம் அதிபதி மீது அதன் பார்வை வறுமைக்கான அறிகுறியை கணிசமாக குறைக்கலாம். குருவின் தசா காலம் பெரும்பாலும் தாரித்ர யோகத்தால் சுட்டிக்காட்டப்படும் நிதிப் போராட்டங்களிலிருந்து நிவாரணம் அளிக்கிறது.",
+        "te": "నిజం. గురువు గొప్ప శుభ గ్రహం మరియు ధనం, జ్ఞానం మరియు దైవ రక్షణకు కారకుడు. పీడిత ధన భావాలపై లేదా దుస్థానంలో ఉన్న 11వ భావాధిపతిపై దాని దృష్టి పేదరికం యొక్క సూచనను గణనీయంగా తగ్గించగలదు. గురు దశ కాలం తరచుగా దారిద్ర్య యోగం సూచించిన ఆర్థిక ఇబ్బందుల నుండి ఉపశమనం కలిగిస్తుంది.",
+        "bn": "সত্য। বৃহস্পতি হল মহান শুভ গ্রহ এবং ধন, জ্ঞান ও ঐশ্বরিক সুরক্ষার কারক। পীড়িত ধন ভাবগুলিতে বা দুস্থানে অবস্থিত ১১শ ভাবের অধিপতির উপর এর দৃষ্টি দারিদ্র্যের ইঙ্গিতকে উল্লেখযোগ্যভাবে হ্রাস করতে পারে। বৃহস্পতির দশা কাল প্রায়শই দারিদ্র যোগ দ্বারা নির্দেশিত আর্থিক সংগ্রাম থেকে মুক্তি নিয়ে আসে।",
+        "kn": "ಸರಿ. ಗುರುವು ಮಹಾ ಶುಭ ಗ್ರಹ ಮತ್ತು ಸಂಪತ್ತು, ಬುದ್ಧಿವಂತಿಕೆ ಮತ್ತು ದೈವಿಕ ರಕ್ಷಣೆಯ ಕಾರಕ. ಪೀಡಿತ ಸಂಪತ್ತಿನ ಭಾವಗಳ ಮೇಲೆ ಅಥವಾ ದುಸ್ಥಾನದಲ್ಲಿರುವ 11ನೇ ಭಾವದ ಅಧಿಪತಿಯ ಮೇಲೆ ಅದರ ದೃಷ್ಟಿಯು ಬಡತನದ ಸೂಚನೆಯನ್ನು ಗಣನೀಯವಾಗಿ ಕಡಿಮೆ ಮಾಡಬಹುದು. ಗುರು ದಶಾ ಅವಧಿಯು ದಾರಿದ್ರ್ಯ ಯೋಗದಿಂದ ಸೂಚಿಸಲ್ಪಟ್ಟ ಆರ್ಥಿಕ ಸಂಕಷ್ಟಗಳಿಂದ ಸಾಮಾನ್ಯವಾಗಿ ಪರಿಹಾರವನ್ನು ತರುತ್ತದೆ.",
         "mr": "सत्य। गुरु महाशुभ और धन, ज्ञान तथा दैवी सुरक्षा का कारक है। पीड़ित धन भावों या दुःस्थान में 11वें स्वामी पर इसकी दृष्टि दरिद्रता संकेत को काफी कम कर सकती है। गुरु की दशा काल में प्रायः दारिद्र योग द्वारा इंगित आर्थिक संघर्षों से राहत मिलती है।",
-        "gu": "True. Jupiter is the great benefic and significator of wealth, wisdom, and divine protection. Its aspect on afflicted wealth houses or on the 11th lord in dusthana can significantly reduce the poverty indication. Jupiter's dasha period often brings relief from financial struggles indicated by Daridra Yoga.",
+        "gu": "સાચું. ગુરુ મહાન શુભ ગ્રહ છે અને ધન, શાણપણ અને દૈવી રક્ષણનો કારક છે. તેની પીડિત ધન ભાવો પર અથવા દુષ્ટ ભાવમાં અગિયારમા ભાવના સ્વામી પરની દ્રષ્ટિ ગરીબીના સંકેતને નોંધપાત્ર રીતે ઘટાડી શકે છે. ગુરુની દશાનો સમયગાળો ઘણીવાર દરિદ્ર યોગ દ્વારા સૂચવાયેલા આર્થિક સંઘર્ષોમાંથી રાહત લાવે છે.",
         "mai": "सत्य. गुरु महान शुभ ग्रह आ धन, ज्ञान, आ दैवीय सुरक्षाक कारक अछि. एकर दृष्टि पीड़ित धनक भाव सभ पर वा दुष्ट भाव मे एकादशेश पर गरीबीक संकेत केँ काफी कम क' सकैत अछि. गुरुक दशा काल प्रायः दरिद्र योग द्वारा संकेतित वित्तीय संघर्ष सँ राहत दैत अछि."
       }
     },
@@ -591,24 +591,24 @@
       "question": {
         "en": "Saturn and Mars together in the 8th house indicate:",
         "hi": "8वें भाव में शनि और मंगल साथ किसका संकेत करते हैं?",
-        "ta": "Saturn and Mars together in the 8th house indicate:",
-        "te": "Saturn and Mars together in the 8th house indicate:",
-        "bn": "Saturn and Mars together in the 8th house indicate:",
-        "kn": "Saturn and Mars together in the 8th house indicate:",
+        "ta": "8 ஆம் பாவத்தில் சனி மற்றும் செவ்வாய் ஒன்றாக இருப்பது எதைக் குறிக்கிறது:",
+        "te": "8వ భావంలో శని మరియు కుజుడు కలిసి సూచిస్తాయి:",
+        "bn": "৮ম ভাবে শনি এবং মঙ্গল একসাথে নির্দেশ করে:",
+        "kn": "ಶನಿ ಮತ್ತು ಮಂಗಳ ಒಟ್ಟಾಗಿ 8ನೇ ಭಾವದಲ್ಲಿ ಸೂಚಿಸುತ್ತವೆ:",
         "mr": "8वें भाव में शनि और मंगल साथ किसका संकेत करते हैं?",
-        "gu": "Saturn and Mars together in the 8th house indicate:",
+        "gu": "આઠમા ભાવમાં શનિ અને મંગળ એકસાથે સૂચવે છે:",
         "mai": "शनि आ मंगल एक संग अष्टम भाव मे कोन बातक संकेत दैत अछि:"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "Saturn (chronic disease, delays) and Mars (accidents, surgery, inflammation) together in the 8th house (longevity, sudden events) create a serious Arishta Yoga. The severity is assessed by dasha timing, aspects of benefics, and the overall chart strength.",
         "hi": "शनि (जीर्ण रोग, विलम्ब) और मंगल (दुर्घटना, शल्य चिकित्सा, शोथ) 8वें भाव (आयु, अचानक घटना) में एक साथ गम्भीर अरिष्ट योग बनाते हैं। तीव्रता दशा समय, शुभ ग्रहों की दृष्टि और समग्र कुण्डली बल से आँकी जाती है।",
-        "ta": "Saturn (chronic disease, delays) and Mars (accidents, surgery, inflammation) together in the 8th house (longevity, sudden events) create a serious Arishta Yoga. The severity is assessed by dasha timing, aspects of benefics, and the overall chart strength.",
-        "te": "Saturn (chronic disease, delays) and Mars (accidents, surgery, inflammation) together in the 8th house (longevity, sudden events) create a serious Arishta Yoga. The severity is assessed by dasha timing, aspects of benefics, and the overall chart strength.",
-        "bn": "Saturn (chronic disease, delays) and Mars (accidents, surgery, inflammation) together in the 8th house (longevity, sudden events) create a serious Arishta Yoga. The severity is assessed by dasha timing, aspects of benefics, and the overall chart strength.",
-        "kn": "Saturn (chronic disease, delays) and Mars (accidents, surgery, inflammation) together in the 8th house (longevity, sudden events) create a serious Arishta Yoga. The severity is assessed by dasha timing, aspects of benefics, and the overall chart strength.",
+        "ta": "சனி (நாள்பட்ட நோய், தாமதங்கள்) மற்றும் செவ்வாய் (விபத்துகள், அறுவை சிகிச்சை, அழற்சி) 8 ஆம் பாவத்தில் (ஆயுள், திடீர் நிகழ்வுகள்) ஒன்றாக இருப்பது ஒரு தீவிர அரிஷ்ட யோகத்தை உருவாக்குகிறது. தீவிரம் தசா நேரம், சுப கிரகங்களின் பார்வைகள் மற்றும் ஒட்டுமொத்த ஜாதக வலிமை ஆகியவற்றால் மதிப்பிடப்படுகிறது.",
+        "te": "శని (దీర్ఘకాలిక వ్యాధి, ఆలస్యాలు) మరియు కుజుడు (ప్రమాదాలు, శస్త్రచికిత్స, మంట) 8వ భావంలో (దీర్ఘాయువు, ఆకస్మిక సంఘటనలు) కలిసి తీవ్రమైన అరిష్ట యోగాన్ని సృష్టిస్తాయి. తీవ్రతను దశ సమయం, శుభ గ్రహాల దృష్టి మరియు మొత్తం జాతక బలం ద్వారా అంచనా వేస్తారు.",
+        "bn": "শনি (দীর্ঘস্থায়ী রোগ, বিলম্ব) এবং মঙ্গল (দুর্ঘটনা, অস্ত্রোপচার, প্রদাহ) একসাথে ৮ম ভাবে (আয়ু, আকস্মিক ঘটনা) একটি গুরুতর অরিষ্ট যোগ তৈরি করে। এর তীব্রতা দশা কাল, শুভ গ্রহের দৃষ্টি এবং সামগ্রিক কুণ্ডলীর শক্তি দ্বারা বিচার করা হয়।",
+        "kn": "ಶನಿ (ದೀರ್ಘಕಾಲದ ರೋಗ, ವಿಳಂಬಗಳು) ಮತ್ತು ಮಂಗಳ (ಅಪಘಾತಗಳು, ಶಸ್ತ್ರಚಿಕಿತ್ಸೆ, ಉರಿಯೂತ) 8ನೇ ಭಾವದಲ್ಲಿ (ದೀರ್ಘಾಯುಷ್ಯ, ಆಕಸ್ಮಿಕ ಘಟನೆಗಳು) ಒಟ್ಟಾಗಿ ಗಂಭೀರ ಅರಿಷ್ಟ ಯೋಗವನ್ನು ಸೃಷ್ಟಿಸುತ್ತವೆ. ತೀವ್ರತೆಯನ್ನು ದಶಾ ಸಮಯ, ಶುಭ ಗ್ರಹಗಳ ದೃಷ್ಟಿ ಮತ್ತು ಒಟ್ಟಾರೆ ಜಾತಕದ ಬಲದಿಂದ ನಿರ್ಧರಿಸಲಾಗುತ್ತದೆ.",
         "mr": "शनि (जीर्ण रोग, विलम्ब) और मंगल (दुर्घटना, शल्य चिकित्सा, शोथ) 8वें भाव (आयु, अचानक घटना) में एक साथ गम्भीर अरिष्ट योग बनाते हैं। तीव्रता दशा समय, शुभ ग्रहों की दृष्टि और समग्र कुण्डली बल से आँकी जाती है।",
-        "gu": "Saturn (chronic disease, delays) and Mars (accidents, surgery, inflammation) together in the 8th house (longevity, sudden events) create a serious Arishta Yoga. The severity is assessed by dasha timing, aspects of benefics, and the overall chart strength.",
+        "gu": "શનિ (ક્રોનિક રોગ, વિલંબ) અને મંગળ (અકસ્માતો, શસ્ત્રક્રિયા, સોજો) આઠમા ભાવમાં (દીર્ધાયુષ્ય, અચાનક ઘટનાઓ) એકસાથે ગંભીર અરિષ્ટ યોગ બનાવે છે. તેની ગંભીરતા દશાના સમય, શુભ ગ્રહોની દ્રષ્ટિ અને એકંદર કુંડળીની શક્તિ દ્વારા આકારણી કરવામાં આવે છે.",
         "mai": "शनि (दीर्घकालिक रोग, विलम्ब) आ मंगल (दुर्घटना, शल्यक्रिया, सूजन) अष्टम भाव मे (दीर्घायु, अचानक घटना) एक संग एकटा गंभीर अरिष्ट योग बनबैत अछि. एकर गंभीरता दशाक समय, शुभ ग्रहक दृष्टि, आ समग्र कुण्डलीक बल सँ आँकल जाइत अछि."
       },
       "options": [
@@ -617,44 +617,44 @@
           "hi": "गुप्त धन के लिए धन योग",
           "mai": "गुप्त धनक लेल धन योग",
           "mr": "गुप्त धन के लिए धन योग",
-          "ta": "Dhana Yoga for hidden wealth",
-          "te": "Dhana Yoga for hidden wealth",
-          "bn": "Dhana Yoga for hidden wealth",
-          "kn": "Dhana Yoga for hidden wealth",
-          "gu": "Dhana Yoga for hidden wealth"
+          "ta": "மறைந்த செல்வத்திற்கான தன யோகம்",
+          "te": "రహస్య ధనం కోసం ధన యోగం",
+          "bn": "গুপ্ত ধনের জন্য ধন যোগ",
+          "kn": "ಗುಪ್ತ ಸಂಪತ್ತಿಗಾಗಿ ಧನ ಯೋಗ",
+          "gu": "ગુપ્ત ધન માટે ધન યોગ"
         },
         {
           "en": "Arishta Yoga  –  accidents, surgeries, or chronic illness risk",
           "hi": "अरिष्ट योग  –  दुर्घटना, शल्य चिकित्सा या जीर्ण रोग का जोखिम",
           "mai": "अरिष्ट योग – दुर्घटना, शल्यक्रिया, वा दीर्घकालिक बीमारीक खतरा",
           "mr": "अरिष्ट योग  –  दुर्घटना, शल्य चिकित्सा या जीर्ण रोग का जोखिम",
-          "ta": "Arishta Yoga  –  accidents, surgeries, or chronic illness risk",
-          "te": "Arishta Yoga  –  accidents, surgeries, or chronic illness risk",
-          "bn": "Arishta Yoga  –  accidents, surgeries, or chronic illness risk",
-          "kn": "Arishta Yoga  –  accidents, surgeries, or chronic illness risk",
-          "gu": "Arishta Yoga  –  accidents, surgeries, or chronic illness risk"
+          "ta": "அரிஷ்ட யோகம் – விபத்துகள், அறுவை சிகிச்சைகள் அல்லது நாள்பட்ட நோய் அபாயம்",
+          "te": "అరిష్ట యోగం – ప్రమాదాలు, శస్త్రచికిత్సలు లేదా దీర్ఘకాలిక వ్యాధి ప్రమాదం",
+          "bn": "অরিষ্ট যোগ – দুর্ঘটনা, অস্ত্রোপচার, বা দীর্ঘস্থায়ী রোগের ঝুঁকি",
+          "kn": "ಅರಿಷ್ಟ ಯೋಗ – ಅಪಘಾತಗಳು, ಶಸ್ತ್ರಚಿಕಿತ್ಸೆಗಳು, ಅಥವಾ ದೀರ್ಘಕಾಲದ ಕಾಯಿಲೆಯ ಅಪಾಯ",
+          "gu": "અરિષ્ટ યોગ  –  અકસ્માતો, શસ્ત્રક્રિયાઓ અથવા ક્રોનિક રોગનું જોખમ"
         },
         {
           "en": "Pancha Mahapurusha Yoga",
           "hi": "पञ्च महापुरुष योग",
           "mai": "पंच महापुरुष योग",
           "mr": "पञ्च महापुरुष योग",
-          "ta": "Pancha Mahapurusha Yoga",
-          "te": "Pancha Mahapurusha Yoga",
-          "bn": "Pancha Mahapurusha Yoga",
-          "kn": "Pancha Mahapurusha Yoga",
-          "gu": "Pancha Mahapurusha Yoga"
+          "ta": "பஞ்ச மகாபுருஷ யோகம்",
+          "te": "పంచ మహాపురుష యోగం",
+          "bn": "পঞ্চ মহাপুরুষ যোগ",
+          "kn": "ಪಂಚ ಮಹಾಪುರುಷ ಯೋಗ",
+          "gu": "પંચ મહાપુરુષ યોગ"
         },
         {
           "en": "Neecha Bhanga Raja Yoga",
           "hi": "नीच भंग राज योग",
           "mai": "नीच भंग राज योग",
           "mr": "नीच भंग राज योग",
-          "ta": "Neecha Bhanga Raja Yoga",
-          "te": "Neecha Bhanga Raja Yoga",
-          "bn": "Neecha Bhanga Raja Yoga",
-          "kn": "Neecha Bhanga Raja Yoga",
-          "gu": "Neecha Bhanga Raja Yoga"
+          "ta": "நீச்ச பங்கா ராஜ யோகம்",
+          "te": "నీచ భంగ రాజయోగం",
+          "bn": "নীচ ভঙ্গ রাজ যোগ",
+          "kn": "ನೀಚ ಭಂಗ ರಾಜ ಯೋಗ",
+          "gu": "નીચ ભંગ રાજ યોગ"
         }
       ]
     }

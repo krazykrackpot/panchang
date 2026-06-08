@@ -2,6 +2,7 @@ import { getLocale, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/lib/i18n/navigation';
 import { Calendar, Sparkles, MapPin, ChevronRight } from 'lucide-react';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import AuthorByline from '@/components/ui/AuthorByline';
 
 export const revalidate = 86400; // 24 hours  –  festival listing changes rarely
 
@@ -428,6 +429,7 @@ export default async function FestivalsHubPage() {
           </p>
         </article>
       </section>
+    <AuthorByline />
     </main>
   );
 }

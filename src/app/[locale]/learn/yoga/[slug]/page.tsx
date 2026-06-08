@@ -16,6 +16,7 @@ import { tl } from '@/lib/utils/trilingual';
 // src/lib/constants/yoga-details-with-overlay.ts.
 import { YOGA_DETAIL_DATA_WITH_OVERLAY as YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details-with-overlay';
 import MiniChart from '@/components/kundali/MiniChart';
+import AuthorByline from '@/components/ui/AuthorByline';
 
 // ─── Yoga-to-image mapping ─────────────────────────────────────────────────
 const YOGA_IMAGE_MAP: Record<string, string> = {
@@ -321,6 +322,7 @@ export default async function YogaDetailPage({
           </Link>
         </div>
       </div>
+    <AuthorByline />
     </div>
   );
 }

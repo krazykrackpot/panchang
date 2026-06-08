@@ -14,6 +14,7 @@ import BeginnerNote from '@/components/learn/BeginnerNote';
 import ClassicalReference from '@/components/learn/ClassicalReference';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/tithis.json';
+import AuthorByline from '@/components/ui/AuthorByline';
 
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -621,6 +622,7 @@ export default function LearnTithisPage() {
           {tx('tryIt')}
         </Link>
       </div>
+    <AuthorByline />
     </div>
   );
 }

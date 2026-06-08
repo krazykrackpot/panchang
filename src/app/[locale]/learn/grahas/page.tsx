@@ -10,6 +10,7 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LJ from '@/messages/learn/grahas.json';
 import { getHeadingFont, getBodyFont, isIndicLocale } from '@/lib/utils/locale-fonts';
+import AuthorByline from '@/components/ui/AuthorByline';
 
 const t_ = LJ as unknown as Record<string, LocaleText>;
 
@@ -587,6 +588,7 @@ export default function LearnGrahasPage() {
           {t('tryIt')}
         </Link>
       </div>
+    <AuthorByline />
     </div>
   );
 }

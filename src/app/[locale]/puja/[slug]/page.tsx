@@ -25,6 +25,7 @@ import VratFollowButton from '@/components/vrat/VratFollowButton';
 import { TRACKABLE_VRATS } from '@/lib/vrat/trackable-vrats';
 import { getVratKathaByFestivalSlug } from '@/lib/content/vrat-kathas';
 import { BookOpen } from 'lucide-react';
+import AuthorByline from '@/components/ui/AuthorByline';
 
 type DisplayMode = 'devanagari' | 'iast' | 'both';
 
@@ -973,6 +974,7 @@ export default function PujaVidhiPage() {
           />
         )}
       </AnimatePresence>
+    <AuthorByline />
     </main>
   );
 }

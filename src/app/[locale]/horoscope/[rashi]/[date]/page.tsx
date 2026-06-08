@@ -9,6 +9,10 @@ import { RashiArticle } from '../RashiArticle';
 import type { LocaleText } from '@/types/panchang';
 import { formatSeoDate, isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { isStrictYmd } from '@/lib/seo/date-validation';
+import { computePanchang } from '@/lib/ephem/panchang-calc';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { getSeoCityForLocale } from '@/lib/constants/cities';
+import TodaySignificanceSection from '@/components/date-content/TodaySignificanceSection';
 
 function tl(obj: LocaleText | undefined, locale: string): string {
   if (!obj) return '';
@@ -81,6 +85,46 @@ export default async function DateHoroscopePage({ params }: { params: Promise<{ 
           <span>{isHi ? 'आध्यात्म' : 'Spirituality'}: {horoscope.areas.spirituality.score}/10</span>
         </div>
       </div>
+
+      {/* Today's Significance — tithi / weekday / festival differentiator
+          inherited from /choghadiya/[date], /panchang/date/[date],
+          /gauri-panchang/[date]. Daily horoscope engine output Jaccards
+          ~40% between adjacent dates but the rendered page added very
+          little body off-template — this section brings the same 30-way
+          (tithi) × 7-way (weekday) × festival-week variance to the
+          horoscope dates. Closes audit item #4 in docs/specs/
+          2026-06-08-seo-audit-followups.md. Wrapped in IIFE so the
+          city compute + panchang compute stay self-contained. */}
+      {(() => {
+        let tithiNumber = 0;
+        const city = getSeoCityForLocale(locale);
+        try {
+          const tzOffset = getUTCOffsetForDate(y, m, d, city.timezone);
+          const panchang = computePanchang({
+            year: y, month: m, day: d,
+            lat: city.lat, lng: city.lng,
+            tzOffset, timezone: city.timezone,
+            locationName: city.name.en,
+          });
+          tithiNumber = panchang.tithi.number;
+        } catch (err) {
+          console.error('[horoscope/rashi/date] tithi compute failed:', err);
+        }
+        if (tithiNumber <= 0) return null;
+        return (
+          <div className="max-w-4xl mx-auto px-4">
+            <TodaySignificanceSection
+              tithiNumber={tithiNumber}
+              weekday={parsed.getUTCDay()}
+              dateStr={date}
+              lat={city.lat}
+              lng={city.lng}
+              timezone={city.timezone}
+              locale={locale}
+            />
+          </div>
+        );
+      })()}
 
       {/* Client island: interactive widget with full functionality */}
       <HoroscopeClient rashi={rashi} locale={locale} initialHoroscope={horoscope} initialDate={date} />

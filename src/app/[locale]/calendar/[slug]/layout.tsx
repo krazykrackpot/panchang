@@ -7,6 +7,18 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { buildHreflangMap } from '@/lib/seo/hreflang';
 
+// OpenGraph BCP 47 codes (underscore-joined) and Schema.org inLanguage
+// codes for the 9 visible locales. `sa` is retired but kept here to
+// gracefully tag any legacy redirect that still hits this route.
+const OG_LOCALE_TAGS: Record<string, string> = {
+  en: 'en_US', hi: 'hi_IN', sa: 'sa_IN', mai: 'mai_IN', mr: 'mr_IN',
+  ta: 'ta_IN', te: 'te_IN', bn: 'bn_IN', gu: 'gu_IN', kn: 'kn_IN',
+};
+const INLANGUAGE_TAGS: Record<string, string> = {
+  en: 'en', hi: 'hi', sa: 'sa', mai: 'hi', mr: 'mr',
+  ta: 'ta', te: 'te', bn: 'bn', gu: 'gu', kn: 'kn',
+};
+
 export function generateStaticParams() {
   // ISR: rendered on-demand, not pre-built (keeps deploy under 10 min)
   return [];
@@ -114,7 +126,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url: `https://dekhopanchang.com/${locale}/calendar/${slug}`,
       siteName: 'Dekho Panchang',
-      locale: locale === 'hi' ? 'hi_IN' : locale === 'sa' ? 'sa_IN' : 'en_US',
+      locale: OG_LOCALE_TAGS[locale] ?? 'en_US',
       type: 'article',
     },
     twitter: {
@@ -163,7 +175,7 @@ export default async function CalendarSlugLayout({
       name: 'Dekho Panchang',
       url: BASE_URL,
     },
-    inLanguage: locale === 'hi' ? 'hi' : locale === 'sa' ? 'sa' : 'en',
+    inLanguage: INLANGUAGE_TAGS[locale] ?? 'en',
   };
 
   const breadcrumbJsonLd = {

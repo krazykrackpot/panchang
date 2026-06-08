@@ -58,7 +58,7 @@
       "question": {
         "en": "What is the Equation of Time (EoT)?",
         "hi": "समय का समीकरण (EoT) क्या है?",
-        "mr": "What is the Equation of Time (EoT)?",
+        "mr": "काल समीकरण (EoT) काय आहे?",
         "mai": "समय समीकरण (EoT) की अछि?"
       },
       "options": [
@@ -111,7 +111,7 @@
       "explanation": {
         "en": "The EoT is the difference between the time shown by a sundial (apparent solar time, based on the actual Sun position) and the time shown by a clock (mean solar time, based on a fictitious Sun moving uniformly). It ranges from +14 to -16 minutes through the year.",
         "hi": "EoT धूपघड़ी द्वारा दिखाए गए समय (दृश्य सौर समय, वास्तविक सूर्य स्थिति पर आधारित) और घड़ी द्वारा दिखाए गए समय (माध्य सौर समय, एक काल्पनिक समान गति वाले सूर्य पर आधारित) के बीच अन्तर है। यह वर्ष भर +14 से -16 मिनट तक होता है।",
-        "mr": "The EoT is the difference between the time shown by a sundial (apparent solar time, based on the actual Sun position) and the time shown by a clock (mean solar time, based on a fictitious Sun moving uniformly). It ranges from +14 to -16 minutes through the year.",
+        "mr": "EoT हा सूर्यघटीने (भास्कर वेळ, सूर्याच्या प्रत्यक्ष स्थितीवर आधारित) दाखवलेली वेळ आणि घड्याळाने (मध्यम सौर वेळ, समान गतीने फिरणाऱ्या काल्पनिक सूर्यावर आधारित) दाखवलेली वेळ यांच्यातील फरक आहे. हे वर्षभरात +14 ते -16 मिनिटांपर्यंत बदलते.",
         "mai": "EoT धूपघड़ी द्वारा देखाओल गेल समय (आभासी सौर समय, सूर्यक वास्तविक स्थिति पर आधारित) आ घड़ी द्वारा देखाओल गेल समय (माध्य सौर समय, एकटा काल्पनिक सूर्य जे समान रूप सँ चलैत अछि, ओहि पर आधारित) क बीचक अंतर अछि। ई साल भरि +१४ सँ -१६ मिनट धरि होइत अछि।"
       }
     },
@@ -121,7 +121,7 @@
       "question": {
         "en": "Which two effects cause the Equation of Time?",
         "hi": "कौन-से दो प्रभाव समय का समीकरण उत्पन्न करते हैं?",
-        "mr": "Which two effects cause the Equation of Time?",
+        "mr": "कोणते दोन परिणाम काल समीकरणास कारणीभूत आहेत?",
         "mai": "कोन दूटा प्रभाव समय समीकरणक कारण बनैत अछि?"
       },
       "options": [
@@ -174,7 +174,7 @@
       "explanation": {
         "en": "Two effects combine: (1) Obliquity  –  the 23.4° tilt of the ecliptic means the Sun's motion along the ecliptic projects non-uniformly onto the equator. (2) Eccentricity  –  Earth's elliptical orbit makes the Sun appear to move faster in January and slower in July.",
         "hi": "दो प्रभाव मिलते हैं: (1) तिर्यकता  –  क्रान्तिवृत्त का 23.4° झुकाव अर्थात सूर्य की क्रान्तिवृत्तीय गति विषुवत पर असमान रूप से प्रक्षेपित होती है। (2) उत्केन्द्रता  –  पृथ्वी की दीर्घवृत्तीय कक्षा सूर्य को जनवरी में तेज़ और जुलाई में धीमा दिखाती है।",
-        "mr": "Two effects combine: (1) Obliquity  –  the 23.4° tilt of the ecliptic means the Sun's motion along the ecliptic projects non-uniformly onto the equator. (2) Eccentricity  –  Earth's elliptical orbit makes the Sun appear to move faster in January and slower in July.",
+        "mr": "दोन परिणाम एकत्र येतात: (1) क्रांतीपात – क्रांतीवृत्ताचा 23.4° चा कल म्हणजे क्रांतीवृत्तावरील सूर्याची गती विषुववृत्तावर असमानपणे प्रक्षेपित होते. (2) विकेंद्रता – पृथ्वीच्या लंबवर्तुळाकार कक्षेमुळे सूर्य जानेवारीमध्ये जलद आणि जुलैमध्ये हळू फिरताना दिसतो.",
         "mai": "दूटा प्रभाव मिलैत अछि: (१) तिरछापन  –  क्रांतिवृत्तक २३.४° झुकाव क अर्थ अछि जे सूर्यक क्रांतिवृत्तक संग गति भूमध्य रेखा पर असमान रूप सँ प्रक्षेपित होइत अछि। (२) विलक्षणता  –  पृथ्वीक दीर्घवृत्ताकार कक्षाक कारण सूर्य जनवरी मे बेसी तेज आ जुलाई मे धीमा चलैत देखाइत अछि।"
       }
     },
@@ -184,7 +184,7 @@
       "question": {
         "en": "The EoT reaches its most negative value (sundial behind clock) of about -16 minutes around:",
         "hi": "EoT अपना सर्वाधिक ऋणात्मक मान (धूपघड़ी घड़ी से पीछे) लगभग -16 मिनट किसके आसपास पहुँचता है:",
-        "mr": "The EoT reaches its most negative value (sundial behind clock) of about -16 minutes around:",
+        "mr": "EoT त्याचे सर्वात नकारात्मक मूल्य (सूर्यघटी घड्याळाच्या मागे) सुमारे -16 मिनिटांपर्यंत, या काळात गाठते:",
         "mai": "EoT अपन सबसँ नकारात्मक मान (धूपघड़ी घड़ी सँ पाछु) लगभग -१६ मिनट क आसपास पहुँचैत अछि:"
       },
       "options": [
@@ -237,7 +237,7 @@
       "explanation": {
         "en": "The EoT dips to about -16 minutes around November 3. At this time, both the obliquity and eccentricity effects work in the same direction, creating the year's largest departure. Solar noon occurs at about 12:16 on the clock (before timezone and longitude adjustments).",
         "hi": "EoT लगभग 3 नवम्बर को -16 मिनट तक गिरता है। इस समय तिर्यकता और उत्केन्द्रता दोनों प्रभाव एक ही दिशा में कार्य करते हैं, वर्ष का सबसे बड़ा विचलन बनाते हैं। सौर मध्याह्न घड़ी पर लगभग 12:16 (समयक्षेत्र और देशान्तर समायोजन से पहले) पर होता है।",
-        "mr": "The EoT dips to about -16 minutes around November 3. At this time, both the obliquity and eccentricity effects work in the same direction, creating the year's largest departure. Solar noon occurs at about 12:16 on the clock (before timezone and longitude adjustments).",
+        "mr": "EoT सुमारे 3 नोव्हेंबरच्या आसपास -16 मिनिटांपर्यंत खाली येते. यावेळी, क्रांतीपात आणि विकेंद्रता हे दोन्ही परिणाम एकाच दिशेने कार्य करतात, ज्यामुळे वर्षातील सर्वात मोठा फरक निर्माण होतो. सौर मध्यान्ह घड्याळात सुमारे 12:16 वाजता होते (वेळ क्षेत्र आणि रेखांश समायोजनापूर्वी).",
         "mai": "EoT ३ नवंबर क आसपास लगभग -१६ मिनट धरि घटैत अछि। एहि समय, तिरछापन आ विलक्षणता दुनू प्रभाव एकहि दिशामे काज करैत अछि, जे सालक सबसँ पैघ विचलन उत्पन्न करैत अछि। सौर मध्याह्न घड़ी पर लगभग १२:१६ बजे होइत अछि (समय क्षेत्र आ देशांतर समायोजन सँ पहिने)।"
       }
     },
@@ -247,14 +247,14 @@
       "question": {
         "en": "The analemma (figure-8 pattern in the sky) is a visual representation of the Equation of Time combined with the Sun's changing declination.",
         "hi": "एनालेम्मा (आकाश में अंक-8 आकृति) समय के समीकरण और सूर्य की बदलती क्रान्ति का संयुक्त दृश्य प्रतिनिधित्व है।",
-        "mr": "The analemma (figure-8 pattern in the sky) is a visual representation of the Equation of Time combined with the Sun's changing declination.",
+        "mr": "अनालम्मा (आकाशातील 8-आकाराचे नक्षी) हे काल समीकरण आणि सूर्याच्या बदलत्या क्रांतीचे (declination) एकत्रित दृश्य प्रतिनिधित्व आहे.",
         "mai": "एनालिम्मा (आकाश मे ८-आकृतिक पैटर्न) समय समीकरण जे सूर्यक बदलैत क्रांति सँ जुड़ल अछि, क एकटा दृश्य प्रतिनिधित्व अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. If you photograph the Sun at the same clock time every day for a year, it traces a figure-8 (analemma). The horizontal displacement is the EoT (east-west shift), and the vertical displacement is the changing declination (north-south shift through the seasons).",
         "hi": "सत्य। यदि आप प्रतिदिन एक ही घड़ी समय पर एक वर्ष तक सूर्य का चित्र लें, तो यह अंक-8 (एनालेम्मा) बनाता है। क्षैतिज विस्थापन EoT (पूर्व-पश्चिम खिसकाव) है, और ऊर्ध्वाधर विस्थापन बदलती क्रान्ति (ऋतुओं में उत्तर-दक्षिण खिसकाव) है।",
-        "mr": "True. If you photograph the Sun at the same clock time every day for a year, it traces a figure-8 (analemma). The horizontal displacement is the EoT (east-west shift), and the vertical displacement is the changing declination (north-south shift through the seasons).",
+        "mr": "सत्य. जर तुम्ही वर्षभर दररोज एकाच घड्याळी वेळेला सूर्याचे छायाचित्र काढले, तर ते 8-आकाराचे (अनालम्मा) नक्षी तयार करते. क्षैतिज विस्थापन हे EoT आहे (पूर्व-पश्चिम सरकणे), आणि अनुलंब विस्थापन हे बदलत्या क्रांतीचे (declination) आहे (ऋतूनुसार उत्तर-दक्षिण सरकणे).",
         "mai": "सत्य। यदि अहाँ साल भरि हर दिन एकहि घड़ी समय पर सूर्यक फोटो लेब, तँ ई एकटा ८-आकृति (एनालिम्मा) बनायत। क्षैतिज विस्थापन EoT अछि (पूर्व-पश्चिम बदलाव), आ ऊर्ध्वाधर विस्थापन बदलैत क्रांति अछि (ऋतुसभक माध्यम सँ उत्तर-दक्षिण बदलाव)।"
       }
     },
@@ -264,7 +264,7 @@
       "question": {
         "en": "In the EoT formula, the term y = tan²(ε/2) represents the effect of:",
         "hi": "EoT सूत्र में, y = tan²(ε/2) पद किसका प्रभाव दर्शाता है:",
-        "mr": "In the EoT formula, the term y = tan²(ε/2) represents the effect of:",
+        "mr": "EoT च्या सूत्रामध्ये, y = tan²(ε/2) ही संज्ञा कशाचा परिणाम दर्शवते:",
         "mai": "EoT सूत्र मे, पद y = tan²(ε/2) क प्रभाव केँ दर्शाबैत अछि:"
       },
       "options": [
@@ -317,7 +317,7 @@
       "explanation": {
         "en": "The y = tan²(ε/2) factor captures the obliquity effect. With ε ≈ 23.44°, y ≈ 0.0431. This drives the sin(2L₀) and sin(4L₀) terms in the EoT formula, which create the semi-annual oscillation in the EoT curve.",
         "hi": "y = tan²(ε/2) गुणक तिर्यकता प्रभाव को पकड़ता है। ε ≈ 23.44° के साथ, y ≈ 0.0431। यह EoT सूत्र में sin(2L₀) और sin(4L₀) पदों को चलाता है, जो EoT वक्र में अर्ध-वार्षिक दोलन बनाते हैं।",
-        "mr": "The y = tan²(ε/2) factor captures the obliquity effect. With ε ≈ 23.44°, y ≈ 0.0431. This drives the sin(2L₀) and sin(4L₀) terms in the EoT formula, which create the semi-annual oscillation in the EoT curve.",
+        "mr": "y = tan²(ε/2) हा घटक क्रांतीपाताचा परिणाम दर्शवतो. ε ≈ 23.44° असताना, y ≈ 0.0431. हे EoT सूत्रामधील sin(2L₀) आणि sin(4L₀) पदांना चालना देते, जे EoT वक्रात अर्ध-वार्षिक दोलन निर्माण करतात.",
         "mai": "y = tan²(ε/2) कारक तिरछापन प्रभाव केँ पकड़ैत अछि। ε ≈ २३.४४° क संग, y ≈ ०.०४३१। ई EoT सूत्र मे sin(2L₀) आ sin(4L₀) पदसभ केँ चलाबैत अछि, जे EoT वक्र मे अर्ध-वार्षिक दोलन उत्पन्न करैत अछि।"
       }
     },
@@ -327,7 +327,7 @@
       "question": {
         "en": "How is the EoT converted from radians to minutes of time?",
         "hi": "EoT रेडियन से समय के मिनटों में कैसे बदला जाता है?",
-        "mr": "How is the EoT converted from radians to minutes of time?",
+        "mr": "EoT रेडियनमधून मिनिटांमध्ये कसे रूपांतरित केले जाते?",
         "mai": "EoT केँ रेडियन सँ समयक मिनट मे कोना बदलल जाइत अछि?"
       },
       "options": [
@@ -380,7 +380,7 @@
       "explanation": {
         "en": "First convert radians to degrees (multiply by 180/π), then convert degrees to minutes of time (multiply by 4, since 1° of Sun motion = 4 minutes of time because the Sun traverses 360° in 24 hours, or 15° per hour, or 1° per 4 minutes).",
         "hi": "पहले रेडियन को अंशों में बदलें (180/π से गुणा), फिर अंशों को समय के मिनटों में बदलें (4 से गुणा, क्योंकि सूर्य गति का 1° = 4 मिनट समय क्योंकि सूर्य 24 घण्टों में 360° पार करता है, या 15° प्रति घण्टा, या 1° प्रति 4 मिनट)।",
-        "mr": "First convert radians to degrees (multiply by 180/π), then convert degrees to minutes of time (multiply by 4, since 1° of Sun motion = 4 minutes of time because the Sun traverses 360° in 24 hours, or 15° per hour, or 1° per 4 minutes).",
+        "mr": "प्रथम रेडियनला अंशांमध्ये रूपांतरित करा (180/π ने गुणा), नंतर अंशांना मिनिटांमध्ये रूपांतरित करा (4 ने गुणा, कारण सूर्याच्या गतीचा 1° म्हणजे 4 मिनिटे, कारण सूर्य 24 तासांत 360° किंवा प्रति तास 15° किंवा प्रति 4 मिनिटांत 1° प्रवास करतो).",
         "mai": "पहिले रेडियन केँ डिग्री मे बदलू (१८०/π सँ गुणा करू), फेर डिग्री केँ समयक मिनट मे बदलू (४ सँ गुणा करू, किएक तँ सूर्यक १° गति = ४ मिनट समय होइत अछि किएक तँ सूर्य २४ घंटा मे ३६०° तय करैत अछि, वा प्रति घंटा १५°, वा प्रति ४ मिनट मे १°)।"
       }
     },
@@ -390,14 +390,14 @@
       "question": {
         "en": "Without the EoT correction, Abhijit Muhurta timing would be off by up to 16 minutes.",
         "hi": "EoT सुधार के बिना, अभिजित मुहूर्त का समय 16 मिनट तक गलत होगा।",
-        "mr": "Without the EoT correction, Abhijit Muhurta timing would be off by up to 16 minutes.",
+        "mr": "EoT दुरुस्तीशिवाय, अभिजीत मुहूर्ताची वेळ 16 मिनिटांपर्यंत चुकलेली असेल.",
         "mai": "EoT सुधारक बिना, अभिजीत मुहूर्तक समय १६ मिनट धरि गलत भऽ सकैत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Abhijit Muhurta is centered on solar noon. If you assume solar noon is at 12:00 local mean time (ignoring EoT), the muhurta timing is wrong by the full EoT value  –  up to 16 minutes in November. This cascades to Hora calculations and other solar-noon-based divisions.",
         "hi": "सत्य। अभिजित मुहूर्त सौर मध्याह्न पर केन्द्रित है। यदि आप सौर मध्याह्न 12:00 स्थानीय माध्य समय मान लें (EoT अनदेखा करें), तो मुहूर्त समय पूर्ण EoT मान से गलत होता है  –  नवम्बर में 16 मिनट तक। यह होरा गणनाओं और अन्य सौर-मध्याह्न-आधारित विभाजनों में प्रसारित होता है।",
-        "mr": "True. Abhijit Muhurta is centered on solar noon. If you assume solar noon is at 12:00 local mean time (ignoring EoT), the muhurta timing is wrong by the full EoT value  –  up to 16 minutes in November. This cascades to Hora calculations and other solar-noon-based divisions.",
+        "mr": "सत्य. अभिजीत मुहूर्त सौर मध्यान्हावर केंद्रित असतो. जर तुम्ही सौर मध्यान्ह 12:00 स्थानिक मध्यम वेळेला (EoT दुर्लक्षित करून) मानले, तर मुहूर्ताची वेळ संपूर्ण EoT मूल्याने चुकते – नोव्हेंबरमध्ये 16 मिनिटांपर्यंत. यामुळे होरा गणना आणि इतर सौर-मध्यान्ह-आधारित विभागांवर परिणाम होतो.",
         "mai": "सत्य। अभिजीत मुहूर्त सौर मध्याह्न पर केंद्रित अछि। यदि अहाँ मानैत छी जे सौर मध्याह्न १२:०० स्थानीय माध्य समय पर अछि (EoT केँ अनदेखा करैत), तँ मुहूर्तक समय पूरा EoT मान सँ गलत होइत अछि  –  नवंबर मे १६ मिनट धरि। ई होरा गणना आ अन्य सौर-मध्याह्न-आधारित विभाजनसभ मे सेहो लागू होइत अछि।"
       }
     },
@@ -407,7 +407,7 @@
       "question": {
         "en": "The EoT crosses zero (sundial matches clock) approximately how many times per year?",
         "hi": "EoT प्रतिवर्ष लगभग कितनी बार शून्य पार करता है (धूपघड़ी घड़ी से मिलती है)?",
-        "mr": "The EoT crosses zero (sundial matches clock) approximately how many times per year?",
+        "mr": "EoT शून्य ओलांडते (सूर्यघटी घड्याळाशी जुळते) वर्षभरात अंदाजे किती वेळा?",
         "mai": "EoT शून्य केँ पार करैत अछि (धूपघड़ी घड़ी सँ मेल खाबैत अछि) साल मे लगभग केटा बेर?"
       },
       "options": [
@@ -460,7 +460,7 @@
       "explanation": {
         "en": "The EoT crosses zero four times per year: around April 15, June 13, September 1, and December 25. On these dates, a sundial and a clock show the same noon time (before longitude and timezone adjustments).",
         "hi": "EoT प्रतिवर्ष चार बार शून्य पार करता है: लगभग 15 अप्रैल, 13 जून, 1 सितम्बर और 25 दिसम्बर। इन तिथियों पर धूपघड़ी और घड़ी एक ही मध्याह्न समय दिखाती हैं (देशान्तर और समयक्षेत्र समायोजन से पहले)।",
-        "mr": "The EoT crosses zero four times per year: around April 15, June 13, September 1, and December 25. On these dates, a sundial and a clock show the same noon time (before longitude and timezone adjustments).",
+        "mr": "EoT वर्षभरात चार वेळा शून्य ओलांडते: सुमारे 15 एप्रिल, 13 जून, 1 सप्टेंबर आणि 25 डिसेंबर रोजी. या तारखांना, सूर्यघटी आणि घड्याळ समान मध्यान्ह वेळ दर्शवतात (रेखांश आणि वेळ क्षेत्र समायोजनापूर्वी).",
         "mai": "EoT साल मे चारि बेर शून्य केँ पार करैत अछि: १५ अप्रैल, १३ जून, १ सितंबर आ २५ दिसंबर क आसपास। एहि तिथि पर, एकटा धूपघड़ी आ एकटा घड़ी एकहि मध्याह्न समय देखाबैत अछि (देशांतर आ समय क्षेत्र समायोजन सँ पहिने)।"
       }
     },
@@ -470,7 +470,7 @@
       "question": {
         "en": "The eccentricity component of the EoT has its largest effect near:",
         "hi": "EoT का उत्केन्द्रता घटक किसके निकट सबसे बड़ा प्रभाव रखता है:",
-        "mr": "The eccentricity component of the EoT has its largest effect near:",
+        "mr": "EoT च्या विकेंद्रता घटकाचा सर्वात मोठा परिणाम याच्या जवळ असतो:",
         "mai": "EoT क विलक्षणता घटक अपन सबसँ पैघ प्रभाव क नजदीक रखैत अछि:"
       },
       "options": [
@@ -523,7 +523,7 @@
       "explanation": {
         "en": "The eccentricity effect is a sine wave with period ~1 year, peaking near perihelion (early January) and its negative mirror near aphelion (early July). The amplitude is approximately ±7.7 minutes, driven by the -2e x sin(M) term in the EoT formula.",
         "hi": "उत्केन्द्रता प्रभाव ~1 वर्ष अवधि की ज्या तरंग है, उपसौर (जनवरी आरम्भ) के निकट शिखर और अपसौर (जुलाई आरम्भ) के निकट ऋणात्मक प्रतिबिम्ब। आयाम लगभग ±7.7 मिनट है, EoT सूत्र में -2e × sin(M) पद द्वारा संचालित।",
-        "mr": "The eccentricity effect is a sine wave with period ~1 year, peaking near perihelion (early January) and its negative mirror near aphelion (early July). The amplitude is approximately ±7.7 minutes, driven by the -2e x sin(M) term in the EoT formula.",
+        "mr": "विकेंद्रतेचा परिणाम सुमारे 1 वर्षाच्या कालावधीची साइन वेव्ह आहे, जे उपसूर्यबिंदूजवळ (जानेवारीच्या सुरुवातीला) आणि अपसूर्यबिंदूजवळ (जुलैच्या सुरुवातीला) त्याच्या नकारात्मक प्रतिमेसह शिखरावर पोहोचते. याची तीव्रता अंदाजे ±7.7 मिनिटे असते, जी EoT सूत्रामधील -2e x sin(M) या पदाद्वारे चालविली जाते.",
         "mai": "विलक्षणता प्रभाव लगभग १ सालक अवधि बला एकटा साइन तरंग अछि, जे उपसौर (जनवरीक शुरुआत) क नजदीक आ अपसौर (जुलाईक शुरुआत) क नजदीक अपन नकारात्मक दर्पण पर चरम पर पहुँचैत अछि। आयाम लगभग ±७.७ मिनट होइत अछि, जे EoT सूत्र मे -2e x sin(M) पद द्वारा संचालित होइत अछि।"
       }
     },
@@ -533,7 +533,7 @@
       "question": {
         "en": "In our Panchang app, the EoT is applied in the calculation of:",
         "hi": "हमारे पंचांग ऐप में EoT किसकी गणना में लागू होता है:",
-        "mr": "In our Panchang app, the EoT is applied in the calculation of:",
+        "mr": "आमच्या पंचांग ॲपमध्ये, EoT च्या गणनेमध्ये वापरले जाते:",
         "mai": "हमर पंचांग ऐप मे, EoT क गणना मे लागू कएल जाइत अछि:"
       },
       "options": [
@@ -586,7 +586,7 @@
       "explanation": {
         "en": "The EoT is applied when computing solar noon, which determines both sunrise and sunset. Since Rahu Kaal, Yamaghanda, Gulika, Abhijit Muhurta, and Hora calculations all depend on sunrise/sunset, the EoT correction propagates through the entire Panchang.",
         "hi": "EoT सौर मध्याह्न गणना में लागू होता है, जो सूर्योदय और सूर्यास्त दोनों निर्धारित करता है। राहु काल, यमघण्ट, गुलिक, अभिजित मुहूर्त और होरा गणनाएँ सभी सूर्योदय/सूर्यास्त पर निर्भर हैं, अतः EoT सुधार सम्पूर्ण पंचांग में प्रसारित होता है।",
-        "mr": "The EoT is applied when computing solar noon, which determines both sunrise and sunset. Since Rahu Kaal, Yamaghanda, Gulika, Abhijit Muhurta, and Hora calculations all depend on sunrise/sunset, the EoT correction propagates through the entire Panchang.",
+        "mr": "सौर मध्यान्ह मोजताना EoT लागू केले जाते, जे सूर्योदय आणि सूर्यास्त दोन्ही निश्चित करते. राहुकाल, यमगंड, गुलिका, अभिजीत मुहूर्त आणि होरा गणना या सर्व सूर्योदय/सूर्यास्तावर अवलंबून असल्याने, EoT दुरुस्ती संपूर्ण पंचांगामध्ये पसरते.",
         "mai": "EoT सौर मध्याह्नक गणना करैत काल लागू कएल जाइत अछि, जे सूर्य उदय आ सूर्य अस्त दुनू केँ निर्धारित करैत अछि। चूँकि राहु काल, यमगंडा, गुलिका, अभिजीत मुहूर्त आ होरा गणना सभ सूर्य उदय/सूर्य अस्त पर निर्भर करैत अछि, ताहि लेल EoT सुधार पूरा पंचांग मे फैलैत अछि।"
       }
     }

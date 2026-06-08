@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 10-1: 12 भाव",
         "mai": "मॉड्यूल 10-1: 12 भाव",
         "mr": "मॉड्यूल 10-1: 12 भाव",
-        "ta": "Module 10-1: 12 Houses",
-        "te": "Module 10-1: 12 Houses",
-        "bn": "Module 10-1: 12 Houses",
-        "kn": "Module 10-1: 12 Houses",
-        "gu": "Module 10-1: 12 Houses"
+        "ta": "தொகுதி 10-1: 12 பாவங்கள்",
+        "te": "మాడ్యూల్ 10-1: 12 భావాలు",
+        "bn": "মডিউল ১০-১: ১২ ভাব",
+        "kn": "ಮಾಡ್ಯೂಲ್ 10-1: 12 ಭಾವಗಳು",
+        "gu": "મોડ્યુલ 10-1: 12 ભાવ"
       },
       "href": "/learn/modules/10-1"
     },
@@ -42,11 +42,11 @@
         "hi": "मॉड्यूल 29-2: आयुर्वेदिक समय",
         "mai": "मॉड्यूल 29-2: आयुर्वेदिक समय",
         "mr": "मॉड्यूल 29-2: आयुर्वेदिक समय",
-        "ta": "Module 29-2: Ayurvedic Timing",
-        "te": "Module 29-2: Ayurvedic Timing",
-        "bn": "Module 29-2: Ayurvedic Timing",
-        "kn": "Module 29-2: Ayurvedic Timing",
-        "gu": "Module 29-2: Ayurvedic Timing"
+        "ta": "தொகுதி 29-2: ஆயுர்வேத கால நிர்ணயம்",
+        "te": "మాడ్యూల్ 29-2: ఆయుర్వేద సమయం",
+        "bn": "মডিউল ২৯-২: আয়ুর্বেদিক সময় নির্ধারণ",
+        "kn": "ಮಾಡ್ಯೂಲ್ 29-2: ಆಯುರ್ವೇದಿಕ ಸಮಯ",
+        "gu": "મોડ્યુલ 29-2: આયુર્વેદિક સમય"
       },
       "href": "/learn/modules/29-2"
     }
@@ -58,39 +58,39 @@
       "question": {
         "en": "Which house is the primary house of disease and illness in Vedic astrology?",
         "hi": "वैदिक ज्योतिष में रोग और बीमारी का प्राथमिक भाव कौन सा है?",
-        "mr": "Which house is the primary house of disease and illness in Vedic astrology?",
+        "mr": "वैदिक ज्योतिषशास्त्रामध्ये रोग आणि आजाराचे मुख्य घर कोणते आहे?",
         "mai": "वैदिक ज्योतिष मे रोग आ बीमारीक प्राथमिक भाव की अछि?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "The 6th house (Shatru Bhava) is the primary house of disease, enemies, and debts. Its lord, planets placed in it, and aspects on it indicate the type and timing of health issues. The 8th house relates to chronic illness and surgery, while the 12th relates to hospitalization.",
         "hi": "छठा भाव (शत्रु भाव) रोग, शत्रु और ऋण का प्राथमिक भाव है। इसका स्वामी, इसमें स्थित ग्रह, और इस पर दृष्टि स्वास्थ्य समस्याओं के प्रकार और समय को इंगित करते हैं।",
-        "mr": "The 6th house (Shatru Bhava) is the primary house of disease, enemies, and debts. Its lord, planets placed in it, and aspects on it indicate the type and timing of health issues. The 8th house relates to chronic illness and surgery, while the 12th relates to hospitalization.",
+        "mr": "सहावे घर (शत्रु भाव) रोग, शत्रू आणि कर्जाचे मुख्य घर आहे. त्याचा स्वामी, त्यात असलेले ग्रह आणि त्यावरचे दृष्टी आरोग्य समस्यांचा प्रकार आणि वेळ दर्शवतात. आठवे घर दीर्घकालीन आजार आणि शस्त्रक्रिये संबंधित आहे, तर १२वे घर रुग्णालयात दाखल होण्याशी संबंधित आहे.",
         "mai": "छठा भाव (शत्रु भाव) रोग, शत्रु आ ऋणक प्राथमिक भाव छी। एकरा स्वामी, एकरा मे स्थित ग्रह, आ एकरा परक दृष्टि स्वास्थ्य संबंधी समस्याक प्रकार आ समय केँ इंगित करैत अछि। आठम भाव दीर्घकालिक बीमारी आ सर्जरी सँ संबंधित अछि, जखन कि बारहम् भाव अस्पताल मे भर्ती सँ संबंधित अछि।"
       },
       "options": [
         {
           "en": "The 5th house",
           "hi": "पंचम भाव",
-          "mr": "The 5th house",
+          "mr": "पाचवे घर",
           "mai": "पाँचम भाव"
         },
         {
           "en": "The 6th house",
           "hi": "षष्ठ भाव",
-          "mr": "The 6th house",
+          "mr": "सहावे घर",
           "mai": "छठा भाव"
         },
         {
           "en": "The 8th house",
           "hi": "अष्टम भाव",
-          "mr": "The 8th house",
+          "mr": "आठवे घर",
           "mai": "आठम भाव"
         },
         {
           "en": "The 12th house",
           "hi": "द्वादश भाव",
-          "mr": "The 12th house",
+          "mr": "बारावे घर",
           "mai": "बारहम् भाव"
         }
       ]
@@ -101,14 +101,14 @@
       "question": {
         "en": "Which planet governs bones, joints, and the skeletal system in medical astrology?",
         "hi": "चिकित्सा ज्योतिष में हड्डियों, जोड़ों और कंकाल तन्त्र का शासक ग्रह कौन है?",
-        "mr": "Which planet governs bones, joints, and the skeletal system in medical astrology?",
+        "mr": "वैद्यकीय ज्योतिषशास्त्रामध्ये हाडे, सांधे आणि अस्थिपंजर प्रणालीवर कोणता ग्रह राज्य करतो?",
         "mai": "चिकित्सा ज्योतिष मे कोन ग्रह हड्डी, जोड़ आ कंकाल प्रणाली केँ नियंत्रित करैत अछि?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "Saturn (Shani) governs the skeletal system, bones, joints, teeth, and all slow-degenerating tissues. Saturn also rules chronic diseases, arthritis, and conditions that worsen with age. An afflicted Saturn often indicates skeletal problems, especially during Sade Sati or Saturn dasha.",
         "hi": "शनि कंकाल तन्त्र, हड्डियों, जोड़ों, दाँतों और सभी धीरे-धीरे क्षीण होने वाले ऊतकों का शासक है। शनि दीर्घकालिक रोगों, गठिया और उम्र के साथ बढ़ने वाली स्थितियों पर भी शासन करता है।",
-        "mr": "Saturn (Shani) governs the skeletal system, bones, joints, teeth, and all slow-degenerating tissues. Saturn also rules chronic diseases, arthritis, and conditions that worsen with age. An afflicted Saturn often indicates skeletal problems, especially during Sade Sati or Saturn dasha.",
+        "mr": "शनि (Saturn) अस्थिपंजर प्रणाली, हाडे, सांधे, दात आणि हळूहळू क्षीण होणाऱ्या सर्व ऊतींवर राज्य करतो. शनि दीर्घकालीन आजार, संधिवात आणि वयानुसार बिघडणाऱ्या स्थितींवर देखील राज्य करतो. पीडित शनि अनेकदा हाडांच्या समस्या दर्शवतो, विशेषतः साडेसाती किंवा शनि दशेत.",
         "mai": "शनि (शनि) कंकाल प्रणाली, हड्डी, जोड़, दाँत आ सभटा धीरे-धीरे क्षय होइवला ऊतक केँ नियंत्रित करैत अछि। शनि दीर्घकालिक रोग, गठिया आ ओहि स्थिति सभ पर सेहो शासन करैत अछि जे उम्रक संग खराब होइत अछि। एकटा पीड़ित शनि प्रायः कंकाल संबंधी समस्या केँ इंगित करैत अछि, खास कऽ साढे साती वा शनि दशाक समय।"
       },
       "options": [
@@ -144,39 +144,39 @@
       "question": {
         "en": "In medical astrology, what does the Sun primarily represent in the body?",
         "hi": "चिकित्सा ज्योतिष में सूर्य शरीर में प्राथमिक रूप से क्या दर्शाता है?",
-        "mr": "In medical astrology, what does the Sun primarily represent in the body?",
+        "mr": "वैद्यकीय ज्योतिषशास्त्रामध्ये, शरीरात सूर्य प्रामुख्याने कशाचे प्रतिनिधित्व करतो?",
         "mai": "चिकित्सा ज्योतिष मे, शरीर मे सूर्य मुख्य रूप सँ की प्रतिनिधित्व करैत अछि?"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "The Sun represents the heart, spine, right eye (in males), overall vitality (prana), and the body's core energy. A strong Sun gives robust health and immunity; an afflicted Sun can indicate heart problems, eye issues, or low vitality. The Sun also represents the father's health in a native's chart.",
         "hi": "सूर्य हृदय, रीढ़, दाहिनी आँख (पुरुषों में), समग्र जीवन शक्ति (प्राण), और शरीर की मूल ऊर्जा का प्रतिनिधित्व करता है।",
-        "mr": "The Sun represents the heart, spine, right eye (in males), overall vitality (prana), and the body's core energy. A strong Sun gives robust health and immunity; an afflicted Sun can indicate heart problems, eye issues, or low vitality. The Sun also represents the father's health in a native's chart.",
+        "mr": "सूर्य हृदय, पाठीचा कणा, उजवा डोळा (पुरुषांमध्ये), एकूण चैतन्य (प्राण) आणि शरीराची मूळ ऊर्जा दर्शवतो. एक बलवान सूर्य मजबूत आरोग्य आणि प्रतिकारशक्ती देतो; पीडित सूर्य हृदय समस्या, डोळ्यांच्या समस्या किंवा कमी चैतन्य दर्शवू शकतो. सूर्य जातकाच्या कुंडलीत वडिलांचे आरोग्य देखील दर्शवतो.",
         "mai": "सूर्य हृदय, रीढ़, दाहिना आँखि (पुरुष मे), समग्र जीवन शक्ति (प्राण), आ शरीरक मूल ऊर्जा केँ प्रतिनिधित्व करैत अछि। एकटा मजबूत सूर्य मजबूत स्वास्थ्य आ प्रतिरक्षा दैत अछि; एकटा पीड़ित सूर्य हृदय संबंधी समस्या, आँखि संबंधी समस्या, वा कम जीवन शक्ति केँ इंगित कऽ सकैत अछि। सूर्य जातकक कुंडली मे पिताक स्वास्थ्य केँ सेहो प्रतिनिधित्व करैत अछि।"
       },
       "options": [
         {
           "en": "Heart, spine, and vitality",
           "hi": "हृदय, रीढ़ और जीवन शक्ति",
-          "mr": "Heart, spine, and vitality",
+          "mr": "हृदय, पाठीचा कणा आणि चैतन्य",
           "mai": "हृदय, रीढ़ आ जीवन शक्ति"
         },
         {
           "en": "Kidneys and reproductive system",
           "hi": "गुर्दे और प्रजनन तन्त्र",
-          "mr": "Kidneys and reproductive system",
+          "mr": "मूत्रपिंड आणि प्रजनन प्रणाली",
           "mai": "गुर्दा आ प्रजनन प्रणाली"
         },
         {
           "en": "Digestive system",
           "hi": "पाचन तन्त्र",
-          "mr": "Digestive system",
+          "mr": "पचनसंस्था",
           "mai": "पाचन प्रणाली"
         },
         {
           "en": "Nervous system",
           "hi": "तन्त्रिका तन्त्र",
-          "mr": "Nervous system",
+          "mr": "मज्जासंस्था",
           "mai": "तंत्रिका प्रणाली"
         }
       ]
@@ -187,14 +187,14 @@
       "question": {
         "en": "The 8th house in medical astrology is associated with chronic diseases, surgery, and longevity.",
         "hi": "चिकित्सा ज्योतिष में अष्टम भाव दीर्घकालिक रोगों, शल्य चिकित्सा और आयु से सम्बन्धित है।",
-        "mr": "The 8th house in medical astrology is associated with chronic diseases, surgery, and longevity.",
+        "mr": "वैद्यकीय ज्योतिषशास्त्रामध्ये आठवे घर दीर्घकालीन आजार, शस्त्रक्रिया आणि दीर्घायुष्याशी संबंधित आहे.",
         "mai": "चिकित्सा ज्योतिष मे आठम भाव दीर्घकालिक रोग, सर्जरी आ दीर्घायु सँ संबंधित अछि।"
       },
       "correctAnswer": 0,
       "explanation": {
         "en": "True. The 8th house (Ayu Bhava) governs longevity, chronic diseases, surgery, accidents, and transformative health events. While the 6th house shows acute illness, the 8th shows deep-seated conditions that transform life. The 8th lord's placement and aspects reveal the nature of chronic health challenges.",
         "hi": "सत्य। अष्टम भाव (आयु भाव) आयु, दीर्घकालिक रोग, शल्य चिकित्सा, दुर्घटनाओं और जीवन बदलने वाली स्वास्थ्य घटनाओं पर शासन करता है।",
-        "mr": "True. The 8th house (Ayu Bhava) governs longevity, chronic diseases, surgery, accidents, and transformative health events. While the 6th house shows acute illness, the 8th shows deep-seated conditions that transform life. The 8th lord's placement and aspects reveal the nature of chronic health challenges.",
+        "mr": "सत्य. आठवे घर (आयु भाव) दीर्घायुष्य, दीर्घकालीन आजार, शस्त्रक्रिया, अपघात आणि परिवर्तनात्मक आरोग्य घटनांवर राज्य करतो. सहावे घर तीव्र आजार दर्शवते, तर आठवे घर जीवनात परिवर्तन घडवणाऱ्या खोलवर रुजलेल्या स्थिती दर्शवते. आठव्या घराच्या स्वामीची स्थिती आणि दृष्टी दीर्घकालीन आरोग्य समस्यांचे स्वरूप प्रकट करतात.",
         "mai": "सत्य। आठम भाव (आयु भाव) दीर्घायु, दीर्घकालिक रोग, सर्जरी, दुर्घटना आ परिवर्तनकारी स्वास्थ्य घटना सभ केँ नियंत्रित करैत अछि। जखन कि छठा भाव तीव्र बीमारी देखाबैत अछि, आठम भाव जीवन केँ परिवर्तित करयवला गहीर-बैसल स्थिति सभ केँ देखाबैत अछि। आठमेशक स्थिति आ दृष्टि दीर्घकालिक स्वास्थ्य चुनौतीक प्रकृति केँ प्रकट करैत अछि।"
       }
     }

@@ -304,7 +304,7 @@
       "question": {
         "en": "What happens to a combust planet's significations?",
         "hi": "अस्त ग्रह के कारकत्वों का क्या होता है?",
-        "mr": "What happens to a combust planet's significations?",
+        "mr": "दग्ध ग्रहाचे कारकत्व काय होते?",
         "mai": "एकटा अस्त ग्रहक कारकत्व सभक संग की होइत अछि?"
       },
       "options": [
@@ -357,7 +357,7 @@
       "explanation": {
         "en": "A combust planet is too close to the Sun to be visible  –  it is \"burned\" by the Sun's light. Its significations become weakened, confused, or suppressed. For example, combust Venus = relationship confusion; combust Mercury = communication difficulties; combust Jupiter = weakened wisdom/guidance.",
         "hi": "अस्त ग्रह सूर्य के इतने निकट है कि दिखाई नहीं देता  –  यह सूर्य के प्रकाश से \"जला\" है। इसके कारकत्व दुर्बल, भ्रमित या दबे हो जाते हैं। उदाहरण: अस्त शुक्र = सम्बन्ध भ्रम; अस्त बुध = संवाद कठिनाइयाँ; अस्त बृहस्पति = दुर्बल ज्ञान/मार्गदर्शन।",
-        "mr": "A combust planet is too close to the Sun to be visible  –  it is \"burned\" by the Sun's light. Its significations become weakened, confused, or suppressed. For example, combust Venus = relationship confusion; combust Mercury = communication difficulties; combust Jupiter = weakened wisdom/guidance.",
+        "mr": "दग्ध ग्रह सूर्याच्या खूप जवळ असल्यामुळे दिसत नाही – तो सूर्याच्या प्रकाशाने \"जळतो\". त्याचे कारकत्व कमकुवत, गोंधळलेले किंवा दाबले जाते. उदाहरणार्थ, दग्ध शुक्र = नातेसंबंधातील गोंधळ; दग्ध बुध = संवाद साधण्यात अडचणी; दग्ध गुरु = कमकुवत ज्ञान/मार्गदर्शन.",
         "mai": "एकटा अस्त ग्रह सूर्यक एतेक नजदीक होइत अछि जे देखाइ नहि दैत अछि – ई सूर्यक प्रकाश सँ \"जरि\" जाइत अछि। एकर कारकत्व सभ कमजोर, भ्रमित वा दमित भऽ जाइत अछि। जेना, अस्त शुक्र = संबंध मे भ्रम; अस्त बुध = संचार मे कठिनाई; अस्त बृहस्पति = कमजोर ज्ञान/मार्गदर्शन।"
       }
     },
@@ -467,14 +467,14 @@
       "question": {
         "en": "Mercury's combustion distance reduces from 14° to 12° when it is retrograde.",
         "hi": "बुध की अस्त दूरी वक्री होने पर 14° से घटकर 12° हो जाती है।",
-        "mr": "Mercury's combustion distance reduces from 14° to 12° when it is retrograde.",
+        "mr": "जेव्हा बुध वक्री असतो, तेव्हा त्याचे दग्ध अंतर 14° वरून 12° पर्यंत कमी होते.",
         "mai": "बुधक अस्तक दूरी १४° सँ १२° धरि कम भऽ जाइत अछि जखन ई वक्री होइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "When Mercury is retrograde, it is closer to Earth and appears brighter, so it can be seen closer to the Sun. Its combustion distance reduces from 14° to 12°. Similarly, Venus's combustion distance reduces from 10° to 8° when retrograde.",
         "hi": "जब बुध वक्री होता है, यह पृथ्वी के निकट होता है और अधिक चमकीला दिखता है, इसलिए सूर्य के अधिक निकट देखा जा सकता है। इसकी अस्त दूरी 14° से 12° हो जाती है। इसी प्रकार, शुक्र की अस्त दूरी वक्री होने पर 10° से 8° हो जाती है।",
-        "mr": "When Mercury is retrograde, it is closer to Earth and appears brighter, so it can be seen closer to the Sun. Its combustion distance reduces from 14° to 12°. Similarly, Venus's combustion distance reduces from 10° to 8° when retrograde.",
+        "mr": "जेव्हा बुध वक्री असतो, तेव्हा तो पृथ्वीच्या अधिक जवळ असतो आणि अधिक तेजस्वी दिसतो, त्यामुळे तो सूर्याच्या अधिक जवळ असतानाही दिसू शकतो. त्याचे दग्ध अंतर 14° वरून 12° पर्यंत कमी होते. त्याचप्रमाणे, जेव्हा शुक्र वक्री असतो, तेव्हा त्याचे दग्ध अंतर 10° वरून 8° पर्यंत कमी होते.",
         "mai": "जखन बुध वक्री होइत अछि, ई पृथ्वीक बेसी नजदीक होइत अछि आ बेसी चमकीला देखाइत अछि, एही कारण सँ ई सूर्यक बेसी नजदीक देखल जा सकैत अछि। एकर अस्तक दूरी १४° सँ १२° धरि कम भऽ जाइत अछि। ओहिना, शुक्रक अस्तक दूरी १०° सँ ८° धरि कम भऽ जाइत अछि जखन वक्री होइत अछि।"
       }
     },
@@ -542,7 +542,7 @@
       "explanation": {
         "en": "Cheshta Bala (motional strength) is the Shadbala component that accounts for a planet's motion. Retrograde planets receive high Cheshta Bala because their unusual motion (going against the normal direction) is considered forceful and determined  –  the planet is \"working harder.\"",
         "hi": "चेष्टा बल (गतिजन्य शक्ति) षड्बल का वह घटक है जो ग्रह की गति को ध्यान में रखता है। वक्री ग्रहों को उच्च चेष्टा बल मिलता है क्योंकि उनकी असामान्य गति (सामान्य दिशा के विरुद्ध) को बलशाली और दृढ़ माना जाता है  –  ग्रह \"अधिक परिश्रम कर रहा है।\"",
-        "mr": "Cheshta Bala (motional strength) is the Shadbala component that accounts for a planet's motion. Retrograde planets receive high Cheshta Bala because their unusual motion (going against the normal direction) is considered forceful and determined  –  the planet is \"working harder.\"",
+        "mr": "चेष्टा बल (गतीची शक्ती) हे षड्बल घटक आहे जे ग्रहाच्या गतीचा विचार करते. वक्री ग्रहांना उच्च चेष्टा बल मिळते कारण त्यांची असामान्य गती (सामान्य दिशेच्या विरुद्ध जाणे) जोरदार आणि दृढ मानली जाते – ग्रह \"अधिक प्रयत्न करत असतो.\"",
         "mai": "चेष्टा बल (गतिक शक्ति) ओ Shadbala घटक अछि जे कोनो ग्रहक गति केँ लेखा मे लैत अछि। वक्री ग्रह केँ उच्च चेष्टा बल प्राप्त होइत अछि किएक तँ हुनकर असामान्य गति (सामान्य दिशाक विपरीत चलब) केँ बलशाली आ दृढ़ मानल जाइत अछि – ग्रह \"बेसी मेहनत\" कऽ रहल अछि।"
       }
     },

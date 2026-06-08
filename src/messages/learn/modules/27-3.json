@@ -28,11 +28,11 @@
         "hi": "मॉड्यूल 27-1: त्योहार समय नियम",
         "mai": "मॉड्यूल २७-१: पर्वक समयक नियम",
         "mr": "मॉड्यूल 27-1: त्योहार समय नियम",
-        "ta": "Module 27-1: Festival Timing Rules",
-        "te": "Module 27-1: Festival Timing Rules",
-        "bn": "Module 27-1: Festival Timing Rules",
-        "kn": "Module 27-1: Festival Timing Rules",
-        "gu": "Module 27-1: Festival Timing Rules"
+        "ta": "தொகுதி 27-1: திருவிழா நேர விதிகள்",
+        "te": "మాడ్యూల్ 27-1: పండుగల సమయ నియమాలు",
+        "bn": "মডিউল ২৭-১: উৎসবের সময় নির্ণয়ের নিয়মাবলী",
+        "kn": "ಮಾಡ್ಯೂಲ್ 27-1: ಹಬ್ಬದ ಸಮಯದ ನಿಯಮಗಳು",
+        "gu": "મોડ્યુલ 27-1: તહેવારના સમયના નિયમો"
       },
       "href": "/learn/modules/27-1"
     },
@@ -42,11 +42,11 @@
         "hi": "मॉड्यूल 27-2: अधिक मास",
         "mai": "मॉड्यूल २७-२: अधिक मास",
         "mr": "मॉड्यूल 27-2: अधिक मास",
-        "ta": "Module 27-2: Adhika Masa",
-        "te": "Module 27-2: Adhika Masa",
-        "bn": "Module 27-2: Adhika Masa",
-        "kn": "Module 27-2: Adhika Masa",
-        "gu": "Module 27-2: Adhika Masa"
+        "ta": "தொகுதி 27-2: அதிக மாசம்",
+        "te": "మాడ్యూల్ 27-2: అధిక మాసం",
+        "bn": "মডিউল ২৭-২: অধিক মাস",
+        "kn": "ಮಾಡ್ಯೂಲ್ 27-2: ಅಧಿಕ ಮಾಸ",
+        "gu": "મોડ્યુલ 27-2: અધિક માસ"
       },
       "href": "/learn/modules/27-2"
     },
@@ -56,11 +56,11 @@
         "hi": "मॉड्यूल 5-3: तिथियाँ  –  चान्द्र दिन",
         "mai": "मॉड्यूल ५-३: तिथि – चंद्र दिन",
         "mr": "मॉड्यूल 5-3: तिथियाँ  –  चान्द्र दिन",
-        "ta": "Module 5-3: Tithis  –  Lunar Days",
-        "te": "Module 5-3: Tithis  –  Lunar Days",
-        "bn": "Module 5-3: Tithis  –  Lunar Days",
-        "kn": "Module 5-3: Tithis  –  Lunar Days",
-        "gu": "Module 5-3: Tithis  –  Lunar Days"
+        "ta": "தொகுதி 5-3: திதிகள் – சந்திர நாட்கள்",
+        "te": "మాడ్యూల్ 5-3: తిథులు – చాంద్రమాన దినములు",
+        "bn": "মডিউল ৫-৩: তিথি – চান্দ্র দিন",
+        "kn": "ಮಾಡ್ಯೂಲ್ 5-3: ತಿಥಿಗಳು – ಚಾಂದ್ರಮಾನ ದಿನಗಳು",
+        "gu": "મોડ્યુલ 5-3: તિથિઓ – ચંદ્ર દિવસો"
       },
       "href": "/learn/modules/5-3"
     }
@@ -73,14 +73,14 @@
         "en": "What makes a tithi 'Viddha' (contaminated)?",
         "hi": "तिथि को 'विद्ध' (दूषित) क्या बनाता है?",
         "mai": "तिथिकें 'विद्ध' (दूषित) कथीसँ बनैत अछि?",
-        "mr": "What makes a tithi 'Viddha' (contaminated)?"
+        "mr": "तिथी 'विद्धा' (दूषित) कशामुळे बनते?"
       },
       "correctAnswer": 1,
       "explanation": {
         "en": "A tithi is Viddha (contaminated) when the previous tithi is still present at sunrise. For example, if sunrise falls during Saptami but Ashtami begins after sunrise, Ashtami is considered Viddha for that day. The Smarta tradition ignores this and uses the Kala window, while the Vaishnava tradition rejects the Viddha day entirely.",
         "hi": "तिथि तब विद्ध (दूषित) होती है जब सूर्योदय पर पिछली तिथि अभी भी चल रही हो। उदाहरण: यदि सूर्योदय सप्तमी में हो लेकिन अष्टमी सूर्योदय के बाद शुरू हो, तो उस दिन अष्टमी विद्ध मानी जाती है। स्मार्त परम्परा इसे अनदेखा कर काल-विन्डो का उपयोग करती है, जबकि वैष्णव परम्परा विद्ध दिन को पूर्णतः अस्वीकार करती है।",
         "mai": "तिथि तखन विद्ध (दूषित) होइत अछि जखन सूर्योदयपर पछिला तिथि विद्यमान रहए। उदाहरण: जँ सूर्योदय सप्तमीमे होय मुदा अष्टमी सूर्योदयक बाद शुरू होय, तँ ओहि दिन अष्टमी विद्ध मानल जाइत अछि। स्मार्त परम्परा एकरा अनदेखा करि काल-विन्डोक उपयोग करैत अछि, जखन कि वैष्णव परम्परा विद्ध दिनकें पूर्णतः अस्वीकार करैत अछि।",
-        "mr": "A tithi is Viddha (contaminated) when the previous tithi is still present at sunrise. For example, if sunrise falls during Saptami but Ashtami begins after sunrise, Ashtami is considered Viddha for that day. The Smarta tradition ignores this and uses the Kala window, while the Vaishnava tradition rejects the Viddha day entirely."
+        "mr": "जेव्हा सूर्योदयाच्या वेळी मागील तिथी अजूनही अस्तित्वात असते, तेव्हा ती तिथी विद्धा (दूषित) मानली जाते. उदाहरणार्थ, जर सूर्योदय सप्तमीच्या काळात झाला असेल परंतु अष्टमी सूर्योदयानंतर सुरू झाली, तर त्या दिवसासाठी अष्टमी विद्धा मानली जाते. स्मार्त परंपरा याकडे दुर्लक्ष करते आणि 'काल' विंडो वापरते, तर वैष्णव परंपरा विद्धा दिवस पूर्णपणे नाकारते."
       },
       "options": [
         {
@@ -88,44 +88,44 @@
           "hi": "तिथि सूर्यास्त से पहले समाप्त हो जाती है",
           "mai": "तिथि सूर्यास्त सँ पहिने समाप्त भ' जाइत अछि",
           "mr": "तिथि सूर्यास्त से पहले समाप्त हो जाती है",
-          "ta": "The tithi ends before sunset",
-          "te": "The tithi ends before sunset",
-          "bn": "The tithi ends before sunset",
-          "kn": "The tithi ends before sunset",
-          "gu": "The tithi ends before sunset"
+          "ta": "சூரிய அஸ்தமனத்திற்கு முன் திதி முடிவடைகிறது",
+          "te": "తిథి సూర్యాస్తమయానికి ముందే ముగుస్తుంది",
+          "bn": "তিথিটি সূর্যাস্তের আগে শেষ হয়",
+          "kn": "ತಿಥಿಯು ಸೂರ್ಯಾಸ್ತದ ಮೊದಲು ಕೊನೆಗೊಳ್ಳುತ್ತದೆ",
+          "gu": "તિથિ સૂર્યાસ્ત પહેલા સમાપ્ત થાય છે"
         },
         {
           "en": "The previous tithi is present at sunrise",
           "hi": "सूर्योदय पर पिछली तिथि विद्यमान हो",
           "mai": "सूर्योदयपर पछिला तिथि विद्यमान हो",
           "mr": "सूर्योदय पर पिछली तिथि विद्यमान हो",
-          "ta": "The previous tithi is present at sunrise",
-          "te": "The previous tithi is present at sunrise",
-          "bn": "The previous tithi is present at sunrise",
-          "kn": "The previous tithi is present at sunrise",
-          "gu": "The previous tithi is present at sunrise"
+          "ta": "சூரிய உதயத்தின் போது முந்தைய திதி உள்ளது",
+          "te": "మునుపటి తిథి సూర్యోదయం సమయంలో ఉంటుంది",
+          "bn": "পূর্ববর্তী তিথিটি সূর্যোদয়ের সময় বিদ্যমান থাকে",
+          "kn": "ಹಿಂದಿನ ತಿಥಿಯು ಸೂರ್ಯೋದಯದ ಸಮಯದಲ್ಲಿ ಇರುತ್ತದೆ",
+          "gu": "પાછલી તિથિ સૂર્યોદય સમયે હાજર હોય છે"
         },
         {
           "en": "An eclipse occurs during the tithi",
           "hi": "तिथि के दौरान ग्रहण हो",
           "mai": "तिथिक दौरान ग्रहण होय",
           "mr": "तिथि के दौरान ग्रहण हो",
-          "ta": "An eclipse occurs during the tithi",
-          "te": "An eclipse occurs during the tithi",
-          "bn": "An eclipse occurs during the tithi",
-          "kn": "An eclipse occurs during the tithi",
-          "gu": "An eclipse occurs during the tithi"
+          "ta": "திதியின் போது ஒரு கிரகணம் நிகழ்கிறது",
+          "te": "గ్రహణం తిథి సమయంలో సంభవిస్తుంది",
+          "bn": "একটি গ্রহণ তিথির সময় ঘটে",
+          "kn": "ಗ್ರಹಣವು ತಿಥಿಯ ಸಮಯದಲ್ಲಿ ಸಂಭವಿಸುತ್ತದೆ",
+          "gu": "તિથિ દરમિયાન ગ્રહણ થાય છે"
         },
         {
           "en": "The tithi is during Adhika Masa",
           "hi": "तिथि अधिक मास में हो",
           "mai": "तिथि अधिक मासमे होय",
           "mr": "तिथि अधिक मास में हो",
-          "ta": "The tithi is during Adhika Masa",
-          "te": "The tithi is during Adhika Masa",
-          "bn": "The tithi is during Adhika Masa",
-          "kn": "The tithi is during Adhika Masa",
-          "gu": "The tithi is during Adhika Masa"
+          "ta": "திதி அதிக மாசத்தில் உள்ளது",
+          "te": "తిథి అధిక మాసంలో ఉంటుంది",
+          "bn": "তিথিটি অধিক মাসের মধ্যে পড়ে",
+          "kn": "ತಿಥಿಯು ಅಧಿಕ ಮಾಸದ ಸಮಯದಲ್ಲಿ ಇರುತ್ತದೆ",
+          "gu": "તિથિ અધિક માસ દરમિયાન હોય છે"
         }
       ]
     },
@@ -136,14 +136,14 @@
         "en": "In which tradition does Ekadashi sometimes shift by one day?",
         "hi": "किस परम्परा में एकादशी कभी-कभी एक दिन आगे खिसक जाती है?",
         "mai": "कोन परम्परामे एकादशी कखनो काल एक दिन आगू खिसकि जाइत अछि?",
-        "mr": "In which tradition does Ekadashi sometimes shift by one day?"
+        "mr": "कोणत्या परंपरेत एकादशी कधीकधी एका दिवसाने पुढे सरकते?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "In the Vaishnava tradition, if Dashami (the 10th tithi) is present at sunrise on the day Ekadashi prevails, that Ekadashi is considered Viddha (contaminated). Vaishnavas reject it and fast the next day when Ekadashi is 'Shuddha' (pure). This creates a 1-day difference with the Smarta Ekadashi about 4–6 times per year.",
         "hi": "वैष्णव परम्परा में, यदि एकादशी वाले दिन सूर्योदय पर दशमी (10वीं तिथि) विद्यमान हो, तो वह एकादशी विद्ध (दूषित) मानी जाती है। वैष्णव उसे अस्वीकार कर अगले दिन व्रत रखते हैं जब एकादशी 'शुद्ध' हो। इससे वर्ष में लगभग 4-6 बार स्मार्त एकादशी से 1 दिन का अन्तर होता है।",
         "mai": "वैष्णव परम्परामे, जँ एकादशी वला दिन सूर्योदयपर दशमी (10म तिथि) विद्यमान हो, तँ ओ एकादशी विद्ध (दूषित) मानल जाइत अछि। वैष्णव ओकरा अस्वीकार करि अगिला दिन व्रत रखैत छथि जखन एकादशी 'शुद्ध' होय। एहिसँ वर्षमे लगभग 4-6 बेर स्मार्त एकादशी सँ 1 दिनक अन्तर होइत अछि।",
-        "mr": "In the Vaishnava tradition, if Dashami (the 10th tithi) is present at sunrise on the day Ekadashi prevails, that Ekadashi is considered Viddha (contaminated). Vaishnavas reject it and fast the next day when Ekadashi is 'Shuddha' (pure). This creates a 1-day difference with the Smarta Ekadashi about 4–6 times per year."
+        "mr": "वैष्णव परंपरेत, जर एकादशीच्या दिवशी सूर्योदयाच्या वेळी दशमी (दहावी तिथी) उपस्थित असेल, तर ती एकादशी विद्धा (दूषित) मानली जाते. वैष्णव ती नाकारतात आणि दुसऱ्या दिवशी जेव्हा एकादशी 'शुद्ध' असते तेव्हा उपवास करतात. यामुळे स्मार्त एकादशीपेक्षा वर्षातून सुमारे ४-६ वेळा १ दिवसाचा फरक पडतो."
       },
       "options": [
         {
@@ -151,44 +151,44 @@
           "hi": "दोनों परम्पराएँ सदैव सहमत होती हैं",
           "mai": "दुनू पद्धति सदैव सहमत होइत छथि",
           "mr": "दोनों परम्पराएँ सदैव सहमत होती हैं",
-          "ta": "Both traditions always agree",
-          "te": "Both traditions always agree",
-          "bn": "Both traditions always agree",
-          "kn": "Both traditions always agree",
-          "gu": "Both traditions always agree"
+          "ta": "இரு மரபுகளும் எப்போதும் ஒத்துப்போகின்றன",
+          "te": "రెండు సంప్రదాయాలు ఎల్లప్పుడూ అంగీకరిస్తాయి",
+          "bn": "উভয় পরম্পরা সর্বদা একমত হয়",
+          "kn": "ಎರಡೂ ಸಂಪ್ರದಾಯಗಳು ಯಾವಾಗಲೂ ಒಪ್ಪುತ್ತವೆ",
+          "gu": "બંને પરંપરાઓ હંમેશા સહમત હોય છે"
         },
         {
           "en": "Only Smarta shifts",
           "hi": "केवल स्मार्त खिसकती है",
           "mai": "केवल स्मार्त खिसकैत अछि",
           "mr": "केवल स्मार्त खिसकती है",
-          "ta": "Only Smarta shifts",
-          "te": "Only Smarta shifts",
-          "bn": "Only Smarta shifts",
-          "kn": "Only Smarta shifts",
-          "gu": "Only Smarta shifts"
+          "ta": "ஸ்மார்த்த முறை மட்டுமே மாறுகிறது",
+          "te": "స్మార్త మాత్రమే మారుతుంది",
+          "bn": "শুধুমাত্র স্মার্ত স্থানান্তরিত হয়",
+          "kn": "ಸ್ಮಾರ್ತ ಮಾತ್ರ ಬದಲಾಗುತ್ತದೆ",
+          "gu": "ફક્ત સ્માર્ત બદલાય છે"
         },
         {
           "en": "Only Vaishnava shifts (rejects Viddha)",
           "hi": "केवल वैष्णव खिसकती है (विद्ध अस्वीकार करती है)",
           "mai": "केवल वैष्णव खिसकैत अछि (विद्धकें अस्वीकार करैत अछि)",
           "mr": "केवल वैष्णव खिसकती है (विद्ध अस्वीकार करती है)",
-          "ta": "Only Vaishnava shifts (rejects Viddha)",
-          "te": "Only Vaishnava shifts (rejects Viddha)",
-          "bn": "Only Vaishnava shifts (rejects Viddha)",
-          "kn": "Only Vaishnava shifts (rejects Viddha)",
-          "gu": "Only Vaishnava shifts (rejects Viddha)"
+          "ta": "வைஷ்ணவ முறை மட்டுமே மாறுகிறது (வித்தாவை நிராகரிக்கிறது)",
+          "te": "వైష్ణవ మాత్రమే మారుతుంది (విద్ధను తిరస్కరిస్తుంది)",
+          "bn": "শুধুমাত্র বৈষ্ণব স্থানান্তরিত হয় (বিদ্ধা বর্জন করে)",
+          "kn": "ವೈಷ್ಣವ ಮಾತ್ರ ಬದಲಾಗುತ್ತದೆ (ವಿದ್ಧವನ್ನು ತಿರಸ್ಕರಿಸುತ್ತದೆ)",
+          "gu": "ફક્ત વૈષ્ણવ બદલાય છે (વિદ્ધાનો અસ્વીકાર કરે છે)"
         },
         {
           "en": "Neither  –  Ekadashi is always the same day",
           "hi": "कोई नहीं  –  एकादशी सदैव एक ही दिन होती है",
           "mai": "कोनो नहि  –  एकादशी सदैव एकहि दिन होइत अछि",
           "mr": "कोई नहीं  –  एकादशी सदैव एक ही दिन होती है",
-          "ta": "Neither  –  Ekadashi is always the same day",
-          "te": "Neither  –  Ekadashi is always the same day",
-          "bn": "Neither  –  Ekadashi is always the same day",
-          "kn": "Neither  –  Ekadashi is always the same day",
-          "gu": "Neither  –  Ekadashi is always the same day"
+          "ta": "இரண்டும் இல்லை – ஏகாதசி எப்போதும் ஒரே நாள்",
+          "te": "ఏదీ కాదు – ఏకాదశి ఎల్లప్పుడూ ఒకే రోజు ఉంటుంది",
+          "bn": "কোনটিই নয় – একাদশী সর্বদা একই দিনে হয়",
+          "kn": "ಯಾವುದೂ ಇಲ್ಲ – ಏಕಾದಶಿಯು ಯಾವಾಗಲೂ ಒಂದೇ ದಿನವಾಗಿರುತ್ತದೆ",
+          "gu": "કોઈ નહીં – એકાદશી હંમેશા એક જ દિવસે હોય છે"
         }
       ]
     },
@@ -199,14 +199,14 @@
         "en": "What authority text does the Vaishnava system follow for festival timing?",
         "hi": "वैष्णव पद्धति त्योहार समय निर्धारण के लिए किस प्रामाणिक ग्रन्थ का पालन करती है?",
         "mai": "वैष्णव पद्धति त्योहार समय निर्धारणक लेल कोन प्रामाणिक ग्रन्थक पालन करैत अछि?",
-        "mr": "What authority text does the Vaishnava system follow for festival timing?"
+        "mr": "सणांच्या वेळेसाठी वैष्णव प्रणाली कोणत्या अधिकृत ग्रंथाचे पालन करते?"
       },
       "correctAnswer": 2,
       "explanation": {
         "en": "The Vaishnava system follows the Hari Bhakti Vilasa, compiled by Gopal Bhatta Goswami in the 16th century under the guidance of Chaitanya Mahaprabhu. This text codifies the Shuddha tithi rules and Viddha rejection for Vaishnava observances. The Smarta system follows the Dharmasindhu and Nirnayasindhu.",
         "hi": "वैष्णव पद्धति हरि भक्ति विलास का पालन करती है, जो 16वीं शताब्दी में गोपाल भट्ट गोस्वामी द्वारा चैतन्य महाप्रभु के मार्गदर्शन में संकलित किया गया था। इस ग्रन्थ में वैष्णव पालन के लिए शुद्ध तिथि नियम और विद्ध अस्वीकार नियम संहिताबद्ध हैं। स्मार्त पद्धति धर्मसिन्धु और निर्णयसिन्धु का पालन करती है।",
         "mai": "वैष्णव पद्धति हरि भक्ति विलासक पालन करैत अछि, जे 16म शताब्दीमे गोपाल भट्ट गोस्वामी द्वारा चैतन्य महाप्रभुक मार्गदर्शनमे संकलित कएल गेल छल। एहि ग्रन्थमे वैष्णव पालनक लेल शुद्ध तिथि नियम आ विद्ध अस्वीकार नियम संहिताबद्ध अछि। स्मार्त पद्धति धर्मसिन्धु आ निर्णयसिन्धुक पालन करैत अछि।",
-        "mr": "The Vaishnava system follows the Hari Bhakti Vilasa, compiled by Gopal Bhatta Goswami in the 16th century under the guidance of Chaitanya Mahaprabhu. This text codifies the Shuddha tithi rules and Viddha rejection for Vaishnava observances. The Smarta system follows the Dharmasindhu and Nirnayasindhu."
+        "mr": "वैष्णव प्रणाली १६ व्या शतकात चैतन्य महाप्रभूंच्या मार्गदर्शनाखाली गोपाल भट्ट गोस्वामी यांनी संकलित केलेल्या हरिभक्तिविलासाचे पालन करते. हा ग्रंथ वैष्णव व्रतांसाठी शुद्ध तिथीचे नियम आणि विद्धा नाकारण्याचे नियम संहिताबद्ध करतो. स्मार्त प्रणाली धर्मसिंधु आणि निर्णयसिंधुचे पालन करते."
       },
       "options": [
         {
@@ -214,44 +214,44 @@
           "hi": "सूर्य सिद्धान्त",
           "mai": "सूर्य सिद्धांत",
           "mr": "सूर्य सिद्धान्त",
-          "ta": "Surya Siddhanta",
-          "te": "Surya Siddhanta",
-          "bn": "Surya Siddhanta",
-          "kn": "Surya Siddhanta",
-          "gu": "Surya Siddhanta"
+          "ta": "சூரிய சித்தாந்தம்",
+          "te": "సూర్య సిద్ధాంతం",
+          "bn": "সূর্য সিদ্ধান্ত",
+          "kn": "ಸೂರ್ಯ ಸಿದ್ಧಾಂತ",
+          "gu": "સૂર્ય સિદ્ધાંત"
         },
         {
           "en": "Dharmasindhu",
           "hi": "धर्मसिन्धु",
           "mai": "धर्मसिंधु",
           "mr": "धर्मसिन्धु",
-          "ta": "Dharmasindhu",
-          "te": "Dharmasindhu",
-          "bn": "Dharmasindhu",
-          "kn": "Dharmasindhu",
-          "gu": "Dharmasindhu"
+          "ta": "தர்மசிந்து",
+          "te": "ధర్మసింధు",
+          "bn": "ধর্মসিন্ধু",
+          "kn": "ಧರ್ಮಸಿಂಧು",
+          "gu": "ધર્મસિંધુ"
         },
         {
           "en": "Hari Bhakti Vilasa",
           "hi": "हरि भक्ति विलास",
           "mai": "हरि भक्ति विलास",
           "mr": "हरि भक्ति विलास",
-          "ta": "Hari Bhakti Vilasa",
-          "te": "Hari Bhakti Vilasa",
-          "bn": "Hari Bhakti Vilasa",
-          "kn": "Hari Bhakti Vilasa",
-          "gu": "Hari Bhakti Vilasa"
+          "ta": "ஹரி பக்தி விலாசம்",
+          "te": "హరి భక్తి విలాసం",
+          "bn": "হরি ভক্তি বিলাস",
+          "kn": "ಹರಿ ಭಕ್ತಿ ವಿಲಾಸ",
+          "gu": "હરિ ભક્તિ વિલાસ"
         },
         {
           "en": "Arthashastra",
           "hi": "अर्थशास्त्र",
           "mai": "अर्थशास्त्र",
           "mr": "अर्थशास्त्र",
-          "ta": "Arthashastra",
-          "te": "Arthashastra",
-          "bn": "Arthashastra",
-          "kn": "Arthashastra",
-          "gu": "Arthashastra"
+          "ta": "அர்த்தசாஸ்திரம்",
+          "te": "అర్థశాస్త్రం",
+          "bn": "অর্থশাস্ত্র",
+          "kn": "ಅರ್ಥಶಾಸ್ತ್ರ",
+          "gu": "અર્થશાસ્ત્ર"
         }
       ]
     }

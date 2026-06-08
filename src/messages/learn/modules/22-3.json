@@ -72,7 +72,7 @@
       "question": {
         "en": "Why is computing the Moon's position much harder than the Sun's?",
         "hi": "चन्द्रमा की स्थिति की गणना सूर्य से बहुत कठिन क्यों है?",
-        "mr": "Why is computing the Moon's position much harder than the Sun's?",
+        "mr": "चंद्राची स्थिती सूर्याच्या स्थितीपेक्षा गणना करणे का खूप जास्त कठीण आहे?",
         "mai": "चंद्रमाक स्थिति गणना करब सूर्यक तुलनामे किएक बेसी कठिन अछि?"
       },
       "options": [
@@ -90,7 +90,7 @@
         {
           "en": "The Moon is close, fast-moving, and strongly perturbed by the Sun's gravity",
           "hi": "चन्द्रमा निकट, तेज़ गतिमान और सूर्य के गुरुत्वाकर्षण से प्रबल रूप से विक्षुब्ध है",
-          "mr": "The Moon is close, fast-moving, and strongly perturbed by the Sun's gravity",
+          "mr": "चंद्र जवळ आहे, वेगाने फिरणारा आहे आणि सूर्याच्या गुरुत्वाकर्षणामुळे तो खूप विचलित होतो.",
           "mai": "चंद्रमा नजदीक, तेज गति सँ चलयवला आ सूर्यक गुरुत्वाकर्षण सँ प्रबल रूप सँ विक्षुब्ध अछि।"
         },
         {
@@ -120,7 +120,7 @@
       "explanation": {
         "en": "The Moon orbits Earth at 356,000-407,000 km (close enough for significant parallax), moves ~13.2°/day (13x faster than the Sun), and is strongly perturbed by the Sun. These factors require 60+ sine terms vs 3 for the Sun.",
         "hi": "चन्द्रमा पृथ्वी की 356,000-407,000 किमी पर कक्षा में है (महत्त्वपूर्ण लम्बन के लिए पर्याप्त निकट), ~13.2°/दिन चलता है (सूर्य से 13 गुना तेज़), और सूर्य द्वारा प्रबल रूप से विक्षुब्ध है। इन कारकों से सूर्य के 3 की तुलना में 60+ ज्या पद चाहिए।",
-        "mr": "The Moon orbits Earth at 356,000-407,000 km (close enough for significant parallax), moves ~13.2°/day (13x faster than the Sun), and is strongly perturbed by the Sun. These factors require 60+ sine terms vs 3 for the Sun.",
+        "mr": "चंद्र पृथ्वीभोवती ३,५६,०००-४,०७,००० किमी अंतरावर फिरतो (महत्त्वाच्या लंबनासाठी पुरेसा जवळ), दररोज सुमारे १३.२° फिरतो (सूर्यापेक्षा १३ पट वेगाने), आणि सूर्यामुळे तो खूप विचलित होतो. या घटकांमुळे चंद्रासाठी ६०+ साइन पदांची आवश्यकता असते, तर सूर्यासाठी फक्त ३ पदांची.",
         "mai": "चंद्रमा पृथ्वीक परिक्रमा 356,000-407,000 किमी पर करैत अछि (पर्याप्त लंबनक लेल पर्याप्त नजदीक), ~13.2°/दिन चलैत अछि (सूर्य सँ 13 गुना तेज), आ सूर्य सँ प्रबल रूप सँ विक्षुब्ध अछि। ई कारक सूर्यक लेल 3क तुलनामे 60+ साइन पद कें आवश्यकता अछि।"
       }
     },
@@ -130,7 +130,7 @@
       "question": {
         "en": "What are the five fundamental arguments used in Moon position calculations?",
         "hi": "चन्द्र स्थिति गणना में प्रयुक्त पाँच मूलभूत तर्क कौन-से हैं?",
-        "mr": "What are the five fundamental arguments used in Moon position calculations?",
+        "mr": "चंद्र स्थितीच्या गणनेमध्ये वापरले जाणारे पाच मूलभूत युक्तिवाद काय आहेत?",
         "mai": "चंद्रमाक स्थिति गणनामे उपयोग कएल जायवला पाँचटा मौलिक तर्क की अछि?"
       },
       "options": [
@@ -178,7 +178,7 @@
       "explanation": {
         "en": "The five arguments are: L' (Moon's mean longitude), D (mean elongation from Sun), M (Sun's mean anomaly), M' (Moon's mean anomaly), and F (Moon's argument of latitude  –  distance from ascending node along orbit).",
         "hi": "पाँच तर्क हैं: L' (चन्द्र माध्य भोगांश), D (सूर्य से माध्य दीर्घीकरण), M (सूर्य की माध्य विलम्बिका), M' (चन्द्र माध्य विलम्बिका), और F (चन्द्र अक्षांश तर्क  –  कक्षा में आरोही पात से दूरी)।",
-        "mr": "The five arguments are: L' (Moon's mean longitude), D (mean elongation from Sun), M (Sun's mean anomaly), M' (Moon's mean anomaly), and F (Moon's argument of latitude  –  distance from ascending node along orbit).",
+        "mr": "पाच युक्तिवाद असे आहेत: L' (चंद्राचे सरासरी रेखांश), D (सूर्यापासून सरासरी लांबी), M (सूर्याची सरासरी विसंगती), M' (चंद्राची सरासरी विसंगती), आणि F (चंद्राचे अक्षांश युक्तिवाद – कक्षेतील आरोही बिंदूपासूनचे अंतर).",
         "mai": "पाँचटा तर्क अछि: L' (चंद्रमाक माध्य देशांतर), D (सूर्य सँ माध्य दीर्घीकरण), M (सूर्यक माध्य विसंगति), M' (चंद्रमाक माध्य विसंगति), आ F (चंद्रमाक अक्षांशक तर्क – कक्षाक संग आरोही नोड सँ दूरी)।"
       }
     },
@@ -188,7 +188,7 @@
       "question": {
         "en": "The largest correction term for the Moon's longitude (+6.289° x sin(M')) is called:",
         "hi": "चन्द्र भोगांश का सबसे बड़ा सुधार पद (+6.289° × sin(M')) कहलाता है:",
-        "mr": "The largest correction term for the Moon's longitude (+6.289° x sin(M')) is called:",
+        "mr": "चंद्राच्या रेखांशासाठी सर्वात मोठी दुरुस्ती पद (+६.२८९° x sin(M')) याला म्हणतात:",
         "mai": "चंद्रमाक देशांतरक लेल सभसँ पैघ सुधार पद (+6.289° x sin(M')) कें कहल जाइत अछि:"
       },
       "options": [
@@ -241,7 +241,7 @@
       "explanation": {
         "en": "The +6.289° term is the \"main inequality\" or equation of center  –  the correction for the Moon's elliptical orbit, analogous to the Sun's 1.915° term. It is 3.3x larger because the Moon's orbital eccentricity (~0.055) is 3.2x greater than Earth's (~0.017).",
         "hi": "+6.289° पद \"मुख्य असमता\" या केन्द्र समीकरण है  –  चन्द्र दीर्घवृत्तीय कक्षा का सुधार, सूर्य के 1.915° पद के सदृश। यह 3.3 गुना बड़ा है क्योंकि चन्द्र कक्षा की उत्केन्द्रता (~0.055) पृथ्वी की (~0.017) से 3.2 गुना अधिक है।",
-        "mr": "The +6.289° term is the \"main inequality\" or equation of center  –  the correction for the Moon's elliptical orbit, analogous to the Sun's 1.915° term. It is 3.3x larger because the Moon's orbital eccentricity (~0.055) is 3.2x greater than Earth's (~0.017).",
+        "mr": "+६.२८९° पद हे \"मुख्य असमानता\" किंवा केंद्र समीकरण आहे – चंद्राच्या लंबवर्तुळाकार कक्षेसाठीची दुरुस्ती, जे सूर्याच्या १.९१५° पदासारखे आहे. हे ३.३ पट मोठे आहे कारण चंद्राची कक्षीय विलक्षणता (~०.०५५) पृथ्वीच्या (~०.०१७) पेक्षा ३.२ पट जास्त आहे.",
         "mai": "+6.289° पद \"मुख्य असमानता\" वा केंद्रक समीकरण अछि – चंद्रमाक दीर्घवृत्ताकार कक्षाक लेल सुधार, जे सूर्यक 1.915° पदक समान अछि। ई 3.3 गुना पैघ अछि किएक तँ चंद्रमाक कक्षीय विलक्षणता (~0.055) पृथ्वीक (~0.017) सँ 3.2 गुना बेसी अछि।"
       }
     },
@@ -251,26 +251,26 @@
       "question": {
         "en": "The second-largest term (+1.274° x sin(2D - M')) is called evection. What causes it?",
         "hi": "दूसरा सबसे बड़ा पद (+1.274° × sin(2D - M')) उपवर्तन कहलाता है। इसका कारण क्या है?",
-        "mr": "The second-largest term (+1.274° x sin(2D - M')) is called evection. What causes it?",
+        "mr": "दुसरे सर्वात मोठे पद (+१.२७४° x sin(2D - M')) याला इव्हिक्शन (evection) म्हणतात. ते कशामुळे होते?",
         "mai": "दोसर सभसँ पैघ पद (+1.274° x sin(2D - M')) कें इवेक्शन कहल जाइत अछि। एकर कारण की अछि?"
       },
       "options": [
         {
           "en": "Jupiter's gravitational pull on the Moon",
           "hi": "बृहस्पति का चन्द्रमा पर गुरुत्वाकर्षण",
-          "mr": "Jupiter's gravitational pull on the Moon",
+          "mr": "चंद्रावरील गुरूचे गुरुत्वाकर्षण बल",
           "mai": "बृहस्पतिक गुरुत्वाकर्षण खिंचाव चंद्रमा पर"
         },
         {
           "en": "The Sun's gravity modulating the Moon's orbital eccentricity",
           "hi": "सूर्य का गुरुत्वाकर्षण चन्द्र कक्षा की उत्केन्द्रता को नियन्त्रित करता है",
-          "mr": "The Sun's gravity modulating the Moon's orbital eccentricity",
+          "mr": "सूर्याचे गुरुत्वाकर्षण चंद्राच्या कक्षीय विलक्षणतेला नियंत्रित करते",
           "mai": "सूर्यक गुरुत्वाकर्षण चंद्रमाक कक्षीय विलक्षणता कें संशोधित करैत।"
         },
         {
           "en": "Earth's oblateness",
           "hi": "पृथ्वी की चपटाई",
-          "mr": "Earth's oblateness",
+          "mr": "पृथ्वीची चपटेपणा",
           "mai": "पृथ्वीक चपटापन"
         },
         {
@@ -289,7 +289,7 @@
       "explanation": {
         "en": "Evection is caused by the Sun's gravitational perturbation of the Moon's orbit. The Sun alternately stretches and compresses the Moon's orbit, modulating its eccentricity with a period related to the synodic month. This was discovered by Ptolemy around 150 CE.",
         "hi": "उपवर्तन सूर्य के गुरुत्वाकर्षण द्वारा चन्द्र कक्षा के विक्षोभन से होता है। सूर्य बारी-बारी से चन्द्र कक्षा को खींचता और सिकोड़ता है, सिनोडिक मास से सम्बन्धित अवधि में उत्केन्द्रता नियन्त्रित करता है। इसकी खोज टॉलेमी ने लगभग 150 ई. में की थी।",
-        "mr": "Evection is caused by the Sun's gravitational perturbation of the Moon's orbit. The Sun alternately stretches and compresses the Moon's orbit, modulating its eccentricity with a period related to the synodic month. This was discovered by Ptolemy around 150 CE.",
+        "mr": "इव्हिक्शन (evection) हे सूर्याच्या गुरुत्वाकर्षणामुळे चंद्राच्या कक्षेतील विचलनामुळे होते. सूर्य चंद्राच्या कक्षेला आलटून पालटून ताणतो आणि संकुचित करतो, ज्यामुळे त्याची विलक्षणता सिनोडिक महिन्याशी संबंधित कालावधीनुसार बदलते. हे सुमारे १५० CE मध्ये टॉलेमीने शोधले होते.",
         "mai": "इवेक्शनक कारण सूर्य द्वारा चंद्रमाक कक्षाक गुरुत्वाकर्षण विक्षोभ अछि। सूर्य बारी-बारी सँ चंद्रमाक कक्षा कें खींचैत आ संकुचित करैत अछि, एकर विलक्षणता कें एकटा अवधि सँ संशोधित करैत जे synodic मास सँ संबंधित अछि। ई कें टॉलेमी द्वारा लगभग 150 ईस्वी मे खोजल गेल छल।"
       }
     },
@@ -299,14 +299,14 @@
       "question": {
         "en": "The eccentricity correction factor E = 1 - 0.002516 x T is applied to all 60 sine terms equally.",
         "hi": "उत्केन्द्रता सुधार गुणक E = 1 - 0.002516 × T सभी 60 ज्या पदों पर समान रूप से लागू होता है।",
-        "mr": "The eccentricity correction factor E = 1 - 0.002516 x T is applied to all 60 sine terms equally.",
+        "mr": "विलक्षणता दुरुस्ती घटक E = 1 - 0.002516 x T सर्व ६० साइन पदांना समान रीतीने लागू केला जातो.",
         "mai": "विलक्षणता सुधार कारक E = 1 - 0.002516 x T सभ 60 साइन पद पर समान रूप सँ लागू कएल जाइत अछि।"
       },
       "correctAnswer": false,
       "explanation": {
         "en": "False. The E factor is only applied to terms that involve the Sun's mean anomaly M. Terms with M are multiplied by E; terms with 2M are multiplied by E². Terms not involving M are unaffected. This corrects for the slow decrease in Earth's orbital eccentricity over time.",
         "hi": "असत्य। E गुणक केवल उन पदों पर लागू होता है जिनमें सूर्य की माध्य विलम्बिका M शामिल है। M वाले पद E से गुणित; 2M वाले E² से। M रहित पद अप्रभावित रहते हैं। यह समय के साथ पृथ्वी की कक्षीय उत्केन्द्रता की धीमी कमी को सुधारता है।",
-        "mr": "False. The E factor is only applied to terms that involve the Sun's mean anomaly M. Terms with M are multiplied by E; terms with 2M are multiplied by E². Terms not involving M are unaffected. This corrects for the slow decrease in Earth's orbital eccentricity over time.",
+        "mr": "चुकीचे. E घटक केवळ सूर्याच्या सरासरी विसंगती M असलेल्या पदांनाच लागू होतो. M असलेल्या पदांना E ने गुणले जाते; 2M असलेल्या पदांना E² ने गुणले जाते. M नसलेल्या पदांवर परिणाम होत नाही. हे पृथ्वीच्या कक्षीय विलक्षणतेमध्ये कालांतराने होणाऱ्या हळूहळू घटीची दुरुस्ती करते.",
         "mai": "गलत। E कारक केवल ओहि पद पर लागू कएल जाइत अछि जाहिमे सूर्यक माध्य विसंगति M शामिल अछि। M बला पद कें E सँ गुणा कएल जाइत अछि; 2M बला पद कें E² सँ गुणा कएल जाइत अछि। M शामिल नहि करयवला पद अप्रभावित रहैत अछि। ई समयक संग पृथ्वीक कक्षीय विलक्षणतामे धीमा कमी कें ठीक करैत अछि।"
       }
     },
@@ -316,7 +316,7 @@
       "question": {
         "en": "How fast does the Moon move along the ecliptic per day?",
         "hi": "चन्द्रमा प्रतिदिन क्रान्तिवृत्त पर कितना चलता है?",
-        "mr": "How fast does the Moon move along the ecliptic per day?",
+        "mr": "चंद्र दररोज क्रांतिवृत्तावर किती वेगाने फिरतो?",
         "mai": "प्रति दिन चंद्रमा क्रांतिवृत्तक संग केतेक तेज चलैत अछि?"
       },
       "options": [
@@ -369,7 +369,7 @@
       "explanation": {
         "en": "The Moon moves approximately 13.2° per day (360° / 27.3 days). This is about 13 times faster than the Sun's ~1°/day. The actual rate varies from about 11.8° to 14.4° per day due to the Moon's elliptical orbit.",
         "hi": "चन्द्रमा प्रतिदिन लगभग 13.2° चलता है (360° / 27.3 दिन)। यह सूर्य के ~1°/दिन से लगभग 13 गुना तेज़ है। वास्तविक दर चन्द्र दीर्घवृत्तीय कक्षा के कारण लगभग 11.8° से 14.4° प्रतिदिन भिन्न होती है।",
-        "mr": "The Moon moves approximately 13.2° per day (360° / 27.3 days). This is about 13 times faster than the Sun's ~1°/day. The actual rate varies from about 11.8° to 14.4° per day due to the Moon's elliptical orbit.",
+        "mr": "चंद्र दररोज अंदाजे १३.२° फिरतो (३६०° / २७.३ दिवस). हे सूर्याच्या सुमारे १°/दिवस पेक्षा १३ पट वेगाने आहे. चंद्राच्या लंबवर्तुळाकार कक्षेमुळे प्रत्यक्ष वेग दररोज सुमारे ११.८° ते १४.४° पर्यंत बदलतो.",
         "mai": "चंद्रमा प्रति दिन लगभग 13.2° चलैत अछि (360° / 27.3 दिन)। ई सूर्यक ~1°/दिन सँ लगभग 13 गुना तेज अछि। चंद्रमाक दीर्घवृत्ताकार कक्षाक कारण वास्तविक दर प्रति दिन लगभग 11.8° सँ 14.4° धरि भिन्न होइत अछि।"
       }
     },
@@ -379,7 +379,7 @@
       "question": {
         "en": "The Moon's latitude can swing up to:",
         "hi": "चन्द्रमा का अक्षांश अधिकतम कितना हो सकता है:",
-        "mr": "The Moon's latitude can swing up to:",
+        "mr": "चंद्राचे अक्षांश यापर्यंत दोलन करू शकते:",
         "mai": "चंद्रमाक अक्षांश धरि झूलि सकैत अछि:"
       },
       "options": [
@@ -432,7 +432,7 @@
       "explanation": {
         "en": "The Moon's orbit is tilted about 5.14° to the ecliptic, so its latitude oscillates between approximately ±5.3° (including perturbation effects). This matters for moonrise calculations and eclipse geometry.",
         "hi": "चन्द्र कक्षा क्रान्तिवृत्त से लगभग 5.14° झुकी है, अतः इसका अक्षांश लगभग ±5.3° (विक्षोभ प्रभाव सहित) के बीच दोलन करता है। यह चन्द्रोदय गणना और ग्रहण ज्यामिति के लिए महत्त्वपूर्ण है।",
-        "mr": "The Moon's orbit is tilted about 5.14° to the ecliptic, so its latitude oscillates between approximately ±5.3° (including perturbation effects). This matters for moonrise calculations and eclipse geometry.",
+        "mr": "चंद्राची कक्षा क्रांतिवृत्ताशी सुमारे ५.१४° झुकलेली आहे, त्यामुळे त्याचे अक्षांश अंदाजे ±५.३° पर्यंत दोलन करते (विचलनाचे परिणाम समाविष्ट करून). हे चंद्रोदय गणना आणि ग्रहण भूमितीसाठी महत्त्वाचे आहे.",
         "mai": "चंद्रमाक कक्षा क्रांतिवृत्त सँ लगभग 5.14° झुकायल अछि, ताहि लेल एकर अक्षांश लगभग ±5.3° (विक्षोभ प्रभाव सहित) कें बीच दोलन करैत अछि। ई चंद्रोदय गणना आ ग्रहण ज्यामितिक लेल महत्वपूर्ण अछि।"
       }
     },
@@ -442,14 +442,14 @@
       "question": {
         "en": "The Moon's distance from Earth is computed using cosine terms from the same Meeus Table 47.A used for longitude.",
         "hi": "चन्द्रमा की पृथ्वी से दूरी उसी मीयस सारणी 47.A के कोज्या पदों से गणित होती है जो भोगांश के लिए प्रयुक्त है।",
-        "mr": "The Moon's distance from Earth is computed using cosine terms from the same Meeus Table 47.A used for longitude.",
+        "mr": "चंद्राचे पृथ्वीपासूनचे अंतर रेखांशासाठी वापरल्या जाणाऱ्या त्याच मीयस सारणी ४७.ए (Meeus Table 47.A) मधून कोसाइन पदांचा वापर करून मोजले जाते.",
         "mai": "पृथ्वी सँ चंद्रमाक दूरी ओहि Meeus सारणी 47.A सँ कोसाइन पद कें उपयोग करिकय गणना कएल जाइत अछि जे देशांतरक लेल उपयोग कएल जाइत अछि।"
       },
       "correctAnswer": true,
       "explanation": {
         "en": "True. Table 47.A provides both sine coefficients (for longitude correction ΔL) and cosine coefficients (for distance correction ΔR) using the same D, M, M', F arguments. The 14 largest cosine terms give the distance, from which horizontal parallax is derived.",
         "hi": "सत्य। सारणी 47.A उन्हीं D, M, M', F तर्कों का उपयोग करते हुए ज्या गुणांक (भोगांश सुधार ΔL के लिए) और कोज्या गुणांक (दूरी सुधार ΔR के लिए) दोनों प्रदान करती है। 14 सबसे बड़े कोज्या पद दूरी देते हैं, जिससे क्षैतिज लम्बन प्राप्त होता है।",
-        "mr": "True. Table 47.A provides both sine coefficients (for longitude correction ΔL) and cosine coefficients (for distance correction ΔR) using the same D, M, M', F arguments. The 14 largest cosine terms give the distance, from which horizontal parallax is derived.",
+        "mr": "सत्य. सारणी ४७.ए (Table 47.A) साइन गुणांक (रेखांश दुरुस्ती ΔL साठी) आणि कोसाइन गुणांक (अंतर दुरुस्ती ΔR साठी) दोन्ही प्रदान करते, तेच D, M, M', F युक्तिवाद वापरून. १४ सर्वात मोठी कोसाइन पदे अंतर देतात, ज्यातून क्षैतिज लंबन (horizontal parallax) काढले जाते.",
         "mai": "सत्य। सारणी 47.A ओहि D, M, M', F तर्क कें उपयोग करिकय साइन गुणांक (देशांतर सुधार ΔL कें लेल) आ कोसाइन गुणांक (दूरी सुधार ΔR कें लेल) दुनू प्रदान करैत अछि। 14 सभसँ पैघ कोसाइन पद दूरी दैत अछि, जाहि सँ क्षैतिज लंबन व्युत्पन्न कएल जाइत अछि।"
       }
     },
@@ -459,7 +459,7 @@
       "question": {
         "en": "What accuracy does the Meeus algorithm achieve for the Moon's longitude?",
         "hi": "मीयस एल्गोरिदम चन्द्र भोगांश के लिए कितनी सटीकता प्राप्त करता है?",
-        "mr": "What accuracy does the Meeus algorithm achieve for the Moon's longitude?",
+        "mr": "मीयस अल्गोरिदम चंद्राच्या रेखांशासाठी काय अचूकता प्राप्त करतो?",
         "mai": "चंद्रमाक देशांतरक लेल Meeus एल्गोरिथम केतेक सटीकता प्राप्त करैत अछि?"
       },
       "options": [
@@ -512,7 +512,7 @@
       "explanation": {
         "en": "The 60-term Meeus algorithm gives ~0.3° accuracy for the Moon. This is 30x worse than the Sun's 0.01° because of the Moon's extremely complex orbit. For Panchang, ~0.3° ≈ ~30 minutes of Moon transit time  –  acceptable for daily use but not for precise eclipse timing.",
         "hi": "60-पद मीयस एल्गोरिदम चन्द्रमा के लिए ~0.3° सटीकता देता है। यह सूर्य के 0.01° से 30 गुना कम है क्योंकि चन्द्र कक्षा अत्यन्त जटिल है। पंचांग के लिए ~0.3° ≈ ~30 मिनट चन्द्र गोचर समय  –  दैनिक उपयोग हेतु स्वीकार्य किन्तु सटीक ग्रहण समय के लिए नहीं।",
-        "mr": "The 60-term Meeus algorithm gives ~0.3° accuracy for the Moon. This is 30x worse than the Sun's 0.01° because of the Moon's extremely complex orbit. For Panchang, ~0.3° ≈ ~30 minutes of Moon transit time  –  acceptable for daily use but not for precise eclipse timing.",
+        "mr": "६०-पदांचा मीयस अल्गोरिदम चंद्रासाठी सुमारे ०.३° अचूकता देतो. चंद्राच्या अत्यंत गुंतागुंतीच्या कक्षेमुळे हे सूर्याच्या ०.०१° पेक्षा ३० पट वाईट आहे. पंचांगासाठी, सुमारे ०.३° म्हणजे चंद्राच्या संक्रमणाचा सुमारे ३० मिनिटांचा वेळ – दैनंदिन वापरासाठी स्वीकार्य आहे, परंतु अचूक ग्रहण वेळेसाठी नाही.",
         "mai": "60-पद Meeus एल्गोरिथम चंद्रमाक लेल ~0.3° सटीकता दैत अछि। ई सूर्यक 0.01° सँ 30 गुना खराब अछि चंद्रमाक अत्यंत जटिल कक्षाक कारण। पंचांगक लेल, ~0.3° ≈ ~30 मिनट चंद्रमाक पारगमन समय – दैनिक उपयोगक लेल स्वीकार्य मुदा सटीक ग्रहण समयक लेल नहि।"
       }
     },
@@ -522,7 +522,7 @@
       "question": {
         "en": "The horizontal parallax (HP) of the Moon is computed as sin(HP) = 6378/distance. What is its typical value?",
         "hi": "चन्द्रमा का क्षैतिज लम्बन (HP) sin(HP) = 6378/दूरी से गणित होता है। इसका सामान्य मान क्या है?",
-        "mr": "The horizontal parallax (HP) of the Moon is computed as sin(HP) = 6378/distance. What is its typical value?",
+        "mr": "चंद्राची क्षैतिज लंबन (HP) sin(HP) = 6378/अंतर असे मोजले जाते. त्याचे सामान्य मूल्य काय आहे?",
         "mai": "चंद्रमाक क्षैतिज लंबन (HP) sin(HP) = 6378/दूरी कें रूपमे गणना कएल जाइत अछि। एकर सामान्य मान की अछि?"
       },
       "options": [
@@ -575,7 +575,7 @@
       "explanation": {
         "en": "The Moon's horizontal parallax ranges from about 54' to 61' (averaging ~57', nearly 1°). This is huge compared to the Sun's 8.8\"  –  it means the Moon's observed position from the surface of Earth differs by nearly a full degree from its geocentric position at the horizon.",
         "hi": "चन्द्रमा का क्षैतिज लम्बन लगभग 54' से 61' (औसत ~57', लगभग 1°) तक होता है। सूर्य के 8.8\" की तुलना में यह विशाल है  –  इसका अर्थ है कि पृथ्वी की सतह से चन्द्रमा की प्रेक्षित स्थिति क्षितिज पर भूकेन्द्रीय स्थिति से लगभग एक पूर्ण अंश भिन्न होती है।",
-        "mr": "The Moon's horizontal parallax ranges from about 54' to 61' (averaging ~57', nearly 1°). This is huge compared to the Sun's 8.8\"  –  it means the Moon's observed position from the surface of Earth differs by nearly a full degree from its geocentric position at the horizon.",
+        "mr": "चंद्राची क्षैतिज लंबन सुमारे ५४' ते ६१' पर्यंत असते (सरासरी सुमारे ५७', जवळजवळ १°). हे सूर्याच्या ८.८\" च्या तुलनेत खूप मोठे आहे – याचा अर्थ पृथ्वीच्या पृष्ठभागावरून चंद्राची निरीक्षण केलेली स्थिती क्षितिजावरील त्याच्या भूकेंद्रीय स्थितीपेक्षा जवळजवळ पूर्ण अंशाने वेगळी असते.",
         "mai": "चंद्रमाक क्षैतिज लंबन लगभग 54' सँ 61' धरि होइत अछि (औसत ~57', लगभग 1°)। ई सूर्यक 8.8\" कें तुलनामे बहुत पैघ अछि – एकर मतलब ई अछि जे पृथ्वीक सतह सँ चंद्रमाक देखल गेल स्थिति क्षितिज पर एकर भूकेंद्रीय स्थिति सँ लगभग एकटा पूरा डिग्री भिन्न होइत अछि।"
       }
     }

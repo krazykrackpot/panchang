@@ -669,5 +669,57 @@
     "mr": "टिप्पणी: कुंडली व्याख्या",
     "gu": "ટીપ્પણી: ચાર્ટ વ્યાખ્યા",
     "mai": "टिप्पणी: कुंडलीक व्याख्या"
+  },
+  "chartLayoutsTitle": {
+    "en": "Chart Layouts  –  North, South, and East Indian",
+    "hi": "कुण्डली प्रारूप  –  उत्तर, दक्षिण और पूर्व भारतीय"
+  },
+  "northIndianFormat": {
+    "en": "North Indian Diamond Format",
+    "hi": "उत्तर भारतीय हीरा प्रारूप"
+  },
+  "southIndianFormat": {
+    "en": "South Indian Square Format",
+    "hi": "दक्षिण भारतीय वर्ग प्रारूप"
+  },
+  "eastIndianFormat": {
+    "en": "East Indian (Bengal) Format",
+    "hi": "पूर्व भारतीय प्रारूप"
+  },
+  "whichDoesAppUse": {
+    "en": "Which Does Our App Use?",
+    "hi": "हमारा ऐप किसे प्रयोग करता है?"
+  },
+  "chartReadingTipsTitle": {
+    "en": "Chart Reading Tips",
+    "hi": "कुण्डली पठन सुझाव"
+  },
+  "firstGlanceHeader": {
+    "en": "What to Look for at First Glance",
+    "hi": "प्रथम दृष्टि में क्या देखें"
+  },
+  "firstGlanceLagna": {
+    "en": "• Lagna (1st house)  –  the native's core personality and physical constitution",
+    "hi": "• लग्न (प्रथम भाव)  –  जातक का मूल स्वभाव और शारीरिक बनावट"
+  },
+  "firstGlanceMoon": {
+    "en": "• Moon sign  –  mental nature, emotional responses",
+    "hi": "• चन्द्र राशि  –  मानसिक प्रकृति, भावनात्मक प्रतिक्रिया"
+  },
+  "firstGlanceSun": {
+    "en": "• Sun sign  –  soul, father, authority, life purpose",
+    "hi": "• सूर्य राशि  –  आत्मा, पिता, अधिकार, जीवन उद्देश्य"
+  },
+  "firstGlanceKendra": {
+    "en": "• Planets in Kendra houses (1, 4, 7, 10)  –  pillars of life",
+    "hi": "• केन्द्र भाव (1, 4, 7, 10) में ग्रह  –  जीवन के स्तम्भ"
+  },
+  "firstGlanceTrikona": {
+    "en": "• Planets in Trikona houses (1, 5, 9)  –  merit and fortune",
+    "hi": "• त्रिकोण भाव (1, 5, 9) में ग्रह  –  पुण्य और भाग्य"
+  },
+  "firstGlanceDusthana": {
+    "en": "• Planets in Dusthana (6, 8, 12)  –  challenges and transformation",
+    "hi": "• दुष्टस्थान (6, 8, 12) में ग्रह  –  चुनौतियाँ और रूपान्तरण"
   }
 }

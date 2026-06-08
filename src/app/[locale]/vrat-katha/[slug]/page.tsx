@@ -10,7 +10,7 @@ import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import AuthorByline from '@/components/ui/AuthorByline';
-import { getVratKatha, VRAT_KATHAS } from '@/lib/content/vrat-kathas';
+import { getVratKatha, VRAT_KATHAS } from '@/lib/content/vrat-kathas-with-overlay';
 
 const LABELS = {
   back: { en: 'All Vrat Kathas', hi: 'सभी व्रत कथाएं' },

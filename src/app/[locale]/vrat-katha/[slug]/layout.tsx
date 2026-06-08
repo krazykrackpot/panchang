@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { getVratKatha, getAllVratKathaSlugs } from '@/lib/content/vrat-kathas';
+import { getVratKatha, getAllVratKathaSlugs } from '@/lib/content/vrat-kathas-with-overlay';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { locales } from '@/lib/i18n/config';

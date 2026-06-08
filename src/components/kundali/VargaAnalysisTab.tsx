@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { tl } from '@/lib/utils/trilingual';
+import { tl, tlScript } from '@/lib/utils/trilingual';
 import { EXALTATION_SIGNS, DEBILITATION_SIGNS, OWN_SIGNS } from '@/lib/constants/dignities';
 import { lt } from '@/lib/learn/translations';
 import KMSG from '@/messages/pages/kundali-inline.json';
@@ -72,7 +72,7 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
             >
               <div className="font-bold text-xs">{v.chart}</div>
               <div className="text-xs text-text-tertiary leading-tight mt-0.5">{tl(v.meaning, locale)}</div>
-              <div className="text-xs font-medium mt-0.5">{isHi ? sL[v.strength].hi : sL[v.strength].en}</div>
+              <div className="text-xs font-medium mt-0.5">{tlScript(sL[v.strength], locale)}</div>
             </button>
           ))}
         </div>
@@ -93,7 +93,7 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
                   <span className="text-text-secondary text-xs">{tl(selectedInsight.label, locale)}</span>
                 </div>
                 <span className={`text-xs font-bold px-2 py-0.5 rounded-full border ${sC[selectedInsight.strength]}`}>
-                  {isHi ? sL[selectedInsight.strength].hi : sL[selectedInsight.strength].en}
+                  {tlScript(sL[selectedInsight.strength], locale)}
                 </span>
               </div>
 
@@ -725,10 +725,10 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
                       <div className="flex items-center justify-between mb-1.5">
                         <span className="text-gold-light font-bold text-sm" style={headingFont}>{vi.chart}</span>
                         <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full border ${sC[vi.strength]}`}>
-                          {isHi ? sL[vi.strength].hi : sL[vi.strength].en}
+                          {tlScript(sL[vi.strength], locale)}
                         </span>
                       </div>
-                      <div className="text-text-secondary/90 text-xs font-medium mb-1">{isHi ? domain?.hi : domain?.en}</div>
+                      <div className="text-text-secondary/90 text-xs font-medium mb-1">{tlScript(domain, locale)}</div>
                       <p className={`text-xs leading-relaxed ${
                         vi.strength === 'strong' ? 'text-emerald-300/80' :
                         vi.strength === 'weak' ? 'text-red-300/80' : 'text-amber-300/80'
@@ -781,7 +781,7 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
                         </div>
                         {domainAdvice && (
                           <p className="text-text-secondary/80 text-xs leading-relaxed mb-2" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                            {isHi ? domainAdvice.hi : domainAdvice.en}
+                            {tlScript(domainAdvice, locale)}
                           </p>
                         )}
                         {remedy && (
@@ -790,7 +790,7 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
                               {VL('recommendedRemedies', locale)}
                             </div>
                             <p className="text-gold-light/80 text-xs leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                              {isHi ? remedy.hi : remedy.en}
+                              {tlScript(remedy, locale)}
                             </p>
                           </div>
                         )}

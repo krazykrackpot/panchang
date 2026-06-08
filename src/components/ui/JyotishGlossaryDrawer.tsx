@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { HelpCircle, X, Search } from 'lucide-react';
-import { GLOSSARY, type GlossaryEntry } from '@/lib/constants/glossary';
+import { GLOSSARY, type LocalizedGlossaryEntry as GlossaryEntry } from '@/lib/constants/glossary-with-overlay';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
@@ -75,7 +75,7 @@ export function JyotishGlossaryDrawer() {
     return GLOSSARY.filter((entry) => {
       const enTerm = entry.term.en.toLowerCase();
       const hiTerm = (entry.term.hi || '').toLowerCase();
-      const shortDef = entry.shortDef.toLowerCase();
+      const shortDef = entry.shortDef.en.toLowerCase();
       return enTerm.includes(q) || hiTerm.includes(q) || shortDef.includes(q);
     });
   }, [query]);
@@ -196,14 +196,14 @@ function GlossaryRow({ entry, locale, isExpanded, onToggle }: GlossaryRowProps) 
           {entry.category}
         </span>
       </button>
-      <p className="px-3 -mt-1.5 pb-2 text-text-secondary text-xs leading-relaxed">{entry.shortDef}</p>
+      <p className="px-3 -mt-1.5 pb-2 text-text-secondary text-xs leading-relaxed">{tl(entry.shortDef, locale)}</p>
       {isExpanded && (
         <div className="px-3 pb-3 space-y-2 border-t border-gold-primary/10 pt-3 mt-1">
-          <p className="text-text-primary text-xs leading-relaxed">{entry.fullDef}</p>
+          <p className="text-text-primary text-xs leading-relaxed">{tl(entry.fullDef, locale)}</p>
           {entry.westernEquivalent && (
             <p className="text-text-secondary text-xs">
               <span className="text-gold-primary/70 font-semibold">Western: </span>
-              {entry.westernEquivalent}
+              {tl(entry.westernEquivalent, locale)}
             </p>
           )}
           {entry.relatedTerms && entry.relatedTerms.length > 0 && (

@@ -14,7 +14,7 @@ import InfoBlock from "@/components/ui/InfoBlock";
 import LessonSection from "@/components/learn/LessonSection";
 import { Link } from "@/lib/i18n/navigation";
 import type { Locale } from "@/types/panchang";
-import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { isDevanagariLocale, pickByScript } from "@/lib/utils/locale-fonts";
 
 // ─── Labels ────────────────────────────────────────────────────
 const LABELS: Record<string, Record<string, string>> = {
@@ -503,14 +503,14 @@ export default function LearnSarvarthaSiddhiYogaPage() {
                     className="font-semibold text-gold-light"
                     style={headingFont}
                   >
-                    {locale === "hi" ? row.vara.hi : row.vara.en}
+                    {pickByScript(row.vara.en, row.vara.hi, locale)}
                   </h4>
                   <span className="text-xs text-text-secondary bg-gold-primary/10 px-2 py-0.5 rounded-full">
-                    {row.count} {locale === "hi" ? "नक्षत्र" : "nakshatras"}
+                    {row.count} {pickByScript("nakshatras", "नक्षत्र", locale)}
                   </span>
                 </div>
                 <p className="text-text-secondary text-sm">
-                  {locale === "hi" ? row.nakshatras.hi : row.nakshatras.en}
+                  {pickByScript(row.nakshatras.en, row.nakshatras.hi, locale)}
                 </p>
               </div>
             ))}
@@ -566,9 +566,7 @@ export default function LearnSarvarthaSiddhiYogaPage() {
             <InfoBlock
               id="ss-myth1"
               title={
-                locale === "hi"
-                  ? '"प्रयास के बिना सफलता"'
-                  : '"Guarantees success without effort"'
+                pickByScript('"Guarantees success without effort"', '"प्रयास के बिना सफलता"', locale)
               }
               defaultOpen
             >
@@ -579,9 +577,7 @@ export default function LearnSarvarthaSiddhiYogaPage() {
             <InfoBlock
               id="ss-myth2"
               title={
-                locale === "hi"
-                  ? '"कोई भी कार्य सफल होगा"'
-                  : '"Any activity will succeed"'
+                pickByScript('"Any activity will succeed"', '"कोई भी कार्य सफल होगा"', locale)
               }
             >
               <p className="text-text-primary text-sm leading-relaxed">
@@ -591,9 +587,7 @@ export default function LearnSarvarthaSiddhiYogaPage() {
             <InfoBlock
               id="ss-myth3"
               title={
-                locale === "hi"
-                  ? '"दुर्लभ और अत्यंत शक्तिशाली"'
-                  : '"Rare and extremely powerful"'
+                pickByScript('"Rare and extremely powerful"', '"दुर्लभ और अत्यंत शक्तिशाली"', locale)
               }
             >
               <p className="text-text-primary text-sm leading-relaxed">
@@ -623,19 +617,19 @@ export default function LearnSarvarthaSiddhiYogaPage() {
               {
                 href: "/learn/amrit-siddhi-yoga" as const,
                 label:
-                  locale === "hi" ? "अमृत सिद्धि योग" : "Amrit Siddhi Yoga",
+                  pickByScript("Amrit Siddhi Yoga", "अमृत सिद्धि योग", locale),
               },
               {
                 href: "/learn/siddha-yoga" as const,
-                label: locale === "hi" ? "सिद्ध योग" : "Siddha Yoga",
+                label: pickByScript("Siddha Yoga", "सिद्ध योग", locale),
               },
               {
                 href: "/panchang" as const,
-                label: locale === "hi" ? "पंचांग" : "Panchang",
+                label: pickByScript("Panchang", "पंचांग", locale),
               },
               {
                 href: "/learn/muhurtas" as const,
-                label: locale === "hi" ? "मुहूर्त" : "Muhurtas",
+                label: pickByScript("Muhurtas", "मुहूर्त", locale),
               },
             ].map((link) => (
               <Link

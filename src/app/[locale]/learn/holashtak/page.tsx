@@ -16,7 +16,7 @@ import InfoBlock from "@/components/ui/InfoBlock";
 import LessonSection from "@/components/learn/LessonSection";
 import { Link } from "@/lib/i18n/navigation";
 import type { Locale } from "@/types/panchang";
-import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { isDevanagariLocale, pickByScript } from "@/lib/utils/locale-fonts";
 
 // ─── Labels ────────────────────────────────────────────────────
 const LABELS: Record<string, Record<string, string>> = {
@@ -560,7 +560,7 @@ export default function LearnHolashtakPage() {
                   </span>
                   <div>
                     <span className="text-gold-light font-semibold text-sm">
-                      {locale === "hi" ? d.tithiHi : d.tithi}
+                      {pickByScript(d.tithi, d.tithiHi, locale)}
                     </span>
                     <p className="text-text-secondary text-sm mt-0.5">
                       {L[dayKey]}
@@ -599,9 +599,7 @@ export default function LearnHolashtakPage() {
             <InfoBlock
               id="holashtak-myth1"
               title={
-                locale === "hi"
-                  ? '"होलाष्टक राहु काल जितना सख्त"'
-                  : '"Holashtak is as strict as Rahu Kaal"'
+                pickByScript('"Holashtak is as strict as Rahu Kaal"', '"होलाष्टक राहु काल जितना सख्त"', locale)
               }
               defaultOpen
             >
@@ -612,9 +610,7 @@ export default function LearnHolashtakPage() {
             <InfoBlock
               id="holashtak-myth2"
               title={
-                locale === "hi"
-                  ? '"सब कुछ अशुभ"'
-                  : '"Holashtak makes everything inauspicious"'
+                pickByScript('"Holashtak makes everything inauspicious"', '"सब कुछ अशुभ"', locale)
               }
             >
               <p className="text-text-primary text-sm leading-relaxed">
@@ -624,9 +620,7 @@ export default function LearnHolashtakPage() {
             <InfoBlock
               id="holashtak-myth3"
               title={
-                locale === "hi"
-                  ? '"तिथियाँ निश्चित हैं"'
-                  : '"Holashtak dates are fixed"'
+                pickByScript('"Holashtak dates are fixed"', '"तिथियाँ निश्चित हैं"', locale)
               }
             >
               <p className="text-text-primary text-sm leading-relaxed">
@@ -656,24 +650,24 @@ export default function LearnHolashtakPage() {
             {[
               {
                 href: "/holashtak" as const,
-                label: locale === "hi" ? "आज का होलाष्टक" : "Holashtak Today",
+                label: pickByScript("Holashtak Today", "आज का होलाष्टक", locale),
               },
               {
                 href: "/panchang" as const,
-                label: locale === "hi" ? "पंचांग" : "Panchang",
+                label: pickByScript("Panchang", "पंचांग", locale),
               },
               {
                 href: "/calendar" as const,
                 label:
-                  locale === "hi" ? "त्योहार कैलेंडर" : "Festival Calendar",
+                  pickByScript("Festival Calendar", "त्योहार कैलेंडर", locale),
               },
               {
                 href: "/learn/tithis" as const,
-                label: locale === "hi" ? "तिथियाँ" : "Tithis",
+                label: pickByScript("Tithis", "तिथियाँ", locale),
               },
               {
                 href: "/learn/panchak" as const,
-                label: locale === "hi" ? "पंचक" : "Panchak",
+                label: pickByScript("Panchak", "पंचक", locale),
               },
             ].map((link) => (
               <Link

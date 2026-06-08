@@ -8,7 +8,7 @@ import InfoBlock from "@/components/ui/InfoBlock";
 import LessonSection from "@/components/learn/LessonSection";
 import { Link } from "@/lib/i18n/navigation";
 import type { Locale } from "@/types/panchang";
-import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { isDevanagariLocale, pickByScript } from "@/lib/utils/locale-fonts";
 
 const LABELS: Record<string, Record<string, string>> = {
   en: {
@@ -345,9 +345,7 @@ export default function LearnRaviPushyaYogaPage() {
             <InfoBlock
               id="rp-myth1"
               title={
-                locale === "hi"
-                  ? '"सोने के लिए सबसे अच्छा दिन"'
-                  : '"Best day for buying gold"'
+                pickByScript('"Best day for buying gold"', '"सोने के लिए सबसे अच्छा दिन"', locale)
               }
               defaultOpen
             >
@@ -358,9 +356,7 @@ export default function LearnRaviPushyaYogaPage() {
             <InfoBlock
               id="rp-myth2"
               title={
-                locale === "hi"
-                  ? '"पूरे रविवार चलता है"'
-                  : '"Lasts the entire Sunday"'
+                pickByScript('"Lasts the entire Sunday"', '"पूरे रविवार चलता है"', locale)
               }
             >
               <p className="text-text-primary text-sm leading-relaxed">
@@ -369,7 +365,7 @@ export default function LearnRaviPushyaYogaPage() {
             </InfoBlock>
             <InfoBlock
               id="rp-myth3"
-              title={locale === "hi" ? '"सोना बढ़ेगा"' : '"Gold will multiply"'}
+              title={pickByScript('"Gold will multiply"', '"सोना बढ़ेगा"', locale)}
             >
               <p className="text-text-primary text-sm leading-relaxed">
                 {L.misconception3}
@@ -397,20 +393,20 @@ export default function LearnRaviPushyaYogaPage() {
             {[
               {
                 href: "/learn/guru-pushya-yoga" as const,
-                label: locale === "hi" ? "गुरु पुष्य योग" : "Guru Pushya Yoga",
+                label: pickByScript("Guru Pushya Yoga", "गुरु पुष्य योग", locale),
               },
               {
                 href: "/learn/amrit-siddhi-yoga" as const,
                 label:
-                  locale === "hi" ? "अमृत सिद्धि योग" : "Amrit Siddhi Yoga",
+                  pickByScript("Amrit Siddhi Yoga", "अमृत सिद्धि योग", locale),
               },
               {
                 href: "/learn/nakshatras" as const,
-                label: locale === "hi" ? "नक्षत्र" : "Nakshatras",
+                label: pickByScript("Nakshatras", "नक्षत्र", locale),
               },
               {
                 href: "/panchang" as const,
-                label: locale === "hi" ? "पंचांग" : "Panchang",
+                label: pickByScript("Panchang", "पंचांग", locale),
               },
             ].map((link) => (
               <Link

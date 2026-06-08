@@ -6,6 +6,8 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import LearnArticleLD from '@/components/learn/LearnArticleLD';
 
 import { BASE_URL } from '@/lib/seo/base-url';
+import { pickByScript } from "@/lib/utils/locale-fonts";
+
 const ACTIVE_LOCALES = ['en', 'hi', 'ta', 'bn'] as const;
 const YOGA_COUNT = Object.keys(YOGA_DETAIL_DATA).length;
 
@@ -14,12 +16,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const url = `${BASE_URL}/${locale}/learn/yoga`;
 
-  const title = locale === 'hi'
-    ? `योग विश्वकोश — ${YOGA_COUNT} वैदिक ज्योतिष योग | Dekho Panchang`
-    : `Yoga Encyclopedia — ${YOGA_COUNT} Vedic Astrology Yogas | Dekho Panchang`;
-  const description = locale === 'hi'
-    ? `गजकेसरी, बुधादित्य, मंगल दोष, काल सर्प, पंच महापुरुष और ${YOGA_COUNT - 5} अन्य योगों का विस्तृत विवरण — निर्माण नियम, प्रभाव, उपाय और शास्त्रीय सन्दर्भ।`
-    : `Comprehensive guide to ${YOGA_COUNT} Vedic astrology yogas — Gajakesari, Budhaditya, Mangal Dosha, Kaal Sarpa, Pancha Mahapurusha and more. Formation rules, effects, remedies, and classical references.`;
+  const title = pickByScript(`Yoga Encyclopedia — ${YOGA_COUNT} Vedic Astrology Yogas | Dekho Panchang`, `योग विश्वकोश — ${YOGA_COUNT} वैदिक ज्योतिष योग | Dekho Panchang`, locale);
+  const description = pickByScript(`Comprehensive guide to ${YOGA_COUNT} Vedic astrology yogas — Gajakesari, Budhaditya, Mangal Dosha, Kaal Sarpa, Pancha Mahapurusha and more. Formation rules, effects, remedies, and classical references.`, `गजकेसरी, बुधादित्य, मंगल दोष, काल सर्प, पंच महापुरुष और ${YOGA_COUNT - 5} अन्य योगों का विस्तृत विवरण — निर्माण नियम, प्रभाव, उपाय और शास्त्रीय सन्दर्भ।`, locale);
 
   const languages: Record<string, string> = {};
   for (const loc of ACTIVE_LOCALES) {

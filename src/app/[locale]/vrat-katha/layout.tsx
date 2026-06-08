@@ -3,18 +3,15 @@ import type { Metadata } from 'next';
 import { locales } from '@/lib/i18n/config';
 
 import { BASE_URL } from '@/lib/seo/base-url';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const title = locale === 'hi'
-    ? 'व्रत कथा संदर्भ  –  विधि, फल एवं समय | Dekho Panchang'
-    : 'Vrat Katha Reference  –  Vidhi, Benefits & Timing | Dekho Panchang';
+  const title = pickByScript('Vrat Katha Reference  –  Vidhi, Benefits & Timing | Dekho Panchang', 'व्रत कथा संदर्भ  –  विधि, फल एवं समय | Dekho Panchang', locale);
 
-  const description = locale === 'hi'
-    ? '10 पवित्र व्रतों का सम्पूर्ण संदर्भ  –  देवता, तिथि, विधि और फल। Dekho Panchang पर पढ़ें।'
-    : 'Complete reference for 10 sacred Hindu vrats  –  deity, timing, vidhi, and benefits. Read on Dekho Panchang.';
+  const description = pickByScript('Complete reference for 10 sacred Hindu vrats  –  deity, timing, vidhi, and benefits. Read on Dekho Panchang.', '10 पवित्र व्रतों का सम्पूर्ण संदर्भ  –  देवता, तिथि, विधि और फल। Dekho Panchang पर पढ़ें।', locale);
 
   const alternateLanguages: Record<string, string> = {};
   for (const l of locales) {

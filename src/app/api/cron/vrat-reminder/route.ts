@@ -47,6 +47,7 @@ import {
   NEXT_REMINDER_INFINITY,
   type VratPrefMinimal,
 } from '@/lib/vrat/next-reminder';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 export const maxDuration = 60;
 
@@ -83,7 +84,7 @@ function isoInTz(date: Date, tz: string): string {
 function prettyDateInTz(dateStr: string, tz: string, locale: string = 'en'): string {
   const [y, m, d] = dateStr.split('-').map(Number);
   const at = new Date(Date.UTC(y, m - 1, d, 12)); // noon UTC — safely inside the local day
-  return new Intl.DateTimeFormat(locale === 'hi' ? 'hi-IN' : 'en-GB', {
+  return new Intl.DateTimeFormat(pickByScript('en-GB', 'hi-IN', locale), {
     timeZone: tz,
     weekday: 'long',
     day: 'numeric',

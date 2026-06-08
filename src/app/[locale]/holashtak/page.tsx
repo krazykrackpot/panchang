@@ -28,7 +28,7 @@ import {
   HOLASHTAK_AVOID_ACTIVITIES,
 } from "@/lib/panchang/holashtak";
 import type { Locale } from "@/types/panchang";
-import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { isDevanagariLocale, pickByScript } from "@/lib/utils/locale-fonts";
 import { tl } from "@/lib/utils/trilingual";
 import { safeJsonLd } from "@/lib/seo/safe-jsonld";
 
@@ -568,19 +568,13 @@ export default function HolashtakPage() {
   }, [year, month, day, locale]);
 
   const tithiName = panchang.tithi?.name
-    ? locale === "hi"
-      ? panchang.tithi.name.hi
-      : panchang.tithi.name.en
+    ? pickByScript(panchang.tithi.name.en, panchang.tithi.name.hi, locale)
     : "";
   const masaName = masaAmanta ? tl(masaAmanta, locale) : "";
   const pakshaDisplay =
     paksha === "shukla"
-      ? locale === "hi"
-        ? "शुक्ल"
-        : "Shukla"
-      : locale === "hi"
-        ? "कृष्ण"
-        : "Krishna";
+      ? pickByScript("Shukla", "शुक्ल", locale)
+      : pickByScript("Krishna", "कृष्ण", locale);
 
   const okayItems = L.okayItems.split("|");
 
@@ -748,7 +742,7 @@ export default function HolashtakPage() {
                 <span className="text-red-400 mt-1.5 flex-shrink-0">
                   &#8226;
                 </span>
-                {locale === "hi" ? activity.hi : activity.en}
+                {pickByScript(activity.en, activity.hi, locale)}
               </li>
             ))}
           </ul>
@@ -824,7 +818,7 @@ export default function HolashtakPage() {
                     <span
                       className={`font-semibold text-sm ${isCurrent ? "text-gold-light" : "text-text-primary"}`}
                     >
-                      {locale === "hi" ? d.tithiHi : d.tithi}
+                      {pickByScript(d.tithi, d.tithiHi, locale)}
                       {isCurrent && (
                         <span className="text-xs ml-2 px-1.5 py-0.5 rounded-full bg-gold-primary/20 text-gold-light">
                           TODAY
@@ -832,7 +826,7 @@ export default function HolashtakPage() {
                       )}
                     </span>
                     <p className="text-text-secondary text-sm mt-0.5">
-                      {locale === "hi" ? d.desc.hi : d.desc.en}
+                      {pickByScript(d.desc.en, d.desc.hi, locale)}
                     </p>
                   </div>
                 </div>
@@ -901,12 +895,12 @@ export default function HolashtakPage() {
               { href: "/panchang" as const, label: L.back },
               {
                 href: "/panchak" as const,
-                label: locale === "hi" ? "आज का पंचक" : "Panchak Today",
+                label: pickByScript("Panchak Today", "आज का पंचक", locale),
               },
               {
                 href: "/calendar" as const,
                 label:
-                  locale === "hi" ? "त्योहार कैलेंडर" : "Festival Calendar",
+                  pickByScript("Festival Calendar", "त्योहार कैलेंडर", locale),
               },
             ].map((link) => (
               <Link

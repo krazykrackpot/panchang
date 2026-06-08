@@ -51,6 +51,7 @@ import {
   type RashiSlug,
 } from '../_lib/params';
 import type { EmbedTheme } from '../_lib/embed-theme';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 export const revalidate = 86400; // Daily — horoscope rolls every midnight
 
@@ -100,7 +101,7 @@ function localeText(
   if (exact) return exact;
   // tl() expects { en, hi, sa } — pass the whole map through anyway;
   // tl reads only the keys it knows, and the en key is guaranteed.
-  return tl(obj as { en: string; hi: string; sa: string }, locale === 'hi' ? 'hi' : 'en');
+  return tl(obj as { en: string; hi: string; sa: string }, pickByScript('en', 'hi', locale));
 }
 
 export default async function EmbedHoroscopePage({
@@ -233,7 +234,7 @@ function SingleMode({ highlight, horoscopes, today, labels, locale, ref }: Singl
   const featured = RASHIS.find((r) => r.slug === highlight) ?? RASHIS[0];
   const horo = horoscopes[featured.id - 1];
   const vibe = scoreToVibe(horo.overallScore, labels);
-  const insight = tl(horo.insight, locale === 'hi' ? 'hi' : 'en');
+  const insight = tl(horo.insight, pickByScript('en', 'hi', locale));
 
   return (
     <>

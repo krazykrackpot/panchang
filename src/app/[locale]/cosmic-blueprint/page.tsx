@@ -14,7 +14,7 @@ import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import type { BirthData, ChartStyle, KundaliData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
-import { isDevanagariLocale, getHeadingFont } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, getHeadingFont, pickByScript } from '@/lib/utils/locale-fonts';
 
 const BlueprintTab = dynamic(() => import('@/components/kundali/BlueprintTab'), { ssr: false });
 
@@ -211,7 +211,7 @@ export default function CosmicBlueprintPage() {
                 }}
                 className="text-text-secondary hover:text-gold-light transition-colors text-sm underline underline-offset-4"
               >
-                {locale === 'hi' ? 'नया ब्लूप्रिंट बनाएं' : 'Generate another blueprint'}
+                {pickByScript('Generate another blueprint', 'नया ब्लूप्रिंट बनाएं', locale)}
               </button>
             </div>
           </div>

@@ -17,6 +17,7 @@ import { ChevronRight } from 'lucide-react';
 import { tl } from '@/lib/utils/trilingual';
 import type { Locale } from '@/types/panchang';
 import type { FestivalCluster } from '@/lib/festivals/types';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 interface Props {
   cluster: FestivalCluster;
@@ -28,9 +29,7 @@ interface Props {
 }
 
 export default function FestivalClusterTimeline({ cluster, currentSlug, year, locale }: Props) {
-  const sectionTitle = locale === 'hi'
-    ? `${tl(cluster.name, 'hi')} — पर्व क्रम`
-    : `${cluster.name.en} — Festival Cluster`;
+  const sectionTitle = pickByScript(`${cluster.name.en} — Festival Cluster`, `${tl(cluster.name, 'hi')} — पर्व क्रम`, locale);
 
   return (
     <section className="mb-10" aria-labelledby="cluster-heading">
@@ -66,11 +65,11 @@ export default function FestivalClusterTimeline({ cluster, currentSlug, year, lo
               </div>
               {entry.comingSoon ? (
                 <div className="text-[10px] text-text-secondary/60 mt-2 italic">
-                  {locale === 'hi' ? 'शीघ्र आ रहा है' : 'Coming soon'}
+                  {pickByScript('Coming soon', 'शीघ्र आ रहा है', locale)}
                 </div>
               ) : (
                 <div className="text-[10px] text-gold-light/70 mt-2 flex items-center gap-1">
-                  {locale === 'hi' ? 'देखें' : 'View'} <ChevronRight className="w-3 h-3" />
+                  {pickByScript('View', 'देखें', locale)} <ChevronRight className="w-3 h-3" />
                 </div>
               )}
             </>

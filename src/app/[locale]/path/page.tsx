@@ -7,6 +7,7 @@ import { BadgeIcon } from '@/components/gamification/BadgeIcons';
 import { LEVELS } from '@/lib/constants/levels';
 import { BADGES } from '@/lib/constants/badges';
 import { tl } from '@/lib/utils/trilingual';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 interface ProgressResponse { progress: { current_level?: number } | null; badges: { badge_slug: string }[] }
 
@@ -30,13 +31,13 @@ export default function PathPage({ params }: { params: Promise<{ locale: string 
   const earnedSlugs = new Set<string>((data?.badges ?? []).map(b => b.badge_slug));
 
   if (!user) {
-    return <div className="max-w-3xl mx-auto px-4 py-12 text-center text-text-secondary">{locale === 'hi' ? 'कृपया साइन इन करें।' : 'Please sign in.'}</div>;
+    return <div className="max-w-3xl mx-auto px-4 py-12 text-center text-text-secondary">{pickByScript('Please sign in.', 'कृपया साइन इन करें।', locale)}</div>;
   }
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
-      <h1 className="text-2xl sm:text-3xl font-bold text-gold-light mb-1">{locale === 'hi' ? 'साधक पथ' : 'Sadhaka Path'}</h1>
-      <p className="text-text-secondary text-sm mb-6">{locale === 'hi' ? 'आपका सात-स्तरीय आध्यात्मिक मार्ग।' : 'Your seven-tier spiritual journey.'}</p>
+      <h1 className="text-2xl sm:text-3xl font-bold text-gold-light mb-1">{pickByScript('Sadhaka Path', 'साधक पथ', locale)}</h1>
+      <p className="text-text-secondary text-sm mb-6">{pickByScript('Your seven-tier spiritual journey.', 'आपका सात-स्तरीय आध्यात्मिक मार्ग।', locale)}</p>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
         {LEVELS.map(l => {
@@ -51,7 +52,7 @@ export default function PathPage({ params }: { params: Promise<{ locale: string 
         })}
       </div>
 
-      <h2 className="text-xl font-bold text-gold-light mb-3">{locale === 'hi' ? 'बैज संग्रह' : 'Badge Collection'} <span className="text-text-secondary text-sm font-normal">· {earnedSlugs.size} / 18</span></h2>
+      <h2 className="text-xl font-bold text-gold-light mb-3">{pickByScript('Badge Collection', 'बैज संग्रह', locale)} <span className="text-text-secondary text-sm font-normal">· {earnedSlugs.size} / 18</span></h2>
       <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
         {BADGES.map(b => {
           const earned = earnedSlugs.has(b.slug);

@@ -8,6 +8,7 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/types/panchang';
 import type { ScoredBirthSlot, SlotGrade } from '@/lib/caesarean/types';
 import MSG from '@/messages/pages/caesarean-muhurta.json';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 const msg = (key: string, locale: string) =>
   lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
@@ -54,7 +55,7 @@ export default function SlotCard({ slot, rank }: SlotCardProps) {
   const formatDate = (dateStr: string) => {
     const [y, m, d] = dateStr.split('-').map(Number);
     const date = new Date(Date.UTC(y, m - 1, d));
-    return date.toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-GB', {
+    return date.toLocaleDateString(pickByScript('en-GB', 'hi-IN', locale), {
       weekday: 'short',
       day: 'numeric',
       month: 'short',

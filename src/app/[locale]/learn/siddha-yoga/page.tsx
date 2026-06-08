@@ -8,7 +8,7 @@ import InfoBlock from "@/components/ui/InfoBlock";
 import LessonSection from "@/components/learn/LessonSection";
 import { Link } from "@/lib/i18n/navigation";
 import type { Locale } from "@/types/panchang";
-import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { isDevanagariLocale, pickByScript } from "@/lib/utils/locale-fonts";
 
 const LABELS: Record<string, Record<string, string>> = {
   en: {
@@ -536,10 +536,10 @@ export default function LearnSiddhaYogaPage() {
                   className="font-semibold text-gold-light mb-1"
                   style={headingFont}
                 >
-                  {locale === "hi" ? row.vara.hi : row.vara.en}
+                  {pickByScript(row.vara.en, row.vara.hi, locale)}
                 </h4>
                 <p className="text-text-secondary text-sm">
-                  {locale === "hi" ? row.tithis.hi : row.tithis.en}
+                  {pickByScript(row.tithis.en, row.tithis.hi, locale)}
                 </p>
               </div>
             ))}
@@ -597,9 +597,7 @@ export default function LearnSiddhaYogaPage() {
             <InfoBlock
               id="sy-myth1"
               title={
-                locale === "hi"
-                  ? '"सिद्ध योग = सिद्धि योग"'
-                  : '"Siddha = Siddhi Yoga"'
+                pickByScript('"Siddha = Siddhi Yoga"', '"सिद्ध योग = सिद्धि योग"', locale)
               }
               defaultOpen
             >
@@ -610,9 +608,7 @@ export default function LearnSiddhaYogaPage() {
             <InfoBlock
               id="sy-myth2"
               title={
-                locale === "hi"
-                  ? '"व्यवसाय के लिए अच्छा"'
-                  : '"Good for business"'
+                pickByScript('"Good for business"', '"व्यवसाय के लिए अच्छा"', locale)
               }
             >
               <p className="text-text-primary text-sm leading-relaxed">
@@ -622,9 +618,7 @@ export default function LearnSiddhaYogaPage() {
             <InfoBlock
               id="sy-myth3"
               title={
-                locale === "hi"
-                  ? '"राहु काल से रद्द"'
-                  : '"Cancelled by Rahu Kaal"'
+                pickByScript('"Cancelled by Rahu Kaal"', '"राहु काल से रद्द"', locale)
               }
             >
               <p className="text-text-primary text-sm leading-relaxed">
@@ -654,22 +648,20 @@ export default function LearnSiddhaYogaPage() {
               {
                 href: "/learn/amrit-siddhi-yoga" as const,
                 label:
-                  locale === "hi" ? "अमृत सिद्धि योग" : "Amrit Siddhi Yoga",
+                  pickByScript("Amrit Siddhi Yoga", "अमृत सिद्धि योग", locale),
               },
               {
                 href: "/learn/sarvartha-siddhi-yoga" as const,
                 label:
-                  locale === "hi"
-                    ? "सर्वार्थ सिद्धि योग"
-                    : "Sarvartha Siddhi Yoga",
+                  pickByScript("Sarvartha Siddhi Yoga", "सर्वार्थ सिद्धि योग", locale),
               },
               {
                 href: "/learn/yoga" as const,
-                label: locale === "hi" ? "27 नित्य योग" : "27 Nitya Yogas",
+                label: pickByScript("27 Nitya Yogas", "27 नित्य योग", locale),
               },
               {
                 href: "/panchang" as const,
-                label: locale === "hi" ? "पंचांग" : "Panchang",
+                label: pickByScript("Panchang", "पंचांग", locale),
               },
             ].map((link) => (
               <Link

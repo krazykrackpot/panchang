@@ -76,7 +76,7 @@ interface SavedChart {
   is_primary: boolean;
   created_at: string;
 }
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
 
@@ -1510,13 +1510,13 @@ function SeekerDashboardImpl() {
     if (panchangData?.rahuKaal) {
       const [rh, rm] = (panchangData.rahuKaal.start || '').split(':').map(Number);
       if (!isNaN(rh) && !isNaN(rm) && rh * 60 + rm > nowMin) {
-        zones.push({ name: locale === 'hi' ? 'राहु काल' : 'Rahu Kaal', startTime: panchangData.rahuKaal.start });
+        zones.push({ name: pickByScript('Rahu Kaal', 'राहु काल', locale), startTime: panchangData.rahuKaal.start });
       }
     }
     if (panchangData?.yamaganda) {
       const [yh, ym] = ((panchangData.yamaganda as { start?: string })?.start || '').split(':').map(Number);
       if (!isNaN(yh) && !isNaN(ym) && yh * 60 + ym > nowMin) {
-        zones.push({ name: locale === 'hi' ? 'यमगण्ड' : 'Yamaganda', startTime: (panchangData.yamaganda as { start?: string })?.start || '' });
+        zones.push({ name: pickByScript('Yamaganda', 'यमगण्ड', locale), startTime: (panchangData.yamaganda as { start?: string })?.start || '' });
       }
     }
     // Return the earliest upcoming one
@@ -1573,7 +1573,7 @@ function SeekerDashboardImpl() {
       {!displayName || !hasBirthData || !profileHasTime || !profileHasPlace ? null : hasBirthData && ascendantSign > 0 ? (
         <details className="mb-6 group">
           <summary className="cursor-pointer text-center text-gold-primary/50 text-xs tracking-widest uppercase hover:text-gold-primary transition-colors list-none">
-            {locale === 'hi' ? '▾ आपकी ब्रह्माण्डीय पहचान' : '▾ Your Cosmic Identity'}
+            {pickByScript('▾ Your Cosmic Identity', '▾ आपकी ब्रह्माण्डीय पहचान', locale)}
           </summary>
           <div className="mt-4">
             {/* Same prop shape as the family dashboard — driven by a

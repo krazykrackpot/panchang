@@ -20,6 +20,7 @@ import { BNN_BASE } from './bnn-predictions';
 import { ASPECT_MODIFIERS, CONJUNCTION_MODIFIERS, RETROGRADE_MODIFIERS } from './bnn-modifiers';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 export interface BNNPlanetReading {
   planetId: number;
@@ -131,15 +132,13 @@ function areConjunct(p1: PlanetPosition, p2: PlanetPosition): boolean {
 /** Safe lookup of BNN base text. Falls back to a generic note if missing. */
 function getBase(planetId: number, signId: number, locale: string): string {
   const entry = BNN_BASE[planetId]?.[signId];
-  if (!entry) return locale === 'hi'
-    ? `ग्रह ${PLANET_NAMES[planetId]?.hi ?? planetId} के लिए आधार भविष्यवाणी अनुपलब्ध है।`
-    : `Base prediction for planet ${PLANET_NAMES[planetId]?.en ?? planetId} unavailable.`;
-  return locale === 'hi' ? entry.hi : entry.en;
+  if (!entry) return pickByScript(`Base prediction for planet ${PLANET_NAMES[planetId]?.en ?? planetId} unavailable.`, `ग्रह ${PLANET_NAMES[planetId]?.hi ?? planetId} के लिए आधार भविष्यवाणी अनुपलब्ध है।`, locale);
+  return pickByScript(entry.en, entry.hi, locale);
 }
 
 /** Extract locale-appropriate text from a modifier record. */
 function getModifierText(modifier: { en: string; hi: string }, locale: string): string {
-  return locale === 'hi' ? modifier.hi : modifier.en;
+  return pickByScript(modifier.en, modifier.hi, locale);
 }
 
 /**
@@ -153,9 +152,7 @@ function generateLifeThemes(planets: PlanetPosition[], locale: string): string[]
   if (jupiterPlanet) {
     const jupAspectCount = planets.filter(p => p.planet.id !== 4 && doesAspect(jupiterPlanet, p)).length;
     if (jupAspectCount >= 3) {
-      themes.push(locale === 'hi'
-        ? 'बृहस्पति की व्यापक दृष्टि एकाधिक जीवन क्षेत्रों को आशीर्वाद देती है  –  ज्ञान और आध्यात्मिक विकास एक केंद्रीय जीवन विषय है।'
-        : 'Jupiter\'s broad aspect blesses multiple life areas  –  wisdom and spiritual growth is a central life theme.');
+      themes.push(pickByScript('Jupiter\'s broad aspect blesses multiple life areas  –  wisdom and spiritual growth is a central life theme.', 'बृहस्पति की व्यापक दृष्टि एकाधिक जीवन क्षेत्रों को आशीर्वाद देती है  –  ज्ञान और आध्यात्मिक विकास एक केंद्रीय जीवन विषय है।', locale));
     }
   }
 
@@ -164,27 +161,21 @@ function generateLifeThemes(planets: PlanetPosition[], locale: string): string[]
   if (saturnPlanet) {
     const satAspectCount = planets.filter(p => p.planet.id !== 6 && doesAspect(saturnPlanet, p)).length;
     if (satAspectCount >= 2) {
-      themes.push(locale === 'hi'
-        ? 'शनि की कठोर दृष्टि अनेक क्षेत्रों में परीक्षा करती है  –  कठिन परिश्रम से अर्जित सफलता और दीर्घकालिक उपलब्धि जीवन का स्वर है।'
-        : 'Saturn\'s stern aspect tests multiple domains  –  hard-earned success and late-blooming achievement is the life keynote.');
+      themes.push(pickByScript('Saturn\'s stern aspect tests multiple domains  –  hard-earned success and late-blooming achievement is the life keynote.', 'शनि की कठोर दृष्टि अनेक क्षेत्रों में परीक्षा करती है  –  कठिन परिश्रम से अर्जित सफलता और दीर्घकालिक उपलब्धि जीवन का स्वर है।', locale));
     }
   }
 
   // Multiple retrogrades → theme of internalisation and past-life processing
   const retrogradeCount = planets.filter(p => p.isRetrograde && p.planet.id !== 7 && p.planet.id !== 8).length;
   if (retrogradeCount >= 3) {
-    themes.push(locale === 'hi'
-      ? 'अनेक वक्री ग्रह गहन आत्म-विश्लेषण और पूर्व जन्म के विषयों को इस जीवन में जागरूक रूप से संसाधित करने की प्रवृत्ति दर्शाते हैं।'
-      : 'Multiple retrograde planets indicate a deeply introspective nature and a life oriented toward consciously processing past-life themes.');
+    themes.push(pickByScript('Multiple retrograde planets indicate a deeply introspective nature and a life oriented toward consciously processing past-life themes.', 'अनेक वक्री ग्रह गहन आत्म-विश्लेषण और पूर्व जन्म के विषयों को इस जीवन में जागरूक रूप से संसाधित करने की प्रवृत्ति दर्शाते हैं।', locale));
   }
 
   // Rahu-Ketu axis analysis
   const rahu = planets.find(p => p.planet.id === 7);
   const ketu = planets.find(p => p.planet.id === 8);
   if (rahu && ketu) {
-    themes.push(locale === 'hi'
-      ? `राहु-केतु अक्ष (${tl(RASHIS.find(r => r.id === rahu.sign)?.name ?? { en: 'unknown' }, locale)} ↔ ${tl(RASHIS.find(r => r.id === ketu.sign)?.name ?? { en: 'unknown' }, locale)}) इस जीवन की मूल कार्मिक ध्रुवता को दर्शाता है।`
-      : `The Rahu-Ketu axis (${tl(RASHIS.find(r => r.id === rahu.sign)?.name ?? { en: 'unknown' }, locale)} ↔ ${tl(RASHIS.find(r => r.id === ketu.sign)?.name ?? { en: 'unknown' }, locale)}) defines the fundamental karmic polarity of this incarnation.`);
+    themes.push(pickByScript(`The Rahu-Ketu axis (${tl(RASHIS.find(r => r.id === rahu.sign)?.name ?? { en: 'unknown' }, locale)} ↔ ${tl(RASHIS.find(r => r.id === ketu.sign)?.name ?? { en: 'unknown' }, locale)}) defines the fundamental karmic polarity of this incarnation.`, `राहु-केतु अक्ष (${tl(RASHIS.find(r => r.id === rahu.sign)?.name ?? { en: 'unknown' }, locale)} ↔ ${tl(RASHIS.find(r => r.id === ketu.sign)?.name ?? { en: 'unknown' }, locale)}) इस जीवन की मूल कार्मिक ध्रुवता को दर्शाता है।`, locale));
   }
 
   // Sun-Moon relationship → theme about integration of self and mind
@@ -192,16 +183,12 @@ function generateLifeThemes(planets: PlanetPosition[], locale: string): string[]
   const moon = planets.find(p => p.planet.id === 1);
   if (sun && moon) {
     if (sun.house === moon.house) {
-      themes.push(locale === 'hi'
-        ? 'सूर्य-चन्द्र युति आत्मा और मन का मिलन दर्शाती है  –  व्यक्तित्व और भावनाएँ एकीकृत शक्ति के साथ काम करती हैं।'
-        : 'Sun-Moon conjunction indicates unity of self and mind  –  personality and emotions work with integrated power.');
+      themes.push(pickByScript('Sun-Moon conjunction indicates unity of self and mind  –  personality and emotions work with integrated power.', 'सूर्य-चन्द्र युति आत्मा और मन का मिलन दर्शाती है  –  व्यक्तित्व और भावनाएँ एकीकृत शक्ति के साथ काम करती हैं।', locale));
     }
   }
 
   if (themes.length === 0) {
-    themes.push(locale === 'hi'
-      ? 'ग्रहों की विशिष्ट स्थितियाँ एक अद्वितीय जीवन पथ का संकेत देती हैं जिसे व्यक्तिगत ग्रह पठन में विस्तार से देखा जाना चाहिए।'
-      : 'The specific planetary positions indicate a unique life path best understood through the detailed individual planet readings below.');
+    themes.push(pickByScript('The specific planetary positions indicate a unique life path best understood through the detailed individual planet readings below.', 'ग्रहों की विशिष्ट स्थितियाँ एक अद्वितीय जीवन पथ का संकेत देती हैं जिसे व्यक्तिगत ग्रह पठन में विस्तार से देखा जाना चाहिए।', locale));
   }
 
   return themes;
@@ -233,9 +220,7 @@ export function generateBNNReading(kundali: KundaliData, locale: string): BNNRea
         if (aspectModifier) {
           modifiers.push({
             type: 'aspect',
-            source: locale === 'hi'
-              ? `${PLANET_NAMES[aspecter.planet.id]?.hi ?? String(aspecter.planet.id)} की दृष्टि`
-              : `${PLANET_NAMES[aspecter.planet.id]?.en ?? String(aspecter.planet.id)} aspect`,
+            source: pickByScript(`${PLANET_NAMES[aspecter.planet.id]?.en ?? String(aspecter.planet.id)} aspect`, `${PLANET_NAMES[aspecter.planet.id]?.hi ?? String(aspecter.planet.id)} की दृष्टि`, locale),
             text: getModifierText(aspectModifier, locale),
           });
         }
@@ -250,9 +235,7 @@ export function generateBNNReading(kundali: KundaliData, locale: string): BNNRea
         if (conjModifier) {
           modifiers.push({
             type: 'conjunction',
-            source: locale === 'hi'
-              ? `${PLANET_NAMES[other.planet.id]?.hi ?? String(other.planet.id)} के साथ युति`
-              : `Conjunction with ${PLANET_NAMES[other.planet.id]?.en ?? String(other.planet.id)}`,
+            source: pickByScript(`Conjunction with ${PLANET_NAMES[other.planet.id]?.en ?? String(other.planet.id)}`, `${PLANET_NAMES[other.planet.id]?.hi ?? String(other.planet.id)} के साथ युति`, locale),
             text: getModifierText(conjModifier, locale),
           });
         }
@@ -264,7 +247,7 @@ export function generateBNNReading(kundali: KundaliData, locale: string): BNNRea
       const retModifier = RETROGRADE_MODIFIERS[planetId];
       modifiers.push({
         type: 'retrograde',
-        source: locale === 'hi' ? 'वक्री' : 'Retrograde',
+        source: pickByScript('Retrograde', 'वक्री', locale),
         text: getModifierText(retModifier, locale),
       });
     }
@@ -278,7 +261,7 @@ export function generateBNNReading(kundali: KundaliData, locale: string): BNNRea
     const houseName = tl(HOUSE_NAMES[planet.house] ?? { en: `${planet.house}th` }, locale);
     planetReadings.push({
       planetId,
-      planetName: locale === 'hi' ? (PLANET_NAMES[planetId]?.hi ?? String(planetId)) : (PLANET_NAMES[planetId]?.en ?? String(planetId)),
+      planetName: pickByScript((PLANET_NAMES[planetId]?.en ?? String(planetId)), (PLANET_NAMES[planetId]?.hi ?? String(planetId)), locale),
       sign: signId,
       signName,
       house: planet.house,
@@ -302,12 +285,10 @@ export function generateBNNReading(kundali: KundaliData, locale: string): BNNRea
 
   const ketuBase = BNN_BASE[8]?.[ketuSign];
   const ketuReading = ketuBase
-    ? (locale === 'hi' ? ketuBase.hi : ketuBase.en)
-    : (locale === 'hi' ? 'केतु की राशि के लिए पठन अनुपलब्ध है।' : 'Ketu sign reading unavailable.');
+    ? (pickByScript(ketuBase.en, ketuBase.hi, locale))
+    : (pickByScript('Ketu sign reading unavailable.', 'केतु की राशि के लिए पठन अनुपलब्ध है।', locale));
 
-  const pastLifeTheme = locale === 'hi'
-    ? `आपका केतु ${ketuSignName} राशि में ${ketuHouseName} भाव में है, जो ${ketuSignName} की ऊर्जाओं में पूर्व जीवन की गहरी महारत दर्शाता है  –  एक ऐसा क्षेत्र जो इस जीवन में अनायास आता है लेकिन अकेले पूर्णता नहीं देता।`
-    : `Your Ketu in ${ketuSignName} in the ${ketuHouseName} house indicates deep past-life mastery in the energies of ${ketuSignName}  –  a domain that comes naturally in this life but no longer provides fulfilment on its own.`;
+  const pastLifeTheme = pickByScript(`Your Ketu in ${ketuSignName} in the ${ketuHouseName} house indicates deep past-life mastery in the energies of ${ketuSignName}  –  a domain that comes naturally in this life but no longer provides fulfilment on its own.`, `आपका केतु ${ketuSignName} राशि में ${ketuHouseName} भाव में है, जो ${ketuSignName} की ऊर्जाओं में पूर्व जीवन की गहरी महारत दर्शाता है  –  एक ऐसा क्षेत्र जो इस जीवन में अनायास आता है लेकिन अकेले पूर्णता नहीं देता।`, locale);
 
   const rahuPlanet = planets.find(p => p.planet.id === 7);
   const rahuSign = rahuPlanet?.sign ?? 1;
@@ -316,9 +297,7 @@ export function generateBNNReading(kundali: KundaliData, locale: string): BNNRea
   const rahuHouse = rahuPlanet?.house ?? 7;
   const rahuHouseName = tl(HOUSE_NAMES[rahuHouse] ?? { en: `${rahuHouse}th` }, locale);
 
-  const dharmaPath = locale === 'hi'
-    ? `आपका राहु ${rahuSignName} राशि में ${rahuHouseName} भाव में है  –  ${rahuSignName} के क्षेत्र में और ${rahuHouseName} भाव के विषयों में कदम रखना ही इस जन्म का धर्म मार्ग है। इस क्षेत्र में असुविधा और विकास आत्मा के विकास का संकेत है।`
-    : `Your Rahu in ${rahuSignName} in the ${rahuHouseName} house indicates that stepping into the domain of ${rahuSignName} and the themes of the ${rahuHouseName} house is this incarnation\'s dharma path. Discomfort and growth in this area signals the soul\'s forward movement.`;
+  const dharmaPath = pickByScript(`Your Rahu in ${rahuSignName} in the ${rahuHouseName} house indicates that stepping into the domain of ${rahuSignName} and the themes of the ${rahuHouseName} house is this incarnation\'s dharma path. Discomfort and growth in this area signals the soul\'s forward movement.`, `आपका राहु ${rahuSignName} राशि में ${rahuHouseName} भाव में है  –  ${rahuSignName} के क्षेत्र में और ${rahuHouseName} भाव के विषयों में कदम रखना ही इस जन्म का धर्म मार्ग है। इस क्षेत्र में असुविधा और विकास आत्मा के विकास का संकेत है।`, locale);
 
   return {
     planets: planetReadings,

@@ -8,7 +8,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LJ from '@/messages/learn/lagna.json';
-import { getHeadingFont, getBodyFont, isIndicLocale } from '@/lib/utils/locale-fonts';
+import { getHeadingFont, getBodyFont, isIndicLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import WhyItMatters from '@/components/learn/WhyItMatters';
 import BeginnerNote from '@/components/learn/BeginnerNote';
@@ -253,7 +253,7 @@ export default function LagnaPage() {
         <div className="mt-3 p-3 bg-gold-primary/5 rounded-lg border border-gold-primary/20">
           <p className="text-gold-primary/80 text-sm" style={bodyFont}>
             <Link href="/muhurta-ai" className="text-gold-light underline hover:text-gold-primary">
-              {locale === 'hi' ? 'मुहूर्त AI टूल आज़माएं →' : 'Try the Muhurta AI tool →'}
+              {pickByScript('Try the Muhurta AI tool →', 'मुहूर्त AI टूल आज़माएं →', locale)}
             </Link>
           </p>
         </div>

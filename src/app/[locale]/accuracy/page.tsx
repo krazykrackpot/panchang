@@ -1,5 +1,5 @@
 import { getLocale, setRequestLocale } from 'next-intl/server';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
@@ -395,7 +395,7 @@ export default async function AccuracyPage() {
             <div className="flex items-center gap-2 mb-4">
               <Calculator className="w-4 h-4 text-gold-primary" />
               <span className="text-gold-light font-semibold text-sm">
-                {locale === 'hi' ? 'गणना परिणाम' : 'Computed Output'} &mdash; {REFERENCE.locationName}, {REFERENCE.day}/{REFERENCE.month}/{REFERENCE.year}
+                {pickByScript('Computed Output', 'गणना परिणाम', locale)} &mdash; {REFERENCE.locationName}, {REFERENCE.day}/{REFERENCE.month}/{REFERENCE.year}
               </span>
             </div>
 
@@ -437,9 +437,7 @@ export default async function AccuracyPage() {
             </div>
 
             <p className="text-text-secondary/60 text-xs mt-4 leading-relaxed">
-              {locale === 'hi'
-                ? 'ये मान सर्वर पर वास्तविक खगोलीय गणना से उत्पन्न हुए हैं \u2014 पूर्व-निर्धारित नहीं।'
-                : 'These values are computed live on the server from real astronomical calculations \u2014 they are not hardcoded.'}
+              {pickByScript('These values are computed live on the server from real astronomical calculations \u2014 they are not hardcoded.', 'ये मान सर्वर पर वास्तविक खगोलीय गणना से उत्पन्न हुए हैं \u2014 पूर्व-निर्धारित नहीं।', locale)}
             </p>
           </div>
         </section>

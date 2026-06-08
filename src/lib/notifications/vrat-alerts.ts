@@ -12,6 +12,7 @@
 import type { PanchangAlert } from './panchang-alerts';
 import { TRACKABLE_VRATS, getWeeklyVratDay, getNextWeeklyDates } from '@/lib/vrat/trackable-vrats';
 import { tl } from '@/lib/utils/trilingual';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 interface CalendarEntry {
   name: { en: string; hi?: string; sa?: string };
@@ -82,10 +83,8 @@ export function generateVratAlerts(
         alerts.push({
           id: `vrat-${followedSlug}-${entry.date}`,
           type: 'festival',
-          title: locale === 'hi' ? `${displayName} कल` : `${displayName} Tomorrow`,
-          body: locale === 'hi'
-            ? `${displayName} ${entry.date} को है। व्रत की तैयारी करें।`
-            : `${displayName} is on ${entry.date}. Prepare for the observance.`,
+          title: pickByScript(`${displayName} Tomorrow`, `${displayName} कल`, locale),
+          body: pickByScript(`${displayName} is on ${entry.date}. Prepare for the observance.`, `${displayName} ${entry.date} को है। व्रत की तैयारी करें।`, locale),
           time: alertTime,
         });
       }
@@ -113,10 +112,8 @@ export function generateVratAlerts(
         alerts.push({
           id: `vrat-${followedSlug}-${dateStr}`,
           type: 'festival',
-          title: locale === 'hi' ? `${displayName} कल` : `${displayName} Tomorrow`,
-          body: locale === 'hi'
-            ? `${displayName} ${dateStr} को है। व्रत की तैयारी करें।`
-            : `${displayName} is on ${dateStr}. Prepare for the observance.`,
+          title: pickByScript(`${displayName} Tomorrow`, `${displayName} कल`, locale),
+          body: pickByScript(`${displayName} is on ${dateStr}. Prepare for the observance.`, `${displayName} ${dateStr} को है। व्रत की तैयारी करें।`, locale),
           time: alertTime,
         });
       }

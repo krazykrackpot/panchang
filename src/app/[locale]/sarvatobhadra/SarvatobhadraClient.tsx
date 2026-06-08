@@ -22,6 +22,7 @@ import { tl } from "@/lib/utils/trilingual";
 import GoldDivider from "@/components/ui/GoldDivider";
 import RelatedLinks from "@/components/ui/RelatedLinks";
 import { getLearnLinksForTool } from "@/lib/seo/cross-links";
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 // --------------- i18n labels ---------------
 
@@ -392,9 +393,7 @@ export default function SarvatobhadraClient() {
         if (cell.nakshatraId === 28)
           return locale === "sa"
             ? "अभिजित्"
-            : locale === "hi"
-              ? "अभिजित्"
-              : "Abhi";
+            : pickByScript("Abhi", "अभिजित्", locale);
         const nak = NAKSHATRAS.find((n) => n.id === cell.nakshatraId);
         if (!nak) return cell.value;
         const fullName = tl(nak.name, locale);
@@ -420,7 +419,7 @@ export default function SarvatobhadraClient() {
     (cell: SBCCell): string => {
       if (cell.type === "nakshatra") {
         if (cell.nakshatraId === 28)
-          return locale === "hi" ? "अभिजित् नक्षत्र" : "Abhijit Nakshatra";
+          return pickByScript("Abhijit Nakshatra", "अभिजित् नक्षत्र", locale);
         const nak = NAKSHATRAS.find((n) => n.id === cell.nakshatraId);
         return nak ? tl(nak.name, locale) : cell.value;
       }
@@ -462,39 +461,31 @@ export default function SarvatobhadraClient() {
         </summary>
         <div className="px-5 pb-5 space-y-3">
           <p className="text-sm text-text-secondary leading-relaxed">
-            {locale === "hi"
-              ? 'सर्वतोभद्र चक्र एक 9×9 ग्रिड है जो 28 नक्षत्रों, 7 वारों, 30 तिथियों, स्वरों और दिशाओं को एक संरचित मानचित्र में व्यवस्थित करता है। जब कोई गोचर ग्रह ग्रिड की किसी कोष्ठ पर स्थित होता है, तो वह उसी पंक्ति, स्तम्भ और विकर्ण पर "वेध" (पीड़ा/प्रभाव) डालता है। शुभ ग्रहों का वेध अनुकूल होता है; अशुभ ग्रहों का वेध प्रतिकूल।'
-              : 'The Sarvatobhadra Chakra is a 9×9 grid that maps all 28 nakshatras, 7 weekdays, 30 tithis, vowels, and directions into one structured chart. When a transiting planet occupies a cell, it casts "vedha" (aspect/affliction) along its row, column, and both diagonals  –  affecting every element in those lines. Benefic planets create favorable vedha; malefic planets create unfavorable vedha.'}
+            {pickByScript('The Sarvatobhadra Chakra is a 9×9 grid that maps all 28 nakshatras, 7 weekdays, 30 tithis, vowels, and directions into one structured chart. When a transiting planet occupies a cell, it casts "vedha" (aspect/affliction) along its row, column, and both diagonals  –  affecting every element in those lines. Benefic planets create favorable vedha; malefic planets create unfavorable vedha.', 'सर्वतोभद्र चक्र एक 9×9 ग्रिड है जो 28 नक्षत्रों, 7 वारों, 30 तिथियों, स्वरों और दिशाओं को एक संरचित मानचित्र में व्यवस्थित करता है। जब कोई गोचर ग्रह ग्रिड की किसी कोष्ठ पर स्थित होता है, तो वह उसी पंक्ति, स्तम्भ और विकर्ण पर "वेध" (पीड़ा/प्रभाव) डालता है। शुभ ग्रहों का वेध अनुकूल होता है; अशुभ ग्रहों का वेध प्रतिकूल।', locale)}
           </p>
           <div className="grid sm:grid-cols-3 gap-3 text-xs">
             <div className="bg-gold-primary/5 rounded-lg p-3 border border-gold-primary/10">
               <p className="text-gold-light font-medium mb-1">
-                {locale === "hi" ? "जन्म नक्षत्र वेध" : "Birth Nakshatra Vedha"}
+                {pickByScript("Birth Nakshatra Vedha", "जन्म नक्षत्र वेध", locale)}
               </p>
               <p className="text-text-secondary">
-                {locale === "hi"
-                  ? "यदि किसी ग्रह की वेध रेखा आपके जन्म नक्षत्र से गुज़रती है, तो वह ग्रह आप पर सीधा प्रभाव डालता है।"
-                  : "When a planet's vedha line passes through YOUR birth nakshatra, that planet directly influences you  –  for good (benefic) or challenge (malefic)."}
+                {pickByScript("When a planet's vedha line passes through YOUR birth nakshatra, that planet directly influences you  –  for good (benefic) or challenge (malefic).", "यदि किसी ग्रह की वेध रेखा आपके जन्म नक्षत्र से गुज़रती है, तो वह ग्रह आप पर सीधा प्रभाव डालता है।", locale)}
               </p>
             </div>
             <div className="bg-gold-primary/5 rounded-lg p-3 border border-gold-primary/10">
               <p className="text-gold-light font-medium mb-1">
-                {locale === "hi" ? "प्रभाव अवधि" : "Duration of Effect"}
+                {pickByScript("Duration of Effect", "प्रभाव अवधि", locale)}
               </p>
               <p className="text-text-secondary">
-                {locale === "hi"
-                  ? "वेध का प्रभाव तब तक रहता है जब तक गोचर ग्रह उस नक्षत्र में रहता है। चन्द्रमा ~1 दिन, सूर्य ~13 दिन, बृहस्पति ~13 मास।"
-                  : "Effects last as long as the transit planet stays in that nakshatra. Moon ~1 day, Sun ~13 days, Mars ~45 days, Jupiter ~13 months, Saturn ~13 months."}
+                {pickByScript("Effects last as long as the transit planet stays in that nakshatra. Moon ~1 day, Sun ~13 days, Mars ~45 days, Jupiter ~13 months, Saturn ~13 months.", "वेध का प्रभाव तब तक रहता है जब तक गोचर ग्रह उस नक्षत्र में रहता है। चन्द्रमा ~1 दिन, सूर्य ~13 दिन, बृहस्पति ~13 मास।", locale)}
               </p>
             </div>
             <div className="bg-gold-primary/5 rounded-lg p-3 border border-gold-primary/10">
               <p className="text-gold-light font-medium mb-1">
-                {locale === "hi" ? "शुभ बनाम अशुभ" : "Benefic vs Malefic"}
+                {pickByScript("Benefic vs Malefic", "शुभ बनाम अशुभ", locale)}
               </p>
               <p className="text-text-secondary">
-                {locale === "hi"
-                  ? "चन्द्र, बुध, गुरु, शुक्र = शुभ। सूर्य, मंगल, शनि, राहु, केतु = अशुभ। यदि शुभ और अशुभ दोनों एक ही तत्व पर वेध करें, तो अशुभ प्रबल होता है।"
-                  : "Moon, Mercury, Jupiter, Venus = benefic. Sun, Mars, Saturn, Rahu, Ketu = malefic. When both strike the same element, malefic overrides benefic."}
+                {pickByScript("Moon, Mercury, Jupiter, Venus = benefic. Sun, Mars, Saturn, Rahu, Ketu = malefic. When both strike the same element, malefic overrides benefic.", "चन्द्र, बुध, गुरु, शुक्र = शुभ। सूर्य, मंगल, शनि, राहु, केतु = अशुभ। यदि शुभ और अशुभ दोनों एक ही तत्व पर वेध करें, तो अशुभ प्रबल होता है।", locale)}
               </p>
             </div>
           </div>
@@ -593,12 +584,10 @@ export default function SarvatobhadraClient() {
               {/* Gantt Chart  –  Calendar Timeline */}
               <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 sm:p-6">
                 <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-1 font-bold">
-                  {locale === "hi" ? "गोचर समयरेखा" : "Transit Timeline"}
+                  {pickByScript("Transit Timeline", "गोचर समयरेखा", locale)}
                 </h2>
                 <p className="text-[11px] text-text-secondary/60 mb-4">
-                  {locale === "hi"
-                    ? "प्रत्येक ग्रह वर्तमान नक्षत्र में कब से कब तक रहेगा। चमकीले बार आपके जन्म नक्षत्र पर वेध करते हैं।"
-                    : "Each bar shows when a planet enters and exits its current nakshatra. Bright bars = vedha on your birth nakshatra."}
+                  {pickByScript("Each bar shows when a planet enters and exits its current nakshatra. Bright bars = vedha on your birth nakshatra.", "प्रत्येक ग्रह वर्तमान नक्षत्र में कब से कब तक रहेगा। चमकीले बार आपके जन्म नक्षत्र पर वेध करते हैं।", locale)}
                 </p>
                 {currentTransits.length === 0 ? (
                   <div className="h-32 animate-pulse rounded-xl bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27]/40" />
@@ -646,7 +635,7 @@ export default function SarvatobhadraClient() {
 
                     const formatDate = (d: Date) =>
                       d.toLocaleDateString(
-                        locale === "hi" ? "hi-IN" : "en-GB",
+                        pickByScript("en-GB", "hi-IN", locale),
                         { day: "numeric", month: "short" },
                       );
 
@@ -765,7 +754,7 @@ export default function SarvatobhadraClient() {
                             className="absolute text-[9px] text-gold-primary/60 -translate-x-1/2"
                             style={{ left: `${todayPct}%` }}
                           >
-                            {locale === "hi" ? "आज" : "Today"}
+                            {pickByScript("Today", "आज", locale)}
                           </span>
                         </div>
                       </div>
@@ -775,21 +764,19 @@ export default function SarvatobhadraClient() {
                 <div className="mt-2 flex flex-wrap gap-3 text-[10px] text-text-secondary/50">
                   <span className="flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-emerald-500/40" />{" "}
-                    {locale === "hi" ? "शुभ" : "Benefic"}
+                    {pickByScript("Benefic", "शुभ", locale)}
                   </span>
                   <span className="flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-red-500/40" />{" "}
-                    {locale === "hi" ? "अशुभ" : "Malefic"}
+                    {pickByScript("Malefic", "अशुभ", locale)}
                   </span>
                   <span className="flex items-center gap-1">
                     <span className="text-gold-primary">●</span>{" "}
-                    {locale === "hi"
-                      ? "आपके नक्षत्र पर वेध"
-                      : "Strikes your nak."}
+                    {pickByScript("Strikes your nak.", "आपके नक्षत्र पर वेध", locale)}
                   </span>
                   <span className="flex items-center gap-1">
                     <span className="w-px h-3 bg-gold-primary/30 inline-block" />{" "}
-                    {locale === "hi" ? "आज" : "Today"}
+                    {pickByScript("Today", "आज", locale)}
                   </span>
                 </div>
               </div>
@@ -814,7 +801,7 @@ export default function SarvatobhadraClient() {
                   (t) => t.planetId === tv.planetId,
                 );
                 const formatD = (d: Date) =>
-                  d.toLocaleDateString(locale === "hi" ? "hi-IN" : "en-GB", {
+                  d.toLocaleDateString(pickByScript("en-GB", "hi-IN", locale), {
                     day: "numeric",
                     month: "short",
                   });

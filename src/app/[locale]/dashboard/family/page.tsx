@@ -33,7 +33,7 @@ import { getCurrentTransitSigns } from '@/lib/kundali/family-synthesis/transit-s
 import { getAllExtendedActivities } from '@/lib/muhurta/activity-rules-extended';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
-import { getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
+import { getHeadingFont, getBodyFont, pickByScript } from '@/lib/utils/locale-fonts';
 import { findArticleSlug, getMoonSignEffect, TRANSIT_ARTICLES } from '@/lib/content/transit-articles';
 import { RASHIS } from '@/lib/constants/rashis';
 import FamilyCard from '@/components/dashboard/FamilyCard';
@@ -520,7 +520,7 @@ export default function FamilyCommandCenter() {
           {memberStatuses.some(ms => ms.ascendantSign > 0) && (
             <div className="mb-6">
               <p className="text-text-secondary text-xs tracking-widest uppercase mb-3">
-                {locale === 'hi' ? 'परिवार के आदर्शरूप' : 'Family Archetypes'}
+                {pickByScript('Family Archetypes', 'परिवार के आदर्शरूप', locale)}
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4">
                 {memberStatuses.filter(ms => ms.ascendantSign > 0).map((ms) => (
@@ -872,7 +872,7 @@ function MemberStatusCard({
                 <span style={bodyStyle}>
                   <span className="text-gold-primary/80 font-medium">{link.title.en.split(':')[0]}</span>
                   {'  –  '}
-                  {link.house}{locale === 'en' ? (link.house === 1 ? 'st' : link.house === 2 ? 'nd' : link.house === 3 ? 'rd' : 'th') : ''} {locale === 'hi' ? 'भाव' : 'house'}
+                  {link.house}{locale === 'en' ? (link.house === 1 ? 'st' : link.house === 2 ? 'nd' : link.house === 3 ? 'rd' : 'th') : ''} {pickByScript('house', 'भाव', locale)}
                   {': '}{link.headline}
                 </span>
               </Link>

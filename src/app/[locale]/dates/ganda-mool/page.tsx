@@ -18,7 +18,7 @@ import { Link } from "@/lib/i18n/navigation";
 import { tl } from "@/lib/utils/trilingual";
 import { generateBreadcrumbLD } from "@/lib/seo/structured-data";
 import type { Locale, LocaleText } from "@/types/panchang";
-import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { isDevanagariLocale, pickByScript } from "@/lib/utils/locale-fonts";
 import { safeJsonLd } from "@/lib/seo/safe-jsonld";
 import { useLocationStore } from "@/stores/location-store";
 import AuthorByline from "@/components/ui/AuthorByline";
@@ -291,11 +291,11 @@ export default function GandaMoolPage() {
                           {monthEntries.map((e, i) => {
                             const dateObj = new Date(e.startDate + "T12:00:00");
                             const dayName = dateObj.toLocaleDateString(
-                              locale === "hi" ? "hi-IN" : "en-US",
+                              pickByScript("en-US", "hi-IN", locale),
                               { weekday: "short" },
                             );
                             const dateDisplay = dateObj.toLocaleDateString(
-                              locale === "hi" ? "hi-IN" : "en-US",
+                              pickByScript("en-US", "hi-IN", locale),
                               { day: "numeric", month: "short" },
                             );
                             return (

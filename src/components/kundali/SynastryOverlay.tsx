@@ -14,7 +14,7 @@ import {
 import type { SynastryAspect } from '@/lib/comparison/synastry-engine';
 import type { KundaliData, ChartData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 
 /* ─── Labels ────────────────────────────────────────────────────────────── */
 
@@ -311,16 +311,16 @@ export default function SynastryOverlay({ chartA, chartB, nameA, nameB, locale, 
                   {overlayName} {t(L.planet, locale)}
                 </th>
                 <th className="text-left py-2.5 px-3 text-gold-primary font-semibold text-xs">
-                  {locale === 'hi' ? 'राशि' : 'Sign'}
+                  {pickByScript('Sign', 'राशि', locale)}
                 </th>
                 <th className="text-center py-2.5 px-3 text-gold-primary font-semibold text-xs">
-                  {baseName} {locale === 'hi' ? 'भाव' : 'House'}
+                  {baseName} {pickByScript('House', 'भाव', locale)}
                 </th>
                 <th className="text-left py-2.5 px-3 text-gold-primary font-semibold text-xs">
-                  {locale === 'hi' ? 'अर्थ' : 'Signification'}
+                  {pickByScript('Signification', 'अर्थ', locale)}
                 </th>
                 <th className="text-center py-2.5 px-3 text-gold-primary font-semibold text-xs">
-                  {locale === 'hi' ? 'प्रभाव' : 'Effect'}
+                  {pickByScript('Effect', 'प्रभाव', locale)}
                 </th>
               </tr>
             </thead>
@@ -354,7 +354,7 @@ export default function SynastryOverlay({ chartA, chartB, nameA, nameB, locale, 
                       <span className="text-gold-light font-bold text-sm">{entry.houseInA}</span>
                     </td>
                     <td className="py-2.5 px-3 text-text-tertiary text-xs">
-                      {HOUSE_SIGNIFICANCE[entry.houseInA]?.[locale === 'hi' ? 'hi' : 'en'] ?? ''}
+                      {HOUSE_SIGNIFICANCE[entry.houseInA]?.[pickByScript('en', 'hi', locale)] ?? ''}
                     </td>
                     <td className="py-2.5 px-3 text-center">
                       <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${qualColor}`}>

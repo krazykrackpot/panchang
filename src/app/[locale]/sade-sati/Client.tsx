@@ -26,7 +26,7 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import InfoBlock from '@/components/ui/InfoBlock';
 import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { User } from 'lucide-react';
@@ -431,7 +431,7 @@ export default function SadeSatiClient({ saturnNow: saturnNowProp }: SadeSatiCli
         <motion.div {...fadeUp} className="mb-10">
           <h2 className="text-lg font-bold text-gold-light mb-4 flex items-center gap-2" style={headingFont}>
             <User size={18} className="text-gold-primary" />
-            {locale === 'hi' ? 'आपकी कुण्डलियाँ' : 'Your Charts'}
+            {pickByScript('Your Charts', 'आपकी कुण्डलियाँ', locale)}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {savedCharts.map(chart => {
@@ -456,11 +456,11 @@ export default function SadeSatiClient({ saturnNow: saturnNowProp }: SadeSatiCli
                       <span className="text-text-secondary text-xs animate-pulse">...</span>
                     ) : isActive ? (
                       <span className="text-xs px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 border border-red-500/25 font-bold">
-                        {locale === 'hi' ? 'सक्रिय' : 'ACTIVE'}
+                        {pickByScript('ACTIVE', 'सक्रिय', locale)}
                       </span>
                     ) : (
                       <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/20 font-bold">
-                        {locale === 'hi' ? 'नहीं' : 'NOT ACTIVE'}
+                        {pickByScript('NOT ACTIVE', 'नहीं', locale)}
                       </span>
                     )}
                   </div>
@@ -468,7 +468,7 @@ export default function SadeSatiClient({ saturnNow: saturnNowProp }: SadeSatiCli
                     <div className="flex items-center gap-1.5">
                       <RashiIconById id={chart.moonSign} size={14} className="text-gold-primary/60" />
                       <span className="text-text-secondary text-xs" style={bodyFont}>
-                        {locale === 'hi' ? 'चन्द्र' : 'Moon'}: {tl(moonName, locale)}
+                        {pickByScript('Moon', 'चन्द्र', locale)}: {tl(moonName, locale)}
                       </span>
                       {phase && (
                         <span className="text-text-secondary/50 text-xs ml-auto">
@@ -483,7 +483,7 @@ export default function SadeSatiClient({ saturnNow: saturnNowProp }: SadeSatiCli
           </div>
           {chartsLoading && (
             <p className="text-text-secondary text-sm text-center mt-3 animate-pulse" style={bodyFont}>
-              {locale === 'hi' ? 'कुण्डलियाँ लोड हो रही हैं...' : 'Loading your charts...'}
+              {pickByScript('Loading your charts...', 'कुण्डलियाँ लोड हो रही हैं...', locale)}
             </p>
           )}
           <GoldDivider />
@@ -678,9 +678,9 @@ export default function SadeSatiClient({ saturnNow: saturnNowProp }: SadeSatiCli
                   </div>
                   {/* Phase labels */}
                   <div className="flex justify-between mt-1 text-[10px] text-text-secondary/50">
-                    <span>{locale === 'hi' ? 'उदय' : 'Rising'}</span>
-                    <span>{locale === 'hi' ? 'चरम' : 'Peak'}</span>
-                    <span>{locale === 'hi' ? 'अवसान' : 'Setting'}</span>
+                    <span>{pickByScript('Rising', 'उदय', locale)}</span>
+                    <span>{pickByScript('Peak', 'चरम', locale)}</span>
+                    <span>{pickByScript('Setting', 'अवसान', locale)}</span>
                   </div>
                   {/* Degree + percentage */}
                   <div className="text-center mt-2">
@@ -690,16 +690,12 @@ export default function SadeSatiClient({ saturnNow: saturnNowProp }: SadeSatiCli
                     </span>
                   </div>
                   <p className="text-text-secondary/60 text-xs text-center mt-1">
-                    {locale === 'hi'
-                      ? `शनि वर्तमान में ${analysis.saturnDegree.toFixed(1)}°  –  ${analysis.currentPhase === 'rising' ? 'पहली' : analysis.currentPhase === 'peak' ? 'दूसरी' : 'तीसरी'} राशि में`
-                      : `Saturn at ${analysis.saturnDegree.toFixed(1)}° in ${analysis.currentPhase === 'rising' ? '1st' : analysis.currentPhase === 'peak' ? '2nd' : '3rd'} sign of transit`}
+                    {pickByScript(`Saturn at ${analysis.saturnDegree.toFixed(1)}° in ${analysis.currentPhase === 'rising' ? '1st' : analysis.currentPhase === 'peak' ? '2nd' : '3rd'} sign of transit`, `शनि वर्तमान में ${analysis.saturnDegree.toFixed(1)}°  –  ${analysis.currentPhase === 'rising' ? 'पहली' : analysis.currentPhase === 'peak' ? 'दूसरी' : 'तीसरी'} राशि में`, locale)}
                   </p>
                   {/* Retrograde speed explanation */}
                   <div className="mt-3 px-3 py-2 rounded-lg bg-white/[0.03] border border-white/5">
                     <p className="text-text-secondary/70 text-xs leading-relaxed" style={bodyFont}>
-                      {locale === 'hi'
-                        ? 'शनि की गति राशि में एकसमान नहीं होती। वक्री (retrograde) स्टेशनों के निकट शनि 0°/दिन तक धीमा हो जाता है  –  यही काल सबसे तीव्र प्रभाव का होता है। यह वास्तविक गति नहीं बल्कि पृथ्वी से देखी गई भासमान गति है।'
-                        : "Saturn's speed through the sign is not uniform. Near retrograde stations, it slows to 0°/day  –  this is when effects are felt most intensely. This is apparent (geocentric) speed, not real orbital speed. Saturn's actual orbit is nearly circular; the variation comes from Earth overtaking Saturn, like a slower car appearing to reverse when you pass it."}
+                      {pickByScript("Saturn's speed through the sign is not uniform. Near retrograde stations, it slows to 0°/day  –  this is when effects are felt most intensely. This is apparent (geocentric) speed, not real orbital speed. Saturn's actual orbit is nearly circular; the variation comes from Earth overtaking Saturn, like a slower car appearing to reverse when you pass it.", 'शनि की गति राशि में एकसमान नहीं होती। वक्री (retrograde) स्टेशनों के निकट शनि 0°/दिन तक धीमा हो जाता है  –  यही काल सबसे तीव्र प्रभाव का होता है। यह वास्तविक गति नहीं बल्कि पृथ्वी से देखी गई भासमान गति है।', locale)}
                     </p>
                   </div>
                 </div>
@@ -876,7 +872,7 @@ export default function SadeSatiClient({ saturnNow: saturnNowProp }: SadeSatiCli
                     {cycle.isActive && analysis.nakshatraTimeline.length > 0 && (
                       <div className="mt-4 pt-4 border-t border-gold-primary/10">
                         <div className="text-xs text-gold-dark uppercase tracking-widest font-bold mb-3">
-                          {locale === 'hi' ? 'चरण-वार गोचर मानचित्र' : 'Phase-wise Transit Map'}
+                          {pickByScript('Phase-wise Transit Map', 'चरण-वार गोचर मानचित्र', locale)}
                         </div>
                         {(['rising', 'peak', 'setting'] as const).map(phase => {
                           const phaseNaks = analysis.nakshatraTimeline.filter(nt => nt.phase === phase);
@@ -897,7 +893,7 @@ export default function SadeSatiClient({ saturnNow: saturnNowProp }: SadeSatiCli
                                   </span>
                                   {isCurrent && (
                                     <span className="text-[10px] px-1.5 py-0.5 rounded bg-gold-primary/15 text-gold-light font-bold">
-                                      {locale === 'hi' ? 'वर्तमान' : 'CURRENT'}
+                                      {pickByScript('CURRENT', 'वर्तमान', locale)}
                                     </span>
                                   )}
                                 </div>
@@ -934,7 +930,7 @@ export default function SadeSatiClient({ saturnNow: saturnNowProp }: SadeSatiCli
                                       {nt.isCurrent && <span className="w-1.5 h-1.5 rounded-full bg-gold-primary animate-pulse" />}
                                       <span>{nakName}</span>
                                       <span className="opacity-50 font-mono">{yearLabel}</span>
-                                      {nt.isBirthNakshatra && <span className="text-[9px] uppercase tracking-wider text-amber-400">{locale === 'hi' ? 'जन्म' : 'Birth'}</span>}
+                                      {nt.isBirthNakshatra && <span className="text-[9px] uppercase tracking-wider text-amber-400">{pickByScript('Birth', 'जन्म', locale)}</span>}
                                     </div>
                                   );
                                 })}

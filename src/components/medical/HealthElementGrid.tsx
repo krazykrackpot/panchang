@@ -16,6 +16,7 @@ import { tl } from '@/lib/utils/trilingual';
 import type { NatalElement } from '@/lib/kundali/health-diagnosis/types';
 import type { Rating } from '@/lib/kundali/domain-synthesis/types';
 import type { LocaleText } from '@/types/panchang';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 // ─── Rating colour helpers (static — no dynamic Tailwind) ────────────────────
 
@@ -156,19 +157,17 @@ export default function HealthElementGrid({
         >
           {extendedLoading ? (
             <span className="animate-pulse">
-              {locale === 'hi' ? 'लोड हो रहा है...' : 'Loading extended analysis…'}
+              {pickByScript('Loading extended analysis…', 'लोड हो रहा है...', locale)}
             </span>
           ) : optedInToExtended ? (
-            locale === 'hi' ? 'विस्तारित विश्लेषण सक्रिय' : 'Extended analysis active (22 elements)'
+            pickByScript('Extended analysis active (22 elements)', 'विस्तारित विश्लेषण सक्रिय', locale)
           ) : (
-            locale === 'hi' ? 'विस्तारित विश्लेषण देखें' : 'Unlock extended analysis (22 elements)'
+            pickByScript('Unlock extended analysis (22 elements)', 'विस्तारित विश्लेषण देखें', locale)
           )}
         </button>
         {!optedInToExtended && (
           <p className="text-[11px] text-text-secondary/50 mt-1.5">
-            {locale === 'hi'
-              ? 'एलर्जी, कैंसर प्रवृत्ति और दीर्घायु विश्लेषण सहित।'
-              : 'Includes allergies, cancer tendency, and longevity analysis.'}
+            {pickByScript('Includes allergies, cancer tendency, and longevity analysis.', 'एलर्जी, कैंसर प्रवृत्ति और दीर्घायु विश्लेषण सहित।', locale)}
           </p>
         )}
       </div>

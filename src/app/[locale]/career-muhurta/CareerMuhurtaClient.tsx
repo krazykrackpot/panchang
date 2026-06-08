@@ -25,7 +25,7 @@ import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { CITIES, type CityData } from '@/lib/constants/cities';
 import { useLocationStore } from '@/stores/location-store';
 import { tl } from '@/lib/utils/trilingual';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import { CAREER_ACTIVITY_IDS, type CareerActivityId } from '@/types/muhurta-ai';
 import { CAREER_CONTENT } from '@/lib/career/career-content';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
@@ -125,7 +125,7 @@ export default function CareerMuhurtaClient({ defaultActivity = 'job_interview',
   }, [dates, city, activity]);
 
   const labelFor = (rating: VerdictRating | null): string => {
-    if (!rating) return locale === 'ta' ? 'கிடைக்கவில்லை' : locale === 'hi' ? 'उपलब्ध नहीं' : 'No window';
+    if (!rating) return locale === 'ta' ? 'கிடைக்கவில்லை' : pickByScript('No window', 'उपलब्ध नहीं', locale);
     const ls = VERDICT_STYLE[rating].label;
     return locale === 'ta' ? ls.ta : isDevanagari ? ls.hi : ls.en;
   };

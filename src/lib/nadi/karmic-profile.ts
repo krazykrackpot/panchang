@@ -12,6 +12,7 @@
 import type { KundaliData } from '@/types/kundali';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 // Sign lordship: sign → planet id
 const SIGN_LORD: Record<number, number> = {
@@ -119,16 +120,12 @@ export function computeKarmicProfile(kundali: KundaliData, locale: string): Karm
 
   // Ketu reading
   const ketuTheme = KETU_PAST_LIFE_THEMES[ketuSign];
-  const ketuThemeText = locale === 'hi' ? (ketuTheme?.hi ?? '') : (ketuTheme?.en ?? '');
-  const ketuHouseName = locale === 'hi' ? HOUSE_NAMES_HI[ketuHouse] : HOUSE_NAMES_EN[ketuHouse];
-  const ketuReading = locale === 'hi'
-    ? `${ketuSignName} राशि में ${ketuHouseName} भाव में केतु इंगित करता है कि आप पूर्व जन्म में ${ketuThemeText} थे। यह क्षेत्र इस जीवन में स्वाभाविक रूप से आता है लेकिन अकेले पूर्णता प्रदान नहीं करता।`
-    : `Ketu in ${ketuSignName} in the ${ketuHouseName} house indicates you were ${ketuThemeText} in past lives. This domain comes naturally in this life but no longer provides complete fulfilment on its own.`;
+  const ketuThemeText = pickByScript((ketuTheme?.en ?? ''), (ketuTheme?.hi ?? ''), locale);
+  const ketuHouseName = pickByScript(HOUSE_NAMES_EN[ketuHouse], HOUSE_NAMES_HI[ketuHouse], locale);
+  const ketuReading = pickByScript(`Ketu in ${ketuSignName} in the ${ketuHouseName} house indicates you were ${ketuThemeText} in past lives. This domain comes naturally in this life but no longer provides complete fulfilment on its own.`, `${ketuSignName} राशि में ${ketuHouseName} भाव में केतु इंगित करता है कि आप पूर्व जन्म में ${ketuThemeText} थे। यह क्षेत्र इस जीवन में स्वाभाविक रूप से आता है लेकिन अकेले पूर्णता प्रदान नहीं करता।`, locale);
 
   // Past-life theme narrative
-  const pastLifeTheme = locale === 'hi'
-    ? `पूर्व जन्म का मुख्य विषय: ${ketuSignName} में ${ketuHouseName} भाव के केतु की ऊर्जाओं में महारत। इस जीवन में इन पुराने पैटर्नों को जाने देना आत्मा के विकास की कुंजी है।`
-    : `Primary past-life theme: mastery in the energies of Ketu in ${ketuSignName} in the ${ketuHouseName} house. Releasing these old patterns in this life is key to the soul\'s forward movement.`;
+  const pastLifeTheme = pickByScript(`Primary past-life theme: mastery in the energies of Ketu in ${ketuSignName} in the ${ketuHouseName} house. Releasing these old patterns in this life is key to the soul\'s forward movement.`, `पूर्व जन्म का मुख्य विषय: ${ketuSignName} में ${ketuHouseName} भाव के केतु की ऊर्जाओं में महारत। इस जीवन में इन पुराने पैटर्नों को जाने देना आत्मा के विकास की कुंजी है।`, locale);
 
   // 5th lord analysis → Purva Punya
   const fifthHouseSign = ((ascendantSign - 1 + 4) % 12) + 1;
@@ -136,14 +133,12 @@ export function computeKarmicProfile(kundali: KundaliData, locale: string): Karm
   const fifthLordPlanet = planets.find(p => p.planet.id === fifthLordId);
   const fifthLordSign = fifthLordPlanet?.sign ?? fifthHouseSign;
   const purvaPunyaTheme = PURVA_PUNYA_THEMES[fifthLordSign];
-  const fifthLordName = locale === 'hi' ? (PLANET_NAMES_HI[fifthLordId] ?? '') : (PLANET_NAMES_EN[fifthLordId] ?? '');
+  const fifthLordName = pickByScript((PLANET_NAMES_EN[fifthLordId] ?? ''), (PLANET_NAMES_HI[fifthLordId] ?? ''), locale);
   const fifthLordSignRashi = RASHIS.find(r => r.id === fifthLordSign);
   const fifthLordSignName = tl(fifthLordSignRashi?.name ?? { en: 'Unknown' }, locale);
-  const purvaPunyaThemeText = locale === 'hi' ? (purvaPunyaTheme?.hi ?? '') : (purvaPunyaTheme?.en ?? '');
+  const purvaPunyaThemeText = pickByScript((purvaPunyaTheme?.en ?? ''), (purvaPunyaTheme?.hi ?? ''), locale);
 
-  const purvaPunya = locale === 'hi'
-    ? `पंचम भाव के स्वामी ${fifthLordName} ${fifthLordSignName} राशि में स्थित हैं, जो पूर्व पुण्य दर्शाता है: ${purvaPunyaThemeText}। यह पुण्य इस जन्म में अनुग्रह, सहायता और अनायास अवसरों के रूप में प्रकट होता है।`
-    : `The 5th lord ${fifthLordName} is placed in ${fifthLordSignName}, indicating Purva Punya (past merit) in the area of ${purvaPunyaThemeText}. This merit manifests as grace, support, and unexpected opportunities in this life.`;
+  const purvaPunya = pickByScript(`The 5th lord ${fifthLordName} is placed in ${fifthLordSignName}, indicating Purva Punya (past merit) in the area of ${purvaPunyaThemeText}. This merit manifests as grace, support, and unexpected opportunities in this life.`, `पंचम भाव के स्वामी ${fifthLordName} ${fifthLordSignName} राशि में स्थित हैं, जो पूर्व पुण्य दर्शाता है: ${purvaPunyaThemeText}। यह पुण्य इस जन्म में अनुग्रह, सहायता और अनायास अवसरों के रूप में प्रकट होता है।`, locale);
 
   // 9th lord analysis → dharmic inheritance
   const ninthHouseSign = ((ascendantSign - 1 + 8) % 12) + 1;
@@ -152,17 +147,13 @@ export function computeKarmicProfile(kundali: KundaliData, locale: string): Karm
   const ninthLordSign = ninthLordPlanet?.sign ?? ninthHouseSign;
   const ninthLordSignRashi = RASHIS.find(r => r.id === ninthLordSign);
   const ninthLordSignName = tl(ninthLordSignRashi?.name ?? { en: 'Unknown' }, locale);
-  const ninthLordName = locale === 'hi' ? (PLANET_NAMES_HI[ninthLordId] ?? '') : (PLANET_NAMES_EN[ninthLordId] ?? '');
-  const rahuHouseName = locale === 'hi' ? HOUSE_NAMES_HI[rahuHouse] : HOUSE_NAMES_EN[rahuHouse];
+  const ninthLordName = pickByScript((PLANET_NAMES_EN[ninthLordId] ?? ''), (PLANET_NAMES_HI[ninthLordId] ?? ''), locale);
+  const rahuHouseName = pickByScript(HOUSE_NAMES_EN[rahuHouse], HOUSE_NAMES_HI[rahuHouse], locale);
 
-  const dharmaPath = locale === 'hi'
-    ? `नवम भाव के स्वामी ${ninthLordName} ${ninthLordSignName} में हैं, जो इस जन्म का धर्म विरासत दर्शाता है। राहु ${rahuSignName} में ${rahuHouseName} भाव में है  –  ${rahuSignName} की ऊर्जाओं और ${rahuHouseName} भाव के विषयों में कदम रखना ही इस आत्मा का आगे बढ़ने का मार्ग है।`
-    : `The 9th lord ${ninthLordName} in ${ninthLordSignName} indicates the dharmic inheritance of this incarnation. Rahu in ${rahuSignName} in the ${rahuHouseName} house points the way forward  –  stepping into the energies of ${rahuSignName} and the themes of the ${rahuHouseName} house is the soul\'s evolutionary directive.`;
+  const dharmaPath = pickByScript(`The 9th lord ${ninthLordName} in ${ninthLordSignName} indicates the dharmic inheritance of this incarnation. Rahu in ${rahuSignName} in the ${rahuHouseName} house points the way forward  –  stepping into the energies of ${rahuSignName} and the themes of the ${rahuHouseName} house is the soul\'s evolutionary directive.`, `नवम भाव के स्वामी ${ninthLordName} ${ninthLordSignName} में हैं, जो इस जन्म का धर्म विरासत दर्शाता है। राहु ${rahuSignName} में ${rahuHouseName} भाव में है  –  ${rahuSignName} की ऊर्जाओं और ${rahuHouseName} भाव के विषयों में कदम रखना ही इस आत्मा का आगे बढ़ने का मार्ग है।`, locale);
 
   // Summary
-  const summary = locale === 'hi'
-    ? `आपकी आत्मा ${ketuSignName} और ${ketuHouseName} भाव में पूर्व जन्म की महारत लेकर आई है। इस जन्म का उद्देश्य ${rahuSignName} और ${rahuHouseName} भाव की चुनौतियों में विकसित होना है, ${purvaPunyaThemeText} के पुण्य का उपयोग करते हुए।`
-    : `Your soul carries past-life mastery in ${ketuSignName} and the ${ketuHouseName} house. This life\'s purpose is to evolve into the challenges of ${rahuSignName} and the ${rahuHouseName} house, drawing on the merit of ${purvaPunyaThemeText}.`;
+  const summary = pickByScript(`Your soul carries past-life mastery in ${ketuSignName} and the ${ketuHouseName} house. This life\'s purpose is to evolve into the challenges of ${rahuSignName} and the ${rahuHouseName} house, drawing on the merit of ${purvaPunyaThemeText}.`, `आपकी आत्मा ${ketuSignName} और ${ketuHouseName} भाव में पूर्व जन्म की महारत लेकर आई है। इस जन्म का उद्देश्य ${rahuSignName} और ${rahuHouseName} भाव की चुनौतियों में विकसित होना है, ${purvaPunyaThemeText} के पुण्य का उपयोग करते हुए।`, locale);
 
   return {
     ketuSign,

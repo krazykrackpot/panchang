@@ -3,6 +3,7 @@
  */
 
 import { locales } from '@/lib/i18n/config';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 const BASE_URL = 'https://dekhopanchang.com';
 
@@ -428,14 +429,12 @@ export function generateYogaCollectionLD(locale: string, count: number): object 
   return {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: locale === 'hi' ? 'योग विश्वकोश — वैदिक ज्योतिष योग' : 'Yoga Encyclopedia — Vedic Astrology Yogas',
-    description: locale === 'hi'
-      ? `${count} वैदिक ज्योतिष योगों का विस्तृत विवरण — निर्माण नियम, प्रभाव, उपाय और शास्त्रीय सन्दर्भ।`
-      : `Comprehensive guide to ${count} Vedic astrology yogas — formation rules, effects, remedies, and classical references.`,
+    name: pickByScript('Yoga Encyclopedia — Vedic Astrology Yogas', 'योग विश्वकोश — वैदिक ज्योतिष योग', locale),
+    description: pickByScript(`Comprehensive guide to ${count} Vedic astrology yogas — formation rules, effects, remedies, and classical references.`, `${count} वैदिक ज्योतिष योगों का विस्तृत विवरण — निर्माण नियम, प्रभाव, उपाय और शास्त्रीय सन्दर्भ।`, locale),
     url,
     mainEntityOfPage: url,
     numberOfItems: count,
     provider: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
-    inLanguage: locale === 'hi' ? 'hi-IN' : 'en-US',
+    inLanguage: pickByScript('en-US', 'hi-IN', locale),
   };
 }

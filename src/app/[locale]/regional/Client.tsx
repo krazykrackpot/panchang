@@ -32,7 +32,7 @@ import type { LocaleText, Locale } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import MSG from '@/messages/pages/regional.json';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import type { MonthBoundary, RegionalNewYear, RegionalCalendarId } from '@/lib/calendar/regional-calendar-boundaries';
 
 // Year range matches `/calendars/masa` (HINDU_YEAR_RANGE) so users get
@@ -496,12 +496,10 @@ export default function RegionalCalendarsClient({ cards, year, locale }: ClientP
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-gold-light text-xl sm:text-2xl font-bold mb-2" style={headingFont}>
-                {locale === 'hi' ? 'इस्कॉन वैष्णव पंचांग' : 'ISKCON Vaishnava Calendar'}
+                {pickByScript('ISKCON Vaishnava Calendar', 'इस्कॉन वैष्णव पंचांग', locale)}
               </h3>
               <p className="text-text-secondary text-sm max-w-2xl">
-                {locale === 'hi'
-                  ? 'गौड़ीय वैष्णव पर्व, एकादशी (महा द्वादशी नियमों सहित), और आचार्यों के प्रकट/तिरोभाव दिवस'
-                  : 'Gaudiya Vaishnava festivals, Ekadashi with Maha Dvadashi rules, and acharya appearance/disappearance days'}
+                {pickByScript('Gaudiya Vaishnava festivals, Ekadashi with Maha Dvadashi rules, and acharya appearance/disappearance days', 'गौड़ीय वैष्णव पर्व, एकादशी (महा द्वादशी नियमों सहित), और आचार्यों के प्रकट/तिरोभाव दिवस', locale)}
               </p>
             </div>
             <ArrowRight className="w-6 h-6 text-gold-primary group-hover:translate-x-1 transition-transform flex-shrink-0" />

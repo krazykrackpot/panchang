@@ -14,6 +14,7 @@
 import { Link } from '@/lib/i18n/navigation';
 import { ChevronRight } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 interface Props {
   /** Festival slug */
@@ -38,8 +39,8 @@ function formatDate(iso: string, locale: Locale): string {
   const [, mm, dd] = iso.split('-');
   const monthIdx = parseInt(mm, 10) - 1;
   const day = parseInt(dd, 10);
-  const month = locale === 'hi' ? MONTH_NAMES_HI[monthIdx] : MONTH_NAMES_EN[monthIdx];
-  return locale === 'hi' ? `${day} ${month}` : `${month} ${day}`;
+  const month = pickByScript(MONTH_NAMES_EN[monthIdx], MONTH_NAMES_HI[monthIdx], locale);
+  return pickByScript(`${month} ${day}`, `${day} ${month}`, locale);
 }
 
 export default function FestivalHistoricalArchive({
@@ -51,13 +52,9 @@ export default function FestivalHistoricalArchive({
   futureYears,
   locale,
 }: Props) {
-  const sectionTitle = locale === 'hi'
-    ? `${festivalNameHi} वर्षों में — २०२०-२०३०`
-    : `${festivalNameEn} Across the Years — 2020-2030`;
+  const sectionTitle = pickByScript(`${festivalNameEn} Across the Years — 2020-2030`, `${festivalNameHi} वर्षों में — २०२०-२०३०`, locale);
 
-  const subtitle = locale === 'hi'
-    ? 'पिछले एवं भविष्य के वर्षों की तिथियाँ — एक स्थान पर।'
-    : 'Past and future dates — one place.';
+  const subtitle = pickByScript('Past and future dates — one place.', 'पिछले एवं भविष्य के वर्षों की तिथियाँ — एक स्थान पर।', locale);
 
   const pastYears = Object.keys(historicalDates)
     .map(Number)
@@ -90,13 +87,13 @@ export default function FestivalHistoricalArchive({
           <thead className="bg-gold-primary/10">
             <tr>
               <th className="text-left px-4 py-2 text-gold-light font-semibold text-xs uppercase tracking-wider">
-                {locale === 'hi' ? 'वर्ष' : 'Year'}
+                {pickByScript('Year', 'वर्ष', locale)}
               </th>
               <th className="text-left px-4 py-2 text-gold-light font-semibold text-xs uppercase tracking-wider">
-                {locale === 'hi' ? 'तिथि' : 'Date'}
+                {pickByScript('Date', 'तिथि', locale)}
               </th>
               <th className="text-right px-4 py-2 text-gold-light font-semibold text-xs uppercase tracking-wider">
-                {locale === 'hi' ? 'विवरण' : 'Detail'}
+                {pickByScript('Detail', 'विवरण', locale)}
               </th>
             </tr>
           </thead>
@@ -114,7 +111,7 @@ export default function FestivalHistoricalArchive({
                   <td className="px-4 py-2.5 text-sm">
                     {dateStr ? formatDate(dateStr, locale) : (
                       isFuture
-                        ? <span className="text-text-secondary italic">{locale === 'hi' ? '(गणना की जा रही है)' : '(computed)'}</span>
+                        ? <span className="text-text-secondary italic">{pickByScript('(computed)', '(गणना की जा रही है)', locale)}</span>
                         : <span className="text-text-secondary italic">—</span>
                     )}
                   </td>
@@ -124,11 +121,11 @@ export default function FestivalHistoricalArchive({
                         href={`/festivals/${slug}/${year}`}
                         className="inline-flex items-center gap-1 text-xs text-gold-primary hover:text-gold-light"
                       >
-                        {locale === 'hi' ? 'देखें' : 'View'} <ChevronRight className="w-3 h-3" />
+                        {pickByScript('View', 'देखें', locale)} <ChevronRight className="w-3 h-3" />
                       </Link>
                     ) : (
                       <span className="text-[10px] text-text-secondary/60 italic">
-                        {locale === 'hi' ? 'पिछली तिथि' : 'Past date'}
+                        {pickByScript('Past date', 'पिछली तिथि', locale)}
                       </span>
                     )}
                   </td>

@@ -9,6 +9,7 @@
 
 import type { Locale } from '@/types/panchang';
 import type { Tri } from './utils';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 // Sign names for reference:
 // 1=Aries, 2=Taurus, 3=Gemini, 4=Cancer, 5=Leo, 6=Virgo,
@@ -161,5 +162,5 @@ export const PLANET_IN_SIGN: Record<number, Record<number, Tri>> = {
 export function getPlanetInSignText(planetId: number, signIndex: number, locale: Locale): string {
   const entry = PLANET_IN_SIGN[planetId]?.[signIndex];
   if (!entry) return '';
-  return locale === 'hi' ? entry.hi || "" : entry.en;
+  return pickByScript(entry.en, entry.hi || "", locale);
 }

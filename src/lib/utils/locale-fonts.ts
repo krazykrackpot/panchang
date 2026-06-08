@@ -157,7 +157,7 @@ export function dataLocale(locale: string): 'en' | 'hi' {
  * For finer-grained per-script labels use `pickByLocale` below.
  * Audit 2026-05-25 §B6.
  */
-export function pickByScript(en: string, hi: string, locale: string): string {
+export function pickByScript<T>(en: T, hi: T, locale: string): T {
   return isDevanagariLocale(locale) ? hi : en;
 }
 

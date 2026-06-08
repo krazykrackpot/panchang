@@ -2,7 +2,7 @@
 
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
-import { getHeadingFont } from '@/lib/utils/locale-fonts';
+import { getHeadingFont, pickByScript } from '@/lib/utils/locale-fonts';
 import { BookOpen, ArrowRight, Calendar, Sun, Moon } from 'lucide-react';
 
 const LABELS = {
@@ -153,7 +153,7 @@ export default function AdhikaMasaPage() {
               {EXAMPLES.map(ex => (
                 <tr key={ex.year} className="border-b border-white/5">
                   <td className="py-3 pr-4 text-gold-light font-mono">{ex.year}</td>
-                  <td className="py-3 pr-4 text-text-primary">{locale === 'hi' ? ex.hi : ex.month}</td>
+                  <td className="py-3 pr-4 text-text-primary">{pickByScript(ex.month, ex.hi, locale)}</td>
                   <td className="py-3 text-text-secondary">{ex.period}</td>
                 </tr>
               ))}

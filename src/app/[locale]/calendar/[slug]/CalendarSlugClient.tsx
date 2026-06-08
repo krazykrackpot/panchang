@@ -16,7 +16,7 @@ import SamagriList from '@/components/puja/SamagriList';
 import PujaMode from '@/components/puja/PujaMode';
 import EkadashiParanaCard from '@/components/puja/EkadashiParanaCard';
 import { useLocationStore } from '@/stores/location-store';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 
 /* ═══════════════════════════════════════════
    LABELS
@@ -251,7 +251,7 @@ export default function CalendarSlugClient() {
                       const d = dateParam || ekadashiParana?.date || '';
                       const [y, m, day] = d.split('-').map(Number);
                       const date = new Date(y, m - 1, day);
-                      const loc = locale === 'hi' ? 'hi-IN' : 'en-US';
+                      const loc = pickByScript('en-US', 'hi-IN', locale);
                       try { return date.toLocaleDateString(loc, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); }
                       catch { return d; }
                     })()}

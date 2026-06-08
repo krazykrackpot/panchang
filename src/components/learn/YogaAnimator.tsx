@@ -11,6 +11,7 @@ import {
   type YogaCategory,
   getYogasByCategory,
 } from '@/lib/constants/yoga-animations';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -1122,7 +1123,7 @@ export default function YogaAnimator({ locale: localeProp }: YogaAnimatorProps) 
             <div className="flex gap-4 pt-1 text-xs text-text-secondary">
               <span>
                 <span className="text-gold-dark font-semibold">{t('frequency', locale)}:</span>{' '}
-                {locale === 'hi' ? yoga.frequencyHi : yoga.frequency}
+                {pickByScript(yoga.frequency, yoga.frequencyHi, locale)}
               </span>
             </div>
           </div>

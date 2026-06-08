@@ -8,7 +8,7 @@ import InfoBlock from "@/components/ui/InfoBlock";
 import LessonSection from "@/components/learn/LessonSection";
 import { Link } from "@/lib/i18n/navigation";
 import type { Locale } from "@/types/panchang";
-import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { isDevanagariLocale, pickByScript } from "@/lib/utils/locale-fonts";
 
 const LABELS: Record<string, Record<string, string>> = {
   en: {
@@ -400,7 +400,7 @@ export default function LearnDwipushkarYogaPage() {
                 className="font-semibold text-emerald-400 mb-2"
                 style={headingFont}
               >
-                {locale === "hi" ? "करें" : "DO"}
+                {pickByScript("DO", "करें", locale)}
               </h4>
               <ul className="space-y-2">
                 {doItems.map((item, i) => (
@@ -422,7 +422,7 @@ export default function LearnDwipushkarYogaPage() {
                 className="font-semibold text-red-400 mb-2"
                 style={headingFont}
               >
-                {locale === "hi" ? "न करें" : "AVOID"}
+                {pickByScript("AVOID", "न करें", locale)}
               </h4>
               <ul className="space-y-2">
                 {dontItems.map((item, i) => (
@@ -452,7 +452,7 @@ export default function LearnDwipushkarYogaPage() {
           <div className="space-y-4">
             <InfoBlock
               id="dp-myth1"
-              title={locale === "hi" ? '"हमेशा शुभ"' : '"Always auspicious"'}
+              title={pickByScript('"Always auspicious"', '"हमेशा शुभ"', locale)}
               defaultOpen
             >
               <p className="text-text-primary text-sm leading-relaxed">
@@ -462,7 +462,7 @@ export default function LearnDwipushkarYogaPage() {
             <InfoBlock
               id="dp-myth2"
               title={
-                locale === "hi" ? '"चीजें दो बार करना"' : '"Doing things twice"'
+                pickByScript('"Doing things twice"', '"चीजें दो बार करना"', locale)
               }
             >
               <p className="text-text-primary text-sm leading-relaxed">
@@ -472,9 +472,7 @@ export default function LearnDwipushkarYogaPage() {
             <InfoBlock
               id="dp-myth3"
               title={
-                locale === "hi"
-                  ? '"त्रिपुष्कर से मजबूत"'
-                  : '"Stronger than Tripushkar"'
+                pickByScript('"Stronger than Tripushkar"', '"त्रिपुष्कर से मजबूत"', locale)
               }
             >
               <p className="text-text-primary text-sm leading-relaxed">
@@ -503,22 +501,20 @@ export default function LearnDwipushkarYogaPage() {
             {[
               {
                 href: "/learn/tripushkar-yoga" as const,
-                label: locale === "hi" ? "त्रिपुष्कर योग" : "Tripushkar Yoga",
+                label: pickByScript("Tripushkar Yoga", "त्रिपुष्कर योग", locale),
               },
               {
                 href: "/learn/sarvartha-siddhi-yoga" as const,
                 label:
-                  locale === "hi"
-                    ? "सर्वार्थ सिद्धि योग"
-                    : "Sarvartha Siddhi Yoga",
+                  pickByScript("Sarvartha Siddhi Yoga", "सर्वार्थ सिद्धि योग", locale),
               },
               {
                 href: "/learn/muhurtas" as const,
-                label: locale === "hi" ? "मुहूर्त" : "Muhurtas",
+                label: pickByScript("Muhurtas", "मुहूर्त", locale),
               },
               {
                 href: "/panchang" as const,
-                label: locale === "hi" ? "पंचांग" : "Panchang",
+                label: pickByScript("Panchang", "पंचांग", locale),
               },
             ].map((link) => (
               <Link

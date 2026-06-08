@@ -15,7 +15,7 @@ import {
 import GoldDivider from "@/components/ui/GoldDivider";
 import LessonSection from "@/components/learn/LessonSection";
 import { Link } from "@/lib/i18n/navigation";
-import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { isDevanagariLocale, pickByScript } from "@/lib/utils/locale-fonts";
 
 // ── Labels ────────────────────────────────────────────────────
 const LABELS: Record<string, Record<string, string>> = {
@@ -638,19 +638,19 @@ export default function LearnChandraDarshanPage() {
           <ul className="list-disc list-inside space-y-3 mt-3">
             <li style={bf}>
               <strong className="text-gold-light">
-                {locale === "hi" ? "चन्द्र आयु" : "Moon Age"}
+                {pickByScript("Moon Age", "चन्द्र आयु", locale)}
               </strong>{" "}
               – {l("scienceMoonAge", locale)}
             </li>
             <li style={bf}>
               <strong className="text-gold-light">
-                {locale === "hi" ? "दूरी" : "Elongation"}
+                {pickByScript("Elongation", "दूरी", locale)}
               </strong>{" "}
               – {l("scienceElongation", locale)}
             </li>
             <li style={bf}>
               <strong className="text-gold-light">
-                {locale === "hi" ? "ऊँचाई" : "Altitude"}
+                {pickByScript("Altitude", "ऊँचाई", locale)}
               </strong>{" "}
               – {l("scienceAltitude", locale)}
             </li>
@@ -758,23 +758,23 @@ export default function LearnChandraDarshanPage() {
               {[
                 {
                   href: "/learn/tithis",
-                  label: locale === "hi" ? "तिथियाँ" : "Tithis",
+                  label: pickByScript("Tithis", "तिथियाँ", locale),
                 },
                 {
                   href: "/learn/masa",
-                  label: locale === "hi" ? "मास" : "Masa (Months)",
+                  label: pickByScript("Masa (Months)", "मास", locale),
                 },
                 {
                   href: "/panchang",
-                  label: locale === "hi" ? "आज का पंचांग" : "Today's Panchang",
+                  label: pickByScript("Today's Panchang", "आज का पंचांग", locale),
                 },
                 {
                   href: "/learn/eclipses",
-                  label: locale === "hi" ? "ग्रहण" : "Eclipses",
+                  label: pickByScript("Eclipses", "ग्रहण", locale),
                 },
                 {
                   href: "/learn/nakshatras",
-                  label: locale === "hi" ? "नक्षत्र" : "Nakshatras",
+                  label: pickByScript("Nakshatras", "नक्षत्र", locale),
                 },
               ].map((link) => (
                 <Link

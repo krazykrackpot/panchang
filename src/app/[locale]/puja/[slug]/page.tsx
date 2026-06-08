@@ -19,7 +19,7 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import { useLocationStore } from '@/stores/location-store';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import type { Locale } from '@/types/panchang';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
 import VratFollowButton from '@/components/vrat/VratFollowButton';
 import { TRACKABLE_VRATS } from '@/lib/vrat/trackable-vrats';
@@ -948,7 +948,7 @@ export default function PujaVidhiPage() {
                 <div>
                   <div className="text-gold-light text-sm font-bold">{kathaTitle}</div>
                   <div className="text-text-secondary text-xs">
-                    {locale === 'hi' ? 'व्रत विधि, फल और कब करें  –  पढ़ें' : 'Vrat vidhi, benefits & when to observe'}
+                    {pickByScript('Vrat vidhi, benefits & when to observe', 'व्रत विधि, फल और कब करें  –  पढ़ें', locale)}
                   </div>
                 </div>
               </div>

@@ -29,7 +29,7 @@ import { useLocationStore } from "@/stores/location-store";
 import { generateBreadcrumbLD } from "@/lib/seo/structured-data";
 import { checkPanchak } from "@/lib/panchang/panchak";
 import type { Locale } from "@/types/panchang";
-import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
+import { isDevanagariLocale, pickByScript } from "@/lib/utils/locale-fonts";
 import { tl } from "@/lib/utils/trilingual";
 import { safeJsonLd } from "@/lib/seo/safe-jsonld";
 
@@ -526,9 +526,7 @@ export default function PanchakPage() {
   }, [year, month, day, locale]);
 
   const nakshatraName = panchang.nakshatra?.name
-    ? locale === "hi"
-      ? panchang.nakshatra.name.hi
-      : panchang.nakshatra.name.en
+    ? pickByScript(panchang.nakshatra.name.en, panchang.nakshatra.name.hi, locale)
     : "";
 
   const avoidItems = L.avoidItems.split("|");
@@ -642,9 +640,7 @@ export default function PanchakPage() {
                 </p>
                 <p className="text-text-primary text-lg font-semibold flex items-center gap-2">
                   <Shield size={18} className="text-red-400" />
-                  {locale === "hi"
-                    ? panchakInfo.description.hi
-                    : panchakInfo.description.en}
+                  {pickByScript(panchakInfo.description.en, panchakInfo.description.hi, locale)}
                 </p>
               </div>
             )}
@@ -697,7 +693,7 @@ export default function PanchakPage() {
                       </td>
                       <td className="py-3 px-3 text-text-primary font-medium flex items-center gap-2">
                         <Icon size={16} className={nak.color} />
-                        {locale === "hi" ? nak.name.hi : nak.name.en}
+                        {pickByScript(nak.name.en, nak.name.hi, locale)}
                         {isCurrentNak && (
                           <span className="text-xs px-1.5 py-0.5 rounded-full bg-gold-primary/20 text-gold-light">
                             NOW
@@ -705,10 +701,10 @@ export default function PanchakPage() {
                         )}
                       </td>
                       <td className={`py-3 px-3 ${nak.color} font-medium`}>
-                        {locale === "hi" ? nak.fear.hi : nak.fear.en}
+                        {pickByScript(nak.fear.en, nak.fear.hi, locale)}
                       </td>
                       <td className="py-3 px-3 text-text-secondary">
-                        {locale === "hi" ? nak.avoid.hi : nak.avoid.en}
+                        {pickByScript(nak.avoid.en, nak.avoid.hi, locale)}
                       </td>
                     </tr>
                   );
@@ -805,11 +801,11 @@ export default function PanchakPage() {
               { href: "/panchang" as const, label: L.back },
               {
                 href: "/holashtak" as const,
-                label: locale === "hi" ? "होलाष्टक" : "Holashtak Today",
+                label: pickByScript("Holashtak Today", "होलाष्टक", locale),
               },
               {
                 href: "/rahu-kaal" as const,
-                label: locale === "hi" ? "राहु काल" : "Rahu Kaal",
+                label: pickByScript("Rahu Kaal", "राहु काल", locale),
               },
             ].map((link) => (
               <Link

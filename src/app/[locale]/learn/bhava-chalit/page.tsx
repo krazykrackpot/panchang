@@ -4,7 +4,7 @@ import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
@@ -231,7 +231,7 @@ export default function LearnBhavaChalitPage() {
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-lg">{s.icon}</span>
                 <span className={`font-bold text-sm ${s.color}`}>
-                  {locale === 'hi' ? s.school.hi : s.school.en}
+                  {pickByScript(s.school.en, s.school.hi, locale)}
                 </span>
               </div>
               <p className="text-text-secondary text-sm leading-relaxed">

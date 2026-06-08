@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { Search, BookOpen, ChevronRight, Star, AlertTriangle } from 'lucide-react';
 import { YOGA_DETAIL_DATA, type YogaDetailEntry } from '@/lib/constants/yoga-details';
 import { YOGAS } from '@/lib/constants/yogas';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
 import AuthorByline from '@/components/ui/AuthorByline';
 
 const CATEGORIES = [
@@ -72,7 +72,7 @@ export default function YogaIndexPage() {
     return counts;
   }, [allYogas]);
 
-  const getName = (y: YogaDetailEntry) => locale === 'hi' ? y.name.hi : y.name.en;
+  const getName = (y: YogaDetailEntry) => pickByScript(y.name.en, y.name.hi, locale);
 
   return (
     <div>
@@ -87,18 +87,16 @@ export default function YogaIndexPage() {
           <div className="flex items-center gap-2 mb-4">
             <BookOpen className="w-5 h-5 text-gold-primary" />
             <span className="text-gold-primary text-xs uppercase tracking-widest font-bold">
-              {locale === 'hi' ? 'योग विश्वकोश' : 'Yoga Encyclopedia'}
+              {pickByScript('Yoga Encyclopedia', 'योग विश्वकोश', locale)}
             </span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style={hf}>
             <span className="text-gold-gradient">
-              {locale === 'hi' ? 'वैदिक ज्योतिष में योग' : 'Yogas in Vedic Astrology'}
+              {pickByScript('Yogas in Vedic Astrology', 'वैदिक ज्योतिष में योग', locale)}
             </span>
           </h1>
           <p className="text-text-secondary text-lg max-w-2xl mb-6" style={bf}>
-            {locale === 'hi'
-              ? '"योग" का अर्थ है संयोग या मिलन — जब विशिष्ट खगोलीय पिण्ड एक निश्चित स्थिति में आते हैं, तो एक "योग" बनता है। ज्योतिष में योग दो पूर्णतया भिन्न श्रेणियों में आते हैं:'
-              : '"Yoga" means combination or union — when specific celestial bodies align in a particular configuration, a "yoga" is formed. In Jyotish, yogas fall into two completely distinct categories:'}
+            {pickByScript('"Yoga" means combination or union — when specific celestial bodies align in a particular configuration, a "yoga" is formed. In Jyotish, yogas fall into two completely distinct categories:', '"योग" का अर्थ है संयोग या मिलन — जब विशिष्ट खगोलीय पिण्ड एक निश्चित स्थिति में आते हैं, तो एक "योग" बनता है। ज्योतिष में योग दो पूर्णतया भिन्न श्रेणियों में आते हैं:', locale)}
           </p>
 
           {/* Two-category explainer */}
@@ -106,40 +104,36 @@ export default function YogaIndexPage() {
             <a href="#panchang-yogas" className="group block rounded-xl bg-white/[0.03] border border-blue-500/20 hover:border-blue-500/40 p-5 transition-all">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-500/15 px-2 py-0.5 rounded-full">
-                  {locale === 'hi' ? 'पंचांग' : 'Panchang'}
+                  {pickByScript('Panchang', 'पंचांग', locale)}
                 </span>
-                <span className="text-xs text-text-secondary">27 {locale === 'hi' ? 'योग' : 'yogas'}</span>
+                <span className="text-xs text-text-secondary">27 {pickByScript('yogas', 'योग', locale)}</span>
               </div>
               <p className="text-text-primary text-sm font-medium mb-1" style={bf}>
-                {locale === 'hi' ? 'दैनिक पंचांग योग' : 'Daily Panchang Yogas'}
+                {pickByScript('Daily Panchang Yogas', 'दैनिक पंचांग योग', locale)}
               </p>
               <p className="text-text-secondary text-xs leading-relaxed" style={bf}>
-                {locale === 'hi'
-                  ? 'सूर्य और चन्द्रमा की देशान्तरों के योग से गणित — प्रत्येक दिन एक योग होता है (विष्कम्भ से वैधृति तक)। मुहूर्त और दैनिक गतिविधियों के लिए प्रासंगिक।'
-                  : 'Computed from the sum of Sun and Moon longitudes — one yoga per day (Vishkambha to Vaidhriti). Relevant for muhurta timing and daily activities.'}
+                {pickByScript('Computed from the sum of Sun and Moon longitudes — one yoga per day (Vishkambha to Vaidhriti). Relevant for muhurta timing and daily activities.', 'सूर्य और चन्द्रमा की देशान्तरों के योग से गणित — प्रत्येक दिन एक योग होता है (विष्कम्भ से वैधृति तक)। मुहूर्त और दैनिक गतिविधियों के लिए प्रासंगिक।', locale)}
               </p>
               <span className="text-blue-400 text-xs mt-2 inline-flex items-center gap-1 group-hover:text-blue-300 transition-colors">
-                &#x25BC; {locale === 'hi' ? 'नीचे देखें' : 'See below'}
+                &#x25BC; {pickByScript('See below', 'नीचे देखें', locale)}
               </span>
             </a>
 
             <div className="rounded-xl bg-white/[0.03] border border-gold-primary/20 p-5">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xs font-bold uppercase tracking-wider text-gold-light bg-gold-primary/15 px-2 py-0.5 rounded-full">
-                  {locale === 'hi' ? 'कुण्डली' : 'Kundali'}
+                  {pickByScript('Kundali', 'कुण्डली', locale)}
                 </span>
-                <span className="text-xs text-text-secondary">{allYogas.length} {locale === 'hi' ? 'योग' : 'yogas'}</span>
+                <span className="text-xs text-text-secondary">{allYogas.length} {pickByScript('yogas', 'योग', locale)}</span>
               </div>
               <p className="text-text-primary text-sm font-medium mb-1" style={bf}>
-                {locale === 'hi' ? 'जन्म कुण्डली योग' : 'Birth Chart Yogas'}
+                {pickByScript('Birth Chart Yogas', 'जन्म कुण्डली योग', locale)}
               </p>
               <p className="text-text-secondary text-xs leading-relaxed" style={bf}>
-                {locale === 'hi'
-                  ? 'जन्म कुण्डली में ग्रहों की विशिष्ट स्थितियों से बनने वाले योग — राज योग, धन योग, महापुरुष योग, दोष आदि। जीवन भर के फलों का संकेत देते हैं।'
-                  : 'Formed by specific planetary placements in a birth chart — Raja Yogas, Dhana Yogas, Mahapurusha Yogas, Doshas, and more. Indicate lifelong themes and potential.'}
+                {pickByScript('Formed by specific planetary placements in a birth chart — Raja Yogas, Dhana Yogas, Mahapurusha Yogas, Doshas, and more. Indicate lifelong themes and potential.', 'जन्म कुण्डली में ग्रहों की विशिष्ट स्थितियों से बनने वाले योग — राज योग, धन योग, महापुरुष योग, दोष आदि। जीवन भर के फलों का संकेत देते हैं।', locale)}
               </p>
               <span className="text-gold-primary/60 text-xs mt-2 inline-block">
-                &#x25BC; {locale === 'hi' ? 'नीचे ब्राउज़ करें' : 'Browse below'}
+                &#x25BC; {pickByScript('Browse below', 'नीचे ब्राउज़ करें', locale)}
               </span>
             </div>
           </div>
@@ -149,12 +143,10 @@ export default function YogaIndexPage() {
       {/* ═══ PART 1: 27 PANCHANG YOGAS ═══ */}
       <section id="panchang-yogas" className="mb-12 scroll-mt-8">
         <h2 className="text-2xl font-bold text-gold-light mb-2" style={hf}>
-          {locale === 'hi' ? '27 दैनिक पंचांग योग' : '27 Daily Panchang Yogas'}
+          {pickByScript('27 Daily Panchang Yogas', '27 दैनिक पंचांग योग', locale)}
         </h2>
         <p className="text-text-secondary text-sm mb-1" style={bf}>
-          {locale === 'hi'
-            ? 'सूर्य और चन्द्रमा की देशान्तरों के योग (Sum) को 13°20\' से विभाजित करने पर 27 योग प्राप्त होते हैं। प्रतिदिन एक योग चलता है।'
-            : 'Computed from the sum of Sun and Moon longitudes divided into 27 equal arcs of 13°20\' each. One yoga is active each day.'}
+          {pickByScript('Computed from the sum of Sun and Moon longitudes divided into 27 equal arcs of 13°20\' each. One yoga is active each day.', 'सूर्य और चन्द्रमा की देशान्तरों के योग (Sum) को 13°20\' से विभाजित करने पर 27 योग प्राप्त होते हैं। प्रतिदिन एक योग चलता है।', locale)}
         </p>
         <p className="text-text-secondary/60 text-xs mb-4 font-mono" style={bf}>
           Yoga = floor((Sun° + Moon°) / 13.333°) + 1 &nbsp; → &nbsp; 27 × 13°20&apos; = 360°
@@ -174,9 +166,9 @@ export default function YogaIndexPage() {
                 <div className="flex items-center gap-2 shrink-0">
                   <span className="text-text-secondary/70 text-xs hidden sm:inline">{y.meaning[locale as keyof typeof y.meaning] || y.meaning.en}</span>
                   <span className={`text-[10px] px-1.5 py-0.5 rounded-full border font-medium ${natureColor}`}>
-                    {y.nature === 'auspicious' ? (locale === 'hi' ? 'शुभ' : 'Good')
-                      : y.nature === 'inauspicious' ? (locale === 'hi' ? 'अशुभ' : 'Bad')
-                      : (locale === 'hi' ? 'मिश्र' : 'Mixed')}
+                    {y.nature === 'auspicious' ? (pickByScript('Good', 'शुभ', locale))
+                      : y.nature === 'inauspicious' ? (pickByScript('Bad', 'अशुभ', locale))
+                      : (pickByScript('Mixed', 'मिश्र', locale))}
                   </span>
                 </div>
               </div>
@@ -185,7 +177,7 @@ export default function YogaIndexPage() {
         </div>
         <div className="mt-4 text-center">
           <Link href="/panchang/yoga" className="text-gold-primary text-sm hover:text-gold-light transition-colors inline-flex items-center gap-1">
-            {locale === 'hi' ? 'आज का पंचांग योग देखें' : "See today's Panchang Yoga"} <ChevronRight className="w-3.5 h-3.5" />
+            {pickByScript("See today's Panchang Yoga", 'आज का पंचांग योग देखें', locale)} <ChevronRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       </section>
@@ -199,7 +191,7 @@ export default function YogaIndexPage() {
           type="text"
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
-          placeholder={locale === 'hi' ? 'योग खोजें...' : 'Search yogas...'}
+          placeholder={pickByScript('Search yogas...', 'योग खोजें...', locale)}
           className="w-full pl-11 pr-4 py-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/12 text-text-primary placeholder:text-text-secondary/50 focus:outline-none focus:border-gold-primary/30 transition-colors"
           style={bf}
         />
@@ -218,7 +210,7 @@ export default function YogaIndexPage() {
             }`}
             style={bf}
           >
-            {locale === 'hi' ? cat.label.hi : cat.label.en}
+            {pickByScript(cat.label.en, cat.label.hi, locale)}
             <span className="ml-1.5 text-xs opacity-60">({categoryCounts[cat.key] || 0})</span>
           </button>
         ))}
@@ -226,12 +218,10 @@ export default function YogaIndexPage() {
 
       {/* Section heading + results count */}
       <h2 className="text-xl font-bold text-gold-light mb-1" style={hf}>
-        {locale === 'hi' ? 'जन्म कुण्डली योग' : 'Birth Chart (Kundali) Yogas'}
+        {pickByScript('Birth Chart (Kundali) Yogas', 'जन्म कुण्डली योग', locale)}
       </h2>
       <p className="text-text-secondary text-sm mb-6" style={bf}>
-        {locale === 'hi'
-          ? `${filtered.length} कुण्डली योग दिखा रहे हैं — ग्रहों की विशिष्ट स्थितियों से निर्मित`
-          : `Showing ${filtered.length} kundali yoga${filtered.length !== 1 ? 's' : ''} — formed by specific planetary placements in your birth chart`}
+        {pickByScript(`Showing ${filtered.length} kundali yoga${filtered.length !== 1 ? 's' : ''} — formed by specific planetary placements in your birth chart`, `${filtered.length} कुण्डली योग दिखा रहे हैं — ग्रहों की विशिष्ट स्थितियों से निर्मित`, locale)}
       </p>
 
       {/* Grid */}
@@ -264,14 +254,14 @@ export default function YogaIndexPage() {
                   {yoga.category.replace(/_/g, ' ')}
                 </span>
                 <span className="text-xs text-text-secondary/60">
-                  ~{yoga.frequency}% {locale === 'hi' ? 'कुण्डलियों में' : 'of charts'}
+                  ~{yoga.frequency}% {pickByScript('of charts', 'कुण्डलियों में', locale)}
                 </span>
               </div>
               <p className="text-text-secondary text-sm line-clamp-2 mb-3" style={bf}>
-                {locale === 'hi' ? yoga.formationRule.hi : yoga.formationRule.en}
+                {pickByScript(yoga.formationRule.en, yoga.formationRule.hi, locale)}
               </p>
               <div className="flex items-center gap-1 text-gold-primary/60 group-hover:text-gold-primary text-xs font-medium transition-colors">
-                {locale === 'hi' ? 'विस्तार से पढ़ें' : 'Read more'}
+                {pickByScript('Read more', 'विस्तार से पढ़ें', locale)}
                 <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </div>
             </Link>
@@ -282,13 +272,13 @@ export default function YogaIndexPage() {
       {filtered.length === 0 && (
         <div className="text-center py-16">
           <p className="text-text-secondary text-lg" style={bf}>
-            {locale === 'hi' ? 'कोई योग नहीं मिला' : 'No yogas found'}
+            {pickByScript('No yogas found', 'कोई योग नहीं मिला', locale)}
           </p>
           <button
             onClick={() => { setSearchQuery(''); setActiveCategory('all'); }}
             className="mt-3 text-gold-primary text-sm hover:underline"
           >
-            {locale === 'hi' ? 'फ़िल्टर हटाएँ' : 'Clear filters'}
+            {pickByScript('Clear filters', 'फ़िल्टर हटाएँ', locale)}
           </button>
         </div>
       )}
@@ -297,22 +287,20 @@ export default function YogaIndexPage() {
       <div className="mt-10 rounded-2xl border border-gold-primary/20 bg-gradient-to-r from-[#2d1b69]/20 to-[#0a0e27] p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <div className="flex-1 min-w-0">
           <div className="text-xs font-bold uppercase tracking-widest text-gold-primary/70 mb-1">
-            {locale === 'hi' ? 'इन्टरैक्टिव टूल' : 'Interactive Tool'}
+            {pickByScript('Interactive Tool', 'इन्टरैक्टिव टूल', locale)}
           </div>
           <div className="text-gold-light font-bold text-base mb-1" style={hf}>
-            {locale === 'hi' ? 'योग निर्माण एनीमेटर' : 'Yoga Formation Animator'}
+            {pickByScript('Yoga Formation Animator', 'योग निर्माण एनीमेटर', locale)}
           </div>
           <div className="text-text-secondary text-sm" style={bf}>
-            {locale === 'hi'
-              ? 'देखें कैसे ग्रह चरण दर चरण कुण्डली में योग बनाते हैं — शर्तें एक-एक करके हरी होती हैं।'
-              : 'Watch planets animate step-by-step into position on the birth chart — conditions tick green as each is satisfied.'}
+            {pickByScript('Watch planets animate step-by-step into position on the birth chart — conditions tick green as each is satisfied.', 'देखें कैसे ग्रह चरण दर चरण कुण्डली में योग बनाते हैं — शर्तें एक-एक करके हरी होती हैं।', locale)}
           </div>
         </div>
         <Link
           href="/learn/yoga-animator"
           className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-semibold"
         >
-          {locale === 'hi' ? 'एनीमेशन देखें' : 'Open Animator'}
+          {pickByScript('Open Animator', 'एनीमेशन देखें', locale)}
           <ChevronRight className="w-4 h-4" />
         </Link>
       </div>

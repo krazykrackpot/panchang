@@ -10,6 +10,7 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import type { PanchangData } from '@/types/panchang';
 import { ChevronLeft, ChevronRight, MapPin, ArrowRight, Moon, Sun, Sparkles, AlertTriangle } from 'lucide-react';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 // ─── Types ────────────────────────────────────────────────
 
@@ -315,9 +316,7 @@ export default function LunarCalendarPage() {
             {locale === 'hi' ? 'चंद्र जीवनशैली कैलेंडर' : locale === 'sa' ? 'चन्द्रकलापत्रम्' : 'Lunar Lifestyle Calendar'}
           </h1>
           <p className="text-text-secondary mb-6">
-            {locale === 'hi'
-              ? 'चंद्रमा की दैनिक ऊर्जा को ट्रैक करें और वैदिक पंचांग के अनुसार जीवनशैली योजना बनाएं।'
-              : 'Track the Moon\'s daily energy and plan your lifestyle according to Vedic Panchang rhythms.'}
+            {pickByScript('Track the Moon\'s daily energy and plan your lifestyle according to Vedic Panchang rhythms.', 'चंद्रमा की दैनिक ऊर्जा को ट्रैक करें और वैदिक पंचांग के अनुसार जीवनशैली योजना बनाएं।', locale)}
           </p>
 
           {/* Location display */}
@@ -356,7 +355,7 @@ export default function LunarCalendarPage() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-baseline gap-3 mb-3">
                     <h2 className="text-xl font-semibold text-gold-light">
-                      {locale === 'hi' ? 'आज की चंद्र ऊर्जा' : 'Today\'s Lunar Energy'}
+                      {pickByScript('Today\'s Lunar Energy', 'आज की चंद्र ऊर्जा', locale)}
                     </h2>
                     <span className={`text-2xl font-bold ${getEnergyColor(todayData.energy.score)}`}>
                       {todayData.energy.score}
@@ -373,7 +372,7 @@ export default function LunarCalendarPage() {
                   </div>
 
                   <div className="text-sm text-text-secondary mb-1">
-                    {locale === 'hi' ? 'प्रमुख कारक' : 'Dominant factor'}: <span className="text-text-primary">{todayData.energy.dominantFactor}</span>
+                    {pickByScript('Dominant factor', 'प्रमुख कारक', locale)}: <span className="text-text-primary">{todayData.energy.dominantFactor}</span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
@@ -381,7 +380,7 @@ export default function LunarCalendarPage() {
                     <div>
                       <div className="text-xs uppercase tracking-wider text-gold-primary mb-1.5 flex items-center gap-1">
                         <Sparkles className="w-3 h-3" />
-                        {locale === 'hi' ? 'सर्वोत्तम' : 'Best For'}
+                        {pickByScript('Best For', 'सर्वोत्तम', locale)}
                       </div>
                       <ul className="space-y-0.5">
                         {todayData.energy.bestFor.map((item, i) => (
@@ -395,7 +394,7 @@ export default function LunarCalendarPage() {
                       <div>
                         <div className="text-xs uppercase tracking-wider text-red-400/80 mb-1.5 flex items-center gap-1">
                           <AlertTriangle className="w-3 h-3" />
-                          {locale === 'hi' ? 'बचें' : 'Avoid'}
+                          {pickByScript('Avoid', 'बचें', locale)}
                         </div>
                         <ul className="space-y-0.5">
                           {todayData.energy.avoid.map((item, i) => (
@@ -451,7 +450,7 @@ export default function LunarCalendarPage() {
                   onClick={goToToday}
                   className="text-xs text-gold-primary hover:text-gold-light mt-1 transition-colors"
                 >
-                  {locale === 'hi' ? 'आज पर जाएं' : 'Go to today'}
+                  {pickByScript('Go to today', 'आज पर जाएं', locale)}
                 </button>
               )}
             </div>
@@ -487,7 +486,7 @@ export default function LunarCalendarPage() {
               <div className="p-8 text-center">
                 <div className="inline-block w-6 h-6 border-2 border-gold-primary/30 border-t-gold-primary rounded-full animate-spin mb-3" />
                 <p className="text-sm text-text-secondary">
-                  {locale === 'hi' ? 'पंचांग गणना हो रही है...' : 'Computing panchang data...'}
+                  {pickByScript('Computing panchang data...', 'पंचांग गणना हो रही है...', locale)}
                 </p>
               </div>
             ) : (
@@ -633,7 +632,7 @@ export default function LunarCalendarPage() {
                           href={`/panchang?date=${viewYear}-${String(viewMonth).padStart(2, '0')}-${String(selectedDay).padStart(2, '0')}`}
                           className="inline-flex items-center gap-1.5 text-sm text-gold-primary hover:text-gold-light transition-colors"
                         >
-                          {locale === 'hi' ? 'पूर्ण पंचांग देखें' : 'See Full Panchang'}
+                          {pickByScript('See Full Panchang', 'पूर्ण पंचांग देखें', locale)}
                           <ArrowRight className="w-3.5 h-3.5" />
                         </Link>
                       </div>
@@ -667,7 +666,7 @@ export default function LunarCalendarPage() {
         {/* ─── Section 3: Lunar Rhythm Guide ─── */}
         <section>
           <h2 className="text-2xl font-bold text-gold-light mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
-            {locale === 'hi' ? 'चंद्र लय मार्गदर्शिका' : 'Lunar Rhythm Guide'}
+            {pickByScript('Lunar Rhythm Guide', 'चंद्र लय मार्गदर्शिका', locale)}
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -687,7 +686,7 @@ export default function LunarCalendarPage() {
 
           {/* Key Windows */}
           <h3 className="text-lg font-semibold text-gold-light mb-4">
-            {locale === 'hi' ? 'विशेष चन्द्र काल' : 'Key Lunar Windows'}
+            {pickByScript('Key Lunar Windows', 'विशेष चन्द्र काल', locale)}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
             {KEY_WINDOWS.map(w => (
@@ -707,7 +706,7 @@ export default function LunarCalendarPage() {
               href="/calendar"
               className="inline-flex items-center gap-2 px-6 py-3 bg-gold-primary/15 hover:bg-gold-primary/25 border border-gold-primary/30 rounded-xl text-gold-light font-medium transition-colors"
             >
-              {locale === 'hi' ? 'पूर्ण वैदिक कैलेंडर देखें' : 'Explore the Full Vedic Calendar'}
+              {pickByScript('Explore the Full Vedic Calendar', 'पूर्ण वैदिक कैलेंडर देखें', locale)}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

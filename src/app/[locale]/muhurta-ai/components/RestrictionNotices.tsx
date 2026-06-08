@@ -2,6 +2,7 @@
 
 import { AlertTriangle } from 'lucide-react';
 import type { RestrictionNotice } from '@/types/muhurta-ai';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 interface RestrictionNoticesProps {
   restrictions: RestrictionNotice[];
@@ -23,7 +24,7 @@ export default function RestrictionNotices({
         >
           <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
           <p className="text-sm text-amber-300">
-            {locale === 'hi' ? r.label.hi : r.label.en}
+            {pickByScript(r.label.en, r.label.hi, locale)}
           </p>
         </div>
       ))}

@@ -2,7 +2,7 @@
 
 import type { CelestialEvent } from '@/lib/calendar/upcoming-events';
 import type { Locale } from '@/types/panchang';
-import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, getHeadingFont, getBodyFont, pickByScript } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
 import { CARD_COLORS, WATERMARK_URL } from '@/lib/shareable/card-base';
 
@@ -147,7 +147,7 @@ export default function EventCountdownCard({
 
   const formatEventDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-IN', {
+    return d.toLocaleDateString(pickByScript('en-IN', 'hi-IN', locale), {
       day: 'numeric',
       month: 'short',
       year: 'numeric',

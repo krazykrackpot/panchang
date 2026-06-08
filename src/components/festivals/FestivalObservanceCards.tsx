@@ -12,6 +12,7 @@ import { Check, X } from 'lucide-react';
 import { tl } from '@/lib/utils/trilingual';
 import type { Locale } from '@/types/panchang';
 import type { FestivalObservance } from '@/lib/festivals/types';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 interface Props {
   observance: FestivalObservance;
@@ -21,13 +22,9 @@ interface Props {
 }
 
 export default function FestivalObservanceCards({ observance, festivalNameEn, festivalNameHi, locale }: Props) {
-  const sectionTitle = locale === 'hi'
-    ? `${festivalNameHi} — क्या करें, क्या न करें`
-    : `${festivalNameEn} — Do's & Don'ts`;
+  const sectionTitle = pickByScript(`${festivalNameEn} — Do's & Don'ts`, `${festivalNameHi} — क्या करें, क्या न करें`, locale);
 
-  const subtitle = locale === 'hi'
-    ? 'धर्मसिन्धु, निर्णयसिन्धु, एवं समकालीन परम्परा से।'
-    : 'Sourced from Dharmasindhu, Nirnayasindhu, and contemporary tradition.';
+  const subtitle = pickByScript('Sourced from Dharmasindhu, Nirnayasindhu, and contemporary tradition.', 'धर्मसिन्धु, निर्णयसिन्धु, एवं समकालीन परम्परा से।', locale);
 
   return (
     <section className="mb-10" aria-labelledby="observance-heading">
@@ -47,7 +44,7 @@ export default function FestivalObservanceCards({ observance, festivalNameEn, fe
         <div className="bg-gradient-to-br from-emerald-900/15 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/25 rounded-xl p-5">
           <h3 className="flex items-center gap-2 text-emerald-300 font-bold text-base mb-3">
             <Check className="w-4 h-4" />
-            {locale === 'hi' ? 'करने योग्य' : 'Do'}
+            {pickByScript('Do', 'करने योग्य', locale)}
           </h3>
           <ul className="space-y-3">
             {observance.dos.map((item, i) => (
@@ -72,7 +69,7 @@ export default function FestivalObservanceCards({ observance, festivalNameEn, fe
         <div className="bg-gradient-to-br from-amber-900/15 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/25 rounded-xl p-5">
           <h3 className="flex items-center gap-2 text-amber-300 font-bold text-base mb-3">
             <X className="w-4 h-4" />
-            {locale === 'hi' ? 'न करें' : 'Don\'t'}
+            {pickByScript('Don\'t', 'न करें', locale)}
           </h3>
           <ul className="space-y-3">
             {observance.donts.map((item, i) => (

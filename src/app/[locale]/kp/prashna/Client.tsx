@@ -20,6 +20,7 @@ import { useLocationStore } from '@/stores/location-store';
 import { tl } from '@/lib/utils/trilingual';
 import { castPrashnaAction, type ClientPrashnaResult } from './actions';
 import KpNavStrip from '@/components/kp/KpNavStrip';
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 type Mode = 'number' | 'text';
 
@@ -184,7 +185,7 @@ export default function PrashnaClient({
     }
 
     if (!effectiveLocation) {
-      setError(locale === 'hi' ? 'कृपया स्थान चुनें।' : 'Please select a location.');
+      setError(pickByScript('Please select a location.', 'कृपया स्थान चुनें।', locale));
       return;
     }
 
@@ -289,7 +290,7 @@ export default function PrashnaClient({
                 onChange={(e) => setQuestion(e.target.value)}
                 rows={3}
                 className="w-full bg-bg-secondary/50 border border-gold-primary/20 rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 resize-none"
-                placeholder={locale === 'hi' ? 'क्या मुझे यह नौकरी मिलेगी?' : 'Will I get the job?'}
+                placeholder={pickByScript('Will I get the job?', 'क्या मुझे यह नौकरी मिलेगी?', locale)}
                 maxLength={500}
               />
               <p className="text-text-secondary/70 text-xs mt-2">{t.questionHelp}</p>
@@ -302,7 +303,7 @@ export default function PrashnaClient({
             <LocationSearch
               value={effectiveLocation?.name ?? ''}
               onSelect={(l) => setOverrideLocation(l)}
-              placeholder={locale === 'hi' ? 'नगर खोजें…' : 'Search city or place…'}
+              placeholder={pickByScript('Search city or place…', 'नगर खोजें…', locale)}
             />
             {effectiveLocation && (
               <p className="text-text-secondary/70 text-xs mt-1.5">
@@ -365,7 +366,7 @@ export default function PrashnaClient({
             href={`/${locale}/kp-system`}
             className="text-gold-primary hover:text-gold-light text-sm underline underline-offset-4"
           >
-            {locale === 'hi' ? 'पूर्ण केपी विश्लेषण देखें →' : 'Open Full KP Analysis →'}
+            {pickByScript('Open Full KP Analysis →', 'पूर्ण केपी विश्लेषण देखें →', locale)}
           </Link>
         </div>
       </div>

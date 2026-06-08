@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { getAllVideos } from '@/lib/youtube/latest-video';
-
+import { pickByScript } from "@/lib/utils/locale-fonts";
 
 export default async function VideosPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -39,7 +39,7 @@ export default async function VideosPage({ params }: { params: Promise<{ locale:
                 {v.title}
               </h2>
               <time className="text-text-secondary text-xs" dateTime={v.published}>
-                {new Date(v.published).toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-GB', {
+                {new Date(v.published).toLocaleDateString(pickByScript('en-GB', 'hi-IN', locale), {
                   day: 'numeric', month: 'long', year: 'numeric',
                 })}
               </time>

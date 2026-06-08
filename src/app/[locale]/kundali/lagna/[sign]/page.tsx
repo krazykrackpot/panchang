@@ -41,6 +41,7 @@ export const revalidate = 86400;
 // without this, `${BASE_URL}/${locale}/...` becomes `https://.../` + `/en/...`
 // → double slash in canonical and hreflang URLs.
 import { BASE_URL } from '@/lib/seo/base-url';
+import { pickByLocale } from "@/lib/utils/locale-fonts";
 
 /**
  * Locale-aware LocaleText reader. Picks `obj[locale]` when present, falls
@@ -702,19 +703,19 @@ export default async function LagnaSignPage({
         >
           {isDevanagari ? (
             <>{signNameLocal} लग्न <span className="text-text-secondary">({sanskrit} Lagna)</span></>
-          ) : locale === 'ta' ? (
-            <>{signNameLocal} லக்னம் <span className="text-text-secondary">({sanskrit} Lagna)</span></>
-          ) : locale === 'te' ? (
-            <>{signNameLocal} లగ్నం <span className="text-text-secondary">({sanskrit} Lagna)</span></>
-          ) : locale === 'kn' ? (
-            <>{signNameLocal} ಲಗ್ನ <span className="text-text-secondary">({sanskrit} Lagna)</span></>
-          ) : locale === 'gu' ? (
-            <>{signNameLocal} લગ્ન <span className="text-text-secondary">({sanskrit} Lagna)</span></>
-          ) : locale === 'bn' ? (
-            <>{signNameLocal} লগ্ন <span className="text-text-secondary">({sanskrit} Lagna)</span></>
-          ) : (
-            <>{en} Ascendant <span className="text-text-secondary">({sanskrit} Lagna)</span></>
-          )}
+          ) : pickByLocale({ en: (
+                                  <>{en} Ascendant <span className="text-text-secondary">({sanskrit} Lagna)</span></>
+                                ), ta: (
+                                  <>{signNameLocal} லக்னம் <span className="text-text-secondary">({sanskrit} Lagna)</span></>
+                                ), te: (
+                                  <>{signNameLocal} లగ్నం <span className="text-text-secondary">({sanskrit} Lagna)</span></>
+                                ), kn: (
+                                  <>{signNameLocal} ಲಗ್ನ <span className="text-text-secondary">({sanskrit} Lagna)</span></>
+                                ), gu: (
+                                  <>{signNameLocal} લગ્ન <span className="text-text-secondary">({sanskrit} Lagna)</span></>
+                                ), bn: (
+                                  <>{signNameLocal} লগ্ন <span className="text-text-secondary">({sanskrit} Lagna)</span></>
+                                ) }, locale)}
         </h1>
 
         {/* Sub-header chips */}

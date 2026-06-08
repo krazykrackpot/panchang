@@ -22,7 +22,7 @@ import { tl } from "@/lib/utils/trilingual";
 import GoldDivider from "@/components/ui/GoldDivider";
 import RelatedLinks from "@/components/ui/RelatedLinks";
 import { getLearnLinksForTool } from "@/lib/seo/cross-links";
-import { pickByScript } from "@/lib/utils/locale-fonts";
+import { pickByScript, pickByLocale } from "@/lib/utils/locale-fonts";
 
 // --------------- i18n labels ---------------
 
@@ -450,11 +450,7 @@ export default function SarvatobhadraClient() {
       >
         <summary className="px-5 py-3 cursor-pointer text-sm text-gold-primary hover:text-gold-light transition-colors flex items-center gap-2">
           <span className="text-base">📖</span>
-          {locale === "hi"
-            ? "सर्वतोभद्र चक्र क्या है?"
-            : locale === "sa"
-              ? "सर्वतोभद्रचक्रं किम्?"
-              : "What is Sarvatobhadra Chakra?"}
+          {pickByLocale({ en: "What is Sarvatobhadra Chakra?", hi: "सर्वतोभद्र चक्र क्या है?", sa: "सर्वतोभद्रचक्रं किम्?" }, locale)}
           <span className="ml-auto text-text-secondary/40 text-xs group-open:rotate-90 transition-transform">
             ▶
           </span>

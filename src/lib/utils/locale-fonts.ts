@@ -171,11 +171,11 @@ export function pickByScript<T>(en: T, hi: T, locale: string): T {
  *
  * Returns the most specific script available; never `undefined`. Audit §B6.
  */
-export function pickByLocale(
-  variants: { en: string; hi?: string; ta?: string; te?: string; bn?: string; gu?: string; kn?: string; mai?: string; mr?: string },
+export function pickByLocale<T>(
+  variants: { en: T; hi?: T; sa?: T; ta?: T; te?: T; bn?: T; gu?: T; kn?: T; mai?: T; mr?: T },
   locale: string,
-): string {
-  const direct = (variants as Record<string, string | undefined>)[locale];
+): T {
+  const direct = (variants as Record<string, T | undefined>)[locale];
   // Use !== undefined so an intentional empty-string locale variant is
   // respected rather than falling through to the EN copy. Gemini #193 MED.
   if (direct !== undefined) return direct;

@@ -28,7 +28,7 @@ import type { PersonalizedFestivalReading } from '@/lib/festivals/types';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { pickFestivalLabel as FL, formatFestivalLabel } from '@/lib/content/festivals-labels';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByLocale } from '@/lib/utils/locale-fonts';
 import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi-with-overlay';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -505,12 +505,7 @@ export default async function FestivalCanonicalPage({
           const weekdayLoc = (() => {
             const tag = locale === 'mr' ? 'mr-IN'
               : locale === 'hi' || locale === 'mai' ? 'hi-IN'
-              : locale === 'ta' ? 'ta-IN'
-              : locale === 'te' ? 'te-IN'
-              : locale === 'bn' ? 'bn-IN'
-              : locale === 'gu' ? 'gu-IN'
-              : locale === 'kn' ? 'kn-IN'
-              : 'en-US';
+              : pickByLocale({ en: 'en-US', ta: 'ta-IN', te: 'te-IN', bn: 'bn-IN', gu: 'gu-IN', kn: 'kn-IN' }, locale);
             return fullDateObj.toLocaleDateString(tag, { weekday: 'long', timeZone: 'UTC' });
           })();
           const driftSentence = (() => {

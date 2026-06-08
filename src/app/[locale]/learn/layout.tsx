@@ -2,7 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import LearnLayoutShell from '@/components/learn/LearnLayoutShell';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 import { BASE_URL } from '@/lib/seo/base-url';
@@ -44,7 +44,7 @@ export default async function LearnLayout({ children, params }: { children: Reac
       url: BASE_URL,
     },
     url: `${BASE_URL}/${locale}/learn`,
-    inLanguage: locale === 'hi' ? 'hi' : locale === 'sa' ? 'sa' : 'en',
+    inLanguage: pickByLocale({ en: 'en', hi: 'hi', sa: 'sa' }, locale),
     isAccessibleForFree: true,
   };
 

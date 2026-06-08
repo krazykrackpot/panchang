@@ -22,7 +22,7 @@ import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { tl } from '@/lib/utils/trilingual';
-import { isDevanagariLocale, pickByScript } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript, pickByLocale } from '@/lib/utils/locale-fonts';
 import { ShareCardButton } from '@/components/shareable/ShareCardButton';
 import { selectHighlightKutas, getKutaInsight, getOverallVerdict } from '@/lib/constants/kuta-insights';
 import { trackMatchingComputed, trackUtmEvent } from '@/lib/analytics';
@@ -773,16 +773,10 @@ export default function MatchingClient() {
                 className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border-2 border-emerald-500/30 rounded-xl p-5 mb-8 text-center"
               >
                 <div className="text-emerald-400 font-bold text-lg mb-1" style={headingFont}>
-                  {locale === 'hi' ? 'नाड़ी दोष निरस्त' : locale === 'ta' ? 'நாடி தோஷம் நீக்கப்பட்டது' : locale === 'bn' ? 'নাড়ী দোষ নিরস্ত' : 'Nadi Dosha Cancelled'}
+                  {pickByLocale({ en: 'Nadi Dosha Cancelled', hi: 'नाड़ी दोष निरस्त', ta: 'நாடி தோஷம் நீக்கப்பட்டது', bn: 'নাড়ী দোষ নিরস্ত' }, locale)}
                 </div>
                 <div className="text-text-secondary text-sm">
-                  {locale === 'hi'
-                    ? 'समान नक्षत्र और पाद  –  आनुवंशिक अनुकूलता। नाड़ी दोष पूर्णतया निरस्त। यह शुभ संकेत है।'
-                    : locale === 'ta'
-                      ? 'ஒரே நட்சத்திரம் மற்றும் பாதம்  –  மரபணு இணக்கம். நாடி தோஷம் முற்றிலும் நீக்கப்பட்டது.'
-                      : locale === 'bn'
-                        ? 'একই নক্ষত্র এবং পাদ জিনগত সামঞ্জস্য নির্দেশ করে। নাড়ী দোষ সম্পূর্ণরূপে নিরস্ত  –  এটি একটি শুভ সংকেত।'
-                        : 'Same nakshatra and pada indicates genetic compatibility. Nadi Dosha is fully cancelled  –  this is a positive indicator.'}
+                  {pickByLocale({ en: 'Same nakshatra and pada indicates genetic compatibility. Nadi Dosha is fully cancelled  –  this is a positive indicator.', hi: 'समान नक्षत्र और पाद  –  आनुवंशिक अनुकूलता। नाड़ी दोष पूर्णतया निरस्त। यह शुभ संकेत है।', ta: 'ஒரே நட்சத்திரம் மற்றும் பாதம்  –  மரபணு இணக்கம். நாடி தோஷம் முற்றிலும் நீக்கப்பட்டது.', bn: 'একই নক্ষত্র এবং পাদ জিনগত সামঞ্জস্য নির্দেশ করে। নাড়ী দোষ সম্পূর্ণরূপে নিরস্ত  –  এটি একটি শুভ সংকেত।' }, locale)}
                 </div>
               </motion.div>
             )}

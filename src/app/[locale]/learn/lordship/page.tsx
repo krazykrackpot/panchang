@@ -9,6 +9,7 @@ import { GRAHAS } from '@/lib/constants/grahas';
 import { SIGN_LORDS, EXALTATION_SIGNS, DEBILITATION_SIGNS } from '@/lib/constants/dignities';
 import { tl } from '@/lib/utils/trilingual';
 import { Link } from '@/lib/i18n/navigation';
+import { pickByLocale } from "@/lib/utils/locale-fonts";
 
 /* ──────────────────────────────────────────────────────────────────────────
  * LABELS — inline i18n for this page
@@ -557,17 +558,17 @@ export default function LearnLordshipPage() {
         <p className="mt-4">{l(LABELS.howToUse3)}</p>
         <div className="mt-6 p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12">
           <p className="text-text-secondary text-sm">
-            {locale === 'hi' ? 'सम्बन्धित पृष्ठ: ' : locale === 'ta' ? 'தொடர்புடைய பக்கங்கள்: ' : locale === 'bn' ? 'সম্পর্কিত পৃষ্ঠা: ' : 'Related pages: '}
+            {pickByLocale({ en: 'Related pages: ', hi: 'सम्बन्धित पृष्ठ: ', ta: 'தொடர்புடைய பக்கங்கள்: ', bn: 'সম্পর্কিত পৃষ্ঠা: ' }, locale)}
             <Link href="/learn/bhavas" className="text-gold-light hover:text-gold-primary transition-colors underline underline-offset-2">
-              {locale === 'hi' ? '12 भाव' : locale === 'ta' ? '12 பாவங்கள்' : locale === 'bn' ? '12 ভাব' : '12 Bhavas (Houses)'}
+              {pickByLocale({ en: '12 Bhavas (Houses)', hi: '12 भाव', ta: '12 பாவங்கள்', bn: '12 ভাব' }, locale)}
             </Link>
             {' · '}
             <Link href="/learn/rashis" className="text-gold-light hover:text-gold-primary transition-colors underline underline-offset-2">
-              {locale === 'hi' ? '12 राशियाँ' : locale === 'ta' ? '12 ராசிகள்' : locale === 'bn' ? '12 রাশি' : '12 Rashis (Signs)'}
+              {pickByLocale({ en: '12 Rashis (Signs)', hi: '12 राशियाँ', ta: '12 ராசிகள்', bn: '12 রাশি' }, locale)}
             </Link>
             {' · '}
             <Link href="/learn/grahas" className="text-gold-light hover:text-gold-primary transition-colors underline underline-offset-2">
-              {locale === 'hi' ? 'नवग्रह' : locale === 'ta' ? 'நவகிரகங்கள்' : locale === 'bn' ? 'নবগ্রহ' : 'Nine Grahas'}
+              {pickByLocale({ en: 'Nine Grahas', hi: 'नवग्रह', ta: 'நவகிரகங்கள்', bn: 'নবগ্রহ' }, locale)}
             </Link>
           </p>
         </div>

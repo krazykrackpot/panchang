@@ -117,4 +117,18 @@ if [ -n "$STAGED_JSON" ] || [ -n "$STAGED_TS" ]; then
   fi
 fi
 
+# 4. Scaffolded 9-locale data tables — auto-sync overlay via Gemini when
+# AUTHORED_EN/HI changes. See CLAUDE.md i18n section + PR #580.
+STAGED_OVERLAY_TS=$(echo "$STAGED_TS" | xargs grep -l -E "from '@/lib/constants/[a-z0-9][a-z0-9-]*-overlay\.json'" /dev/null 2>/dev/null)
+if [ -n "$STAGED_OVERLAY_TS" ]; then
+  echo "  [4/4] locale overlay sync..."
+  python3 scripts/sync-locale-overlays.py $STAGED_OVERLAY_TS
+  if [ $? -ne 0 ]; then
+    echo ""
+    echo "COMMIT BLOCKED: locale overlay sync failed. See message above."
+    echo "  (bypass with: git commit --no-verify — run translator manually before pushing)"
+    exit 1
+  fi
+fi
+
 echo "Pre-commit OK."

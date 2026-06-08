@@ -1,5 +1,13 @@
 import type { LocaleText } from '@/types/panchang';
 
+import taOverlay from './substitutions-ta-overlay.json';
+import teOverlay from './substitutions-te-overlay.json';
+import bnOverlay from './substitutions-bn-overlay.json';
+import guOverlay from './substitutions-gu-overlay.json';
+import knOverlay from './substitutions-kn-overlay.json';
+import maiOverlay from './substitutions-mai-overlay.json';
+import mrOverlay from './substitutions-mr-overlay.json';
+
 export interface SubstitutionEntry {
   original: LocaleText;
   substitute: LocaleText;
@@ -7,7 +15,11 @@ export interface SubstitutionEntry {
   availability: 'grocery' | 'health_store' | 'indian_store' | 'online' | 'any';
 }
 
-export const COMMON_SUBSTITUTIONS: Record<string, SubstitutionEntry> = {
+// EN + HI + SA (legacy) source-of-truth. Regional locale overlays
+// (ta/te/bn/gu/kn/mai/mr) are merged in at module-eval time below,
+// keyed by `<entry-key>.<field>` JSON files written by
+// scripts/translate-substitutions-via-gemini.py.
+const SOURCE_SUBSTITUTIONS: Record<string, SubstitutionEntry> = {
   durva: {
     original: { en: 'Durva grass', hi: 'दूर्वा घास', sa: 'दूर्वा' },
     substitute: { en: 'Fresh wheatgrass', hi: 'गेहूँ की घास', sa: 'गोधूमतृणम्' },
@@ -109,3 +121,36 @@ export const COMMON_SUBSTITUTIONS: Record<string, SubstitutionEntry> = {
     availability: 'indian_store',
   },
 };
+
+// Apply regional-locale overlays at module init. Each overlay is keyed
+// by `<entry>.<field>` (e.g. "durva.note") and supplies the translation
+// for that one locale. Missing keys fall back to EN via tl() at the
+// consumer site.
+const FIELD_KEYS = ['original', 'substitute', 'note'] as const;
+type FieldKey = (typeof FIELD_KEYS)[number];
+
+function applyOverlay(
+  base: Record<string, SubstitutionEntry>,
+  locale: 'ta' | 'te' | 'bn' | 'gu' | 'kn' | 'mai' | 'mr',
+  overlay: Record<string, string>,
+): void {
+  for (const [entryKey, entry] of Object.entries(base)) {
+    for (const field of FIELD_KEYS) {
+      const overlayKey = `${entryKey}.${field}`;
+      const v = overlay[overlayKey];
+      if (typeof v === 'string' && v.length > 0) {
+        (entry[field as FieldKey] as Record<string, string>)[locale] = v;
+      }
+    }
+  }
+}
+
+applyOverlay(SOURCE_SUBSTITUTIONS, 'ta',  taOverlay  as Record<string, string>);
+applyOverlay(SOURCE_SUBSTITUTIONS, 'te',  teOverlay  as Record<string, string>);
+applyOverlay(SOURCE_SUBSTITUTIONS, 'bn',  bnOverlay  as Record<string, string>);
+applyOverlay(SOURCE_SUBSTITUTIONS, 'gu',  guOverlay  as Record<string, string>);
+applyOverlay(SOURCE_SUBSTITUTIONS, 'kn',  knOverlay  as Record<string, string>);
+applyOverlay(SOURCE_SUBSTITUTIONS, 'mai', maiOverlay as Record<string, string>);
+applyOverlay(SOURCE_SUBSTITUTIONS, 'mr',  mrOverlay  as Record<string, string>);
+
+export const COMMON_SUBSTITUTIONS: Record<string, SubstitutionEntry> = SOURCE_SUBSTITUTIONS;

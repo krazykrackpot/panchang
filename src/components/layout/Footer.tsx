@@ -1,9 +1,11 @@
 'use client';
 
 import { useLocale } from 'next-intl';
+import { usePathname } from 'next/navigation';
 import { Link } from '@/lib/i18n/navigation';
 import { COMPETITORS } from '@/lib/seo/competitors';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { classifyPath, sectionsForVariant } from './Footer.routes';
 
 // ---------------------------------------------------------------------------
 // Footer link sections  –  ~35 links for SEO link equity distribution
@@ -101,6 +103,10 @@ const SECTIONS = [
   },
 ];
 
+// Route → footer-variant classifier extracted to ./Footer.routes.ts for
+// unit-testability — see that file for the design notes on chrome-density
+// mitigation (Vector 4 of the May 31 demotion follow-ups).
+
 // ---------------------------------------------------------------------------
 // Helper
 // ---------------------------------------------------------------------------
@@ -115,6 +121,14 @@ function t(obj: Record<string, string>, locale: string): string {
 
 export default function Footer() {
   const locale = useLocale();
+  const pathname = usePathname() ?? '/';
+  const variant = classifyPath(pathname);
+  const visibleSectionIndices = sectionsForVariant(variant);
+  const visibleSections = visibleSectionIndices.map(i => SECTIONS[i]);
+  // Compare strip only on the genuinely-comparing surfaces — home, /about,
+  // and the /vs/* pages themselves. Elsewhere it was redundant chrome.
+  const showCompareStrip = variant === 'all';
+  const gridCols = visibleSections.length === 4 ? 'sm:grid-cols-4' : 'sm:grid-cols-2';
 
   return (
     <footer className="relative z-10 mt-16 border-t border-gold-primary/15 bg-gradient-to-b from-[#0d1130] to-[#080b1e]">
@@ -122,9 +136,9 @@ export default function Footer() {
       <div className="h-px bg-gradient-to-r from-transparent via-gold-primary/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {/* 4-column link grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-10">
-          {SECTIONS.map((section) => (
+        {/* Link grid — full 4 columns on hubs, 2 topical columns elsewhere */}
+        <div className={`grid grid-cols-2 ${gridCols} gap-8 mb-10`}>
+          {visibleSections.map((section) => (
             <div key={t(section.title, 'en')}>
               <h3 className="text-gold-primary text-xs font-bold uppercase tracking-widest mb-4">
                 {t(section.title, locale)}
@@ -145,23 +159,25 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Compare strip — sitewide internal links to /vs/* competitor
-            landing pages. Without these, the /vs/* pages are orphans
-            (Lesson D — unlinked pages are dead pages). */}
-        <div className="border-t border-gold-primary/10 pt-5 pb-5 mb-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
-          <span className="text-gold-dark uppercase tracking-widest font-semibold">
-            {t({ en: 'Compare', hi: 'तुलना', sa: 'तुलना', ta: 'ஒப்பீடு', bn: 'তুলনা', te: 'పోలిక', gu: 'સરખામણી', kn: 'ಹೋಲಿಕೆ', mr: 'तुलना', mai: 'तुलना' }, locale)}:
-          </span>
-          {COMPETITORS.map(c => (
-            <Link
-              key={c.slug}
-              href={`/vs/${c.slug}`}
-              className="text-text-secondary hover:text-gold-light transition-colors py-1 inline-block"
-            >
-              {isDevanagariLocale(locale) ? c.hiName : c.displayName}
-            </Link>
-          ))}
-        </div>
+        {/* Compare strip — kept only on home / /about / /vs/* pages where
+            the comparison is contextually relevant. Previously rendered
+            sitewide as duplicate chrome. */}
+        {showCompareStrip && (
+          <div className="border-t border-gold-primary/10 pt-5 pb-5 mb-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
+            <span className="text-gold-dark uppercase tracking-widest font-semibold">
+              {t({ en: 'Compare', hi: 'तुलना', sa: 'तुलना', ta: 'ஒப்பீடு', bn: 'তুলনা', te: 'పోలిక', gu: 'સરખામણી', kn: 'ಹೋಲಿಕೆ', mr: 'तुलना', mai: 'तुलना' }, locale)}:
+            </span>
+            {COMPETITORS.map(c => (
+              <Link
+                key={c.slug}
+                href={`/vs/${c.slug}`}
+                className="text-text-secondary hover:text-gold-light transition-colors py-1 inline-block"
+              >
+                {isDevanagariLocale(locale) ? c.hiName : c.displayName}
+              </Link>
+            ))}
+          </div>
+        )}
 
         {/* Bottom bar */}
         <div className="border-t border-gold-primary/12 pt-5 flex flex-col sm:flex-row items-center justify-between gap-3">
@@ -187,15 +203,20 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* Bottom-bar links. The first row (essentials) renders on every
+              page — legal pages need to be sitewide-reachable. The second
+              row (extras: Festivals, Stories, Embed) is contextual chrome
+              that previously inflated per-page literal-text duplication;
+              rendered only on the high-authority hub variant where the
+              extra link equity actually buys something. /widget/Embed
+              stays in the variant-gated set per UI-3 (single entry-point
+              for the embed-demo redirect target). */}
           <div className="flex flex-wrap items-center gap-4 text-xs text-text-secondary">
             <Link href="/about" className="hover:text-gold-light transition-colors py-1 inline-block">
               {t({ en: 'About', hi: 'परिचय', ta: 'பற்றி', bn: 'সম্পর্কে', te: 'గురించి', gu: 'વિશે', kn: 'ಕುರಿತು', mr: 'परिचय', mai: 'परिचय', sa: 'परिचयः' }, locale)}
             </Link>
             <Link href="/about/methodology" className="hover:text-gold-light transition-colors py-1 inline-block">
               {t({ en: 'Methodology', hi: 'गणना पद्धति', ta: 'முறையியல்', bn: 'পদ্ধতি', te: 'పద్ధతి', gu: 'પદ્ધતિ', kn: 'ವಿಧಾನ', mr: 'पद्धती', mai: 'पद्धति', sa: 'गणनापद्धतिः' }, locale)}
-            </Link>
-            <Link href="/about#contact" className="hover:text-gold-light transition-colors py-1 inline-block">
-              {t({ en: 'Contact', hi: 'संपर्क', ta: 'தொடர்பு', bn: 'যোগাযোগ', te: 'సంప్రదించండి', gu: 'સંપર્ક', kn: 'ಸಂಪರ್ಕ', mr: 'संपर्क', mai: 'संपर्क', sa: 'सम्पर्कः' }, locale)}
             </Link>
             <Link href="/privacy" className="hover:text-gold-light transition-colors py-1 inline-block">
               {t({ en: 'Privacy', hi: 'गोपनीयता', ta: 'தனியுரிமை', bn: 'গোপনীয়তা', te: 'గోప్యత', gu: 'ગોપનીયતા', kn: 'ಗೌಪ್ಯತೆ', mr: 'गोपनीयता', mai: 'गोपनीयता', sa: 'गोपनीयता' }, locale)}
@@ -209,17 +230,22 @@ export default function Footer() {
             <Link href="/pricing" className="hover:text-gold-light transition-colors py-1 inline-block">
               {t({ en: 'Pricing', hi: 'मूल्य', ta: 'விலை', bn: 'মূল্য', te: 'ధర', gu: 'કિંમત', kn: 'ಬೆಲೆ', mr: 'किंमत', mai: 'मूल्य' }, locale)}
             </Link>
-            <Link href="/festivals" className="hover:text-gold-light transition-colors py-1 inline-block">
-              {t({ en: 'Festivals', hi: 'त्योहार', ta: 'பண்டிகைகள்', bn: 'উৎসব', te: 'పండుగలు', gu: 'તહેવારો', kn: 'ಹಬ್ಬಗಳು', mr: 'सण', mai: 'पाबनि' }, locale)}
-            </Link>
-            <Link href="/stories" className="hover:text-gold-light transition-colors py-1 inline-block">
-              {t({ en: 'Stories', hi: 'कथाएँ', ta: 'கதைகள்', bn: 'কথা', te: 'కథలు', gu: 'કથાઓ', kn: 'ಕಥೆಗಳು', mr: 'कथा', mai: 'कथा' }, locale)}
-            </Link>
-            {/* Round 2 UI-3 — /widget had no inbound link. The /embed-demo
-                duplicate now 301s here; this is the only entry point. */}
-            <Link href="/widget" className="hover:text-gold-light transition-colors py-1 inline-block">
-              {t({ en: 'Embed', hi: 'एम्बेड', ta: 'உட்பொதி', bn: 'এমবেড', te: 'ఎంబెడ్', gu: 'એમ્બેડ', kn: 'ಎಂಬೆಡ್', mai: 'एम्बेड' }, locale)}
-            </Link>
+            {variant === 'all' && (
+              <>
+                <Link href="/about#contact" className="hover:text-gold-light transition-colors py-1 inline-block">
+                  {t({ en: 'Contact', hi: 'संपर्क', ta: 'தொடர்பு', bn: 'যোগাযোগ', te: 'సంప్రదించండి', gu: 'સંપર્ક', kn: 'ಸಂಪರ್ಕ', mr: 'संपर्क', mai: 'संपर्क', sa: 'सम्पर्कः' }, locale)}
+                </Link>
+                <Link href="/festivals" className="hover:text-gold-light transition-colors py-1 inline-block">
+                  {t({ en: 'Festivals', hi: 'त्योहार', ta: 'பண்டிகைகள்', bn: 'উৎসব', te: 'పండుగలు', gu: 'તહેવારો', kn: 'ಹಬ್ಬಗಳು', mr: 'सण', mai: 'पाबनि' }, locale)}
+                </Link>
+                <Link href="/stories" className="hover:text-gold-light transition-colors py-1 inline-block">
+                  {t({ en: 'Stories', hi: 'कथाएँ', ta: 'கதைகள்', bn: 'কথা', te: 'కథలు', gu: 'કથાઓ', kn: 'ಕಥೆಗಳು', mr: 'कथा', mai: 'कथा' }, locale)}
+                </Link>
+                <Link href="/widget" className="hover:text-gold-light transition-colors py-1 inline-block">
+                  {t({ en: 'Embed', hi: 'एम्बेड', ta: 'உட்பொதி', bn: 'এমবেড', te: 'ఎంబెడ్', gu: 'એમ્બેડ', kn: 'ಎಂಬೆಡ್', mai: 'एम्बेड' }, locale)}
+                </Link>
+              </>
+            )}
           </div>
 
           <p className="text-gold-dark/60 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>

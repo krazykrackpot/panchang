@@ -130,6 +130,15 @@ function getNode(root, path) {
   return n;
 }
 
+// Cap how many shadow keys we ask Gemini to translate in one call. Past
+// ~25-30 keys, curriculum prose blows past Vertex's per-minute large-prompt
+// quota and we start seeing curl-56s. Smaller chunks = more calls but
+// far higher reliability.
+const MAX_KEYS_PER_CALL = 20;
+// Brief sleep between per-locale calls so Vertex's token-per-minute window
+// can roll. 4s × ~5 locales = ~20s pacing per chunk, well under any limit.
+const INTER_CALL_SLEEP_MS = 4000;
+
 async function processFile(filePath, token) {
   process.stderr.write(`\n=== ${filePath} ===\n`);
   const data = JSON.parse(readFileSync(filePath, 'utf-8'));
@@ -154,27 +163,37 @@ async function processFile(filePath, token) {
 
   let totalCalls = 0;
   for (const [bucketKey, b] of buckets.entries()) {
-    const enObj = {};
-    for (const s of b.entries) enObj[s.path.join('>')] = s.en;
-
     process.stderr.write(`  bucket [${bucketKey}] — ${b.entries.length} keys × ${b.locales.length} locales\n`);
 
-    for (const locale of b.locales) {
-      process.stderr.write(`    → ${locale}...`);
-      const t0 = Date.now();
-      const translated = await geminiTranslateOne(token, enObj, locale);
-      totalCalls++;
-      process.stderr.write(` ${((Date.now() - t0) / 1000).toFixed(1)}s\n`);
+    for (let chunkStart = 0; chunkStart < b.entries.length; chunkStart += MAX_KEYS_PER_CALL) {
+      const chunkEntries = b.entries.slice(chunkStart, chunkStart + MAX_KEYS_PER_CALL);
+      const enObj = {};
+      for (const s of chunkEntries) enObj[s.path.join('>')] = s.en;
 
-      for (const s of b.entries) {
-        const key = s.path.join('>');
-        const tx = translated[key];
-        if (typeof tx !== 'string' || tx.trim() === '') {
-          process.stderr.write(`      WARN missing translation for ${locale}:${key}\n`);
-          continue;
+      const totalChunks = Math.ceil(b.entries.length / MAX_KEYS_PER_CALL);
+      if (totalChunks > 1) {
+        process.stderr.write(`   chunk ${Math.floor(chunkStart / MAX_KEYS_PER_CALL) + 1}/${totalChunks} (${chunkEntries.length} keys)\n`);
+      }
+
+      for (const locale of b.locales) {
+        process.stderr.write(`    → ${locale}...`);
+        const t0 = Date.now();
+        const translated = await geminiTranslateOne(token, enObj, locale);
+        totalCalls++;
+        process.stderr.write(` ${((Date.now() - t0) / 1000).toFixed(1)}s\n`);
+
+        for (const s of chunkEntries) {
+          const key = s.path.join('>');
+          const tx = translated[key];
+          if (typeof tx !== 'string' || tx.trim() === '') {
+            process.stderr.write(`      WARN missing translation for ${locale}:${key}\n`);
+            continue;
+          }
+          const node = getNode(data, s.path);
+          node[locale] = tx;
         }
-        const node = getNode(data, s.path);
-        node[locale] = tx;
+        // Pace ourselves so Vertex's per-minute token window can roll.
+        if (INTER_CALL_SLEEP_MS > 0) await new Promise((r) => setTimeout(r, INTER_CALL_SLEEP_MS));
       }
     }
   }

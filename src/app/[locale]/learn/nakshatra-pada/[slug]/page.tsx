@@ -1,12 +1,13 @@
 import { setRequestLocale } from 'next-intl/server';
 import { NAKSHATRA_PADA_PROFILES, type NakshatraPadaProfile } from '@/lib/constants/nakshatra-pada-profiles';
+import { getNakshatraPadaExtras } from '@/lib/constants/nakshatra-pada-extras';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Star, Briefcase, Heart, Activity, Hash, BookOpen } from 'lucide-react';
+import { ArrowLeft, Star, Briefcase, Heart, Activity, Hash, BookOpen, Flame, Compass } from 'lucide-react';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
@@ -107,13 +108,26 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
         </div>
       </div>
 
-      {/* Content sections */}
-      {([
-        { icon: Star, title: isHi ? 'व्यक्तित्व' : 'Personality', body: isHi ? profile.personality.hi : profile.personality.en },
-        { icon: Briefcase, title: isHi ? 'करियर' : 'Career', body: isHi ? profile.career.hi : profile.career.en },
-        { icon: Heart, title: isHi ? 'सम्बन्ध' : 'Relationships', body: isHi ? profile.relationships.hi : profile.relationships.en },
-        { icon: Activity, title: isHi ? 'स्वास्थ्य' : 'Health', body: isHi ? profile.health.hi : profile.health.en },
-      ] as const).map((section, i) => (
+      {/* Content sections — the four legacy fields plus two extras
+          (spiritualPractice, decisions) from getNakshatraPadaExtras when
+          present. Adds ~60-80 words per page, closing audit item #3 in
+          docs/specs/2026-06-08-seo-audit-followups.md. */}
+      {(() => {
+        const extras = getNakshatraPadaExtras(parsed.nakshatraId, parsed.pada);
+        const sections = [
+          { icon: Star, title: isHi ? 'व्यक्तित्व' : 'Personality', body: isHi ? profile.personality.hi : profile.personality.en },
+          { icon: Briefcase, title: isHi ? 'करियर' : 'Career', body: isHi ? profile.career.hi : profile.career.en },
+          { icon: Heart, title: isHi ? 'सम्बन्ध' : 'Relationships', body: isHi ? profile.relationships.hi : profile.relationships.en },
+          { icon: Activity, title: isHi ? 'स्वास्थ्य' : 'Health', body: isHi ? profile.health.hi : profile.health.en },
+        ];
+        if (extras) {
+          sections.push(
+            { icon: Flame, title: isHi ? 'आध्यात्मिक साधना' : 'Spiritual Practice', body: isHi ? extras.spiritualPractice.hi : extras.spiritualPractice.en },
+            { icon: Compass, title: isHi ? 'निर्णय शैली' : 'Decision-Making Style', body: isHi ? extras.decisions.hi : extras.decisions.en },
+          );
+        }
+        return sections;
+      })().map((section, i) => (
         <div key={i} className="rounded-2xl border border-white/5 bg-bg-secondary/30 p-6 mb-4">
           <div className="flex items-center gap-2 mb-3">
             <section.icon className="w-5 h-5 text-gold-primary" />

@@ -115,7 +115,23 @@ def gemini_translate_batch(token: str, texts: list[str], locale: str, locale_des
                     raise RuntimeError(f"array len {len(parsed)} != expected {len(texts)}")
                 return [str(parsed[i]) for i in range(len(texts))]
             return [parsed[str(i)] for i in range(len(texts))]
-        except (urllib.error.URLError, urllib.error.HTTPError, json.JSONDecodeError, KeyError, IndexError, RuntimeError) as e:
+        except urllib.error.HTTPError as e:
+            # Gemini puts a detailed error JSON in the response body —
+            # read it so the retry log actually says WHY (safety block,
+            # quota, malformed request). Gemini PR #565 cycle-1 MED.
+            try:
+                body_excerpt = e.read().decode("utf-8", errors="replace")[:300]
+            except Exception:
+                body_excerpt = "(could not read response body)"
+            if attempt == 2:
+                print(f"  [{locale}] HTTP {e.code} body: {body_excerpt}", file=sys.stderr)
+                raise
+            print(f"  [{locale}] retry {attempt+1} HTTP {e.code}: {body_excerpt[:200]}", file=sys.stderr)
+            time.sleep(2 ** attempt)
+        except (urllib.error.URLError, json.JSONDecodeError, KeyError, IndexError, TypeError, RuntimeError) as e:
+            # TypeError covers `parsed[str(i)]` when Gemini returns a
+            # null / scalar JSON shape instead of dict/array. Gemini
+            # PR #565 cycle-1 HIGH.
             if attempt == 2:
                 raise
             print(f"  [{locale}] retry {attempt+1}: {str(e)[:100]}", file=sys.stderr)

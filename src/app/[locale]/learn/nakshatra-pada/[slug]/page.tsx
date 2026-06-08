@@ -127,9 +127,29 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
           { icon: Activity, title: isHi ? 'स्वास्थ्य' : 'Health', body: tl(profile.health, locale) },
         ];
         if (extras) {
+          // Section titles for the two extras cards. Mixed locale UX
+          // (Tamil body under English heading) was the Gemini PR #565
+          // cycle-1 MED catch — addressed by translating these to all
+          // 9 visible locales. Body strings come from the overlay (the
+          // tl() call below); chrome stays inline because it's two
+          // strings per section.
+          const SP: Record<string, string> = {
+            en: 'Spiritual Practice', hi: 'आध्यात्मिक साधना',
+            ta: 'ஆன்மீக சாதனை', te: 'ఆధ్యాత్మిక సాధన',
+            bn: 'আধ্যাত্মিক সাধনা', gu: 'આધ્યાત્મિક સાધના',
+            kn: 'ಆಧ್ಯಾತ್ಮಿಕ ಸಾಧನೆ', mai: 'आध्यात्मिक साधना',
+            mr: 'आध्यात्मिक साधना',
+          };
+          const DM: Record<string, string> = {
+            en: 'Decision-Making Style', hi: 'निर्णय शैली',
+            ta: 'முடிவெடுக்கும் பாணி', te: 'నిర్ణయ శైలి',
+            bn: 'সিদ্ধান্ত গ্রহণের ধরন', gu: 'નિર્ણય શૈલી',
+            kn: 'ನಿರ್ಧಾರ ಶೈಲಿ', mai: 'निर्णय शैली',
+            mr: 'निर्णय शैली',
+          };
           sections.push(
-            { icon: Flame, title: isHi ? 'आध्यात्मिक साधना' : 'Spiritual Practice', body: tl(extras.spiritualPractice, locale) },
-            { icon: Compass, title: isHi ? 'निर्णय शैली' : 'Decision-Making Style', body: tl(extras.decisions, locale) },
+            { icon: Flame, title: SP[locale] ?? SP.en, body: tl(extras.spiritualPractice, locale) },
+            { icon: Compass, title: DM[locale] ?? DM.en, body: tl(extras.decisions, locale) },
           );
         }
         return sections;

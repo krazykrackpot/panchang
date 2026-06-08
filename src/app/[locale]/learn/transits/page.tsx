@@ -15,6 +15,13 @@ import { RASHIS } from '@/lib/constants/rashis';
 
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
+// BCP 47 tags for date formatting per visible locale. Falls back to
+// en-US if a locale doesn't have an entry.
+const INTL_LOCALE_TAGS: Record<string, string> = {
+  en: 'en-US', hi: 'hi-IN', ta: 'ta-IN', te: 'te-IN',
+  bn: 'bn-IN', gu: 'gu-IN', kn: 'kn-IN', mai: 'mai-IN', mr: 'mr-IN',
+};
+
 const TRANSIT_DURATIONS = [
   { planetKey: 'td0Planet', durationKey: 'td0Duration', impactKey: 'td0Impact' },
   { planetKey: 'td1Planet', durationKey: 'td1Duration', impactKey: 'td1Impact' },
@@ -199,7 +206,7 @@ export default function TransitsPage() {
 
       {/* ═══ Transit Articles Index ═══ */}
       {articles.length > 0 && (
-        <LessonSection title={locale === 'hi' ? 'गोचर विश्लेषण लेख' : 'Transit Analysis Articles'}>
+        <LessonSection title={t('transitArticlesHeading', locale)}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
             {articles.map((article) => {
               const toRashi = RASHIS.find(r => r.id === article.toSignId);
@@ -246,7 +253,7 @@ export default function TransitsPage() {
                       {tl(toRashi.name, locale as 'en' | 'hi' | 'ta' | 'te' | 'bn' | 'gu' | 'kn' | 'mai' | 'mr' | 'sa')}
                       {' · '}
                       {new Date(article.exactDate).toLocaleDateString(
-                        locale === 'hi' ? 'hi-IN' : 'en-US',
+                        INTL_LOCALE_TAGS[locale] ?? 'en-US',
                         { day: 'numeric', month: 'short', year: 'numeric' },
                       )}
                     </p>
@@ -258,7 +265,7 @@ export default function TransitsPage() {
                   </p>
 
                   <span className="mt-3 inline-block text-gold-primary/60 text-xs group-hover:text-gold-primary transition-colors">
-                    {locale === 'hi' ? 'पूरा लेख पढ़ें →' : 'Read full article →'}
+                    {t('readFullArticle', locale)}
                   </span>
                 </Link>
               );

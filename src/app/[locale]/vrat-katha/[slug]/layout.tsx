@@ -7,6 +7,13 @@ import { locales } from '@/lib/i18n/config';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
+// Schema.org `inLanguage` codes for the 9 visible locales. mai+sa
+// fold into the umbrella 'hi' code; others get their own ISO 639-1.
+const INLANGUAGE_TAGS: Record<string, string> = {
+  en: 'en', hi: 'hi', sa: 'hi', mai: 'hi', mr: 'mr',
+  ta: 'ta', te: 'te', bn: 'bn', gu: 'gu', kn: 'kn',
+};
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { locale, slug } = await params;
   setRequestLocale(locale);
@@ -79,7 +86,7 @@ export default async function Layout({ children, params }: { children: React.Rea
     publisher: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
     datePublished: '2026-04-25',
     dateModified: '2026-04-28',
-    inLanguage: locale === 'hi' ? 'hi' : 'en',
+    inLanguage: INLANGUAGE_TAGS[locale] ?? 'en',
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${BASE_URL}/${locale}/vrat-katha/${slug}` },
     isAccessibleForFree: true,
   };

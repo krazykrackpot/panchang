@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { GRAHA_SHANTI, type GrahaShanti as GrahaShantiData } from '@/lib/constants/graha-shanti';
+import { GRAHA_SHANTI, type GrahaShanti as GrahaShantiData } from '@/lib/constants/graha-shanti-with-overlay';
 import { tl } from '@/lib/utils/trilingual';
 import { BookOpen, ChevronDown, Sparkles } from 'lucide-react';
 
@@ -53,7 +53,7 @@ export default function GrahaShanti({ planetId, locale, inline }: GrahaShantiPro
             {shanti.mantra.text}
           </p>
           <p className="text-text-secondary/70 text-xs mt-2 leading-relaxed">
-            {isEn ? shanti.mantra.meaning.en : shanti.mantra.meaning.hi}
+            {tl(shanti.mantra.meaning, locale)}
           </p>
           <p className="text-text-secondary/40 text-xs mt-2">
             {isEn
@@ -66,13 +66,13 @@ export default function GrahaShanti({ planetId, locale, inline }: GrahaShantiPro
       {/* Grid: gemstone, metal, day, color, grain, flower, direction */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
         {([
-          { label: isEn ? 'Gemstone' : 'रत्न', value: isEn ? shanti.gemstone.en : shanti.gemstone.hi },
-          { label: isEn ? 'Metal' : 'धातु', value: isEn ? shanti.metal.en : shanti.metal.hi },
-          { label: isEn ? 'Day' : 'दिन', value: isEn ? shanti.day.en : shanti.day.hi },
-          { label: isEn ? 'Color' : 'रंग', value: isEn ? shanti.color.en : shanti.color.hi },
-          { label: isEn ? 'Grain' : 'अनाज', value: isEn ? shanti.grain.en : shanti.grain.hi },
-          { label: isEn ? 'Flower' : 'पुष्प', value: isEn ? shanti.flower.en : shanti.flower.hi },
-          { label: isEn ? 'Direction' : 'दिशा', value: isEn ? shanti.direction.en : shanti.direction.hi },
+          { label: isEn ? 'Gemstone' : 'रत्न', value: tl(shanti.gemstone, locale) },
+          { label: isEn ? 'Metal' : 'धातु', value: tl(shanti.metal, locale) },
+          { label: isEn ? 'Day' : 'दिन', value: tl(shanti.day, locale) },
+          { label: isEn ? 'Color' : 'रंग', value: tl(shanti.color, locale) },
+          { label: isEn ? 'Grain' : 'अनाज', value: tl(shanti.grain, locale) },
+          { label: isEn ? 'Flower' : 'पुष्प', value: tl(shanti.flower, locale) },
+          { label: isEn ? 'Direction' : 'दिशा', value: tl(shanti.direction, locale) },
         ] as const).map((item) => (
           <div key={item.label} className="bg-white/[0.02] rounded-lg px-3 py-2">
             <span className="text-text-secondary/50 block">{item.label}</span>
@@ -90,7 +90,7 @@ export default function GrahaShanti({ planetId, locale, inline }: GrahaShantiPro
               {isEn ? 'Fasting Guidelines' : 'व्रत निर्देश'}
             </span>
             <p className="text-text-secondary text-xs leading-relaxed">
-              {isEn ? shanti.fastNote.en : shanti.fastNote.hi}
+              {tl(shanti.fastNote, locale)}
             </p>
           </div>
         </div>

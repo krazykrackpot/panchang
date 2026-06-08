@@ -2,13 +2,13 @@
   "localeId": {
     "en": "en-IN",
     "hi": "hi-IN",
-    "ta": "en-IN",
-    "te": "en-IN",
-    "bn": "en-IN",
-    "kn": "en-IN",
-    "mr": "en-IN",
-    "gu": "en-IN",
-    "mai": "en-IN"
+    "ta": "ta-IN",
+    "te": "te-IN",
+    "bn": "bn-IN",
+    "kn": "kn-IN",
+    "mr": "mr-IN",
+    "gu": "gu-IN",
+    "mai": "mai-IN"
   },
   "searchCity": {
     "en": "Search city or place...",

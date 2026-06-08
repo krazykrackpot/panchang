@@ -2,13 +2,13 @@
   "localeDateLocale": {
     "en": "en-IN",
     "hi": "hi-IN",
-    "ta": "en-IN",
-    "te": "en-IN",
-    "bn": "en-IN",
-    "kn": "en-IN",
-    "gu": "en-IN",
-    "mai": "en-IN",
-    "mr": "en-IN"
+    "ta": "ta-IN",
+    "te": "te-IN",
+    "bn": "bn-IN",
+    "kn": "kn-IN",
+    "gu": "gu-IN",
+    "mai": "mai-IN",
+    "mr": "mr-IN"
   },
   "pageTitle": {
     "en": "Retrograde & Combustion",
@@ -145,22 +145,22 @@
   "doLabel": {
     "en": "Do",
     "hi": "करें",
-    "ta": "Do",
-    "te": "Do",
-    "bn": "Do",
-    "kn": "Do",
-    "gu": "Do",
+    "ta": "செய்யவும்",
+    "te": "చేయండి",
+    "bn": "করুন",
+    "kn": "ಮಾಡಿ",
+    "gu": "કરો",
     "mai": "करू",
     "mr": "करें"
   },
   "dontLabel": {
     "en": "Don't",
     "hi": "न करें",
-    "ta": "Don't",
-    "te": "Don't",
-    "bn": "Don't",
-    "kn": "Don't",
-    "gu": "Don't",
+    "ta": "செய்ய வேண்டாம்",
+    "te": "చేయవద్దు",
+    "bn": "করবেন না",
+    "kn": "ಮಾಡಬೇಡಿ",
+    "gu": "ન કરો",
     "mai": "नहि करू",
     "mr": "न करें"
   },

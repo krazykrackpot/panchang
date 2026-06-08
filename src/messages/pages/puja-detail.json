@@ -46,13 +46,13 @@
   "sankalpaSa": {
     "en": "Resolution",
     "hi": "Resolution",
-    "ta": "Resolution",
-    "te": "Resolution",
-    "bn": "Resolution",
-    "kn": "Resolution",
-    "gu": "Resolution",
+    "ta": "சங்கல்பம்",
+    "te": "సంకల్పం",
+    "bn": "সংকল্প",
+    "kn": "ಸಂಕಲ್ಪ",
+    "gu": "સંકલ્પ",
     "mai": "संकल्प",
-    "mr": "Resolution"
+    "mr": "संकल्प"
   },
   "vidhi": {
     "en": "Procedure",
@@ -90,13 +90,13 @@
   "mantrasSa": {
     "en": "Mantras",
     "hi": "Mantras",
-    "ta": "Mantras",
-    "te": "Mantras",
-    "bn": "Mantras",
-    "kn": "Mantras",
-    "gu": "Mantras",
+    "ta": "மந்திரங்கள்",
+    "te": "మంత్రాలు",
+    "bn": "মন্ত্র",
+    "kn": "ಮಂತ್ರಗಳು",
+    "gu": "મંત્રો",
     "mai": "मंत्रसभ",
-    "mr": "Mantras"
+    "mr": "मंत्र"
   },
   "stotras": {
     "en": "Stotras",
@@ -112,13 +112,13 @@
   "stotrasSa": {
     "en": "Hymns",
     "hi": "Hymns",
-    "ta": "Hymns",
-    "te": "Hymns",
-    "bn": "Hymns",
-    "kn": "Hymns",
-    "gu": "Hymns",
+    "ta": "ஸ்தோத்திரங்கள்",
+    "te": "స్తోత్రాలు",
+    "bn": "স্তোত্র",
+    "kn": "ಸ್ತೋತ್ರಗಳು",
+    "gu": "સ્તોત્રો",
     "mai": "स्तुति",
-    "mr": "Hymns"
+    "mr": "स्तोत्रे"
   },
   "aarti": {
     "en": "Aarti",
@@ -134,13 +134,13 @@
   "aartiSa": {
     "en": "Aarti",
     "hi": "Aarti",
-    "ta": "Aarti",
-    "te": "Aarti",
-    "bn": "Aarti",
-    "kn": "Aarti",
-    "gu": "Aarti",
+    "ta": "ஆரத்தி",
+    "te": "హారతి",
+    "bn": "আরতি",
+    "kn": "ಆರತಿ",
+    "gu": "આરતી",
     "mai": "आरती",
-    "mr": "Aarti"
+    "mr": "आरती"
   },
   "naivedya": {
     "en": "Naivedya",
@@ -156,13 +156,13 @@
   "naivedyaSa": {
     "en": "Food Offering",
     "hi": "Food Offering",
-    "ta": "Food Offering",
-    "te": "Food Offering",
-    "bn": "Food Offering",
-    "kn": "Food Offering",
-    "gu": "Food Offering",
+    "ta": "நைவேத்யம்",
+    "te": "నైవేద్యం",
+    "bn": "নৈবেদ্য",
+    "kn": "ನೈವೇದ್ಯ",
+    "gu": "નૈવેદ્ય",
     "mai": "नैवेद्य",
-    "mr": "Food Offering"
+    "mr": "नैवेद्य"
   },
   "precautions": {
     "en": "Precautions",
@@ -178,13 +178,13 @@
   "precautionsSa": {
     "en": "Do's & Don'ts",
     "hi": "Do's & Don'ts",
-    "ta": "Do's & Don'ts",
-    "te": "Do's & Don'ts",
-    "bn": "Do's & Don'ts",
-    "kn": "Do's & Don'ts",
-    "gu": "Do's & Don'ts",
+    "ta": "செய்ய வேண்டியவை மற்றும் செய்யக்கூடாதவை",
+    "te": "జాగ్రత్తలు",
+    "bn": "করণীয় ও বর্জনীয়",
+    "kn": "ಸೂಚನೆಗಳು",
+    "gu": "સાવધાનીઓ",
     "mai": "करबाक आ नहि करबाक",
-    "mr": "Do's & Don'ts"
+    "mr": "सावधगिरी"
   },
   "phala": {
     "en": "Benefits",
@@ -222,13 +222,13 @@
   "visarjanSa": {
     "en": "Closing Ritual",
     "hi": "Closing Ritual",
-    "ta": "Closing Ritual",
-    "te": "Closing Ritual",
-    "bn": "Closing Ritual",
-    "kn": "Closing Ritual",
-    "gu": "Closing Ritual",
+    "ta": "விசர்ஜனம்",
+    "te": "విసర్జనం",
+    "bn": "বিসর্জন",
+    "kn": "ವಿಸರ್ಜನ",
+    "gu": "વિસર્જન",
     "mai": "समापन विधि",
-    "mr": "Closing Ritual"
+    "mr": "विसर्जन"
   },
   "muhurta": {
     "en": "நேரம்",
@@ -310,18 +310,18 @@
   "devanagari": {
     "en": "Devanagari",
     "hi": "देवनागरी",
-    "ta": "Devanagari",
-    "te": "Devanagari",
-    "bn": "Devanagari",
-    "kn": "Devanagari",
-    "gu": "Devanagari",
+    "ta": "தேவநாகரி",
+    "te": "దేవనాగరి",
+    "bn": "দেবনাগরী",
+    "kn": "ದೇವನಾಗರಿ",
+    "gu": "દેવનાગરી",
     "mai": "देवनागरी",
     "mr": "देवनागरी"
   },
   "iast": {
     "en": "IAST",
     "hi": "IAST",
-    "ta": "IAST",
+    "ta": "ஐஏஎஸ்டி",
     "te": "IAST",
     "bn": "IAST",
     "kn": "IAST",
@@ -332,11 +332,11 @@
   "both": {
     "en": "Both",
     "hi": "दोनों",
-    "ta": "Both",
-    "te": "Both",
-    "bn": "Both",
-    "kn": "Both",
-    "gu": "Both",
+    "ta": "இரண்டும்",
+    "te": "రెండూ",
+    "bn": "উভয়",
+    "kn": "ಎರಡೂ",
+    "gu": "બંને",
     "mai": "दुनू",
     "mr": "दोन्ही"
   }

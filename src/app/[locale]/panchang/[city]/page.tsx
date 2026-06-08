@@ -9,6 +9,7 @@ import { Sunrise, Sunset, Clock, MapPin, Calendar, ArrowRight, ChevronRight } fr
 import WhatsAppShareBanner from '@/components/ui/WhatsAppShareBanner';
 import LearnConceptsBlock from '@/components/seo/LearnConceptsBlock';
 import { getCityBySlugExtended, getNearbyCitiesIndexable, isSeoIndexableCity } from '@/lib/constants/cities-extended';
+import { getCityDescriptor } from '@/lib/constants/city-descriptors';
 import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
 import { generateDailyArticle, type ArticleCityConfig } from '@/lib/horoscope/daily-article';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -345,6 +346,50 @@ export default async function CityPanchangPage({
           })}
         </p>
       </div>
+
+      {/* ═══ CITY DESCRIPTOR ═══
+          Per-city descriptor (notable temples, local festival traditions,
+          regional fast/feast practices, climate notes, NRI/diaspora
+          context). Differentiates the page body from the city-name-swap
+          pattern documented in
+          docs/specs/2026-06-08-seo-audit-followups.md item #2 — two
+          Indian cities on the same date were sharing tithi/nakshatra/yoga
+          /karana so the only body diff was the city name substitution.
+          Data: src/lib/constants/city-descriptors.json (Gemini-authored,
+          9-locale; covers the 44 SEO_INDEXABLE_CITY_SLUGS). */}
+      {(() => {
+        const descriptor = getCityDescriptor(citySlug);
+        if (!descriptor) return null;
+        const text = descriptor.descriptor[locale as keyof typeof descriptor.descriptor]
+          ?? descriptor.descriptor.en;
+        if (!text) return null;
+        return (
+          <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-6 mb-10">
+            <div className="flex items-center gap-2 mb-3">
+              <MapPin size={16} className="text-gold-primary" />
+              <h2 className="text-gold-light text-base font-semibold">
+                {tl(
+                  {
+                    en: `About ${city.name.en} Panchang`,
+                    hi: `${city.name.hi || city.name.en} पंचांग के बारे में`,
+                    mai: `${city.name.mai || city.name.hi || city.name.en} पंचांगक बारे मे`,
+                    mr: `${city.name.mr || city.name.hi || city.name.en} पंचांगाबद्दल`,
+                    ta: `${city.name.ta || city.name.en} பஞ்சாங்கம் பற்றி`,
+                    te: `${city.name.te || city.name.en} పంచాంగం గురించి`,
+                    bn: `${city.name.bn || city.name.en} পঞ্জিকা সম্পর্কে`,
+                    kn: `${city.name.kn || city.name.en} ಪಂಚಾಂಗದ ಬಗ್ಗೆ`,
+                    gu: `${city.name.gu || city.name.en} પંચાંગ વિશે`,
+                  },
+                  locale,
+                )}
+              </h2>
+            </div>
+            <p className="text-text-primary/85 text-sm leading-relaxed" style={isDevanagariLocale(loc) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+              {text}
+            </p>
+          </div>
+        );
+      })()}
 
       {/* ═══ SUNRISE / SUNSET BANNER ═══ */}
       <div className="grid grid-cols-2 gap-4 mb-8">

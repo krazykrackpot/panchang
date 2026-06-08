@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown, Calendar, BookOpen, Sparkles } from 'lucide-react';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
-import { TRANSIT_ARTICLES, type MoonSignEffect } from '@/lib/content/transit-articles';
+import { LOCALIZED_TRANSIT_ARTICLES, type LocalizedMoonSignEffect } from '@/lib/content/transit-articles-with-overlay';
 import { RASHIS } from '@/lib/constants/rashis';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { tl } from '@/lib/utils/trilingual';
@@ -24,7 +24,7 @@ export default function TransitArticlePage() {
   const locale = useLocale() as Locale;
   const params = useParams<{ slug: string }>();
   const slug = params.slug;
-  const article = TRANSIT_ARTICLES[slug];
+  const article = LOCALIZED_TRANSIT_ARTICLES[slug];
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
@@ -48,7 +48,6 @@ export default function TransitArticlePage() {
 
   if (!article) return notFound();
 
-  const loc = (locale === 'hi' ? 'hi' : 'en') as 'en' | 'hi';
   const planetColor = PLANET_COLORS[article.planetId] || '#FFD700';
   const toRashi = RASHIS.find(r => r.id === article.toSignId);
 
@@ -68,10 +67,10 @@ export default function TransitArticlePage() {
           className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3"
           style={headingFont}
         >
-          <span className="text-gold-gradient">{article.title[loc]}</span>
+          <span className="text-gold-gradient">{tl(article.title, locale)}</span>
         </h1>
         <p className="text-text-secondary text-sm mb-2" style={bodyFont}>
-          {article.duration}
+          {tl(article.duration, locale)}
         </p>
         <p className="text-text-secondary/60 text-xs">
           {locale === 'hi' ? 'प्रकाशित' : 'Published'}{' '}
@@ -89,7 +88,7 @@ export default function TransitArticlePage() {
         className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 sm:p-8 mb-8"
       >
         <div className="prose-transit" style={bodyFont}>
-          {(article.overview[loc] || article.overview.en).split('\n\n').map((para, i) => (
+          {tl(article.overview, locale).split('\n\n').map((para, i) => (
             <p
               key={i}
               className={`text-text-primary/90 text-sm sm:text-base leading-relaxed mb-4 last:mb-0 ${i === 0 ? 'first-letter:text-3xl first-letter:font-bold first-letter:text-gold-light first-letter:float-left first-letter:mr-1.5 first-letter:mt-0.5' : ''}`}
@@ -118,7 +117,7 @@ export default function TransitArticlePage() {
               className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border-l-2 border-gold-primary/30 border border-gold-primary/8 rounded-xl p-4"
             >
               <p className="text-text-primary/85 text-sm leading-relaxed" style={bodyFont}>
-                {theme[loc] || theme.en}
+                {tl(theme, locale)}
               </p>
             </div>
           ))}
@@ -142,7 +141,7 @@ export default function TransitArticlePage() {
         </p>
 
         <div className="space-y-2">
-          {article.moonSignEffects.map((effect: MoonSignEffect) => {
+          {article.moonSignEffects.map((effect: LocalizedMoonSignEffect) => {
             const rashi = RASHIS.find(r => r.id === effect.rashiId);
             const isExpanded = expandedRashi === effect.rashiId;
             const isUserSign = hasBirthData && birthRashi === effect.rashiId;
@@ -178,7 +177,7 @@ export default function TransitArticlePage() {
                       )}
                     </div>
                     <p className="text-xs text-gold-primary/70 mt-0.5" style={bodyFont}>
-                      {effect.headline}
+                      {tl(effect.headline, locale)}
                     </p>
                   </div>
                   <ChevronDown
@@ -195,7 +194,7 @@ export default function TransitArticlePage() {
                   >
                     {/* Body paragraphs */}
                     <div className="mb-4">
-                      {effect.body.split('\n\n').map((para, i) => (
+                      {tl(effect.body, locale).split('\n\n').map((para, i) => (
                         <p key={i} className="text-text-primary/80 text-sm leading-relaxed mb-3 last:mb-0" style={bodyFont}>
                           {para}
                         </p>
@@ -208,14 +207,21 @@ export default function TransitArticlePage() {
                         {locale === 'hi' ? 'क्या करें और क्या न करें' : 'Dos & Don\'ts'}
                       </h4>
                       <ul className="space-y-1.5">
-                        {effect.dosAndDonts.map((item, i) => (
-                          <li key={i} className="text-xs text-text-primary/70 leading-relaxed flex gap-2" style={bodyFont}>
-                            <span className={item.startsWith('Do ') || item.startsWith('Do\'') ? 'text-green-400' : 'text-amber-400'}>
-                              {item.startsWith('Do ') || item.startsWith('Do\'') ? '✓' : '✗'}
-                            </span>
-                            {item}
-                          </li>
-                        ))}
+                        {effect.dosAndDonts.map((item, i) => {
+                          // Decide ✓/✗ from the EN authored text, not the
+                          // translated string — translators don't keep the
+                          // "Do " / "Don't" prefix uniformly, but the EN
+                          // prefix is the source of truth.
+                          const isDo = item.en.startsWith('Do ') || item.en.startsWith('Do\'');
+                          return (
+                            <li key={i} className="text-xs text-text-primary/70 leading-relaxed flex gap-2" style={bodyFont}>
+                              <span className={isDo ? 'text-green-400' : 'text-amber-400'}>
+                                {isDo ? '✓' : '✗'}
+                              </span>
+                              {tl(item, locale)}
+                            </li>
+                          );
+                        })}
                       </ul>
                     </div>
 
@@ -223,7 +229,7 @@ export default function TransitArticlePage() {
                     <div className="bg-[#6366f1]/6 border border-[#6366f1]/15 rounded-lg p-3">
                       <p className="text-xs text-[#c4b5fd] leading-relaxed" style={bodyFont}>
                         <strong className="text-[#e0d4ff]">{locale === 'hi' ? 'उपाय: ' : 'Remedy: '}</strong>
-                        {effect.remedy}
+                        {tl(effect.remedy, locale)}
                       </p>
                     </div>
                   </motion.div>
@@ -263,8 +269,8 @@ export default function TransitArticlePage() {
                   style={{ background: isPast ? '#8a8478' : planetColor }}
                 />
                 <div className="text-xs text-text-secondary font-semibold mb-0.5">{dateStr}</div>
-                <div className="text-sm font-bold text-text-primary mb-0.5" style={headingFont}>{kd.event}</div>
-                <p className="text-xs text-text-secondary/70 leading-relaxed" style={bodyFont}>{kd.significance}</p>
+                <div className="text-sm font-bold text-text-primary mb-0.5" style={headingFont}>{tl(kd.event, locale)}</div>
+                <p className="text-xs text-text-secondary/70 leading-relaxed" style={bodyFont}>{tl(kd.significance, locale)}</p>
               </div>
             );
           })}
@@ -283,7 +289,7 @@ export default function TransitArticlePage() {
             {locale === 'hi' ? 'वक्री गुरु  –  ध्यान दें' : 'Retrograde Period  –  What to Know'}
           </h3>
           <p className="text-xs text-text-primary/70 leading-relaxed" style={bodyFont}>
-            {article.retrogradeNote}
+            {tl(article.retrogradeNote, locale)}
           </p>
         </motion.div>
       )}

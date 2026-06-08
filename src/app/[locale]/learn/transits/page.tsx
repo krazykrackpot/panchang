@@ -7,7 +7,8 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/transits.json';
 import { getHeadingFont, isDevanagariLocale } from '@/lib/utils/locale-fonts';
-import { TRANSIT_ARTICLES } from '@/lib/content/transit-articles';
+import { LOCALIZED_TRANSIT_ARTICLES } from '@/lib/content/transit-articles-with-overlay';
+import { tl } from '@/lib/utils/trilingual';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -62,8 +63,7 @@ export default function TransitsPage() {
   const headingFont = getHeadingFont(locale);
   const isDevanagari = isDevanagariLocale(locale);
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
-  const loc = (locale === 'hi' ? 'hi' : 'en') as 'en' | 'hi';
-  const articles = Object.values(TRANSIT_ARTICLES);
+  const articles = Object.values(LOCALIZED_TRANSIT_ARTICLES);
 
   return (
     <article className="max-w-4xl mx-auto px-4 py-12 space-y-2">
@@ -205,7 +205,7 @@ export default function TransitsPage() {
               const toRashi = RASHIS.find(r => r.id === article.toSignId);
               const fromRashi = RASHIS.find(r => r.id === article.fromSignId);
               const planetColor = PLANET_COLORS[article.planetId] || '#FFD700';
-              const overview = article.overview[loc] || article.overview.en;
+              const overview = tl(article.overview, locale as 'en' | 'hi' | 'ta' | 'te' | 'bn' | 'gu' | 'kn' | 'mai' | 'mr' | 'sa');
               const excerpt = overview.slice(0, 160).trimEnd() + '…';
               return (
                 <Link
@@ -226,7 +226,7 @@ export default function TransitsPage() {
                       className="ml-auto text-xs font-mono px-2 py-0.5 rounded-full border"
                       style={{ color: planetColor, borderColor: `${planetColor}33` }}
                     >
-                      {article.duration.split('(')[0].trim()}
+                      {tl(article.duration, locale as 'en' | 'hi' | 'ta' | 'te' | 'bn' | 'gu' | 'kn' | 'mai' | 'mr' | 'sa').split('(')[0].trim()}
                     </span>
                   </div>
 
@@ -235,15 +235,15 @@ export default function TransitsPage() {
                     className="text-gold-light font-bold text-sm leading-snug mb-1 group-hover:text-gold-primary transition-colors"
                     style={headingFont}
                   >
-                    {article.title[loc] || article.title.en}
+                    {tl(article.title, locale as 'en' | 'hi' | 'ta' | 'te' | 'bn' | 'gu' | 'kn' | 'mai' | 'mr' | 'sa')}
                   </h3>
 
                   {/* From → To */}
                   {fromRashi && toRashi && (
                     <p className="text-text-secondary/60 text-xs mb-2" style={bodyFont}>
-                      {fromRashi.name[loc] || fromRashi.name.en}
+                      {tl(fromRashi.name, locale as 'en' | 'hi' | 'ta' | 'te' | 'bn' | 'gu' | 'kn' | 'mai' | 'mr' | 'sa')}
                       {' → '}
-                      {toRashi.name[loc] || toRashi.name.en}
+                      {tl(toRashi.name, locale as 'en' | 'hi' | 'ta' | 'te' | 'bn' | 'gu' | 'kn' | 'mai' | 'mr' | 'sa')}
                       {' · '}
                       {new Date(article.exactDate).toLocaleDateString(
                         locale === 'hi' ? 'hi-IN' : 'en-US',

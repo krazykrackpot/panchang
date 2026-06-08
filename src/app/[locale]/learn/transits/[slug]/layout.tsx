@@ -1,12 +1,15 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { TRANSIT_ARTICLES } from '@/lib/content/transit-articles';
+import { LOCALIZED_TRANSIT_ARTICLES } from '@/lib/content/transit-articles-with-overlay';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { tl } from '@/lib/utils/trilingual';
+import type { Locale } from '@/types/panchang';
+import { buildIndexableHreflang } from '@/lib/seo/hreflang';
 
 const BASE_URL = 'https://dekhopanchang.com';
 
 export function generateStaticParams() {
-  return Object.keys(TRANSIT_ARTICLES).map(slug => ({ slug }));
+  return Object.keys(LOCALIZED_TRANSIT_ARTICLES).map(slug => ({ slug }));
 }
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
@@ -14,12 +17,12 @@ type Props = { params: Promise<{ locale: string; slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const article = TRANSIT_ARTICLES[slug];
+  const article = LOCALIZED_TRANSIT_ARTICLES[slug];
   if (!article) return { title: 'Transit Article  –  Dekho Panchang' };
 
-  const loc = locale as 'en' | 'hi';
-  const title = article.title[loc] || article.title.en;
-  const description = article.metaDescription[loc] || article.metaDescription.en;
+  const localeKey = locale as Locale;
+  const title = tl(article.title, localeKey);
+  const description = tl(article.metaDescription, localeKey);
 
   return {
     title: `${title} | Dekho Panchang`,
@@ -35,7 +38,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: { card: 'summary_large_image', title, description },
     alternates: {
       canonical: `${BASE_URL}/${locale}/learn/transits/${slug}`,
-      languages: { en: `${BASE_URL}/en/learn/transits/${slug}`, hi: `${BASE_URL}/hi/learn/transits/${slug}`, ta: `${BASE_URL}/ta/learn/transits/${slug}`, bn: `${BASE_URL}/bn/learn/transits/${slug}` },
+      // Fan out to every locale whose translations exist (puja-PR
+      // pattern: overlay coverage + central policy). Previous map was
+      // hand-rolled en+hi+ta+bn, out of sync with actual coverage.
+      languages: buildIndexableHreflang(`/learn/transits/${slug}`),
     },
   };
 }
@@ -49,9 +55,14 @@ export default async function TransitArticleLayout({
 }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const article = TRANSIT_ARTICLES[slug];
+  const article = LOCALIZED_TRANSIT_ARTICLES[slug];
   if (!article) return <>{children}</>;
 
+  const localeKey = locale as Locale;
+  // Article JSON-LD keeps EN headline/description (Schema.org Article
+  // entities are indexed once across locales by Google — locale-aware
+  // text would create a multi-Article fork that's not how rich
+  // results consume this).
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -65,6 +76,8 @@ export default async function TransitArticleLayout({
     inLanguage: locale === 'hi' ? 'hi' : 'en',
   };
 
+  // Breadcrumb name uses the localised article title — breadcrumb
+  // rich result is shown per-locale-page, unlike Article.
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -72,7 +85,7 @@ export default async function TransitArticleLayout({
       { '@type': 'ListItem', position: 1, name: 'Home', item: `${BASE_URL}/${locale}` },
       { '@type': 'ListItem', position: 2, name: 'Learn', item: `${BASE_URL}/${locale}/learn` },
       { '@type': 'ListItem', position: 3, name: 'Transits', item: `${BASE_URL}/${locale}/learn/transits` },
-      { '@type': 'ListItem', position: 4, name: article.title.en },
+      { '@type': 'ListItem', position: 4, name: tl(article.title, localeKey) },
     ],
   };
 

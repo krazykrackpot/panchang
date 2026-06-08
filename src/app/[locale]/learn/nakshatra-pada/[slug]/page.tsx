@@ -4,6 +4,7 @@ import { getNakshatraPadaExtras } from '@/lib/constants/nakshatra-pada-extras';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
+import { getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -53,7 +54,12 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
   const navamshaRashi = RASHIS[profile.navamshaSign - 1];
   const navamshaName = tl(navamshaRashi?.name, locale) || `Sign ${profile.navamshaSign}`;
   const isHi = locale === 'hi' || locale === 'sa';
-  const hf = { fontFamily: isHi ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' };
+  // Locale-aware font selection — covers all 9 visible locales' scripts
+  // (Tamil / Telugu / Bengali / Kannada / Gujarati / Devanagari-for-
+  // hi+mr+mai+sa). Previously the page only switched on hi/sa and
+  // fell back to the Latin font for the regional scripts. Gemini PR #555.
+  const hf = getHeadingFont(locale);
+  const bf = getBodyFont(locale);
   const elemColor = ELEMENT_COLORS[profile.element] || 'text-gold-light bg-gold-primary/10 border-gold-primary/20';
 
   const articleLD = {
@@ -133,7 +139,7 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
             <section.icon className="w-5 h-5 text-gold-primary" />
             <h2 className="text-lg font-semibold text-gold-light" style={hf}>{section.title}</h2>
           </div>
-          <p className="text-text-primary leading-relaxed">{section.body}</p>
+          <p className="text-text-primary leading-relaxed" style={bf}>{section.body}</p>
         </div>
       ))}
 

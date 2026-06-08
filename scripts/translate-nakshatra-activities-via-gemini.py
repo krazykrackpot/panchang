@@ -16,6 +16,8 @@ import re
 import subprocess
 import sys
 import time
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 
@@ -44,9 +46,24 @@ LOCALES = {
 
 
 def get_access_token() -> str:
-    return subprocess.check_output(
-        ["gcloud", "auth", "print-access-token"], text=True
-    ).strip()
+    # Wrap the gcloud invocation so a missing/unauthenticated environment
+    # gives a clear actionable error instead of a raw FileNotFoundError
+    # or CalledProcessError traceback. Gemini PR #562 MED.
+    try:
+        return subprocess.check_output(
+            ["gcloud", "auth", "print-access-token"], text=True, stderr=subprocess.PIPE
+        ).strip()
+    except FileNotFoundError as exc:
+        raise SystemExit(
+            "gcloud CLI not found on PATH. Install Google Cloud SDK and run "
+            "`gcloud auth application-default login` before re-running this script."
+        ) from exc
+    except subprocess.CalledProcessError as exc:
+        raise SystemExit(
+            "Failed to obtain a gcloud access token. Run `gcloud auth "
+            "application-default login` and try again.\n"
+            f"gcloud stderr: {exc.stderr or '(empty)'}"
+        ) from exc
 
 
 def gemini_translate_batch(token: str, texts: list[str], locale: str, locale_desc: str) -> list[str]:
@@ -75,20 +92,23 @@ def gemini_translate_batch(token: str, texts: list[str], locale: str, locale_des
             "maxOutputTokens": 8192,
         },
     }
+    body_bytes = json.dumps(body, ensure_ascii=False).encode("utf-8")
     for attempt in range(3):
         try:
-            proc = subprocess.run(
-                [
-                    "curl", "-s", "-f", "-X", "POST",
-                    "-H", f"Authorization: Bearer {token}",
-                    "-H", "Content-Type: application/json",
-                    ENDPOINT, "-d",
-                    json.dumps(body, ensure_ascii=False),
-                ],
-                capture_output=True, text=True, check=True,
-                timeout=180,
+            # urllib.request keeps the body in the HTTP entity, not argv —
+            # avoids ARG_MAX risk that argv-based curl had for large prompts.
+            # Gemini PR #562 HIGH.
+            req = urllib.request.Request(
+                ENDPOINT,
+                data=body_bytes,
+                method="POST",
+                headers={
+                    "Authorization": f"Bearer {token}",
+                    "Content-Type": "application/json; charset=utf-8",
+                },
             )
-            raw = json.loads(proc.stdout)
+            with urllib.request.urlopen(req, timeout=180) as resp:
+                raw = json.loads(resp.read().decode("utf-8"))
             if "candidates" not in raw:
                 raise RuntimeError(f"no candidates: {json.dumps(raw)[:300]}")
             text = raw["candidates"][0]["content"]["parts"][0]["text"]
@@ -97,8 +117,18 @@ def gemini_translate_batch(token: str, texts: list[str], locale: str, locale_des
             except json.JSONDecodeError:
                 text = re.sub(r"^```(?:json)?\n?|\n?```$", "", text.strip(), flags=re.MULTILINE)
                 parsed = json.loads(text)
+            # Defensive index access — Gemini usually returns the dict shape
+            # we asked for, but has occasionally returned an array. Both
+            # support `parsed[str(i)]` on a dict or `parsed[i]` on a list,
+            # so unify here. Gemini PR #562 MED.
+            if isinstance(parsed, list):
+                if len(parsed) != len(texts):
+                    raise RuntimeError(
+                        f"array response length {len(parsed)} != expected {len(texts)}"
+                    )
+                return [str(parsed[i]) for i in range(len(texts))]
             return [parsed[str(i)] for i in range(len(texts))]
-        except (subprocess.CalledProcessError, json.JSONDecodeError, KeyError, IndexError, RuntimeError) as e:
+        except (urllib.error.URLError, urllib.error.HTTPError, json.JSONDecodeError, KeyError, IndexError, RuntimeError) as e:
             if attempt == 2:
                 raise
             print(f"  [{locale}] retry {attempt+1}: {str(e)[:100]}", file=sys.stderr)

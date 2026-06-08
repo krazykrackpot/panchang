@@ -66,10 +66,25 @@ export type IndexableLagnaLocale = (typeof INDEXABLE_LAGNA_LOCALES)[number];
  * here; see spec §3.
  */
 const INDEXABLE_BY_PREFIX: ReadonlyArray<[string, ReadonlyArray<string>]> = [
-  // All /learn/* slug pages — 82 of 124 audited are hardcoded {en, hi}
-  // objects falling back to EN. Treating the whole subtree uniformly
-  // is more honest than per-page allowlists that drift as new slugs ship.
-  ['/learn/',          INDEXABLE_EN_HI],
+  // All /learn/* slug pages — PROMOTED to 9-locale parity on 2026-06-08
+  // after a multi-day translation sweep brought every src/messages/
+  // learn/*.json file to ≥86% per-locale coverage (most at 100%). Shipped
+  // across PRs #530 #534 #538 #549 #552 #558 #561 #564 #566 #567 #570
+  // #575 #579 + this PR (the /learn/modules/* tail).
+  //
+  // The previous EN+HI gating was a holdover from the era when /learn/
+  // [topic] pages rendered hardcoded {en, hi, sa} constants that fell
+  // back to EN for ta/te/bn/gu/kn/mai/mr. That assumption is no longer
+  // true — content for all 9 locales now comes from the translated
+  // message files.
+  //
+  // Sitemap fan-out: ~346 /learn/* slugs × 7 newly-promoted locales =
+  // ~2,400 new sitemap URLs. Total sitemap goes 8,065 → ~10,500.
+  // CLAUDE.md's 9K page-budget warning was based on pre-precompute build
+  // cost; the 2026-06-06 precompute migration moved choghadiya compute
+  // out of build time, so the practical build limit is now substantially
+  // higher and the budget no longer binds.
+  ['/learn/',          ['en', 'hi', 'mai', 'mr', 'ta', 'te', 'kn', 'gu', 'bn'] as const],
   // /learn/yoga/[slug] — option A pilot grew from en+hi+mai (PR #412)
   // to en+hi+mai+ta (this PR) as Tamil overlay completed all 103 yoga
   // slugs via Claude Sonnet 4.6. Translations stored in

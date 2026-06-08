@@ -8,6 +8,10 @@ import { computeDayVerdict } from '@/lib/muhurta/verdict-engine';
 import { EXTENDED_ACTIVITIES } from '@/lib/muhurta/activity-rules-extended';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import {
+  pickBestWindowsLabel as BWL,
+  formatBestWindowsLabel,
+} from '@/lib/content/best-windows-card-labels';
 import { tl } from '@/lib/utils/trilingual';
 import { nowMinutesInTimezone, todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { useLocationStore } from '@/stores/location-store';
@@ -334,7 +338,7 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
   if (slots.length === 0) {
     return (
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
-        <p className="text-text-secondary text-sm text-center">{isHi ? 'कोई डेटा उपलब्ध नहीं।' : 'No verdict data available.'}</p>
+        <p className="text-text-secondary text-sm text-center">{BWL('noVerdictData', locale)}</p>
       </div>
     );
   }
@@ -347,8 +351,8 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
           <Sparkles className="w-5 h-5 text-gold-primary" />
           <h3 className="text-gold-light font-semibold text-base">
             {isToday
-              ? (isHi ? 'आज की सर्वश्रेष्ठ अवधियाँ' : 'Best Windows Today')
-              : (isHi ? `${dateLabel} की सर्वश्रेष्ठ अवधियाँ` : `Best Windows for ${dateLabel}`)}
+              ? (BWL('bestWindowsToday', locale))
+              : formatBestWindowsLabel('bestWindowsForDateTemplate', locale, { DATE: dateLabel })}
           </h3>
         </div>
         <div className="flex items-center gap-3">
@@ -368,10 +372,10 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
                   ? 'bg-sky-500/20 text-sky-300 border border-sky-400/40'
                   : 'bg-white/[0.04] text-text-secondary border border-white/[0.06] hover:border-sky-400/30 hover:text-sky-300'
             }`}
-            title={!hasBirthData ? (isHi ? 'व्यक्तिगत करने के लिए जन्म विवरण जोड़ें' : 'Sign in with birth data to personalise') : (isHi ? 'मेरा लग्न' : 'My Chart')}
+            title={!hasBirthData ? (BWL('addBirthDataToPersonalise', locale)) : (BWL('myChart', locale))}
           >
             <User className="w-3 h-3" />
-            <span>{isHi ? 'मेरा लग्न' : 'My Chart'}</span>
+            <span>{BWL('myChart', locale)}</span>
             <span className={`w-3 h-3 rounded-full border transition-all ${
               personalMode ? 'bg-sky-400 border-sky-300' : 'bg-transparent border-text-secondary/40'
             }`} />
@@ -384,22 +388,22 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
         <div className="flex items-center gap-2 bg-sky-500/[0.06] rounded-lg px-3 py-2 border border-sky-500/10">
           <User className="w-3.5 h-3.5 text-sky-400 shrink-0" />
           <p className="text-sky-300/90 text-[11px] leading-snug">
-            {tl(personalBalam.tarabalam.taraName, locale)} {isHi ? 'तारा' : 'Tara'}
+            {tl(personalBalam.tarabalam.taraName, locale)} {BWL('taraLabel', locale)}
             {' — '}
             {personalBalam.tarabalam.favorable
               ? (isHi
                   ? (isToday ? 'व्यक्तिगत रूप से आज शुभ' : `व्यक्तिगत रूप से ${dateLabel} को शुभ`)
                   : (isToday ? 'personally auspicious today' : `personally auspicious on ${dateLabel}`))
               : personalBalam.tarabalam.tara === 1
-                ? (isHi ? 'जन्म नक्षत्र दिवस' : 'birth star day')
-                : (isHi ? 'सावधानी बरतें' : 'exercise caution')}
+                ? (BWL('birthStarDay', locale))
+                : (BWL('exerciseCaution', locale))}
             {personalCycle && (
               <span className="text-sky-400/60 ml-1.5">
                 ({personalCycle === 1
-                  ? (isHi ? 'पूर्ण बल' : 'Full strength')
+                  ? (BWL('fullStrength', locale))
                   : personalCycle === 2
-                    ? (isHi ? 'मध्यम बल' : 'Moderate strength')
-                    : (isHi ? 'न्यून बल' : 'Reduced strength')})
+                    ? (BWL('moderateStrength', locale))
+                    : (BWL('reducedStrength', locale))})
               </span>
             )}
           </p>
@@ -417,7 +421,7 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
               : 'bg-white/[0.04] text-text-secondary border border-white/[0.06] hover:border-gold-primary/20 hover:text-text-primary'
           }`}
         >
-          {isHi ? 'सभी' : 'All'}
+          {BWL('all', locale)}
         </button>
 
         {/* Primary activity pills */}
@@ -450,7 +454,7 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
           >
             {selectedActivity && SECONDARY_ACTIVITIES.includes(selectedActivity as ExtendedActivityId)
               ? tl(EXTENDED_ACTIVITIES[selectedActivity as ExtendedActivityId].label, locale)
-              : (isHi ? 'और' : 'More')}
+              : (BWL('more', locale))}
             <ChevronDown className="w-3 h-3" />
           </button>
           {showMore && (
@@ -525,18 +529,18 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
               <span className={`text-[10px] leading-snug ${
                 personalBalam.tarabalam.favorable ? 'text-sky-300/80' : personalBalam.tarabalam.tara === 1 ? 'text-amber-400/80' : 'text-indigo-300/80'
               }`}>
-                {tl(personalBalam.tarabalam.taraName, locale)} {isHi ? 'तारा' : 'Tara'}
+                {tl(personalBalam.tarabalam.taraName, locale)} {BWL('taraLabel', locale)}
                 {' — '}
                 {personalBalam.tarabalam.favorable
                   ? (isHi
                       ? (isToday ? 'व्यक्तिगत रूप से आज शुभ' : `व्यक्तिगत रूप से ${dateLabel} को शुभ`)
                       : (isToday ? 'personally auspicious today' : `personally auspicious on ${dateLabel}`))
                   : personalBalam.tarabalam.tara === 1
-                    ? (isHi ? 'जन्म नक्षत्र दिवस — मिश्र' : 'birth star day — mixed')
-                    : (isHi ? 'स्थगित करने पर विचार करें' : 'consider postponing')}
+                    ? (BWL('birthStarDayMixed', locale))
+                    : (BWL('considerPostponing', locale))}
                 {nextFavourableTara && (
                   <span className="text-sky-400/70 text-[10px] ml-1">
-                    → {isHi ? 'अगला शुभ:' : 'Next favourable:'} {tl(nextFavourableTara.taraName, locale)} {isHi ? 'तारा' : 'Tara'}{nextFavourableTara.timeHint}
+                    → {BWL('nextFavourable', locale)} {tl(nextFavourableTara.taraName, locale)} {BWL('taraLabel', locale)}{nextFavourableTara.timeHint}
                   </span>
                 )}
               </span>
@@ -585,7 +589,7 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
         {/* Lane 3: Net Verdict (synthesised) */}
         <div>
           <span className="text-[9px] text-text-secondary font-medium uppercase tracking-wider mb-0.5 block">
-            {isHi ? 'परिणाम' : 'Net Result'}
+            {BWL('netResult', locale)}
           </span>
           <div className="relative h-9 rounded-md bg-white/[0.02]">
             {slots.map((slot, i) => {
@@ -610,7 +614,7 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
         {personalMode && personalBalam && (
           <div>
             <span className="text-[9px] text-text-secondary font-medium uppercase tracking-wider mb-0.5 block">
-              {isHi ? 'व्यक्तिगत' : 'Personal'}
+              {BWL('personal', locale)}
             </span>
             <div className="relative h-7 rounded-md" style={{
               backgroundColor: personalBalam.tarabalam.favorable
@@ -621,18 +625,18 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
             }}>
               <div className="absolute inset-0 flex items-center justify-center">
                 <span className="text-[8px] font-bold text-white/90 truncate px-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
-                  {tl(personalBalam.tarabalam.taraName, locale)} {isHi ? 'तारा' : 'Tara'}
+                  {tl(personalBalam.tarabalam.taraName, locale)} {BWL('taraLabel', locale)}
                   {' — '}
                   {personalBalam.tarabalam.favorable
-                    ? (isHi ? 'शुभ' : 'favourable')
+                    ? (BWL('favourable', locale))
                     : personalBalam.tarabalam.tara === 1
-                      ? (isHi ? 'जन्म तारा' : 'birth star day')
-                      : (isHi ? 'सावधान' : 'exercise caution')}
+                      ? BWL('birthStarDay', locale)
+                      : (BWL('exerciseCaution', locale))}
                   {personalCycle && personalCycle > 1 && (
-                    <> · {personalCycle === 2 ? (isHi ? 'मध्यम' : 'moderate') : (isHi ? 'न्यून' : 'reduced')}</>
+                    <> · {personalCycle === 2 ? (BWL('moderate', locale)) : (BWL('reduced', locale))}</>
                   )}
                   {nextFavourableTara && !personalBalam.tarabalam.favorable && (
-                    <> · {isHi ? 'अगला:' : 'next:'} {tl(nextFavourableTara.taraName, locale)}{nextFavourableTara.timeHint}</>
+                    <> · {BWL('nextShort', locale)} {tl(nextFavourableTara.taraName, locale)}{nextFavourableTara.timeHint}</>
                   )}
                 </span>
               </div>
@@ -691,24 +695,24 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
       <div className="flex items-center gap-4 flex-wrap">
         <div className="flex items-center gap-3">
           <span className="flex items-center gap-1 text-[9px] text-text-secondary">
-            <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#991b1b' }} /> {isHi ? 'वर्जित' : 'Avoid'}
+            <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#991b1b' }} /> {BWL('avoid', locale)}
           </span>
           <span className="flex items-center gap-1 text-[9px] text-text-secondary">
-            <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#92400e' }} /> {isHi ? 'सावधान' : 'Caution'}
+            <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#92400e' }} /> {BWL('caution', locale)}
           </span>
           <span className="flex items-center gap-1 text-[9px] text-text-secondary">
-            <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#065f46' }} /> {isHi ? 'शुभ' : 'Good'}
+            <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#065f46' }} /> {BWL('good', locale)}
           </span>
           <span className="flex items-center gap-1 text-[9px] text-text-secondary">
-            <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#d4a853' }} /> {isHi ? 'उत्तम' : 'Excellent'}
+            <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#d4a853' }} /> {BWL('excellent', locale)}
           </span>
           {personalMode && (
             <>
               <span className="flex items-center gap-1 text-[9px] text-text-secondary">
-                <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#0ea5e9' }} /> {isHi ? 'व्यक्तिगत शुभ' : 'Personal +'}
+                <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#0ea5e9' }} /> {BWL('personalPlus', locale)}
               </span>
               <span className="flex items-center gap-1 text-[9px] text-text-secondary">
-                <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#6366f1' }} /> {isHi ? 'व्यक्तिगत सावधान' : 'Personal −'}
+                <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#6366f1' }} /> {BWL('personalMinus', locale)}
               </span>
             </>
           )}

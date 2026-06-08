@@ -83,27 +83,22 @@ function getAccessToken() {
   return execSync('gcloud auth print-access-token', { encoding: 'utf-8' }).trim();
 }
 
-async function geminiTranslateMulti(token, enObject, missingLocales) {
-  // One Gemini call returns translations for all missing locales at once.
-  // Structured JSON output: { mai: {...}, mr: {...}, ta: {...}, ... } where
-  // each value object has the same keys as enObject.
-  const localeBlock = missingLocales
-    .map(l => `  - ${l}: ${LOCALE_DESCS[l]}`)
-    .join('\n');
+async function geminiTranslateOne(token, enObject, locale) {
+  // Translate to a SINGLE locale. Original `geminiTranslateMulti` packed
+  // all 7 target locales into one prompt — for large LABELS objects
+  // (e.g. /dates/[category]/Client.tsx with 77 keys × 7 locales = 539
+  // strings) Gemini consistently timed out at 180s. One-locale-per-call
+  // produces ~77 strings/call which Gemini handles in 30-60s reliably.
   const prompt =
-    `Translate the following English UI strings into ${missingLocales.length} ` +
-    `target languages.\n\n` +
-    `Target locales:\n${localeBlock}\n\n` +
+    `Translate the following English UI strings to ${LOCALE_DESCS[locale]}.\n\n` +
     `Rules:\n` +
-    `- Output ONLY a JSON object with one top-level key per target locale.\n` +
-    `- Each locale's value is an object with the SAME keys as the input.\n` +
+    `- Output ONLY a JSON object with the SAME keys as the input.\n` +
     `- Preserve interpolation placeholders like {name}, {date}, {count}.\n` +
     `- Preserve em-dash spacing \` – \` and string-encoded list separators (e.g. ` +
     `'Amrit|Most auspicious|Shubh|...' — keep the \`|\` delimiter exactly).\n` +
     `- Mantras (\`Om ... Namah\`) stay in Sanskrit transliterated to the target script.\n` +
     `- Apostrophes inside English (e.g. "Tonight's") should be handled idiomatically in the target.\n` +
-    `- Single-word labels (directions, day names, etc.) get the canonical single ` +
-    `word in the target script.\n\n` +
+    `- Single-word labels (directions, day names, etc.) get the canonical single word in the target script.\n\n` +
     `Input (en object):\n${JSON.stringify(enObject, null, 2)}`;
 
   const body = {
@@ -115,8 +110,6 @@ async function geminiTranslateMulti(token, enObject, missingLocales) {
     },
   };
 
-  // Use curl via spawnSync — same toolchain as the Python translator
-  // (gcloud token format is identical, curl handles huge bodies OK).
   let last_err = null;
   for (let attempt = 0; attempt < 3; attempt++) {
     const res = spawnSync('curl', [
@@ -135,17 +128,30 @@ async function geminiTranslateMulti(token, enObject, missingLocales) {
       try {
         return JSON.parse(text);
       } catch {
-        // strip ```json``` fences if Gemini added them
         const stripped = text.replace(/^```(?:json)?\n?|\n?```$/gm, '').trim();
         return JSON.parse(stripped);
       }
     }
     last_err = new Error(`curl exit ${res.status}: ${res.stderr?.slice(0, 200)}`);
     const wait = 1000 * 2 ** attempt;
-    console.error(`  curl failed (exit ${res.status}), retry ${attempt + 1}/3 in ${wait/1000}s`);
+    console.error(`  curl failed (exit ${res.status}) for ${locale}, retry ${attempt + 1}/3 in ${wait/1000}s`);
     await new Promise(r => setTimeout(r, wait));
   }
   throw last_err;
+}
+
+async function geminiTranslateMulti(token, enObject, missingLocales) {
+  // Fan out one Gemini call per locale instead of packing all into one
+  // prompt. Each per-locale call is small enough to fit in Gemini's
+  // 180s budget even for 70+ key LABELS objects.
+  const out = {};
+  for (const locale of missingLocales) {
+    process.stderr.write(`    → ${locale}...`);
+    const t0 = Date.now();
+    out[locale] = await geminiTranslateOne(token, enObject, locale);
+    process.stderr.write(` ${((Date.now() - t0) / 1000).toFixed(1)}s\n`);
+  }
+  return out;
 }
 
 /**

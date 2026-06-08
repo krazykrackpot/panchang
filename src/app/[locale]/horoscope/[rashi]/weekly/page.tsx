@@ -18,21 +18,31 @@ function tl(obj: LocaleText | undefined, locale: string): string {
   return (obj as Record<string, string>)[locale] || obj.en || '';
 }
 
+/**
+ * ISO-week-aligned range. Anchors to the Monday-of-current-week so the
+ * SSR HTML is stable across the entire week — eliminating the day-by-day
+ * drift the previous `new Date() + i` implementation produced and the
+ * hydration-mismatch risk it carried. The page's ISR cache (24h revalidate)
+ * can still straddle the Sunday→Monday boundary in the brief window
+ * before the cache refreshes; that's an acceptable residual.
+ */
 function getWeekRange(): { startLabel: string; endLabel: string; fullLabel: string } {
   const now = new Date();
-  const dates: Date[] = [];
-  for (let i = 0; i < 7; i++) {
-    const d = new Date(now);
-    d.setDate(now.getDate() + i);
-    dates.push(d);
-  }
-  const first = dates[0];
-  const last = dates[6];
-  const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  // UTC midnight today, then back up to Monday. getUTCDay(): 0=Sun..6=Sat.
+  // Monday-aligned start: subtract (day === 0 ? 6 : day - 1) days.
+  const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  const dayOfWeek = today.getUTCDay();
+  const offsetToMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+  const monday = new Date(today);
+  monday.setUTCDate(today.getUTCDate() - offsetToMonday);
+  const sunday = new Date(monday);
+  sunday.setUTCDate(monday.getUTCDate() + 6);
+  const fmt = (d: Date) =>
+    d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
   return {
-    startLabel: fmt(first),
-    endLabel: fmt(last),
-    fullLabel: `${fmt(first)} - ${fmt(last)}, ${first.getFullYear()}`,
+    startLabel: fmt(monday),
+    endLabel: fmt(sunday),
+    fullLabel: `${fmt(monday)} - ${fmt(sunday)}, ${monday.getUTCFullYear()}`,
   };
 }
 
@@ -51,14 +61,19 @@ export default async function WeeklyRashiPage({ params }: { params: Promise<{ lo
     <main className="min-h-screen bg-[#0a0e27] pb-20">
       {/* SSR: H1 with rashi name and week range  –  Google indexes this */}
       <div className="max-w-4xl mx-auto px-4 pt-8">
-        <h1 suppressHydrationWarning className="text-2xl sm:text-3xl font-bold text-gold-light text-center">
+        {/* H1 + description use the ISO-week-aligned range above so SSR
+            HTML stays stable through the week. suppressHydrationWarning
+            removed (Lesson ZD cleanup — was masking the old day-drifting
+            getWeekRange). Residual risk: brief Sunday→Monday cache
+            straddle before the ISR refresh fires. */}
+        <h1 className="text-2xl sm:text-3xl font-bold text-gold-light text-center">
           {isHi
             ? `${vedicName} साप्ताहिक राशिफल  –  ${week.fullLabel}`
             : `${vedicName} (${westernName}) Weekly Horoscope  –  ${week.fullLabel}`}
         </h1>
 
         {/* SSR: Brief description paragraph for indexing */}
-        <p suppressHydrationWarning className="mt-4 text-center text-text-secondary text-sm max-w-2xl mx-auto">
+        <p className="mt-4 text-center text-text-secondary text-sm max-w-2xl mx-auto">
           {isHi
             ? `${vedicName} राशि का साप्ताहिक राशिफल ${week.fullLabel} के लिए। वास्तविक ग्रह गोचर पर आधारित दैनिक स्कोर, करियर, प्रेम, स्वास्थ्य एवं वित्त भविष्यवाणी।`
             : `${westernName} (${vedicName}) weekly horoscope for ${week.fullLabel}. Day-by-day scores, career, love, health and finance predictions based on actual Vedic planetary transits.`}
@@ -82,7 +97,7 @@ export default async function WeeklyRashiPage({ params }: { params: Promise<{ lo
         return (
           <div className="max-w-4xl mx-auto px-4 mt-6">
             <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-5 sm:p-6">
-              <h2 className="text-gold-light text-base sm:text-lg font-semibold mb-3" suppressHydrationWarning>
+              <h2 className="text-gold-light text-base sm:text-lg font-semibold mb-3">
                 {isHi ? 'इस सप्ताह के पर्व एवं व्रत' : 'Festivals & Vrats This Week'}
               </h2>
               <ul className="space-y-1.5 text-sm">

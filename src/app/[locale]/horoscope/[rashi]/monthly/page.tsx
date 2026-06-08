@@ -18,14 +18,25 @@ function tl(obj: LocaleText | undefined, locale: string): string {
   return (obj as Record<string, string>)[locale] || obj.en || '';
 }
 
+/**
+ * Month-anchored label. Uses UTC `now` so the same calendar month
+ * resolves identically across server regions. Stable through the month;
+ * the ISR cache (24h revalidate) can only straddle the month boundary
+ * for a brief window before the cache refreshes — acceptable residual.
+ */
 function getMonthLabel(): string {
   const now = new Date();
-  return now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  // Construct a UTC-midnight first-of-month and format. timeZone: 'UTC'
+  // pins the formatter's reading so the result depends only on `now`'s
+  // UTC components, not the server's tz.
+  const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
+  return d.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
 }
 
 function getMonthLabelHi(): string {
   const now = new Date();
-  return now.toLocaleDateString('hi-IN', { month: 'long', year: 'numeric' });
+  const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
+  return d.toLocaleDateString('hi-IN', { month: 'long', year: 'numeric', timeZone: 'UTC' });
 }
 
 export default async function MonthlyRashiPage({ params }: { params: Promise<{ locale: string; rashi: string }> }) {
@@ -43,14 +54,14 @@ export default async function MonthlyRashiPage({ params }: { params: Promise<{ l
     <main className="min-h-screen bg-[#0a0e27] pb-20">
       {/* SSR: H1 with rashi name and month  –  Google indexes this */}
       <div className="max-w-4xl mx-auto px-4 pt-8">
-        <h1 suppressHydrationWarning className="text-2xl sm:text-3xl font-bold text-gold-light text-center">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gold-light text-center">
           {isHi
             ? `${vedicName} मासिक राशिफल  –  ${monthLabel}`
             : `${vedicName} (${westernName}) Monthly Horoscope  –  ${monthLabel}`}
         </h1>
 
         {/* SSR: Brief description paragraph for indexing */}
-        <p suppressHydrationWarning className="mt-4 text-center text-text-secondary text-sm max-w-2xl mx-auto">
+        <p className="mt-4 text-center text-text-secondary text-sm max-w-2xl mx-auto">
           {isHi
             ? `${vedicName} राशि का मासिक राशिफल ${monthLabel} के लिए। कैलेंडर हीटमैप, करियर, प्रेम, स्वास्थ्य एवं वित्त भविष्यवाणी। वैदिक ग्रह गोचर पर आधारित।`
             : `${westernName} (${vedicName}) monthly horoscope for ${monthLabel}. Calendar heatmap, career, love, health and finance predictions based on actual Vedic planetary transits.`}
@@ -74,7 +85,7 @@ export default async function MonthlyRashiPage({ params }: { params: Promise<{ l
         return (
           <div className="max-w-4xl mx-auto px-4 mt-6">
             <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-5 sm:p-6">
-              <h2 className="text-gold-light text-base sm:text-lg font-semibold mb-3" suppressHydrationWarning>
+              <h2 className="text-gold-light text-base sm:text-lg font-semibold mb-3" >
                 {isHi ? 'इस माह के पर्व एवं व्रत' : 'Festivals & Vrats This Month'}
               </h2>
               <ul className="space-y-1.5 text-sm">

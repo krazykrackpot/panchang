@@ -1,5 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
-import { PLANET_HOUSE_VERSES, type PlanetHouseVerse } from '@/lib/constants/planet-in-house-verses';
+import { PLANET_HOUSE_VERSES, type PlanetHouseVerse } from '@/lib/constants/planet-in-house-verses-with-overlay';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { tl } from '@/lib/utils/trilingual';
 import { getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';

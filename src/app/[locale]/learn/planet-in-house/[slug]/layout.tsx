@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { PLANET_HOUSE_VERSES } from '@/lib/constants/planet-in-house-verses';
+import { PLANET_HOUSE_VERSES } from '@/lib/constants/planet-in-house-verses-with-overlay';
 import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 import { BASE_URL } from '@/lib/seo/base-url';
@@ -55,16 +55,33 @@ export async function generateMetadata({
     (v) => v.planetId === planetId && v.house === house,
   );
 
-  const isHi = locale === 'hi' || locale === 'sa';
+  // `sa` is retired (HTTP 410 via proxy.ts) — never reaches this code
+  // path in production. Drop it from the isHi check so a hypothetical
+  // bypassed /sa/ request doesn't get a Hindi title. Gemini PR #550
+  // cycle-1 HIGH.
+  const isHi = locale === 'hi';
   const planetName = isHi ? planet.hi : planet.en;
 
   const title = isHi
     ? `${planetName} ${suffix} भाव में  –  बृहत् पाराशर होराशास्त्र | Dekho Panchang`
     : `${planetName} in the ${suffix} House  –  BPHS Vedic Astrology | Dekho Panchang`;
 
-  const descText = verse
-    ? (isHi ? (verse.interpretation.hi ?? verse.interpretation.en) : verse.interpretation.en)
-    : `${planet.en} in the ${suffix} house  –  classical verse and modern interpretation from Brihat Parashara Hora Shastra.`;
+  // Locale-aware description — falls through to en for non-en/hi locales
+  // not yet in the overlay. As planet-in-house-verses-with-overlay.ts
+  // fills the 7 regional locales (PR shipping this), the `verse.interpretation`
+  // LocaleText carries the locale's translation; tl() handles fallback
+  // for any locale still missing.
+  const interp = verse?.interpretation as Record<string, string> | undefined;
+  // Belt-and-braces fallback chain: locale → en → generic. Without the
+  // generic terminator, an overlay missing both interp[locale] AND
+  // interp.en (shouldn't happen given the authored corpus, but defence)
+  // produces `undefined.slice()` → runtime TypeError. Gemini PR #550
+  // cycle-2 MED.
+  const genericFallback =
+    `${planet.en} in the ${suffix} house  –  classical verse and modern interpretation from Brihat Parashara Hora Shastra.`;
+  const descText = interp
+    ? (interp[locale] ?? interp.en ?? genericFallback)
+    : genericFallback;
   const description = descText.slice(0, 160);
 
   const url = `${BASE_URL}/${locale}/learn/planet-in-house/${slug}`;

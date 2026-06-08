@@ -150,24 +150,78 @@ def _write_overlay(locale: str, overlay: dict[str, str]) -> None:
     tmp.replace(out_path)
 
 
+def _translate_long_with_paragraph_split(
+    en: str, locale: str, locale_desc: str, token: str
+) -> str:
+    """
+    For chapter content > ~4000 chars: split at paragraph boundaries
+    (\\n\\n), translate each paragraph individually (each fits within
+    8192-token output cap), then re-stitch with \\n\\n.
+
+    Re-stitching preserves the original paragraph structure so the
+    runtime renderer (which splits chapter content at \\n\\n) sees the
+    same layout in the translated text.
+    """
+    paragraphs = en.split("\n\n")
+    print(
+        f"  [{locale}] paragraph-split: {len(paragraphs)} paras "
+        f"(longest {max(len(p) for p in paragraphs)} chars)",
+        file=sys.stderr,
+    )
+    translated_paras: list[str] = []
+    for pi, para in enumerate(paragraphs):
+        if not para.strip():
+            translated_paras.append(para)
+            continue
+        try:
+            # Single-item batch so per-call output is bounded by the
+            # paragraph's translated length (~1.4x EN for Devanagari /
+            # Tamil / etc., still well under the 8192-token cap for
+            # paragraphs under ~4000 EN chars).
+            tr = gemini_translate_batch(token, [para], locale, locale_desc)
+            translated_paras.append(tr[0])
+        except Exception as e:
+            print(
+                f"  [{locale}] paragraph {pi+1}/{len(paragraphs)} "
+                f"FAILED — falling back to EN for this para: {e}",
+                file=sys.stderr,
+            )
+            translated_paras.append(para)
+    return "\n\n".join(translated_paras)
+
+
+# Threshold above which we split into paragraphs. Empirically the
+# Gemini 2.5 Flash output cap (8192 tokens) translates to ~4-5k EN
+# chars for Devanagari scripts (worst-case expansion ratio). Stay
+# safely under to leave headroom for the JSON envelope.
+LONG_CONTENT_THRESHOLD = 4000
+
+
 def translate_locale(locale: str, jobs: list[dict], token: str) -> dict[str, str]:
     locale_desc = LOCALES[locale]
     out: dict[str, str] = {}
-    # Vrat-katha chapter content is long-form prose (~300-500 words per
-    # entry). Batch 10 at maxOutputTokens=8192 truncates mid-string,
-    # producing JSONDecodeError on every retry. Batch 3 keeps the
-    # response well under the cap.
+    # Split jobs into short (handled by the normal single-item batch
+    # loop) and long (paragraph-split path). Long jobs are usually
+    # `chapters[N].content` for narrative-rich vrats like ahoi-ashtami
+    # whose source EN paragraph runs ~11-12k chars — too big for an
+    # atomic Gemini call even at batch=1.
+    short_jobs = [j for j in jobs if len(j["en"]) <= LONG_CONTENT_THRESHOLD]
+    long_jobs = [j for j in jobs if len(j["en"]) > LONG_CONTENT_THRESHOLD]
+
     BATCH_SIZE = 1
     PERSIST_EVERY = 3
-    batches = [jobs[i:i + BATCH_SIZE] for i in range(0, len(jobs), BATCH_SIZE)]
-    print(f"[{locale}] {len(jobs)} jobs in {len(batches)} batches")
+    batches = [short_jobs[i:i + BATCH_SIZE] for i in range(0, len(short_jobs), BATCH_SIZE)]
+    print(
+        f"[{locale}] {len(jobs)} jobs total = {len(short_jobs)} short + "
+        f"{len(long_jobs)} long (paragraph-split)"
+    )
     new_since_persist = 0
     for bi, batch in enumerate(batches):
         texts = [j["en"] for j in batch]
         try:
             translations = gemini_translate_batch(token, texts, locale, locale_desc)
         except Exception as e:
-            print(f"  [{locale}] batch {bi+1}/{len(batches)} FAILED: {e}", file=sys.stderr)
+            print(f"  [{locale}] short {bi+1}/{len(batches)} FAILED: {e}", file=sys.stderr)
             if new_since_persist > 0:
                 _write_overlay(locale, out); new_since_persist = 0
             continue
@@ -176,8 +230,31 @@ def translate_locale(locale: str, jobs: list[dict], token: str) -> dict[str, str
         new_since_persist += len(translations)
         if (bi + 1) % PERSIST_EVERY == 0:
             _write_overlay(locale, out); new_since_persist = 0
-    if new_since_persist > 0: _write_overlay(locale, out)
-    print(f"  [{locale}] {len(batches)}/{len(batches)} batches done ({len(out)} translations)")
+    if new_since_persist > 0:
+        _write_overlay(locale, out); new_since_persist = 0
+
+    # Now process the long ones with paragraph splitting.
+    for li, job in enumerate(long_jobs):
+        try:
+            joined = _translate_long_with_paragraph_split(
+                job["en"], locale, locale_desc, token
+            )
+            out[job["key"]] = joined
+        except Exception as e:
+            print(
+                f"  [{locale}] long {li+1}/{len(long_jobs)} key={job['key']} "
+                f"FAILED: {e}",
+                file=sys.stderr,
+            )
+            continue
+        # Persist after each long job — these are expensive, don't
+        # batch their writes.
+        _write_overlay(locale, out)
+
+    print(
+        f"  [{locale}] done — {len(out)} translations "
+        f"({len(out) - len(long_jobs)} short + {len(long_jobs)} long)"
+    )
     return out
 
 

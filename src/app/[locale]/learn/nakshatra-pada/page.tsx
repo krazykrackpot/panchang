@@ -2,7 +2,7 @@
 
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
-import { NAKSHATRA_PADA_PROFILES } from '@/lib/constants/nakshatra-pada-profiles';
+import { NAKSHATRA_PADA_PROFILES } from '@/lib/constants/nakshatra-pada-profiles-with-overlay';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { tl } from '@/lib/utils/trilingual';
 import { getHeadingFont } from '@/lib/utils/locale-fonts';

@@ -24,6 +24,10 @@ interface Props {
 const EXTRAS_LABELS: Record<string, { dasha: string; transits: string; lucky: string }> = {
   en: { dasha: 'Dasha Significance', transits: 'Transit Playbook', lucky: 'Lucky & Unlucky' },
   hi: { dasha: 'दशा महत्व', transits: 'गोचर मार्गदर्शिका', lucky: 'शुभ-अशुभ' },
+  // `sa` retired (HTTP 410) but kept for structural parity with
+  // sibling labels on /matching/[pair] + /learn/nakshatra-pada/[slug].
+  // Gemini PR #640 cycle-1 MED.
+  sa: { dasha: 'दशामहत्त्वम्', transits: 'गोचरमार्गदर्शिका', lucky: 'शुभाशुभम्' },
   mai: { dasha: 'दशाक महत्व', transits: 'गोचर मार्गदर्शिका', lucky: 'शुभ-अशुभ' },
   mr: { dasha: 'दशा महत्त्व', transits: 'गोचर मार्गदर्शक', lucky: 'शुभ-अशुभ' },
   ta: { dasha: 'தசை முக்கியத்துவம்', transits: 'திரிக்கோட்பாடு', lucky: 'அதிர்ஷ்டம் & துரதிர்ஷ்டம்' },

@@ -288,7 +288,19 @@ export default async function NakshatraBabyNamePage({ params }: { params: Promis
               {/* Deity Legend */}
               <section className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-6">
                 <h2 className="text-gold-light text-xl font-semibold mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-                  {deityName} — {pickBabyLabel('detailDeityLine', locale).split('—')[0]?.trim() || 'Story'}
+                  {/* Was: `${deityName} — ${pickBabyLabel('detailDeityLine', locale)
+                      .split('—')[0]}` — but detailDeityLine is a template
+                      string carrying `{NAK}` / `{RULER}` / `{DEITY}`
+                      placeholders. pickBabyLabel returns the raw template;
+                      the split on `—` then yielded the entire string
+                      because the template has no em-dash separator. Users
+                      saw literal `{NAK} nakshatra is ruled by {RULER}.
+                      Deity: {DEITY}.` after the deity name. Gemini PR
+                      #619 cycle-1 HIGH. The heading is now just
+                      "<deity name>" — the prose body below already says
+                      "story of the deity", so a redundant suffix isn't
+                      needed. */}
+                  {deityName}
                 </h2>
                 <p className="text-text-primary text-sm leading-relaxed">
                   {tl(enrich.deityLegend, locale)}

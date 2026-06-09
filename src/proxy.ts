@@ -6,6 +6,8 @@ import {
   CANONICAL_RASHI_SLUGS,
   CANONICAL_FESTIVAL_SLUGS,
   CANONICAL_CITY_SLUGS,
+  CANONICAL_DEVOTIONAL_TYPES,
+  CANONICAL_DEVOTIONAL_SLUGS,
 } from '@/lib/seo/proxy-allowlists';
 
 /**
@@ -452,6 +454,46 @@ function isInvalidPanchangCityPath(segments: string[]): boolean {
 }
 
 /**
+ * Returns true if `segments` hits `/devotional/[type]/[slug]` with
+ * either an unknown `type` (not aarti/chalisa/mantra/stotram) or an
+ * unknown `slug` (not in CANONICAL_DEVOTIONAL_SLUGS).
+ *
+ * Background — Next 16 ISR ate the page-level `notFound()` status
+ * the same way it did for /learn/yoga/[slug]: `getDevotionalItem()`
+ * in layout.tsx triggers `notFound()` for unknown items (PR #626),
+ * which throws correctly, but the ISR adapter caches the response
+ * as HTTP 200. Inbound traffic this hits:
+ *   - sitemap remnants from before the 2026-06-09 CHALISAS expansion
+ *     (e.g. /devotional/chalisa/vishnu-chalisa was in the sitemap
+ *     before its source content existed — covered now)
+ *   - typo'd referrers ("krishna-chalisa" was a common GSC-discovered
+ *     URL with no source entry until PR #630)
+ *   - guess-the-URL crawlers exploring /devotional/chalisa/* + a
+ *     deity name they've heard of
+ *
+ * Validates BOTH the type AND the slug. Mismatched pairs
+ * (e.g. /devotional/chalisa/gayatri-mantra — slug is valid but
+ * belongs to a different type) currently fall through to the page's
+ * `getDevotionalItem(type, slug)` lookup which soft-404s. A future
+ * round can tighten this by exporting a `(type, slug) → boolean`
+ * map from proxy-allowlists.ts; for now the type+slug union is the
+ * 80/20 fix that closes the worst of the leak.
+ *
+ * Segment shape: `[locale, 'devotional', '<type>', '<slug>']`.
+ * Deeper paths (e.g. /devotional/[type]/[slug]/<extra>) and the bare
+ * /devotional index (length 2) are NOT gated.
+ */
+function isInvalidDevotionalPath(segments: string[]): boolean {
+  if (segments.length !== 4) return false;
+  if (segments[1] !== 'devotional') return false;
+  const type = segments[2];
+  const slug = segments[3];
+  if (!type || !slug) return false;
+  if (!CANONICAL_DEVOTIONAL_TYPES.has(type)) return true;
+  return !CANONICAL_DEVOTIONAL_SLUGS.has(slug);
+}
+
+/**
  * Lightweight locale proxy — Next.js 16 renamed `middleware` to `proxy` to
  * clarify it sits at the network boundary. The exported function must
  * match. Detects locale from URL path prefix, Accept-Language header, or
@@ -547,7 +589,8 @@ export default function proxy(request: NextRequest) {
       isInvalidYogaSlugPath(segments) ||
       isInvalidRashiPath(segments) ||
       isInvalidFestivalSlugPath(segments) ||
-      isInvalidPanchangCityPath(segments)
+      isInvalidPanchangCityPath(segments) ||
+      isInvalidDevotionalPath(segments)
     ) {
       return new NextResponse(null, { status: 404 });
     }

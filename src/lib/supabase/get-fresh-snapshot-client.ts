@@ -18,7 +18,20 @@
 import { useState, useEffect } from 'react';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
+import { rehydrateKundali } from '@/lib/kundali/evaluated-yogas-codec';
+import type { KundaliData } from '@/types/kundali';
 import type { FreshSnapshot } from './get-fresh-snapshot';
+
+/**
+ * Re-merge static yoga catalog fields onto the snapshot's full_kundali.
+ * Mirror of getFreshSnapshot's server-side rehydrator so client and
+ * server consumers see byte-identical shapes.
+ */
+function rehydrateClientSnapshot(snap: FreshSnapshot | null): FreshSnapshot | null {
+  if (!snap) return null;
+  const rehydrated = rehydrateKundali(snap.full_kundali as KundaliData | null);
+  return { ...snap, full_kundali: rehydrated };
+}
 
 interface UseFreshSnapshotResult {
   snapshot: FreshSnapshot | null;
@@ -65,7 +78,7 @@ export function useFreshSnapshot(): UseFreshSnapshotResult {
         });
         if (res.ok) {
           const data = await res.json();
-          cachedSnapshot = data.snapshot || null;
+          cachedSnapshot = rehydrateClientSnapshot(data.snapshot || null);
           cachedUserId = user.id;
           setSnapshot(cachedSnapshot);
           setRecomputed(!!data.recomputed);

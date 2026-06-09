@@ -12,6 +12,8 @@
 
 import { ENGINE_VERSION } from '@/lib/kundali/engine-version';
 import type { SupabaseClient } from '@supabase/supabase-js';
+import type { KundaliData } from '@/types/kundali';
+import { stripKundaliForStorage, rehydrateKundali } from '@/lib/kundali/evaluated-yogas-codec';
 
 export interface FreshSnapshot {
   ascendant_sign: number;
@@ -26,6 +28,19 @@ export interface FreshSnapshot {
   full_kundali: unknown;
   computed_at: string;
   computation_version: string;
+}
+
+/**
+ * Re-merge static yoga catalog fields onto a snapshot's `full_kundali`.
+ * Snapshots store only chart-specific yoga fields — catalog fields
+ * (name, description, classicalRef, formationRule, etc.) live in
+ * ALL_YOGA_RULES and are merged back in on read. Idempotent: re-running
+ * on an already-rehydrated snapshot is a safe no-op via the codec.
+ */
+function rehydrateFreshSnapshot(snapshot: FreshSnapshot | null): FreshSnapshot | null {
+  if (!snapshot) return null;
+  const rehydrated = rehydrateKundali(snapshot.full_kundali as KundaliData | null);
+  return { ...snapshot, full_kundali: rehydrated };
 }
 
 /**
@@ -65,14 +80,14 @@ export async function getFreshSnapshot(
       });
       if (res.ok) {
         const data = await res.json();
-        if (data.snapshot) return data.snapshot as FreshSnapshot;
+        if (data.snapshot) return rehydrateFreshSnapshot(data.snapshot as FreshSnapshot);
       }
     } catch (err) {
       console.error('[getFreshSnapshot] recompute failed, returning stale:', err);
     }
   }
 
-  return snapshot as FreshSnapshot;
+  return rehydrateFreshSnapshot(snapshot as FreshSnapshot);
 }
 
 /**
@@ -142,7 +157,8 @@ export async function recomputeSnapshotDirect(
       yogas: kundali.yogasComplete || [],
       shadbala: kundali.fullShadbala || kundali.shadbala,
       sade_sati: kundali.sadeSati || {},
-      full_kundali: kundali,
+      // Strip yoga catalog fields — see evaluated-yogas-codec.ts.
+      full_kundali: stripKundaliForStorage(kundali),
       computed_at: new Date().toISOString(),
       computation_version: ENGINE_VERSION,
     };
@@ -159,7 +175,7 @@ export async function recomputeSnapshotDirect(
       return null;
     }
 
-    return fresh as FreshSnapshot | null;
+    return rehydrateFreshSnapshot(fresh as FreshSnapshot | null);
   } catch (err) {
     console.error(`[recomputeSnapshotDirect] failed for user ${userId}:`, err);
     return null;

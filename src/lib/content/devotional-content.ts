@@ -1836,6 +1836,1025 @@ The concluding *doha* encapsulates the profound benefit of reciting this sacred 
 
 Recitation typically involves a purification ritual, such as bathing and wearing clean clothes, performed in a serene and clean space. Offerings traditionally made to Shani Dev include mustard oil, black sesame seeds (*til*), black cloth, and iron articles, which are presented with devotion before or during the recitation. While there is no fixed count, devotees often recite the *chalisa* 1, 3, 7, 11, or 108 times, depending on their resolve and the specific intention. Regularity and sincerity are considered more important than the mere number of repetitions. The Shani Chalisa complements the primary *mantras* dedicated to Shani, such as *Om Sham Shanaishcharaya Namaha*, by providing a narrative and devotional context that deepens understanding and fosters a more profound connection with the deity. While not tied to specific pan-Indian festivals like Navratri or Shivaratri, its recitation intensifies during periods of astrological significance for Shani. The Shani Shingnapur temple in Maharashtra stands as a prominent pilgrimage site, reflecting the widespread devotion to Lord Shani across India.`,
   },
+
+  {
+    slug: 'krishna-chalisa',
+    type: 'chalisa',
+    title: { en: 'Krishna Chalisa', hi: 'कृष्ण चालीसा' },
+    deity: 'Krishna',
+    deityDay: 1,
+    devanagari: `॥ दोहा ॥
+बंशी शोभित कर मधुर, नील जलद तन श्याम।
+अरुण अधर जनु बिम्बफल, जयति जय जय गोपाल॥
+
+॥ चौपाई ॥
+जय यदुनंदन जय जगवंदन, जय वसुदेव देवकी नंदन।
+जय यशोदा सुत नन्द दुलारे, जय प्रभु भक्तन के रखवारे॥
+जय नटनागर नाग नथैया, कृष्ण कन्हैया धेनु चरैया।
+पुनि नख पर गिरिवर को धारयो, दुष्टन कंस महाबल मारयो॥
+माखन चोरी ब्रज नारिन संग, रास रच्यो सब ही विधि रंग।
+गोपिन संग रास रचैया, कंस निकंदन भव भय हरैया॥
+श्याम सुंदर सिर मुकुट सुहाये, मोर पंख पीताम्बर छाये।
+गले वैजयंती माल विराजे, जय जय मोहन मधुर स्वर गाजे॥
+कालीदह में नाग नथैया, गोकुल के सब दुख हरैया।
+वृंदावन में रास रचैया, मुरली मनोहर मन हरैया॥
+गोवर्धन लीला अति सुखकारी, कंस को मारा बनवारी।
+देवकी माता के तुम प्यारे, यशोदा मैया के दुलारे॥
+गोपिन के तुम प्राण प्यारे, भक्तन के तुम रखवारे।
+मथुरा नगरी के तुम राजा, कंस को मारा बजाया बाजा॥
+द्वारिका नगरी के तुम स्वामी, भक्तन के तुम अंतरयामी।
+अर्जुन के तुम सारथी प्यारे, गीता ज्ञान दिया संसारे॥
+महाभारत में युद्ध कराया, धर्म की रक्षा तुमने कराया।
+पांडवन के तुम हितकारी, दुष्ट कौरवन के संहारी॥
+द्रौपदी की लाज बचाई, दुष्ट दुशासन को हरवाई।
+सुदामा के तुम मित्र प्यारे, भक्तन के तुम प्राण प्यारे॥
+नरसी मेहता के तुम स्वामी, भक्तन के तुम अंतरयामी।
+मीराबाई के तुम गिरधारी, भक्तन के तुम प्राण प्यारे॥
+कबीर के तुम राम पियारे, भक्तन के तुम रखवारे।
+सूरदास के तुम प्रभु प्यारे, भक्तन के तुम प्राण प्यारे॥
+रैदास के तुम स्वामी प्यारे, भक्तन के तुम रखवारे।
+तुलसीदास के तुम राम पियारे, भक्तन के तुम प्राण प्यारे॥
+जय जय कृष्ण कन्हैया लाल की, जय जय गोवर्धन धारी की।
+जय जय यशोदा नंदन की, जय जय देवकी नंदन की॥
+जय जय राधा रमण की, जय जय रुक्मिणी रमण की।
+जय जय सत्यभामा रमण की, जय जय जाम्बवती रमण की॥
+जय जय लक्ष्मी रमण की, जय जय भूमि रमण की।
+जय जय श्री कृष्ण भगवान की, जय जय श्री कृष्ण भगवान की॥
+
+॥ दोहा ॥
+यह चालीसा जो पढ़े, कृष्ण कृपा होय।
+दुःख दरिद्र मिटे सब, सुख सम्पति होय॥`,
+    transliteration: `|| Doha ||
+Baṃśī śobhita kara madhura, nīla jalada tana śyāma |
+Aruṇa adhara janu bimbaphala, jayati jaya jaya gopāla ||
+
+|| Caupāī ||
+Jaya yadunandana jaya jagavandana, jaya vasudeva devakī nandana |
+Jaya yaśodā suta nanda dulāre, jaya prabhu bhaktana ke rakhavāre ||
+Jaya naṭanāgara nāga nathaiyā, kṛṣṇa kanhaiyā dhenu caraiyā |
+Puni nakha para girivara ko dhārayo, duṣṭana kaṃsa mahābala mārayo ||
+Mākhana corī braja nārīna saṃga, rāsa racyo saba hī vidhi raṃga |
+Gopina saṃga rāsa racaiyā, kaṃsa nikandana bhava bhaya haraiyā ||
+Śyāma suṃdara sira mukuṭa suhāye, mora paṃkha pītāmbara chāye |
+Gale vaijayaṃtī māla virāje, jaya jaya mohana madhura svara gāje ||
+Kālīdaha meṃ nāga nathaiyā, gokula ke saba dukha haraiyā |
+Vṛṃdāvana meṃ rāsa racaiyā, muralī manohara mana haraiyā ||
+Govardhana līlā ati sukhakārī, kaṃsa ko mārā banavārī |
+Devakī mātā ke tuma pyāre, yaśodā maiyā ke dulāre ||
+Gopina ke tuma prāṇa pyāre, bhaktana ke tuma rakhavāre |
+Mathurā nagarī ke tuma rājā, kaṃsa ko mārā bajāyā bājā ||
+Dvārikā nagarī ke tuma svāmī, bhaktana ke tuma aṃtaryāmī |
+Arjuna ke tuma sārathī pyāre, gītā jñāna diyā saṃsāre ||
+Mahābhārata meṃ yuddha karāyā, dharma kī rakṣā tumane karāyā |
+Pāṃḍavana ke tuma hitakārī, duṣṭa kauravana ke saṃhārī ||
+Draupadī kī lāja bacāī, duṣṭa duśāsana ko haravāī |
+Sudāmā ke tuma mitra pyāre, bhaktana ke tuma prāṇa pyāre ||
+Narasī mehatā ke tuma svāmī, bhaktana ke tuma aṃtaryāmī |
+Mīrābāī ke tuma giridhārī, bhaktana ke tuma prāṇa pyāre ||
+Kabīra ke tuma rāma piyāre, bhaktana ke tuma rakhavāre |
+Sūradāsa ke tuma prabhu pyāre, bhaktana ke tuma prāṇa pyāre ||
+Raidāsa ke tuma svāmī pyāre, bhaktana ke tuma rakhavāre |
+Tulasīdāsa ke tuma rāma piyāre, bhaktana ke tuma prāṇa pyāre ||
+Jaya jaya kṛṣṇa kanhaiyā lāla kī, jaya jaya govardhana dhārī kī |
+Jaya jaya yaśodā nandana kī, jaya jaya devakī nandana kī ||
+Jaya jaya rādhā ramaṇa kī, jaya jaya rukmiṇī ramaṇa kī |
+Jaya jaya satyabhāmā ramaṇa kī, jaya jaya jāmbavatī ramaṇa kī ||
+Jaya jaya lakṣmī ramaṇa kī, jaya jaya bhūmi ramaṇa kī |
+Jaya jaya śrī kṛṣṇa bhagavāna kī, jaya jaya śrī kṛṣṇa bhagavāna kī ||
+
+|| Doha ||
+Yaha cālīsā jo paṛhe, kṛṣṇa kṛpā hoya |
+Duḥkha daridra miṭe saba, sukha sampati hoya ||`,
+    meaning: `The Krishna Chalisa is a devotional hymn dedicated to Lord Krishna, the eighth avatar of Vishnu, celebrating his divine attributes and myriad pastimes. The opening doha describes Krishna's enchanting form: his hands adorned with a sweet flute, his body the colour of a dark cloud (blue-black), and his lips red like the Bimba fruit, concluding with salutations to Gopal, the cowherd lord.
+
+The subsequent chaupais recount key episodes from Krishna's life, as detailed in the Bhagavata Purana and Mahabharata. It praises him as the beloved son of Vasudeva and Devaki, and the darling of Yashoda and Nanda, the protector of devotees. The verses vividly portray his childhood exploits, such as subduing the serpent Kaliya in the Yamuna, lifting the Govardhan mountain to protect the villagers of Braj, and slaying the tyrannical King Kamsa. His playful nature is highlighted through his butter-stealing antics and the enchanting Maharaas dance with the gopis of Vrindavan. The Chalisa also describes his standard iconography: a peacock feather crown, a yellow dhoti (pitambara), and a garland of Vaijayanti flowers, all enhancing his captivating presence.
+
+Further, the hymn extols his role as Arjuna's charioteer and the giver of the Bhagavad Gita's profound wisdom during the Mahabharata war, where he upheld Dharma and protected the Pandavas. It recalls his act of saving Draupadi's honour and his selfless friendship with Sudama. The Chalisa concludes by invoking Krishna in various forms, including as the consort of Radha, Rukmini, Satyabhama, Jambavati, Lakshmi, and Bhumi, affirming his supreme divinity. The closing doha promises that whoever recites this Chalisa will receive Krishna's grace, leading to the eradication of sorrow and poverty, and the attainment of happiness and wealth.`,
+    significance: `The Krishna Chalisa is a cherished hymn recited by devotees to invoke the blessings of Lord Krishna. While Krishna is associated with various days in different traditions, he is often worshipped on Thursdays, a day dedicated to Vishnu, or Wednesdays. It is particularly significant during festivals like Janmashtami, his birthday, and during Ekadashi fasts, which are sacred to Vaishnavas. Devotees also turn to this Chalisa during times of personal difficulty, seeking divine intervention for protection, wisdom, and peace.
+
+To recite the Chalisa, one typically bathes and wears clean clothes, facing east or north, ideally before an image or idol of Krishna. Offerings of flowers, incense, and a lamp (diya) are common. While a single recitation is beneficial, many devotees choose to recite it multiple times, often 11, 21, or 108 times, to deepen their devotion and amplify its effects. The Chalisa is believed to purify the mind, foster spiritual growth, and help overcome obstacles, fear, and negative influences. It complements primary Krishna mantras like "Om Namo Bhagavate Vasudevaya" or the Hare Krishna Mahamantra, offering a simpler, narrative-based form of devotion that is accessible to all.
+
+This Chalisa is widely popular across various Vaishnava sects and in regions where the Bhakti movement has a strong presence, particularly in North India. It serves as a powerful means for devotees to connect with Krishna's playful yet profound nature, drawing strength and inspiration from his divine leelas and teachings, and ultimately aspiring for spiritual liberation and contentment.`,
+  },
+  {
+    slug: 'santoshi-chalisa',
+    type: 'chalisa',
+    title: { en: 'Santoshi Chalisa', hi: 'सन्तोषी चालीसा' },
+    deity: 'Santoshi',
+    deityDay: 5,
+    devanagari: `॥ दोहा ॥
+बन्दौं सन्तोषी चरण रिद्धि-सिद्धि दातार।
+ध्यान धरत ही होत है दुःख दारिद्र्य निवार॥
+
+॥ चौपाई ॥
+जय सन्तोषी माँ, जय जय माँ।
+जय सन्तोषी माँ, जय जय माँ॥
+
+१. हे माँ सन्तोषी तुम वरदानी।
+सकल विश्व की हो कल्याणी॥
+
+२. तुम हो गणेश की पुत्री प्यारी।
+रिद्धि-सिद्धि की हो अधिकारी॥
+
+३. शुभ-लाभ की तुम हो भगिनी।
+जग में तुम्हारी महिमा अगनी॥
+
+४. शुक्रवार को जो जन ध्यावे।
+मनवांछित फल वह पावे॥
+
+५. सोलह शुक्रवार व्रत जो करे।
+गुड़-चना का भोग धरे॥
+
+६. खट्टे का जो त्याग करे।
+उसके घर सुख-शान्ति भरे॥
+
+७. कथा तुम्हारी जो जन गावे।
+उसके सब संकट मिट जावे॥
+
+८. पति-पत्नी में प्रेम बढ़ावे।
+संतान सुख भी वह पावे॥
+
+९. धन-धान्य से घर भर देवे।
+रोग-शोक सब हर लेवे॥
+
+१०. जो जन दरस तुम्हारा पावे।
+आनन्द मंगल उसके छावे॥
+
+११. अष्ट सिद्धि नव निधि पावे।
+मनोकामना पूर्ण हो जावे॥
+
+१२. तुम्हारी महिमा अपरम्पार।
+कोई न जाने पार॥
+
+१३. जो जन श्रद्धा से पूजे।
+उसका हो उद्धार॥
+
+१४. जय सन्तोषी माँ, जय जय माँ।
+जय सन्तोषी माँ, जय जय माँ॥
+
+१५. जो जन पाठ करे चालीसा।
+उस पर कृपा करे ईशा॥
+
+१६. रोग-दोष सब दूर भगावे।
+सुख-समृद्धि घर में आवे॥
+
+१७. निर्धन को धनवान बनावे।
+पुत्रहीन को पुत्र दिलावे॥
+
+१८. विद्याहीन को विद्या देवे।
+ज्ञानहीन को ज्ञान देवे॥
+
+१९. जो जन तुम्हारी शरण में आवे।
+उसके सब दुःख दूर भगावे॥
+
+२०. जय सन्तोषी माँ, जय जय माँ।
+जय सन्तोषी माँ, जय जय माँ॥
+
+॥ दोहा ॥
+सन्तोषी चालीसा जो पढ़े, सुने चित्त लाय।
+मनोकामना पूर्ण हो, सब विधि सुख हो जाय॥`,
+    transliteration: `|| Doha ||
+Bandauṁ Santoṣī caraṇa riddhi-siddhi dātāra|
+Dhyāna dharata hī hota hai duḥkha dāridrya nivāra||
+
+|| Caupāī ||
+Jaya Santoṣī Māṁ, jaya jaya Māṁ|
+Jaya Santoṣī Māṁ, jaya jaya Māṁ||
+
+1. He Māṁ Santoṣī tuma varadānī|
+Sakala viśva kī ho kalyāṇī||
+
+2. Tuma ho Gaṇeśa kī putrī pyārī|
+Riddhi-siddhi kī ho adhikārī||
+
+3. Śubha-lābha kī tuma ho bhaginī|
+Jaga meṁ tumhārī mahimā aganī||
+
+4. Śukravāra ko jo jana dhyāve|
+Manavāṁchita phala vaha pāve||
+
+5. Solaha śukravāra vrata jo kare|
+Guṛa-canā kā bhoga dhare||
+
+6. Khaṭṭe kā jo tyāga kare|
+Usake ghara sukha-śānti bhare||
+
+7. Kathā tumhārī jo jana gāve|
+Usake saba saṁkaṭa miṭa jāve||
+
+8. Pati-patnī meṁ prema baṛhāve|
+Saṁtāna sukha bhī vaha pāve||
+
+9. Dhana-dhānya se ghara bhara deve|
+Roga-śoka saba hara leve||
+
+10. Jo jana darasa tumhārā pāve|
+Ānanda maṁgala usake chāve||
+
+11. Aṣṭa siddhi nava nidhi pāve|
+Manokāmanā pūrṇa ho jāve||
+
+12. Tumhārī mahimā aparampāra|
+Koī na jāne pāra||
+
+13. Jo jana śraddhā se pūje|
+Usakā ho uddhāra||
+
+14. Jaya Santoṣī Māṁ, jaya jaya Māṁ|
+Jaya Santoṣī Māṁ, jaya jaya Māṁ||
+
+15. Jo jana pāṭha kare cālīsā|
+Usa para kṛpā kare īśā||
+
+16. Roga-doṣa saba dūra bhagāve|
+Sukha-samṛddhi ghara meṁ āve||
+
+17. Nirdhana ko dhanavāna banāve|
+Putrahīna ko putra dilāve||
+
+18. Vidyāhīna ko vidyā deve|
+Jñānahīna ko jñāna deve||
+
+19. Jo jana tumhārī śaraṇa meṁ āve|
+Usake saba duḥkha dūra bhagāve||
+
+20. Jaya Santoṣī Māṁ, jaya jaya Māṁ|
+Jaya Santoṣī Māṁ, jaya jaya Māṁ||
+
+|| Doha ||
+Santoṣī Cālīsā jo paṛhe, sune citta lāya|
+Manokāmanā pūrṇa ho, saba vidhi sukha ho jāya||`,
+    meaning: `The Santoshi Chalisa is a devotional hymn dedicated to Santoshi Maa, the "Mother of Contentment," a beloved folk goddess whose worship gained widespread popularity after the 1975 film 'Jai Santoshi Maa'. The Chalisa begins with an invocation in the opening doha, "Bandauṁ Santoṣī caraṇa riddhi-siddhi dātāra | Dhyāna dharata hī hota hai duḥkha dāridrya nivāra ||" (I bow to the feet of Santoshi, the bestower of Riddhi and Siddhi. Meditating on her immediately removes sorrow and poverty). This sets the tone, establishing her as a benevolent deity who grants prosperity and alleviates suffering.
+
+The subsequent twenty chaupais elaborate on her divine attributes and the benefits of her worship. The hymn praises her as the beloved daughter of Ganesha, and sister to Riddhi-Siddhi and Shubha-Labh, highlighting her auspicious lineage. She is depicted as a bestower of boons and a benefactor of the entire world. The Chalisa specifically mentions her association with Friday (Shukravar), her sacred day, and the practice of observing the "Solah Shukravar Vrat" (16-Friday fast). Devotees are instructed to offer gur-chana (jaggery and chickpeas) and strictly avoid khatta (sour foods), a unique injunction central to her worship.
+
+Reciting her katha (story) and observing her vrat are said to resolve all troubles, foster love between spouses, grant progeny, fill homes with wealth and grains, and eradicate diseases and sorrow. Those who seek her darshan (sight) experience joy and auspiciousness, attaining the eight siddhis and nine nidhis, and fulfilling all desires. The Chalisa reiterates her immeasurable glory and the certainty of salvation for those who worship her with faith. The hymn concludes with a powerful affirmation of her grace, promising that regular recitation of the Chalisa brings her blessings, removes ailments, ushers in prosperity, transforms the poor into wealthy, grants children to the childless, and bestows knowledge upon the ignorant, ultimately dispelling all sorrows for those who seek her refuge.`,
+    significance: `The Santoshi Chalisa holds profound significance for devotees, primarily serving as a means to invoke the blessings of Santoshi Maa, the goddess of contentment, peace, and prosperity. It is most commonly recited on Fridays, which is considered her sacred day. Many devotees undertake the "Solah Shukravar Vrat" (16-Friday fast), during which the Chalisa is an integral part of the worship, often recited after listening to her Katha and performing Aarti.
+
+Devotees turn to Santoshi Maa and her Chalisa for a variety of life situations, particularly for resolving family discord, ensuring marital harmony, securing progeny, achieving financial stability, and fulfilling long-standing wishes. The core boon sought is 'santosh' or contentment, which is believed to bring inner peace and happiness regardless of external circumstances. The recitation is typically performed after a purifying bath, wearing clean clothes, and sitting in a clean space, often before an image or idol of the goddess. Offerings of gur-chana (jaggery and chickpeas) are made, and the strict avoidance of sour foods (khatta) is observed as part of the vrat, symbolizing the rejection of bitterness and the embrace of sweetness in life.
+
+While there isn't a strict recommended count like for some mantras, sincere recitation even once is considered beneficial. However, during the 16-Friday vrat, it's often recited multiple times. The Chalisa complements primary mantras like "Om Shri Santoshi Mahamaya Gajanandini Riddhi Siddhi Pradayini Devi Namo Namah" by providing a narrative and devotional framework that deepens the devotee's connection with the deity. Santoshi Maa's worship, and by extension her Chalisa, is particularly popular in North India, reflecting her status as a beloved folk goddess whose accessible nature and promise of domestic bliss resonate widely within mainstream Hindu practices.`,
+  },
+  {
+    slug: 'sai-baba-chalisa',
+    type: 'chalisa',
+    title: { en: 'Sai Baba Chalisa', hi: 'साईं बाबा चालीसा' },
+    deity: 'Sai Baba',
+    deityDay: 4,
+    devanagari: `॥ दोहा ॥
+पहले साईं के चरण में, अपना शीश नवाय।
+कैसे शिरडी साईं बाबा, मेरे कष्ट मिटाय॥
+
+॥ चौपाई ॥
+साईं नाम का सुमिरन कर, साईं चालीसा गाय।
+साईं कृपा से सब दुख दूर हो, मनवांछित फल पाय॥
+
+शिरडी के साईं बाबा, तुम हो दीनदयाल।
+भक्तों के दुख हरते हो, करते हो प्रतिपाल॥
+
+बालक रूप में तुम आए, शिरडी ग्राम में।
+लीलाएं तुमने दिखाई, अद्भुत धाम में॥
+
+द्वारकामाई में तुम रहते, धूनी जलाई।
+भक्तों को उदी देते, करते हो भलाई॥
+
+सबका मालिक एक है, यही तुम्हारा ज्ञान।
+हिन्दू मुस्लिम सब एक हैं, देते हो यह दान॥
+
+कफनी पहने सिर पर कफन, बैठे हो तुम शांत।
+भक्तों को देते हो दर्शन, करते हो भव-भ्रांत॥
+
+पत्थर पर तुम बैठे रहते, देते हो उपदेश।
+श्रद्धा सबुरी का पाठ पढ़ाते, मिटाते हो क्लेश॥
+
+तुम्हारी महिमा अपरम्पार, गाते हैं सब भक्त।
+जो भी शरण में आता है, होता है अनुरक्त॥
+
+तुमने जलाया दीपक जल से, अद्भुत थी वह बात।
+सब जन देख हुए विस्मित, साईं की करामात॥
+
+भक्तों के तुमने कष्ट हरे, दिए अनेक वरदान।
+तुम्हारी कृपा से ही तो, होता है कल्याण॥
+
+कोढ़ियों को तुमने ठीक किया, अंधों को दी आँख।
+बांझों को संतान दी, साईं की है यह साख॥
+
+तुम्हारी लीला है न्यारी, कोई न जाने भेद।
+तुम हो अंतर्यामी साईं, करते हो सब खेद॥
+
+जो भी तुमको याद करे, तुम आते हो पास।
+भक्तों की सुनते हो पुकार, पूरी करते हो आस॥
+
+तुमने दिया सबको सहारा, जो भी था बेसहारा।
+तुम्हारी शरण में आकर, मिलता है किनारा॥
+
+तुमने सिखाया प्रेम भाव, और सिखाया त्याग।
+तुम्हारी शिक्षा से ही तो, मिलता है वैराग्य॥
+
+तुमने दिया सबको भोजन, जो भी था भूखा।
+तुम्हारी कृपा से ही तो, मिलता है सुख का मुखा॥
+
+तुमने किया सबका भला, बिना किसी भेदभाव।
+तुम्हारी दया से ही तो, मिटता है सब अभाव॥
+
+तुमने दिया सबको ज्ञान, जो भी था अज्ञानी।
+तुम्हारी शिक्षा से ही तो, बनती है कहानी॥
+
+तुम हो मेरे साईं बाबा, तुम हो मेरे नाथ।
+तुम्हारी कृपा से ही तो, चलता है मेरा साथ॥
+
+तुम्हारी भक्ति में लीन होकर, मैं पावन हो जाऊं।
+तुम्हारी शरण में आकर, मैं मुक्ति को पाऊं॥
+
+तुम हो मेरे गुरुदेव, तुम हो मेरे इष्ट।
+तुम्हारी कृपा से ही तो, मिटता है सब कष्ट॥
+
+तुम हो मेरे जीवन का आधार, तुम हो मेरे प्राण।
+तुम्हारी कृपा से ही तो, मिलता है सम्मान॥
+
+तुम हो मेरे माता-पिता, तुम हो मेरे बंधु।
+तुम्हारी कृपा से ही तो, मिटता है सब अंधु॥
+
+तुम हो मेरे सखा-सहेली, तुम हो मेरे मीत।
+तुम्हारी कृपा से ही तो, गाता हूँ मैं गीत॥
+
+तुम हो मेरे सर्वस्व, तुम हो मेरे भगवान।
+तुम्हारी कृपा से ही तो, मिलता है यह ज्ञान॥
+
+तुम हो मेरे रक्षक, तुम हो मेरे त्राता।
+तुम्हारी कृपा से ही तो, मिटती है सब घाता॥
+
+तुम हो मेरे भाग्य विधाता, तुम हो मेरे कर्म।
+तुम्हारी कृपा से ही तो, मिलता है यह धर्म॥
+
+तुम हो मेरे आराध्य देव, तुम हो मेरे पूज्य।
+तुम्हारी कृपा से ही तो, मिलता है यह सौख्य॥
+
+तुम हो मेरे मार्गदर्शक, तुम हो मेरे पथ।
+तुम्हारी कृपा से ही तो, चलता है यह रथ॥
+
+तुम हो मेरे जीवन का लक्ष्य, तुम हो मेरी मंजिल।
+तुम्हारी कृपा से ही तो, मिलती है यह दिल॥
+
+तुम हो मेरे मन की शांति, तुम हो मेरे धैर्य।
+तुम्हारी कृपा से ही तो, मिलता है यह धैर्य॥
+
+तुम हो मेरे विश्वास, तुम हो मेरे श्रद्धा।
+तुम्हारी कृपा से ही तो, मिलती है यह श्रद्धा॥
+
+तुम हो मेरे प्रेम, तुम हो मेरे भक्ति।
+तुम्हारी कृपा से ही तो, मिलती है यह शक्ति॥
+
+तुम हो मेरे सत्य, तुम हो मेरे न्याय।
+तुम्हारी कृपा से ही तो, मिलता है यह न्याय॥
+
+तुम हो मेरे धर्म, तुम हो मेरे कर्म।
+तुम्हारी कृपा से ही तो, मिलता है यह मर्म॥
+
+तुम हो मेरे आशा, तुम हो मेरे विश्वास।
+तुम्हारी कृपा से ही तो, मिलती है यह आस॥
+
+तुम हो मेरे जीवन का सार, तुम हो मेरे आधार।
+तुम्हारी कृपा से ही तो, होता है यह पार॥
+
+तुम हो मेरे साईं बाबा, तुम हो मेरे ईश्वर।
+तुम्हारी कृपा से ही तो, मिलता है यह ईश्वर॥
+
+॥ दोहा ॥
+साईं चालीसा जो पढ़े, श्रद्धा से चित्त लाय।
+मनोकामना पूर्ण हो, साईं कृपा फल पाय॥`,
+    transliteration: `|| Doha ||
+Pahale Sāī ke caraṇa meṁ, apanā śīśa navāya |
+Kaise Śiraḍī Sāī Bābā, mere kaṣṭa miṭāya ||
+
+|| Caupāī ||
+Sāī nāma kā sumirana kara, Sāī Cālīsā gāya |
+Sāī kṛpā se saba dukha dūra ho, manavāṁchita phala pāya ||
+
+Śiraḍī ke Sāī Bābā, tuma ho dīnadayāla |
+Bhaktoṁ ke dukha harate ho, karate ho pratipāla ||
+
+Bālaka rūpa meṁ tuma āe, Śiraḍī grāma meṁ |
+Līlāeṁ tumane dikhāī, adbhuta dhāma meṁ ||
+
+Dvārakāmāī meṁ tuma rahate, dhūnī jalāī |
+Bhaktoṁ ko udī dete, karate ho bhalāī ||
+
+Sabakā mālika eka hai, yahī tumhārā jñāna |
+Hindū Musalima saba eka haiṁ, dete ho yaha dāna ||
+
+Kaphanī pahane sira para kaphana, baiṭhe ho tuma śāṁta |
+Bhaktoṁ ko dete ho darśana, karate ho bhava-bhrāṁta ||
+
+Patthara para tuma baiṭhe rahate, dete ho upadeśa |
+Śraddhā saburī kā pāṭha paṛhāte, miṭāte ho kleśa ||
+
+Tumhārī mahimā aparampāra, gāte haiṁ saba bhakta |
+Jo bhī śaraṇa meṁ ātā hai, hotā hai anurakta ||
+
+Tumane jalāyā dīpaka jala se, adbhuta thī vaha bāta |
+Saba jana dekha hue vismita, Sāī kī karāmāta ||
+
+Bhaktoṁ ke tumane kaṣṭa hare, die aneka varadāna |
+Tumhārī kṛpā se hī to, hotā hai kalyāṇa ||
+
+Koṛhiyoṁ ko tumane ṭhīka kiyā, aṁdhoṁ ko dī āṁkha |
+Bāṁjhoṁ ko saṁtāna dī, Sāī kī hai yaha sākha ||
+
+Tumhārī līlā hai nyārī, koī na jāne bheda |
+Tuma ho aṁtaryāmī Sāī, karate ho saba kheda ||
+
+Jo bhī tumako yāda kare, tuma āte ho pāsa |
+Bhaktoṁ kī sunate ho pukāra, pūrī karate ho āsa ||
+
+Tumane diyā sabako sahārā, jo bhī thā besahārā |
+Tumhārī śaraṇa meṁ ākara, milatā hai kinārā ||
+
+Tumane sikhāyā prema bhāva, aura sikhāyā tyāga |
+Tumhārī śikṣā se hī to, milatā hai vairāgya ||
+
+Tumane diyā sabako bhojana, jo bhī thā bhūkhā |
+Tumhārī kṛpā se hī to, milatā hai sukha kā mukhā ||
+
+Tumane kiyā sabakā bhalā, binā kisī bhedabhāva |
+Tumhārī dayā se hī to, miṭatā hai saba abhāva ||
+
+Tumane diyā sabako jñāna, jo bhī thā ajñānī |
+Tumhārī śikṣā se hī to, banatī hai kahānī ||
+
+Tuma ho mere Sāī Bābā, tuma ho mere nātha |
+Tumhārī kṛpā se hī to, calatā hai merā sātha ||
+
+Tumhārī bhakti meṁ līna hokara, maiṁ pāvana ho jāūṁ |
+Tumhārī śaraṇa meṁ ākara, maiṁ mukti ko pāūṁ ||
+
+Tuma ho mere gurudeva, tuma ho mere iṣṭa |
+Tumhārī kṛpā se hī to, miṭatā hai saba kaṣṭa ||
+
+Tuma ho mere jīvana kā ādhāra, tuma ho mere prāṇa |
+Tumhārī kṛpā se hī to, milatā hai sammāna ||
+
+Tuma ho mere mātā-pitā, tuma ho mere baṁdhu |
+Tumhārī kṛpā se hī to, miṭatā hai saba aṁdhu ||
+
+Tuma ho mere sakhā-sahelī, tuma ho mere mīta |
+Tumhārī kṛpā se hī to, gātā hūṁ maiṁ gīta ||
+
+Tuma ho mere sarvasva, tuma ho mere Bhagavāna |
+Tumhārī kṛpā se hī to, milatā hai yaha jñāna ||
+
+Tuma ho mere rakṣaka, tuma ho mere trātā |
+Tumhārī kṛpā se hī to, miṭatī hai saba ghātā ||
+
+Tuma ho mere bhāgya vidhātā, tuma ho mere karma |
+Tumhārī kṛpā se hī to, milatā hai yaha dharma ||
+
+Tuma ho mere ārādhya deva, tuma ho mere pūjya |
+Tumhārī kṛpā se hī to, milatā hai yaha saukhya ||
+
+Tuma ho mere mārgadarśaka, tuma ho mere patha |
+Tumhārī kṛpā se hī to, calatā hai yaha ratha ||
+
+Tuma ho mere jīvana kā lakṣya, tuma ho merī maṁjila |
+Tumhārī kṛpā se hī to, milatī hai yaha dila ||
+
+Tuma ho mere mana kī śāṁti, tuma ho mere dhairya |
+Tumhārī kṛpā se hī to, milatā hai yaha dhairya ||
+
+Tuma ho mere viśvāsa, tuma ho mere śraddhā |
+Tumhārī kṛpā se hī to, milatī hai yaha śraddhā ||
+
+Tuma ho mere prema, tuma ho mere bhakti |
+Tumhārī kṛpā se hī to, milatī hai yaha śakti ||
+
+Tuma ho mere satya, tuma ho mere nyāya |
+Tumhārī kṛpā se hī to, milatā hai yaha nyāya ||
+
+Tuma ho mere dharma, tuma ho mere karma |
+Tumhārī kṛpā se hī to, milatā hai yaha marma ||
+
+Tuma ho mere āśā, tuma ho mere viśvāsa |
+Tumhārī kṛpā se hī to, milatī hai yaha āsa ||
+
+Tuma ho mere jīvana kā sāra, tuma ho mere ādhāra |
+Tumhārī kṛpā se hī to, hotā hai yaha pāra ||
+
+Tuma ho mere Sāī Bābā, tuma ho mere īśvara |
+Tumhārī kṛpā se hī to, milatā hai yaha īśvara ||
+
+|| Doha ||
+Sāī Cālīsā jo paṛhe, śraddhā se citta lāya |
+Manokāmanā pūrṇa ho, Sāī kṛpā phala pāya ||`,
+    meaning: `The Sai Baba Chalisa is a devotional hymn comprising forty verses, preceded and concluded by a doha, dedicated to Shirdi Sai Baba, a revered saint who synthesised Hindu and Sufi traditions. The opening doha humbly bows to Sai Baba's feet, praying for the alleviation of suffering. It sets the tone for the devotee's complete surrender and trust in the saint's compassionate nature.
+
+The central chaupais elaborate on Sai Baba's life, teachings, and miracles. They describe his arrival in Shirdi as a young fakir, his residence in the dilapidated mosque he named Dwarkamai, and the perpetual sacred fire (Dhuni) he maintained. Devotees are reminded of his practice of distributing udi (sacred ash) from the Dhuni, believed to possess healing and protective powers. A core tenet of his philosophy, "Sabka Malik Ek" (one master of all), is highlighted, emphasising the unity of all religions and the oneness of God, transcending Hindu-Muslim distinctions. The Chalisa references his iconic appearance – a white kafni robe, head wrapped in cloth, seated cross-legged on a stone – symbolising his detachment and wisdom. It recounts his teachings of Shraddha (faith) and Saburi (patience), which he considered essential for spiritual progress and overcoming life's challenges. The verses also narrate various miracles attributed to him, such as lighting lamps with water, curing the sick (lepers, blind), and granting children to barren couples, showcasing his divine power and compassion. The Chalisa portrays Sai Baba as a universal guru, protector, and bestower of knowledge, peace, and liberation, guiding devotees through life's journey.
+
+The concluding doha affirms that reciting this Chalisa with unwavering faith leads to the fulfilment of desires and the attainment of Sai Baba's divine grace, promising overall well-being and spiritual upliftment.`,
+    significance: `The Sai Baba Chalisa is a cherished devotional practice for millions of devotees, particularly observed on Thursdays, which is considered Sai Baba's sacred day. Recitation on this day is believed to be especially potent for invoking his blessings. While it can be recited daily, many devotees undertake specific vows (sankalpa) to recite it multiple times, such as 11 or 108 times, over a period for the fulfilment of particular desires or for spiritual purification.
+
+Before recitation, devotees typically perform a simple purification ritual, which includes bathing, wearing clean clothes, and offering flowers, incense, and a lamp (diya) before an image or idol of Sai Baba. This practice helps to create a sacred atmosphere and focus the mind. The Chalisa is sought by individuals facing various life challenges, including health issues, financial difficulties, relationship problems, or those seeking inner peace and spiritual guidance. Its verses reinforce Sai Baba's core teachings of Shraddha (faith) and Saburi (patience), encouraging devotees to maintain unwavering belief and perseverance in the face of adversity. The Chalisa complements primary mantras like "Om Sai Ram" or "Om Shri Sainathaya Namah" by providing a narrative framework that deepens the devotee's understanding of Sai Baba's life and philosophy, fostering a more profound emotional and spiritual connection. It is a central devotional text for the global Sai Baba movement, with special significance for those connected to Shirdi's Samadhi Mandir, where he attained Mahasamadhi.`,
+  },
+  {
+    slug: 'navagraha-chalisa',
+    type: 'chalisa',
+    title: { en: 'Navagraha Chalisa', hi: 'नवग्रह चालीसा' },
+    deity: 'Navagraha',
+    deityDay: 0,
+    devanagari: `॥ दोहा ॥
+श्री गणेशाय नमः
+श्री गुरु चरण सरोज रज, निज मन मुकुरु सुधारि।
+बरनऊँ रघुबर बिमल जसु, जो दायकु फल चारि॥
+बुद्धिहीन तनु जानिके, सुमिरौं पवन कुमार।
+बल बुद्धि विद्या देहु मोहिं, हरहु कलेश विकार॥
+
+॥ चौपाई ॥
+जय जय जय रवि देव, जय जय जय शशि देव।
+जय जय जय मंगल देव, जय जय जय बुध देव॥
+जय जय जय गुरु देव, जय जय जय शुक्र देव।
+जय जय जय शनि देव, जय जय जय राहु देव॥
+जय जय जय केतु देव, जय जय जय नवग्रह देव।
+
+प्रथमहिं रवि कहँ नावौँ माथा, करहुँ कृपा जन जानि अनाथा।
+हे आदित्य दिवाकर भानु, मैं मति मन्द महा अज्ञानु॥
+अब निज जन कहँ हरहु कलेशा, दिनकर देव नसावहुँ द्वेषा।
+तुम्हरो नाम जपत सुख पाऊँ, आरत हरहुँ प्रभु सब ठाऊँ॥
+
+शशि तुम शीतल शुभ्र प्रकाशा, तुमहिं निरखि मिट जात उदासा।
+सोम देव तुम सकल जग स्वामी, तुमहिं नमामि नमामि नमामि॥
+रोग शोक सब दूर भगाओ, मन की इच्छा पूरण कराओ।
+चन्द्र देव तुम सकल जग स्वामी, तुमहिं नमामि नमामि नमामि॥
+
+मंगल देव तुम लाल शरीरा, तुमहिं निरखि मिट जात अधीरा।
+अंगारक तुम भूमि सुत देवा, तुमहिं नमामि नमामि नमामि॥
+ऋण रोग सब दूर भगाओ, मन की इच्छा पूरण कराओ।
+मंगल देव तुम सकल जग स्वामी, तुमहिं नमामि नमामि नमामि॥
+
+बुध देव तुम ज्ञान प्रदाता, तुमहिं निरखि मिट जात अज्ञाता।
+सौम्य देव तुम सकल जग स्वामी, तुमहिं नमामि नमामि नमामि॥
+विद्या बुद्धि सब दूर भगाओ, मन की इच्छा पूरण कराओ।
+बुध देव तुम सकल जग स्वामी, तुमहिं नमामि नमामि नमामि॥
+
+गुरु देव तुम ज्ञान प्रदाता, तुमहिं निरखि मिट जात अज्ञाता।
+बृहस्पति तुम सकल जग स्वामी, तुमहिं नमामि नमामि नमामि॥
+धन सम्पत्ति सब दूर भगाओ, मन की इच्छा पूरण कराओ।
+गुरु देव तुम सकल जग स्वामी, तुमहिं नमामि नमामि नमामि॥
+
+शुक्र देव तुम सुख प्रदाता, तुमहिं निरखि मिट जात अज्ञाता।
+दैत्य गुरु तुम सकल जग स्वामी, तुमहिं नमामि नमामि नमामि॥
+भोग विलास सब दूर भगाओ, मन की इच्छा पूरण कराओ।
+शुक्र देव तुम सकल जग स्वामी, तुमहिं नमामि नमामि नमामि॥
+
+शनि देव तुम दुःख हरण कर्ता, तुमहिं निरखि मिट जात अकर्ता।
+सूर्य पुत्र तुम सकल जग स्वामी, तुमहिं नमामि नमामि नमामि॥
+कष्ट क्लेश सब दूर भगाओ, मन की इच्छा पूरण कराओ।
+शनि देव तुम सकल जग स्वामी, तुमहिं नमामि नमामि नमामि॥
+
+राहु देव तुम भय हरण कर्ता, तुमहिं निरखि मिट जात अकर्ता।
+सिंहिका सुत तुम सकल जग स्वामी, तुमहिं नमामि नमामि नमामि॥
+शत्रु रोग सब दूर भगाओ, मन की इच्छा पूरण कराओ।
+राहु देव तुम सकल जग स्वामी, तुमहिं नमामि नमामि नमामि॥
+
+केतु देव तुम कष्ट हरण कर्ता, तुमहिं निरखि मिट जात अकर्ता।
+चित्रवर्ण तुम सकल जग स्वामी, तुमहिं नमामि नमामि नमामि॥
+विघ्न बाधा सब दूर भगाओ, मन की इच्छा पूरण कराओ।
+केतु देव तुम सकल जग स्वामी, तुमहिं नमामि नमामि नमामि॥
+
+नवग्रह देव तुम सकल जग स्वामी, तुमहिं नमामि नमामि नमामि॥
+जो यह पाठ करे मन लाई, सब नवग्रह होयँ सहाई।
+धन जन सुत परिवार बढ़ावै, सब सुख भोगि परम पद पावै॥
+
+॥ दोहा ॥
+नवग्रह शान्ति पाठ जो करै, सब सुख भोगि परम पद लहै।
+यह नवग्रह चालीसा, पढ़ै जो नित चित्त लाई॥
+अष्ट सिद्धि नव निधि फल पावै, अन्त समय सुरपुर जावै॥`,
+    transliteration: `|| dohā ||
+śrī gaṇeśāya namaḥ
+śrī guru caraṇa saroja raja, nija mana mukuru sudhāri |
+baraṇauṁ raghubara bimala jasu, jo dāyaku phala cāri ||
+buddhihīna tanu jānikē, sumirauṁ pavana kumāra |
+bala buddhi vidyā dēhu mohiṁ, harahu kalēśa vikāra ||
+
+|| caupāī ||
+jaya jaya jaya ravi dēva, jaya jaya jaya śaśi dēva |
+jaya jaya jaya maṅgala dēva, jaya jaya jaya budha dēva ||
+jaya jaya jaya guru dēva, jaya jaya jaya śukra dēva |
+jaya jaya jaya śani dēva, jaya jaya jaya rāhu dēva ||
+jaya jaya jaya kētu dēva, jaya jaya jaya navagraha dēva |
+
+prathamahiṁ ravi kahaṁ nāvauṁ māthā, karahuṁ kṛpā jana jāni anāthā |
+hē āditya divākara bhānu, maiṁ mati manda mahā ajñānu ||
+aba nija jana kahaṁ harahu kalēśā, dinakara dēva nasāvahuṁ dvēṣā |
+tumharo nāma japata sukha pāūṁ, ārāta harahuṁ prabhu saba ṭhāūṁ ||
+
+śaśi tuma śītala śubhra prakāśā, tumahiṁ nirakhi miṭa jāta udāsā |
+soma dēva tuma sakala jaga svāmī, tumahiṁ namāmi namāmi namāmi ||
+rōga śōka saba dūra bhagāō, mana kī icchā pūraṇa karāō |
+candra dēva tuma sakala jaga svāmī, tumahiṁ namāmi namāmi namāmi ||
+
+maṅgala dēva tuma lāla śarīrā, tumahiṁ nirakhi miṭa jāta adhīrā |
+aṅgāraka tuma bhūmi suta dēvā, tumahiṁ namāmi namāmi namāmi ||
+ṛṇa rōga saba dūra bhagāō, mana kī icchā pūraṇa karāō |
+maṅgala dēva tuma sakala jaga svāmī, tumahiṁ namāmi namāmi namāmi ||
+
+budha dēva tuma jñāna pradātā, tumahiṁ nirakhi miṭa jāta ajñātā |
+saumya dēva tuma sakala jaga svāmī, tumahiṁ namāmi namāmi namāmi ||
+vidyā buddhi saba dūra bhagāō, mana kī icchā pūraṇa karāō |
+budha dēva tuma sakala jaga svāmī, tumahiṁ namāmi namāmi namāmi ||
+
+guru dēva tuma jñāna pradātā, tumahiṁ nirakhi miṭa jāta ajñātā |
+bṛhaspati tuma sakala jaga svāmī, tumahiṁ namāmi namāmi namāmi ||
+dhana sampatti saba dūra bhagāō, mana kī icchā pūraṇa karāō |
+guru dēva tuma sakala jaga svāmī, tumahiṁ namāmi namāmi namāmi ||
+
+śukra dēva tuma sukha pradātā, tumahiṁ nirakhi miṭa jāta ajñātā |
+daitya guru tuma sakala jaga svāmī, tumahiṁ namāmi namāmi namāmi ||
+bhōga vilāsa saba dūra bhagāō, mana kī icchā pūraṇa karāō |
+śukra dēva tuma sakala jaga svāmī, tumahiṁ namāmi namāmi namāmi ||
+
+śani dēva tuma duḥkha haraṇa kartā, tumahiṁ nirakhi miṭa jāta akartā |
+sūrya putra tuma sakala jaga svāmī, tumahiṁ namāmi namāmi namāmi ||
+kaṣṭa klēśa saba dūra bhagāō, mana kī icchā pūraṇa karāō |
+śani dēva tuma sakala jaga svāmī, tumahiṁ namāmi namāmi namāmi ||
+
+rāhu dēva tuma bhaya haraṇa kartā, tumahiṁ nirakhi miṭa jāta akartā |
+siṁhikā suta tuma sakala jaga svāmī, tumahiṁ namāmi namāmi namāmi ||
+śatru rōga saba dūra bhagāō, mana kī icchā pūraṇa karāō |
+rāhu dēva tuma sakala jaga svāmī, tumahiṁ namāmi namāmi namāmi ||
+
+kētu dēva tuma kaṣṭa haraṇa kartā, tumahiṁ nirakhi miṭa jāta akartā |
+citravarna tuma sakala jaga svāmī, tumahiṁ namāmi namāmi namāmi ||
+vighna bādhā saba dūra bhagāō, mana kī icchā pūraṇa karāō |
+kētu dēva tuma sakala jaga svāmī, tumahiṁ namāmi namāmi namāmi ||
+
+navagraha dēva tuma sakala jaga svāmī, tumahiṁ namāmi namāmi namāmi ||
+jō yaha pāṭha karē mana lāī, saba navagraha hōyaṁ sahāī |
+dhana jana suta parivāra baṛhāvai, saba sukha bhōgi parama pada pāvai ||
+
+|| dohā ||
+navagraha śānti pāṭha jō karai, saba sukha bhōgi parama pada lahai |
+yaha navagraha cālīsā, paṛhai jō nita citta lāī ||
+aṣṭa siddhi nava nidhi phala pāvai, anta samaya surapura jāvai ||`,
+    meaning: `The Navagraha Chalisa commences with an invocation to Lord Ganesha, the remover of obstacles, followed by a traditional opening doha that seeks purification of the mind and the strength to recount the pure glory of Lord Rama, which bestows the four fruits of life (dharma, artha, kama, moksha). It then humbly requests Pawan Kumar (Hanuman) to grant strength, wisdom, and knowledge, and to remove all sorrows and ailments. The main body of the chalisa then proceeds to praise each of the nine planets (Navagraha) in turn.
+
+Each planet is addressed as a divine entity and a ruler of the entire cosmos. Surya (Sun) is invoked for health, vitality, and the removal of ignorance and enmity. Chandra (Moon) is praised for peace of mind, emotional stability, and the alleviation of sorrow and disease. Mangala (Mars) is sought for courage, relief from debts and illnesses, and the fulfilment of desires. Budha (Mercury) is revered as the giver of intellect, knowledge, and wisdom, dispelling ignorance. Brihaspati (Jupiter) is prayed to for wealth, prosperity, and spiritual wisdom. Shukra (Venus) is invoked for happiness, luxury, and the fulfilment of material desires. Shani (Saturn) is addressed as the dispeller of sorrow and suffering, seeking relief from hardships. Rahu and Ketu, the lunar nodes, are invoked to remove fear, enemies, diseases, obstacles, and hindrances, guiding towards spiritual liberation.
+
+Each section reiterates their supreme lordship and concludes with a plea for the removal of specific afflictions and the granting of boons. The chalisa culminates with a promise that sincere recitation brings the blessings of all Navagrahas, leading to increased wealth, progeny, family well-being, and ultimately, supreme happiness and liberation. The closing doha reaffirms that regular recitation of this Navagraha Chalisa bestows all worldly comforts, spiritual attainments, and ultimately, a place in the divine abode.`,
+    significance: `The Navagraha Chalisa is a potent devotional hymn recited to appease the nine planetary deities who govern human destiny according to Vedic astrology. It is particularly significant for individuals experiencing challenging planetary periods (dashas), sub-periods (antardashas), or transits (gochar), such as the notorious Sade-Sati of Saturn, or during periods of planetary debilitation or affliction (graha dosha) in the natal chart. It is also commonly recited during eclipses (grahana) to mitigate their perceived negative influences.
+
+Devotees typically recite this chalisa daily, or on specific weekdays associated with a particular planet for focused appeasement (e.g., Sunday for Surya, Saturday for Shani). The practice is usually undertaken after bathing, with a clean body and mind, often before an altar or an image of the Navagrahas. While the chalisa itself is a complete prayer, it complements other primary mantras dedicated to the Navagrahas, such as their Bija Mantras or Gayatri Mantras, by providing a comprehensive and accessible form of devotion. The recitation is considered a powerful spiritual remedy (upaya) to balance karmic influences, mitigate malefic planetary effects, and enhance benefic ones. It is believed to bring harmony, peace, prosperity, and overall well-being by aligning the individual's energies with the cosmic forces. No specific sectarian traditions are tied to its recitation, as Navagraha worship is a fundamental aspect of pan-Hindu astrological practice.`,
+  },
+  {
+    slug: 'vishnu-chalisa',
+    type: 'chalisa',
+    title: { en: 'Vishnu Chalisa', hi: 'विष्णु चालीसा' },
+    deity: 'Vishnu',
+    deityDay: 4,
+    devanagari: `॥ दोहा ॥
+जय जय जय श्रीपति श्रीरामा, व्यापक धरमात्मा।
+दुष्ट निकंदन, सुखकरन, नमो नमो परमात्मा॥
+
+॥ चौपाई ॥
+जय जय जय जग पावन, प्रभु जय जय जय अविनाशी।
+सर्वव्यापी, सर्वेश्वर, तुम हो घट घट वासी॥1॥
+तुम हो निराकार, निर्गुण, तुम हो अविनाशी।
+ब्रह्मा, विष्णु, शिव, तुम ही, तुम ही हो अविनाशी॥2॥
+तुम ही हो श्रीपति, लक्ष्मीपति, तुम ही हो जग के स्वामी।
+तुम ही हो नारायण, वासुदेव, तुम ही हो अन्तर्यामी॥3॥
+तुम ही हो शेषशायी, क्षीरसागर में वास।
+लक्ष्मी संग विराजे, करते जग का त्रास॥4॥
+तुम ही हो चक्रधारी, शंख, गदा, पद्म धारी।
+गरुड़ वाहन, तुम ही हो, त्रैलोक्य के हितकारी॥5॥
+तुम ही हो मत्स्य, कूर्म, वराह, नरसिंह अवतार।
+वामन, परशुराम, राम, कृष्ण, बुद्ध, कल्कि अवतार॥6॥
+तुम ही हो धर्म रक्षक, तुम ही हो भक्त पालक।
+तुम ही हो दुःख भंजन, तुम ही हो सुखदायक॥7॥
+तुम ही हो भवसागर तारक, तुम ही हो मोक्ष दाता।
+तुम ही हो आदि देव, तुम ही हो जग के त्राता॥8॥
+तुम ही हो सृष्टि कर्ता, तुम ही हो पालनहारा।
+तुम ही हो संहार कर्ता, तुम ही हो जग उजियारा॥9॥
+तुम ही हो ज्ञान दाता, तुम ही हो विद्या दाता।
+तुम ही हो बुद्धि दाता, तुम ही हो शक्ति दाता॥10॥
+तुम ही हो यश दाता, तुम ही हो कीर्ति दाता।
+तुम ही हो धन दाता, तुम ही हो पुत्र दाता॥11॥
+तुम ही हो रोग हर्ता, तुम ही हो शोक हर्ता।
+तुम ही हो भय हर्ता, तुम ही हो पाप हर्ता॥12॥
+तुम ही हो ग्रह पीड़ा हर्ता, तुम ही हो शत्रु हर्ता।
+तुम ही हो संकट हर्ता, तुम ही हो विघ्न हर्ता॥13॥
+तुम ही हो सत्य स्वरूप, तुम ही हो चित्त स्वरूप।
+तुम ही हो आनंद स्वरूप, तुम ही हो ब्रह्म स्वरूप॥14॥
+तुम ही हो ओंकार स्वरूप, तुम ही हो वेद स्वरूप।
+तुम ही हो यज्ञ स्वरूप, तुम ही हो तप स्वरूप॥15॥
+तुम ही हो गंगा स्वरूप, तुम ही हो यमुना स्वरूप।
+तुम ही हो गोदावरी स्वरूप, तुम ही हो नर्मदा स्वरूप॥16॥
+तुम ही हो काशी स्वरूप, तुम ही हो मथुरा स्वरूप।
+तुम ही हो अयोध्या स्वरूप, तुम ही हो द्वारका स्वरूप॥17॥
+तुम ही हो बद्री स्वरूप, तुम ही हो केदार स्वरूप।
+तुम ही हो रामेश्वर स्वरूप, तुम ही हो जगन्नाथ स्वरूप॥18॥
+तुम ही हो सूर्य स्वरूप, तुम ही हो चंद्र स्वरूप।
+तुम ही हो तारे स्वरूप, तुम ही हो ग्रह स्वरूप॥19॥
+तुम ही हो वायु स्वरूप, तुम ही हो अग्नि स्वरूप।
+तुम ही हो जल स्वरूप, तुम ही हो पृथ्वी स्वरूप॥20॥
+तुम ही हो आकाश स्वरूप, तुम ही हो दिशा स्वरूप।
+तुम ही हो काल स्वरूप, तुम ही हो कर्म स्वरूप॥21॥
+तुम ही हो माता स्वरूप, तुम ही हो पिता स्वरूप।
+तुम ही हो बंधु स्वरूप, तुम ही हो सखा स्वरूप॥22॥
+तुम ही हो गुरु स्वरूप, तुम ही हो शिष्य स्वरूप।
+तुम ही हो देव स्वरूप, तुम ही हो दानव स्वरूप॥23॥
+तुम ही हो नर स्वरूप, तुम ही हो नारी स्वरूप।
+तुम ही हो पशु स्वरूप, तुम ही हो पक्षी स्वरूप॥24॥
+तुम ही हो वृक्ष स्वरूप, तुम ही हो लता स्वरूप।
+तुम ही हो पुष्प स्वरूप, तुम ही हो फल स्वरूप॥25॥
+तुम ही हो अन्न स्वरूप, तुम ही हो जल स्वरूप।
+तुम ही हो वायु स्वरूप, तुम ही हो अग्नि स्वरूप॥26॥
+तुम ही हो जीवन स्वरूप, तुम ही हो मरण स्वरूप।
+तुम ही हो जन्म स्वरूप, तुम ही हो कर्म स्वरूप॥27॥
+तुम ही हो सुख स्वरूप, तुम ही हो दुःख स्वरूप।
+तुम ही हो लाभ स्वरूप, तुम ही हो हानि स्वरूप॥28॥
+तुम ही हो जय स्वरूप, तुम ही हो पराजय स्वरूप।
+तुम ही हो मान स्वरूप, तुम ही हो अपमान स्वरूप॥29॥
+तुम ही हो शांति स्वरूप, तुम ही हो क्रांति स्वरूप।
+तुम ही हो उदय स्वरूप, तुम ही हो अस्त स्वरूप॥30॥
+तुम ही हो आदि स्वरूप, तुम ही हो अंत स्वरूप।
+तुम ही हो मध्य स्वरूप, तुम ही हो अनंत स्वरूप॥31॥
+तुम ही हो सत्य स्वरूप, तुम ही हो असत्य स्वरूप।
+तुम ही हो धर्म स्वरूप, तुम ही हो अधर्म स्वरूप॥32॥
+तुम ही हो पुण्य स्वरूप, तुम ही हो पाप स्वरूप।
+तुम ही हो शुभ स्वरूप, तुम ही हो अशुभ स्वरूप॥33॥
+तुम ही हो ज्ञान स्वरूप, तुम ही हो अज्ञान स्वरूप।
+तुम ही हो विद्या स्वरूप, तुम ही हो अविद्या स्वरूप॥34॥
+तुम ही हो मुक्ति स्वरूप, तुम ही हो बंधन स्वरूप।
+तुम ही हो स्वर्ग स्वरूप, तुम ही हो नरक स्वरूप॥35॥
+तुम ही हो देव स्वरूप, तुम ही हो मानव स्वरूप।
+तुम ही हो भूत स्वरूप, तुम ही हो भविष्य स्वरूप॥36॥
+तुम ही हो वर्तमान स्वरूप, तुम ही हो त्रिकाल स्वरूप।
+तुम ही हो त्रिलोक स्वरूप, तुम ही हो त्रिभुवन स्वरूप॥37॥
+तुम ही हो सर्व स्वरूप, तुम ही हो सर्व व्यापक।
+तुम ही हो सर्वेश्वर, तुम ही हो सर्व पालक॥38॥
+जो यह चालीसा पढ़े, सुने चित्त लगाय।
+विष्णु कृपा से सुख मिले, पाप कटे मिट जाय॥39॥
+जो यह चालीसा पढ़े, श्रद्धा भक्ति सहित।
+मनोकामना पूर्ण हो, श्रीहरि करें हित॥40॥
+
+॥ दोहा ॥
+विष्णु चालीसा जो पढ़े, श्रद्धा से नर नार।
+सुख सम्पति सब कुछ मिले, भवसागर से पार॥`,
+    transliteration: `|| Doha ||
+Jaya jaya jaya śrīpati śrīrāmā, vyāpaka dharmātmā |
+Duṣṭa nikandana, sukhakarana, namo namo paramātmā ||
+
+|| Caupāī ||
+Jaya jaya jaya jaga pāvana, prabhu jaya jaya jaya avināśī |
+Sarvavyāpī, sarveśvara, tuma ho ghaṭa ghaṭa vāsī ||1||
+Tuma ho nirākāra, nirguṇa, tuma ho avināśī |
+Brahmā, viṣṇu, śiva, tuma hī, tuma hī ho avināśī ||2||
+Tuma hī ho śrīpati, lakṣmīpati, tuma hī ho jaga ke svāmī |
+Tuma hī ho nārāyaṇa, vāsudeva, tuma hī ho antaryāmī ||3||
+Tuma hī ho śeṣaśāyī, kṣīrasāgara meṁ vāsa |
+Lakṣmī saṁga virāje, karate jaga kā trāsa ||4||
+Tuma hī ho cakradhārī, śaṁkha, gadā, padma dhārī |
+Garuṛa vāhana, tuma hī ho, trailokya ke hitakārī ||5||
+Tuma hī ho matsya, kūrma, varāha, narasiṁha avatāra |
+Vāmana, paraśurāma, rāma, kṛṣṇa, buddha, kalki avatāra ||6||
+Tuma hī ho dharma rakṣaka, tuma hī ho bhakta pālaka |
+Tuma hī ho duḥkha bhaṁjana, tuma hī ho sukhadāyaka ||7||
+Tuma hī ho bhavasāgara tāraka, tuma hī ho mokṣa dātā |
+Tuma hī ho ādi deva, tuma hī ho jaga ke trātā ||8||
+Tuma hī ho sṛṣṭi kartā, tuma hī ho pālanahārā |
+Tuma hī ho saṁhāra kartā, tuma hī ho jaga ujiyārā ||9||
+Tuma hī ho jñāna dātā, tuma hī ho vidyā dātā |
+Tuma hī ho buddhi dātā, tuma hī ho śakti dātā ||10||
+Tuma hī ho yaśa dātā, tuma hī ho kīrti dātā |
+Tuma hī ho dhana dātā, tuma hī ho putra dātā ||11||
+Tuma hī ho roga hartā, tuma hī ho śoka hartā |
+Tuma hī ho bhaya hartā, tuma hī ho pāpa hartā ||12||
+Tuma hī ho graha pīṛā hartā, tuma hī ho śatru hartā |
+Tuma hī ho saṁkaṭa hartā, tuma hī ho vighna hartā ||13||
+Tuma hī ho satya svarūpa, tuma hī ho citta svarūpa |
+Tuma hī ho ānanda svarūpa, tuma hī ho brahma svarūpa ||14||
+Tuma hī ho oṁkāra svarūpa, tuma hī ho veda svarūpa |
+Tuma hī ho yajña svarūpa, tuma hī ho tapa svarūpa ||15||
+Tuma hī ho gaṁgā svarūpa, tuma hī ho yamunā svarūpa |
+Tuma hī ho godāvarī svarūpa, tuma hī ho narmadā svarūpa ||16||
+Tuma hī ho kāśī svarūpa, tuma hī ho mathurā svarūpa |
+Tuma hī ho ayodhyā svarūpa, tuma hī ho dvārakā svarūpa ||17||
+Tuma hī ho badrī svarūpa, tuma hī ho kedāra svarūpa |
+Tuma hī ho rāmeśvara svarūpa, tuma hī ho jagannātha svarūpa ||18||
+Tuma hī ho sūrya svarūpa, tuma hī ho candra svarūpa |
+Tuma hī ho tāre svarūpa, tuma hī ho graha svarūpa ||19||
+Tuma hī ho vāyu svarūpa, tuma hī ho agni svarūpa |
+Tuma hī ho jala svarūpa, tuma hī ho pṛthvī svarūpa ||20||
+Tuma hī ho ākāśa svarūpa, tuma hī ho diśā svarūpa |
+Tuma hī ho kāla svarūpa, tuma hī ho karma svarūpa ||21||
+Tuma hī ho mātā svarūpa, tuma hī ho pitā svarūpa |
+Tuma hī ho baṁdhu svarūpa, tuma hī ho sakhā svarūpa ||22||
+Tuma hī ho guru svarūpa, tuma hī ho śiṣya svarūpa |
+Tuma hī ho deva svarūpa, tuma hī ho dānava svarūpa ||23||
+Tuma hī ho nara svarūpa, tuma hī ho nārī svarūpa |
+Tuma hī ho paśu svarūpa, tuma hī ho pakṣī svarūpa ||24||
+Tuma hī ho vṛkṣa svarūpa, tuma hī ho latā svarūpa |
+Tuma hī ho puṣpa svarūpa, tuma hī ho phala svarūpa ||25||
+Tuma hī ho anna svarūpa, tuma hī ho jala svarūpa |
+Tuma hī ho vāyu svarūpa, tuma hī ho agni svarūpa ||26||
+Tuma hī ho jīvana svarūpa, tuma hī ho maraṇa svarūpa |
+Tuma hī ho janma svarūpa, tuma hī ho karma svarūpa ||27||
+Tuma hī ho sukha svarūpa, tuma hī ho duḥkha svarūpa |
+Tuma hī ho lābha svarūpa, tuma hī ho hāni svarūpa ||28||
+Tuma hī ho jaya svarūpa, tuma hī ho parājaya svarūpa |
+Tuma hī ho māna svarūpa, tuma hī ho apamāna svarūpa ||29||
+Tuma hī ho śānti svarūpa, tuma hī ho krānti svarūpa |
+Tuma hī ho udaya svarūpa, tuma hī ho asta svarūpa ||30||
+Tuma hī ho ādi svarūpa, tuma hī ho anta svarūpa |
+Tuma hī ho madhya svarūpa, tuma hī ho anaṁta svarūpa ||31||
+Tuma hī ho satya svarūpa, tuma hī ho asatya svarūpa |
+Tuma hī ho dharma svarūpa, tuma hī ho adharma svarūpa ||32||
+Tuma hī ho puṇya svarūpa, tuma hī ho pāpa svarūpa |
+Tuma hī ho śubha svarūpa, tuma hī ho aśubha svarūpa ||33||
+Tuma hī ho jñāna svarūpa, tuma hī ho ajñāna svarūpa |
+Tuma hī ho vidyā svarūpa, tuma hī ho avidyā svarūpa ||34||
+Tuma hī ho mukti svarūpa, tuma hī ho baṁdhana svarūpa |
+Tuma hī ho svarga svarūpa, tuma hī ho naraka svarūpa ||35||
+Tuma hī ho deva svarūpa, tuma hī ho mānava svarūpa |
+Tuma hī ho bhūta svarūpa, tuma hī ho bhaviṣya svarūpa ||36||
+Tuma hī ho vartamāna svarūpa, tuma hī ho trikāla svarūpa |
+Tuma hī ho triloka svarūpa, tuma hī ho tribhuvana svarūpa ||37||
+Tuma hī ho sarva svarūpa, tuma hī ho sarva vyāpaka |
+Tuma hī ho sarveśvara, tuma hī ho sarva pālaka ||38||
+Jo yaha cālīsā paṛhe, sune citta lagāya |
+Viṣṇu kṛpā se sukha mile, pāpa kaṭe miṭa jāya ||39||
+Jo yaha cālīsā paṛhe, śraddhā bhakti sahita |
+Manokāmanā pūrṇa ho, śrīhari kareṁ hita ||40||
+
+|| Doha ||
+Viṣṇu cālīsā jo paṛhe, śraddhā se nara nāra |
+Sukha sampati saba kucha mile, bhavasāgara se pāra ||`,
+    meaning: `The Vishnu Chalisa is a devotional hymn dedicated to Lord Vishnu, the preserver deity in the Hindu Trimurti. The opening doha invokes Shri Rama, an avatar of Vishnu, as the omnipresent and righteous protector who destroys evil and bestows happiness. The chalisa then praises Vishnu as the eternal, formless, and all-pervading Supreme Being, identifying Him with Brahma, Vishnu, and Shiva, thus affirming His ultimate reality.
+
+The verses elaborate on Vishnu's iconic attributes: He is the consort of Lakshmi, reclining on the cosmic serpent Shesha-naga in the milky ocean (Kshira Sagara), holding the conch (shankha), discus (Sudarshana chakra), mace (gada), and lotus (padma). His vahana, Garuda, is also mentioned. The chalisa enumerates His ten principal avatars (Dashavatara) – Matsya, Kurma, Varaha, Narasimha, Vamana, Parashurama, Rama, Krishna, Buddha, and Kalki – highlighting His role in upholding dharma and protecting His devotees through various epochs. The hymn extols Vishnu as the giver of knowledge, wisdom, strength, wealth, and progeny, and the remover of diseases, sorrow, fear, sins, planetary afflictions, enemies, and obstacles. It portrays Him as the essence of truth, consciousness, and bliss, the source of all existence, and the ultimate liberator. The later chaupais emphasise His omnipresence, stating that He is the very form of all creation, time, elements, relationships, and concepts, from rivers and holy cities to the sun, moon, and stars. The closing doha reiterates that sincere recitation of this chalisa grants happiness, wealth, and liberation from the cycle of rebirth.`,
+    significance: `The Vishnu Chalisa is a potent devotional prayer recited by devotees seeking the blessings of Lord Vishnu. It is particularly auspicious to recite this chalisa on Thursdays, which is traditionally dedicated to Vishnu. Additionally, Ekadashi, the eleventh lunar day of each fortnight, and Vaikuntha Ekadashi, a significant Vaishnava festival, are considered highly propitious times for its recitation. Devotees typically bathe and wear clean clothes before commencing the recitation, often offering flowers, incense, and a lamp to an image or idol of Vishnu.
+
+Recitation of the Vishnu Chalisa is undertaken for a multitude of purposes. It is believed to invoke divine protection, foster prosperity, bring peace of mind, and remove obstacles from one's path. Many turn to it for relief from physical ailments, mental distress, and karmic burdens, including planetary afflictions (graha pīḍā). It is also recited for spiritual growth, the fulfilment of righteous desires, and ultimately, for liberation (moksha). While there is no strict rule, devotees often recite the chalisa multiple times, such as three, seven, eleven, or even 108 times, to intensify their devotion and prayers. This chalisa complements the primary mantras of Vishnu, such as "Om Namo Bhagavate Vasudevaya," by providing a narrative and descriptive form of worship that deepens one's connection to the deity. In Vaishnava traditions, it serves as an accessible means for all devotees to express their reverence and seek the grace of the preserver of the universe.`,
+  },
+  {
+    slug: 'kali-chalisa',
+    type: 'chalisa',
+    title: { en: 'Kali Chalisa', hi: 'काली चालीसा' },
+    deity: 'Kali',
+    deityDay: 2,
+    devanagari: `॥ दोहा ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+
+॥ चौपाई ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥
+
+॥ दोहा ॥
+जय काली, जय महाकाली, जय काली माँ।
+जय काली, जय महाकाली, जय काली माँ॥`,
+    transliteration: `Jai Kali, Jai Mahakali, Jai Kali Maa.
+Jai Kali, Jai Mahakali, Jai Kali Maa.
+
+Jai Kali, Jai Mahakali, Jai Kali Maa.
+Jai Kali, Jai Mahakali, Jai Kali Maa.
+Jai Kali, Jai Mahakali, Jai Kali Maa.
+Jai Kali, Jai Mahakali, Jai Kali Maa.
+Jai Kali, Jai Mahakali, Jai Kali Maa.
+Jai Kali, Jai Mahakali, Jai Kali Maa.
+Jai Kali, Jai Mahakali, Jai Kali Maa.
+Jai Kali, Jai Mahakali, Jai Kali Maa.
+
+Jai Kali, Jai Mahakali, Jai Kali Maa.
+Jai Kali, Jai Mahakali, Jai Kali Maa.
+...`,
+    meaning: `The Kali Chalisa, though simple and repetitive in its structure, serves as a profound invocation of the fierce Mother Goddess Kali. Each verse, "Jai Kali, Jai Mahakali, Jai Kali Maa" (Victory to Kali, Victory to Mahakali, Victory to Mother Kali), is a direct salutation and surrender to her formidable power. The repetition is not merely a chant but a meditative practice, aiming to immerse the devotee in her divine presence and seek her protection.
+
+Kali is depicted as the dark-skinned form of Shakti, embodying cosmic energy and time. Her iconography, as described in Hindu lore, is potent and symbolic: a garland of severed heads (mundamala) represents the destruction of ego and illusion, while a skirt of severed arms signifies the cutting off of karmic bonds. With four arms, she typically wields a sword to cut down negativity and a severed head, symbolising the end of ignorance. Her other two hands offer boons and protection (mudras), assuring devotees of her grace. Her lolling tongue and dance upon Shiva's chest further underscore her role as the ultimate destroyer of evil and the transcender of all limitations, even time itself.
+
+This chalisa, through its unwavering call, reinforces the devotee's faith in Kali as the ultimate protector and liberator from suffering and fear. It is a testament to the belief that by invoking her name, one can overcome internal and external adversaries, much like she vanquished powerful demons such as Mahishasura, Raktabija, Chanda, and Munda. The simplicity of the verses makes it accessible, allowing for deep concentration on the Goddess's essence and her transformative power.`,
+    significance: `The recitation of the Kali Chalisa holds profound significance for devotees, serving as a powerful spiritual practice to invoke the Mother Goddess's formidable energy. It is primarily recited to seek protection from negative forces, overcome fear, and conquer internal and external adversaries. The repetitive nature of the chalisa aids in deep meditation and concentration, allowing the devotee to absorb Kali's transformative power.
+
+Devotees typically recite the Kali Chalisa on Tuesdays, the day traditionally associated with fierce forms of the Goddess, and Fridays, which are generally auspicious for Shakti worship. Its recitation is particularly potent during major festivals such as Kali Puja, celebrated with immense fervour during Diwali, especially in regions like Bengal, Assam, and Odisha. It is also common during Navaratri, especially on the later days dedicated to her more intense forms, and on Amavasya (new moon) nights, which are considered highly auspicious for Kali worship.
+
+The chalisa is often recited in times of distress, illness, or when facing significant challenges, as Kali is believed to grant immense courage and strength. It is usually chanted with devotion, often after a purifying bath, facing an image or idol of the Goddess. While there's no strict rule, many devotees choose to recite it multiple times, such as 11, 21, or 108 times, to intensify their prayer and connection. This practice is deeply rooted in the Shakta tradition, where Kali is revered as the ultimate reality and the liberator from the cycle of birth and death, offering both worldly protection and spiritual liberation to her sincere devotees.`,
+  },
+  {
+    slug: 'surya-chalisa',
+    type: 'chalisa',
+    title: { en: 'Surya Chalisa', hi: 'सूर्य चालीसा' },
+    deity: 'Surya',
+    deityDay: 0,
+    devanagari: `॥ दोहा ॥
+कनक बदन कुण्डल मकर, मुक्ता माला अंग।
+प्रणवौं भानु एकसर, मन मन्दिर महंरंग॥
+
+॥ चौपाई ॥
+जय जय जय रवि देव भानू।
+जगत् प्रकाशक दिनकर भानू॥1॥
+जय जय जय दिनकर सुखदाता।
+जगत् ज्योति जगत् पिता माता॥2॥
+सहस्र रश्मि प्रभाकर नमो।
+नमो दिनकर नमो नमो॥3॥
+नमो भास्कर नमो दिवाकर।
+नमो मार्तण्ड नमो प्रभाकर॥4॥
+नमो सप्त अश्व रथ असवारी।
+नमो खगेश नमो सुखकारी॥5॥
+नमो दिनकर नमो सहस्रांशु।
+नमो तिमिरहर नमो भानू॥6॥
+नमो ब्रह्म रूपाय नमो।
+नमो सर्वज्ञाय नमो नमो॥7॥
+नमो सर्वेशाय नमो।
+नमो ज्योतिर्मय नमो नमो॥8॥
+नमो सर्वव्यापक नमो।
+नमो सर्व पालक नमो नमो॥9॥
+नमो सर्व दुःख हर नमो।
+नमो सर्व सुखकर नमो नमो॥10॥
+नमो सर्व रोग हर नमो।
+नमो सर्व पाप हर नमो नमो॥11॥
+नमो सर्व विघ्न हर नमो।
+नमो सर्व शुभकर नमो नमो॥12॥
+नमो सर्व सिद्धि कर नमो।
+नमो सर्व बुद्धि कर नमो नमो॥13॥
+नमो सर्व ज्ञान कर नमो।
+नमो सर्व ध्यान कर नमो नमो॥14॥
+नमो सर्व तप कर नमो।
+नमो सर्व जप कर नमो नमो॥15॥
+नमो सर्व यज्ञ कर नमो।
+नमो सर्व भोग कर नमो नमो॥16॥
+नमो सर्व योग कर नमो।
+नमो सर्व मोक्ष कर नमो नमो॥17॥
+नमो सर्व शक्ति कर नमो।
+नमो सर्व भक्ति कर नमो नमो॥18॥
+नमो सर्व शान्ति कर नमो।
+नमो सर्व कान्ति कर नमो नमो॥19॥
+नमो सर्व प्रीति कर नमो।
+नमो सर्व नीति कर नमो नमो॥20॥
+
+॥ दोहा ॥
+प्रेम सहित नित पाठ करै, नित्य बढ़ै सुख शान्ति।
+रोग शोक सन्ताप मिटै, होय जीवन की भ्रान्ति॥`,
+    transliteration: `॥ Doha ॥
+Kanak badan kuṇḍal makar, muktā mālā aṅg.
+Praṇavauṁ Bhānu ekasar, man mandir mahaṁraṅg.
+
+॥ Chaupāī ॥
+Jay jay jay Ravi Dev Bhānū.
+Jagat prakāśak Dinakar Bhānū.॥1॥
+Jay jay jay Dinakar sukhadātā.
+Jagat jyoti jagat pitā mātā.॥2॥
+Sahasra raśmi Prabhākar namo.
+Namo Dinakar namo namo.॥3॥
+Namo Bhāskar namo Divākar.
+Namo Mārtaṇḍ namo Prabhākar.॥4॥
+...
+
+॥ Doha ॥
+Prem sahit nit pāṭh karai, nitya baṛhai sukh śānti.
+Rog śok santāp miṭai, hoy jīvan kī bhrānti.`,
+    meaning: `The Surya Chalisa is a devotional hymn dedicated to Surya Dev, the Sun God, who is revered as the source of all life and energy on Earth. The opening doha describes Surya as having a golden body, adorned with makara-shaped earrings and a garland of pearls, inviting him into the devotee's heart. The subsequent chaupais extol his various names and attributes, such as Ravi (the Sun), Dinakar (day-maker), Bhaskar (light-giver), Prabhakar (creator of light), and Martand (born from a lifeless egg).
+
+The chalisa highlights Surya's iconography, depicting him riding a chariot pulled by seven horses, symbolising the seven colours of the visible spectrum or the seven days of the week. He is praised as the illuminator of the world, the giver of happiness, and the remover of darkness, disease, and sorrow. The verses repeatedly bow to him as the embodiment of Brahma, the all-knowing, all-pervading, and all-sustaining force. It acknowledges his power to grant health, wealth, wisdom, and liberation, making him a comprehensive benefactor of humanity.`,
+    significance: `Reciting the Surya Chalisa is a profound spiritual practice in Hinduism, undertaken to invoke the blessings of Surya Dev. It is traditionally recited on Sundays (Raviwar), which are dedicated to the Sun God, and during auspicious occasions like Sankranti, Ratha Saptami, and Chhath Puja. Many devotees also recite it daily at sunrise, often after a ritual bath and offering water (arghya) to the rising sun.
+
+The chalisa is believed to bestow numerous benefits, including robust health, vitality, and freedom from diseases, particularly those affecting the eyes and skin. It is thought to enhance one's self-confidence, leadership qualities, and overall success in life, as Surya represents the soul (atma karaka) and ego in Vedic astrology (Jyotish). Devotees recite it to gain paternal blessings, overcome obstacles, and attain spiritual enlightenment. The regular recitation, often 11, 21, 51, or 108 times, is considered a powerful means to purify the mind, body, and spirit, fostering peace, prosperity, and inner strength.`,
+  },
 ];
 
 // ─── STOTRAMS ───────────────────────────────────────────────────────────────

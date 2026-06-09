@@ -201,7 +201,9 @@ describe('stripKundaliForStorage / rehydrateKundali', () => {
   it('handles null / undefined input safely', () => {
     expect(stripKundaliForStorage(null as unknown as KundaliData)).toBeNull();
     expect(rehydrateKundali(null)).toBeNull();
-    expect(rehydrateKundali(undefined)).toBeUndefined();
+    // rehydrateKundali normalises undefined → null at the boundary so callers
+    // see a two-state union (KundaliData | null).
+    expect(rehydrateKundali(undefined)).toBeNull();
   });
 
   it('round-trips a kundali shape with evaluatedYogas', () => {

@@ -11,6 +11,7 @@ import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
 import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
 import { pickBabyLabel, formatBabyLabel } from '@/lib/content/baby-names-labels';
+import { NAKSHATRA_BABY_CONTENT_WITH_OVERLAY } from '@/lib/constants/nakshatra-baby-content-with-overlay';
 
 export const revalidate = false; // Static — nakshatra data never changes
 
@@ -273,6 +274,86 @@ export default async function NakshatraBabyNamePage({ params }: { params: Promis
             {pickBabyLabel('detailEdu2', locale)}
           </p>
         </div>
+
+        {/* ── Per-nakshatra enrichment content ─────────────────
+            Breaks the May-2026 duplicate-template anti-pattern that
+            triggered the GSC demotion. Each nakshatra renders 6
+            unique sections distinguishing it from the other 26.
+            Section gracefully omits when overlay data is absent. */}
+        {(() => {
+          const enrich = NAKSHATRA_BABY_CONTENT_WITH_OVERLAY[nakId];
+          if (!enrich) return null;
+          return (
+            <div className="mt-12 space-y-8">
+              {/* Deity Legend */}
+              <section className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-6">
+                <h2 className="text-gold-light text-xl font-semibold mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+                  {deityName} — {pickBabyLabel('detailDeityLine', locale).split('—')[0]?.trim() || 'Story'}
+                </h2>
+                <p className="text-text-primary text-sm leading-relaxed">
+                  {tl(enrich.deityLegend, locale)}
+                </p>
+              </section>
+
+              {/* Symbol Meaning */}
+              <section className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-6">
+                <h2 className="text-gold-light text-xl font-semibold mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+                  {nak.symbol} {nakName} {locale === 'en' ? 'Symbol' : ''}
+                </h2>
+                <p className="text-text-primary text-sm leading-relaxed">
+                  {tl(enrich.symbolMeaning, locale)}
+                </p>
+              </section>
+
+              {/* Personality Traits */}
+              <section className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-6">
+                <h2 className="text-gold-light text-xl font-semibold mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
+                  {nakName} {locale === 'en' ? 'Native Traits' : ''}
+                </h2>
+                <ul className="space-y-2.5">
+                  {enrich.personalityTraits.map((trait, i) => (
+                    <li key={i} className="flex items-start gap-3 text-text-primary text-sm leading-relaxed">
+                      <span className="text-gold-primary mt-1 shrink-0">✦</span>
+                      <span>{tl(trait, locale)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              {/* Name Themes */}
+              <section className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-6">
+                <h2 className="text-gold-light text-xl font-semibold mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+                  {locale === 'en' ? `Name Themes for ${nakName}` : nakName}
+                </h2>
+                <p className="text-text-primary text-sm leading-relaxed">
+                  {tl(enrich.nameThemes, locale)}
+                </p>
+              </section>
+
+              {/* Naming Tradition */}
+              <section className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-6">
+                <h2 className="text-gold-light text-xl font-semibold mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+                  {locale === 'en' ? 'Naming Tradition' : nakName}
+                </h2>
+                <p className="text-text-primary text-sm leading-relaxed">
+                  {tl(enrich.namingTradition, locale)}
+                </p>
+              </section>
+
+              {/* Famous Bearers (optional — omitted when Gemini found no verifiable records) */}
+              {enrich.famousBearers && (
+                <section className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-6">
+                  <h2 className="text-gold-light text-xl font-semibold mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+                    {locale === 'en' ? `Notable ${nakName} Natives` : nakName}
+                  </h2>
+                  <p className="text-text-primary text-sm leading-relaxed">
+                    {tl(enrich.famousBearers, locale)}
+                  </p>
+                </section>
+              )}
+            </div>
+          );
+        })()}
 
         {/* Cross-links */}
         <nav className="flex flex-wrap gap-2 mt-8 text-xs" aria-label="Related pages">

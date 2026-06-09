@@ -63,8 +63,12 @@ describe('Muhurta hub /[locale]/muhurta', () => {
 });
 
 describe('Cross-link integration', () => {
-  it('sitemap.ts routes array includes /muhurta', () => {
-    const src = read('src/app/sitemap.ts');
+  it('sitemap-data.ts routes array includes /muhurta', () => {
+    // 2026-06-09: legacy `src/app/sitemap.ts` metadata-route was
+    // replaced by the `src/app/sitemap.xml/route.ts` handler +
+    // `src/lib/seo/sitemap-data.ts` data module (PR #625). The
+    // hard-coded `/muhurta` route lives in the data module now.
+    const src = read('src/lib/seo/sitemap-data.ts');
     // Look for `/muhurta` as a standalone routes-array entry (not
     // `/muhurta-ai`, `/muhurta-` etc.).
     expect(src).toMatch(/['"]\/muhurta['"]/);

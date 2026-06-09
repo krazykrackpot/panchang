@@ -15,7 +15,14 @@
 import { describe, it, expect } from 'vitest';
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
-import sitemap from '@/app/sitemap';
+// 2026-06-09: the legacy `app/sitemap.ts` metadata-route convention
+// was replaced by `src/app/sitemap.xml/route.ts` (PR #625) — a
+// custom route handler that calls `buildSitemapEntries()` and
+// gzip-encodes the output to keep GSC's sitemap fetcher happy with
+// the 11K+ URL fan-out. The data-building logic lives in
+// `src/lib/seo/sitemap-data.ts`. This test asserts on the entry list
+// itself, so it imports the builder directly.
+import { buildSitemapEntries as sitemap } from '@/lib/seo/sitemap-data';
 import { locales, visibleLocales } from '@/lib/i18n/config';
 
 const APP_LOCALE_ROOT = join(process.cwd(), 'src/app/[locale]');
@@ -279,8 +286,11 @@ describe('SEO invariant: sitemap URL-count budget', () => {
  * in the May audit.
  * ------------------------------------------------------------------ */
 describe('SEO invariant: sitemap locale parity', () => {
-  it('sitemap.ts sitemapLocales matches visibleLocales', () => {
-    const sitemapSrc = readFileSync(join(process.cwd(), 'src/app/sitemap.ts'), 'utf8');
+  it('sitemap-data.ts sitemapLocales matches visibleLocales', () => {
+    // 2026-06-09: read sitemap-data.ts (the new data module behind
+    // src/app/sitemap.xml/route.ts) instead of the legacy
+    // src/app/sitemap.ts which no longer exists.
+    const sitemapSrc = readFileSync(join(process.cwd(), 'src/lib/seo/sitemap-data.ts'), 'utf8');
 
     // The canonical, healthy state is the literal `= visibleLocales` —
     // any hand-list is a smell.
@@ -293,7 +303,7 @@ describe('SEO invariant: sitemap locale parity', () => {
     const literalMatch = sitemapSrc.match(/const\s+sitemapLocales[^=]*=\s*\[([^\]]+)\]/);
     expect(
       literalMatch,
-      'sitemapLocales is neither `visibleLocales` nor a hand-list literal — inspect src/app/sitemap.ts',
+      'sitemapLocales is neither `visibleLocales` nor a hand-list literal — inspect src/lib/seo/sitemap-data.ts',
     ).not.toBeNull();
 
     const literal = literalMatch?.[1] ?? '';
@@ -469,7 +479,7 @@ describe('SEO invariant: every sitemap route resolves to a page.tsx', () => {
 
     expect(
       orphans,
-      `Sitemap advertises ${orphans.length} routes with no resolvable page.tsx on disk:\n  ${orphans.slice(0, 20).join('\n  ')}\n${orphans.length > 20 ? `... +${orphans.length - 20} more` : ''}\n\nEither (a) add the page, (b) remove from src/app/sitemap.ts, or (c) confirm a redirect in next.config.ts. The sitemap shouldn't point at 404s.`,
+      `Sitemap advertises ${orphans.length} routes with no resolvable page.tsx on disk:\n  ${orphans.slice(0, 20).join('\n  ')}\n${orphans.length > 20 ? `... +${orphans.length - 20} more` : ''}\n\nEither (a) add the page, (b) remove from src/lib/seo/sitemap-data.ts, or (c) confirm a redirect in next.config.ts. The sitemap shouldn't point at 404s.`,
     ).toEqual([]);
   });
 });

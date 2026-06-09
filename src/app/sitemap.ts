@@ -520,7 +520,19 @@ function addEntries(
   }
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// Shard parameters — chosen so each shard stays well under Google's
+// uncompressed-sitemap fetch tolerance (~10 MB observed). With 11,061
+// URLs in the unsharded sitemap totalling ~13.8 MB, 6 shards put each
+// at ~1,850 URLs / ~2.3 MB. GSC reported "Couldn't fetch" on the
+// unsharded version after the 2026-06-08 /learn/ 9-locale promotion
+// pushed the file past the threshold.
+const SHARD_COUNT = 6;
+
+export async function generateSitemaps(): Promise<Array<{ id: number }>> {
+  return Array.from({ length: SHARD_COUNT }, (_, id) => ({ id }));
+}
+
+function buildAllEntries(): MetadataRoute.Sitemap {
   // Capture today's UTC midnight + now references for this regen. Every
   // helper below (addEntries, routeLastModified, the four date-rolling
   // blocks) reads from `_nowRef` / `_utcMidnight`. Without this call
@@ -912,4 +924,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   return entries;
+}
+
+export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
+  const all = buildAllEntries();
+  const shardSize = Math.ceil(all.length / SHARD_COUNT);
+  return all.slice(id * shardSize, (id + 1) * shardSize);
 }

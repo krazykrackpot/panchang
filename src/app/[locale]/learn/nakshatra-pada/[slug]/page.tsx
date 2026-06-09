@@ -121,6 +121,10 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
           docs/specs/2026-06-08-seo-audit-followups.md. */}
       {(() => {
         const extras = getNakshatraPadaExtras(parsed.nakshatraId, parsed.pada);
+        // sa is retired (proxy 410) but cascade through Devanagari first
+        // for any future Sanskrit revival — matches tlScript() convention.
+        const pickLabel = (r: Record<string, string>) =>
+          r[locale] ?? (locale === 'sa' ? r.hi : undefined) ?? r.en;
         const sections = [
           { icon: Star, title: isHi ? 'व्यक्तित्व' : 'Personality', body: tl(profile.personality, locale) },
           { icon: Briefcase, title: isHi ? 'करियर' : 'Career', body: tl(profile.career, locale) },
@@ -149,8 +153,8 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
             mr: 'निर्णय शैली',
           };
           sections.push(
-            { icon: Flame, title: SP[locale] ?? SP.en, body: tl(extras.spiritualPractice, locale) },
-            { icon: Compass, title: DM[locale] ?? DM.en, body: tl(extras.decisions, locale) },
+            { icon: Flame, title: pickLabel(SP), body: tl(extras.spiritualPractice, locale) },
+            { icon: Compass, title: pickLabel(DM), body: tl(extras.decisions, locale) },
           );
         }
         // Deep-extras (4 fields × ~80-120 EN words each, ~350w/page
@@ -198,9 +202,9 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
             mr: 'शास्त्रीय संदर्भ',
           };
           sections.push(
-            { icon: ScrollText, title: MC[locale] ?? MC.en, body: tl(deep.mythologicalContext, locale) },
-            { icon: Sparkles, title: SW[locale] ?? SW.en, body: tl(deep.strengthsWeaknesses, locale) },
-            { icon: Users, title: PC[locale] ?? PC.en, body: tl(deep.partnerCompatibility, locale) },
+            { icon: ScrollText, title: pickLabel(MC), body: tl(deep.mythologicalContext, locale) },
+            { icon: Sparkles, title: pickLabel(SW), body: tl(deep.strengthsWeaknesses, locale) },
+            { icon: Users, title: pickLabel(PC), body: tl(deep.partnerCompatibility, locale) },
           );
           // classicalReference may be empty when no canonical citation
           // was confidently available (the Gemini prompt prefers "" to
@@ -209,7 +213,7 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
           // case so the UI doesn't render an empty card.
           const cr = tl(deep.classicalReference, locale);
           if (cr && cr.trim()) {
-            sections.push({ icon: Sword, title: CR[locale] ?? CR.en, body: cr });
+            sections.push({ icon: Sword, title: pickLabel(CR), body: cr });
           }
         }
         return sections;

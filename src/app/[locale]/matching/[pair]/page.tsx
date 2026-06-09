@@ -507,9 +507,11 @@ export default function PairDetailPage() {
             growthPath: 'ಬೆಳವಣಿಗೆಯ ಮಾರ್ಗ',
           },
         };
-        const lbls = labels[locale] ?? labels.en;
+        // sa is retired (proxy 410) but cascade through Devanagari first
+        // for any future Sanskrit revival — matches tlScript() convention.
+        const lbls = labels[locale] ?? (locale === 'sa' ? labels.hi : labels.en);
         const tlField = (obj: { en: string; [k: string]: string | undefined }) =>
-          obj[locale] ?? obj.en;
+          obj[locale] ?? (locale === 'sa' ? obj.hi : undefined) ?? obj.en;
         const deepSections: Array<{ key: keyof typeof lbls; body: string }> = [
           { key: 'mythologicalDynamic', body: tlField(deep.mythologicalDynamic) },
           { key: 'deepCompatibilityNotes', body: tlField(deep.deepCompatibilityNotes) },

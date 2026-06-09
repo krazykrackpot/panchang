@@ -60,6 +60,14 @@ function attach(slug: string, entry: RashiPairDeepContent): RashiPairDeepContent
 
 const PAIR_DEEP_CONTENT = data as Record<string, RashiPairDeepContent>;
 
+// Pre-merge overlays at module load — see same pattern in
+// nakshatra-pada-deep-extras-with-overlay.ts. Eliminates per-render
+// clone + spread. (Gemini review feedback.)
+const MERGED_PAIR_DEEP_CONTENT: Record<string, RashiPairDeepContent> = {};
+for (const [slug, entry] of Object.entries(PAIR_DEEP_CONTENT)) {
+  MERGED_PAIR_DEEP_CONTENT[slug] = attach(slug, entry);
+}
+
 export function getRashiPairDeepContent(
   r1: number, r2: number,
 ): RashiPairDeepContent | undefined {
@@ -68,9 +76,7 @@ export function getRashiPairDeepContent(
   const lo = Math.min(r1, r2);
   const hi = Math.max(r1, r2);
   const slug = `${lo}-${hi}`;
-  const entry = PAIR_DEEP_CONTENT[slug];
-  if (!entry) return undefined;
-  return attach(slug, entry);
+  return MERGED_PAIR_DEEP_CONTENT[slug];
 }
 
 export type { RashiPairDeepContent };

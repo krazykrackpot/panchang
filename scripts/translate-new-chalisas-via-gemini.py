@@ -165,14 +165,23 @@ def gemini_translate(token, text, locale, desc):
                 headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json; charset=utf-8"})
             with urllib.request.urlopen(req, timeout=180) as resp:
                 raw = json.loads(resp.read().decode("utf-8"))
-            return raw["candidates"][0]["content"]["parts"][0]["text"].strip()
+            translated = raw["candidates"][0]["content"]["parts"][0]["text"].strip()
+            if not translated:
+                raise RuntimeError("empty translation; retrying")
+            return translated
         except urllib.error.HTTPError as e:
             if attempt == 2:
                 print(f"  [{locale}] HTTP {e.code}: {e.read().decode('utf-8','replace')[:200]}", file=sys.stderr, flush=True)
                 raise
-            time.sleep(2 ** attempt)
-        except Exception as e:
+            # HTTP 429 = rate limit. Longer backoff under parallel
+            # ThreadPoolExecutor load. Gemini PR #621 cycle-2 MED.
+            backoff = 15 * (attempt + 1) if e.code == 429 else 2 ** attempt
+            time.sleep(backoff)
+        # OSError covers TimeoutError + ConnectionResetError in
+        # Python 3.10+. Gemini PR #621 cycle-3 MED.
+        except (OSError, Exception) as e:
             if attempt == 2: raise
+            print(f"  [{locale}] retry {attempt+1}: {str(e)[:120]}", file=sys.stderr, flush=True)
             time.sleep(2 ** attempt)
     raise RuntimeError("unreachable")
 

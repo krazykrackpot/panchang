@@ -106,13 +106,30 @@ def gemini_translate_batch(token: str, texts: list[str], locale: str, locale_des
             try:
                 parsed = json.loads(text)
             except json.JSONDecodeError:
-                text = re.sub(r"^```(?:json)?\n?|\n?```$", "", text.strip(), flags=re.MULTILINE)
+                # No re.MULTILINE — anchors stay at absolute string
+                # ends. Gemini PR #621 cycle-2 MED applied here too.
+                text = re.sub(r"^```(?:json)?\n?|\n?```$", "", text.strip())
                 parsed = json.loads(text)
             if isinstance(parsed, list):
                 if len(parsed) != len(texts):
                     raise RuntimeError(f"array len {len(parsed)} != expected {len(texts)}")
-                return [str(parsed[i]) for i in range(len(texts))]
-            return [parsed[str(i)] for i in range(len(texts))]
+                translations = [parsed[i] for i in range(len(texts))]
+            elif isinstance(parsed, dict):
+                translations = []
+                for i in range(len(texts)):
+                    if str(i) in parsed:
+                        translations.append(parsed[str(i)])
+                    elif i in parsed:
+                        translations.append(parsed[i])
+                    else:
+                        raise KeyError(f"key {i} not in parsed dict (keys={list(parsed)[:5]})")
+            elif isinstance(parsed, str) and len(texts) == 1:
+                translations = [parsed]
+            else:
+                raise TypeError(f"unexpected JSON structure: {type(parsed).__name__}")
+            if any(not isinstance(t, str) or not t.strip() for t in translations):
+                raise RuntimeError("one or more translations are empty or non-string; retrying")
+            return translations
         except urllib.error.HTTPError as e:
             try:
                 body_excerpt = e.read().decode("utf-8", errors="replace")[:300]
@@ -122,8 +139,11 @@ def gemini_translate_batch(token: str, texts: list[str], locale: str, locale_des
                 print(f"  [{locale}] HTTP {e.code}: {body_excerpt}", file=sys.stderr)
                 raise
             print(f"  [{locale}] retry {attempt+1} HTTP {e.code}: {body_excerpt[:150]}", file=sys.stderr)
-            time.sleep(2 ** attempt)
-        except (urllib.error.URLError, json.JSONDecodeError, KeyError, IndexError, TypeError, RuntimeError) as e:
+            backoff = 15 * (attempt + 1) if e.code == 429 else 2 ** attempt
+            time.sleep(backoff)
+        # OSError covers TimeoutError + ConnectionResetError etc. in
+        # Python 3.10+. Gemini PR #621 cycle-3 MED.
+        except (OSError, json.JSONDecodeError, KeyError, IndexError, TypeError, RuntimeError) as e:
             if attempt == 2:
                 raise
             print(f"  [{locale}] retry {attempt+1}: {str(e)[:120]}", file=sys.stderr)
@@ -150,7 +170,12 @@ def translate_locale(locale: str, source: dict[str, str], token: str) -> int:
         except json.JSONDecodeError:
             merged = {}
 
-    todo_items = [(k, v) for (k, v) in source.items() if k not in merged]
+    # Retry empty/whitespace overlay values, not just missing keys.
+    # Gemini PR #621 cycle-2 MED.
+    todo_items = [
+        (k, v) for (k, v) in source.items()
+        if not isinstance(merged.get(k), str) or not merged[k].strip()
+    ]
     BATCH_SIZE = 10
     PERSIST_EVERY = 3
     batches = [todo_items[i:i + BATCH_SIZE] for i in range(0, len(todo_items), BATCH_SIZE)]

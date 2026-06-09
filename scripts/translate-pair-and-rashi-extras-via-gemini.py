@@ -103,16 +103,21 @@ def gemini_translate(token: str, text: str, locale: str, desc: str) -> str:
             )
             with urllib.request.urlopen(req, timeout=180) as resp:
                 raw = json.loads(resp.read().decode("utf-8"))
-            return raw["candidates"][0]["content"]["parts"][0]["text"].strip()
+            translated = raw["candidates"][0]["content"]["parts"][0]["text"].strip()
+            if not translated:
+                raise RuntimeError("empty translation; retrying")
+            return translated
         except urllib.error.HTTPError as e:
             if attempt == 2:
                 body_excerpt = e.read().decode("utf-8", errors="replace")[:200]
                 print(f"  [{locale}] HTTP {e.code}: {body_excerpt}", file=sys.stderr, flush=True)
                 raise
-            time.sleep(2 ** attempt)
-        except Exception:
+            backoff = 15 * (attempt + 1) if e.code == 429 else 2 ** attempt
+            time.sleep(backoff)
+        except (OSError, Exception) as e:
             if attempt == 2:
                 raise
+            print(f"  [{locale}] retry {attempt+1}: {str(e)[:120]}", file=sys.stderr, flush=True)
             time.sleep(2 ** attempt)
     raise RuntimeError("unreachable")
 
@@ -133,7 +138,10 @@ def translate_overlay(locale: str, source: dict, fields: tuple,
             v = content.get(field, {}).get("en")
             if isinstance(v, str) and v.strip():
                 key = f"{slug}.{field}"
-                if key in overlay:
+                # Retry empty/whitespace overlay values. Gemini PR #621
+                # cycle-2 MED.
+                existing = overlay.get(key)
+                if isinstance(existing, str) and existing.strip():
                     continue
                 items.append((key, v))
 

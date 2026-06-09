@@ -100,16 +100,31 @@ def gemini_translate(token: str, text: str, locale: str, desc: str) -> str:
             )
             with urllib.request.urlopen(req, timeout=180) as resp:
                 raw = json.loads(resp.read().decode("utf-8"))
-            return raw["candidates"][0]["content"]["parts"][0]["text"].strip()
+            translated = raw["candidates"][0]["content"]["parts"][0]["text"].strip()
+            # Empty / whitespace responses → retry instead of silently
+            # writing "" into the overlay. Gemini PR #621 cycle-3 HIGH
+            # (applied here defensively even though this is text/plain).
+            if not translated:
+                raise RuntimeError("empty translation; retrying")
+            return translated
         except urllib.error.HTTPError as e:
             if attempt == 2:
                 body_excerpt = e.read().decode("utf-8", errors="replace")[:200]
                 print(f"  [{locale}] HTTP {e.code}: {body_excerpt}", file=sys.stderr, flush=True)
                 raise
-            time.sleep(2 ** attempt)
-        except Exception:
+            # HTTP 429 = rate limit. Longer backoff under parallel
+            # load. Gemini PR #621 cycle-2 MED.
+            backoff = 15 * (attempt + 1) if e.code == 429 else 2 ** attempt
+            time.sleep(backoff)
+        # OSError covers TimeoutError + ConnectionResetError etc. in
+        # Python 3.10+, beyond urllib.error.URLError. Gemini PR #621
+        # cycle-3 MED. The remaining `Exception` catch covers the
+        # JSONDecodeError and KeyError paths that the JSON-mode
+        # variants enumerated explicitly.
+        except (OSError, Exception) as e:
             if attempt == 2:
                 raise
+            print(f"  [{locale}] retry {attempt+1}: {str(e)[:120]}", file=sys.stderr, flush=True)
             time.sleep(2 ** attempt)
     raise RuntimeError("unreachable")
 
@@ -130,7 +145,12 @@ def translate_locale(locale: str, source: dict, token: str) -> int:
             v = fields.get(field, {}).get("en")
             if isinstance(v, str) and v.strip():
                 key = f"{slug}.{field}"
-                if key in overlay:
+                # Retry empty/whitespace overlay values, not just
+                # missing keys (a partial-write from a prior crashed
+                # run would stay broken forever otherwise). Gemini
+                # PR #621 cycle-2 MED.
+                existing = overlay.get(key)
+                if isinstance(existing, str) and existing.strip():
                     continue
                 items.append((key, v))
 

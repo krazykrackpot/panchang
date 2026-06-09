@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 import { Link } from '@/lib/i18n/navigation';
-import { Star, Shield, AlertTriangle, BookOpen, Gem, Users, ArrowRight, CheckCircle2, XCircle } from 'lucide-react';
+import { Star, Shield, AlertTriangle, BookOpen, Gem, Users, ArrowRight, CheckCircle2, XCircle, Sparkles, Clock, Compass, TrendingUp } from 'lucide-react';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
 // Use the overlay-merged version so /mai/ pages render real Maithili
@@ -214,6 +214,76 @@ export default async function YogaDetailPage({
           ))}
         </div>
       </section>
+
+      {/* ── How It Shows Up In Life ──────────────────────── */}
+      {yoga.realWorldManifestation && (
+        <section className="mb-8">
+          <h2 className="text-xl font-[Cinzel] text-gold-light flex items-center gap-2 mb-4" style={headStyle}>
+            <Compass size={20} className="text-gold-primary" />
+            {isHi ? 'जीवन में कैसे प्रकट होता है' : 'How It Shows Up In Life'}
+          </h2>
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-6">
+            <p className="text-text-primary leading-relaxed" style={bodyStyle}>
+              {tl(yoga.realWorldManifestation, locale)}
+            </p>
+          </div>
+        </section>
+      )}
+
+      {/* ── Strength Factors ─────────────────────────────── */}
+      {yoga.strengthFactors && yoga.strengthFactors.length > 0 && (
+        <section className="mb-8">
+          <h2 className="text-xl font-[Cinzel] text-gold-light flex items-center gap-2 mb-4" style={headStyle}>
+            <TrendingUp size={20} className="text-gold-primary" />
+            {isHi ? 'योग को क्या प्रबल बनाता है' : 'What Strengthens This Yoga'}
+          </h2>
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-6">
+            <ul className="space-y-3">
+              {yoga.strengthFactors.map((f, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <Sparkles size={16} className="text-gold-primary mt-1 shrink-0" />
+                  <span className="text-text-primary text-sm leading-relaxed" style={bodyStyle}>{tl(f, locale)}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {/* ── When It Activates ────────────────────────────── */}
+      {yoga.activationTiming && (
+        <section className="mb-8">
+          <h2 className="text-xl font-[Cinzel] text-gold-light flex items-center gap-2 mb-4" style={headStyle}>
+            <Clock size={20} className="text-gold-primary" />
+            {isHi ? 'दशा सक्रियण' : 'When This Yoga Activates'}
+          </h2>
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-6">
+            <p className="text-text-primary leading-relaxed" style={bodyStyle}>
+              {tl(yoga.activationTiming, locale)}
+            </p>
+          </div>
+        </section>
+      )}
+
+      {/* ── Practical Guidance ───────────────────────────── */}
+      {yoga.practicalGuidance && yoga.practicalGuidance.length > 0 && (
+        <section className="mb-8">
+          <h2 className="text-xl font-[Cinzel] text-gold-light flex items-center gap-2 mb-4" style={headStyle}>
+            <BookOpen size={20} className="text-gold-primary" />
+            {isHi ? 'व्यावहारिक मार्गदर्शन' : 'Practical Guidance'}
+          </h2>
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-6">
+            <ul className="space-y-3">
+              {yoga.practicalGuidance.map((g, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <CheckCircle2 size={16} className="text-emerald-400 mt-1 shrink-0" />
+                  <span className="text-text-primary text-sm leading-relaxed" style={bodyStyle}>{tl(g, locale)}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       {/* ── Cancellation Conditions ──────────────────────── */}
       {yoga.cancellations && yoga.cancellations.length > 0 && (

@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getDevotionalItem, TYPE_LABELS } from '@/lib/content/devotional-content';
@@ -89,9 +90,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   setRequestLocale(locale);
   const item = getDevotionalItem(type as DevotionalType, slug);
 
-  if (!item) {
-    return { title: 'Not Found  –  Dekho Panchang' };
-  }
+  // Soft-404 elimination: an unknown slug here used to fall through
+  // to a minimal "Not Found" title with HTTP 200 — Google indexed the
+  // URL as live thin content and counted it against the property's
+  // overall quality signal (sitemap had stale entries like
+  // vishnu-chalisa, plus client tools/social posts that linked to
+  // typos such as `krishna-chalisa` and `kali-chalisa`). Throwing
+  // notFound() in the metadata phase short-circuits to a real 404
+  // before the page renders.
+  if (!item) notFound();
 
   const typeLabel = TYPE_LABELS[type as DevotionalType];
   const { title, description } = devoCopyForLocale(
@@ -146,7 +153,12 @@ export default async function Layout({ children, params }: { children: React.Rea
   setRequestLocale(locale);
   const item = getDevotionalItem(type as DevotionalType, slug);
 
-  if (!item) return children;
+  // Mirror the metadata-phase notFound() so the Layout itself
+  // doesn't render an "empty" tree on misses. The `'use client'`
+  // page.tsx still has its own !item guard for any path where the
+  // layout's server-side check is bypassed (it isn't today, but
+  // defence in depth).
+  if (!item) notFound();
 
   const typeLabel = TYPE_LABELS[type as DevotionalType];
   // Devanagari-script locales (hi/sa/mai/mr) keep the Hindi headline +

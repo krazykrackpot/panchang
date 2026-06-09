@@ -252,26 +252,45 @@ function computeEkadashiParanaFromTable(
   //   Parana window then fell through to "sunrise to sunset" ≈ 14 hours
   //   instead of the classical Pratahkala ≈ 3 hours.
   //
-  // Symmetric bug for western locations (e.g. NewYork EDT): local sunset
-  // straddles into the NEXT UT day; sunsetUT returned as small positive
-  // (~0.5) instead of large (~24.5). dayLen still wrong.
+  // Symmetric bug for western locations (e.g. NewYork EDT, Seattle PDT):
+  // local sunset straddles into the NEXT UT day; sunsetUT returned as
+  // small positive (~0.5–4) instead of large (~24.5–28). dayLen still
+  // wrong.
   //
   // Fix: ensure sunset is later than sunrise in the same UT-hour frame.
-  // The heuristic — "if sunriseUT is in the late-day half it's actually
-  // the previous UT day's sunrise; otherwise sunset is on the next UT
-  // day" — handles all longitudes cleanly. Unaffected: cities where
-  // sunrise and sunset are both on the same UT day as the parana day
-  // (Mumbai, Bengaluru, London, Corseaux, etc.) — for them
-  // sunriseUT < sunsetUT already and the condition is a no-op.
+  // 2026-06-09 bug: the previous heuristic — "if sunriseUT > 12 ⇒
+  // previous-day sunrise" — conflated two cases:
+  //   - Eastern hemisphere (Asia +5/+9): Delhi sunrise 05:25 IST = 23:55
+  //     UT previous day → sunriseUTHoursOr returns ~23.92 → must subtract 24.
+  //   - Western hemisphere (Americas -5/-7/-8): Seattle sunrise 05:11 PDT
+  //     = 12:11 UT parana day → sunriseUTHoursOr returns 12.18 →
+  //     ⚠ heuristic also fires because 12.18 > 12, but here the correct
+  //     fix is to add 24 to sunsetUT (June 12 21:06 PDT = 04:06 UT next
+  //     day → sunsetUT = 4.10 → should be 28.10).
+  //
+  // Concrete failure mode (Seattle Parama Ekadashi 2026-06-12): the bad
+  // sunriseUT = -11.82 produced jdSunrise on the WRONG UT day, which
+  // made `hvAlreadyOver` (line 311) evaluate false even though Hari
+  // Vasara had ended ~14 hours before parana day's actual sunrise. UI
+  // then rendered "Parana Window 15:21–21:06" instead of the correct
+  // 05:11–07:06. (Drik Panchang reference for the same chart.)
+  //
+  // Correct disambiguator: which hemisphere is the location in? Use the
+  // longitude (already a function parameter) — negative longitude
+  // (Americas) means sunset wraps to the next UT day; non-negative means
+  // sunrise is on the previous UT day. Unaffected: cities where sunrise
+  // and sunset are both on the same UT day as the parana day (Mumbai,
+  // Bengaluru, London, Corseaux, etc.) — sunriseUT < sunsetUT already
+  // and the condition is a no-op.
   if (sunriseUT > sunsetUT) {
-    if (sunriseUT > 12) {
-      // sunrise UT lands in the late-day half ⇒ actually on the PREVIOUS
-      // UT day. Subtract 24 so dayLen comes out as the real day length.
-      sunriseUT -= 24;
-    } else {
-      // sunrise UT is in the early half ⇒ sunset UT must be on the NEXT
-      // UT day. Add 24 so sunset is later than sunrise on the number line.
+    if (lon < 0) {
+      // Western hemisphere: sunset UT is on the next UT day. Add 24 so
+      // sunset is later than sunrise on the number line.
       sunsetUT += 24;
+    } else {
+      // Eastern hemisphere: sunrise UT is on the previous UT day.
+      // Subtract 24 so dayLen comes out as the real day length.
+      sunriseUT -= 24;
     }
   }
 
@@ -301,9 +320,11 @@ function computeEkadashiParanaFromTable(
     jdApprox = dateToJD(py, pm, pday, 0);
     sunriseUT = sunriseUTHoursOr(jdApprox, lat, lon, 0, 6).value;
     sunsetUT = sunsetUTHoursOr(jdApprox, lat, lon, 0, 18).value;
+    // Same hemisphere-based disambiguation as the initial normalisation
+    // above (Western lon < 0 ⇒ sunset wraps next UT day).
     if (sunriseUT > sunsetUT) {
-      if (sunriseUT > 12) sunriseUT -= 24;
-      else sunsetUT += 24;
+      if (lon < 0) sunsetUT += 24;
+      else sunriseUT -= 24;
     }
   }
 

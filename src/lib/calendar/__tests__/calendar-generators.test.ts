@@ -140,6 +140,56 @@ describe('generateFestivalCalendarV2', () => {
   }, 60000);
 });
 
+// ─── Parana hemisphere regression (2026-06-09) ───
+// Seattle Parama Ekadashi 2026-06-12 used to render parana 15:21–21:06
+// because the UT day-boundary normalisation conflated "Eastern hemisphere
+// sunrise wraps to previous UT day" with "Western hemisphere sunset wraps
+// to next UT day" (both manifest as sunriseUT > sunsetUT and sunriseUT > 12).
+// Drik Panchang shows 05:11–07:06. Pin a few hemispheres so the regression
+// can't come back.
+
+describe('Ekadashi parana — hemisphere UT-wrap regression', () => {
+  function parama(lat: number, lon: number, tz: string) {
+    const all = generateFestivalCalendarV2(2026, lat, lon, tz);
+    return all.find(f => /parama/i.test(f.name?.en ?? '') && (f.date ?? '').startsWith('2026-06'));
+  }
+
+  it('Seattle Parama Ekadashi parana window starts at sunrise (HV already over)', () => {
+    const f = parama(47.6062, -122.3321, 'America/Los_Angeles');
+    expect(f).toBeDefined();
+    // Drik reference: parana 05:11 AM to 07:06 AM, Dwadashi end 07:06 AM
+    expect(f!.paranaSunrise).toBe('05:11');
+    expect(f!.paranaHariVasaraEnd).toBe('05:11'); // sunrise (HV already over)
+    expect(f!.paranaStart).toBe('05:11');
+    expect(f!.paranaDwadashiEnd).toBe('07:07');
+    expect(f!.paranaEnd).toBe('07:07');
+  }, 60000);
+
+  it('New York Parama Ekadashi parana starts at sunrise', () => {
+    const f = parama(40.7128, -74.0060, 'America/New_York');
+    expect(f).toBeDefined();
+    expect(f!.paranaStart).toBe(f!.paranaSunrise);
+  }, 60000);
+
+  it('Delhi Parama Ekadashi parana starts at sunrise (HV already over)', () => {
+    const f = parama(28.6139, 77.2090, 'Asia/Kolkata');
+    expect(f).toBeDefined();
+    expect(f!.paranaStart).toBe(f!.paranaSunrise);
+  }, 60000);
+
+  it('Tokyo Parama Ekadashi parana window is geographically sensible', () => {
+    // Tokyo's Dwadashi cycle starts later (UTC+9), so HV may end AFTER
+    // sunrise — in which case parana starts at HV end. Either way the
+    // window must be sane: between sunrise and sunset of parana day.
+    const f = parama(35.6762, 139.6503, 'Asia/Tokyo');
+    expect(f).toBeDefined();
+    const toMin = (s: string) => { const [h, m] = s.split(':').map(Number); return h * 60 + m; };
+    expect(toMin(f!.paranaStart!)).toBeGreaterThanOrEqual(toMin(f!.paranaSunrise!));
+    expect(toMin(f!.paranaEnd!)).toBeGreaterThan(toMin(f!.paranaStart!));
+    expect(toMin(f!.paranaEnd!) - toMin(f!.paranaStart!)).toBeLessThan(16 * 60);
+  }, 60000);
+});
+
 // ─── generateEclipseCalendar ───
 
 describe('generateEclipseCalendar', () => {

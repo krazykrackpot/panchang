@@ -6,7 +6,7 @@ import { getNakshatraNumber, getNakshatraPada, getMasa, dateToJD, sunLongitude, 
 import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
-import { rehydrateKundali } from '@/lib/kundali/evaluated-yogas-codec';
+import { rehydrateKundali, stripKundaliForStorage } from '@/lib/kundali/evaluated-yogas-codec';
 import type { KundaliData } from '@/types/kundali';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -337,7 +337,7 @@ export async function POST(req: NextRequest) {
     // Strip static yoga catalog fields (~420 KB/row → ~15 KB/row).
     // Re-merged at read time via rehydrateKundali in getFreshSnapshot/useFreshSnapshot.
     // See src/lib/kundali/evaluated-yogas-codec.ts for the codec contract.
-    full_kundali: (await import('@/lib/kundali/evaluated-yogas-codec')).stripKundaliForStorage(kundali),
+    full_kundali: stripKundaliForStorage(kundali),
     computed_at: new Date().toISOString(),
     // Auto-derived from computation pipeline file hashes — changes when any calc logic changes
     computation_version: (await import('@/lib/kundali/engine-version')).ENGINE_VERSION,

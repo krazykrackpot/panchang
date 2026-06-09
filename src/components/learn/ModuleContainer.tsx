@@ -250,7 +250,15 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
       {/* Content or Quiz */}
       <AnimatePresence mode="wait">
         {!showQuiz ? (
-          <motion.div key={`page-${currentPage}`}
+          // Stable key — only animate the content/quiz section TRANSITION
+          // (not page-to-page within content). The previous key=`page-
+          // ${currentPage}` cycled on every page click, unmounting the
+          // pages.map block and rebuilding all 3-4 hidden DOM subtrees each
+          // time. Since all pages now render simultaneously with
+          // display:none, page-to-page navigation is effectively a CSS
+          // display toggle — no animation needed, and React reconciliation
+          // can preserve the DOM. PR #627 self-review MED.
+          <motion.div key="content-block"
             initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}>
             {/* Content pages — ALL pages render in DOM at SSR; non-current
@@ -259,9 +267,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                 ~70% of each module's content out of every page-1 SSR
                 render — Google saw the 117 modules as 200-300 word stubs
                 even when authored bodies ran 600-900 words across 3-4
-                pages). Discovered via thin-content audit 2026-06-09.
-                Visual pagination + AnimatePresence transitions are
-                preserved by only animating the visible page. */}
+                pages). Discovered via thin-content audit 2026-06-09. */}
             <div className="prose-content">
               {pages.map((p, i) => (
                 <div

@@ -147,9 +147,13 @@ export function stripKundaliForStorage(kundali: KundaliData): KundaliData {
  * Re-merge catalog fields onto every yoga in a previously stored
  * KundaliData. Safe to call on already-rehydrated data (the spread
  * preserves whatever catalog fields are already present).
+ *
+ * Accepts `undefined` (callers commonly pass an absent value) but
+ * always returns `KundaliData | null` — `undefined` collapses to `null`
+ * at the boundary so callsites can rely on a two-state union.
  */
-export function rehydrateKundali(kundali: KundaliData | null | undefined): KundaliData | null | undefined {
-  if (!kundali || !kundali.evaluatedYogas) return kundali;
+export function rehydrateKundali(kundali: KundaliData | null | undefined): KundaliData | null {
+  if (!kundali || !kundali.evaluatedYogas) return kundali ?? null;
   const rehydrated = kundali.evaluatedYogas.map(y =>
     rehydrateEvaluatedYoga(y as unknown as StoredEvaluatedYoga),
   );

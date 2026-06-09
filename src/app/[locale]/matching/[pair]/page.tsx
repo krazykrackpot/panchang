@@ -8,6 +8,7 @@ import { ArrowLeft, Heart, MessageCircle, Briefcase, AlertTriangle, Sparkles, Sh
 import GoldDivider from '@/components/ui/GoldDivider';
 import { getRashiBySlug } from '@/lib/constants/rashi-slugs';
 import { getPairContent } from '@/lib/constants/rashi-compatibility';
+import { getRashiPairDeepContent } from '@/lib/constants/rashi-pair-deep-content-with-overlay';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -431,6 +432,95 @@ export default function PairDetailPage() {
           );
         })}
       </div>
+
+      {/* Deep content sections — per-pair unique content beyond the
+          templated element/lord/distance compatibility. Each pair now
+          renders 4 additional narrative sections (mythologicalDynamic,
+          deepCompatibilityNotes, careerBondInsight, growthPath),
+          breaking the duplicate-template antipattern that earlier
+          limited all 78 pairs to ~360 visible words. Source:
+          src/lib/constants/rashi-pair-deep-content-with-overlay.ts. */}
+      {(() => {
+        const deep = getRashiPairDeepContent(r1.id, r2.id);
+        if (!deep) return null;
+        const labels: Record<string, Record<string, string>> = {
+          en: {
+            mythologicalDynamic: 'Mythological Dynamic',
+            deepCompatibilityNotes: 'Classical Compatibility Notes',
+            careerBondInsight: 'Career Bond',
+            growthPath: 'Growth Path Together',
+          },
+          hi: {
+            mythologicalDynamic: 'पौराणिक गतिकी',
+            deepCompatibilityNotes: 'शास्त्रीय अनुकूलता',
+            careerBondInsight: 'करियर सम्बन्ध',
+            growthPath: 'सहयात्रा का विकास',
+          },
+          mai: {
+            mythologicalDynamic: 'पौराणिक गति',
+            deepCompatibilityNotes: 'शास्त्रीय अनुकूलता',
+            careerBondInsight: 'करियरक सम्बन्ध',
+            growthPath: 'सङ्गी विकास',
+          },
+          mr: {
+            mythologicalDynamic: 'पौराणिक गतिशीलता',
+            deepCompatibilityNotes: 'शास्त्रीय अनुकूलता',
+            careerBondInsight: 'करिअर बंध',
+            growthPath: 'एकत्र वाढीचा मार्ग',
+          },
+          ta: {
+            mythologicalDynamic: 'புராண தொடர்பு',
+            deepCompatibilityNotes: 'பாரம்பரிய பொருத்தம்',
+            careerBondInsight: 'தொழில் கூட்டுறவு',
+            growthPath: 'வளர்ச்சிப் பாதை',
+          },
+          te: {
+            mythologicalDynamic: 'పౌరాణిక సంబంధం',
+            deepCompatibilityNotes: 'శాస్త్రీయ అనుకూలత',
+            careerBondInsight: 'వృత్తి అనుబంధం',
+            growthPath: 'వృద్ధి మార్గం',
+          },
+          bn: {
+            mythologicalDynamic: 'পৌরাণিক গতিশীলতা',
+            deepCompatibilityNotes: 'শাস্ত্রীয় সামঞ্জস্য',
+            careerBondInsight: 'কেরিয়ার বন্ধন',
+            growthPath: 'যৌথ বৃদ্ধির পথ',
+          },
+          gu: {
+            mythologicalDynamic: 'પૌરાણિક ગતિશીલતા',
+            deepCompatibilityNotes: 'શાસ્ત્રીય સુસંગતતા',
+            careerBondInsight: 'કારકિર્દી બંધન',
+            growthPath: 'સહયોગી વિકાસ',
+          },
+          kn: {
+            mythologicalDynamic: 'ಪೌರಾಣಿಕ ಸಂಬಂಧ',
+            deepCompatibilityNotes: 'ಶಾಸ್ತ್ರೀಯ ಹೊಂದಾಣಿಕೆ',
+            careerBondInsight: 'ವೃತ್ತಿ ಬಂಧ',
+            growthPath: 'ಬೆಳವಣಿಗೆಯ ಮಾರ್ಗ',
+          },
+        };
+        const lbls = labels[locale] ?? labels.en;
+        const tlField = (obj: { en: string; [k: string]: string | undefined }) =>
+          obj[locale] ?? obj.en;
+        const deepSections: Array<{ key: keyof typeof lbls; body: string }> = [
+          { key: 'mythologicalDynamic', body: tlField(deep.mythologicalDynamic) },
+          { key: 'deepCompatibilityNotes', body: tlField(deep.deepCompatibilityNotes) },
+          { key: 'careerBondInsight', body: tlField(deep.careerBondInsight) },
+          { key: 'growthPath', body: tlField(deep.growthPath) },
+        ];
+        return (
+          <div className="space-y-6 mb-12">
+            {deepSections.map(({ key, body }) => (
+              <div key={key} className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 sm:p-6">
+                <h2 className="text-lg font-bold text-gold-light mb-3" style={headingFont}>
+                  {lbls[key as keyof typeof lbls]}
+                </h2>
+                <p className="text-text-primary leading-relaxed">{body}</p>
+              </div>
+            ))}
+          </div>
+        );
+      })()}
 
       <GoldDivider className="my-12" />
 

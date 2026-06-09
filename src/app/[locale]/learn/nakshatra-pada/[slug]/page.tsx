@@ -1,6 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import { NAKSHATRA_PADA_PROFILES, type NakshatraPadaProfile } from '@/lib/constants/nakshatra-pada-profiles-with-overlay';
 import { getNakshatraPadaExtras } from '@/lib/constants/nakshatra-pada-extras-with-overlay';
+import { getNakshatraPadaDeepExtras } from '@/lib/constants/nakshatra-pada-deep-extras-with-overlay';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
@@ -8,7 +9,7 @@ import { getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Star, Briefcase, Heart, Activity, Hash, BookOpen, Flame, Compass } from 'lucide-react';
+import { ArrowLeft, Star, Briefcase, Heart, Activity, Hash, BookOpen, Flame, Compass, ScrollText, Sparkles, Users, Sword } from 'lucide-react';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
@@ -151,6 +152,57 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
             { icon: Flame, title: SP[locale] ?? SP.en, body: tl(extras.spiritualPractice, locale) },
             { icon: Compass, title: DM[locale] ?? DM.en, body: tl(extras.decisions, locale) },
           );
+        }
+        // Deep-extras (4 fields × ~80-120 EN words each, ~350w/page
+        // delta). Each pada now reads as ~6 unique sections + 4 deep
+        // sections, breaking the May-2026 duplicate-template shell that
+        // earlier limited all 108 pages to ~260 visible words. Locale
+        // overlays attach via getNakshatraPadaDeepExtras at render
+        // time; missing locales gracefully fall back to EN via tl().
+        const deep = getNakshatraPadaDeepExtras(parsed.nakshatraId, parsed.pada);
+        if (deep) {
+          const MC: Record<string, string> = {
+            en: 'Mythological Context', hi: 'पौराणिक सन्दर्भ',
+            ta: 'புராண பின்னணி', te: 'పౌరాణిక సందర్భం',
+            bn: 'পৌরাণিক প্রসঙ্গ', gu: 'પૌરાણિક સંદર્ભ',
+            kn: 'ಪೌರಾಣಿಕ ಸಂದರ್ಭ', mai: 'पौराणिक सन्दर्भ',
+            mr: 'पौराणिक संदर्भ',
+          };
+          const SW: Record<string, string> = {
+            en: 'Strengths & Shadows', hi: 'गुण व कमज़ोरियाँ',
+            ta: 'பலங்கள் மற்றும் பலவீனங்கள்', te: 'శక్తులు మరియు బలహీనతలు',
+            bn: 'শক্তি ও দুর্বলতা', gu: 'શક્તિઓ અને નબળાઈઓ',
+            kn: 'ಬಲ ಮತ್ತು ದೌರ್ಬಲ್ಯ', mai: 'गुण आ कमजोरी',
+            mr: 'गुण व दुर्बलता',
+          };
+          const PC: Record<string, string> = {
+            en: 'Partner Compatibility', hi: 'सम्बन्धों में अनुकूलता',
+            ta: 'வாழ்க்கைத்துணை பொருத்தம்', te: 'భాగస్వామి అనుకూలత',
+            bn: 'সঙ্গী সামঞ্জস্য', gu: 'જીવનસાથી અનુકૂળતા',
+            kn: 'ಸಂಗಾತಿ ಹೊಂದಾಣಿಕೆ', mai: 'सङ्गी अनुकूलता',
+            mr: 'जोडीदार अनुकूलता',
+          };
+          const CR: Record<string, string> = {
+            en: 'Classical Reference', hi: 'शास्त्रीय सन्दर्भ',
+            ta: 'பாரம்பரிய மேற்கோள்', te: 'శాస్త్రీయ సూచన',
+            bn: 'শাস্ত্রীয় তথ্যসূত্র', gu: 'શાસ્ત્રીય સંદર્ભ',
+            kn: 'ಶಾಸ್ತ್ರೀಯ ಉಲ್ಲೇಖ', mai: 'शास्त्रीय सन्दर्भ',
+            mr: 'शास्त्रीय संदर्भ',
+          };
+          sections.push(
+            { icon: ScrollText, title: MC[locale] ?? MC.en, body: tl(deep.mythologicalContext, locale) },
+            { icon: Sparkles, title: SW[locale] ?? SW.en, body: tl(deep.strengthsWeaknesses, locale) },
+            { icon: Users, title: PC[locale] ?? PC.en, body: tl(deep.partnerCompatibility, locale) },
+          );
+          // classicalReference may be empty when no canonical citation
+          // was confidently available (the Gemini prompt prefers "" to
+          // invented sources — same policy as the baby-names
+          // famousBearers field in PR #619). Skip the section in that
+          // case so the UI doesn't render an empty card.
+          const cr = tl(deep.classicalReference, locale);
+          if (cr && cr.trim()) {
+            sections.push({ icon: Sword, title: CR[locale] ?? CR.en, body: cr });
+          }
         }
         return sections;
       })().map((section, i) => (

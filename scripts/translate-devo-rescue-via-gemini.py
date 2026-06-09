@@ -285,11 +285,36 @@ def gemini_translate_batch(token: str, texts: list[str], locale: str, locale_des
             except json.JSONDecodeError:
                 text = re.sub(r"^```(?:json)?\n?|\n?```$", "", text.strip(), flags=re.MULTILINE)
                 parsed = json.loads(text)
+            # Gemini's `responseMimeType=application/json` returns one of:
+            #   - a list (when prompt asks for an array)
+            #   - a dict keyed by stringified ints (matches our prompt)
+            #   - a dict keyed by raw ints (rare, model occasionally
+            #     decides numeric JSON keys are appropriate)
+            #   - a bare string (only with BATCH=1, when the model
+            #     interprets the single-key prompt as "just give me the
+            #     translation, no envelope needed")
+            # Handle all four explicitly. Gemini PR #629 cycle-1 MED.
+            if isinstance(parsed, dict):
+                result: list[str] = []
+                for i in range(len(texts)):
+                    key_s = str(i)
+                    if key_s in parsed:
+                        result.append(str(parsed[key_s]))
+                    elif i in parsed:
+                        result.append(str(parsed[i]))
+                    else:
+                        raise KeyError(f"key {key_s!r} not in parsed dict (keys={list(parsed)[:5]})")
+                return result
             if isinstance(parsed, list):
                 if len(parsed) != len(texts):
-                    raise RuntimeError(f"array len mismatch")
+                    raise RuntimeError(f"array len {len(parsed)} != expected {len(texts)}")
                 return [str(x) for x in parsed]
-            return [parsed[str(i)] for i in range(len(texts))]
+            if isinstance(parsed, str) and len(texts) == 1:
+                return [parsed]
+            raise TypeError(
+                f"unexpected parsed type: {type(parsed).__name__} "
+                f"(expected dict/list, or str when batch=1)"
+            )
         except urllib.error.HTTPError as e:
             try:
                 body_excerpt = e.read().decode("utf-8", errors="replace")[:300]
@@ -331,6 +356,14 @@ def translate_one_locale(locale: str, by_slug: dict[str, dict[str, str]], token:
     BATCH = 1
     PERSIST_EVERY = 8   # save every 8 successful translations
     n_changed = 0
+    # Count items lost to batch-level failures (HTTP errors that
+    # exhaust retries, parse failures, etc.). Raised at the end so the
+    # caller knows the overlay file is incomplete — silent partial
+    # writes were Gemini PR #629 cycle-1 HIGH. Per-translation
+    # rejections (empty strings, non-strings — see the inner zip loop)
+    # are NOT counted here because those are policy decisions, not
+    # failures.
+    n_failed = 0
     since_persist = 0
     total = len(items)
     for i in range(0, total, BATCH):
@@ -340,6 +373,7 @@ def translate_one_locale(locale: str, by_slug: dict[str, dict[str, str]], token:
             translations = gemini_translate_batch(token, texts, locale, locale_desc)
         except Exception as e:
             print(f"  [{locale}] batch {i // BATCH + 1} FAILED: {e}", file=sys.stderr, flush=True)
+            n_failed += len(texts)
             continue
         for (key, _), t in zip(batch, translations):
             if not isinstance(t, str) or not t.strip():
@@ -376,6 +410,16 @@ def translate_one_locale(locale: str, by_slug: dict[str, dict[str, str]], token:
     tmp = overlay_path.with_suffix(".json.tmp")
     tmp.write_text(json.dumps(overlay, ensure_ascii=False, indent=2), encoding="utf-8")
     tmp.replace(overlay_path)
+    # Persist the successful translations BEFORE raising — the partial
+    # overlay file is still useful for a subsequent --resume pass.
+    # Surface the failure so the ThreadPoolExecutor future re-raises
+    # to main(), which now exits non-zero. Gemini PR #629 cycle-1 HIGH.
+    if n_failed > 0:
+        raise RuntimeError(
+            f"{n_failed} translations failed for locale {locale!r} "
+            f"(of {total}). Overlay file written with {n_changed} successes; "
+            f"re-run the script to retry the failed batches."
+        )
     return n_changed
 
 
@@ -400,6 +444,13 @@ def main() -> int:
     print(f"ADC token: {token[:20]}...")
     print(f"Translating {len(targets)} locales in parallel: {targets}")
 
+    # Track per-locale failures and surface them to the exit code so
+    # CI / autodeploy / loop hooks see a non-zero status. Returning 0
+    # while half the locales silently 401'd was the bug pattern from
+    # the b8oa71kux background-task run on 2026-06-09 — the wrapper
+    # marked completion with exit code 0 even though 6 of 8 locales
+    # never persisted. Gemini PR #629 cycle-1 HIGH.
+    failed_locales: list[str] = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=len(targets)) as ex:
         futures = {ex.submit(translate_one_locale, l, by_slug, token): l for l in targets}
         for fut in concurrent.futures.as_completed(futures):
@@ -409,6 +460,15 @@ def main() -> int:
                 print(f"[{locale}] DONE — {n} keys updated")
             except Exception as e:
                 print(f"[{locale}] FAILED: {e}", file=sys.stderr)
+                failed_locales.append(locale)
+    if failed_locales:
+        print(
+            f"\nFAILED locales ({len(failed_locales)}/{len(targets)}): "
+            f"{', '.join(failed_locales)}. "
+            f"Re-run to retry — overlay files carry any successes.",
+            file=sys.stderr,
+        )
+        return 1
     return 0
 
 

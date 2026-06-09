@@ -115,13 +115,40 @@ def gemini_translate_batch(token: str, texts: list[str], locale: str, locale_des
             try:
                 parsed = json.loads(text)
             except json.JSONDecodeError:
-                text = re.sub(r"^```(?:json)?\n?|\n?```$", "", text.strip(), flags=re.MULTILINE)
+                # No re.MULTILINE — `^` / `$` must anchor to the
+                # absolute string ends so a translated body that
+                # happens to contain a line beginning with ``` is
+                # left intact. Gemini PR #621 cycle-2 MED.
+                text = re.sub(r"^```(?:json)?\n?|\n?```$", "", text.strip())
                 parsed = json.loads(text)
+            # Parse into a homogeneous `translations` list, then
+            # validate every entry is a non-empty string. Raising here
+            # triggers the outer retry loop so the model gets another
+            # attempt instead of silently writing "None" or "" into the
+            # overlay (Gemini PR #621 cycle-3 HIGH).
             if isinstance(parsed, list):
                 if len(parsed) != len(texts):
                     raise RuntimeError(f"array len {len(parsed)} != expected {len(texts)}")
-                return [str(parsed[i]) for i in range(len(texts))]
-            return [parsed[str(i)] for i in range(len(texts))]
+                translations = [parsed[i] for i in range(len(texts))]
+            elif isinstance(parsed, dict):
+                # Dict may key by stringified int or raw int.
+                translations = []
+                for i in range(len(texts)):
+                    if str(i) in parsed:
+                        translations.append(parsed[str(i)])
+                    elif i in parsed:
+                        translations.append(parsed[i])
+                    else:
+                        raise KeyError(f"key {i} not in parsed dict (keys={list(parsed)[:5]})")
+            elif isinstance(parsed, str) and len(texts) == 1:
+                translations = [parsed]
+            else:
+                raise TypeError(f"unexpected JSON structure: {type(parsed).__name__}")
+            if any(not isinstance(t, str) or not t.strip() for t in translations):
+                raise RuntimeError(
+                    "one or more translations are empty or non-string; retrying"
+                )
+            return translations
         except urllib.error.HTTPError as e:
             try:
                 body_excerpt = e.read().decode("utf-8", errors="replace")[:300]
@@ -131,8 +158,17 @@ def gemini_translate_batch(token: str, texts: list[str], locale: str, locale_des
                 print(f"  [{locale}] HTTP {e.code}: {body_excerpt}", file=sys.stderr)
                 raise
             print(f"  [{locale}] retry {attempt+1} HTTP {e.code}: {body_excerpt[:150]}", file=sys.stderr)
-            time.sleep(2 ** attempt)
-        except (urllib.error.URLError, json.JSONDecodeError, KeyError, IndexError, TypeError, RuntimeError) as e:
+            # HTTP 429 = rate limit. Parallel ThreadPoolExecutor of
+            # 8 locales × ~6 batches each saturates the per-project
+            # QPS quota — 1/2/4 sec backoffs aren't long enough to
+            # clear it. Gemini PR #621 cycle-2 MED.
+            backoff = 15 * (attempt + 1) if e.code == 429 else 2 ** attempt
+            time.sleep(backoff)
+        # OSError covers TimeoutError + ConnectionResetError + DNS
+        # failures that don't inherit from urllib.error.URLError in
+        # Python 3.10+. Was urllib.error.URLError. Gemini PR #621
+        # cycle-1 + cycle-3 MED.
+        except (OSError, json.JSONDecodeError, KeyError, IndexError, TypeError, RuntimeError) as e:
             if attempt == 2:
                 raise
             print(f"  [{locale}] retry {attempt+1}: {str(e)[:120]}", file=sys.stderr)
@@ -159,8 +195,15 @@ def translate_locale(locale: str, source: dict[str, str], token: str) -> int:
         except json.JSONDecodeError:
             merged = {}
 
-    # Skip keys we've already translated.
-    todo_items = [(k, v) for (k, v) in source.items() if k not in merged]
+    # Skip keys whose existing translation is a non-empty string.
+    # Was `k not in merged`, which left empty/whitespace/null values
+    # untouched and never retried — a failed partial write from a
+    # prior crashed run would stay broken forever. Gemini PR #621
+    # cycle-2 MED.
+    todo_items = [
+        (k, v) for (k, v) in source.items()
+        if not isinstance(merged.get(k), str) or not merged[k].strip()
+    ]
     BATCH_SIZE = 12
     PERSIST_EVERY = 3
     batches = [todo_items[i:i + BATCH_SIZE] for i in range(0, len(todo_items), BATCH_SIZE)]

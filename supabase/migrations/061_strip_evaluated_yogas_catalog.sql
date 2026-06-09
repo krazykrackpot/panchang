@@ -73,12 +73,12 @@ WITH stripped AS (
     full_kundali ? 'evaluatedYogas'
     AND jsonb_typeof(full_kundali->'evaluatedYogas') = 'array'
     -- Only strip rows that still carry catalog fields (idempotency guard).
-    -- A stripped entry has no `description` key; checking the first
-    -- entry is sufficient because the writer strips them all together.
-    AND (
-      jsonb_array_length(full_kundali->'evaluatedYogas') = 0
-      OR (full_kundali->'evaluatedYogas'->0) ? 'description'
-    )
+    -- A stripped entry has no `description` key on the first yoga; checking
+    -- the first entry is sufficient because the writer strips them all
+    -- together. Skip empty arrays — UPDATE-to-self is write amplification
+    -- with no payoff. (Gemini PR #639 review applied retroactively.)
+    AND jsonb_array_length(full_kundali->'evaluatedYogas') > 0
+    AND (full_kundali->'evaluatedYogas'->0) ? 'description'
 )
 UPDATE kundali_snapshots ks
 SET full_kundali = s.new_full_kundali

@@ -34,8 +34,10 @@ WITH stripped AS (
   WHERE chart_data IS NOT NULL
     AND chart_data ? 'evaluatedYogas'
     AND jsonb_typeof(chart_data->'evaluatedYogas') = 'array'
-    AND (jsonb_array_length(chart_data->'evaluatedYogas') = 0
-         OR (chart_data->'evaluatedYogas'->0) ? 'description')
+    -- Skip empty arrays — they'd UPDATE to themselves (write amplification
+    -- with no payoff). Gemini PR #639 review.
+    AND jsonb_array_length(chart_data->'evaluatedYogas') > 0
+    AND (chart_data->'evaluatedYogas'->0) ? 'description'
 )
 UPDATE saved_charts sc SET chart_data = s.new_chart_data FROM stripped s WHERE sc.id = s.id;
 

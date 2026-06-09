@@ -68,6 +68,16 @@ function parseTimeToMin(s: string | undefined): number | null {
 }
 
 function diffMin(actual: string | undefined, expected: string | undefined): number | null {
+  if (actual === undefined || expected === undefined) return null;
+
+  // Engine format for cross-day boundaries is "HH:MM, Mon DD" (e.g. when
+  // Dwadashi end lands on the day AFTER paranaDate). Comparing only the
+  // HH:MM portion would silently pass a 24-h date mismatch — fail loud
+  // instead. (Gemini PR #636 HIGH review.)
+  const actualSuffix = actual.includes(',') ? actual.split(',', 2)[1].trim() : '';
+  const expectedSuffix = expected.includes(',') ? expected.split(',', 2)[1].trim() : '';
+  if (actualSuffix !== expectedSuffix) return 24 * 60;
+
   const a = parseTimeToMin(actual);
   const e = parseTimeToMin(expected);
   if (a === null || e === null) return null;
@@ -112,7 +122,7 @@ for (const c of fixture.cases) {
     if (key === 'paranaDate') {
       // exact match for dates
       const pass = actual === expected;
-      console.log(`  ${pass ? GREEN + 'OK  ' + RESET : RED + 'FAIL' + RESET} ${key}: actual=${actual}  expected=${expected}`);
+      console.log(`  ${pass ? GREEN + 'OK  ' + RESET : RED + 'FAIL' + RESET} ${key}: actual=${actual ?? '∅'}  expected=${expected}`);
       if (!pass) { failures++; failedLabels.push(`${c.label} → ${key}`); }
     } else {
       const drift = diffMin(actual, expected);

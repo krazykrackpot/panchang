@@ -106,8 +106,17 @@ describe('rehydrateEvaluatedYoga', () => {
     const rehydrated = rehydrateEvaluatedYoga(stored);
     expect(rehydrated.name).toEqual(rule.name);
     // Engine convention: sa falls back to en (engine.ts:218-223). Rehydrate mirrors.
-    expect(rehydrated.description).toEqual({ en: rule.description.en, hi: rule.description.hi, sa: rule.description.en });
-    expect(rehydrated.formationRule).toEqual({ en: rule.formationRule.en, hi: rule.formationRule.hi, sa: rule.formationRule.en });
+    // Defensive ?? preserves any future catalog entry that adds real `.sa` prose.
+    expect(rehydrated.description).toEqual({
+      en: rule.description.en,
+      hi: rule.description.hi,
+      sa: (rule.description as { sa?: string }).sa ?? rule.description.en,
+    });
+    expect(rehydrated.formationRule).toEqual({
+      en: rule.formationRule.en,
+      hi: rule.formationRule.hi,
+      sa: (rule.formationRule as { sa?: string }).sa ?? rule.formationRule.en,
+    });
     expect(rehydrated.classicalRef).toBe(rule.classicalRef);
     expect(rehydrated.group).toBe(rule.group);
     expect(rehydrated.isAuspicious).toBe(rule.isAuspicious);
@@ -158,14 +167,14 @@ describe('strip → rehydrate round-trip identity', () => {
       // catalog field present in original must equal what was restored.
       expect(rehydrated.id).toBe(original.id);
       expect(rehydrated.name).toEqual(original.name);
-      // Engine convention: sa = en. ruleToEvaluated() creates the test
-      // input from the rule directly (no `sa`); rehydrate adds it.
+      // Engine convention: sa falls back to en when the catalog lacks
+      // a Sanskrit translation. Defensive ?? preserves real `.sa` prose.
       expect(rehydrated.description.en).toBe(original.description.en);
       expect(rehydrated.description.hi).toBe(original.description.hi);
-      expect(rehydrated.description.sa).toBe(original.description.en);
+      expect(rehydrated.description.sa).toBe((original.description as { sa?: string }).sa ?? original.description.en);
       expect(rehydrated.formationRule.en).toBe(original.formationRule.en);
       expect(rehydrated.formationRule.hi).toBe(original.formationRule.hi);
-      expect(rehydrated.formationRule.sa).toBe(original.formationRule.en);
+      expect(rehydrated.formationRule.sa).toBe((original.formationRule as { sa?: string }).sa ?? original.formationRule.en);
       expect(rehydrated.classicalRef).toBe(original.classicalRef);
       expect(rehydrated.group).toBe(original.group);
       expect(rehydrated.isAuspicious).toBe(original.isAuspicious);

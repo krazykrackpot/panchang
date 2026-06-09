@@ -132,10 +132,11 @@ if [ -n "$STAGED_OVERLAY_TS" ]; then
 fi
 
 # 5. Parana cross-reference audit — Drik-derived golden values. Triggered
-# only when files in the astronomical / calendar pipeline are touched, so
-# unrelated PRs don't pay the cost. See CLAUDE.md "Definition of Done" #5
-# and Lesson K. Fixture: src/lib/calendar/__fixtures__/parana-drik-references.json.
-STAGED_ASTRO=$(echo "$STAGED_TS" | grep -E '^src/lib/(calendar|ephem|kundali/yoga|panchang)/' | head -20)
+# when ANY file in the astronomical / calendar pipeline is touched, so
+# unrelated PRs don't pay the cost. Includes JSON fixture edits — see
+# Gemini PR #636 review (STAGED_TS only would skip fixture-only commits).
+# CLAUDE.md "Definition of Done" #5 + Lesson K.
+STAGED_ASTRO=$(git diff --cached --name-only --diff-filter=ACM | grep -E '^src/lib/(calendar|ephem|kundali/yoga|panchang)/' | head -20)
 if [ -n "$STAGED_ASTRO" ]; then
   echo "  [5/5] parana cross-reference audit (Drik)..."
   npx tsx scripts/audit-parana-vs-references.ts

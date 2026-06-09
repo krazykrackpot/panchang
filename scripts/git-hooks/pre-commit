@@ -121,12 +121,29 @@ fi
 # AUTHORED_EN/HI changes. See CLAUDE.md i18n section + PR #580.
 STAGED_OVERLAY_TS=$(echo "$STAGED_TS" | xargs grep -l -E "from '@/lib/constants/[a-z0-9][a-z0-9-]*-overlay\.json'" /dev/null 2>/dev/null)
 if [ -n "$STAGED_OVERLAY_TS" ]; then
-  echo "  [4/4] locale overlay sync..."
+  echo "  [4/5] locale overlay sync..."
   python3 scripts/sync-locale-overlays.py $STAGED_OVERLAY_TS
   if [ $? -ne 0 ]; then
     echo ""
     echo "COMMIT BLOCKED: locale overlay sync failed. See message above."
     echo "  (bypass with: git commit --no-verify — run translator manually before pushing)"
+    exit 1
+  fi
+fi
+
+# 5. Parana cross-reference audit — Drik-derived golden values. Triggered
+# only when files in the astronomical / calendar pipeline are touched, so
+# unrelated PRs don't pay the cost. See CLAUDE.md "Definition of Done" #5
+# and Lesson K. Fixture: src/lib/calendar/__fixtures__/parana-drik-references.json.
+STAGED_ASTRO=$(echo "$STAGED_TS" | grep -E '^src/lib/(calendar|ephem|kundali/yoga|panchang)/' | head -20)
+if [ -n "$STAGED_ASTRO" ]; then
+  echo "  [5/5] parana cross-reference audit (Drik)..."
+  npx tsx scripts/audit-parana-vs-references.ts
+  if [ $? -ne 0 ]; then
+    echo ""
+    echo "COMMIT BLOCKED: parana audit failed. Astronomical/panchang change drifted"
+    echo "  beyond ±2m of curated Drik Panchang reference. See message above."
+    echo "  (bypass with: git commit --no-verify — document why the drift is intentional)"
     exit 1
   fi
 fi

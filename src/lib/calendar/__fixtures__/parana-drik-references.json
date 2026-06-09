@@ -1,0 +1,23 @@
+{
+  "$schema": "Golden parana references — hand-checked against Drik Panchang. When you add a row: query https://www.drikpanchang.com/fasts/ekadashi-parana.html for the city+date, transcribe verbatim, record the URL or screenshot. Tolerance: ±2 minutes (matches our ±0.5° Sun / ~0.01° tithi-boundary accuracy). NOTE: This file is NOT user-facing; the rule 'no competitor references in public content' applies to marketing/articles, not internal test fixtures. References to drikpanchang.com remain in test-only paths.",
+  "tolerance_minutes": 2,
+  "cases": [
+    {
+      "label": "Seattle Parama Ekadashi 2026",
+      "festival_pattern": "parama",
+      "year": 2026,
+      "month": 6,
+      "city": "Seattle",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "timezone": "America/Los_Angeles",
+      "expected": {
+        "paranaDate": "2026-06-12",
+        "paranaStart": "05:11",
+        "paranaEnd": "07:06",
+        "paranaDwadashiEnd": "07:06"
+      },
+      "source": "Drik Panchang screenshot 2026-06-09 — 'Jyeshtha Parama Ekadashi Vrat Timings', On 12th Jun, Parana Time 05:11 AM to 07:06 AM, Dwadashi End 07:06 AM"
+    }
+  ]
+}

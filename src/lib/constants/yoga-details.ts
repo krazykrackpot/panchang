@@ -83,6 +83,28 @@ export interface YogaDetailEntry {
   relatedYogas?: string[];
   /** Planet positions for birth chart visualisation — one example formation */
   chartPositions?: YogaChartPosition[];
+  // ─── Expansion fields (PR 2026-06-09 thin-content rescue) ──────────────
+  // Each adds 60-180 words of unique narrative content per yoga page,
+  // taking thin pages from ~220 → ~550+ words. Source: src/lib/constants/
+  // yoga-expansions-{locale}-overlay.json (EN authored, regional locales
+  // attached via yoga-details-with-overlay.ts).
+  //
+  // realWorldManifestation — 2-4 sentences on how the yoga shows up in
+  // someone's life when present (career patterns, relationship dynamics,
+  // health tendencies, recognisable temperament). Not a list — flowing prose.
+  realWorldManifestation?: LocaleText;
+  // strengthFactors — 3-5 short bullets on what amplifies or weakens this
+  // yoga's expression (planetary dignity, aspectual support, dasha lord
+  // position, navamsa confirmation). Each bullet 8-20 words.
+  strengthFactors?: LocaleText[];
+  // activationTiming — 1-2 sentences on which dasha/antardasha periods
+  // typically trigger the yoga's results (e.g. "Activates strongly during
+  // Moon mahadasha and Jupiter antardasha for Gajakesari").
+  activationTiming?: LocaleText;
+  // practicalGuidance — 3-4 actionable lifestyle/spiritual recommendations
+  // for someone with this yoga. Each item 10-25 words. Not duplicates of
+  // remedies (which are gemstone/mantra/charity); these are behavioural.
+  practicalGuidance?: LocaleText[];
 }
 
 export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {

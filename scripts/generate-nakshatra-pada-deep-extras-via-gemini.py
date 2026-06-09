@@ -109,7 +109,7 @@ def get_access_token() -> str:
         raise SystemExit(f"gcloud token retrieval failed: {exc.stderr or '(empty)'}") from exc
 
 
-def gemini_generate(token: str, record: dict) -> dict:
+def gemini_generate(record: dict) -> dict:
     prompt = PROMPT_TEMPLATE.format(record_json=json.dumps(record, ensure_ascii=False, indent=2))
     body = {
         "contents": [{"role": "user", "parts": [{"text": prompt}]}],
@@ -125,6 +125,11 @@ def gemini_generate(token: str, record: dict) -> dict:
     body_bytes = json.dumps(body, ensure_ascii=False).encode("utf-8")
     for attempt in range(3):
         try:
+            # Fetch the ADC token per attempt — gcloud caches/refreshes
+            # locally and the call is ~50ms, so the overhead is trivial.
+            # Avoids 401s on long-running batches where a single startup
+            # token expires mid-run (Gemini PR review HIGH).
+            token = get_access_token()
             req = urllib.request.Request(
                 ENDPOINT, data=body_bytes, method="POST",
                 headers={
@@ -172,9 +177,9 @@ def _persist(merged: dict) -> None:
     tmp.replace(OUT_FILE)
 
 
-def process_one(slug: str, record: dict, token: str) -> tuple[str, dict | None]:
+def process_one(slug: str, record: dict) -> tuple[str, dict | None]:
     try:
-        parsed = gemini_generate(token, record)
+        parsed = gemini_generate(record)
         # Wrap each field as { en: <value> } per the type definition
         return slug, {k: {"en": v} for k, v in parsed.items() if k in (
             "mythologicalContext", "strengthsWeaknesses",
@@ -212,13 +217,17 @@ def main() -> int:
         print("Nothing to do.", flush=True)
         return 0
 
+    # Verify gcloud auth at startup so we fail fast on missing ADC,
+    # but each gemini_generate() call re-fetches the token internally
+    # (gcloud caches/refreshes locally — keeps long batches alive past
+    # the 1-hour token expiry).
     token = get_access_token()
-    print(f"ADC token: {token[:20]}...", flush=True)
+    print(f"ADC token (startup probe): {token[:20]}...", flush=True)
 
     PERSIST_EVERY = 5
     done_since = 0
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as ex:
-        futures = {ex.submit(process_one, s, r, token): s for s, r in todo}
+        futures = {ex.submit(process_one, s, r): s for s, r in todo}
         for i, fut in enumerate(concurrent.futures.as_completed(futures), 1):
             slug, parsed = fut.result()
             if parsed is not None:

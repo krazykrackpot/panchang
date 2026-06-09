@@ -68,6 +68,15 @@ function attach(slug: string, entry: NakshatraPadaDeepExtras): NakshatraPadaDeep
 
 const PADA_DEEP_EXTRAS = data as Record<string, NakshatraPadaDeepExtras>;
 
+// Pre-merge overlays at module load — base data and overlays are both
+// static JSON imports, so the merged shape is identical on every render.
+// Doing this once eliminates the per-call clone + spread that ran on
+// every SSR / RSC render. (Gemini review feedback.)
+const MERGED_PADA_DEEP_EXTRAS: Record<string, NakshatraPadaDeepExtras> = {};
+for (const [slug, entry] of Object.entries(PADA_DEEP_EXTRAS)) {
+  MERGED_PADA_DEEP_EXTRAS[slug] = attach(slug, entry);
+}
+
 export function getNakshatraPadaDeepExtras(
   nakshatraId: number,
   pada: number,
@@ -75,9 +84,9 @@ export function getNakshatraPadaDeepExtras(
   if (!Number.isInteger(nakshatraId) || nakshatraId < 1 || nakshatraId > 27) return undefined;
   if (!Number.isInteger(pada) || pada < 1 || pada > 4) return undefined;
   const slug = `${nakshatraId}-${pada}`;
-  const entry = PADA_DEEP_EXTRAS[slug];
+  const entry = MERGED_PADA_DEEP_EXTRAS[slug];
   if (!entry) return undefined;
-  return attach(slug, entry);
+  return entry;
 }
 
 export type { NakshatraPadaDeepExtras };

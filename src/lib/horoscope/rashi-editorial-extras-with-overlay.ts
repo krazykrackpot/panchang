@@ -54,14 +54,20 @@ function attach(slug: string, entry: RashiEditorialExtras): RashiEditorialExtras
 
 const EDITORIAL_EXTRAS = data as Record<string, RashiEditorialExtras>;
 
+// Pre-merge overlays at module load — see same pattern in
+// nakshatra-pada-deep-extras-with-overlay.ts. Eliminates per-render
+// clone + spread. (Gemini review feedback.)
+const MERGED_EDITORIAL_EXTRAS: Record<string, RashiEditorialExtras> = {};
+for (const [slug, entry] of Object.entries(EDITORIAL_EXTRAS)) {
+  MERGED_EDITORIAL_EXTRAS[slug] = attach(slug, entry);
+}
+
 export function getRashiEditorialExtras(
   rashiId: number,
 ): RashiEditorialExtras | undefined {
   if (!Number.isInteger(rashiId) || rashiId < 1 || rashiId > 12) return undefined;
   const slug = String(rashiId);
-  const entry = EDITORIAL_EXTRAS[slug];
-  if (!entry) return undefined;
-  return attach(slug, entry);
+  return MERGED_EDITORIAL_EXTRAS[slug];
 }
 
 export type { RashiEditorialExtras };

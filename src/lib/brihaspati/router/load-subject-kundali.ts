@@ -26,7 +26,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
-import { rehydrateKundali } from '@/lib/kundali/evaluated-yogas-codec';
+import { rehydrateKundali, stripKundaliForStorage } from '@/lib/kundali/evaluated-yogas-codec';
 import type { BirthData, KundaliData } from '@/types/kundali';
 
 export type LoadResult =
@@ -132,12 +132,15 @@ export async function loadSubjectKundali({
     || (chart.label && String(chart.label).trim())
     || null;
 
-  // Cached chart_data short-circuit
+  // Cached chart_data short-circuit. Rehydrate the yoga catalog —
+  // saved_charts.chart_data writes go through stripKundaliForStorage
+  // below (same codec as kundali_snapshots, see PR #624).
   if (chart.chart_data) {
+    const rehydrated = rehydrateKundali(chart.chart_data as KundaliData);
     return {
       ok: true,
-      full_kundali: chart.chart_data, // saved_charts.chart_data IS the full kundali (see family-synthesis)
-      chart_data: chart.chart_data,
+      full_kundali: rehydrated, // saved_charts.chart_data IS the full kundali (see family-synthesis)
+      chart_data: rehydrated,
       computation_version: undefined,
       subjectName,
       kind: 'family',
@@ -154,9 +157,15 @@ export async function loadSubjectKundali({
   // Cache back so the next ask is instant. Non-fatal on failure — the
   // narration can proceed from the in-memory object even if the write
   // fails (e.g. RLS edge case, transient DB hiccup).
+  //
+  // Strip the yoga catalog before persisting — same codec as
+  // kundali_snapshots (PR #624). Saves ~272 KB per family-member chart.
+  // The in-memory `kundali` returned below is the un-stripped engine
+  // output so the caller sees full data immediately; only the persisted
+  // copy is stripped.
   void supabase
     .from('saved_charts')
-    .update({ chart_data: kundali })
+    .update({ chart_data: stripKundaliForStorage(kundali) })
     .eq('id', chart.id)
     .eq('user_id', userId)
     .then(({ error: updErr }) => {

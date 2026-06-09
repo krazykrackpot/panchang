@@ -18,6 +18,14 @@ const WESTERN_VEDIC_MAP: Record<string, string> = {
   sagittarius: 'dhanu', capricorn: 'makar', aquarius: 'kumbh', pisces: 'meen',
 };
 
+// Locale regex for redirect `source` patterns. Constrains `:locale` to
+// the 9 visible locales + retired `sa` (which 410s downstream — included
+// here so /sa/horoscope/aries gets the canonical-slug 308 first, then the
+// 410, rather than skipping the canonical-slug normalisation entirely).
+// Without this constraint, future top-level segments colliding with
+// horoscope/matching path shapes would be silently rewritten.
+const LOCALE_REGEX = 'en|hi|ta|te|bn|gu|kn|mai|mr|sa';
+
 const westernSlugs = Object.keys(WESTERN_VEDIC_MAP);
 const vedicSlugs = Object.values(WESTERN_VEDIC_MAP);
 
@@ -47,12 +55,12 @@ function buildWesternRedirects() {
   // optimisation because the GSC cost outweighed the LoC saved.
   for (const [western, vedic] of Object.entries(WESTERN_VEDIC_MAP)) {
     redirects.push({
-      source: `/:locale/horoscope/${western}`,
+      source: `/:locale(${LOCALE_REGEX})/horoscope/${western}`,
       destination: `/:locale/horoscope/${vedic}`,
       permanent: true,
     });
     redirects.push({
-      source: `/:locale/horoscope/${western}/:rest+`,
+      source: `/:locale(${LOCALE_REGEX})/horoscope/${western}/:rest+`,
       destination: `/:locale/horoscope/${vedic}/:rest+`,
       permanent: true,
     });
@@ -62,7 +70,7 @@ function buildWesternRedirects() {
   for (let i = 0; i < 12; i++) {
     for (let j = i; j < 12; j++) {
       redirects.push({
-        source: `/:locale/matching/${westernSlugs[i]}-and-${westernSlugs[j]}`,
+        source: `/:locale(${LOCALE_REGEX})/matching/${westernSlugs[i]}-and-${westernSlugs[j]}`,
         destination: `/:locale/matching/${vedicSlugs[i]}-and-${vedicSlugs[j]}`,
         permanent: true,
       });
@@ -112,12 +120,12 @@ function buildSanskritRedirects() {
   // for the trailing-slash double-redirect rationale (2026-06-09 audit).
   for (const [sanskrit, vedic] of Object.entries(SANSKRIT_VEDIC_MAP)) {
     redirects.push({
-      source: `/:locale/horoscope/${sanskrit}`,
+      source: `/:locale(${LOCALE_REGEX})/horoscope/${sanskrit}`,
       destination: `/:locale/horoscope/${vedic}`,
       permanent: true,
     });
     redirects.push({
-      source: `/:locale/horoscope/${sanskrit}/:rest+`,
+      source: `/:locale(${LOCALE_REGEX})/horoscope/${sanskrit}/:rest+`,
       destination: `/:locale/horoscope/${vedic}/:rest+`,
       permanent: true,
     });
@@ -173,7 +181,7 @@ function buildSanskritRedirects() {
       }
       for (const source of sources) {
         redirects.push({
-          source: `/:locale/matching/${source}`,
+          source: `/:locale(${LOCALE_REGEX})/matching/${source}`,
           destination: `/:locale/matching/${canonical}`,
           permanent: true,
         });

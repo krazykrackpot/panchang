@@ -202,6 +202,15 @@ def process_one(key: str, record: dict, token: str) -> tuple[str, dict | None]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--workers", type=int, default=8)
+    # Default to fail-loud — a Gemini safety-filter "skipped" item used to
+    # be reported only in stdout and the run still exit-0'd, so the karva-
+    # chauth-aarti skip in the 2026-06-09 run shipped a thin page without
+    # a CI signal. Treat any skipped slug as a failure unless explicitly
+    # acknowledged with --allow-skipped (e.g. when re-running after a
+    # confirmed safety policy block that won't ever succeed).
+    parser.add_argument("--allow-skipped", action="store_true",
+                        help="exit 0 even if some slugs were skipped by Gemini "
+                             "(default: exit non-zero so CI flags incomplete expansion)")
     args = parser.parse_args()
 
     if not JOBS_FILE.exists():
@@ -228,6 +237,7 @@ def main() -> int:
 
     PERSIST_EVERY = 4
     done_since_persist = 0
+    skipped: list[str] = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as ex:
         futures = {ex.submit(process_one, k, r, token): k for k, r in todo}
         for i, fut in enumerate(concurrent.futures.as_completed(futures), 1):
@@ -237,12 +247,22 @@ def main() -> int:
                 done_since_persist += 1
                 print(f"  [{i}/{len(todo)}] {key}: OK ({len(expansion.get('meaning',''))}c meaning + {len(expansion.get('significance',''))}c sig)")
             else:
+                skipped.append(key)
                 print(f"  [{i}/{len(todo)}] {key}: skipped")
             if done_since_persist >= PERSIST_EVERY:
                 _persist(results)
                 done_since_persist = 0
     _persist(results)
     print(f"\nWrote {OUT_FILE} ({len(results)} items)")
+    if skipped:
+        print(f"\n[skipped: {len(skipped)}]")
+        for k in skipped:
+            print(f"  - {k}")
+        if not args.allow_skipped:
+            print("\nExiting non-zero — re-run after fixing prompt/retrying, "
+                  "OR pass --allow-skipped to accept the skip as final.",
+                  file=sys.stderr)
+            return 2
     return 0
 
 

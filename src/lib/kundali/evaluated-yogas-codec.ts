@@ -108,11 +108,21 @@ export function rehydrateEvaluatedYoga(stored: StoredEvaluatedYoga): EvaluatedYo
       domainImpactWeight: 1,
     } as EvaluatedYoga;
   }
-  // Engine convention: sa always falls back to en.
-  const formationRule = { en: rule.formationRule.en, hi: rule.formationRule.hi, sa: rule.formationRule.en };
+  // Engine convention: sa falls back to en. Use `?? en` so any future
+  // catalog entry that adds a real `.sa` translation is preserved
+  // instead of silently overwritten (Gemini PR #624 review).
+  const formationRule = {
+    en: rule.formationRule.en,
+    hi: rule.formationRule.hi,
+    sa: (rule.formationRule as { sa?: string }).sa ?? rule.formationRule.en,
+  };
   // Engine convention: absent yogas prefer rule.absentDescription when defined.
   const descBase = !stored.present && rule.absentDescription ? rule.absentDescription : rule.description;
-  const description = { en: descBase.en, hi: descBase.hi, sa: descBase.en };
+  const description = {
+    en: descBase.en,
+    hi: descBase.hi,
+    sa: (descBase as { sa?: string }).sa ?? descBase.en,
+  };
   return {
     ...stored,
     name: rule.name,

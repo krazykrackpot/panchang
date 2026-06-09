@@ -161,8 +161,13 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
         // time; missing locales gracefully fall back to EN via tl().
         const deep = getNakshatraPadaDeepExtras(parsed.nakshatraId, parsed.pada);
         if (deep) {
+          // `sa` (Sanskrit) is retired (HTTP 410) but kept here for
+          // structural completeness — older surfaces in this module
+          // include `sa` keys, and a future un-retiring would otherwise
+          // ship en fallbacks. Gemini PR #640 cycle-1 MED.
           const MC: Record<string, string> = {
             en: 'Mythological Context', hi: 'पौराणिक सन्दर्भ',
+            sa: 'पौराणिकः सन्दर्भः',
             ta: 'புராண பின்னணி', te: 'పౌరాణిక సందర్భం',
             bn: 'পৌরাণিক প্রসঙ্গ', gu: 'પૌરાણિક સંદર્ભ',
             kn: 'ಪೌರಾಣಿಕ ಸಂದರ್ಭ', mai: 'पौराणिक सन्दर्भ',
@@ -170,6 +175,7 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
           };
           const SW: Record<string, string> = {
             en: 'Strengths & Shadows', hi: 'गुण व कमज़ोरियाँ',
+            sa: 'गुणाः च छायाः',
             ta: 'பலங்கள் மற்றும் பலவீனங்கள்', te: 'శక్తులు మరియు బలహీనతలు',
             bn: 'শক্তি ও দুর্বলতা', gu: 'શક્તિઓ અને નબળાઈઓ',
             kn: 'ಬಲ ಮತ್ತು ದೌರ್ಬಲ್ಯ', mai: 'गुण आ कमजोरी',
@@ -177,6 +183,7 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
           };
           const PC: Record<string, string> = {
             en: 'Partner Compatibility', hi: 'सम्बन्धों में अनुकूलता',
+            sa: 'सहचरानुकूलता',
             ta: 'வாழ்க்கைத்துணை பொருத்தம்', te: 'భాగస్వామి అనుకూలత',
             bn: 'সঙ্গী সামঞ্জস্য', gu: 'જીવનસાથી અનુકૂળતા',
             kn: 'ಸಂಗಾತಿ ಹೊಂದಾಣಿಕೆ', mai: 'सङ्गी अनुकूलता',
@@ -184,6 +191,7 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
           };
           const CR: Record<string, string> = {
             en: 'Classical Reference', hi: 'शास्त्रीय सन्दर्भ',
+            sa: 'शास्त्रीयः सन्दर्भः',
             ta: 'பாரம்பரிய மேற்கோள்', te: 'శాస్త్రీయ సూచన',
             bn: 'শাস্ত্রীয় তথ্যসূত্র', gu: 'શાસ્ત્રીય સંદર્ભ',
             kn: 'ಶಾಸ್ತ್ರೀಯ ಉಲ್ಲೇಖ', mai: 'शास्त्रीय सन्दर्भ',

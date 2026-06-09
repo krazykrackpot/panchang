@@ -456,6 +456,14 @@ export default function PairDetailPage() {
             careerBondInsight: 'करियर सम्बन्ध',
             growthPath: 'सहयात्रा का विकास',
           },
+          // `sa` retired (HTTP 410) but kept for structural parity
+          // with the older LABELS Record above. Gemini PR #640 cycle-1 MED.
+          sa: {
+            mythologicalDynamic: 'पौराणिकगतिः',
+            deepCompatibilityNotes: 'शास्त्रीयानुकूलतासूचनानि',
+            careerBondInsight: 'वृत्तिबन्धः',
+            growthPath: 'सहवृद्धिमार्गः',
+          },
           mai: {
             mythologicalDynamic: 'पौराणिक गति',
             deepCompatibilityNotes: 'शास्त्रीय अनुकूलता',

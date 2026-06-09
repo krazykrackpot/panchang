@@ -42,19 +42,14 @@ export interface RashiPairDeepContent {
   growthPath: { en: string };
 }
 
-const PAIR_DEEP_CONTENT = data as Record<string, RashiPairDeepContent>;
-
-/**
- * Look up the per-pair deep content. Always normalises (r1, r2) so
- * the caller can pass any ordering and get a hit if the canonical
- * key exists.
- */
-export function getRashiPairDeepContent(
-  r1: number, r2: number,
-): RashiPairDeepContent | undefined {
-  if (!Number.isInteger(r1) || r1 < 1 || r1 > 12) return undefined;
-  if (!Number.isInteger(r2) || r2 < 1 || r2 > 12) return undefined;
-  const lo = Math.min(r1, r2);
-  const hi = Math.max(r1, r2);
-  return PAIR_DEEP_CONTENT[`${lo}-${hi}`];
-}
+// Internal data export — for use ONLY by
+// rashi-pair-deep-content-with-overlay.ts. The bare EN-only lookup
+// that used to live here was named `getRashiPairDeepContent`,
+// colliding with the locale-aware function of the same name in the
+// overlay module. IDE auto-import would silently pick the bare one
+// half the time, returning EN-only entries for non-EN locales —
+// surfacing as untranslated UI text on /matching/[pair] pages.
+// Gemini PR #640 cycle-1 CRITICAL. The overlay module is now the
+// only public lookup; consumers MUST import from there.
+export const RASHI_PAIR_DEEP_CONTENT_RAW: Record<string, RashiPairDeepContent> =
+  data as Record<string, RashiPairDeepContent>;

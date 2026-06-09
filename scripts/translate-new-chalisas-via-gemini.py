@@ -170,6 +170,18 @@ def gemini_translate(token, text, locale, desc):
                 raise RuntimeError("empty translation; retrying")
             return translated
         except urllib.error.HTTPError as e:
+            # HTTP 401 / 403 = auth failure. Token expired or wrong
+            # service-account scope. Retrying changes nothing.
+            # Fail fast so the operator can refresh credentials.
+            # Gemini PR #623 + #640 cycle-1 MED (addresses the
+            # 1-hour stall pattern from 2026-06-09 evening session).
+            if e.code in (401, 403):
+                print(
+                    f"  [{locale}] HTTP {e.code} auth failure — not retrying. "
+                    f"Refresh `gcloud auth print-access-token` and re-run.",
+                    file=sys.stderr,
+                )
+                raise
             if attempt == 2:
                 print(f"  [{locale}] HTTP {e.code}: {e.read().decode('utf-8','replace')[:200]}", file=sys.stderr, flush=True)
                 raise

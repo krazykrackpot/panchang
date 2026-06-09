@@ -154,6 +154,23 @@ def gemini_translate_batch(token: str, texts: list[str], locale: str, locale_des
                 body_excerpt = e.read().decode("utf-8", errors="replace")[:300]
             except Exception:
                 body_excerpt = "(unreadable body)"
+            # HTTP 401 / 403 = auth failure. Token expired or wrong
+            # service-account scope. Retrying a 60-min OAuth token
+            # 3× over 7 sec changes nothing AND eats time before the
+            # caller can react. Fail fast so a wrapping script /
+            # operator sees the failure within seconds, not minutes.
+            # Gemini PR #623 cycle-1 + PR #640 cycle-1 MED — directly
+            # addresses the 1-hour stall pattern that occurred during
+            # the 2026-06-09 evening session when tokens expired
+            # mid-run.
+            if e.code in (401, 403):
+                print(
+                    f"  [{locale}] HTTP {e.code} auth failure — not retrying. "
+                    f"Refresh the gcloud ADC token (`gcloud auth print-access-token`) "
+                    f"and re-run. Body: {body_excerpt[:200]}",
+                    file=sys.stderr,
+                )
+                raise
             if attempt == 2:
                 print(f"  [{locale}] HTTP {e.code}: {body_excerpt}", file=sys.stderr)
                 raise

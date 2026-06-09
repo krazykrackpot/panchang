@@ -44,13 +44,13 @@ export interface NakshatraPadaDeepExtras {
   classicalReference: { en: string };
 }
 
-const PADA_DEEP_EXTRAS = data as Record<string, NakshatraPadaDeepExtras>;
-
-export function getNakshatraPadaDeepExtras(
-  nakshatraId: number,
-  pada: number,
-): NakshatraPadaDeepExtras | undefined {
-  if (!Number.isInteger(nakshatraId) || nakshatraId < 1 || nakshatraId > 27) return undefined;
-  if (!Number.isInteger(pada) || pada < 1 || pada > 4) return undefined;
-  return PADA_DEEP_EXTRAS[`${nakshatraId}-${pada}`];
-}
+// Internal data export — for use ONLY by
+// nakshatra-pada-deep-extras-with-overlay.ts. The bare EN-only lookup
+// that used to live here was named `getNakshatraPadaDeepExtras`,
+// colliding with the locale-aware function of the same name in the
+// overlay module. Same auto-import collision risk as
+// rashi-pair-deep-content. Gemini PR #640 cycle-1 CRITICAL. The
+// overlay module is now the only public lookup; consumers MUST
+// import from there.
+export const NAKSHATRA_PADA_DEEP_EXTRAS_RAW: Record<string, NakshatraPadaDeepExtras> =
+  data as Record<string, NakshatraPadaDeepExtras>;

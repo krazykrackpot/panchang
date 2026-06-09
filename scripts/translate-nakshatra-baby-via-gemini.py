@@ -106,10 +106,22 @@ def gemini_translate_batch(token: str, texts: list[str], locale: str, locale_des
             try:
                 parsed = json.loads(text)
             except json.JSONDecodeError:
-                # No re.MULTILINE — anchors stay at absolute string
-                # ends. Gemini PR #621 cycle-2 MED applied here too.
-                text = re.sub(r"^```(?:json)?\n?|\n?```$", "", text.strip())
-                parsed = json.loads(text)
+                # Strategy 1: strip outer markdown fences (no re.MULTILINE
+                # — anchors stay at absolute string ends). Covers the
+                # ```json ... ``` wrapping case.
+                stripped = re.sub(r"^```(?:json)?\n?|\n?```$", "", text.strip())
+                try:
+                    parsed = json.loads(stripped)
+                except json.JSONDecodeError:
+                    # Strategy 2: locate the first opening brace/bracket
+                    # and the last closing one. Handles "Here is the
+                    # JSON: { ... }" prose-wrapped responses without
+                    # losing nested braces. (Gemini PR review MED.)
+                    start = next((i for i, c in enumerate(stripped) if c in "{["), -1)
+                    end = next((len(stripped) - 1 - i for i, c in enumerate(reversed(stripped)) if c in "}]"), -1)
+                    if start == -1 or end == -1 or start >= end:
+                        raise
+                    parsed = json.loads(stripped[start:end + 1])
             if isinstance(parsed, list):
                 if len(parsed) != len(texts):
                     raise RuntimeError(f"array len {len(parsed)} != expected {len(texts)}")

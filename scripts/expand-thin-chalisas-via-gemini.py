@@ -120,8 +120,17 @@ def gemini_generate(token: str, chalisa_record: dict) -> dict:
             try:
                 parsed = json.loads(text)
             except json.JSONDecodeError:
-                text = re.sub(r"^```(?:json)?\n?|\n?```$", "", text.strip(), flags=re.MULTILINE)
-                parsed = json.loads(text)
+                # Strip outer markdown fences without re.MULTILINE so we
+                # don't accidentally chew triple-backticks that might
+                # appear inside the generated content (Gemini PR review).
+                text = text.strip()
+                if text.startswith("```json"):
+                    text = text[7:]
+                elif text.startswith("```"):
+                    text = text[3:]
+                if text.endswith("```"):
+                    text = text[:-3]
+                parsed = json.loads(text.strip())
             if not isinstance(parsed, dict):
                 raise RuntimeError(f"expected object")
             if 'meaning' not in parsed or 'significance' not in parsed:
@@ -156,8 +165,21 @@ def main() -> int:
     if OUT_FILE.exists():
         try:
             results = json.loads(OUT_FILE.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            results = {}
+        except json.JSONDecodeError as e:
+            # Abort rather than silently overwrite — a corrupted output
+            # file is salvageable (last good copy in git history). Silent
+            # reset would clobber prior progress. (Gemini PR review HIGH.)
+            print(
+                f"Error: {OUT_FILE} exists but contains invalid JSON: {e}",
+                file=sys.stderr,
+            )
+            print(
+                "Aborting to prevent overwriting prior progress. Inspect / "
+                "restore the file (e.g. `git checkout HEAD --` against an "
+                "older revision) then re-run.",
+                file=sys.stderr,
+            )
+            return 1
 
     todo = [(s, r) for (s, r) in jobs.items() if s not in results]
     print(f"To generate: {len(todo)} slugs")
@@ -176,7 +198,12 @@ def main() -> int:
         except Exception as e:
             print(f"  [{slug}] FAILED: {e}", file=sys.stderr)
             continue
-        OUT_FILE.write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding="utf-8")
+        # Atomic write — tmp + replace — so Ctrl+C / OOM mid-write
+        # can't leave the file half-flushed (which would trigger the
+        # JSONDecodeError abort on next run). (Gemini PR review MED.)
+        tmp = OUT_FILE.with_suffix(OUT_FILE.suffix + ".tmp")
+        tmp.write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding="utf-8")
+        tmp.replace(OUT_FILE)
         print(f"  [{slug}] OK ({len(results[slug].get('meaning',''))} + {len(results[slug].get('significance',''))} chars)")
 
     print(f"\nWrote {OUT_FILE} ({len(results)} chalisas)")

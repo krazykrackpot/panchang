@@ -45,7 +45,9 @@ export function RashiArticle({ rashiId, vedicName, westernName, locale }: Props)
     NAME: vedicName, WESTERN_NAME: westernName,
   });
   const extras = getRashiEditorialExtras(rashiId);
-  const extrasLabels = EXTRAS_LABELS[locale] ?? EXTRAS_LABELS.en;
+  // sa is retired (proxy 410's it) but fall back through Devanagari first
+  // for any future Sanskrit revival — matches `tlScript()` convention.
+  const extrasLabels = EXTRAS_LABELS[locale] ?? (locale === 'sa' ? EXTRAS_LABELS.hi : EXTRAS_LABELS.en);
 
   return (
     <section className="mt-12 space-y-6 max-w-3xl mx-auto px-4">

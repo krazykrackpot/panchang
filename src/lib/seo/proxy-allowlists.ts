@@ -120,3 +120,59 @@ export const CANONICAL_CITY_SLUGS: ReadonlySet<string> = new Set([
   'vadodara', 'vancouver', 'varanasi', 'vasai-virar', 'vasco', 'vellore', 'vidisha', 'vijayawada', 'visakhapatnam',
   'vrindavan', 'warangal', 'washington-dc', 'yamunanagar',
 ]);
+
+/**
+ * The 4 valid `type` values for /devotional/[type]/[slug].
+ *
+ * Source of truth: `DevotionalType` in src/lib/content/devotional-content.ts.
+ * Drift guard in __tests__/proxy-allowlists.test.ts. New types added there
+ * must be reflected here (and vice versa) within the same PR.
+ */
+export const CANONICAL_DEVOTIONAL_TYPES: ReadonlySet<string> = new Set([
+  'aarti', 'chalisa', 'mantra', 'stotram',
+]);
+
+/**
+ * Canonical slugs for /devotional/[type]/[slug].
+ *
+ * Source of truth: `ALL_DEVOTIONAL_ITEMS` in
+ * src/lib/content/devotional-content.ts. As of 2026-06-09: 61 slugs
+ * (20 aarti + 16 chalisa + 15 mantra + 10 stotram).
+ *
+ * Why proxy-gate this route:
+ *   - PR #626 made unknown-slug requests call `notFound()` from the
+ *     server layout (was: soft fallback rendering "Content not found"
+ *     at HTTP 200). The notFound() call correctly throws, but Next 16's
+ *     ISR adapter still caches the response as HTTP 200. Per
+ *     memory: project_next16_notfound_investigation_2026_06_07. The
+ *     edge gate here returns a real HTTP 404 BEFORE the request
+ *     reaches the ISR cache.
+ *   - Several inbound links + sitemap remnants pointed at typo'd slugs
+ *     (krishna-chalisa, kali-chalisa, etc.). Those slugs are now valid
+ *     after PR #630 authored their content, but the same soft-404
+ *     pattern still affects any unknown slug.
+ *
+ * The gate validates BOTH the type AND the slug; either failing → 404.
+ * Mismatched pair (e.g. /devotional/chalisa/lakshmi-mantra) is also
+ * caught downstream by the page's getDevotionalItem(type, slug) lookup,
+ * but that downstream check soft-404s, which is what we're avoiding.
+ * The proxy gate accepts the (type, slug) ∈ valid_pairs cartesian.
+ */
+export const CANONICAL_DEVOTIONAL_SLUGS: ReadonlySet<string> = new Set([
+  'aditya-hridayam', 'bajrang-baan', 'budha-beej-mantra', 'chandra-beej-mantra',
+  'diwali-aarti', 'durga-aarti', 'durga-chalisa', 'ganesh-aarti',
+  'ganesh-chalisa', 'ganesh-mantra', 'ganga-aarti', 'gayatri-mantra',
+  'guru-beej-mantra', 'hanuman-aarti', 'hanuman-bahuk', 'hanuman-chalisa',
+  'kali-chalisa', 'kanakadhara-stotram', 'karva-chauth-aarti', 'ketu-beej-mantra',
+  'krishna-aarti', 'krishna-chalisa', 'lakshmi-aarti', 'lakshmi-chalisa',
+  'lakshmi-mantra', 'lalita-sahasranama', 'mahamrityunjaya-mantra', 'mahishasura-mardini-stotram',
+  'mangal-beej-mantra', 'navagraha-chalisa', 'navgraha-mantra', 'navratri-aarti',
+  'om-jai-jagdish-hare', 'purusha-suktam', 'rahu-beej-mantra', 'ram-aarti',
+  'ram-chalisa', 'rudram-chamakam', 'sai-baba-aarti', 'sai-baba-chalisa',
+  'santoshi-chalisa', 'santoshi-maa-aarti', 'saraswati-aarti', 'saraswati-chalisa',
+  'saraswati-mantra', 'satyanarayan-aarti', 'shani-beej-mantra', 'shani-chalisa',
+  'shani-dev-aarti', 'shiv-aarti', 'shiv-chalisa', 'shiva-tandava-stotram',
+  'shukra-beej-mantra', 'sri-suktam', 'surya-aarti', 'surya-beej-mantra',
+  'surya-chalisa', 'tulsi-aarti', 'vishnu-aarti', 'vishnu-chalisa',
+  'vishnu-sahasranama',
+]);

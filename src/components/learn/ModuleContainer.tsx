@@ -253,9 +253,25 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
           <motion.div key={`page-${currentPage}`}
             initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}>
-            {/* Content page */}
+            {/* Content pages — ALL pages render in DOM at SSR; non-current
+                ones hide via display:none so Google indexes the entire
+                lesson body (was: `pages[currentPage]` only, which left
+                ~70% of each module's content out of every page-1 SSR
+                render — Google saw the 117 modules as 200-300 word stubs
+                even when authored bodies ran 600-900 words across 3-4
+                pages). Discovered via thin-content audit 2026-06-09.
+                Visual pagination + AnimatePresence transitions are
+                preserved by only animating the visible page. */}
             <div className="prose-content">
-              {pages[currentPage]}
+              {pages.map((p, i) => (
+                <div
+                  key={`page-content-${i}`}
+                  style={{ display: i === currentPage ? 'block' : 'none' }}
+                  aria-hidden={i !== currentPage}
+                >
+                  {p}
+                </div>
+              ))}
             </div>
           </motion.div>
         ) : !quizComplete ? (

@@ -26,7 +26,8 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
-import type { BirthData } from '@/types/kundali';
+import { rehydrateKundali } from '@/lib/kundali/evaluated-yogas-codec';
+import type { BirthData, KundaliData } from '@/types/kundali';
 
 export type LoadResult =
   | {
@@ -102,7 +103,8 @@ export async function loadSubjectKundali({
 
     return {
       ok: true,
-      full_kundali: snapshot.full_kundali ?? null,
+      // Re-merge yoga catalog onto stored full_kundali — codec contract.
+      full_kundali: rehydrateKundali(snapshot.full_kundali as KundaliData | null) ?? null,
       chart_data: snapshot.chart_data ?? null,
       computation_version: typeof snapshot.computation_version === 'string' ? snapshot.computation_version : undefined,
       subjectName: null,

@@ -8,11 +8,11 @@ Before claiming any task complete, ALL FIVE must be true:
 2. `npx vitest run` passes (or new tests added for the change)
 3. `npx next build` succeeds with zero errors
 4. The change was **verified in the running browser** — click the button, fill the form, watch the UI respond. (Lesson ZB.)
-5. **If touching astronomical/panchang/kundali computation**: spot-check at least 3 computed values against Prokerala or Shubh Panchang for the same date + location. (Lesson K.)
+5. **If touching astronomical/panchang/kundali computation**: spot-check at least 3 computed values against Prokerala or Shubh Panchang for the same date + location. (Lesson K.) The pre-commit hook runs `scripts/audit-parana-vs-references.ts` automatically for any change under `src/lib/{calendar,ephem,kundali/yoga,panchang}/` — golden values curated against Drik Panchang at `src/lib/calendar/__fixtures__/parana-drik-references.json`. **Adding a new festival or computation surface? Add a row to that fixture from Drik before merging.**
 
 If you skipped any of the five, say so explicitly — never report "done" while a gate failed. For production-visible changes (auth, checkout, DB writes), also run `vercel logs` after deploy.
 
-**NEVER say "verified" or "correct" about astronomical values without showing proof.** Show: (a) the actual computed output (run `npx tsx -e "..."` and paste), (b) the expected reference value (Prokerala / Drik / NASA), (c) side-by-side comparison. If you cannot produce both, say "NOT VERIFIED." Repeatedly violated: Adhika Ashadha (was Jyeshtha), Purnimant Chaitra (was Vaishakha), Ashtami month dates (should be Purnima).
+**NEVER say "verified" or "correct" about astronomical values without showing proof.** Show: (a) the actual computed output (run `npx tsx -e "..."` and paste), (b) the expected reference value (Prokerala / Drik / NASA), (c) side-by-side comparison. If you cannot produce both, say "NOT VERIFIED." Repeatedly violated: Adhika Ashadha (was Jyeshtha), Purnimant Chaitra (was Vaishakha), Ashtami month dates (should be Purnima), Seattle Parama Ekadashi parana (was 15:21–21:06, should be 05:11–07:06 — 2026-06-09).
 
 Domain-specific test rules when touching:
 - **auth**: signup + Google OAuth + email sign-in flows
@@ -332,6 +332,8 @@ Origin: 12+ copies of EXALTATION, 40+ copies of PLANET_NAMES, duplicate dosha de
 □ Auto-fill forms: guarded against edit mode (initialData)? (CC)
 □ Yoga detection: expected frequency — >20% for a "rare" yoga = bug (T)
 □ Spot-check 3 computed values vs Prokerala for the same date + location (K)
+□ `npx tsx scripts/audit-parana-vs-references.ts` — Drik fixture check (runs in pre-commit hook for src/lib/{calendar,ephem,kundali/yoga,panchang}/ edits)
+□ Cover ≥1 Western hemisphere city + ≥1 Eastern hemisphere city in tests (Seattle Parama 2026-06-09 bug — heuristic that worked for Delhi shipped without Western-hemisphere validation)
 □ npx vitest run · npx tsc --noEmit · browser test (Definition of Done)
 ```
 

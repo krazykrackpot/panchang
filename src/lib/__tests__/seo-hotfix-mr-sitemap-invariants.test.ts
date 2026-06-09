@@ -137,7 +137,7 @@ describe('SEO hotfix 2026-06-01 — exhaustive locale dispatch + sitemap freshne
   });
 
   describe('sitemap.ts — per-URL lastModified for date-based URLs', () => {
-    const src = read('src/app/sitemap.ts');
+    const src = read('src/lib/seo/sitemap-data.ts');
 
     it('addEntries accepts an optional lastModified override', () => {
       expect(src).toMatch(/lastModified\?:\s*Date/);

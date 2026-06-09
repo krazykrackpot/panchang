@@ -8,7 +8,7 @@ import { setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 import { Link } from '@/lib/i18n/navigation';
 import { Star, Shield, AlertTriangle, BookOpen, Gem, Users, ArrowRight, CheckCircle2, XCircle, Sparkles, Clock, Compass, TrendingUp } from 'lucide-react';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { pickByScript, getBodyFont, getHeadingFont } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
 // Use the overlay-merged version so /mai/ pages render real Maithili
 // content from yoga-mai-overlay.json. For non-mai locales the data is
@@ -84,7 +84,6 @@ export default async function YogaDetailPage({
 }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const isHi = isDevanagariLocale(locale);
 
   const yoga = YOGA_DETAIL_DATA[slug];
   // The layout's resolveCanonicalYogaSlug() permanentRedirects hyphen and
@@ -93,8 +92,16 @@ export default async function YogaDetailPage({
   if (!yoga) notFound();
 
   const cat = CATEGORY_STYLES[yoga.category] || CATEGORY_STYLES.other;
-  const bodyStyle = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
-  const headStyle = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined;
+  // Per-script font (Devanagari for hi/mr/mai/sa; Tamil/Telugu/Bengali/
+  // Kannada/Gujarati for their locales; English default for en). Replaces
+  // the prior `isHi ? devanagari : undefined` which left mr/mai/sa pages
+  // rendering Devanagari text in the Latin body font.
+  const bodyStyle = getBodyFont(locale);
+  const headStyle = getHeadingFont(locale);
+  // Short alias for the en/hi script-aware label picker. Devanagari locales
+  // (hi/mr/mai/sa) get `hi`, everything else gets `en` — replaces the
+  // previous `isHi ?` ternaries scattered through this JSX.
+  const T = (en: string, hi: string) => pickByScript(en, hi, locale);
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -130,15 +137,15 @@ export default async function YogaDetailPage({
 
         <div className="flex items-center justify-center gap-2 mb-4 flex-wrap">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-primary/15 text-gold-light text-xs font-bold uppercase tracking-wider">
-            {isHi ? 'कुण्डली योग' : 'Kundali Yoga'}
+            {T('Kundali Yoga', 'कुण्डली योग')}
           </span>
           <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full ${cat.bg} text-xs font-semibold uppercase tracking-wider ${cat.text}`}>
-            {isHi ? cat.labelHi : cat.label}
+            {T(cat.label, cat.labelHi)}
           </span>
         </div>
 
         <h1 className="text-3xl md:text-4xl font-[Cinzel] text-gold-light mb-2" style={headStyle}>
-          {isHi ? yoga.name.hi : yoga.name.en}
+          {T(yoga.name.en, yoga.name.hi)}
         </h1>
 
         {yoga.name.sa && (
@@ -150,16 +157,16 @@ export default async function YogaDetailPage({
         <div className="flex justify-center gap-4 mt-4">
           <span className={`inline-flex items-center gap-1 text-sm ${yoga.isAuspicious ? 'text-emerald-400' : 'text-red-400'}`}>
             {yoga.isAuspicious ? <CheckCircle2 size={16} /> : <AlertTriangle size={16} />}
-            {yoga.isAuspicious ? (isHi ? 'शुभ' : 'Auspicious') : (isHi ? 'अशुभ' : 'Inauspicious')}
+            {yoga.isAuspicious ? (T('Auspicious', 'शुभ')) : (T('Inauspicious', 'अशुभ'))}
           </span>
           <span className="text-text-secondary text-sm">
-            {isHi ? 'अपेक्षित आवृत्ति' : 'Expected frequency'}: ~{yoga.frequency}%
+            {T('Expected frequency', 'अपेक्षित आवृत्ति')}: ~{yoga.frequency}%
           </span>
         </div>
 
         {/* Formation rule — prominent */}
         <div className="mt-6 bg-white/[0.03] border border-gold-primary/10 rounded-xl px-6 py-4">
-          <p className="text-sm text-text-secondary mb-1">{isHi ? 'निर्माण नियम' : 'Formation Rule'}</p>
+          <p className="text-sm text-text-secondary mb-1">{T('Formation Rule', 'निर्माण नियम')}</p>
           <p className="text-gold-light text-lg" style={bodyStyle}>
             {tl(yoga.formationRule, locale)}
           </p>
@@ -169,11 +176,11 @@ export default async function YogaDetailPage({
         {yoga.chartPositions && yoga.chartPositions.length > 0 && (
           <div className="mt-6 flex flex-col items-center">
             <p className="text-xs text-text-secondary mb-2 uppercase tracking-wider font-bold">
-              {isHi ? 'उदाहरण कुण्डली' : 'Example Chart Position'}
+              {T('Example Chart Position', 'उदाहरण कुण्डली')}
             </p>
             <MiniChart positions={yoga.chartPositions} size={220} />
             <p className="text-[10px] text-text-secondary/50 mt-1.5">
-              {isHi ? 'मेष लग्न उदाहरण — वास्तविक स्थिति भिन्न हो सकती है' : 'Aries Lagna example — actual positions will vary'}
+              {T('Aries Lagna example — actual positions will vary', 'मेष लग्न उदाहरण — वास्तविक स्थिति भिन्न हो सकती है')}
             </p>
           </div>
         )}
@@ -183,7 +190,7 @@ export default async function YogaDetailPage({
       <section className="mb-8">
         <h2 className="text-xl font-[Cinzel] text-gold-light flex items-center gap-2 mb-4" style={headStyle}>
           <BookOpen size={20} className="text-gold-primary" />
-          {isHi ? 'यह योग क्या है?' : 'What is this Yoga?'}
+          {T('What is this Yoga?', 'यह योग क्या है?')}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-6 space-y-4">
           {/* Locale-indexed lookup beats the previous hardcoded `locale === 'mai'` check —
@@ -191,7 +198,7 @@ export default async function YogaDetailPage({
               touching the render code. Falls back to isHi ? .hi : .en when the locale isn't
               in the overlay (English source vs Devanagari-script chrome).
               Gemini PR #412 cycle-1 MED. */}
-          {((yoga.detailedDescription as Record<string, string[] | undefined>)[locale] ?? (isHi ? yoga.detailedDescription.hi : yoga.detailedDescription.en)).map((para, i) => (
+          {((yoga.detailedDescription as Record<string, string[] | undefined>)[locale] ?? pickByScript(yoga.detailedDescription.en, yoga.detailedDescription.hi, locale)).map((para, i) => (
             <p key={i} className="text-text-primary leading-relaxed" style={bodyStyle}>{para}</p>
           ))}
         </div>
@@ -201,7 +208,7 @@ export default async function YogaDetailPage({
       <section className="mb-8">
         <h2 className="text-xl font-[Cinzel] text-gold-light flex items-center gap-2 mb-4" style={headStyle}>
           <Star size={20} className="text-gold-primary" />
-          {isHi ? 'प्रभाव' : 'Effects When Present'}
+          {T('Effects When Present', 'प्रभाव')}
         </h2>
         <div className="grid md:grid-cols-2 gap-4">
           {yoga.effects.map((effect, i) => (
@@ -220,7 +227,7 @@ export default async function YogaDetailPage({
         <section className="mb-8">
           <h2 className="text-xl font-[Cinzel] text-gold-light flex items-center gap-2 mb-4" style={headStyle}>
             <Compass size={20} className="text-gold-primary" />
-            {isHi ? 'जीवन में कैसे प्रकट होता है' : 'How It Shows Up In Life'}
+            {T('How It Shows Up In Life', 'जीवन में कैसे प्रकट होता है')}
           </h2>
           <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-6">
             <p className="text-text-primary leading-relaxed" style={bodyStyle}>
@@ -235,7 +242,7 @@ export default async function YogaDetailPage({
         <section className="mb-8">
           <h2 className="text-xl font-[Cinzel] text-gold-light flex items-center gap-2 mb-4" style={headStyle}>
             <TrendingUp size={20} className="text-gold-primary" />
-            {isHi ? 'योग को क्या प्रबल बनाता है' : 'What Strengthens This Yoga'}
+            {T('What Strengthens This Yoga', 'योग को क्या प्रबल बनाता है')}
           </h2>
           <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-6">
             <ul className="space-y-3">
@@ -255,7 +262,7 @@ export default async function YogaDetailPage({
         <section className="mb-8">
           <h2 className="text-xl font-[Cinzel] text-gold-light flex items-center gap-2 mb-4" style={headStyle}>
             <Clock size={20} className="text-gold-primary" />
-            {isHi ? 'दशा सक्रियण' : 'When This Yoga Activates'}
+            {T('When This Yoga Activates', 'दशा सक्रियण')}
           </h2>
           <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-6">
             <p className="text-text-primary leading-relaxed" style={bodyStyle}>
@@ -270,7 +277,7 @@ export default async function YogaDetailPage({
         <section className="mb-8">
           <h2 className="text-xl font-[Cinzel] text-gold-light flex items-center gap-2 mb-4" style={headStyle}>
             <BookOpen size={20} className="text-gold-primary" />
-            {isHi ? 'व्यावहारिक मार्गदर्शन' : 'Practical Guidance'}
+            {T('Practical Guidance', 'व्यावहारिक मार्गदर्शन')}
           </h2>
           <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-6">
             <ul className="space-y-3">
@@ -290,7 +297,7 @@ export default async function YogaDetailPage({
         <section className="mb-8">
           <h2 className="text-xl font-[Cinzel] text-gold-light flex items-center gap-2 mb-4" style={headStyle}>
             <Shield size={20} className="text-gold-primary" />
-            {isHi ? 'भंग की शर्तें' : 'Cancellation Conditions'}
+            {T('Cancellation Conditions', 'भंग की शर्तें')}
           </h2>
           <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-6">
             <ul className="space-y-3">
@@ -310,27 +317,27 @@ export default async function YogaDetailPage({
         <section className="mb-8">
           <h2 className="text-xl font-[Cinzel] text-gold-light flex items-center gap-2 mb-4" style={headStyle}>
             <Gem size={20} className="text-gold-primary" />
-            {isHi ? 'उपाय' : 'Remedies'}
+            {T('Remedies', 'उपाय')}
           </h2>
           <div className="grid md:grid-cols-3 gap-4">
             {yoga.remedies.gemstone && (
               <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-5 text-center">
                 <Gem size={24} className="text-gold-primary mx-auto mb-2" />
-                <p className="text-xs text-text-secondary mb-1">{isHi ? 'रत्न' : 'Gemstone'}</p>
+                <p className="text-xs text-text-secondary mb-1">{T('Gemstone', 'रत्न')}</p>
                 <p className="text-gold-light font-semibold" style={bodyStyle}>{tl(yoga.remedies.gemstone, locale)}</p>
               </div>
             )}
             {yoga.remedies.mantra && (
               <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-5 text-center">
                 <BookOpen size={24} className="text-gold-primary mx-auto mb-2" />
-                <p className="text-xs text-text-secondary mb-1">{isHi ? 'मन्त्र' : 'Mantra'}</p>
+                <p className="text-xs text-text-secondary mb-1">{T('Mantra', 'मन्त्र')}</p>
                 <p className="text-gold-light font-semibold text-sm" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{yoga.remedies.mantra}</p>
               </div>
             )}
             {yoga.remedies.charity && (
               <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-transparent border border-gold-primary/8 rounded-xl p-5 text-center">
                 <Users size={24} className="text-gold-primary mx-auto mb-2" />
-                <p className="text-xs text-text-secondary mb-1">{isHi ? 'दान' : 'Charity'}</p>
+                <p className="text-xs text-text-secondary mb-1">{T('Charity', 'दान')}</p>
                 <p className="text-gold-light font-semibold" style={bodyStyle}>{tl(yoga.remedies.charity, locale)}</p>
               </div>
             )}
@@ -342,7 +349,7 @@ export default async function YogaDetailPage({
       {yoga.classicalReference && (
         <section className="mb-8">
           <div className="bg-gold-primary/5 border border-gold-primary/15 rounded-xl p-6">
-            <p className="text-xs text-gold-primary font-semibold uppercase tracking-wider mb-2">{isHi ? 'शास्त्रीय सन्दर्भ' : 'Classical Reference'}</p>
+            <p className="text-xs text-gold-primary font-semibold uppercase tracking-wider mb-2">{T('Classical Reference', 'शास्त्रीय सन्दर्भ')}</p>
             <blockquote className="text-text-primary italic text-sm border-l-2 border-gold-primary/30 pl-4" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
               {yoga.classicalReference.verse}
             </blockquote>
@@ -355,7 +362,7 @@ export default async function YogaDetailPage({
       {yoga.relatedYogas && yoga.relatedYogas.length > 0 && (
         <section className="mb-8">
           <h2 className="text-xl font-[Cinzel] text-gold-light mb-4" style={headStyle}>
-            {isHi ? 'सम्बन्धित योग' : 'Related Yogas'}
+            {T('Related Yogas', 'सम्बन्धित योग')}
           </h2>
           <div className="flex flex-wrap gap-2">
             {yoga.relatedYogas.map(relatedSlug => (
@@ -371,24 +378,24 @@ export default async function YogaDetailPage({
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="bg-gradient-to-r from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 text-center">
           <h3 className="text-lg font-[Cinzel] text-gold-light mb-2" style={headStyle}>
-            {isHi ? 'क्या आपकी कुण्डली में यह योग है?' : 'Do you have this yoga?'}
+            {T('Do you have this yoga?', 'क्या आपकी कुण्डली में यह योग है?')}
           </h3>
           <p className="text-text-secondary text-xs mb-3" style={bodyStyle}>
-            {isHi ? 'मुफ़्त कुण्डली बनाएँ और 173 योगों की जाँच करें' : 'Generate your free Kundali and check 173 yogas'}
+            {T('Generate your free Kundali and check 173 yogas', 'मुफ़्त कुण्डली बनाएँ और 173 योगों की जाँच करें')}
           </p>
           <Link href="/kundali" className="inline-flex items-center gap-2 px-5 py-2.5 bg-gold-primary text-bg-primary font-bold rounded-xl hover:bg-gold-light transition-colors text-sm">
-            {isHi ? 'कुण्डली बनाएँ' : 'Generate Kundali'} <ArrowRight size={16} />
+            {T('Generate Kundali', 'कुण्डली बनाएँ')} <ArrowRight size={16} />
           </Link>
         </div>
         <div className="bg-gradient-to-r from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 text-center">
           <h3 className="text-lg font-[Cinzel] text-gold-light mb-2" style={headStyle}>
-            {isHi ? 'योग निर्माण एनीमेटर' : 'Yoga Formation Animator'}
+            {T('Yoga Formation Animator', 'योग निर्माण एनीमेटर')}
           </h3>
           <p className="text-text-secondary text-xs mb-3" style={bodyStyle}>
-            {isHi ? 'ग्रहों को चरण दर चरण कुण्डली में योग बनाते देखें' : 'Watch planets animate step-by-step into yoga formations'}
+            {T('Watch planets animate step-by-step into yoga formations', 'ग्रहों को चरण दर चरण कुण्डली में योग बनाते देखें')}
           </p>
           <Link href="/learn/yoga-animator" className="inline-flex items-center gap-2 px-5 py-2.5 bg-gold-primary/10 border border-gold-primary/30 text-gold-light font-semibold rounded-xl hover:bg-gold-primary/20 transition-colors text-sm">
-            {isHi ? 'एनीमेशन देखें' : 'Open Animator'} <ArrowRight size={16} />
+            {T('Open Animator', 'एनीमेशन देखें')} <ArrowRight size={16} />
           </Link>
         </div>
       </div>

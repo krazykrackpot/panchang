@@ -33,15 +33,27 @@ function buildWesternRedirects() {
   // "Daily Horoscope" metadata to crawlers (bug confirmed on prod
   // 2026-05-29).
   //
-  // `:rest*` is path-to-regexp's zero-or-more wildcard, so a single
-  // rule per western slug covers all current deep routes (`/weekly`,
-  // `/monthly`, `/:date`), the bare `/horoscope/aries` rashi-only
-  // route (with `:rest` matching the empty tail), AND any future
-  // deep routes (yearly, etc.) automatically. Gemini PR #286 MED.
+  // Each western alias needs TWO rules — splitting on the empty-tail
+  // case avoids the trailing-slash double-redirect that doubled GSC's
+  // "Page with redirect" entries for every alias (2026-06-09 audit):
+  //   /en/horoscope/aries  → 308 → /en/horoscope/mesh/
+  //   /en/horoscope/mesh/  → 308 → /en/horoscope/mesh
+  // path-to-regexp interpolates `${vedic}/${empty :rest*}` as `mesh/`,
+  // which `trailingSlash: false` then strips in a second hop. A single
+  // `:rest*` rule cannot emit "no slash when tail is empty AND slash
+  // when tail is present" — needs an explicit bare-path rule and a
+  // `:rest+` (one-or-more) rule for the deep variants. Gemini PR #286 MED
+  // shipped the original single-rule version; this audit reverts that
+  // optimisation because the GSC cost outweighed the LoC saved.
   for (const [western, vedic] of Object.entries(WESTERN_VEDIC_MAP)) {
     redirects.push({
-      source: `/:locale/horoscope/${western}/:rest*`,
-      destination: `/:locale/horoscope/${vedic}/:rest*`,
+      source: `/:locale/horoscope/${western}`,
+      destination: `/:locale/horoscope/${vedic}`,
+      permanent: true,
+    });
+    redirects.push({
+      source: `/:locale/horoscope/${western}/:rest+`,
+      destination: `/:locale/horoscope/${vedic}/:rest+`,
       permanent: true,
     });
   }
@@ -96,12 +108,17 @@ const sanskritVedicSlugs = Object.values(SANSKRIT_VEDIC_MAP);
 function buildSanskritRedirects() {
   const redirects: Array<{ source: string; destination: string; permanent: boolean }> = [];
 
-  // 9 horoscope redirects (one catch-all per sanskrit slug) covering
-  // the bare /horoscope/:sanskrit page and every deep route via :rest*.
+  // Same two-rule split as buildWesternRedirects — see comment there
+  // for the trailing-slash double-redirect rationale (2026-06-09 audit).
   for (const [sanskrit, vedic] of Object.entries(SANSKRIT_VEDIC_MAP)) {
     redirects.push({
-      source: `/:locale/horoscope/${sanskrit}/:rest*`,
-      destination: `/:locale/horoscope/${vedic}/:rest*`,
+      source: `/:locale/horoscope/${sanskrit}`,
+      destination: `/:locale/horoscope/${vedic}`,
+      permanent: true,
+    });
+    redirects.push({
+      source: `/:locale/horoscope/${sanskrit}/:rest+`,
+      destination: `/:locale/horoscope/${vedic}/:rest+`,
       permanent: true,
     });
   }

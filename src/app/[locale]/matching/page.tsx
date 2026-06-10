@@ -29,51 +29,71 @@ export default async function MatchingPage({ params }: { params: Promise<{ local
           {isHi ? (<>
             <h2 className="text-gold-light text-xl font-bold">अष्ट कूट गुण मिलान क्या है?</h2>
             <p>अष्ट कूट (आठ-गुण) मिलान उत्तर भारतीय वैदिक ज्योतिष की सबसे प्रचलित विवाह अनुकूलता पद्धति है। यह दोनों साथियों की जन्म कुण्डली से चन्द्र नक्षत्र और चन्द्र राशि लेकर 8 आयामों पर संगतता को अंकित करती है। अधिकतम अंक 36 होता है। 18 से अधिक अंक सामान्यतः स्वीकार्य माना जाता है, 28 से अधिक उत्तम, और 18 से कम चुनौतीपूर्ण &mdash; हालाँकि ये दिशानिर्देश हैं, निर्णय नहीं।</p>
-
-            <h3 className="text-gold-light text-lg font-bold mt-6">8 कूट विस्तार से</h3>
           </>) : (<>
             <h2 className="text-gold-light text-xl font-bold">What is Ashta Kuta Kundali Matching?</h2>
             <p>Ashta Kuta (eight-fold) matching is the most widely used marriage compatibility system in North Indian Vedic astrology. It takes the Moon nakshatra (birth star) and Moon sign from both partners&apos; birth charts and scores compatibility across 8 dimensions. The maximum score is 36 points. A score above 18 is generally considered acceptable, above 28 is excellent, and below 18 requires careful consideration &mdash; though these are guidelines, not verdicts.</p>
-
-            <h3 className="text-gold-light text-lg font-bold mt-6">The 8 Kutas Explained</h3>
           </>)}
 
-          {/* Kuta table */}
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse mt-3">
-              <thead>
-                <tr className="border-b border-gold-primary/15">
-                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{TPL('kuta', locale)}</th>
-                  <th className="text-center py-2 px-3 text-gold-dark font-bold">{TPL('points', locale)}</th>
-                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{TPL('whatItMeasures', locale)}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {KUTAS.map((k, i) => (
-                  <tr key={i} className="border-b border-gold-primary/5">
-                    <td className="py-2 px-3 text-gold-light font-bold whitespace-nowrap">{isHi ? k.nameHi : k.name}</td>
-                    <td className="py-2 px-3 text-center text-text-primary">{k.pts}</td>
-                    <td className="py-2 px-3 text-text-secondary text-xs leading-relaxed">{isHi ? k.descHi : k.desc}</td>
+          {/* 8 Kutas — collapsible. Native <details>/<summary> + an
+              explicit `hidden group-open:block` on the body. The
+              project's prose-sm wrapper overrides the UA stylesheet's
+              default hide-when-closed on details children, so we wire
+              visibility through Tailwind's group-open variant instead.
+              Closed by default — the table is dense and most visitors
+              will scroll past it to the calculator below. */}
+          <details className="mt-6 group">
+            <summary className="text-gold-light text-lg font-bold cursor-pointer list-none flex items-center gap-2 select-none hover:text-gold-primary transition-colors">
+              <span className="text-gold-primary text-sm transition-transform group-open:rotate-90" aria-hidden="true">▸</span>
+              {isHi ? '8 कूट विस्तार से' : 'The 8 Kutas Explained'}
+            </summary>
+            <div className="hidden group-open:block overflow-x-auto mt-3">
+              <table className="w-full text-sm border-collapse">
+                <thead>
+                  <tr className="border-b border-gold-primary/15">
+                    <th className="text-left py-2 px-3 text-gold-dark font-bold">{TPL('kuta', locale)}</th>
+                    <th className="text-center py-2 px-3 text-gold-dark font-bold">{TPL('points', locale)}</th>
+                    <th className="text-left py-2 px-3 text-gold-dark font-bold">{TPL('whatItMeasures', locale)}</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {KUTAS.map((k, i) => (
+                    <tr key={i} className="border-b border-gold-primary/5">
+                      <td className="py-2 px-3 text-gold-light font-bold whitespace-nowrap">{isHi ? k.nameHi : k.name}</td>
+                      <td className="py-2 px-3 text-center text-text-primary">{k.pts}</td>
+                      <td className="py-2 px-3 text-text-secondary text-xs leading-relaxed">{isHi ? k.descHi : k.desc}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+          {/* Interpreting the Score — same collapsible pattern as the
+              Kutas section above. Most visitors care about the verdict
+              their tool produces, not the rubric for interpreting it,
+              so default to closed. */}
+          <details className="mt-6 group">
+            <summary className="text-gold-light text-lg font-bold cursor-pointer list-none flex items-center gap-2 select-none hover:text-gold-primary transition-colors">
+              <span className="text-gold-primary text-sm transition-transform group-open:rotate-90" aria-hidden="true">▸</span>
+              {isHi ? 'अंकों की व्याख्या' : 'Interpreting the Score'}
+            </summary>
+            <div className="hidden group-open:block space-y-4 mt-3">
+              {isHi ? (<>
+                <p><strong>28&ndash;36 अंक (उत्तम):</strong> दोनों साथियों के बीच उत्कृष्ट संगतता। सभी प्रमुख कूटों में अच्छा मिलान। विवाह की दृढ़ अनुशंसा।</p>
+                <p><strong>18&ndash;27 अंक (अच्छा):</strong> सन्तोषजनक संगतता। कुछ क्षेत्रों में कमी हो सकती है किन्तु सम्पूर्ण मिलान शुभ। विशेष दोषों (नाड़ी, भकूट) की जाँच आवश्यक।</p>
+                <p><strong>18 से कम (चुनौतीपूर्ण):</strong> कम अंक चिन्ता का विषय हो सकता है, किन्तु अनेक सफल विवाह कम अंकों के साथ भी हुए हैं। किसी अनुभवी ज्योतिषी से विस्तृत कुण्डली मिलान करवाना उचित है।</p>
+              </>) : (<>
+                <p><strong>28&ndash;36 points (Excellent):</strong> Outstanding compatibility between partners. Strong harmony across all major kutas. Marriage is highly recommended from an astrological standpoint.</p>
+                <p><strong>18&ndash;27 points (Good):</strong> Satisfactory compatibility. Some areas may need attention, but the overall match is favourable. Check for specific doshas (Nadi Dosha, Bhakut Dosha) even if the total score is good, as a zero in a major kuta can be significant.</p>
+                <p><strong>Below 18 (Challenging):</strong> A lower score raises concerns, but many successful marriages exist with low Ashta Kuta scores. A detailed chart analysis by an experienced astrologer is recommended, as the kuta system only considers Moon-based factors and misses planetary yogas, dasha compatibility, and other important dimensions.</p>
+              </>)}
+            </div>
+          </details>
 
           {isHi ? (<>
-            <h3 className="text-gold-light text-lg font-bold mt-6">अंकों की व्याख्या</h3>
-            <p><strong>28&ndash;36 अंक (उत्तम):</strong> दोनों साथियों के बीच उत्कृष्ट संगतता। सभी प्रमुख कूटों में अच्छा मिलान। विवाह की दृढ़ अनुशंसा।</p>
-            <p><strong>18&ndash;27 अंक (अच्छा):</strong> सन्तोषजनक संगतता। कुछ क्षेत्रों में कमी हो सकती है किन्तु सम्पूर्ण मिलान शुभ। विशेष दोषों (नाड़ी, भकूट) की जाँच आवश्यक।</p>
-            <p><strong>18 से कम (चुनौतीपूर्ण):</strong> कम अंक चिन्ता का विषय हो सकता है, किन्तु अनेक सफल विवाह कम अंकों के साथ भी हुए हैं। किसी अनुभवी ज्योतिषी से विस्तृत कुण्डली मिलान करवाना उचित है।</p>
-
             <h3 className="text-gold-light text-lg font-bold mt-6">दक्षिण भारतीय दशकूट पद्धति</h3>
             <p>दक्षिण भारत में 10-गुण (दशकूट) पद्धति प्रचलित है जो 10 अंकों पर आधारित है। इसमें रज्जु (विवाह स्थिरता) और वेध (नक्षत्र पीड़ा) जैसे अतिरिक्त कूट शामिल होते हैं जो उत्तर भारतीय पद्धति में नहीं हैं। हमारा गणक दोनों पद्धतियों का समर्थन करता है।</p>
           </>) : (<>
-            <h3 className="text-gold-light text-lg font-bold mt-6">Interpreting the Score</h3>
-            <p><strong>28&ndash;36 points (Excellent):</strong> Outstanding compatibility between partners. Strong harmony across all major kutas. Marriage is highly recommended from an astrological standpoint.</p>
-            <p><strong>18&ndash;27 points (Good):</strong> Satisfactory compatibility. Some areas may need attention, but the overall match is favourable. Check for specific doshas (Nadi Dosha, Bhakut Dosha) even if the total score is good, as a zero in a major kuta can be significant.</p>
-            <p><strong>Below 18 (Challenging):</strong> A lower score raises concerns, but many successful marriages exist with low Ashta Kuta scores. A detailed chart analysis by an experienced astrologer is recommended, as the kuta system only considers Moon-based factors and misses planetary yogas, dasha compatibility, and other important dimensions.</p>
-
             <h3 className="text-gold-light text-lg font-bold mt-6">South Indian Dasha Koota System</h3>
             <p>Southern India uses a 10-fold (Dasha Koota) matching system scored out of 10 points. It includes additional dimensions like Rajju (marriage durability) and Vedha (nakshatra affliction) that are not part of the North Indian system. Our tool supports both systems &mdash; toggle between them below.</p>
           </>)}

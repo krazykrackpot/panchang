@@ -120,8 +120,16 @@ function verifyWithSecret(payload: Buffer, sig: Buffer, secret: string): string 
  *     2. Try previous secret (when set) → verify
  *     3. Reject
  */
+/** Hard upper bound on token length to prevent DoS via long inputs.
+ *  v2 layout in practice: 6-char kid + '.' + ~48-char b64url payload
+ *  + '.' + ~44-char b64url sig ≈ 100 chars. 256 leaves headroom for
+ *  future variants without inviting megabyte-sized split() work from
+ *  an attacker. Gemini #666 round 3 SECURITY-MED. */
+const MAX_TOKEN_LEN = 256;
+
 export function verifyNpsToken(token: string | null | undefined): string | null {
   if (!token || typeof token !== 'string') return null;
+  if (token.length > MAX_TOKEN_LEN) return null;
 
   // Resolve secrets up front — both can be missing, that's a hard null.
   let currentSecret: string;

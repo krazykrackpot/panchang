@@ -194,4 +194,14 @@ describe('NPS token', () => {
     expect(kidFor('a')).not.toBe(kidFor('b'));
     expect(kidFor('test-secret-please-change-in-prod')).toHaveLength(6);
   });
+
+  it('rejects tokens longer than 256 chars (DoS guard)', async () => {
+    const { verifyNpsToken } = await loadModule();
+    const huge = 'a'.repeat(257);
+    expect(verifyNpsToken(huge)).toBeNull();
+    // A 256-char token would be parsed (and then rejected for other
+    // reasons) — pin that the boundary is exclusive-of-too-long, not
+    // exclusive-of-the-cap-itself.
+    expect(verifyNpsToken('a'.repeat(256))).toBeNull();
+  });
 });

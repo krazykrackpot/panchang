@@ -19,7 +19,9 @@ export default function CopyLinkButton({
   const [copied, setCopied] = useState(false);
 
   const onClick = useCallback(() => {
-    const href = `${window.location.origin}${window.location.pathname}#${anchor}`;
+    // Preserve existing query params (?utm_*, ?locale=, etc.) — bloggers
+    // sharing links keep their attribution intact. Gemini #650 MED.
+    const href = window.location.href.split('#')[0] + '#' + anchor;
     const clip = navigator.clipboard;
     if (!clip || typeof clip.writeText !== 'function') {
       console.error('[ReferenceBlock] clipboard API unavailable');

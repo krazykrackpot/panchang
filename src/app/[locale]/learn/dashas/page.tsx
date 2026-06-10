@@ -11,21 +11,9 @@ import LJ from '@/messages/learn/dashas.json';
 import ReferenceBlock from '@/components/ui/ReferenceBlock';
 
 // The nine Vimshottari mahadasha periods in their fixed cyclic order
-// (Ketu → Venus → ... → Mercury), total 120 years. Nakshatra triples
-// indicate which Moon-nakshatra at birth starts that planet's dasha.
-// Mirrors VIMSHOTTARI table at the top of this file; lives separately
-// as the citation-anchor block external sites should quote.
-const VIMSHOTTARI_REF_ROWS = [
-  { id: 'ketu',    label: 'Ketu',    value: '7 years',  note: 'Ashwini, Magha, Moola' },
-  { id: 'venus',   label: 'Venus',   value: '20 years', note: 'Bharani, P.Phalguni, P.Ashadha' },
-  { id: 'sun',     label: 'Sun',     value: '6 years',  note: 'Krittika, U.Phalguni, U.Ashadha' },
-  { id: 'moon',    label: 'Moon',    value: '10 years', note: 'Rohini, Hasta, Shravana' },
-  { id: 'mars',    label: 'Mars',    value: '7 years',  note: 'Mrigashira, Chitra, Dhanishta' },
-  { id: 'rahu',    label: 'Rahu',    value: '18 years', note: 'Ardra, Swati, Shatabhisha' },
-  { id: 'jupiter', label: 'Jupiter', value: '16 years', note: 'Punarvasu, Vishakha, P.Bhadrapada' },
-  { id: 'saturn',  label: 'Saturn',  value: '19 years', note: 'Pushya, Anuradha, U.Bhadrapada' },
-  { id: 'mercury', label: 'Mercury', value: '17 years', note: 'Ashlesha, Jyeshtha, Revati' },
-];
+// (Ketu → Venus → ... → Mercury), total 120 years. Rows read from
+// src/messages/learn/dashas.json via t() so planet names + year counts +
+// nakshatra triples localise across all 9 active locales. Gemini #650 MED.
 import { getHeadingFont, getBodyFont, isIndicLocale } from '@/lib/utils/locale-fonts';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import WhyItMatters from '@/components/learn/WhyItMatters';
@@ -135,7 +123,17 @@ export default function LearnDashasPage() {
         id="vimshottari"
         title={t('refBlockTitle')}
         intro={t('refBlockIntro')}
-        rows={VIMSHOTTARI_REF_ROWS}
+        rows={[
+          { id: 'ketu',    label: t('refRowKetu'),    value: t('refRowKetuValue'),    note: t('refRowKetuNote') },
+          { id: 'venus',   label: t('refRowVenus'),   value: t('refRowVenusValue'),   note: t('refRowVenusNote') },
+          { id: 'sun',     label: t('refRowSun'),     value: t('refRowSunValue'),     note: t('refRowSunNote') },
+          { id: 'moon',    label: t('refRowMoon'),    value: t('refRowMoonValue'),    note: t('refRowMoonNote') },
+          { id: 'mars',    label: t('refRowMars'),    value: t('refRowMarsValue'),    note: t('refRowMarsNote') },
+          { id: 'rahu',    label: t('refRowRahu'),    value: t('refRowRahuValue'),    note: t('refRowRahuNote') },
+          { id: 'jupiter', label: t('refRowJupiter'), value: t('refRowJupiterValue'), note: t('refRowJupiterNote') },
+          { id: 'saturn',  label: t('refRowSaturn'),  value: t('refRowSaturnValue'),  note: t('refRowSaturnNote') },
+          { id: 'mercury', label: t('refRowMercury'), value: t('refRowMercuryValue'), note: t('refRowMercuryNote') },
+        ]}
         sourceCitation={t('refBlockSource')}
         copyLinkLabel={t('refCopyLink')}
         copiedLabel={t('refCopied')}

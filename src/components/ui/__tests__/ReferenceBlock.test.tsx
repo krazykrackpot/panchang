@@ -35,7 +35,10 @@ describe('ReferenceBlock', () => {
       />
     );
     expect(screen.getByText('Planetary aspect rules')).toBeTruthy();
-    expect(screen.getByText(/BPHS Ch\.26/)).toBeTruthy();
+    // Citation renders in the labelled footer, italic, with no hardcoded
+    // "Source:" prefix (that bled English into native-script pages).
+    const footer = screen.getByLabelText('Citation');
+    expect(footer.textContent).toBe('BPHS Ch.26');
   });
 
   it('renders one row per entry with label and value visible', () => {

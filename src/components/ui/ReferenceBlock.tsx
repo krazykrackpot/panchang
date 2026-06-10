@@ -72,7 +72,11 @@ export default function ReferenceBlock({
               <dd className="text-sm md:text-base text-text-primary font-mono tabular-nums break-words">
                 {row.value}
               </dd>
-              <div className="opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity">
+              {/* On desktop, the Copy button reveals on hover (clean look).
+                  On mobile/touch (md-and-below) the hover idiom doesn't
+                  exist — keep it permanently visible so touch users can
+                  actually copy the anchor link. Gemini #650 HIGH. */}
+              <div className="md:opacity-0 md:group-hover:opacity-100 focus-within:opacity-100 transition-opacity">
                 <CopyLinkButton
                   anchor={rowAnchor}
                   ariaLabel={copyLinkAriaTemplate(row.label)}
@@ -90,8 +94,15 @@ export default function ReferenceBlock({
         })}
       </dl>
 
-      <footer className="mt-5 pt-3 border-t border-gold-primary/10 text-xs text-text-secondary italic">
-        Source: {sourceCitation}
+      {/* Italic-after-divider is the universal citation idiom. No
+          "Source:" prefix — it bleeds English into native-script pages
+          and the visual context already signals citation. Each consumer's
+          `sourceCitation` should start with the work title directly. */}
+      <footer
+        className="mt-5 pt-3 border-t border-gold-primary/10 text-xs text-text-secondary italic"
+        aria-label="Citation"
+      >
+        {sourceCitation}
       </footer>
     </section>
   );

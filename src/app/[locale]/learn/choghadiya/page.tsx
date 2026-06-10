@@ -12,19 +12,12 @@ import type { LocaleText } from '@/lib/learn/translations';
 import LJ from '@/messages/learn/choghadiya.json';
 import ReferenceBlock from '@/components/ui/ReferenceBlock';
 
-// The seven canonical choghadiya windows with their planetary lord and
-// classical tier. Order: best-to-worst (Amrit → Kaal), so external
-// quoters see the auspicious ones first. Lord/tier per Muhurta
-// Chintamani; tier mirrors src/lib/constants/choghadiya.ts CHOGHADIYA_NATURE.
-const CHOGHADIYA_REF_ROWS = [
-  { id: 'amrit',  label: 'Amrit',  value: 'Moon · Very auspicious' },
-  { id: 'shubh',  label: 'Shubh',  value: 'Jupiter · Auspicious' },
-  { id: 'labh',   label: 'Labh',   value: 'Mercury · Auspicious' },
-  { id: 'chara',  label: 'Chara',  value: 'Venus · Neutral' },
-  { id: 'udvega', label: 'Udvega', value: 'Sun · Inauspicious' },
-  { id: 'rog',    label: 'Rog',    value: 'Mars · Inauspicious' },
-  { id: 'kaal',   label: 'Kaal',   value: 'Saturn · Inauspicious' },
-];
+// The seven canonical choghadiya windows. Rows read from
+// src/messages/learn/choghadiya.json via t() so labels and lord/tier
+// strings localise across all 9 active locales. Order is best-to-worst
+// (Amrit → Kaal) so external quoters see the auspicious ones first.
+// Lord/tier per Muhurta Chintamani; tier mirrors
+// src/lib/constants/choghadiya.ts CHOGHADIYA_NATURE. Gemini #650 MED.
 import { isIndicLocale, getBodyFont } from '@/lib/utils/locale-fonts';
 import { Clock, Sun, Moon, Star, TrendingUp, ShieldAlert, ArrowRightLeft } from 'lucide-react';
 import {
@@ -142,7 +135,15 @@ export default function LearnChoghadiyaPage() {
         id="choghadiya"
         title={t('refBlockTitle')}
         intro={t('refBlockIntro')}
-        rows={CHOGHADIYA_REF_ROWS}
+        rows={[
+          { id: 'amrit',  label: t('refRowAmrit'),  value: t('refRowAmritValue') },
+          { id: 'shubh',  label: t('refRowShubh'),  value: t('refRowShubhValue') },
+          { id: 'labh',   label: t('refRowLabh'),   value: t('refRowLabhValue') },
+          { id: 'chara',  label: t('refRowChara'),  value: t('refRowCharaValue') },
+          { id: 'udvega', label: t('refRowUdvega'), value: t('refRowUdvegaValue') },
+          { id: 'rog',    label: t('refRowRog'),    value: t('refRowRogValue') },
+          { id: 'kaal',   label: t('refRowKaal'),   value: t('refRowKaalValue') },
+        ]}
         sourceCitation={t('refBlockSource')}
         copyLinkLabel={t('refCopyLink')}
         copiedLabel={t('refCopied')}

@@ -236,13 +236,14 @@ export default function AspectsPage() {
   const [selected, setSelected] = useState<typeof PLANETS[0] | null>(PLANETS[0]);
 
   // ReferenceBlock rows — citation anchor for external sites quoting our aspect rules.
-  // Planet names use the existing PLANETS trilingual data; values are universal ordinals.
+  // Rows read from src/messages/learn/aspects.json via t(), so labels/values
+  // localise correctly across all 9 active locales. Gemini #650 MED.
   const refRows = [
-    { id: 'mars',    label: lt(PLANETS.find(p => p.id === 'mars')!.name,    locale), value: '4th, 7th, 8th' },
-    { id: 'jupiter', label: lt(PLANETS.find(p => p.id === 'jupiter')!.name, locale), value: '5th, 7th, 9th' },
-    { id: 'saturn',  label: lt(PLANETS.find(p => p.id === 'saturn')!.name,  locale), value: '3rd, 7th, 10th' },
-    { id: 'rahu-ketu', label: `${lt(PLANETS.find(p => p.id === 'rahu')!.name, locale)} / ${lt(PLANETS.find(p => p.id === 'ketu')!.name, locale)}`, value: '5th, 7th, 9th', note: 'Some schools assign Rahu and Ketu the same special aspects as Jupiter.' },
-    { id: 'others',  label: lt({ en: 'All other planets', hi: 'अन्य सभी ग्रह', sa: 'अन्ये सर्वे ग्रहाः' }, locale), value: '7th only' },
+    { id: 'mars',      label: t('refRowMars'),      value: t('refRowMarsValue') },
+    { id: 'jupiter',   label: t('refRowJupiter'),   value: t('refRowJupiterValue') },
+    { id: 'saturn',    label: t('refRowSaturn'),    value: t('refRowSaturnValue') },
+    { id: 'rahu-ketu', label: t('refRowRahuKetu'),  value: t('refRowRahuKetuValue'), note: t('refRowRahuKetuNote') },
+    { id: 'others',    label: t('refRowOthers'),    value: t('refRowOthersValue') },
   ];
 
   return (

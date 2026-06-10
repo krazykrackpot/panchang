@@ -14,20 +14,11 @@ import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import ReferenceBlock from '@/components/ui/ReferenceBlock';
 
-// Mean sidereal motion per planet expressed as days/years per sign.
-// Mercury/Venus vary substantially with retrograde phases (durations
-// shown are time-averaged over a full synodic cycle). Source: mean
-// motion derivations cross-checked against JPL Horizons.
-const TRANSIT_DURATION_REF_ROWS = [
-  { id: 'sun',       label: 'Sun',         value: '~30 days per sign' },
-  { id: 'moon',      label: 'Moon',        value: '~2.25 days per sign' },
-  { id: 'mercury',   label: 'Mercury',     value: '~25 days', note: 'Varies substantially with retrograde phases.' },
-  { id: 'venus',     label: 'Venus',       value: '~25 days', note: 'Varies with retrograde.' },
-  { id: 'mars',      label: 'Mars',        value: '~45 days' },
-  { id: 'jupiter',   label: 'Jupiter',     value: '~1 year per sign' },
-  { id: 'saturn',    label: 'Saturn',      value: '~2.5 years per sign' },
-  { id: 'rahu-ketu', label: 'Rahu / Ketu', value: '~1.5 years per sign', note: 'Always retrograde; mean motion ~0.053°/day.' },
-];
+// Mean sidereal motion per planet. Rows read from
+// src/messages/learn/transits.json via t() so labels, durations, and
+// retrograde notes localise across all 9 active locales. Mercury/Venus
+// values are time-averaged over a full synodic cycle. Source: mean
+// motion derivations cross-checked against JPL Horizons. Gemini #650 MED.
 
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -102,7 +93,16 @@ export default function TransitsPage() {
         id="transit-durations"
         title={t('refBlockTitle', locale)}
         intro={t('refBlockIntro', locale)}
-        rows={TRANSIT_DURATION_REF_ROWS}
+        rows={[
+          { id: 'sun',       label: t('refRowSun', locale),       value: t('refRowSunValue', locale) },
+          { id: 'moon',      label: t('refRowMoon', locale),      value: t('refRowMoonValue', locale) },
+          { id: 'mercury',   label: t('refRowMercury', locale),   value: t('refRowMercuryValue', locale), note: t('refRowMercuryNote', locale) },
+          { id: 'venus',     label: t('refRowVenus', locale),     value: t('refRowVenusValue', locale),   note: t('refRowVenusNote', locale) },
+          { id: 'mars',      label: t('refRowMars', locale),      value: t('refRowMarsValue', locale) },
+          { id: 'jupiter',   label: t('refRowJupiter', locale),   value: t('refRowJupiterValue', locale) },
+          { id: 'saturn',    label: t('refRowSaturn', locale),    value: t('refRowSaturnValue', locale) },
+          { id: 'rahu-ketu', label: t('refRowRahuKetu', locale),  value: t('refRowRahuKetuValue', locale),note: t('refRowRahuKetuNote', locale) },
+        ]}
         sourceCitation={t('refBlockSource', locale)}
         copyLinkLabel={t('refCopyLink', locale)}
         copiedLabel={t('refCopied', locale)}

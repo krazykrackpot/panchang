@@ -10,18 +10,10 @@ import ReferenceBlock from '@/components/ui/ReferenceBlock';
 
 const T = L as unknown as Record<string, LocaleText>;
 
-// Ayanamsha values for 2026.0 CE (J2026.0 = Jan 1, 2026 00:00 UT).
-// Cross-checked against JPL Horizons + Swiss Ephemeris. These match
-// the inline summary table further down the page but live separately
-// as a citation-anchor so external sites can quote a stable URL.
-const REF_ROWS_2026 = [
-  { id: 'lahiri',        label: 'Lahiri (Chitrapaksha)', value: '24.22°' },
-  { id: 'kp',            label: 'KP (Krishnamurti)',     value: '24.13°' },
-  { id: 'raman',         label: 'Raman',                 value: '22.82°' },
-  { id: 'bv-raman',      label: 'BV Raman',              value: '22.73°' },
-  { id: 'yukteshwar',    label: 'Yukteshwar',            value: '22.09°' },
-  { id: 'fagan-bradley', label: 'Fagan-Bradley',         value: '24.87°' },
-];
+// Ayanamsha values for 2026.0 CE — rows now read from
+// src/messages/learn/ayanamsha.json via t(), so the system name (Lahiri,
+// KP, Raman …) renders in the user's script. The numeric values are
+// universal and identical across locales. Gemini #650 MED.
 
 export default function AyanamshaPage() {
   const locale = useLocale();
@@ -45,7 +37,14 @@ export default function AyanamshaPage() {
         id="ayanamsha"
         title={t('refBlockTitle')}
         intro={t('refBlockIntro')}
-        rows={REF_ROWS_2026}
+        rows={[
+          { id: 'lahiri',        label: t('refRowLahiri'),     value: t('refRowLahiriValue') },
+          { id: 'kp',            label: t('refRowKp'),         value: t('refRowKpValue') },
+          { id: 'raman',         label: t('refRowRaman'),      value: t('refRowRamanValue') },
+          { id: 'bv-raman',      label: t('refRowBvRaman'),    value: t('refRowBvRamanValue') },
+          { id: 'yukteshwar',    label: t('refRowYukteshwar'), value: t('refRowYukteshwarValue') },
+          { id: 'fagan-bradley', label: t('refRowFagan'),      value: t('refRowFaganValue') },
+        ]}
         sourceCitation={t('refBlockSource')}
         copyLinkLabel={t('refCopyLink')}
         copiedLabel={t('refCopied')}

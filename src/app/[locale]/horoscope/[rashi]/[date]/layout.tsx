@@ -15,7 +15,15 @@ import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
-export const revalidate = 86400; // ISR: daily — content is deterministic per date
+// On-demand revalidation only. The page underneath uses
+// getHoroscopePageModel which reads from a (rashi, date) Blob written
+// by the nightly precompute GH-Action; the action POSTs to
+// /api/precompute/revalidate after the writes, which flips this
+// layout's cache too via revalidatePath. With time-based revalidate
+// removed, past-dated layouts (whose metadata never changes) stop
+// incurring ISR writes on every daily tick. Mirrors choghadiya/[date]
+// and gauri-panchang/[date].
+export const revalidate = false;
 
 export function generateStaticParams() {
   // ISR: rendered on-demand, not pre-built (keeps deploy under 10 min)

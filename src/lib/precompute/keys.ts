@@ -47,19 +47,24 @@ export function panchangDateKey(date: string, citySlug: string): string {
 }
 
 /**
- * Horoscope for a rashi on a specific date. Rashi + date.
+ * Horoscope for a rashi on a specific date — rashi + date.
  *
- * Locale-DEPENDENT — predictive text differs by locale, not just labels.
- * Key includes locale; one Blob per (rashi, date, locale).
+ * LOCALE-INDEPENDENT. The original keys.ts (2026-06-06) declared this
+ * locale-dependent on a guess; verified 2026-06-10 that
+ * `generateDailyHoroscope({ moonSign, date })` does NOT take a locale
+ * and returns a DailyHoroscope whose LocaleText fields (`insight`,
+ * `areas.*.text`, `luckyColor`, `luckyDirection`, `remedy.description`,
+ * `dosAndDonts.*`) carry all 9 locales baked in. One Blob per (rashi,
+ * date) serves every locale — same shape as choghadiyaKey, 9× storage
+ * cheaper than the locale-keyed alternative.
  */
 export function horoscopeKey(
-  locale: Locale,
   rashiSlug: string,
   date: string,
 ): string {
   assertDate(date);
   assertSlug(rashiSlug);
-  return `horoscope/${locale}/${rashiSlug}/${date}`;
+  return `horoscope/${rashiSlug}/${date}`;
 }
 
 // ─── Validators ──────────────────────────────────────────────────────────────

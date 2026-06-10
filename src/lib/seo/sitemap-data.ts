@@ -102,6 +102,7 @@ const routes = [
   '/learn/kundali',
   '/learn/advanced',
   '/learn/ayanamsha',
+  '/learn/ayanamsha-comparison',
   '/learn/bhavas',
   '/learn/lordship',
   '/learn/calculations',

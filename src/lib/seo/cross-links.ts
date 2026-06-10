@@ -328,9 +328,15 @@ export const LEARN_TO_TOOL: Record<string, CrossLinkEntry[]> = {
     { label: 'Mangal Dosha', href: '/mangal-dosha', description: 'Mars affliction check' },
   ],
   '/learn/ayanamsha': [
+    { label: 'Ayanamsha Comparison', href: '/learn/ayanamsha-comparison', description: 'Six systems side-by-side' },
     { label: 'Tropical Compare', href: '/tropical-compare', description: 'Sidereal vs tropical' },
     { label: 'Sign Shift', href: '/sign-shift', description: 'Why your sign may differ' },
     { label: 'Rashi Calculator', href: '/sign-calculator', description: 'Find your Vedic sign' },
+  ],
+  '/learn/ayanamsha-comparison': [
+    { label: 'Learn Ayanamsha', href: '/learn/ayanamsha', description: 'What ayanamsha is, how it is measured' },
+    { label: 'Calculation Standards', href: '/about/methodology', description: 'Full engine methodology' },
+    { label: 'Tropical Compare', href: '/tropical-compare', description: 'Sidereal vs tropical live demo' },
   ],
   '/learn/grahas': [
     { label: 'Live Sky', href: '/sky', description: 'See planets in the sky' },

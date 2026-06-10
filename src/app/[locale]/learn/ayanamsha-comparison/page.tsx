@@ -28,7 +28,7 @@ import ReferenceBlock from '@/components/ui/ReferenceBlock';
 import { Link } from '@/lib/i18n/navigation';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { generateBreadcrumbLD, generatePersonLD } from '@/lib/seo/structured-data';
 
 const T = L as unknown as Record<string, LocaleText>;
 
@@ -94,7 +94,10 @@ export default async function AyanamshaComparisonPage() {
           '@type': 'TechArticle',
           headline: t('title'),
           description: t('subtitle'),
-          author: { '@type': 'Organization', name: 'Dekho Panchang' },
+          // Person author (not Organization) per E-E-A-T guidelines —
+          // matches article-ld.ts + the other 4 Phase 3 pages.
+          // Backfill of Gemini #659 finding on page-1.
+          author: generatePersonLD(),
           dateModified: '2026-06-10',
           proficiencyLevel: 'Intermediate',
           about: [

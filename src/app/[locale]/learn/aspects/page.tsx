@@ -267,6 +267,7 @@ export default function AspectsPage() {
         sourceCitation={t('refBlockSource')}
         copyLinkLabel={t('refCopyLink')}
         copiedLabel={t('refCopied')}
+        locale={locale}
       />
 
       {/* Section 1: What are Aspects */}

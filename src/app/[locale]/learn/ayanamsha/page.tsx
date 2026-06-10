@@ -48,6 +48,7 @@ export default function AyanamshaPage() {
         sourceCitation={t('refBlockSource')}
         copyLinkLabel={t('refCopyLink')}
         copiedLabel={t('refCopied')}
+        locale={locale}
       />
 
       {/* ═══ WHAT IS PRECESSION? ═══ */}

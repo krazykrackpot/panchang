@@ -147,6 +147,7 @@ export default function LearnChoghadiyaPage() {
         sourceCitation={t('refBlockSource')}
         copyLinkLabel={t('refCopyLink')}
         copiedLabel={t('refCopied')}
+        locale={locale}
       />
 
       <KeyTakeaway locale={locale} points={[

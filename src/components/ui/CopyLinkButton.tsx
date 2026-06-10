@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link2, Check } from 'lucide-react';
 
 interface CopyLinkButtonProps {
@@ -17,6 +17,15 @@ export default function CopyLinkButton({
   copiedLabel = 'Copied',
 }: CopyLinkButtonProps) {
   const [copied, setCopied] = useState(false);
+  // Hold the "copied" feedback timer so an unmount during the 2-second
+  // window can't fire setCopied(false) on a dead component. Gemini #650 MED.
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   const onClick = useCallback(() => {
     // Preserve existing query params (?utm_*, ?locale=, etc.) — bloggers
@@ -31,7 +40,8 @@ export default function CopyLinkButton({
       .writeText(href)
       .then(() => {
         setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(() => setCopied(false), 2000);
       })
       .catch((err: unknown) => {
         console.error('[ReferenceBlock] clipboard write failed:', err);

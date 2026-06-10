@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import CopyLinkButton from './CopyLinkButton';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 export interface ReferenceRow {
   id: string;
@@ -17,6 +18,10 @@ export interface ReferenceBlockProps {
   copyLinkLabel?: string;
   copiedLabel?: string;
   copyLinkAriaTemplate?: (rowLabel: string) => string;
+  /** When provided AND the locale uses Devanagari (hi/mr/mai), apply
+   *  the project's Devanagari heading + body font variables so the
+   *  block renders in the same typography as surrounding content. */
+  locale?: string;
 }
 
 export default function ReferenceBlock({
@@ -28,19 +33,29 @@ export default function ReferenceBlock({
   copyLinkLabel = 'Copy link',
   copiedLabel = 'Copied',
   copyLinkAriaTemplate = (rowLabel) => `Copy link to ${rowLabel}`,
+  locale,
 }: ReferenceBlockProps) {
   const blockAnchor = `ref-${id}`;
+  const isDevanagari = locale ? isDevanagariLocale(locale) : false;
+  const headingFontFamily = isDevanagari
+    ? 'var(--font-devanagari-heading)'
+    : 'var(--font-heading)';
+  const bodyFont = isDevanagari
+    ? { fontFamily: 'var(--font-devanagari-body)' }
+    : undefined;
+
   return (
     <section
       id={blockAnchor}
       aria-labelledby={`${blockAnchor}-title`}
       className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 md:p-8 my-8 shadow-[0_0_40px_-12px_rgba(212,168,83,0.15)]"
+      style={bodyFont}
     >
       <header className="flex items-baseline justify-between gap-4 mb-4 pb-3 border-b border-gold-primary/15">
         <h3
           id={`${blockAnchor}-title`}
           className="font-heading text-xl md:text-2xl font-semibold text-gold-light"
-          style={{ fontFamily: 'var(--font-heading)' }}
+          style={{ fontFamily: headingFontFamily }}
         >
           {title}
         </h3>
@@ -75,19 +90,21 @@ export default function ReferenceBlock({
               {/* On desktop, the Copy button reveals on hover (clean look).
                   On mobile/touch (md-and-below) the hover idiom doesn't
                   exist — keep it permanently visible so touch users can
-                  actually copy the anchor link. Gemini #650 HIGH. */}
-              <div className="md:opacity-0 md:group-hover:opacity-100 focus-within:opacity-100 transition-opacity">
+                  actually copy the anchor link. Gemini #650 HIGH.
+                  Wrapped in <dd> not <div> so the parent <dl> stays
+                  semantically valid. Gemini #650 round-2 MED. */}
+              <dd className="md:opacity-0 md:group-hover:opacity-100 focus-within:opacity-100 transition-opacity">
                 <CopyLinkButton
                   anchor={rowAnchor}
                   ariaLabel={copyLinkAriaTemplate(row.label)}
                   copyLabel={copyLinkLabel}
                   copiedLabel={copiedLabel}
                 />
-              </div>
+              </dd>
               {row.note && (
-                <p className="col-span-3 text-xs text-text-secondary mt-1 italic">
+                <dd className="col-span-3 text-xs text-text-secondary mt-1 italic">
                   {row.note}
-                </p>
+                </dd>
               )}
             </div>
           );

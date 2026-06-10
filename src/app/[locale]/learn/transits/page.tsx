@@ -106,6 +106,7 @@ export default function TransitsPage() {
         sourceCitation={t('refBlockSource', locale)}
         copyLinkLabel={t('refCopyLink', locale)}
         copiedLabel={t('refCopied', locale)}
+        locale={locale}
       />
 
       {/* 1. What are transits */}

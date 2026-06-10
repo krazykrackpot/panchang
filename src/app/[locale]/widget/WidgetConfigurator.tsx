@@ -149,6 +149,22 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
   });
 
   const refValid = useMemo(() => REF_PATTERN.test(refId), [refId]);
+  // Lat/lng client-side validation — drives the red-border state on
+  // the kundali birth inputs so an out-of-range value gives immediate
+  // feedback instead of waiting for the preview iframe to error out.
+  // Gemini #654 MED. Empty string counts as "not yet typed", not
+  // invalid — the input is required, but the configurator seeds the
+  // demo birth so a fresh load is always valid.
+  const birthLatValid = useMemo(() => {
+    if (!birthLat) return true;
+    const n = parseFloat(birthLat);
+    return Number.isFinite(n) && n >= -90 && n <= 90;
+  }, [birthLat]);
+  const birthLngValid = useMemo(() => {
+    if (!birthLng) return true;
+    const n = parseFloat(birthLng);
+    return Number.isFinite(n) && n >= -180 && n <= 180;
+  }, [birthLng]);
 
   const params = useMemo(() => {
     // The horoscope widget is rashi-based, not location-based — skip
@@ -181,10 +197,9 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
     if (type === 'kp-prashna') {
       p.set('number', String(kpPrashnaNumber));
     }
-    if (type === 'choghadiya' && snapshotDate) {
-      p.set('date', snapshotDate);
-    }
-    if (type === 'transits' && snapshotDate) {
+    // Shared snapshot-date contract — both /embed/choghadiya and
+    // /embed/transits accept ?date=YYYY-MM-DD; blank = today.
+    if ((type === 'choghadiya' || type === 'transits') && snapshotDate) {
       p.set('date', snapshotDate);
     }
     if (type === 'kundali') {
@@ -232,7 +247,7 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
     : type === 'kp-ruling' ? `KP Ruling Planets — ${selectedCity.name.en}`
     : type === 'kp-rashi' ? 'KP Daily Forecast — All 12 Rashis'
     : type === 'kp-prashna' ? `KP Prashna — Number ${kpPrashnaNumber}`
-    : type === 'kundali' ? `Birth Chart — ${birthName || 'Kundali'}`
+    : type === 'kundali' ? (birthName ? `Birth Chart — ${birthName}` : 'Birth Chart')
     : type === 'choghadiya' ? `Choghadiya — ${selectedCity.name.en}`
     : 'Current Transits';
 
@@ -538,6 +553,7 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
                   id="birth-name"
                   type="text"
                   value={birthName}
+                  maxLength={64}
                   onChange={(e) => setBirthName(e.target.value.slice(0, 64))}
                   className="w-full bg-bg-secondary border border-gold-primary/20 rounded-xl px-4 py-3 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none transition-colors"
                 />
@@ -575,7 +591,12 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
                     max={90}
                     value={birthLat}
                     onChange={(e) => setBirthLat(e.target.value)}
-                    className="w-full bg-bg-secondary border border-gold-primary/20 rounded-xl px-3 py-3 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none transition-colors"
+                    aria-invalid={!birthLatValid}
+                    className={`w-full bg-bg-secondary border rounded-xl px-3 py-3 text-text-primary text-sm focus:outline-none transition-colors ${
+                      birthLatValid
+                        ? 'border-gold-primary/20 focus:border-gold-primary/50'
+                        : 'border-red-500/60 focus:border-red-500'
+                    }`}
                   />
                 </div>
                 <div className="space-y-2">
@@ -588,7 +609,12 @@ export default function WidgetConfigurator({ pageLocale }: Props) {
                     max={180}
                     value={birthLng}
                     onChange={(e) => setBirthLng(e.target.value)}
-                    className="w-full bg-bg-secondary border border-gold-primary/20 rounded-xl px-3 py-3 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none transition-colors"
+                    aria-invalid={!birthLngValid}
+                    className={`w-full bg-bg-secondary border rounded-xl px-3 py-3 text-text-primary text-sm focus:outline-none transition-colors ${
+                      birthLngValid
+                        ? 'border-gold-primary/20 focus:border-gold-primary/50'
+                        : 'border-red-500/60 focus:border-red-500'
+                    }`}
                   />
                 </div>
               </div>

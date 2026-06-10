@@ -306,7 +306,9 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
   // through to live compute. Both paths produce the same page-model
   // shape — getGauriPanchangPageModel encapsulates the choice.
   try {
-    const model = await getGauriPanchangPageModel({ date: `${year.toString().padStart(4,'0')}-${month.toString().padStart(2,'0')}-${day.toString().padStart(2,'0')}`, city });
+    // dateStr is already YYYY-MM-DD-validated by parseDate above —
+    // pass directly (Gemini PR #663 MED).
+    const model = await getGauriPanchangPageModel({ date: dateStr, city });
     weekday = model.weekday;
     tithiNumber = model.tithiNumber;
     const fromModel = (s: typeof model.daySlots[number]): SSRSlot => {

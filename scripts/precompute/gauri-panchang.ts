@@ -33,6 +33,10 @@ interface RunArgs {
 
 export async function precomputeGauriPanchang(args: RunArgs): Promise<SetPrecomputedResult[]> {
   const results: SetPrecomputedResult[] = [];
+  // Pre-index CITIES by slug so the inner loop is O(1) per lookup instead
+  // of O(N) over ~325 entries — at 17,892 tuples that's ~5.8M wasted
+  // string comparisons per backfill run. Gemini PR #663 MED.
+  const cityMap = new Map(CITIES.map((c) => [c.slug, c]));
   const total = args.dates.length * args.cities.length;
   let processed = 0;
   const t0 = Date.now();
@@ -53,7 +57,7 @@ export async function precomputeGauriPanchang(args: RunArgs): Promise<SetPrecomp
     const weekday = dateObj.getUTCDay();
 
     for (const citySlug of args.cities) {
-      const city = CITIES.find((c) => c.slug === citySlug);
+      const city = cityMap.get(citySlug);
       if (!city) {
         throw new Error(`[precompute/gauri-panchang] unknown city: ${citySlug}`);
       }
@@ -83,24 +87,19 @@ export async function precomputeGauriPanchang(args: RunArgs): Promise<SetPrecomp
           continue;
         }
 
+        const toSlot = (s: NonNullable<typeof panchang.gauriPanchang>[number]) => ({
+          name: s.name,
+          type: String(s.type ?? ''),
+          nature: String(s.nature ?? ''),
+          startTime: s.startTime,
+          endTime: s.endTime,
+        });
         const daySlots = panchang.gauriPanchang
           .filter((s) => s.period === 'day')
-          .map((s) => ({
-            name: s.name,
-            type: String(s.type ?? ''),
-            nature: String(s.nature ?? ''),
-            startTime: s.startTime,
-            endTime: s.endTime,
-          }));
+          .map(toSlot);
         const nightSlots = panchang.gauriPanchang
           .filter((s) => s.period === 'night')
-          .map((s) => ({
-            name: s.name,
-            type: String(s.type ?? ''),
-            nature: String(s.nature ?? ''),
-            startTime: s.startTime,
-            endTime: s.endTime,
-          }));
+          .map(toSlot);
 
         const data = {
           _v: 1 as const,

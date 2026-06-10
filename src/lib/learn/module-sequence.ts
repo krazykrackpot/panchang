@@ -79,6 +79,10 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: 'nakshatras', phase: 2, topic: 'Nakshatras', href: '/learn/nakshatras', title: { en: 'Nakshatras  –  Complete Guide', hi: 'नक्षत्र  –  विस्तृत', ta: 'நட்சத்திரங்கள் வழிகாட்டி', bn: 'নক্ষত্র সম্পূর্ণ নির্দেশিকা' } },
   { id: 'ayanamsha', phase: 2, topic: 'Ayanamsha', href: '/learn/ayanamsha', title: { en: 'Ayanamsha  –  Deep Dive', hi: 'अयनांश  –  विस्तृत', ta: 'அயனாம்ச ஆய்வு', bn: 'অযনাংশ গভীর আলোচনা' } },
   { id: 'ayanamsha-comparison', phase: 2, topic: 'Ayanamsha', href: '/learn/ayanamsha-comparison', title: { en: 'Ayanamsha Comparison  –  Why Lagna Shifts', hi: 'अयनांश तुलना  –  लग्न क्यों बदलती है', ta: 'அயனாம்ச ஒப்பீடு', bn: 'অযনাংশ তুলনা' } },
+  { id: 'sidereal-vs-tropical', phase: 2, topic: 'Ayanamsha', href: '/learn/sidereal-vs-tropical', title: { en: 'Sidereal vs Tropical  –  The Math', hi: 'साइडरियल बनाम ट्रॉपिकल  –  गणित', ta: 'நாக்ஷத்ரிக vs ட்ராபிக்', bn: 'নাক্ষত্র বনাম ক্রান্তি' } },
+  { id: 'navamsa-boundaries', phase: 2, topic: 'Vargas', href: '/learn/navamsa-boundaries', title: { en: 'Navamsa Boundaries  –  Why D-9 Shifts', hi: 'नवांश सीमाएँ  –  D-9 क्यों बदलती है', ta: 'நவாம்ச எல்லைகள்', bn: 'নবমাংশ সীমানা' } },
+  { id: 'sunrise-and-tithi', phase: 3, topic: 'Tithi', href: '/learn/sunrise-and-tithi', title: { en: 'Sunrise & Tithi  –  Day Boundary Rules', hi: 'सूर्योदय और तिथि  –  दिवस सीमा नियम', ta: 'சூரியோதயம் & திதி', bn: 'সূর্যোদয় ও তিথি' } },
+  { id: 'dasha-year-length', phase: 6, topic: 'Dasha', href: '/learn/dasha-year-length', title: { en: 'Dasha Year Length  –  Why Dates Differ', hi: 'दशा वर्ष लम्बाई  –  तिथियाँ क्यों भिन्न', ta: 'தசை வருட நீளம்', bn: 'দশা বছরের দৈর্ঘ্য' } },
   { id: 'aspects', phase: 2, topic: 'Grahas', href: '/learn/aspects', title: { en: 'Aspects  –  Graha Drishti', hi: 'दृष्टि  –  विस्तृत', ta: 'திருஷ்டி வழிகாட்டி', bn: 'দৃষ্টি নির্দেশিকা' } },
 
   // ── Phase 3: Pancha Anga (was Phase 2) ───────────────────────────────────

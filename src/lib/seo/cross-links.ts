@@ -335,8 +335,29 @@ export const LEARN_TO_TOOL: Record<string, CrossLinkEntry[]> = {
   ],
   '/learn/ayanamsha-comparison': [
     { label: 'Learn Ayanamsha', href: '/learn/ayanamsha', description: 'What ayanamsha is, how it is measured' },
+    { label: 'Sidereal vs Tropical', href: '/learn/sidereal-vs-tropical', description: 'The math behind the two zodiacs' },
+    { label: 'Navamsa Boundaries', href: '/learn/navamsa-boundaries', description: 'Why D-9 charts disagree across tools' },
     { label: 'Calculation Standards', href: '/about/methodology', description: 'Full engine methodology' },
-    { label: 'Tropical Compare', href: '/tropical-compare', description: 'Sidereal vs tropical live demo' },
+  ],
+  '/learn/sunrise-and-tithi': [
+    { label: 'Learn Tithis', href: '/learn/tithis', description: 'Tithi computation explained' },
+    { label: 'Festival Calendar', href: '/calendar', description: 'See the kala-vyapti rule applied' },
+    { label: 'Calculation Standards', href: '/about/methodology', description: 'Festival engine + Smarta/Vaishnava rules' },
+  ],
+  '/learn/sidereal-vs-tropical': [
+    { label: 'Ayanamsha Comparison', href: '/learn/ayanamsha-comparison', description: 'Six systems side by side' },
+    { label: 'Learn Ayanamsha', href: '/learn/ayanamsha', description: 'The offset between the two zodiacs' },
+    { label: 'Rashi Calculator', href: '/sign-calculator', description: 'Compute your sidereal Sun sign' },
+  ],
+  '/learn/dasha-year-length': [
+    { label: 'Learn Dashas', href: '/learn/dashas', description: 'Vimshottari Dasha system' },
+    { label: 'Calculation Standards', href: '/about/methodology', description: 'Year-length convention rationale' },
+    { label: 'Ayanamsha Comparison', href: '/learn/ayanamsha-comparison', description: 'Other source of system disagreements' },
+  ],
+  '/learn/navamsa-boundaries': [
+    { label: 'Learn Vargas', href: '/learn/vargas', description: '16 divisional charts overview' },
+    { label: 'Ayanamsha Comparison', href: '/learn/ayanamsha-comparison', description: 'Biggest source of D-9 disagreement' },
+    { label: 'Calculation Standards', href: '/about/methodology', description: 'Engine precision + pre-1880 LMT' },
   ],
   '/learn/grahas': [
     { label: 'Live Sky', href: '/sky', description: 'See planets in the sky' },

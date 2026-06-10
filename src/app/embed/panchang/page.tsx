@@ -25,7 +25,7 @@ import { getCityBySlug, type CityData } from '@/lib/constants/cities';
 import { getUTCOffsetForDate, resolveBirthTimezone, isValidTimezone } from '@/lib/utils/timezone';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
-import { tl } from '@/lib/utils/trilingual';
+import { tl, tlScript } from '@/lib/utils/trilingual';
 import type { Metadata } from 'next';
 import AttributionFooter from '../_components/AttributionFooter';
 import { buildWidgetCss } from '../_lib/build-widget-css';
@@ -109,10 +109,12 @@ export default async function EmbedPanchangPage({
     }
     lat = cityData.lat;
     lng = cityData.lng;
-    // Localise the city name across all 9 visible locales. Falling
-    // back to `.en` rendered "Varanasi" on Devanagari / Tamil / etc.
-    // pages. Same bug Gemini caught in /embed/choghadiya (#651).
-    locationName = tl(cityData.name, locale);
+    // Localise the city name. Use tlScript so Devanagari-script locales
+    // (mr / mai) fall back to the Hindi Devanagari form ("वाराणसी")
+    // rather than the English ("Varanasi") when their own translation
+    // isn't yet populated — the city table reliably carries en+hi but
+    // mr/mai entries are sparse. Gemini #652 MED.
+    locationName = tlScript(cityData.name, locale);
     timezone = cityData.timezone;
   } else if (params.lat && params.lng) {
     lat = parseFloat(params.lat);

@@ -65,6 +65,10 @@ const ARTICLE_META: Record<string, { datePublished: string; dateModified: string
   '/learn/vara': { datePublished: '2026-04-05', dateModified: '2026-04-15' },
   '/learn/ayanamsha': { datePublished: '2026-04-05', dateModified: '2026-04-15' },
   '/learn/ayanamsha-comparison': { datePublished: '2026-06-10', dateModified: '2026-06-10' },
+  '/learn/sunrise-and-tithi':    { datePublished: '2026-06-10', dateModified: '2026-06-10' },
+  '/learn/sidereal-vs-tropical': { datePublished: '2026-06-10', dateModified: '2026-06-10' },
+  '/learn/dasha-year-length':    { datePublished: '2026-06-10', dateModified: '2026-06-10' },
+  '/learn/navamsa-boundaries':   { datePublished: '2026-06-10', dateModified: '2026-06-10' },
   '/learn/festival-rules': { datePublished: '2026-04-15', dateModified: '2026-04-29' },
   '/learn/smarta-vaishnava': { datePublished: '2026-04-15', dateModified: '2026-04-29' },
 };

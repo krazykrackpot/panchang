@@ -157,6 +157,7 @@ if (isCliEntrypoint) {
     process.exit(1);
   }
 
+  const expected = dates.length * cities.length;
   precomputeGauriPanchang({ dates, cities, skipIfPresent })
     .then((results) => {
       const written = results.filter((r) => r.status === 'written');
@@ -165,6 +166,19 @@ if (isCliEntrypoint) {
       console.log(
         `[precompute/gauri-panchang] written=${written.length} skipped=${skipped.length} totalBytes=${totalBytes}`,
       );
+      // results.length only counts tuples that succeeded through the
+      // per-tuple try/catch — failures are logged and dropped so the
+      // backfill drains. But CI/cron needs the partial-failure signal
+      // so we exit non-zero when any tuple fell short. Job still ran
+      // to completion (resumability preserved); just surfaces the
+      // partial failure for ops to investigate. Gemini PR #664 HIGH
+      // (same pattern as horoscope.ts; pre-emptively applied here).
+      if (results.length < expected) {
+        console.error(
+          `[precompute/gauri-panchang] partial failure: ${results.length}/${expected} succeeded — see [precompute/gauri-panchang] FAILED lines above`,
+        );
+        process.exit(1);
+      }
     })
     .catch((err) => {
       console.error('[precompute/gauri-panchang] failed:', err);

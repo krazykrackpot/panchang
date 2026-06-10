@@ -9,21 +9,62 @@
 
 import type { LocaleText } from '@/types/panchang';
 import type { CityData } from './cities';
+// Native-script city names for ta/te/bn/kn/gu — closes the "Latin city name
+// in non-Latin locale title" gap (Phase 0a, 2026-06-10). Source/regen:
+// scripts/translate-city-state-names-via-gemini.py (Gemini 2.5 Flash on
+// Vertex AI with author-curated seeds from cities.ts for the 7 highest-
+// traffic slugs). Coverage: the 44 SEO_INDEXABLE_CITY_SLUGS. Slugs absent
+// from the overlay continue to fall back to `en` — they're noindex'd at
+// the page level anyway, so the fallback is harmless.
+import cityNameOverlayRaw from './city-name-overlay.json';
 
 export interface CityDataWithTier extends CityData {
   tier: 1 | 2 | 3;
 }
 
+type OverlayLocale = 'ta' | 'te' | 'bn' | 'kn' | 'gu';
+const OVERLAY_LOCALES: readonly OverlayLocale[] = ['ta', 'te', 'bn', 'kn', 'gu'] as const;
+
+const CITY_NAME_OVERLAY = cityNameOverlayRaw as Record<OverlayLocale, Record<string, string>>;
+
+/** Resolves a slug's native-script name for one overlay locale, or null when
+ *  the overlay has no entry. Used by both expandIndian and the international
+ *  block. */
+function overlayNameFor(slug: string, locale: OverlayLocale): string | null {
+  return CITY_NAME_OVERLAY[locale]?.[slug] ?? null;
+}
+
+/** Returns a LocaleText filled with overlay translations where available, or
+ *  the English fallback otherwise — used by both Indian and international
+ *  city literals so they share one fallback policy. */
+function withOverlay(slug: string, en: string, devanagari: string): LocaleText {
+  // sa is retired (HTTP 410) but keep the field populated for legacy callers
+  // (mai/mr historically copied hi; we keep that — the existing rich
+  // descriptors carry the Marathi/Maithili distinction).
+  const name: Record<string, string> = {
+    en,
+    hi: devanagari,
+    sa: devanagari,
+    mai: devanagari,
+    mr: devanagari,
+  };
+  for (const loc of OVERLAY_LOCALES) {
+    name[loc] = overlayNameFor(slug, loc) ?? en;
+  }
+  return name as LocaleText;
+}
+
 // ---------------------------------------------------------------------------
 // Compact Indian city helper  –  expands [slug, en, hi, state, lat, lng, pop]
-// All Indian cities: timezone='Asia/Kolkata', Devanagari locales copy hi, others copy en
+// All Indian cities: timezone='Asia/Kolkata', Devanagari locales copy hi,
+// ta/te/bn/kn/gu resolved from city-name-overlay.json (en fallback per slug).
 // ---------------------------------------------------------------------------
 type IndianCityTuple = [string, string, string, string, number, number, number];
 
 function expandIndian(data: IndianCityTuple[], tier: 1 | 2 | 3): CityDataWithTier[] {
   return data.map(([slug, en, hi, state, lat, lng, population]) => ({
     slug,
-    name: { en, hi, sa: hi, mai: hi, mr: hi, ta: en, te: en, bn: en, kn: en, gu: en } as LocaleText,
+    name: withOverlay(slug, en, hi),
     state,
     lat,
     lng,
@@ -79,23 +120,41 @@ const TIER1_INDIAN: IndianCityTuple[] = [
   ['allahabad', 'Prayagraj', 'प्रयागराज', 'Uttar Pradesh', 25.4358, 81.8463, 1300000],
 ];
 
-const TIER1_INTERNATIONAL: CityDataWithTier[] = [
-  { slug: 'new-york', name: { en: 'New York', hi: 'न्यूयॉर्क', sa: 'न्यूयॉर्क', mai: 'न्यूयॉर्क', mr: 'न्यूयॉर्क', ta: 'New York', te: 'New York', bn: 'New York', kn: 'New York', gu: 'New York' }, state: 'USA', lat: 40.7128, lng: -74.0060, timezone: 'America/New_York', population: 8300000, tier: 1 },
-  { slug: 'london', name: { en: 'London', hi: 'लंदन', sa: 'लंदन', mai: 'लंदन', mr: 'लंदन', ta: 'London', te: 'London', bn: 'London', kn: 'London', gu: 'London' }, state: 'UK', lat: 51.5074, lng: -0.1278, timezone: 'Europe/London', population: 9000000, tier: 1 },
-  { slug: 'singapore', name: { en: 'Singapore', hi: 'सिंगापुर', sa: 'सिंगापुर', mai: 'सिंगापुर', mr: 'सिंगापुर', ta: 'Singapore', te: 'Singapore', bn: 'Singapore', kn: 'Singapore', gu: 'Singapore' }, state: 'Singapore', lat: 1.3521, lng: 103.8198, timezone: 'Asia/Singapore', population: 5900000, tier: 1 },
-  { slug: 'dubai', name: { en: 'Dubai', hi: 'दुबई', sa: 'दुबई', mai: 'दुबई', mr: 'दुबई', ta: 'Dubai', te: 'Dubai', bn: 'Dubai', kn: 'Dubai', gu: 'Dubai' }, state: 'UAE', lat: 25.2048, lng: 55.2708, timezone: 'Asia/Dubai', population: 3500000, tier: 1 },
-  { slug: 'sydney', name: { en: 'Sydney', hi: 'सिडनी', sa: 'सिडनी', mai: 'सिडनी', mr: 'सिडनी', ta: 'Sydney', te: 'Sydney', bn: 'Sydney', kn: 'Sydney', gu: 'Sydney' }, state: 'Australia', lat: -33.8688, lng: 151.2093, timezone: 'Australia/Sydney', population: 5300000, tier: 1 },
-  { slug: 'toronto', name: { en: 'Toronto', hi: 'टोरंटो', sa: 'टोरंटो', mai: 'टोरंटो', mr: 'टोरंटो', ta: 'Toronto', te: 'Toronto', bn: 'Toronto', kn: 'Toronto', gu: 'Toronto' }, state: 'Canada', lat: 43.6532, lng: -79.3832, timezone: 'America/Toronto', population: 2900000, tier: 1 },
-  { slug: 'kuala-lumpur', name: { en: 'Kuala Lumpur', hi: 'कुआलालंपुर', sa: 'कुआलालंपुर', mai: 'कुआलालंपुर', mr: 'कुआलालंपुर', ta: 'Kuala Lumpur', te: 'Kuala Lumpur', bn: 'Kuala Lumpur', kn: 'Kuala Lumpur', gu: 'Kuala Lumpur' }, state: 'Malaysia', lat: 3.1390, lng: 101.6869, timezone: 'Asia/Kuala_Lumpur', population: 1800000, tier: 1 },
-  { slug: 'mauritius', name: { en: 'Mauritius', hi: 'मॉरीशस', sa: 'मॉरीशस', mai: 'मॉरीशस', mr: 'मॉरीशस', ta: 'Mauritius', te: 'Mauritius', bn: 'Mauritius', kn: 'Mauritius', gu: 'Mauritius' }, state: 'Mauritius', lat: -20.1609, lng: 57.5012, timezone: 'Indian/Mauritius', population: 1300000, tier: 1 },
-  { slug: 'fiji', name: { en: 'Suva (Fiji)', hi: 'सूवा (फ़िजी)', sa: 'सूवा (फ़िजी)', mai: 'सूवा (फ़िजी)', mr: 'सूवा (फ़िजी)', ta: 'Suva (Fiji)', te: 'Suva (Fiji)', bn: 'Suva (Fiji)', kn: 'Suva (Fiji)', gu: 'Suva (Fiji)' }, state: 'Fiji', lat: -18.1416, lng: 178.4419, timezone: 'Pacific/Fiji', population: 93000, tier: 1 },
-  { slug: 'trinidad', name: { en: 'Port of Spain', hi: 'पोर्ट ऑफ स्पेन', sa: 'पोर्ट ऑफ स्पेन', mai: 'पोर्ट ऑफ स्पेन', mr: 'पोर्ट ऑफ स्पेन', ta: 'Port of Spain', te: 'Port of Spain', bn: 'Port of Spain', kn: 'Port of Spain', gu: 'Port of Spain' }, state: 'Trinidad', lat: 10.6596, lng: -61.5086, timezone: 'America/Port_of_Spain', population: 37000, tier: 1 },
-  { slug: 'san-francisco', name: { en: 'San Francisco', hi: 'सैन फ्रांसिस्को', sa: 'सैन फ्रांसिस्को', mai: 'सैन फ्रांसिस्को', mr: 'सैन फ्रांसिस्को', ta: 'San Francisco', te: 'San Francisco', bn: 'San Francisco', kn: 'San Francisco', gu: 'San Francisco' }, state: 'USA', lat: 37.7749, lng: -122.4194, timezone: 'America/Los_Angeles', population: 870000, tier: 1 },
-  { slug: 'houston', name: { en: 'Houston', hi: 'ह्यूस्टन', sa: 'ह्यूस्टन', mai: 'ह्यूस्टन', mr: 'ह्यूस्टन', ta: 'Houston', te: 'Houston', bn: 'Houston', kn: 'Houston', gu: 'Houston' }, state: 'USA', lat: 29.7604, lng: -95.3698, timezone: 'America/Chicago', population: 2300000, tier: 1 },
-  { slug: 'chicago', name: { en: 'Chicago', hi: 'शिकागो', sa: 'शिकागो', mai: 'शिकागो', mr: 'शिकागो', ta: 'Chicago', te: 'Chicago', bn: 'Chicago', kn: 'Chicago', gu: 'Chicago' }, state: 'USA', lat: 41.8781, lng: -87.6298, timezone: 'America/Chicago', population: 2700000, tier: 1 },
-  { slug: 'melbourne', name: { en: 'Melbourne', hi: 'मेलबर्न', sa: 'मेलबर्न', mai: 'मेलबर्न', mr: 'मेलबर्न', ta: 'Melbourne', te: 'Melbourne', bn: 'Melbourne', kn: 'Melbourne', gu: 'Melbourne' }, state: 'Australia', lat: -37.8136, lng: 144.9631, timezone: 'Australia/Melbourne', population: 5100000, tier: 1 },
-  { slug: 'auckland', name: { en: 'Auckland', hi: 'ऑकलैंड', sa: 'ऑकलैंड', mai: 'ऑकलैंड', mr: 'ऑकलैंड', ta: 'Auckland', te: 'Auckland', bn: 'Auckland', kn: 'Auckland', gu: 'Auckland' }, state: 'New Zealand', lat: -36.8485, lng: 174.7633, timezone: 'Pacific/Auckland', population: 1660000, tier: 1 },
-];
+// International tuple: [slug, en, hi_devanagari, state, lat, lng, timezone, population]
+// expanded via expandInternational so the ta/te/bn/kn/gu overlay lookup is
+// shared with expandIndian and we don't duplicate the fallback policy.
+type InternationalCityTuple = [string, string, string, string, number, number, string, number];
+
+function expandInternational(data: InternationalCityTuple[], tier: 1 | 2 | 3): CityDataWithTier[] {
+  return data.map(([slug, en, hi, state, lat, lng, timezone, population]) => ({
+    slug,
+    name: withOverlay(slug, en, hi),
+    state,
+    lat,
+    lng,
+    timezone,
+    population,
+    tier,
+  }));
+}
+
+const TIER1_INTERNATIONAL: CityDataWithTier[] = expandInternational([
+  ['new-york',     'New York',      'न्यूयॉर्क',      'USA',         40.7128, -74.0060,   'America/New_York',     8300000],
+  ['london',       'London',        'लंदन',           'UK',          51.5074,  -0.1278,   'Europe/London',        9000000],
+  ['singapore',    'Singapore',     'सिंगापुर',       'Singapore',    1.3521, 103.8198,   'Asia/Singapore',       5900000],
+  ['dubai',        'Dubai',         'दुबई',           'UAE',         25.2048,  55.2708,   'Asia/Dubai',           3500000],
+  ['sydney',       'Sydney',        'सिडनी',          'Australia',  -33.8688, 151.2093,   'Australia/Sydney',     5300000],
+  ['toronto',      'Toronto',       'टोरंटो',         'Canada',      43.6532, -79.3832,   'America/Toronto',      2900000],
+  ['kuala-lumpur', 'Kuala Lumpur',  'कुआलालंपुर',     'Malaysia',     3.1390, 101.6869,   'Asia/Kuala_Lumpur',    1800000],
+  ['mauritius',    'Mauritius',     'मॉरीशस',         'Mauritius',  -20.1609,  57.5012,   'Indian/Mauritius',     1300000],
+  ['fiji',         'Suva (Fiji)',   'सूवा (फ़िजी)',   'Fiji',       -18.1416, 178.4419,   'Pacific/Fiji',           93000],
+  ['trinidad',     'Port of Spain', 'पोर्ट ऑफ स्पेन', 'Trinidad',    10.6596, -61.5086,   'America/Port_of_Spain',   37000],
+  ['san-francisco','San Francisco', 'सैन फ्रांसिस्को','USA',         37.7749,-122.4194,   'America/Los_Angeles',   870000],
+  ['houston',      'Houston',       'ह्यूस्टन',       'USA',         29.7604, -95.3698,   'America/Chicago',      2300000],
+  ['chicago',      'Chicago',       'शिकागो',         'USA',         41.8781, -87.6298,   'America/Chicago',      2700000],
+  ['melbourne',    'Melbourne',     'मेलबर्न',        'Australia',  -37.8136, 144.9631,   'Australia/Melbourne',  5100000],
+  ['auckland',     'Auckland',      'ऑकलैंड',         'New Zealand',-36.8485, 174.7633,   'Pacific/Auckland',     1660000],
+], 1);
 
 // ---------------------------------------------------------------------------
 // Tier 2  –  Indian cities pop >300k, state capitals, major district HQs (~200)

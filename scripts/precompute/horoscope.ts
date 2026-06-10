@@ -8,7 +8,7 @@
  *
  * Usage (laptop dev):
  *   PRECOMPUTE_STORAGE=local npx tsx scripts/precompute/horoscope.ts \
- *     --dates 2026-06-11 --rashis mesha,vrishabha
+ *     --dates 2026-06-11 --rashis mesh,vrishabh
  *
  * Usage (CI / GH Action):
  *   PRECOMPUTE_STORAGE=blob BLOB_READ_WRITE_TOKEN=... \
@@ -129,10 +129,11 @@ if (isCliEntrypoint) {
   const skipIfPresent = argv.includes('--skip-if-present');
 
   if (!dates.length || !rashis.length) {
-    console.error('Usage: tsx scripts/precompute/horoscope.ts --dates 2026-06-11[,...] --rashis mesha[,...]');
+    console.error('Usage: tsx scripts/precompute/horoscope.ts --dates 2026-06-11[,...] --rashis mesh[,...]');
     process.exit(1);
   }
 
+  const expected = dates.length * rashis.length;
   precomputeHoroscope({ dates, rashis, skipIfPresent })
     .then((results) => {
       const written = results.filter((r) => r.status === 'written');
@@ -141,6 +142,19 @@ if (isCliEntrypoint) {
       console.log(
         `[precompute/horoscope] written=${written.length} skipped=${skipped.length} totalBytes=${totalBytes}`,
       );
+      // results.length only counts tuples that succeeded through the
+      // per-tuple try/catch — failures are logged and dropped on the
+      // floor so the backfill drains. But CI/cron needs the partial-
+      // failure signal so we exit non-zero when any tuple fell short.
+      // Job still ran to completion (resumability preserved); just
+      // surfaces the partial failure for ops to investigate.
+      // Gemini PR #664 HIGH.
+      if (results.length < expected) {
+        console.error(
+          `[precompute/horoscope] partial failure: ${results.length}/${expected} succeeded — see [precompute/horoscope] FAILED lines above`,
+        );
+        process.exit(1);
+      }
     })
     .catch((err) => {
       console.error('[precompute/horoscope] failed:', err);

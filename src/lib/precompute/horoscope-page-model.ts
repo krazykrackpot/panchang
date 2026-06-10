@@ -22,7 +22,7 @@ import {
 interface Args {
   /** YYYY-MM-DD — pre-validated by the route (isStrictYmd). */
   date: string;
-  /** Rashi slug (e.g. 'mesha'). */
+  /** Rashi slug (e.g. 'mesh'). */
   rashiSlug: string;
   /** Moon-sign id 1-12. Comes from `getRashiBySlug(slug).id`. */
   moonSign: number;

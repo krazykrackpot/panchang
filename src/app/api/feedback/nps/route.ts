@@ -6,6 +6,15 @@
  * into `nps_responses`, fires off an operator notification email
  * (fire-and-forget), and redirects the user to /feedback/thanks.
  *
+ * Every code path — success, invalid_score, invalid_token, db_error,
+ * no_db — also writes one row to `nps_endpoint_log` (migration 063)
+ * so we can see the funnel even when nothing lands in nps_responses.
+ * Built after the 2026-06-06 silent-invalidation incident: 87 in-flight
+ * NPS emails had their tokens invalidated by a secret rotation, every
+ * click returned 400, and the absence of nps_responses rows looked
+ * indistinguishable from "no one clicked." Audit logging is the
+ * observability that would have flagged it on day 1.
+ *
  * Replaces the previous `mailto:` flow — recipients only needed to
  * tap a button instead of composing an email, which collapsed friction
  * enough that we can hope to actually collect feedback (87 NPS emails
@@ -18,43 +27,91 @@
  * the `(user_id, source)` UNIQUE constraint + upsert path handles it.
  */
 import { NextRequest, NextResponse } from 'next/server';
+import { createHash } from 'node:crypto';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { verifyNpsToken } from '@/lib/nps/token';
 import { sendEmail } from '@/lib/email/resend-client';
+import { getClientIP } from '@/lib/api/rate-limit';
 
 const OPERATOR_ADDRESS = process.env.NPS_OPERATOR_EMAIL?.trim() || 'aditya.kr.jha@gmail.com';
 
+type Outcome = 'success' | 'invalid_token' | 'invalid_score' | 'db_error' | 'no_db';
+
 function redirectTo(req: NextRequest, path: string): NextResponse {
-  // Use the request's origin to build the redirect target so dev
-  // (http://localhost:3000) and prod (https://dekhopanchang.com) both
-  // land on their respective thanks page. URL ctor is cheap.
   const url = new URL(path, req.nextUrl.origin);
   return NextResponse.redirect(url, { status: 303 });
+}
+
+/** sha256(ip)[:16] — enough to dedupe spam from one source without
+ *  storing the actual IP. Returns null when the IP can't be derived. */
+function hashIp(req: NextRequest): string | null {
+  try {
+    const ip = getClientIP(req);
+    if (!ip || ip.startsWith('unknown')) return null;
+    return createHash('sha256').update(ip).digest('hex').slice(0, 16);
+  } catch {
+    return null;
+  }
+}
+
+/** Best-effort audit write. Errors are logged but never block the
+ *  user response — the route's job is to capture the click; if the
+ *  audit fails the user shouldn't see anything different. */
+async function logEndpointHit(
+  supabase: ReturnType<typeof getServerSupabase>,
+  outcome: Outcome,
+  userId: string | null,
+  score: number | null,
+  req: NextRequest,
+): Promise<void> {
+  if (!supabase) return; // no_db outcome reaches here too — nothing to write to
+  try {
+    await supabase.from('nps_endpoint_log').insert({
+      user_id: userId,
+      score,
+      outcome,
+      ip_hash: hashIp(req),
+      user_agent: req.headers.get('user-agent')?.slice(0, 200) ?? null,
+    });
+  } catch (err) {
+    console.error('[feedback/nps] audit log insert failed:', err);
+  }
 }
 
 export async function GET(req: NextRequest) {
   const scoreRaw = req.nextUrl.searchParams.get('score');
   const token = req.nextUrl.searchParams.get('token');
 
+  // DB connection is needed for both the upsert and the audit log; if
+  // it isn't configured we can't even record the click. Return early
+  // with `no_db` and skip audit write (no DB to write it to).
+  const supabase = getServerSupabase();
+  if (!supabase) {
+    return NextResponse.json({ error: 'DB not configured' }, { status: 503 });
+  }
+
   // Score must parse to an integer in [0, 10]. Anything else 400s rather
   // than redirecting — a bad score in a freshly-clicked email button
   // means our template is broken and we want to surface that.
   if (scoreRaw === null) {
+    await logEndpointHit(supabase, 'invalid_score', null, null, req);
     return NextResponse.json({ error: 'Missing score' }, { status: 400 });
   }
   const score = Number.parseInt(scoreRaw, 10);
   if (!Number.isInteger(score) || score < 0 || score > 10 || String(score) !== scoreRaw) {
+    await logEndpointHit(supabase, 'invalid_score', null, null, req);
     return NextResponse.json({ error: 'Invalid score' }, { status: 400 });
   }
 
   const userId = verifyNpsToken(token);
   if (!userId) {
+    // Log the failed verify with the score the user picked — operator
+    // can see "user picked 7 but token failed" patterns even without
+    // knowing who the user was. This is the signal that would have
+    // surfaced the 2026-06-06 rotation incident in minutes instead
+    // of days.
+    await logEndpointHit(supabase, 'invalid_token', null, score, req);
     return NextResponse.json({ error: 'Invalid token' }, { status: 400 });
-  }
-
-  const supabase = getServerSupabase();
-  if (!supabase) {
-    return NextResponse.json({ error: 'DB not configured' }, { status: 503 });
   }
 
   // Upsert on (user_id, source). Latest click wins — a respondent who
@@ -69,8 +126,11 @@ export async function GET(req: NextRequest) {
 
   if (upsertErr) {
     console.error('[feedback/nps] upsert failed:', upsertErr.message);
+    await logEndpointHit(supabase, 'db_error', userId, score, req);
     return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
+
+  await logEndpointHit(supabase, 'success', userId, score, req);
 
   // Operator notification — AWAITED inside try/catch. The serverless
   // container can suspend the moment we return the redirect, so a true

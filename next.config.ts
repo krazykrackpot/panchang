@@ -364,6 +364,21 @@ const nextConfig: NextConfig = {
           { key: 'X-Robots-Tag', value: 'noindex' },
         ],
       },
+      // Sitemap — Next.js's app-router layer injects
+      //   Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+      // on every route response, dropping the `Vary: Accept-Encoding`
+      // the route handler set. Those RSC variants are inert for a
+      // `route.ts` returning a single gzipped body — same bytes for
+      // every request shape — but the missing `Accept-Encoding` means
+      // CDNs can't cleanly key the gzipped vs. identity variants.
+      // Override at the framework layer so the edge varies on
+      // compression negotiation only.
+      {
+        source: '/sitemap.xml',
+        headers: [
+          { key: 'Vary', value: 'Accept-Encoding' },
+        ],
+      },
       {
         source: '/(.*)',
         headers: [

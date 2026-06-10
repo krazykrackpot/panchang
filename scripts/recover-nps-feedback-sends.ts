@@ -73,10 +73,14 @@ async function main(): Promise<void> {
   });
 
   // Pull every affected profile up front so we can show the operator
-  // exactly what would change.
-  const { data: affected, error } = await supabase
+  // exactly what would change. Use `count: 'exact'` so the operator
+  // sees the TRUE total even when PostgREST truncates the `.select()`
+  // results to its default 1000-row page (an unattended .update()
+  // below would still touch every matching row — divergence between
+  // the two would silently mislead the operator). Gemini #666 round 2.
+  const { data: affected, count: totalAffected, error } = await supabase
     .from('user_profiles')
-    .select('id, display_name, nps_feedback_sent_at')
+    .select('id, display_name, nps_feedback_sent_at', { count: 'exact' })
     .lte('nps_feedback_sent_at', cutoff)
     .order('nps_feedback_sent_at', { ascending: true });
   if (error) {
@@ -84,17 +88,24 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
+  const trueCount = totalAffected ?? affected?.length ?? 0;
+  const shownCount = affected?.length ?? 0;
+  const truncated = trueCount > shownCount;
+
   console.log(`Cutoff: ${cutoff}`);
   console.log(`Mode:   ${apply ? 'APPLY' : 'DRY-RUN'}`);
-  console.log(`Found:  ${affected?.length ?? 0} user_profiles with nps_feedback_sent_at <= cutoff`);
+  console.log(`Found:  ${trueCount} user_profiles with nps_feedback_sent_at <= cutoff`);
+  if (truncated) {
+    console.log(`        (showing first ${shownCount}; ${trueCount - shownCount} more exist past the API page limit)`);
+  }
   console.log('');
 
-  if (!affected || affected.length === 0) {
+  if (trueCount === 0) {
     console.log('Nothing to do.');
     return;
   }
 
-  for (const row of affected) {
+  for (const row of affected ?? []) {
     console.log(
       `  ${row.id}  ${row.nps_feedback_sent_at}  ${row.display_name ?? '(no name)'}`,
     );
@@ -107,7 +118,7 @@ async function main(): Promise<void> {
   }
 
   // Apply: clear the timestamp so the next daily cron re-sends.
-  const { error: updateErr, count } = await supabase
+  const { error: updateErr, count: updatedCount } = await supabase
     .from('user_profiles')
     .update({ nps_feedback_sent_at: null }, { count: 'exact' })
     .lte('nps_feedback_sent_at', cutoff);
@@ -117,7 +128,13 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  console.log(`Cleared nps_feedback_sent_at on ${count ?? '?'} row(s).`);
+  console.log(`Cleared nps_feedback_sent_at on ${updatedCount ?? '?'} row(s).`);
+  if (updatedCount !== null && updatedCount !== trueCount) {
+    console.warn(
+      `Note: update touched ${updatedCount} rows, dry-run preview reported ${trueCount}. ` +
+        'A small drift can happen if a profile was modified between the two queries; investigate if the gap is large.',
+    );
+  }
   console.log('Next /api/cron/nps-feedback run will re-send with a v2 (rotation-safe) token.');
 }
 

@@ -81,6 +81,13 @@ export function signNpsToken(userId: string): string {
   return `${secretKid(secret)}.${base64urlEncode(payload)}.${base64urlEncode(sig)}`;
 }
 
+// Strict UUID v4 / v7 / v8 shape. We only need to know it's a
+// well-formed UUID — Supabase's `uuid` column will reject any other
+// shape with a 22P02 error. Accepting a length-only payload risked
+// producing those DB-level errors at insert time (visible to the user
+// as a 500). Gemini #666 round 2 HIGH.
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 /**
  * Try to verify a payload+sig pair against a specific secret. Returns
  * the embedded user_id on success, null on any HMAC mismatch.
@@ -90,10 +97,10 @@ function verifyWithSecret(payload: Buffer, sig: Buffer, secret: string): string 
   if (expected.length !== sig.length) return null;
   if (!timingSafeEqual(expected, sig)) return null;
   const userId = payload.toString('utf8');
-  // Lightweight shape guard — uuid v4 length is 36. Anything else is a
-  // tampered or empty payload; rejecting cheaply here saves a Supabase
-  // round-trip on the route side.
-  if (userId.length < 8 || userId.length > 64) return null;
+  // Reject any payload that isn't shaped like a UUID before we let it
+  // reach the database — Supabase rejects malformed uuids with 22P02
+  // and we'd rather not turn that into a 500 the user sees.
+  if (!UUID_RE.test(userId)) return null;
   return userId;
 }
 

@@ -158,6 +158,25 @@ jobs:
             --cities "${{ steps.cities.outputs.cities }}" \
             --skip-if-present
 
+      - name: Precompute horoscope
+        env:
+          PRECOMPUTE_STORAGE: blob
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+        run: |
+          # Horoscope: (date × rashi) fan-out — 12 rashis × the same
+          # date window. ~30s for a 60-day forward window. The engine
+          # has no location input, so we skip the cities axis entirely
+          # — one Blob per (rashi, date), same trick that lets one
+          # choghadiya Blob serve every locale.
+          RASHIS=$(npx tsx -e "
+            import { RASHIS } from './src/lib/constants/rashis';
+            console.log(RASHIS.map(r => r.slug).join(','));
+          ")
+          npx tsx scripts/precompute/horoscope.ts \
+            --dates "${{ steps.window.outputs.dates }}" \
+            --rashis "$RASHIS" \
+            --skip-if-present
+
       - name: Revalidate page paths
         env:
           DATES: ${{ steps.window.outputs.dates }}

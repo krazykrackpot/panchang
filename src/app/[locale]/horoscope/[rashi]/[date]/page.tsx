@@ -3,7 +3,7 @@
 
 import { notFound } from 'next/navigation';
 import { getRashiBySlug } from '@/lib/constants/rashi-slugs';
-import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
+import { getHoroscopePageModel } from '@/lib/precompute/horoscope-page-model';
 import { HoroscopeClient } from '../HoroscopeClient';
 import { RashiArticle } from '../RashiArticle';
 import type { LocaleText } from '@/types/panchang';
@@ -33,7 +33,11 @@ export default async function DateHoroscopePage({ params }: { params: Promise<{ 
   const [y, m, d] = date.split('-').map(Number);
   const parsed = new Date(Date.UTC(y, m - 1, d));
 
-  const horoscope = generateDailyHoroscope({ moonSign: rashi.id, date });
+  // Read from precompute Blob when PRECOMPUTE_FETCH_ENABLED, else fall
+  // through to live compute. Both paths produce the same DailyHoroscope-
+  // shaped model. The page-model loader (getHoroscopePageModel) wraps
+  // both branches and returns a byte-identical result.
+  const horoscope = await getHoroscopePageModel({ date, rashiSlug: slug, moonSign: rashi.id });
   const vedicName = rashi.name.hi || rashi.name.en;
   const westernName = rashi.name.en;
 

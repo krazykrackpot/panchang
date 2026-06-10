@@ -8,7 +8,6 @@ import { Link } from '@/lib/i18n/navigation';
 import { MapPin, Loader2, Clock, Sun, Moon, ChevronDown, ChevronUp, Compass, Calendar, Star, Bell, Sparkles, BookOpen } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import EmbedThisLink from '@/components/ui/EmbedThisLink';
-import { tl as _tlForEmbed } from '@/lib/utils/trilingual';
 import InfoBlock from '@/components/ui/InfoBlock';
 import ShareButton from '@/components/ui/ShareButton';
 import WhatsAppShareBanner from '@/components/ui/WhatsAppShareBanner';
@@ -635,7 +634,8 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
         <div className="mt-4 flex justify-center">
           <EmbedThisLink
             type="panchang"
-            label={_tlForEmbed({
+            locale={locale}
+            label={_tl({
               en: 'Embed this widget',
               hi: 'इस विजेट को एम्बेड करें',
               mr: 'हे विजेट एम्बेड करा',

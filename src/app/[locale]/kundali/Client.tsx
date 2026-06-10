@@ -1356,6 +1356,7 @@ export default function KundaliClient() {
         <div className="mt-4 flex justify-center">
           <EmbedThisLink
             type="kundali"
+            locale={locale}
             label={tl({
               en: 'Embed this widget',
               hi: 'इस विजेट को एम्बेड करें',

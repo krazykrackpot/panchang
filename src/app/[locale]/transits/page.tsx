@@ -352,6 +352,7 @@ export default function TransitsPage() {
         <div className="mt-4 flex justify-center">
           <EmbedThisLink
             type="transits"
+            locale={locale}
             label={tl({
               en: 'Embed this widget',
               hi: 'इस विजेट को एम्बेड करें',

@@ -28,12 +28,17 @@ interface EmbedThisLinkProps {
     | 'kp-prashna';
   /** Visible link text. Caller localises. e.g. "Embed this widget". */
   label: string;
+  /** The page's active locale. Set as `lang` on the anchor so screen
+   *  readers pick the right pronunciation + the browser selects the
+   *  correct script-specific font for the label. Gemini #655 MED. */
+  locale: string;
 }
 
-export default function EmbedThisLink({ type, label }: EmbedThisLinkProps) {
+export default function EmbedThisLink({ type, label, locale }: EmbedThisLinkProps) {
   return (
     <Link
       href={{ pathname: '/widget', query: { type } }}
+      lang={locale}
       className="inline-flex items-center gap-1.5 text-xs text-text-secondary hover:text-gold-light transition-colors px-2 py-1 rounded border border-gold-primary/15 hover:border-gold-primary/40"
     >
       <Link2 className="w-3 h-3" aria-hidden="true" />

@@ -18,7 +18,7 @@
 import type { Metadata } from 'next';
 import { computePanchang, computeChoghadiya } from '@/lib/ephem/panchang-calc';
 import { getCityBySlug, type CityData } from '@/lib/constants/cities';
-import { getUTCOffsetForDate, resolveBirthTimezone } from '@/lib/utils/timezone';
+import { getUTCOffsetForDate, resolveBirthTimezone, isValidTimezone } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import AttributionFooter from '../_components/AttributionFooter';
 import { buildWidgetCss } from '../_lib/build-widget-css';
@@ -43,6 +43,10 @@ interface SearchParams {
   lng?: string;
   name?: string;
   date?: string;
+  /** Optional IANA timezone override (e.g. "America/Los_Angeles").
+   *  When present + valid, used as-is; otherwise resolved from
+   *  coordinates. Matches the /embed/kundali contract. */
+  tz?: string;
   theme?: string;
   size?: string;
   locale?: string;
@@ -86,18 +90,25 @@ export default async function EmbedChoghadiyaPage({
         message="Invalid lat/lng. Latitude: -90 to 90, Longitude: -180 to 180." />;
     }
     locationName = params.name?.slice(0, 64) || `${lat.toFixed(2)}N, ${lng.toFixed(2)}E`;
-    // Resolve the timezone from coordinates instead of hard-coding
-    // Asia/Kolkata. Choghadiya slots are anchored to local sunrise +
-    // sunset; using the wrong tz shifts every slot by hours and makes
-    // the widget unusable for any non-Indian location. Gemini #651 HIGH.
-    try {
-      timezone = await resolveBirthTimezone(lat, lng);
-    } catch (err) {
-      console.error('[embed/choghadiya] timezone resolution failed:', err);
-      // Fall through to UTC as the least-wrong default. The widget will
-      // still render; sunrise/sunset will be UTC clock values, which is
-      // visibly wrong but doesn't crash.
-      timezone = 'UTC';
+    // Timezone resolution — caller-provided override wins (after
+    // validation); otherwise derive from coordinates. Choghadiya slots
+    // are anchored to local sunrise + sunset, so the wrong tz shifts
+    // every slot by hours and makes the widget unusable. The override
+    // matters when coordinates are ambiguous (border regions,
+    // historical pre-1880 LMT charts). Mirrors /embed/kundali's
+    // contract. Gemini #651 HIGH (round 2).
+    if (params.tz && isValidTimezone(params.tz)) {
+      timezone = params.tz;
+    } else {
+      try {
+        timezone = await resolveBirthTimezone(lat, lng);
+      } catch (err) {
+        console.error('[embed/choghadiya] timezone resolution failed:', err);
+        // Fall through to UTC as the least-wrong default. The widget
+        // still renders; sunrise/sunset will be UTC clock values,
+        // visibly wrong rather than silently wrong.
+        timezone = 'UTC';
+      }
     }
   } else {
     return <ErrorPage theme={theme} locale={locale} ref={ref} css={css}

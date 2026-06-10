@@ -22,10 +22,10 @@
 
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getCityBySlug, type CityData } from '@/lib/constants/cities';
-import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { getUTCOffsetForDate, resolveBirthTimezone, isValidTimezone } from '@/lib/utils/timezone';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
-import { tl } from '@/lib/utils/trilingual';
+import { tl, tlScript } from '@/lib/utils/trilingual';
 import type { Metadata } from 'next';
 import AttributionFooter from '../_components/AttributionFooter';
 import { buildWidgetCss } from '../_lib/build-widget-css';
@@ -54,6 +54,11 @@ interface SearchParams {
   lat?: string;
   lng?: string;
   name?: string;
+  /** Optional IANA timezone override (e.g. "America/Los_Angeles").
+   *  When present + valid, used as-is; otherwise resolved from
+   *  coordinates. Matches the /embed/kundali and /embed/choghadiya
+   *  contracts. */
+  tz?: string;
   theme?: string;
   size?: string;
   locale?: string;
@@ -104,7 +109,12 @@ export default async function EmbedPanchangPage({
     }
     lat = cityData.lat;
     lng = cityData.lng;
-    locationName = cityData.name.en;
+    // Localise the city name. Use tlScript so Devanagari-script locales
+    // (mr / mai) fall back to the Hindi Devanagari form ("वाराणसी")
+    // rather than the English ("Varanasi") when their own translation
+    // isn't yet populated — the city table reliably carries en+hi but
+    // mr/mai entries are sparse. Gemini #652 MED.
+    locationName = tlScript(cityData.name, locale);
     timezone = cityData.timezone;
   } else if (params.lat && params.lng) {
     lat = parseFloat(params.lat);
@@ -120,9 +130,26 @@ export default async function EmbedPanchangPage({
         />
       );
     }
-    locationName = params.name || `${lat.toFixed(2)}N, ${lng.toFixed(2)}E`;
-    // Approximate timezone — users should prefer city slugs for accuracy.
-    timezone = 'Asia/Kolkata';
+    locationName = params.name?.slice(0, 64) || `${lat.toFixed(2)}N, ${lng.toFixed(2)}E`;
+    // Timezone resolution — caller-provided override wins (after
+    // validation); otherwise derive from coordinates. The previous
+    // hard-coded 'Asia/Kolkata' fallback meant a panchang requested
+    // for a US / European lat-lng would render Indian sunrise /
+    // sunset times — visibly wrong. Pattern matches the /embed/
+    // kundali and /embed/choghadiya contracts.
+    if (params.tz && isValidTimezone(params.tz)) {
+      timezone = params.tz;
+    } else {
+      try {
+        timezone = await resolveBirthTimezone(lat, lng);
+      } catch (err) {
+        console.error('[embed/panchang] timezone resolution failed:', err);
+        // Fall through to UTC as the least-wrong default. Sunrise /
+        // sunset will be UTC clock values — obviously wrong rather
+        // than silently wrong.
+        timezone = 'UTC';
+      }
+    }
   } else {
     return (
       <WidgetError

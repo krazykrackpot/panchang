@@ -64,6 +64,12 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
 
   const totalContentPages = pages.length;
   const [currentPage, setCurrentPage] = useState(0);
+  // After client mount we drop the non-current pages from React's tree
+  // (see content block below). SSR + hydration still render all pages so
+  // crawlers index the full lesson body; this flag flips the moment the
+  // first effect runs, switching to active-page-only on the client.
+  const [mountedOnClient, setMountedOnClient] = useState(false);
+  useEffect(() => { setMountedOnClient(true); }, []);
   const [showQuiz, setShowQuiz] = useState(false);
   const [quizQuestions, setQuizQuestions] = useState<ModuleQuestion[]>([]);
   const [currentQ, setCurrentQ] = useState(0);
@@ -261,23 +267,32 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
           <motion.div key="content-block"
             initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}>
-            {/* Content pages — ALL pages render in DOM at SSR; non-current
-                ones hide via display:none so Google indexes the entire
-                lesson body (was: `pages[currentPage]` only, which left
-                ~70% of each module's content out of every page-1 SSR
-                render — Google saw the 117 modules as 200-300 word stubs
-                even when authored bodies ran 600-900 words across 3-4
-                pages). Discovered via thin-content audit 2026-06-09. */}
+            {/* Content pages.
+                  - SSR + first client render: ALL pages render, non-current
+                    hidden via display:none. This preserves SEO indexing of
+                    the full lesson body (was: `pages[currentPage]` only,
+                    which left ~70% of each module's content out of every
+                    page-1 SSR render — Google saw 117 modules as 200-300
+                    word stubs even when authored bodies ran 600-900 words
+                    across 3-4 pages; thin-content audit 2026-06-09).
+                  - After client mount: render only the active page. Keeps
+                    the SEO-visible HTML identical while avoiding the cost
+                    of mounting every hidden subtree's hooks/effects on the
+                    client. Trade-off documented in PR #647 (Gemini #627). */}
             <div className="prose-content">
-              {pages.map((p, i) => (
-                <div
-                  key={`page-content-${i}`}
-                  style={{ display: i === currentPage ? 'block' : 'none' }}
-                  aria-hidden={i !== currentPage}
-                >
-                  {p}
-                </div>
-              ))}
+              {mountedOnClient ? (
+                <div key={`page-content-${currentPage}`}>{pages[currentPage]}</div>
+              ) : (
+                pages.map((p, i) => (
+                  <div
+                    key={`page-content-${i}`}
+                    style={{ display: i === currentPage ? 'block' : 'none' }}
+                    aria-hidden={i !== currentPage}
+                  >
+                    {p}
+                  </div>
+                ))
+              )}
             </div>
           </motion.div>
         ) : !quizComplete ? (

@@ -21,16 +21,27 @@ Run once. Locale fan-out is a separate translate pass.
 """
 import concurrent.futures
 import json
+import os
 import re
 import subprocess
 import sys
+import tempfile
 import time
 import urllib.error
 import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-JOBS_FILE = Path("/tmp/yoga-expansions-jobs.json")
+# Jobs file path is configurable via env. Avoid hardcoded /tmp/ — on
+# some platforms (Windows, certain CI runners, Docker images) /tmp does
+# not exist or is wiped between steps. tempfile.gettempdir() resolves
+# to the platform-appropriate temp dir.
+JOBS_FILE = Path(
+    os.environ.get(
+        "YOGA_EXPANSIONS_JOBS_FILE",
+        str(Path(tempfile.gettempdir()) / "yoga-expansions-jobs.json"),
+    )
+)
 OUT_PATH = ROOT / "src/lib/constants/yoga-expansions-en-overlay.json"
 PROJECT = "dekhopanchang"
 MODEL = "gemini-2.5-flash"
@@ -93,7 +104,7 @@ def get_access_token() -> str:
         raise SystemExit(f"gcloud token retrieval failed: {exc.stderr or '(empty)'}") from exc
 
 
-def gemini_generate(token: str, yoga_record: dict) -> dict:
+def gemini_generate(yoga_record: dict) -> dict:
     prompt = PROMPT_TEMPLATE.format(yoga_json=json.dumps(yoga_record, ensure_ascii=False, indent=2))
     body = {
         "contents": [{"role": "user", "parts": [{"text": prompt}]}],
@@ -106,6 +117,10 @@ def gemini_generate(token: str, yoga_record: dict) -> dict:
     body_bytes = json.dumps(body, ensure_ascii=False).encode("utf-8")
     for attempt in range(3):
         try:
+            # Refresh ADC token per attempt — OAuth tokens are 1-hour, and
+            # long parallel runs (#618 / PR #645 pattern) exhausted the
+            # single-fetch token mid-run, silently 401-ing all workers.
+            token = get_access_token()
             req = urllib.request.Request(
                 ENDPOINT, data=body_bytes, method="POST",
                 headers={
@@ -115,14 +130,21 @@ def gemini_generate(token: str, yoga_record: dict) -> dict:
             )
             with urllib.request.urlopen(req, timeout=180) as resp:
                 raw = json.loads(resp.read().decode("utf-8"))
-            if "candidates" not in raw:
+            candidates = raw.get("candidates")
+            if not candidates or not isinstance(candidates, list):
                 raise RuntimeError(f"no candidates: {json.dumps(raw)[:300]}")
-            text = raw["candidates"][0]["content"]["parts"][0]["text"]
+            text = candidates[0]["content"]["parts"][0]["text"]
             try:
                 parsed = json.loads(text)
             except json.JSONDecodeError:
-                text = re.sub(r"^```(?:json)?\n?|\n?```$", "", text.strip(), flags=re.MULTILINE)
-                parsed = json.loads(text)
+                stripped = text.strip()
+                if stripped.startswith("```json"):
+                    stripped = stripped[len("```json"):].lstrip("\n")
+                elif stripped.startswith("```"):
+                    stripped = stripped[3:].lstrip("\n")
+                if stripped.endswith("```"):
+                    stripped = stripped[:-3].rstrip()
+                parsed = json.loads(stripped)
             if not isinstance(parsed, dict):
                 raise RuntimeError(f"expected object, got {type(parsed).__name__}")
             return parsed
@@ -173,9 +195,9 @@ def _persist(merged: dict[str, str]) -> None:
     tmp.replace(OUT_PATH)
 
 
-def process_one(slug: str, yoga_record: dict, token: str) -> dict[str, str]:
+def process_one(slug: str, yoga_record: dict) -> dict[str, str]:
     try:
-        expansion = gemini_generate(token, yoga_record)
+        expansion = gemini_generate(yoga_record)
         return flatten_to_overlay(slug, expansion)
     except Exception as e:
         print(f"  [{slug}] FAILED: {e}", file=sys.stderr)
@@ -205,13 +227,15 @@ def main() -> int:
     todo = [(s, r) for (s, r) in jobs.items() if s not in existing_slugs]
     print(f"To generate: {len(todo)} slugs")
 
-    token = get_access_token()
-    print(f"ADC token: {token[:20]}...")
+    # Sanity-check ADC at startup; gemini_generate() re-fetches per attempt
+    # so the actual token lifecycle is handled inside the call.
+    _ = get_access_token()
+    print("ADC token: ok (per-attempt refresh in gemini_generate)")
 
     PERSIST_EVERY = 5
     done_since_persist = 0
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex:
-        futures = {ex.submit(process_one, slug, rec, token): slug for slug, rec in todo}
+        futures = {ex.submit(process_one, slug, rec): slug for slug, rec in todo}
         for i, fut in enumerate(concurrent.futures.as_completed(futures), 1):
             slug = futures[fut]
             overlay = fut.result()

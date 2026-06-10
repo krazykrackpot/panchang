@@ -222,9 +222,26 @@ def main() -> int:
     results: dict[str, dict] = {}
     if OUT_FILE.exists():
         try:
-            results = json.loads(OUT_FILE.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            results = {}
+            loaded = json.loads(OUT_FILE.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as e:
+            # Corrupted on-disk output (e.g. interrupted mid-write). ABORT
+            # rather than silently overwriting valid partial work — operator
+            # must rename/inspect before re-running. Matches the safety
+            # posture from PR #646 (expand-thin-chalisas).
+            print(
+                f"FATAL: {OUT_FILE} is not valid JSON: {e}. "
+                f"Rename/inspect the file before re-running.",
+                file=sys.stderr,
+            )
+            return 1
+        if not isinstance(loaded, dict):
+            print(
+                f"FATAL: {OUT_FILE} is JSON but not an object "
+                f"(got {type(loaded).__name__}). Rename/inspect before re-running.",
+                file=sys.stderr,
+            )
+            return 1
+        results = loaded
 
     todo = [(k, r) for (k, r) in jobs.items() if k not in results]
     print(f"To generate: {len(todo)} items")

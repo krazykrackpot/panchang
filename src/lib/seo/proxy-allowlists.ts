@@ -152,11 +152,16 @@ export const CANONICAL_DEVOTIONAL_TYPES: ReadonlySet<string> = new Set([
  *     after PR #630 authored their content, but the same soft-404
  *     pattern still affects any unknown slug.
  *
- * The gate validates BOTH the type AND the slug; either failing → 404.
- * Mismatched pair (e.g. /devotional/chalisa/lakshmi-mantra) is also
- * caught downstream by the page's getDevotionalItem(type, slug) lookup,
- * but that downstream check soft-404s, which is what we're avoiding.
- * The proxy gate accepts the (type, slug) ∈ valid_pairs cartesian.
+ * The gate validates BOTH the type AND the slug INDEPENDENTLY (one set
+ * each); either failing → 404. It does NOT validate that the (type,
+ * slug) PAIR is a real combination — so a URL like
+ * /devotional/chalisa/lakshmi-mantra (valid type, valid slug, wrong
+ * pairing) passes the proxy. That mismatched-pair case is caught
+ * downstream by getDevotionalItem(type, slug). The downstream check
+ * soft-404s, which is acceptable for that much rarer case; this proxy
+ * gate exists to close the soft-404 hole on totally-unknown identifiers,
+ * which are the bulk of bad inbound URLs (sitemap remnants, mistyped
+ * URLs).
  */
 export const CANONICAL_DEVOTIONAL_SLUGS: ReadonlySet<string> = new Set([
   'aditya-hridayam', 'bajrang-baan', 'budha-beej-mantra', 'chandra-beej-mantra',

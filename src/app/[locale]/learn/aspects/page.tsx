@@ -11,6 +11,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LT from '@/messages/learn/aspects.json';
+import ReferenceBlock from '@/components/ui/ReferenceBlock';
 
 /* Labels migrated to src/messages/learn/aspects.json  –  accessed via LT + t() */
 
@@ -234,6 +235,17 @@ export default function AspectsPage() {
   const t = (key: string) => lt((LT as unknown as Record<string, LocaleText>)[key], locale);
   const [selected, setSelected] = useState<typeof PLANETS[0] | null>(PLANETS[0]);
 
+  // ReferenceBlock rows — citation anchor for external sites quoting our aspect rules.
+  // Rows read from src/messages/learn/aspects.json via t(), so labels/values
+  // localise correctly across all 9 active locales. Gemini #650 MED.
+  const refRows = [
+    { id: 'mars',      label: t('refRowMars'),      value: t('refRowMarsValue') },
+    { id: 'jupiter',   label: t('refRowJupiter'),   value: t('refRowJupiterValue') },
+    { id: 'saturn',    label: t('refRowSaturn'),    value: t('refRowSaturnValue') },
+    { id: 'rahu-ketu', label: t('refRowRahuKetu'),  value: t('refRowRahuKetuValue'), note: t('refRowRahuKetuNote') },
+    { id: 'others',    label: t('refRowOthers'),    value: t('refRowOthersValue') },
+  ];
+
   return (
     <div className="space-y-10">
       {/* Header */}
@@ -245,6 +257,18 @@ export default function AspectsPage() {
           {t('subtitle')}
         </p>
       </div>
+
+      {/* Citation-anchor reference block — quotable summary distinct from the rich rules table below. */}
+      <ReferenceBlock
+        id="aspects"
+        title={t('refBlockTitle')}
+        intro={t('refBlockIntro')}
+        rows={refRows}
+        sourceCitation={t('refBlockSource')}
+        copyLinkLabel={t('refCopyLink')}
+        copiedLabel={t('refCopied')}
+        locale={locale}
+      />
 
       {/* Section 1: What are Aspects */}
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}

@@ -12,6 +12,13 @@ import { tl } from '@/lib/utils/trilingual';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
+import ReferenceBlock from '@/components/ui/ReferenceBlock';
+
+// Mean sidereal motion per planet. Rows read from
+// src/messages/learn/transits.json via t() so labels, durations, and
+// retrograde notes localise across all 9 active locales. Mercury/Venus
+// values are time-averaged over a full synodic cycle. Source: mean
+// motion derivations cross-checked against JPL Horizons. Gemini #650 MED.
 
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -80,6 +87,27 @@ export default function TransitsPage() {
         </h1>
         <p className="text-text-secondary max-w-2xl mx-auto">{t('subtitle', locale)}</p>
       </header>
+
+      {/* Citation-anchor reference block. */}
+      <ReferenceBlock
+        id="transit-durations"
+        title={t('refBlockTitle', locale)}
+        intro={t('refBlockIntro', locale)}
+        rows={[
+          { id: 'sun',       label: t('refRowSun', locale),       value: t('refRowSunValue', locale) },
+          { id: 'moon',      label: t('refRowMoon', locale),      value: t('refRowMoonValue', locale) },
+          { id: 'mercury',   label: t('refRowMercury', locale),   value: t('refRowMercuryValue', locale), note: t('refRowMercuryNote', locale) },
+          { id: 'venus',     label: t('refRowVenus', locale),     value: t('refRowVenusValue', locale),   note: t('refRowVenusNote', locale) },
+          { id: 'mars',      label: t('refRowMars', locale),      value: t('refRowMarsValue', locale) },
+          { id: 'jupiter',   label: t('refRowJupiter', locale),   value: t('refRowJupiterValue', locale) },
+          { id: 'saturn',    label: t('refRowSaturn', locale),    value: t('refRowSaturnValue', locale) },
+          { id: 'rahu-ketu', label: t('refRowRahuKetu', locale),  value: t('refRowRahuKetuValue', locale),note: t('refRowRahuKetuNote', locale) },
+        ]}
+        sourceCitation={t('refBlockSource', locale)}
+        copyLinkLabel={t('refCopyLink', locale)}
+        copiedLabel={t('refCopied', locale)}
+        locale={locale}
+      />
 
       {/* 1. What are transits */}
       <LessonSection number={1} title={t('whatTitle', locale)}>

@@ -8,6 +8,12 @@ import { Link } from '@/lib/i18n/navigation';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LJ from '@/messages/learn/dashas.json';
+import ReferenceBlock from '@/components/ui/ReferenceBlock';
+
+// The nine Vimshottari mahadasha periods in their fixed cyclic order
+// (Ketu → Venus → ... → Mercury), total 120 years. Rows read from
+// src/messages/learn/dashas.json via t() so planet names + year counts +
+// nakshatra triples localise across all 9 active locales. Gemini #650 MED.
 import { getHeadingFont, getBodyFont, isIndicLocale } from '@/lib/utils/locale-fonts';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import WhyItMatters from '@/components/learn/WhyItMatters';
@@ -111,6 +117,28 @@ export default function LearnDashasPage() {
         </h1>
         <p className="text-text-secondary" style={bodyFont}>{t('subtitle')}</p>
       </div>
+
+      {/* Citation-anchor reference block. */}
+      <ReferenceBlock
+        id="vimshottari"
+        title={t('refBlockTitle')}
+        intro={t('refBlockIntro')}
+        rows={[
+          { id: 'ketu',    label: t('refRowKetu'),    value: t('refRowKetuValue'),    note: t('refRowKetuNote') },
+          { id: 'venus',   label: t('refRowVenus'),   value: t('refRowVenusValue'),   note: t('refRowVenusNote') },
+          { id: 'sun',     label: t('refRowSun'),     value: t('refRowSunValue'),     note: t('refRowSunNote') },
+          { id: 'moon',    label: t('refRowMoon'),    value: t('refRowMoonValue'),    note: t('refRowMoonNote') },
+          { id: 'mars',    label: t('refRowMars'),    value: t('refRowMarsValue'),    note: t('refRowMarsNote') },
+          { id: 'rahu',    label: t('refRowRahu'),    value: t('refRowRahuValue'),    note: t('refRowRahuNote') },
+          { id: 'jupiter', label: t('refRowJupiter'), value: t('refRowJupiterValue'), note: t('refRowJupiterNote') },
+          { id: 'saturn',  label: t('refRowSaturn'),  value: t('refRowSaturnValue'),  note: t('refRowSaturnNote') },
+          { id: 'mercury', label: t('refRowMercury'), value: t('refRowMercuryValue'), note: t('refRowMercuryNote') },
+        ]}
+        sourceCitation={t('refBlockSource')}
+        copyLinkLabel={t('refCopyLink')}
+        copiedLabel={t('refCopied')}
+        locale={locale}
+      />
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
         <SanskritTermCard term="Dasha" devanagari="दशा" transliteration="Dasa" meaning="Planetary Period" />

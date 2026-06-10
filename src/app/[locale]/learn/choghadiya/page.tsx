@@ -10,6 +10,14 @@ import { Link } from '@/lib/i18n/navigation';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LJ from '@/messages/learn/choghadiya.json';
+import ReferenceBlock from '@/components/ui/ReferenceBlock';
+
+// The seven canonical choghadiya windows. Rows read from
+// src/messages/learn/choghadiya.json via t() so labels and lord/tier
+// strings localise across all 9 active locales. Order is best-to-worst
+// (Amrit → Kaal) so external quoters see the auspicious ones first.
+// Lord/tier per Muhurta Chintamani; tier mirrors
+// src/lib/constants/choghadiya.ts CHOGHADIYA_NATURE. Gemini #650 MED.
 import { isIndicLocale, getBodyFont } from '@/lib/utils/locale-fonts';
 import { Clock, Sun, Moon, Star, TrendingUp, ShieldAlert, ArrowRightLeft } from 'lucide-react';
 import {
@@ -121,6 +129,26 @@ export default function LearnChoghadiyaPage() {
         </h1>
         <p className="text-text-secondary" style={bf}>{t('subtitle')}</p>
       </div>
+
+      {/* Citation-anchor reference block. */}
+      <ReferenceBlock
+        id="choghadiya"
+        title={t('refBlockTitle')}
+        intro={t('refBlockIntro')}
+        rows={[
+          { id: 'amrit',  label: t('refRowAmrit'),  value: t('refRowAmritValue') },
+          { id: 'shubh',  label: t('refRowShubh'),  value: t('refRowShubhValue') },
+          { id: 'labh',   label: t('refRowLabh'),   value: t('refRowLabhValue') },
+          { id: 'chara',  label: t('refRowChara'),  value: t('refRowCharaValue') },
+          { id: 'udvega', label: t('refRowUdvega'), value: t('refRowUdvegaValue') },
+          { id: 'rog',    label: t('refRowRog'),    value: t('refRowRogValue') },
+          { id: 'kaal',   label: t('refRowKaal'),   value: t('refRowKaalValue') },
+        ]}
+        sourceCitation={t('refBlockSource')}
+        copyLinkLabel={t('refCopyLink')}
+        copiedLabel={t('refCopied')}
+        locale={locale}
+      />
 
       <KeyTakeaway locale={locale} points={[
         'Choghadiya splits each day and night into 8 periods (~90 min each)  –  Amrit and Shubh are best, Rog/Kaal/Udveg are worst.',

@@ -6,8 +6,14 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import { getHeadingFont, pickByScript } from '@/lib/utils/locale-fonts';
 import L from '@/messages/learn/ayanamsha.json';
+import ReferenceBlock from '@/components/ui/ReferenceBlock';
 
 const T = L as unknown as Record<string, LocaleText>;
+
+// Ayanamsha values for 2026.0 CE — rows now read from
+// src/messages/learn/ayanamsha.json via t(), so the system name (Lahiri,
+// KP, Raman …) renders in the user's script. The numeric values are
+// universal and identical across locales. Gemini #650 MED.
 
 export default function AyanamshaPage() {
   const locale = useLocale();
@@ -25,6 +31,25 @@ export default function AyanamshaPage() {
           {t('subtitle')}
         </p>
       </div>
+
+      {/* Citation-anchor reference block (quotable summary). */}
+      <ReferenceBlock
+        id="ayanamsha"
+        title={t('refBlockTitle')}
+        intro={t('refBlockIntro')}
+        rows={[
+          { id: 'lahiri',        label: t('refRowLahiri'),     value: t('refRowLahiriValue') },
+          { id: 'kp',            label: t('refRowKp'),         value: t('refRowKpValue') },
+          { id: 'raman',         label: t('refRowRaman'),      value: t('refRowRamanValue') },
+          { id: 'bv-raman',      label: t('refRowBvRaman'),    value: t('refRowBvRamanValue') },
+          { id: 'yukteshwar',    label: t('refRowYukteshwar'), value: t('refRowYukteshwarValue') },
+          { id: 'fagan-bradley', label: t('refRowFagan'),      value: t('refRowFaganValue') },
+        ]}
+        sourceCitation={t('refBlockSource')}
+        copyLinkLabel={t('refCopyLink')}
+        copiedLabel={t('refCopied')}
+        locale={locale}
+      />
 
       {/* ═══ WHAT IS PRECESSION? ═══ */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">

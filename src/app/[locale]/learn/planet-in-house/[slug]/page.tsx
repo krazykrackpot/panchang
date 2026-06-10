@@ -9,6 +9,7 @@ import { BookOpen, ArrowLeft, Hash, ExternalLink, ChevronRight } from 'lucide-re
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
+import { generatePersonLD } from '@/lib/seo/structured-data';
 /* ── Planet metadata ── */
 const PLANET_META: Record<number, { en: string; hi: string; slug: string; color: string; bgClass: string; borderClass: string }> = {
   0: { en: 'Sun',     hi: 'सूर्य',  slug: 'sun',     color: '#e67e22', bgClass: 'bg-orange-500/10', borderClass: 'border-orange-500/25' },
@@ -112,7 +113,7 @@ export default async function PlanetInHouseDetailPage({
     '@type': 'Article',
     headline: `${planet.en} in the ${houseLabel.suffix} House  –  BPHS Vedic Astrology`,
     description: verse.interpretation.en.slice(0, 160),
-    author: { '@type': 'Organization', name: 'Dekho Panchang' },
+    author: generatePersonLD(),
     publisher: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
     mainEntityOfPage: `${BASE_URL}/${locale}/learn/planet-in-house/${slug}`,
     citation: {

@@ -65,21 +65,72 @@ function classify(words: number): PageReport['tier'] {
   return 'COMPREHENSIVE';
 }
 
+/**
+ * Recursively collect EN + HI strings from arbitrarily-nested JSON.
+ *
+ * A leaf is a LocaleText-shaped object: any object with at least one
+ * of `en` / `hi` set to a string. The leaf check uses presence of
+ * those keys so we don't recurse INTO a LocaleText whose other locale
+ * values happen to be objects (defensive — current files are flat
+ * LocaleText, but the audit may run after schema changes).
+ *
+ * Originally only walked the top-level keys, which would silently
+ * undercount any nested JSON and risk false PASS for thin pages.
+ * Gemini #661 HIGH.
+ */
+function extractText(value: unknown, lang: 'en' | 'hi' | null = null): { en: string; hi: string } {
+  let en = '';
+  let hi = '';
+  // A primitive string inherits its language from the closest ancestor
+  // LocaleText branch (`obj.en` / `obj.hi`). Without this, arrays of
+  // strings (e.g. `"en": ["para 1", "para 2"]`) would recurse in and
+  // get silently skipped because the strings themselves carry no
+  // en/hi marker. Gemini #662 HIGH.
+  if (typeof value === 'string') {
+    if (lang === 'en') en += ' ' + value;
+    else if (lang === 'hi') hi += ' ' + value;
+    return { en, hi };
+  }
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      const r = extractText(item, lang);
+      en += r.en; hi += r.hi;
+    }
+    return { en, hi };
+  }
+  if (value && typeof value === 'object') {
+    const obj = value as Record<string, unknown>;
+    const hasLocaleText = 'en' in obj || 'hi' in obj;
+    if (hasLocaleText) {
+      // Treat as a LocaleText leaf — recurse into each language slot
+      // with that slot's language as the inherited tag, so primitive
+      // strings AND nested arrays/objects under `en` count as English
+      // (and same for Hindi).
+      if ('en' in obj) {
+        const r = extractText(obj.en, 'en');
+        en += r.en; hi += r.hi;
+      }
+      if ('hi' in obj) {
+        const r = extractText(obj.hi, 'hi');
+        en += r.en; hi += r.hi;
+      }
+    } else {
+      for (const child of Object.values(obj)) {
+        const r = extractText(child, lang);
+        en += r.en; hi += r.hi;
+      }
+    }
+  }
+  return { en, hi };
+}
+
 function audit(): PageReport[] {
   const files = fs.readdirSync(MESSAGES_DIR).filter((f) => f.endsWith('.json'));
   const reports: PageReport[] = [];
   for (const file of files) {
     const slug = file.replace(/\.json$/, '');
-    const data = JSON.parse(fs.readFileSync(path.join(MESSAGES_DIR, file), 'utf8')) as Record<string, unknown>;
-    let enText = '';
-    let hiText = '';
-    for (const value of Object.values(data)) {
-      if (value && typeof value === 'object') {
-        const v = value as Record<string, string>;
-        if (typeof v.en === 'string') enText += ' ' + v.en;
-        if (typeof v.hi === 'string') hiText += ' ' + v.hi;
-      }
-    }
+    const data = JSON.parse(fs.readFileSync(path.join(MESSAGES_DIR, file), 'utf8')) as unknown;
+    const { en: enText, hi: hiText } = extractText(data);
     const enWords = countWords(enText);
     const hiWords = countWords(hiText);
     const hasRoute = fs.existsSync(path.join(PAGES_DIR, slug, 'page.tsx'));

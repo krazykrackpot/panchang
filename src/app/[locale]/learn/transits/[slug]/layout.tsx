@@ -6,6 +6,7 @@ import { tl } from '@/lib/utils/trilingual';
 import type { Locale } from '@/types/panchang';
 import { buildIndexableHreflang } from '@/lib/seo/hreflang';
 
+import { generatePersonLD } from '@/lib/seo/structured-data';
 const BASE_URL = 'https://dekhopanchang.com';
 
 // Open Graph requires a BCP 47-ish underscore-joined locale tag. Indic
@@ -87,7 +88,7 @@ export default async function TransitArticleLayout({
     datePublished: article.publishDate,
     dateModified: article.publishDate,
     url: `${BASE_URL}/${locale}/learn/transits/${slug}`,
-    author: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
+    author: generatePersonLD(),
     publisher: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
     inLanguage: INLANGUAGE_TAGS[locale] ?? 'en',
   };

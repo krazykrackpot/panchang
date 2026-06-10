@@ -3,7 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getDevotionalItem, TYPE_LABELS } from '@/lib/content/devotional-content';
 import type { DevotionalType } from '@/lib/content/devotional-content';
-import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { generateBreadcrumbLD, generatePersonLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { type Locale } from '@/lib/i18n/config';
 import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
@@ -175,7 +175,7 @@ export default async function Layout({ children, params }: { children: React.Rea
     '@type': 'Article',
     headline: title,
     description,
-    author: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
+    author: generatePersonLD(),
     publisher: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
     datePublished: '2026-04-20',
     dateModified: '2026-04-28',

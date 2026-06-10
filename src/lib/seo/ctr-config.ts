@@ -141,9 +141,13 @@ export function festivalCanonicalTitleHi(
   const short = fmtShortHi(dateStr);
   const day = fmtDayHi(dateStr);
   if (pujaTimeStr) {
-    // "गणेश चतुर्थी 2027 कब है: 4 सितम्बर, शनिवार | पूजा समय"
-    // Drop the actual time from title (it goes in description) to keep title short
-    return `${name} ${year} कब है: ${short}, ${day} | शुभ पूजा मुहूर्त`;
+    // "गणेश चतुर्थी 2027 कब है: 4 सितम्बर, शनिवार | शुभ पूजा मुहूर्त"
+    // Drop the actual time from title (it goes in description) to keep
+    // title short. Length guard (Gemini #662 MED): drop the weekday if
+    // the title would exceed the ~55-char Devanagari truncation point.
+    const withDay = `${name} ${year} कब है: ${short}, ${day} | शुभ पूजा मुहूर्त`;
+    if (withDay.length <= 55) return withDay;
+    return `${name} ${year} कब है: ${short} | शुभ पूजा मुहूर्त`;
   }
   // CTR experiment 2026-06-10 — see festivalCanonicalTitle EN. Adding
   // "विधि" (vidhi/procedure) + "मंत्र" (mantra) — top non-date queries

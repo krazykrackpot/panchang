@@ -55,17 +55,23 @@ if [ -n "$STAGED_TS" ]; then
   # in pages that should be using the canonical generatePersonLD() per
   # E-E-A-T. Many pages legitimately use `generateArticleLD()` (which
   # already returns the right Person author internally) — those are
-  # fine and won't match this pattern. Quote class covers all three
-  # string-literal styles (single / double / backtick). Gemini #661 MED.
-  # Tests under __tests__/ are exempted — `eeat-author-credentials`
-  # quotes the anti-pattern in its JSDoc to document what to avoid.
-  BAD_AUTHOR_CANDIDATES=$(echo "$STAGED_TS" | xargs grep -lE "author:\s*\{\s*['\"\`]@type['\"\`]:\s*['\"\`]Organization['\"\`]" /dev/null 2>/dev/null)
-  if [ -n "$BAD_AUTHOR_CANDIDATES" ]; then
-    for f in $BAD_AUTHOR_CANDIDATES; do
-      case "$f" in
-        *"/__tests__/"*) ;; # test files are exempt
-        *) VIOLATIONS="${VIOLATIONS}\n  ⚠ Article/TechArticle author hardcoded as Organization (use generatePersonLD): $f" ;;
-      esac
+  # fine and won't match this pattern. Multi-line aware via a small
+  # Node script (Prettier formats long author objects across lines —
+  # line-by-line grep would miss those). Tests under __tests__/ are
+  # exempted because `eeat-author-credentials` quotes the anti-pattern
+  # in its JSDoc as a what-NOT-to-do example. Gemini #661 + #662 MED.
+  BAD_AUTHOR_HITS=$(node -e "
+    const fs = require('fs');
+    const files = process.argv.slice(1).filter(f => !f.includes('/__tests__/'));
+    const re = /author:\s*\{\s*[\x27\"\\\`]@type[\x27\"\\\`]\s*:\s*[\x27\"\\\`]Organization[\x27\"\\\`]/;
+    const bad = files.filter(f => {
+      try { return re.test(fs.readFileSync(f, 'utf8')); } catch { return false; }
+    });
+    if (bad.length) console.log(bad.join('\n'));
+  " $STAGED_TS 2>/dev/null)
+  if [ -n "$BAD_AUTHOR_HITS" ]; then
+    for f in $BAD_AUTHOR_HITS; do
+      VIOLATIONS="${VIOLATIONS}\n  ⚠ Article/TechArticle author hardcoded as Organization (use generatePersonLD): $f"
     done
   fi
 

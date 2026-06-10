@@ -27,13 +27,25 @@
  * the `(user_id, source)` UNIQUE constraint + upsert path handles it.
  */
 import { NextRequest, NextResponse } from 'next/server';
-import { createHash } from 'node:crypto';
+import { createHmac } from 'node:crypto';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { verifyNpsToken } from '@/lib/nps/token';
 import { sendEmail } from '@/lib/email/resend-client';
 import { getClientIP } from '@/lib/api/rate-limit';
 
 const OPERATOR_ADDRESS = process.env.NPS_OPERATOR_EMAIL?.trim() || 'aditya.kr.jha@gmail.com';
+// Per-deployment salt for IP hashing. Falls back to NPS_TOKEN_SECRET so
+// a deploy that has NPS infra at all also has the salt source. Plain
+// sha256(ip) is brute-forceable in seconds against the ~4-billion IPv4
+// keyspace; salting with a server-only secret makes the rainbow-table
+// attack require knowing the secret. Gemini #666 MED-security.
+function getIpHashSalt(): string {
+  return (
+    process.env.NPS_IP_HASH_SALT?.trim() ||
+    process.env.NPS_TOKEN_SECRET?.trim() ||
+    'unsalted-fallback-disable-in-prod'
+  );
+}
 
 type Outcome = 'success' | 'invalid_token' | 'invalid_score' | 'db_error' | 'no_db';
 
@@ -42,13 +54,15 @@ function redirectTo(req: NextRequest, path: string): NextResponse {
   return NextResponse.redirect(url, { status: 303 });
 }
 
-/** sha256(ip)[:16] — enough to dedupe spam from one source without
- *  storing the actual IP. Returns null when the IP can't be derived. */
+/** HMAC-SHA256(salt, ip)[:16] — enough to dedupe spam from one source
+ *  without storing the actual IP. Returns null when the IP can't be
+ *  derived. Salted with a server secret so reverse-lookup against the
+ *  small IPv4 keyspace requires knowing the salt. Gemini #666 MED. */
 function hashIp(req: NextRequest): string | null {
   try {
     const ip = getClientIP(req);
     if (!ip || ip.startsWith('unknown')) return null;
-    return createHash('sha256').update(ip).digest('hex').slice(0, 16);
+    return createHmac('sha256', getIpHashSalt()).update(ip).digest('hex').slice(0, 16);
   } catch {
     return null;
   }
@@ -56,7 +70,12 @@ function hashIp(req: NextRequest): string | null {
 
 /** Best-effort audit write. Errors are logged but never block the
  *  user response — the route's job is to capture the click; if the
- *  audit fails the user shouldn't see anything different. */
+ *  audit fails the user shouldn't see anything different.
+ *
+ *  Supabase `.insert()` does NOT throw on database-level failures
+ *  (RLS rejection, FK violation, etc.) — it returns `{ error }`.
+ *  The try/catch alone would silently swallow those; explicitly
+ *  destructure + log. Gemini #666 MED. */
 async function logEndpointHit(
   supabase: ReturnType<typeof getServerSupabase>,
   outcome: Outcome,
@@ -66,15 +85,18 @@ async function logEndpointHit(
 ): Promise<void> {
   if (!supabase) return; // no_db outcome reaches here too — nothing to write to
   try {
-    await supabase.from('nps_endpoint_log').insert({
+    const { error } = await supabase.from('nps_endpoint_log').insert({
       user_id: userId,
       score,
       outcome,
       ip_hash: hashIp(req),
       user_agent: req.headers.get('user-agent')?.slice(0, 200) ?? null,
     });
+    if (error) {
+      console.error('[feedback/nps] audit log insert returned error:', error.message);
+    }
   } catch (err) {
-    console.error('[feedback/nps] audit log insert failed:', err);
+    console.error('[feedback/nps] audit log insert threw:', err);
   }
 }
 

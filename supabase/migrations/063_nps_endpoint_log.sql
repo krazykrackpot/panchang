@@ -46,7 +46,17 @@ CREATE INDEX IF NOT EXISTS nps_endpoint_log_created_at_idx
 CREATE INDEX IF NOT EXISTS nps_endpoint_log_outcome_created_idx
   ON nps_endpoint_log (outcome, created_at DESC);
 
+-- RLS strategy: enabled with NO policies. The only writer is the
+-- /api/feedback/nps route, which uses `getServerSupabase()` →
+-- SUPABASE_SERVICE_ROLE_KEY → bypasses RLS by Supabase design.
+-- Anon and authenticated roles cannot read, write, or update this
+-- table — exactly the threat model we want for an audit log (no
+-- spam writes, no client-side reads of who-clicked-when).
+-- Verified 2026-06-10 with a service-role probe insert. Do NOT add
+-- a permissive INSERT policy here — that would let anon clients
+-- spam the audit table from the browser. Gemini #666 HIGH (false
+-- positive — Gemini missed that getServerSupabase uses service_role).
 ALTER TABLE nps_endpoint_log ENABLE ROW LEVEL SECURITY;
 
 COMMENT ON TABLE nps_endpoint_log IS
-  'Audit log for every /api/feedback/nps request. Built 2026-06-10 after secret-rotation incident — every click should land here regardless of outcome.';
+  'Audit log for every /api/feedback/nps request. Built 2026-06-10 after secret-rotation incident — every click should land here regardless of outcome. Writes require service-role; RLS blocks all other roles by design.';

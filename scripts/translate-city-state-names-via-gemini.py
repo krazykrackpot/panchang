@@ -183,10 +183,19 @@ def gemini_call(token: str, prompt: str, what: str) -> dict[str, str]:
         capture_output=True, text=True, check=True,
     )
     raw = json.loads(proc.stdout)
-    if "candidates" not in raw:
-        print(f"Gemini error ({what}):", json.dumps(raw)[:500], file=sys.stderr)
-        raise RuntimeError(f"Gemini call failed for {what}")
-    text = raw["candidates"][0]["content"]["parts"][0]["text"]
+    # Defensive: candidates can be missing (safety filter block), empty
+    # (no completion produced), or have a malformed parts payload. Surface
+    # the raw response when we hit any of those so a re-run isn't a guessing
+    # game — see scripts/translate-yoga-expansions-via-gemini.py for the
+    # same pattern (#643 Gemini round).
+    try:
+        candidates = raw.get("candidates", [])
+        if not candidates:
+            raise KeyError("no candidates (possibly safety-filter block)")
+        text = candidates[0]["content"]["parts"][0]["text"]
+    except (KeyError, IndexError, TypeError) as e:
+        print(f"Gemini error ({what}):", json.dumps(raw)[:1000], file=sys.stderr)
+        raise RuntimeError(f"Gemini call failed for {what}: {e}") from e
     try:
         return json.loads(text)
     except json.JSONDecodeError:
@@ -280,7 +289,6 @@ def main() -> None:
         state_out[locale] = translate_states(token, locale, desc)
         print(f"  wrote states/{locale}: {len(state_out[locale])} keys "
               f"({time.time()-t0:.1f}s)")
-        STATE_OUT.write_text(json.dumps(state_out, ensure_ascii=False, indent=2) + "\n")
     STATE_OUT.write_text(json.dumps(state_out, ensure_ascii=False, indent=2) + "\n")
     print(f"  saved {STATE_OUT}")
 

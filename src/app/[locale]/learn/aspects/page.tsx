@@ -11,6 +11,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LT from '@/messages/learn/aspects.json';
+import ReferenceBlock from '@/components/ui/ReferenceBlock';
 
 /* Labels migrated to src/messages/learn/aspects.json  –  accessed via LT + t() */
 
@@ -234,6 +235,16 @@ export default function AspectsPage() {
   const t = (key: string) => lt((LT as unknown as Record<string, LocaleText>)[key], locale);
   const [selected, setSelected] = useState<typeof PLANETS[0] | null>(PLANETS[0]);
 
+  // ReferenceBlock rows — citation anchor for external sites quoting our aspect rules.
+  // Planet names use the existing PLANETS trilingual data; values are universal ordinals.
+  const refRows = [
+    { id: 'mars',    label: lt(PLANETS.find(p => p.id === 'mars')!.name,    locale), value: '4th, 7th, 8th' },
+    { id: 'jupiter', label: lt(PLANETS.find(p => p.id === 'jupiter')!.name, locale), value: '5th, 7th, 9th' },
+    { id: 'saturn',  label: lt(PLANETS.find(p => p.id === 'saturn')!.name,  locale), value: '3rd, 7th, 10th' },
+    { id: 'rahu-ketu', label: `${lt(PLANETS.find(p => p.id === 'rahu')!.name, locale)} / ${lt(PLANETS.find(p => p.id === 'ketu')!.name, locale)}`, value: '5th, 7th, 9th', note: 'Some schools assign Rahu and Ketu the same special aspects as Jupiter.' },
+    { id: 'others',  label: lt({ en: 'All other planets', hi: 'अन्य सभी ग्रह', sa: 'अन्ये सर्वे ग्रहाः' }, locale), value: '7th only' },
+  ];
+
   return (
     <div className="space-y-10">
       {/* Header */}
@@ -245,6 +256,17 @@ export default function AspectsPage() {
           {t('subtitle')}
         </p>
       </div>
+
+      {/* Citation-anchor reference block — quotable summary distinct from the rich rules table below. */}
+      <ReferenceBlock
+        id="aspects"
+        title={t('refBlockTitle')}
+        intro={t('refBlockIntro')}
+        rows={refRows}
+        sourceCitation={t('refBlockSource')}
+        copyLinkLabel={t('refCopyLink')}
+        copiedLabel={t('refCopied')}
+      />
 
       {/* Section 1: What are Aspects */}
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}

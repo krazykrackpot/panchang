@@ -215,8 +215,13 @@ export default function Footer() {
             <Link href="/about" className="hover:text-gold-light transition-colors py-1 inline-block">
               {t({ en: 'About', hi: 'परिचय', ta: 'பற்றி', bn: 'সম্পর্কে', te: 'గురించి', gu: 'વિશે', kn: 'ಕುರಿತು', mr: 'परिचय', mai: 'परिचय', sa: 'परिचयः' }, locale)}
             </Link>
+            {/* Citation-friendly label per Jun 2026 citation-gravity work.
+                URL kept stable at /about/methodology so existing inbound
+                links + JSON-LD don't break. Devanagari cluster (hi/mai/mr)
+                gets a closer rendering of "Calculation Standards";
+                other locales retain their accurate "methodology" gloss. */}
             <Link href="/about/methodology" className="hover:text-gold-light transition-colors py-1 inline-block">
-              {t({ en: 'Methodology', hi: 'गणना पद्धति', ta: 'முறையியல்', bn: 'পদ্ধতি', te: 'పద్ధతి', gu: 'પદ્ધતિ', kn: 'ವಿಧಾನ', mr: 'पद्धती', mai: 'पद्धति', sa: 'गणनापद्धतिः' }, locale)}
+              {t({ en: 'Calculation Standards', hi: 'गणना मानक', ta: 'முறையியல்', bn: 'পদ্ধতি', te: 'పద్ధతి', gu: 'પદ્ધતિ', kn: 'ವಿಧಾನ', mr: 'गणन मानके', mai: 'गणना मानक', sa: 'गणनप्रमाणानि' }, locale)}
             </Link>
             <Link href="/privacy" className="hover:text-gold-light transition-colors py-1 inline-block">
               {t({ en: 'Privacy', hi: 'गोपनीयता', ta: 'தனியுரிமை', bn: 'গোপনীয়তা', te: 'గోప్యత', gu: 'ગોપનીયતા', kn: 'ಗೌಪ್ಯತೆ', mr: 'गोपनीयता', mai: 'गोपनीयता', sa: 'गोपनीयता' }, locale)}

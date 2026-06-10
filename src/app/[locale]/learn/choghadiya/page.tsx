@@ -10,6 +10,21 @@ import { Link } from '@/lib/i18n/navigation';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LJ from '@/messages/learn/choghadiya.json';
+import ReferenceBlock from '@/components/ui/ReferenceBlock';
+
+// The seven canonical choghadiya windows with their planetary lord and
+// classical tier. Order: best-to-worst (Amrit → Kaal), so external
+// quoters see the auspicious ones first. Lord/tier per Muhurta
+// Chintamani; tier mirrors src/lib/constants/choghadiya.ts CHOGHADIYA_NATURE.
+const CHOGHADIYA_REF_ROWS = [
+  { id: 'amrit',  label: 'Amrit',  value: 'Moon · Very auspicious' },
+  { id: 'shubh',  label: 'Shubh',  value: 'Jupiter · Auspicious' },
+  { id: 'labh',   label: 'Labh',   value: 'Mercury · Auspicious' },
+  { id: 'chara',  label: 'Chara',  value: 'Venus · Neutral' },
+  { id: 'udvega', label: 'Udvega', value: 'Sun · Inauspicious' },
+  { id: 'rog',    label: 'Rog',    value: 'Mars · Inauspicious' },
+  { id: 'kaal',   label: 'Kaal',   value: 'Saturn · Inauspicious' },
+];
 import { isIndicLocale, getBodyFont } from '@/lib/utils/locale-fonts';
 import { Clock, Sun, Moon, Star, TrendingUp, ShieldAlert, ArrowRightLeft } from 'lucide-react';
 import {
@@ -121,6 +136,17 @@ export default function LearnChoghadiyaPage() {
         </h1>
         <p className="text-text-secondary" style={bf}>{t('subtitle')}</p>
       </div>
+
+      {/* Citation-anchor reference block. */}
+      <ReferenceBlock
+        id="choghadiya"
+        title={t('refBlockTitle')}
+        intro={t('refBlockIntro')}
+        rows={CHOGHADIYA_REF_ROWS}
+        sourceCitation={t('refBlockSource')}
+        copyLinkLabel={t('refCopyLink')}
+        copiedLabel={t('refCopied')}
+      />
 
       <KeyTakeaway locale={locale} points={[
         'Choghadiya splits each day and night into 8 periods (~90 min each)  –  Amrit and Shubh are best, Rog/Kaal/Udveg are worst.',

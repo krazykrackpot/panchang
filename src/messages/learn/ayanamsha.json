@@ -21,6 +21,61 @@
     "gu": "અયનાંશ જ્યોતિષનું સૌથી મૂળભૂત સુધારણા પરિબળ છે. પૃથ્વીની ધરી શા માટે ડોલે છે તે સમજવું તમારી કુંડળીની દરેક ગણતરીનો પાયો છે.",
     "mai": "अयनांश ज्योतिषक सभसँ मूलभूत सुधारक कारक छी। पृथ्वीक धुरी किएँ लड़खड़ाइत अछि ई बुझनाइ अहाँक कुण्डलीक हर गणनाक नींव छी।"
   },
+  "refBlockTitle": {
+    "en": "Quick reference: ayanamsha values at 2026.0 CE",
+    "hi": "त्वरित संदर्भ: 2026.0 ईस्वी पर अयनांश मान",
+    "ta": "Quick reference: ayanamsha values at 2026.0 CE",
+    "te": "Quick reference: ayanamsha values at 2026.0 CE",
+    "bn": "Quick reference: ayanamsha values at 2026.0 CE",
+    "kn": "Quick reference: ayanamsha values at 2026.0 CE",
+    "mr": "Quick reference: ayanamsha values at 2026.0 CE",
+    "gu": "Quick reference: ayanamsha values at 2026.0 CE",
+    "mai": "Quick reference: ayanamsha values at 2026.0 CE"
+  },
+  "refBlockIntro": {
+    "en": "Sidereal-tropical offset for J2026.0 (Jan 1, 2026 00:00 UT). Each system uses a different fiducial star or epoch; the differences propagate directly into Lagna and house cusps.",
+    "hi": "J2026.0 (1 जनवरी 2026 00:00 यूटी) के लिए साइडरियल-ट्रॉपिकल अंतर। प्रत्येक प्रणाली अलग नक्षत्र या युग का उपयोग करती है; अंतर सीधे लग्न और भाव सन्धियों में परिलक्षित होते हैं।",
+    "ta": "Sidereal-tropical offset for J2026.0 (Jan 1, 2026 00:00 UT). Each system uses a different fiducial star or epoch; the differences propagate directly into Lagna and house cusps.",
+    "te": "Sidereal-tropical offset for J2026.0 (Jan 1, 2026 00:00 UT). Each system uses a different fiducial star or epoch; the differences propagate directly into Lagna and house cusps.",
+    "bn": "Sidereal-tropical offset for J2026.0 (Jan 1, 2026 00:00 UT). Each system uses a different fiducial star or epoch; the differences propagate directly into Lagna and house cusps.",
+    "kn": "Sidereal-tropical offset for J2026.0 (Jan 1, 2026 00:00 UT). Each system uses a different fiducial star or epoch; the differences propagate directly into Lagna and house cusps.",
+    "mr": "Sidereal-tropical offset for J2026.0 (Jan 1, 2026 00:00 UT). Each system uses a different fiducial star or epoch; the differences propagate directly into Lagna and house cusps.",
+    "gu": "Sidereal-tropical offset for J2026.0 (Jan 1, 2026 00:00 UT). Each system uses a different fiducial star or epoch; the differences propagate directly into Lagna and house cusps.",
+    "mai": "Sidereal-tropical offset for J2026.0 (Jan 1, 2026 00:00 UT). Each system uses a different fiducial star or epoch; the differences propagate directly into Lagna and house cusps."
+  },
+  "refBlockSource": {
+    "en": "IAU 2000A nutation; cross-checked against JPL Horizons",
+    "hi": "IAU 2000A न्यूटेशन; JPL Horizons के विरुद्ध सत्यापित",
+    "ta": "IAU 2000A nutation; cross-checked against JPL Horizons",
+    "te": "IAU 2000A nutation; cross-checked against JPL Horizons",
+    "bn": "IAU 2000A nutation; cross-checked against JPL Horizons",
+    "kn": "IAU 2000A nutation; cross-checked against JPL Horizons",
+    "mr": "IAU 2000A nutation; cross-checked against JPL Horizons",
+    "gu": "IAU 2000A nutation; cross-checked against JPL Horizons",
+    "mai": "IAU 2000A nutation; cross-checked against JPL Horizons"
+  },
+  "refCopyLink": {
+    "en": "Copy link",
+    "hi": "लिंक कॉपी करें",
+    "ta": "Copy link",
+    "te": "Copy link",
+    "bn": "Copy link",
+    "kn": "Copy link",
+    "mr": "Copy link",
+    "gu": "Copy link",
+    "mai": "Copy link"
+  },
+  "refCopied": {
+    "en": "Copied",
+    "hi": "कॉपी हो गया",
+    "ta": "Copied",
+    "te": "Copied",
+    "bn": "Copied",
+    "kn": "Copied",
+    "mr": "Copied",
+    "gu": "Copied",
+    "mai": "Copied"
+  },
   "precessionTitle": {
     "en": "Earth's Wobble  –  What Is Precession?",
     "hi": "पृथ्वी का लड़खड़ाना  –  विषुव अग्रगमन क्या है?",

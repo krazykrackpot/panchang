@@ -21,6 +21,61 @@
     "gu": "વૈદિક જ્યોતિષમાં, ગ્રહો અન્ય ભાવો અને ગ્રહો પર તેમની દૃષ્ટિ નાખે છે. દરેક ગ્રહની 7મા ભાવ પર પૂર્ણ દૃષ્ટિ છે, મંગળ, ગુરુ અને શનિની વધારાની વિશેષ દૃષ્ટિ છે.",
     "mai": "वैदिक ज्योतिषमे ग्रह अन्य भाव आ ग्रहपर अपन दृष्टि डालैत अछि। प्रत्येक ग्रहक 7म भावपर पूर्ण दृष्टि होइत अछि, जखन मंगल, बृहस्पति आ शनिक अतिरिक्त विशेष दृष्टि होइत अछि।"
   },
+  "refBlockTitle": {
+    "en": "Quick reference: planetary aspect rules",
+    "hi": "त्वरित संदर्भ: ग्रह दृष्टि नियम",
+    "ta": "Quick reference: planetary aspect rules",
+    "te": "Quick reference: planetary aspect rules",
+    "bn": "Quick reference: planetary aspect rules",
+    "kn": "Quick reference: planetary aspect rules",
+    "mr": "Quick reference: planetary aspect rules",
+    "gu": "Quick reference: planetary aspect rules",
+    "mai": "Quick reference: planetary aspect rules"
+  },
+  "refBlockIntro": {
+    "en": "Every planet aspects its 7th house. Mars, Jupiter, and Saturn cast additional special aspects per Brihat Parashara Hora Shastra. The houses below are counted FROM the planet, inclusive of its own house.",
+    "hi": "प्रत्येक ग्रह अपने 7वें भाव पर दृष्टि डालता है। मंगल, बृहस्पति और शनि की बृहत्पाराशर होरा शास्त्र के अनुसार अतिरिक्त विशेष दृष्टियाँ हैं। नीचे दिए गए भाव ग्रह से गिने जाते हैं, उसके अपने भाव सहित।",
+    "ta": "Every planet aspects its 7th house. Mars, Jupiter, and Saturn cast additional special aspects per Brihat Parashara Hora Shastra. The houses below are counted FROM the planet, inclusive of its own house.",
+    "te": "Every planet aspects its 7th house. Mars, Jupiter, and Saturn cast additional special aspects per Brihat Parashara Hora Shastra. The houses below are counted FROM the planet, inclusive of its own house.",
+    "bn": "Every planet aspects its 7th house. Mars, Jupiter, and Saturn cast additional special aspects per Brihat Parashara Hora Shastra. The houses below are counted FROM the planet, inclusive of its own house.",
+    "kn": "Every planet aspects its 7th house. Mars, Jupiter, and Saturn cast additional special aspects per Brihat Parashara Hora Shastra. The houses below are counted FROM the planet, inclusive of its own house.",
+    "mr": "Every planet aspects its 7th house. Mars, Jupiter, and Saturn cast additional special aspects per Brihat Parashara Hora Shastra. The houses below are counted FROM the planet, inclusive of its own house.",
+    "gu": "Every planet aspects its 7th house. Mars, Jupiter, and Saturn cast additional special aspects per Brihat Parashara Hora Shastra. The houses below are counted FROM the planet, inclusive of its own house.",
+    "mai": "Every planet aspects its 7th house. Mars, Jupiter, and Saturn cast additional special aspects per Brihat Parashara Hora Shastra. The houses below are counted FROM the planet, inclusive of its own house."
+  },
+  "refBlockSource": {
+    "en": "Brihat Parashara Hora Shastra Ch.26 · Mantreswara, Phaladeepika Ch.27",
+    "hi": "बृहत्पाराशर होरा शास्त्र अध्याय 26 · मन्त्रेश्वर, फलदीपिका अध्याय 27",
+    "ta": "Brihat Parashara Hora Shastra Ch.26 · Mantreswara, Phaladeepika Ch.27",
+    "te": "Brihat Parashara Hora Shastra Ch.26 · Mantreswara, Phaladeepika Ch.27",
+    "bn": "Brihat Parashara Hora Shastra Ch.26 · Mantreswara, Phaladeepika Ch.27",
+    "kn": "Brihat Parashara Hora Shastra Ch.26 · Mantreswara, Phaladeepika Ch.27",
+    "mr": "Brihat Parashara Hora Shastra Ch.26 · Mantreswara, Phaladeepika Ch.27",
+    "gu": "Brihat Parashara Hora Shastra Ch.26 · Mantreswara, Phaladeepika Ch.27",
+    "mai": "Brihat Parashara Hora Shastra Ch.26 · Mantreswara, Phaladeepika Ch.27"
+  },
+  "refCopyLink": {
+    "en": "Copy link",
+    "hi": "लिंक कॉपी करें",
+    "ta": "Copy link",
+    "te": "Copy link",
+    "bn": "Copy link",
+    "kn": "Copy link",
+    "mr": "Copy link",
+    "gu": "Copy link",
+    "mai": "Copy link"
+  },
+  "refCopied": {
+    "en": "Copied",
+    "hi": "कॉपी हो गया",
+    "ta": "Copied",
+    "te": "Copied",
+    "bn": "Copied",
+    "kn": "Copied",
+    "mr": "Copied",
+    "gu": "Copied",
+    "mai": "Copied"
+  },
   "whatTitle": {
     "en": "What are Aspects (Drishti)?",
     "hi": "दृष्टि (Aspects) क्या है?",

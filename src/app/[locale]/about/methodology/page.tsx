@@ -111,6 +111,7 @@ const CONTENT = {
           '**Corrections applied:** All positions include nutation (the 18.6-year wobble of Earth\'s rotational axis), aberration (the apparent shift of stars due to Earth\'s orbital velocity), and light-time correction (the time taken for reflected sunlight to reach the observer  –  significant for outer planets). The result is the apparent topocentric position as seen from the observer\'s location.',
           '**Ayanamsha:** We use the Lahiri Ayanamsha (Chitrapaksha) by default  –  the official standard adopted by India\'s Calendar Reform Committee in 1957. The current value is approximately 24°09\'. All planetary positions displayed on this site are sidereal (nirayana), computed by subtracting the Lahiri ayanamsha from the tropical ecliptic longitude.',
           '**Verification:** Computed positions have been cross-checked against NASA/JPL Horizons ephemeris data for multiple test dates and locations, confirming agreement within instrument-grade tolerances.',
+          '**Known limits of the Meeus fallback:** When the Swiss Ephemeris is unavailable and Meeus is active, outer-planet retrograde station dates can drift  –  Jupiter\'s stations by up to 40 days, Saturn\'s by up to 13 days  –  relative to Swiss Ephemeris. This affects only the precise calendar dates of stations, not the existence of retrograde periods. When the engine is running in fallback mode, the output\'s `warnings[]` array surfaces a flag so the UI can disclose the reduced precision.',
         ],
       },
       {
@@ -157,6 +158,16 @@ const CONTENT = {
         ],
       },
       {
+        id: 'historical-timezones',
+        icon: 'globe',
+        heading: 'Historical Timezone Handling',
+        body: [
+          '**Post-1880 births  –  IANA tzdb:** For any birth after roughly 1880, the engine resolves the timezone from the IANA tzdb (Olson database) based on the birth coordinates. This correctly handles DST transitions, historical zone reforms, and the discontinuous offsets that countries have legislated over the 20th century. The lookup is per-date because a single coordinate pair can have a different offset in 1955 vs. 2026.',
+          '**Pre-1880 births  –  Longitude-based Local Mean Time:** Standardised civil time zones did not exist before the late 19th century  –  each town kept its own local mean solar time (LMT). For births before zone standardisation, the engine derives the offset directly from the birth longitude (offset = longitude × 4 minutes per degree). This is the convention used by all serious astrological software (Solar Fire, Jhora) and is documented in classical astrological texts going back to the 17th century. For comparison: the IANA tzdb for Berlin would give Einstein\'s 1879 birth chart UT of 10:37, but his actual local Ulm time was 10:50  –  the longitude-derived value is the canonical one and is what this engine returns.',
+          '**Cutover date:** The handover between LMT and IANA tzdb happens per-zone, not at a global cutoff. The engine uses the IANA tzdb itself to determine the earliest date for which the zone has a defined offset; everything earlier falls back to longitude LMT. This avoids the class of bug where Indian Standard Time (introduced 1906) is applied to a Mughal-era birth chart.',
+        ],
+      },
+      {
         id: 'dasha-system',
         icon: 'clock',
         heading: 'Dasha Systems',
@@ -165,6 +176,18 @@ const CONTENT = {
           '**Date arithmetic:** All dasha dates are computed using millisecond-precision arithmetic: `new Date(baseDate.getTime() + years × 365.25 × 86400 × 1000)`. This avoids the month-truncation error that plagues many dasha calculators (where a 7.5-year dasha calculated via setMonth() can drift by weeks over successive periods). No fixed-interval shortcuts are used anywhere.',
           '**UTC internal representation:** All birth times are converted to UTC immediately upon entry. Dasha dates are computed in UTC and converted to the observer\'s local timezone only for display. This prevents the class of bug where a birth time of 10:30 IST is incorrectly computed as 10:30 UTC.',
           '**Additional dasha systems:** Yogini Dasha (36-year cycle), Chara Dasha (Jaimini system using sign periods), and Narayana Dasha (sign-based with reversals for odd/even signs) are all available. Each follows its classical rules as described in the primary Jyotish texts.',
+          '**Year-length convention:** BPHS itself is silent on the precise length of a "year" used in Vimshottari arithmetic. Three schools exist in modern practice: a 365.25-day Julian year (the mainstream majority), a 360-day Savana year (a small minority following one reading of Surya Siddhanta), and a 365.2425-day Gregorian year (used by a handful of software packages). We use 365.25 days, matching the conventional output of JHora (in its default mode), Parashara\'s Light, and the bulk of published dasha tables. Practitioners who require a different convention should treat dasha date displays as accurate to the nearest week.',
+        ],
+      },
+      {
+        id: 'kp-system',
+        icon: 'gitbranch',
+        heading: 'KP System (Krishnamurti Padhdhati)',
+        body: [
+          '**Ayanamsha:** The KP system uses the Krishnamurti ayanamsha rather than Lahiri. The two differ by about 5\'  –  small in degrees, but enough to shift sub-lord boundaries and therefore the operative ruling planets at any given moment. KP results on this site are computed with the Krishnamurti value explicitly; they do not silently substitute Lahiri.',
+          '**House system:** KP uses the Placidus house system (time-based unequal houses) instead of Whole Sign. The Placidus cusps are computed from the local sidereal time and the observer\'s geographic latitude via the standard recursive formula. At extreme latitudes (above ~66°), Placidus breaks down mathematically; the engine flags such charts and offers an alternative cusp set.',
+          '**Sub-lords:** Each of the 12 signs is divided into 9 nakshatra-pada-equivalent segments per the 120-year Vimshottari proportions, producing 249 sub-divisions across the zodiac (some sources count 248 or 250 by edge-case convention; we use the 249-count following the original K.S. Krishnamurti tables). Each sub-division has three associated lordships: the sign lord, the star lord (the nakshatra ruling that segment), and the sub-lord (the planet whose Vimshottari proportion the segment occupies within its star). KP predictions read significations from the sub-lord first, the star lord second, and the sign lord third.',
+          '**Significators:** A planet\'s significations are computed from the houses occupied by its star lord, by the planet itself, and by the houses owned by the planet. The four-level KP significator table (planet → star → houses owned → houses occupied) is generated automatically for every chart and is the basis for KP yes/no Prashna verdicts.',
         ],
       },
       {
@@ -289,6 +312,27 @@ const CONTENT = {
         ],
       },
       {
+        id: 'kp-system',
+        icon: 'gitbranch',
+        heading: 'KP पद्धति (कृष्णमूर्ति पद्धति)',
+        body: [
+          'अयनांश: KP पद्धति लाहिड़ी के बजाय कृष्णमूर्ति अयनांश का उपयोग करती है। दोनों लगभग 5\' से भिन्न हैं — डिग्री में छोटा अन्तर, परन्तु सब-लॉर्ड सीमाओं को बदलने के लिए पर्याप्त।',
+          'भाव पद्धति: KP स्थूल राशि के स्थान पर प्लेसिडस भाव पद्धति का प्रयोग करती है। प्लेसिडस सन्धियाँ स्थानीय नक्षत्र-काल और भौगोलिक अक्षांश से मानक सूत्र द्वारा निकाली जाती हैं।',
+          'सब-लॉर्ड: 12 राशियाँ 249 सब-डिवीजनों में विभाजित हैं  –  प्रत्येक की तीन लॉर्डशिप हैं: राशि-स्वामी, नक्षत्र-स्वामी (तारा-स्वामी), और सब-लॉर्ड। KP भविष्यवाणी सबसे पहले सब-लॉर्ड पढ़ती है।',
+          'सिग्निफिकेटर: एक ग्रह के संकेत उसके तारा-स्वामी द्वारा कब्ज़े वाले भावों, ग्रह स्वयं द्वारा कब्ज़े वाले भावों, और ग्रह के स्वामित्व वाले भावों से निकाले जाते हैं।',
+        ],
+      },
+      {
+        id: 'historical-timezones',
+        icon: 'globe',
+        heading: 'ऐतिहासिक समय-क्षेत्र',
+        body: [
+          '1880 के बाद के जन्म  –  IANA tzdb: इंजन जन्म निर्देशांकों के आधार पर IANA tzdb से समय-क्षेत्र निर्धारित करता है। यह DST, ऐतिहासिक क्षेत्र-सुधार, और 20वीं शताब्दी में लागू ऑफसेटों को सही ढंग से सम्भालता है।',
+          '1880 से पहले के जन्म  –  देशान्तर-आधारित स्थानीय औसत समय (LMT): मानकीकृत समय-क्षेत्र 19वीं सदी के अन्त से पहले अस्तित्व में नहीं थे  –  प्रत्येक नगर अपना स्थानीय औसत सौर समय रखता था। इंजन ऐसे जन्मों के लिए ऑफसेट सीधे देशान्तर से निकालता है (4 मिनट प्रति डिग्री)। यह सभी गम्भीर ज्योतिष सॉफ़्टवेयर की सम्मेलित परम्परा है।',
+          'कटओवर तिथि: LMT और IANA tzdb के बीच परिवर्तन प्रति-क्षेत्र होता है, वैश्विक तिथि पर नहीं।',
+        ],
+      },
+      {
         id: 'classical-references',
         icon: 'book',
         heading: 'शास्त्रीय सन्दर्भ',
@@ -394,19 +438,24 @@ export default async function MethodologyPage({
           headline: 'Dekho Panchang — Computational Methodology',
           description: 'Astronomical computation methodology: ephemeris sources, ayanamsha convention, and classical references used by the dekhopanchang.com engine.',
           author: { '@type': 'Organization', name: 'Dekho Panchang' },
-          dateModified: '2026-06-04',
+          dateModified: '2026-06-10',
           proficiencyLevel: 'Expert',
           about: [
             { '@type': 'Thing', name: 'Vedic astrology computation' },
             { '@type': 'Thing', name: 'Sidereal astronomy' },
             { '@type': 'Thing', name: 'Panchang calculation' },
+            { '@type': 'Thing', name: 'Krishnamurti Padhdhati (KP) astrology' },
+            { '@type': 'Thing', name: 'Historical timezone resolution (pre-1880 LMT)' },
           ],
           mentions: [
             { '@type': 'Book', name: 'Brihat Parashara Hora Shastra', alternateName: 'BPHS' },
             { '@type': 'Book', name: 'Surya Siddhanta' },
+            { '@type': 'Book', name: 'Dharmasindhu' },
+            { '@type': 'Book', name: 'Nirnaya Sindhu' },
             { '@type': 'SoftwareApplication', name: 'Swiss Ephemeris', operatingSystem: 'cross-platform' },
             { '@type': 'CreativeWork', name: 'Astronomical Algorithms (Jean Meeus, 1991)' },
             { '@type': 'CreativeWork', name: 'JPL DE441 / DE431 Ephemeris' },
+            { '@type': 'CreativeWork', name: 'IANA tzdb (Olson database)' },
           ],
         }) }}
       />

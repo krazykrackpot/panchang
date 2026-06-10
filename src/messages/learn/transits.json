@@ -21,6 +21,61 @@
     "gu": "આકાશમાં ફરતા ગ્રહો તમારી જન્મ કુંડળીને રિયલ ટાઇમમાં કેવી રીતે સક્રિય કરે છે",
     "mai": "आकाशमे चलैत ग्रह वास्तविक समयमे अहाँक जन्म कुण्डलीकेँ कोना सक्रिय करैत अछि"
   },
+  "refBlockTitle": {
+    "en": "Quick reference: average transit duration per sign",
+    "hi": "त्वरित संदर्भ: प्रति राशि औसत गोचर अवधि",
+    "ta": "Quick reference: average transit duration per sign",
+    "te": "Quick reference: average transit duration per sign",
+    "bn": "Quick reference: average transit duration per sign",
+    "kn": "Quick reference: average transit duration per sign",
+    "mr": "Quick reference: average transit duration per sign",
+    "gu": "Quick reference: average transit duration per sign",
+    "mai": "Quick reference: average transit duration per sign"
+  },
+  "refBlockIntro": {
+    "en": "Mean sidereal motion per planet. Mercury, Venus, and Mars vary substantially with their retrograde cycles; outer planets are far more uniform.",
+    "hi": "प्रत्येक ग्रह की औसत साइडरियल गति। बुध, शुक्र और मंगल अपनी वक्री गति के साथ अधिक भिन्न होते हैं; बाहरी ग्रह अधिक एकसमान।",
+    "ta": "Mean sidereal motion per planet. Mercury, Venus, and Mars vary substantially with their retrograde cycles; outer planets are far more uniform.",
+    "te": "Mean sidereal motion per planet. Mercury, Venus, and Mars vary substantially with their retrograde cycles; outer planets are far more uniform.",
+    "bn": "Mean sidereal motion per planet. Mercury, Venus, and Mars vary substantially with their retrograde cycles; outer planets are far more uniform.",
+    "kn": "Mean sidereal motion per planet. Mercury, Venus, and Mars vary substantially with their retrograde cycles; outer planets are far more uniform.",
+    "mr": "Mean sidereal motion per planet. Mercury, Venus, and Mars vary substantially with their retrograde cycles; outer planets are far more uniform.",
+    "gu": "Mean sidereal motion per planet. Mercury, Venus, and Mars vary substantially with their retrograde cycles; outer planets are far more uniform.",
+    "mai": "Mean sidereal motion per planet. Mercury, Venus, and Mars vary substantially with their retrograde cycles; outer planets are far more uniform."
+  },
+  "refBlockSource": {
+    "en": "Mean sidereal motion; cross-checked against JPL Horizons",
+    "hi": "औसत साइडरियल गति; JPL Horizons के विरुद्ध सत्यापित",
+    "ta": "Mean sidereal motion; cross-checked against JPL Horizons",
+    "te": "Mean sidereal motion; cross-checked against JPL Horizons",
+    "bn": "Mean sidereal motion; cross-checked against JPL Horizons",
+    "kn": "Mean sidereal motion; cross-checked against JPL Horizons",
+    "mr": "Mean sidereal motion; cross-checked against JPL Horizons",
+    "gu": "Mean sidereal motion; cross-checked against JPL Horizons",
+    "mai": "Mean sidereal motion; cross-checked against JPL Horizons"
+  },
+  "refCopyLink": {
+    "en": "Copy link",
+    "hi": "लिंक कॉपी करें",
+    "ta": "Copy link",
+    "te": "Copy link",
+    "bn": "Copy link",
+    "kn": "Copy link",
+    "mr": "Copy link",
+    "gu": "Copy link",
+    "mai": "Copy link"
+  },
+  "refCopied": {
+    "en": "Copied",
+    "hi": "कॉपी हो गया",
+    "ta": "Copied",
+    "te": "Copied",
+    "bn": "Copied",
+    "kn": "Copied",
+    "mr": "Copied",
+    "gu": "Copied",
+    "mai": "Copied"
+  },
   "whatTitle": {
     "en": "What are Transits?",
     "hi": "गोचर क्या है?",

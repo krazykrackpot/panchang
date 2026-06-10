@@ -21,6 +21,61 @@
     "kn": "ಚೋಘಡಿಯಾದ 7 ವಿಧಗಳು, ಅವುಗಳ ವಾರದ ದಿನದ ಆವರ್ತನೆ, ಮತ್ತು ದೈನಂದಿನ ಸಮಯದ ನಿರ್ಧಾರಗಳಿಗೆ ಅವುಗಳನ್ನು ಹೇಗೆ ಬಳಸುವುದು",
     "mr": "चोघडियाचे ७ प्रकार, त्यांचे साप्ताहिक चक्र आणि दैनंदिन वेळेच्या निर्णयांसाठी त्यांचा वापर कसा करावा"
   },
+  "refBlockTitle": {
+    "en": "Quick reference: the seven choghadiyas",
+    "hi": "त्वरित संदर्भ: सात चौघड़िया",
+    "ta": "Quick reference: the seven choghadiyas",
+    "te": "Quick reference: the seven choghadiyas",
+    "bn": "Quick reference: the seven choghadiyas",
+    "kn": "Quick reference: the seven choghadiyas",
+    "mr": "Quick reference: the seven choghadiyas",
+    "gu": "Quick reference: the seven choghadiyas",
+    "mai": "Quick reference: the seven choghadiyas"
+  },
+  "refBlockIntro": {
+    "en": "Each choghadiya is a ~90-minute window (1/8 of the day or night) ruled by a weekday planet and classified into three classical tiers.",
+    "hi": "प्रत्येक चौघड़िया लगभग 90 मिनट की अवधि है (दिन या रात का 1/8 भाग), जो किसी सप्ताह-स्वामी ग्रह से शासित होती है और तीन शास्त्रीय श्रेणियों में वर्गीकृत।",
+    "ta": "Each choghadiya is a ~90-minute window (1/8 of the day or night) ruled by a weekday planet and classified into three classical tiers.",
+    "te": "Each choghadiya is a ~90-minute window (1/8 of the day or night) ruled by a weekday planet and classified into three classical tiers.",
+    "bn": "Each choghadiya is a ~90-minute window (1/8 of the day or night) ruled by a weekday planet and classified into three classical tiers.",
+    "kn": "Each choghadiya is a ~90-minute window (1/8 of the day or night) ruled by a weekday planet and classified into three classical tiers.",
+    "mr": "Each choghadiya is a ~90-minute window (1/8 of the day or night) ruled by a weekday planet and classified into three classical tiers.",
+    "gu": "Each choghadiya is a ~90-minute window (1/8 of the day or night) ruled by a weekday planet and classified into three classical tiers.",
+    "mai": "Each choghadiya is a ~90-minute window (1/8 of the day or night) ruled by a weekday planet and classified into three classical tiers."
+  },
+  "refBlockSource": {
+    "en": "Muhurta Chintamani; Brihat Samhita Ch.97",
+    "hi": "मुहूर्त चिन्तामणि; बृहत्संहिता अध्याय 97",
+    "ta": "Muhurta Chintamani; Brihat Samhita Ch.97",
+    "te": "Muhurta Chintamani; Brihat Samhita Ch.97",
+    "bn": "Muhurta Chintamani; Brihat Samhita Ch.97",
+    "kn": "Muhurta Chintamani; Brihat Samhita Ch.97",
+    "mr": "Muhurta Chintamani; Brihat Samhita Ch.97",
+    "gu": "Muhurta Chintamani; Brihat Samhita Ch.97",
+    "mai": "Muhurta Chintamani; Brihat Samhita Ch.97"
+  },
+  "refCopyLink": {
+    "en": "Copy link",
+    "hi": "लिंक कॉपी करें",
+    "ta": "Copy link",
+    "te": "Copy link",
+    "bn": "Copy link",
+    "kn": "Copy link",
+    "mr": "Copy link",
+    "gu": "Copy link",
+    "mai": "Copy link"
+  },
+  "refCopied": {
+    "en": "Copied",
+    "hi": "कॉपी हो गया",
+    "ta": "Copied",
+    "te": "Copied",
+    "bn": "Copied",
+    "kn": "Copied",
+    "mr": "Copied",
+    "gu": "Copied",
+    "mai": "Copied"
+  },
   "intro": {
     "en": "Choghadiya (also spelt Chaughadia or Chogadia) is a traditional Vedic time-division system that splits each day and night into 8 periods of approximately 90 minutes each. The word comes from Gujarati: 'cho' (four) + 'ghadi' (a traditional unit of 24 minutes), so one Choghadiya = 4 ghadis = 96 minutes in theory, though in practice the duration varies because the day and night are divided equally regardless of their actual lengths. Unlike Hora (which uses a fixed 60-minute period), Choghadiya periods expand in summer and contract in winter for daytime, and vice versa for nighttime. This system is especially popular in Gujarat, Rajasthan, and Western India for quick, everyday timing decisions.",
     "hi": "चौघड़िया (चौघड़ी) पारम्परिक वैदिक समय-विभाजन प्रणाली है जो प्रत्येक दिन और रात को लगभग 90 मिनट की 8 अवधियों में बाँटती है। शब्द गुजराती से आया है: 'चो' (चार) + 'घड़ी' (24 मिनट की पारम्परिक इकाई)। होरा (जो 60 मिनट की निश्चित अवधि है) के विपरीत, चौघड़िया दिन की लम्बाई के अनुसार बढ़ती-घटती है  –  ग्रीष्म में दिन के चौघड़िया लम्बे और शीतकाल में छोटे होते हैं। यह प्रणाली गुजरात, राजस्थान और पश्चिमी भारत में विशेष रूप से लोकप्रिय है।",

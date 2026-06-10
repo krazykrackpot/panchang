@@ -21,6 +21,61 @@
     "gu": "120 વર્ષના ગ્રહચક્ર દ્વારા ભાગ્ય પ્રગટ કરતી સમય પ્રણાલી",
     "mai": "120 वर्षक ग्रहचक्र सँ भाग्य प्रकट करय वाला समय प्रणाली"
   },
+  "refBlockTitle": {
+    "en": "Quick reference: Vimshottari mahadasha periods",
+    "hi": "त्वरित संदर्भ: विंशोत्तरी महादशा अवधि",
+    "ta": "Quick reference: Vimshottari mahadasha periods",
+    "te": "Quick reference: Vimshottari mahadasha periods",
+    "bn": "Quick reference: Vimshottari mahadasha periods",
+    "kn": "Quick reference: Vimshottari mahadasha periods",
+    "mr": "Quick reference: Vimshottari mahadasha periods",
+    "gu": "Quick reference: Vimshottari mahadasha periods",
+    "mai": "Quick reference: Vimshottari mahadasha periods"
+  },
+  "refBlockIntro": {
+    "en": "The 120-year Vimshottari cycle assigns each of nine planets a fixed mahadasha length. The order is Ketu → Venus → Sun → Moon → Mars → Rahu → Jupiter → Saturn → Mercury, starting from the mahadasha indicated by the Moon's nakshatra at birth.",
+    "hi": "120-वर्षीय विंशोत्तरी चक्र नौ ग्रहों में से प्रत्येक को निश्चित महादशा अवधि देता है। क्रम है केतु → शुक्र → सूर्य → चन्द्र → मंगल → राहु → बृहस्पति → शनि → बुध। आरम्भ जन्म के समय चन्द्र नक्षत्र से निर्धारित होता है।",
+    "ta": "The 120-year Vimshottari cycle assigns each of nine planets a fixed mahadasha length. The order is Ketu → Venus → Sun → Moon → Mars → Rahu → Jupiter → Saturn → Mercury, starting from the mahadasha indicated by the Moon's nakshatra at birth.",
+    "te": "The 120-year Vimshottari cycle assigns each of nine planets a fixed mahadasha length. The order is Ketu → Venus → Sun → Moon → Mars → Rahu → Jupiter → Saturn → Mercury, starting from the mahadasha indicated by the Moon's nakshatra at birth.",
+    "bn": "The 120-year Vimshottari cycle assigns each of nine planets a fixed mahadasha length. The order is Ketu → Venus → Sun → Moon → Mars → Rahu → Jupiter → Saturn → Mercury, starting from the mahadasha indicated by the Moon's nakshatra at birth.",
+    "kn": "The 120-year Vimshottari cycle assigns each of nine planets a fixed mahadasha length. The order is Ketu → Venus → Sun → Moon → Mars → Rahu → Jupiter → Saturn → Mercury, starting from the mahadasha indicated by the Moon's nakshatra at birth.",
+    "mr": "The 120-year Vimshottari cycle assigns each of nine planets a fixed mahadasha length. The order is Ketu → Venus → Sun → Moon → Mars → Rahu → Jupiter → Saturn → Mercury, starting from the mahadasha indicated by the Moon's nakshatra at birth.",
+    "gu": "The 120-year Vimshottari cycle assigns each of nine planets a fixed mahadasha length. The order is Ketu → Venus → Sun → Moon → Mars → Rahu → Jupiter → Saturn → Mercury, starting from the mahadasha indicated by the Moon's nakshatra at birth.",
+    "mai": "The 120-year Vimshottari cycle assigns each of nine planets a fixed mahadasha length. The order is Ketu → Venus → Sun → Moon → Mars → Rahu → Jupiter → Saturn → Mercury, starting from the mahadasha indicated by the Moon's nakshatra at birth."
+  },
+  "refBlockSource": {
+    "en": "Brihat Parashara Hora Shastra Ch.46–51",
+    "hi": "बृहत्पाराशर होरा शास्त्र अध्याय 46–51",
+    "ta": "Brihat Parashara Hora Shastra Ch.46–51",
+    "te": "Brihat Parashara Hora Shastra Ch.46–51",
+    "bn": "Brihat Parashara Hora Shastra Ch.46–51",
+    "kn": "Brihat Parashara Hora Shastra Ch.46–51",
+    "mr": "Brihat Parashara Hora Shastra Ch.46–51",
+    "gu": "Brihat Parashara Hora Shastra Ch.46–51",
+    "mai": "Brihat Parashara Hora Shastra Ch.46–51"
+  },
+  "refCopyLink": {
+    "en": "Copy link",
+    "hi": "लिंक कॉपी करें",
+    "ta": "Copy link",
+    "te": "Copy link",
+    "bn": "Copy link",
+    "kn": "Copy link",
+    "mr": "Copy link",
+    "gu": "Copy link",
+    "mai": "Copy link"
+  },
+  "refCopied": {
+    "en": "Copied",
+    "hi": "कॉपी हो गया",
+    "ta": "Copied",
+    "te": "Copied",
+    "bn": "Copied",
+    "kn": "Copied",
+    "mr": "Copied",
+    "gu": "Copied",
+    "mai": "Copied"
+  },
   "whatTitle": {
     "en": "What is a Dasha?",
     "hi": "दशा क्या है?",

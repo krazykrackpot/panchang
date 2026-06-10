@@ -6,8 +6,22 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import { getHeadingFont, pickByScript } from '@/lib/utils/locale-fonts';
 import L from '@/messages/learn/ayanamsha.json';
+import ReferenceBlock from '@/components/ui/ReferenceBlock';
 
 const T = L as unknown as Record<string, LocaleText>;
+
+// Ayanamsha values for 2026.0 CE (J2026.0 = Jan 1, 2026 00:00 UT).
+// Cross-checked against JPL Horizons + Swiss Ephemeris. These match
+// the inline summary table further down the page but live separately
+// as a citation-anchor so external sites can quote a stable URL.
+const REF_ROWS_2026 = [
+  { id: 'lahiri',        label: 'Lahiri (Chitrapaksha)', value: '24.22°' },
+  { id: 'kp',            label: 'KP (Krishnamurti)',     value: '24.13°' },
+  { id: 'raman',         label: 'Raman',                 value: '22.82°' },
+  { id: 'bv-raman',      label: 'BV Raman',              value: '22.73°' },
+  { id: 'yukteshwar',    label: 'Yukteshwar',            value: '22.09°' },
+  { id: 'fagan-bradley', label: 'Fagan-Bradley',         value: '24.87°' },
+];
 
 export default function AyanamshaPage() {
   const locale = useLocale();
@@ -25,6 +39,17 @@ export default function AyanamshaPage() {
           {t('subtitle')}
         </p>
       </div>
+
+      {/* Citation-anchor reference block (quotable summary). */}
+      <ReferenceBlock
+        id="ayanamsha"
+        title={t('refBlockTitle')}
+        intro={t('refBlockIntro')}
+        rows={REF_ROWS_2026}
+        sourceCitation={t('refBlockSource')}
+        copyLinkLabel={t('refCopyLink')}
+        copiedLabel={t('refCopied')}
+      />
 
       {/* ═══ WHAT IS PRECESSION? ═══ */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">

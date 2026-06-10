@@ -8,6 +8,24 @@ import { Link } from '@/lib/i18n/navigation';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LJ from '@/messages/learn/dashas.json';
+import ReferenceBlock from '@/components/ui/ReferenceBlock';
+
+// The nine Vimshottari mahadasha periods in their fixed cyclic order
+// (Ketu → Venus → ... → Mercury), total 120 years. Nakshatra triples
+// indicate which Moon-nakshatra at birth starts that planet's dasha.
+// Mirrors VIMSHOTTARI table at the top of this file; lives separately
+// as the citation-anchor block external sites should quote.
+const VIMSHOTTARI_REF_ROWS = [
+  { id: 'ketu',    label: 'Ketu',    value: '7 years',  note: 'Ashwini, Magha, Moola' },
+  { id: 'venus',   label: 'Venus',   value: '20 years', note: 'Bharani, P.Phalguni, P.Ashadha' },
+  { id: 'sun',     label: 'Sun',     value: '6 years',  note: 'Krittika, U.Phalguni, U.Ashadha' },
+  { id: 'moon',    label: 'Moon',    value: '10 years', note: 'Rohini, Hasta, Shravana' },
+  { id: 'mars',    label: 'Mars',    value: '7 years',  note: 'Mrigashira, Chitra, Dhanishta' },
+  { id: 'rahu',    label: 'Rahu',    value: '18 years', note: 'Ardra, Swati, Shatabhisha' },
+  { id: 'jupiter', label: 'Jupiter', value: '16 years', note: 'Punarvasu, Vishakha, P.Bhadrapada' },
+  { id: 'saturn',  label: 'Saturn',  value: '19 years', note: 'Pushya, Anuradha, U.Bhadrapada' },
+  { id: 'mercury', label: 'Mercury', value: '17 years', note: 'Ashlesha, Jyeshtha, Revati' },
+];
 import { getHeadingFont, getBodyFont, isIndicLocale } from '@/lib/utils/locale-fonts';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import WhyItMatters from '@/components/learn/WhyItMatters';
@@ -111,6 +129,17 @@ export default function LearnDashasPage() {
         </h1>
         <p className="text-text-secondary" style={bodyFont}>{t('subtitle')}</p>
       </div>
+
+      {/* Citation-anchor reference block. */}
+      <ReferenceBlock
+        id="vimshottari"
+        title={t('refBlockTitle')}
+        intro={t('refBlockIntro')}
+        rows={VIMSHOTTARI_REF_ROWS}
+        sourceCitation={t('refBlockSource')}
+        copyLinkLabel={t('refCopyLink')}
+        copiedLabel={t('refCopied')}
+      />
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
         <SanskritTermCard term="Dasha" devanagari="दशा" transliteration="Dasa" meaning="Planetary Period" />

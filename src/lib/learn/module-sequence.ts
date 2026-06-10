@@ -78,6 +78,7 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: 'rashis', phase: 2, topic: 'Rashis', href: '/learn/rashis', title: { en: 'Rashis  –  Complete Guide', hi: 'राशियाँ  –  विस्तृत', ta: 'ராசிகள் வழிகாட்டி', bn: 'রাশি সম্পূর্ণ নির্দেশিকা' } },
   { id: 'nakshatras', phase: 2, topic: 'Nakshatras', href: '/learn/nakshatras', title: { en: 'Nakshatras  –  Complete Guide', hi: 'नक्षत्र  –  विस्तृत', ta: 'நட்சத்திரங்கள் வழிகாட்டி', bn: 'নক্ষত্র সম্পূর্ণ নির্দেশিকা' } },
   { id: 'ayanamsha', phase: 2, topic: 'Ayanamsha', href: '/learn/ayanamsha', title: { en: 'Ayanamsha  –  Deep Dive', hi: 'अयनांश  –  विस्तृत', ta: 'அயனாம்ச ஆய்வு', bn: 'অযনাংশ গভীর আলোচনা' } },
+  { id: 'ayanamsha-comparison', phase: 2, topic: 'Ayanamsha', href: '/learn/ayanamsha-comparison', title: { en: 'Ayanamsha Comparison  –  Why Lagna Shifts', hi: 'अयनांश तुलना  –  लग्न क्यों बदलती है', ta: 'அயனாம்ச ஒப்பீடு', bn: 'অযনাংশ তুলনা' } },
   { id: 'aspects', phase: 2, topic: 'Grahas', href: '/learn/aspects', title: { en: 'Aspects  –  Graha Drishti', hi: 'दृष्टि  –  विस्तृत', ta: 'திருஷ்டி வழிகாட்டி', bn: 'দৃষ্টি নির্দেশিকা' } },
 
   // ── Phase 3: Pancha Anga (was Phase 2) ───────────────────────────────────

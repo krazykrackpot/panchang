@@ -12,7 +12,6 @@ import {
   getCityBySlugExtended,
   getNearbyCitiesIndexable,
   isSeoIndexableCity,
-  getIndexableLocalesForCity,
 } from '@/lib/constants/cities-extended';
 import { getCityDescriptor } from '@/lib/constants/city-descriptors';
 import { getStateLocale } from '@/lib/constants/state-name-locale';

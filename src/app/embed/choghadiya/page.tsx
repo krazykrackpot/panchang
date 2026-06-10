@@ -19,7 +19,7 @@ import type { Metadata } from 'next';
 import { computePanchang, computeChoghadiya } from '@/lib/ephem/panchang-calc';
 import { getCityBySlug, type CityData } from '@/lib/constants/cities';
 import { getUTCOffsetForDate, resolveBirthTimezone, isValidTimezone } from '@/lib/utils/timezone';
-import { tl } from '@/lib/utils/trilingual';
+import { tl, tlScript } from '@/lib/utils/trilingual';
 import AttributionFooter from '../_components/AttributionFooter';
 import { buildWidgetCss } from '../_lib/build-widget-css';
 import {
@@ -78,10 +78,13 @@ export default async function EmbedChoghadiyaPage({
         message={`City "${params.city}" not found. Use ?city=varanasi or ?lat=…&lng=…&name=…`} />;
     }
     lat = cityData.lat; lng = cityData.lng;
-    // Localise the city name. cityData.name is a LocaleText with all 9
-    // visible-locale entries; falling back to `.en` produced "Varanasi"
-    // in every script. Gemini #651 MED.
-    locationName = tl(cityData.name, locale);
+    // Localise the city name. Use tlScript so Devanagari-script
+    // locales (mr / mai) fall back to the Hindi Devanagari form
+    // ("वाराणसी") rather than English ("Varanasi") when their own
+    // translation isn't yet populated — the city table reliably
+    // carries en+hi but mr/mai entries are sparse.
+    // Gemini #651 MED (initial fix) + #652 MED (tlScript refinement).
+    locationName = tlScript(cityData.name, locale);
     timezone = cityData.timezone;
   } else if (params.lat && params.lng) {
     lat = parseFloat(params.lat); lng = parseFloat(params.lng);

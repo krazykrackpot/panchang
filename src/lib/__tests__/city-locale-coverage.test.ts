@@ -145,3 +145,128 @@ describe('city-locale coverage for SEO-indexable surface', () => {
     }
   });
 });
+
+import {
+  CITIES_BY_LOCALE,
+  isSeoIndexableCity,
+  wasLegacyIndexableSlug,
+  getIndexableLocalesForCity,
+} from '@/lib/constants/cities-extended';
+import { buildCityHreflangMap } from '@/lib/seo/city-hreflang';
+
+describe('Phase 1 — locale-curated city sets', () => {
+  it('every curated (locale, slug) pair has a content-floor-clean page', () => {
+    const failures: Array<{ locale: string; slug: string }> = [];
+    for (const [locale, set] of Object.entries(CITIES_BY_LOCALE)) {
+      for (const slug of set) {
+        if (!hasLocaleNativeCityContent(slug, locale)) {
+          failures.push({ locale, slug });
+        }
+      }
+    }
+    if (failures.length) {
+      const sample = failures.slice(0, 10).map(f => `${f.locale}/${f.slug}`).join(', ');
+      throw new Error(
+        `Curated set has ${failures.length} pair(s) the content floor rejects — would 410 in proxy AND noindex in meta, conflicting signals: ${sample}`
+      );
+    }
+  });
+
+  it('every curated slug is in ALL_CITIES (no orphan slugs in the curated map)', () => {
+    const orphans: Array<{ locale: string; slug: string }> = [];
+    for (const [locale, set] of Object.entries(CITIES_BY_LOCALE)) {
+      for (const slug of set) {
+        if (!ALL_CITIES.some(c => c.slug === slug)) {
+          orphans.push({ locale, slug });
+        }
+      }
+    }
+    expect(orphans).toEqual([]);
+  });
+
+  it('every curated slug is in SEO_INDEXABLE_CITY_SLUGS (Phase 0 keep-list)', () => {
+    // Phase 1 is a strict subset of Phase 0's surface — we only narrow,
+    // never add new slugs without a content audit. Catches accidental
+    // additions that would emit sitemap URLs without descriptors.
+    const offSet: Array<{ locale: string; slug: string }> = [];
+    for (const [locale, set] of Object.entries(CITIES_BY_LOCALE)) {
+      for (const slug of set) {
+        if (!SEO_INDEXABLE_CITY_SLUGS.has(slug)) {
+          offSet.push({ locale, slug });
+        }
+      }
+    }
+    expect(offSet).toEqual([]);
+  });
+
+  it('isSeoIndexableCity(slug, locale) returns true only for curated pairs', () => {
+    // Spot-check the matrix: a slug+locale that's curated → true; same
+    // slug in a different locale where it's NOT curated → false.
+    expect(isSeoIndexableCity('mumbai', 'en')).toBe(true);
+    expect(isSeoIndexableCity('mumbai', 'mr')).toBe(true);
+    expect(isSeoIndexableCity('mumbai', 'gu')).toBe(true);
+    expect(isSeoIndexableCity('mumbai', 'ta')).toBe(false); // not curated
+    expect(isSeoIndexableCity('mumbai', 'mai')).toBe(false); // not curated
+    expect(isSeoIndexableCity('delhi', 'mai')).toBe(true); // pan-anchor
+    expect(isSeoIndexableCity('delhi', 'ta')).toBe(false);
+    expect(isSeoIndexableCity('mumbai', 'unknown-locale')).toBe(false);
+    expect(isSeoIndexableCity('not-a-slug', 'en')).toBe(false);
+  });
+
+  it('wasLegacyIndexableSlug returns true exactly for the 44 Phase 0 slugs', () => {
+    expect(wasLegacyIndexableSlug('mumbai')).toBe(true);
+    expect(wasLegacyIndexableSlug('delhi')).toBe(true);
+    // A tier-2 slug that's never been in the indexable set
+    expect(wasLegacyIndexableSlug('navi-mumbai')).toBe(false);
+    expect(wasLegacyIndexableSlug('not-a-slug')).toBe(false);
+  });
+
+  it('getIndexableLocalesForCity returns the union of curated locales for a slug', () => {
+    // Mumbai is curated for en, hi, mr, gu — return all four (order
+    // doesn't matter, so sort before compare)
+    expect(getIndexableLocalesForCity('mumbai').slice().sort()).toEqual(
+      ['en', 'gu', 'hi', 'mr']
+    );
+    // Bangalore is curated for en, ta, kn
+    expect(getIndexableLocalesForCity('bangalore').slice().sort()).toEqual(
+      ['en', 'kn', 'ta']
+    );
+    // A legacy slug not in any curated locale (kochi, guwahati) → empty
+    expect(getIndexableLocalesForCity('kochi')).toEqual([]);
+    expect(getIndexableLocalesForCity('guwahati')).toEqual([]);
+    // An unknown slug → empty
+    expect(getIndexableLocalesForCity('not-a-slug')).toEqual([]);
+  });
+
+  it('buildCityHreflangMap emits only curated alternates plus x-default', () => {
+    const mumbai = buildCityHreflangMap('mumbai');
+    // Curated locales for mumbai: en, hi, mr, gu (no ta/te/bn/kn/mai)
+    expect(Object.keys(mumbai).slice().sort()).toEqual(
+      ['en', 'gu', 'hi', 'mr', 'x-default']
+    );
+    // x-default points at en (defaultLocale, which is curated for mumbai)
+    expect(mumbai['x-default']).toContain('/en/panchang/mumbai');
+    expect(mumbai['en']).toContain('/en/panchang/mumbai');
+    expect(mumbai['gu']).toContain('/gu/panchang/mumbai');
+    expect(mumbai['mr']).toContain('/mr/panchang/mumbai');
+    // ta is NOT in mumbai's curated set, so no Tamil alternate
+    expect(mumbai['ta']).toBeUndefined();
+  });
+
+  it('buildCityHreflangMap returns empty for a slug curated nowhere', () => {
+    expect(buildCityHreflangMap('kochi')).toEqual({});
+    expect(buildCityHreflangMap('guwahati')).toEqual({});
+    expect(buildCityHreflangMap('not-a-slug')).toEqual({});
+  });
+
+  it('curated set is ~50-60 (locale, slug) pairs — sanity bound', () => {
+    let total = 0;
+    for (const set of Object.values(CITIES_BY_LOCALE)) {
+      total += set.size;
+    }
+    // Phase 1 design target: ~56 pairs. Hard-fail if someone widens
+    // toward Phase 0's 396 grid without an audit.
+    expect(total).toBeGreaterThanOrEqual(40);
+    expect(total).toBeLessThanOrEqual(80);
+  });
+});

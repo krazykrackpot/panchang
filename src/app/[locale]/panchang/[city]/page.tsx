@@ -8,10 +8,16 @@ import Script from 'next/script';
 import { Sunrise, Sunset, Clock, MapPin, Calendar, ArrowRight, ChevronRight } from 'lucide-react';
 import WhatsAppShareBanner from '@/components/ui/WhatsAppShareBanner';
 import LearnConceptsBlock from '@/components/seo/LearnConceptsBlock';
-import { getCityBySlugExtended, getNearbyCitiesIndexable, isSeoIndexableCity } from '@/lib/constants/cities-extended';
+import {
+  getCityBySlugExtended,
+  getNearbyCitiesIndexable,
+  isSeoIndexableCity,
+  getIndexableLocalesForCity,
+} from '@/lib/constants/cities-extended';
 import { getCityDescriptor } from '@/lib/constants/city-descriptors';
 import { getStateLocale } from '@/lib/constants/state-name-locale';
 import { hasLocaleNativeCityContent } from '@/lib/seo/city-content-floor';
+import { buildCityHreflangMap } from '@/lib/seo/city-hreflang';
 import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
 import { generateDailyArticle, type ArticleCityConfig } from '@/lib/horoscope/daily-article';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -19,7 +25,6 @@ import type { Locale, TransitionInfo } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import M from '@/messages/pages/panchang-city.json';
 import CrossSellCTA from '@/components/cta/CrossSellCTA';
-import { buildHreflangMap } from '@/lib/seo/hreflang';
 import {
   pickPanchangCityLabel as CL,
   formatPanchangCityLabel,
@@ -140,27 +145,24 @@ export async function generateMetadata({
 
   const url = `${BASE_URL}/${locale}/panchang/${citySlug}`;
 
-  // Slugs outside the 44-city keep-list are noindex, follow — the page
-  // still renders for direct-URL hits and internal navigation, but Google
-  // is asked to drop it from the index. See cities-extended.ts
-  // SEO_INDEXABLE_CITY_SLUGS for the keep-list and rationale (post-demotion
-  // thin-content cut, 2026-06-07).
-  //
-  // Additional content-floor guard (Phase 0c, 2026-06-10): even for
-  // keep-list slugs, only index the (locale, slug) pair when the page
-  // carries a locale-native city name AND a non-empty locale descriptor.
-  // Catches the case where ta/te/bn/kn/gu overlays missed a slug — the
-  // page renders but Google isn't asked to canonicalise a near-duplicate
-  // English-fallback variant against the English page.
+  // Phase 1 (2026-06-10): the (slug, locale) pair must be in the
+  // CITIES_BY_LOCALE curated set — language ≠ city affinity, so Tamil
+  // searchers don't expect Delhi panchang, etc. Plus the Phase 0
+  // content-floor (locale-native city name + non-empty locale-script
+  // descriptor) keeps a final guard in place in case a curated pair
+  // somehow lacks proper content. Pairs that fail the curated check
+  // AND were in the legacy flat index set are intercepted by proxy.ts
+  // for HTTP 410 Gone — explicit dedupe signal to Google. Pairs that
+  // fail but were never previously indexable just render with noindex.
   const isIndexable =
-    isSeoIndexableCity(citySlug) && hasLocaleNativeCityContent(citySlug, locale);
+    isSeoIndexableCity(citySlug, locale) && hasLocaleNativeCityContent(citySlug, locale);
 
   return {
     title,
     description,
     alternates: {
       canonical: url,
-      languages: buildHreflangMap(`/panchang/${citySlug}`),
+      languages: buildCityHreflangMap(citySlug),
     },
     openGraph: {
       title,

@@ -19,6 +19,7 @@ import dynamic from 'next/dynamic';
 import BirthForm from '@/components/kundali/BirthForm';
 import ConvergenceSummary from '@/components/kundali/ConvergenceSummary';
 import GoldDivider from '@/components/ui/GoldDivider';
+import EmbedThisLink from '@/components/ui/EmbedThisLink';
 import ShareButton from '@/components/ui/ShareButton';
 // PrintButton removed  –  consolidated into DownloadReportButton (full HTML report via /api/kundali-report)
 import RelatedLinks from '@/components/ui/RelatedLinks';
@@ -1352,6 +1353,22 @@ export default function KundaliClient() {
           <span className="text-gold-gradient">{t('title')}</span>
         </h1>
         <p className="text-text-secondary text-lg">{t('subtitle')}</p>
+        <div className="mt-4 flex justify-center">
+          <EmbedThisLink
+            type="kundali"
+            label={tl({
+              en: 'Embed this widget',
+              hi: 'इस विजेट को एम्बेड करें',
+              mr: 'हे विजेट एम्बेड करा',
+              mai: 'इ विजेटकेँ एम्बेड करू',
+              ta: 'இந்த விட்ஜெட்டை எம்பெட் செய்க',
+              te: 'ఈ విడ్జెట్‌ను పొందుపరచండి',
+              bn: 'এই উইজেটটি এম্বেড করুন',
+              gu: 'આ વિજેટ એમ્બેડ કરો',
+              kn: 'ಈ ವಿಜೆಟ್ ಅನ್ನು ಎಂಬೆಡ್ ಮಾಡಿ',
+            }, locale)}
+          />
+        </div>
       </motion.div>
 
       {/* "What you'll get" preview — only before chart generation */}

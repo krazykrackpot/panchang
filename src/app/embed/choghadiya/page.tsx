@@ -18,7 +18,7 @@
 import type { Metadata } from 'next';
 import { computePanchang, computeChoghadiya } from '@/lib/ephem/panchang-calc';
 import { getCityBySlug, type CityData } from '@/lib/constants/cities';
-import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { getUTCOffsetForDate, resolveBirthTimezone } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import AttributionFooter from '../_components/AttributionFooter';
 import { buildWidgetCss } from '../_lib/build-widget-css';
@@ -74,7 +74,11 @@ export default async function EmbedChoghadiyaPage({
         message={`City "${params.city}" not found. Use ?city=varanasi or ?lat=…&lng=…&name=…`} />;
     }
     lat = cityData.lat; lng = cityData.lng;
-    locationName = cityData.name.en; timezone = cityData.timezone;
+    // Localise the city name. cityData.name is a LocaleText with all 9
+    // visible-locale entries; falling back to `.en` produced "Varanasi"
+    // in every script. Gemini #651 MED.
+    locationName = tl(cityData.name, locale);
+    timezone = cityData.timezone;
   } else if (params.lat && params.lng) {
     lat = parseFloat(params.lat); lng = parseFloat(params.lng);
     if (!Number.isFinite(lat) || !Number.isFinite(lng) || lat < -90 || lat > 90 || lng < -180 || lng > 180) {
@@ -82,7 +86,19 @@ export default async function EmbedChoghadiyaPage({
         message="Invalid lat/lng. Latitude: -90 to 90, Longitude: -180 to 180." />;
     }
     locationName = params.name?.slice(0, 64) || `${lat.toFixed(2)}N, ${lng.toFixed(2)}E`;
-    timezone = 'Asia/Kolkata';
+    // Resolve the timezone from coordinates instead of hard-coding
+    // Asia/Kolkata. Choghadiya slots are anchored to local sunrise +
+    // sunset; using the wrong tz shifts every slot by hours and makes
+    // the widget unusable for any non-Indian location. Gemini #651 HIGH.
+    try {
+      timezone = await resolveBirthTimezone(lat, lng);
+    } catch (err) {
+      console.error('[embed/choghadiya] timezone resolution failed:', err);
+      // Fall through to UTC as the least-wrong default. The widget will
+      // still render; sunrise/sunset will be UTC clock values, which is
+      // visibly wrong but doesn't crash.
+      timezone = 'UTC';
+    }
   } else {
     return <ErrorPage theme={theme} locale={locale} ref={ref} css={css}
       message="Missing location. Use ?city=varanasi or ?lat=25.31&lng=82.97&name=Varanasi" />;

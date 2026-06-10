@@ -70,6 +70,10 @@ const EXAMPLE_ROWS: Array<{
 
 export default async function AyanamshaComparisonPage() {
   const locale = await getLocale();
+  // Required for next-intl's App Router to enable static rendering of
+  // this server page — generateMetadata calls it too, but page bodies
+  // need their own call. Gemini #657 MED.
+  setRequestLocale(locale);
   const headingFont = getHeadingFont(locale);
   const bodyFont = isIndicLocale(locale) ? getBodyFont(locale) ?? undefined : undefined;
   const t = (key: string) => lt(T[key], locale);
@@ -164,11 +168,11 @@ export default async function AyanamshaComparisonPage() {
           <table className="w-full text-sm border-collapse">
             <thead>
               <tr className="border-b border-gold-primary/20 text-gold-light">
-                <th className="text-left py-2 pr-4 font-semibold">Tropical Lagna</th>
-                <th className="text-left py-2 pr-4 font-semibold">Lahiri</th>
-                <th className="text-left py-2 pr-4 font-semibold">Raman</th>
-                <th className="text-left py-2 pr-4 font-semibold">KP</th>
-                <th className="text-left py-2 pr-4 font-semibold">Fagan-Bradley</th>
+                <th className="text-left py-2 pr-4 font-semibold">{t('tableHeaderTropical')}</th>
+                <th className="text-left py-2 pr-4 font-semibold">{t('tableHeaderLahiri')}</th>
+                <th className="text-left py-2 pr-4 font-semibold">{t('tableHeaderRaman')}</th>
+                <th className="text-left py-2 pr-4 font-semibold">{t('tableHeaderKp')}</th>
+                <th className="text-left py-2 pr-4 font-semibold">{t('tableHeaderFagan')}</th>
               </tr>
             </thead>
             <tbody className="font-mono tabular-nums">
@@ -193,9 +197,7 @@ export default async function AyanamshaComparisonPage() {
           </table>
         </div>
         <p className="text-xs text-text-secondary italic">
-          Rows highlighted in gold are <strong>cusp-shift</strong> examples — the tropical Lagna falls
-          close enough to a sign boundary that the choice of ayanamsha changes the sidereal sign,
-          and therefore the Lagna lord and the entire Vimshottari Dasha sequence anchor.
+          {t('examplesCaption')}
         </p>
       </section>
 

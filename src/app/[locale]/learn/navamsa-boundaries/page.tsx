@@ -19,7 +19,7 @@ import ReferenceBlock from '@/components/ui/ReferenceBlock';
 import { Link } from '@/lib/i18n/navigation';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { generateBreadcrumbLD, generatePersonLD } from '@/lib/seo/structured-data';
 
 const T = L as unknown as Record<string, LocaleText>;
 
@@ -43,7 +43,9 @@ export default async function NavamsaBoundariesPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({
         '@context': 'https://schema.org', '@type': 'TechArticle',
         headline: t('title'), description: t('subtitle'),
-        author: { '@type': 'Organization', name: 'Dekho Panchang' },
+        // Person author (not Organization) per E-E-A-T guidelines —
+        // matches article-ld.ts pattern. Gemini #659 MED.
+        author: generatePersonLD(),
         dateModified: '2026-06-10', proficiencyLevel: 'Intermediate',
         about: [
           { '@type': 'Thing', name: 'Navamsa chart (D-9)' },

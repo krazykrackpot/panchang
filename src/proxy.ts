@@ -9,6 +9,10 @@ import {
   CANONICAL_DEVOTIONAL_TYPES,
   CANONICAL_DEVOTIONAL_SLUGS,
 } from '@/lib/seo/proxy-allowlists';
+import {
+  isSeoIndexableCity,
+  wasLegacyIndexableSlug,
+} from '@/lib/constants/cities-extended';
 
 /**
  * Static sub-route names under /panchang/* that are NOT cities.
@@ -533,6 +537,41 @@ export default function proxy(request: NextRequest) {
         },
       },
     );
+  }
+
+  // Phase 1 (2026-06-10) — /panchang/[city] (locale, slug) pairs that
+  // were in the legacy SEO_INDEXABLE_CITY_SLUGS but aren't in the new
+  // per-locale CITIES_BY_LOCALE return HTTP 410 Gone. These URLs were
+  // indexed under Phase 0's all-locales-indexable grid; without an
+  // explicit 410 they'd hang in Google's index for weeks while the
+  // noindex signal slowly drains. Targeted at the actual "intentionally
+  // removed" surface — non-legacy slugs (Tier 2/3 cities never in the
+  // indexable set) keep their normal render + noindex path.
+  //
+  // Regex pinned to the exact /(locale)/panchang/(slug) shape to avoid
+  // colliding with /panchang/date/<date>, /panchang/rashi/<rashi>, etc.
+  // — those use reserved sub-route names handled below.
+  const cityRouteMatch = pathname.match(/^\/([a-z]{2,3})\/panchang\/([a-z0-9-]+)\/?$/);
+  if (cityRouteMatch) {
+    const [, cityLocale, citySlug] = cityRouteMatch;
+    if (
+      LOCALES.includes(cityLocale as (typeof LOCALES)[number]) &&
+      !PANCHANG_RESERVED_SUBROUTES.has(citySlug) &&
+      wasLegacyIndexableSlug(citySlug) &&
+      !isSeoIndexableCity(citySlug, cityLocale)
+    ) {
+      return new NextResponse(
+        `<!doctype html><meta charset="utf-8"><title>410 Gone</title><h1>410 Gone</h1><p>The <code>/${cityLocale}/panchang/${citySlug}</code> page has been retired. <a href="/${cityLocale}/panchang">Browse current city panchang options</a>.</p>`,
+        {
+          status: 410,
+          headers: {
+            'Content-Type': 'text/html; charset=utf-8',
+            'X-Robots-Tag': 'noindex, follow',
+            'Cache-Control': 'public, s-maxage=31536000, max-age=86400, immutable',
+          },
+        },
+      );
+    }
   }
 
   // Check if the pathname already has a locale prefix

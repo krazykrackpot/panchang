@@ -8,7 +8,8 @@ import type { MetadataRoute } from 'next';
 // Dropped slugs are also `noindex`ed at the page level — see
 // src/app/[locale]/panchang/[city]/page.tsx generateMetadata. Sitemap
 // removal alone wouldn't drop already-indexed thin pages.
-import { getSeoIndexableCities } from '@/lib/constants/cities-extended';
+import { CITIES_BY_LOCALE } from '@/lib/constants/cities-extended';
+import { buildCityHreflangMap } from '@/lib/seo/city-hreflang';
 import { getAllPairSlugs } from '@/lib/constants/rashi-slugs';
 import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types-with-overlay';
 import { getTransitArticleSlugs } from '@/lib/content/transit-articles';
@@ -778,21 +779,38 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
   // Removed from sitemap  –  redirects burn crawl budget without adding indexable content.
   // Google discovers these via internal links and follows the redirect chain naturally.
 
-  // City panchang pages — SEO_INDEXABLE_CITY_SLUGS only (44 cities × 9
-  // locales = 396 URLs, down from 1,593 with the old Tier 1 + Tier 2 fan-out).
-  // Background: Tier 3 dropped 2026-06-03; the surviving 177 Tier 1+2 cities
-  // were still flooding the sitemap with thin near-duplicate URLs that
-  // contributed 1.35% of GSC clicks while occupying 22% of the sitemap
-  // (within-locale Jaccard between any two city pages was 79-85%). The
-  // 44-city keep-list is the post-demotion floor: metros + state capitals
-  // + canonical pilgrimage + diaspora with measured demand. Dropped slugs
-  // also carry `robots: noindex` so Google deindexes them over crawl cycles
-  // — sitemap removal alone wouldn't drop already-indexed thin pages.
-  for (const city of getSeoIndexableCities()) {
-    addEntries(entries, `/panchang/${city.slug}`, {
-      changeFrequency: 'daily',
-      priority: 0.7,
-    });
+  // City panchang pages — Phase 1 per-locale curated fan-out (2026-06-10).
+  //
+  // History:
+  //   - Pre-2026-06: Tier 1+2 (177 cities × 9 locales = 1,593 URLs).
+  //   - 2026-06-03: cut to SEO_INDEXABLE_CITY_SLUGS (44 × 9 = 396 URLs).
+  //     Within-locale Jaccard 79-85% — thin near-duplicate spread.
+  //   - 2026-06-10 Phase 0: locale-native city + state names; descriptors
+  //     verified per-locale (cross-city Jaccard 0.08-0.29).
+  //   - 2026-06-10 Phase 1 (this change): language ≠ city affinity, so
+  //     each slug only sitemaps for the locales that plausibly search
+  //     for it. CITIES_BY_LOCALE encodes the mapping; ~56 (locale, slug)
+  //     pairs vs the 396 grid. (locale, slug) pairs being removed
+  //     return HTTP 410 Gone via proxy.ts so Google deindexes them
+  //     fast — sitemap removal alone is a 6-12 week soft signal.
+  //
+  // mirror the alternates to the same curated set — a Marathi
+  // `/mr/panchang/mumbai` entry shouldn't list `/te/panchang/mumbai` as
+  // its Telugu alternate when that Telugu URL is 410.
+  const cityLastMod = routeLastModified('/panchang/[city]');
+  for (const locale of Object.keys(CITIES_BY_LOCALE)) {
+    const slugSet = CITIES_BY_LOCALE[locale];
+    for (const slug of slugSet) {
+      entries.push({
+        url: `${BASE_URL}/${locale}/panchang/${slug}`,
+        lastModified: cityLastMod,
+        changeFrequency: 'daily',
+        priority: 0.7,
+        alternates: {
+          languages: buildCityHreflangMap(slug),
+        },
+      });
+    }
   }
 
   // Matching compatibility heatmap

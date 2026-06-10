@@ -579,8 +579,117 @@ export const SEO_INDEXABLE_CITY_SLUGS: ReadonlySet<string> = new Set([
   'dubai', 'singapore', 'new-york', 'toronto', 'fiji', 'san-francisco',
 ]);
 
-export function isSeoIndexableCity(slug: string): boolean {
+/**
+ * Per-locale curated city sets (Phase 1, 2026-06-10). Language ≠ city
+ * affinity — Tamil searchers don't look for Delhi panchang, Maithili
+ * searchers don't look for Mumbai. Phase 0 fixed the title bytes so every
+ * 44 × 9 = 396 (slug, locale) cell *could* rank; Phase 1 cuts the surface
+ * to the ~56 cells that have a defensible linguistic-cultural reason to
+ * exist, concentrating PageRank and clearing canonical-consolidation
+ * pressure across the locale set.
+ *
+ * Membership: a slug is in a locale's set only if (a) it's already in
+ * SEO_INDEXABLE_CITY_SLUGS and (b) speakers of that locale plausibly
+ * search for that city. Pilgrimage centres (Ujjain, Varanasi, Tirupati,
+ * Haridwar, Mathura, Rishikesh, Puri) live in en + hi by default; cities
+ * with regional language identity (Mumbai → mr+gu, Bangalore → kn+ta,
+ * Tirupati → te) appear in the relevant regional locales too. Diaspora
+ * (Dubai, Singapore, etc.) is en-only — those queries are English-shaped.
+ *
+ * Cells outside this map render but emit `<meta robots noindex, follow>`
+ * (Phase 0 content-floor) AND are intercepted by proxy.ts for HTTP 410
+ * Gone when the slug is in the legacy SEO_INDEXABLE_CITY_SLUGS — the
+ * 410 is the explicit dedupe signal to Google for the (locale, slug)
+ * pairs we're rolling back from Phase 0's "everything indexable in every
+ * locale" grid.
+ */
+export const CITIES_BY_LOCALE: Record<string, ReadonlySet<string>> = {
+  en: new Set([
+    // Pan-Indian metros (8) + diaspora (6) + tourist anchor (1)
+    'delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad', 'pune', 'ahmedabad',
+    'dubai', 'singapore', 'new-york', 'toronto', 'fiji', 'san-francisco',
+    'goa',
+  ]),
+  hi: new Set([
+    // Pan-Indian (2)
+    'delhi', 'mumbai',
+    // Hindi belt — UP/Bihar (4)
+    'lucknow', 'kanpur', 'patna', 'varanasi',
+    // MP (2) + Rajasthan (1)
+    'bhopal', 'indore', 'jaipur',
+    // Punjab + Uttarakhand (Hindi widely spoken)
+    'chandigarh', 'amritsar', 'dehradun',
+    // Hindi-speaking states (2)
+    'ranchi', 'raipur',
+    // Pan-Indian pilgrimage (6)
+    'agra', 'ujjain', 'haridwar', 'mathura', 'rishikesh', 'puri',
+  ]),
+  mr: new Set([
+    // Maharashtra (4)
+    'mumbai', 'pune', 'nashik', 'nagpur',
+  ]),
+  gu: new Set([
+    // Gujarat (2) + Mumbai's substantial Gujarati diaspora
+    'ahmedabad', 'surat', 'mumbai',
+  ]),
+  ta: new Set([
+    // Tamil Nadu (3) + Tamil-strong Bangalore
+    'chennai', 'coimbatore', 'madurai', 'bangalore',
+  ]),
+  te: new Set([
+    // Telangana (1) + Andhra (2)
+    'hyderabad', 'visakhapatnam', 'tirupati',
+  ]),
+  kn: new Set([
+    // Karnataka (2)
+    'bangalore', 'mysore',
+  ]),
+  bn: new Set([
+    // West Bengal (1) + adjacent Bengali presence
+    'kolkata', 'bhubaneswar',
+  ]),
+  mai: new Set([
+    // Mithila region (Bihar) + Hindi-belt pan-anchors (Maithili readers
+    // often consume pilgrimage / capital content in Maithili register)
+    'patna', 'delhi', 'varanasi',
+  ]),
+};
+
+/**
+ * True iff the (slug, locale) pair is in the Phase 1 curated set. The
+ * page renders for any pair but should emit noindex (and the proxy
+ * returns 410 when the slug was previously in SEO_INDEXABLE_CITY_SLUGS)
+ * when this is false. Signature changed from (slug) to (slug, locale)
+ * in Phase 1 — a slug is never globally "indexable" anymore, only per
+ * locale. All call sites must pass the locale.
+ */
+export function isSeoIndexableCity(slug: string, locale: string): boolean {
+  return CITIES_BY_LOCALE[locale]?.has(slug) ?? false;
+}
+
+/**
+ * Whether this slug was in the Phase 0 flat indexable set. Used by the
+ * proxy to bound 410-Gone responses to URLs that actually had a prior
+ * index presence — for slugs that were never indexable (Tier 2/3 cities),
+ * we keep emitting noindex but don't return 410.
+ */
+export function wasLegacyIndexableSlug(slug: string): boolean {
   return SEO_INDEXABLE_CITY_SLUGS.has(slug);
+}
+
+/**
+ * Locales for which this slug is in the Phase 1 curated set. Used by
+ * hreflang building on the city pages to restrict alternates to actually-
+ * indexable pairs — no more `/mr/panchang/delhi` claiming to be the
+ * Marathi alternate of `/en/panchang/delhi` when that Marathi page is
+ * going to 410.
+ */
+export function getIndexableLocalesForCity(slug: string): readonly string[] {
+  const out: string[] = [];
+  for (const [locale, set] of Object.entries(CITIES_BY_LOCALE)) {
+    if (set.has(slug)) out.push(locale);
+  }
+  return out;
 }
 
 // Pre-filtered at module load — `ALL_CITIES.filter(...)` is O(N) over 325

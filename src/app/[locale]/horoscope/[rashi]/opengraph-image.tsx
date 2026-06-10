@@ -5,7 +5,15 @@ import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
 export const runtime = 'nodejs';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
-export const revalidate = 86400; // Daily revalidation — content changes once per day, not hourly
+// On-demand revalidation only. The OG image inherits down to
+// /[rashi]/[date] children — keeping a daily revalidate window here
+// burned ISR writes for the dated horoscope grid (12 rashis × 9 locales
+// = 108 PNGs/day max) without a real freshness benefit, since the
+// rendered PNG is rashi-keyed, not date-keyed. revalidatePath on the
+// page route flips this OG cache too, so the nightly precompute
+// pipeline still propagates fresh visuals on demand. Mirrors the
+// page/layout switch in this same surface.
+export const revalidate = false;
 
 // ─── Inlined rashi data (edge-safe, no native deps) ─────────────────────────
 

@@ -489,8 +489,12 @@ function isInvalidDevotionalPath(segments: string[]): boolean {
   const type = segments[2];
   const slug = segments[3];
   if (!type || !slug) return false;
-  if (!CANONICAL_DEVOTIONAL_TYPES.has(type)) return true;
-  return !CANONICAL_DEVOTIONAL_SLUGS.has(slug);
+  // Either invalid type OR invalid slug → reject. Pair-mismatch
+  // (valid type + valid slug from a different type, e.g.
+  // /devotional/chalisa/lakshmi-mantra) is caught downstream by
+  // getDevotionalItem(type, slug); the proxy only closes the
+  // soft-404 hole on totally-unknown identifiers.
+  return !CANONICAL_DEVOTIONAL_TYPES.has(type) || !CANONICAL_DEVOTIONAL_SLUGS.has(slug);
 }
 
 /**

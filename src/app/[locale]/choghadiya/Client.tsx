@@ -5,6 +5,7 @@ import { useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { Clock, Sun, Moon, MapPin, ArrowLeft, Sparkles } from "lucide-react";
 import GoldDivider from "@/components/ui/GoldDivider";
+import EmbedThisLink from "@/components/ui/EmbedThisLink";
 import RelatedLinks from "@/components/ui/RelatedLinks";
 import { getLearnLinksForTool } from "@/lib/seo/cross-links";
 import { Link } from "@/lib/i18n/navigation";
@@ -565,6 +566,27 @@ export default function ChoghadiyaClient() {
             <MapPin size={14} className="text-gold-primary" />
             {tl(selectedCity.name, locale)}
           </p>
+          {/* Phase 2C tail — completes "Embed this" CTA coverage
+              across all four headline tool pages. Choghadiya uses a
+              stamped h2 (not h1), so the CTA sits in its own row
+              below the location pill rather than centred under a hero. */}
+          <div className="mt-3">
+            <EmbedThisLink
+              type="choghadiya"
+              locale={locale}
+              label={tl({
+                en: "Embed this widget",
+                hi: "इस विजेट को एम्बेड करें",
+                mr: "हे विजेट एम्बेड करा",
+                mai: "इ विजेटकेँ एम्बेड करू",
+                ta: "இந்த விட்ஜெட்டை எம்பெட் செய்க",
+                te: "ఈ విడ్జెట్‌ను పొందుపరచండి",
+                bn: "এই উইজেটটি এম্বেড করুন",
+                gu: "આ વિજેટ એમ્બેડ કરો",
+                kn: "ಈ ವಿಜೆಟ್ ಅನ್ನು ಎಂಬೆಡ್ ಮಾಡಿ",
+              }, locale)}
+            />
+          </div>
         </motion.div>
 
         {/* City selector */}

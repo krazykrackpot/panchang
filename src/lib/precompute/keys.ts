@@ -28,6 +28,16 @@ export function choghadiyaKey(date: string, citySlug: string): string {
 }
 
 /**
+ * Gauri Panchang — date + city. Locale-independent (period labels are
+ * locale-keyed objects in the Blob; page resolves at render time).
+ */
+export function gauriPanchangKey(date: string, citySlug: string): string {
+  assertDate(date);
+  assertSlug(citySlug);
+  return `gauri-panchang/${date}/${citySlug}`;
+}
+
+/**
  * Panchang for a specific date — date + city. Locale-independent.
  */
 export function panchangDateKey(date: string, citySlug: string): string {

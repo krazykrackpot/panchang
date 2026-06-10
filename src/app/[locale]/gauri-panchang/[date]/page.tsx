@@ -12,13 +12,24 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { isStale } from '@/lib/seo/staleness';
 import type { Metadata } from 'next';
+import { getGauriPanchangPageModel } from '@/lib/precompute/gauri-panchang-page-model';
 // GauriPanchangClient deliberately NOT imported here — see comment below
 // where it would have been mounted. Same React #418 hydration trap as the
 // sibling Choghadiya dated route (PR #267).
 import { TodayBadge } from '@/components/ui/TodayBadge';
 import TodaySignificanceSection from '@/components/date-content/TodaySignificanceSection';
 
-export const revalidate = 86400;
+// On-demand revalidation only. The nightly GH-Action precompute writes
+// fresh gauri-panchang Blobs and POSTs to /api/precompute/revalidate
+// which flips this page's cache. With PRECOMPUTE_FETCH_ENABLED=true the
+// page reads from the deterministic Blob — no time-based revalidate
+// means no scheduled regen on past-dated URLs whose content never
+// changes. Mirrors choghadiya/[date] (PR-precompute, 2026-06-06).
+//
+// Fallback path: PRECOMPUTE_FETCH_ENABLED unset → live compute, cached
+// indefinitely. revalidatePath('/[locale]/gauri-panchang/[date]', 'page')
+// is the only way to flip.
+export const revalidate = false;
 export const dynamicParams = true;
 
 import { BASE_URL } from '@/lib/seo/base-url';
@@ -291,39 +302,34 @@ export default async function GauriPanchangDatePage({ params }: { params: Promis
   let weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
   let tithiNumber = 0;
 
-  // city is guaranteed non-null by getSeoCityForLocale. try/catch
-  // protects against engine failures only.
+  // Load from precompute Blob when PRECOMPUTE_FETCH_ENABLED, else fall
+  // through to live compute. Both paths produce the same page-model
+  // shape — getGauriPanchangPageModel encapsulates the choice.
   try {
-    const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
-    const panchang = computePanchang({ year, month, day, lat: city.lat, lng: city.lng, tzOffset, timezone: city.timezone });
-    weekday = panchang.vara?.day ?? weekday;
-    tithiNumber = panchang.tithi.number;
-
-    if (panchang.gauriPanchang) {
-      const toSSR = (s: typeof panchang.gauriPanchang[number]): SSRSlot => {
-        // The engine's name object carries the full 10-locale map from
-        // GAURI_NAMES. Pluck every locale we render into a flat record
-        // so the page can resolve by locale without a re-cast at the
-        // call site.
-        const nm = s.name as Record<string, string | undefined>;
-        return {
-          name: s.name.en || '',
-          nameHi: s.name.hi || s.name.en || '',
-          nameLoc: {
-            en: nm.en, hi: nm.hi, sa: nm.sa,
-            mai: nm.mai, mr: nm.mr,
-            ta: nm.ta, te: nm.te, kn: nm.kn,
-            gu: nm.gu, bn: nm.bn,
-          },
-          type: s.type,
-          nature: s.nature,
-          startTime: s.startTime,
-          endTime: s.endTime,
-        };
+    // dateStr is already YYYY-MM-DD-validated by parseDate above —
+    // pass directly (Gemini PR #663 MED).
+    const model = await getGauriPanchangPageModel({ date: dateStr, city });
+    weekday = model.weekday;
+    tithiNumber = model.tithiNumber;
+    const fromModel = (s: typeof model.daySlots[number]): SSRSlot => {
+      const nm = s.name as Record<string, string | undefined>;
+      return {
+        name: nm.en ?? '',
+        nameHi: nm.hi ?? nm.en ?? '',
+        nameLoc: {
+          en: nm.en, hi: nm.hi, sa: nm.sa,
+          mai: nm.mai, mr: nm.mr,
+          ta: nm.ta, te: nm.te, kn: nm.kn,
+          gu: nm.gu, bn: nm.bn,
+        },
+        type: s.type,
+        nature: s.nature,
+        startTime: s.startTime,
+        endTime: s.endTime,
       };
-      daySlots = panchang.gauriPanchang.filter(s => s.period === 'day').map(toSSR);
-      nightSlots = panchang.gauriPanchang.filter(s => s.period === 'night').map(toSSR);
-    }
+    };
+    daySlots = model.daySlots.map(fromModel);
+    nightSlots = model.nightSlots.map(fromModel);
   } catch (err) {
     console.error('[gauri-panchang/date] SSR computation failed:', err);
   }

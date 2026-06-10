@@ -144,6 +144,20 @@ jobs:
             --cities "${{ steps.cities.outputs.cities }}" \
             --skip-if-present
 
+      - name: Precompute gauri-panchang
+        env:
+          PRECOMPUTE_STORAGE: blob
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+        run: |
+          # Same (date × city) fan-out as choghadiya — gauri-panchang
+          # is the South-Indian sibling and shares the page-keyed
+          # shape (date × city → locale-keyed slot table). One Blob
+          # per (date, city); page resolves at render time.
+          npx tsx scripts/precompute/gauri-panchang.ts \
+            --dates "${{ steps.window.outputs.dates }}" \
+            --cities "${{ steps.cities.outputs.cities }}" \
+            --skip-if-present
+
       - name: Revalidate page paths
         env:
           DATES: ${{ steps.window.outputs.dates }}
@@ -172,6 +186,11 @@ jobs:
           # independent (slot labels are trilingual; the page does
           # tl(name, locale) at render time).
           #
+          # Gauri-panchang shares the same shape — one paths entry
+          # per (locale, date) and one tag per (date, city). Both
+          # route paths get revalidated in a single POST so the
+          # cache layers flip atomically.
+          #
           # Visible locales: en, hi, ta, te, bn, gu, kn, mai, mr
           # (9 entries — sa retired per memory).
 
@@ -180,8 +199,14 @@ jobs:
           dates = os.environ["DATES"].split(",")
           cities = os.environ["CITIES"].split(",")
           locales = ["en", "hi", "ta", "te", "bn", "gu", "kn", "mai", "mr"]
-          paths = [f"/{l}/choghadiya/{d}" for d in dates for l in locales]
-          tags = [f"precompute:choghadiya/{d}/{c}" for d in dates for c in cities]
+          paths = (
+              [f"/{l}/choghadiya/{d}" for d in dates for l in locales]
+              + [f"/{l}/gauri-panchang/{d}" for d in dates for l in locales]
+          )
+          tags = (
+              [f"precompute:choghadiya/{d}/{c}" for d in dates for c in cities]
+              + [f"precompute:gauri-panchang/{d}/{c}" for d in dates for c in cities]
+          )
           print(json.dumps({"paths": paths, "tags": tags}))
           PY
           )

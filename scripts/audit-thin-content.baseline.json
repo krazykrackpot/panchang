@@ -1,0 +1,25 @@
+{
+  "generated": "2026-06-10",
+  "threshold": 400,
+  "comment": "Pre-existing THIN /learn/* pages grandfathered at the time the audit was introduced. Each entry maps slug → EN word count at that moment. New thin pages NOT in this list block the commit; pages in this list are tolerated until expanded (when expanded above 400, drop the entry; when shrunk further, update the value).",
+  "pages": {
+    "advanced-houses": 237,
+    "bhavas": 380,
+    "classical-texts": 113,
+    "combustion": 179,
+    "compatibility": 267,
+    "cosmology": 170,
+    "jaimini": 209,
+    "library": 38,
+    "observatories": 43,
+    "planet-in-house": 62,
+    "planetary-cycles": 365,
+    "remedies": 218,
+    "retrograde-effects": 141,
+    "sade-sati": 342,
+    "shadbala": 211,
+    "transit-guide": 116,
+    "vargas": 363,
+    "vedanga": 48
+  }
+}

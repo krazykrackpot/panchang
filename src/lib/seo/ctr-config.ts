@@ -109,8 +109,13 @@ export function festivalCanonicalTitle(
     }
     return withDay;
   }
-  const suffix = hasMuhurat ? 'Puja Muhurat' : 'Date & Muhurat';
-  return `${name} ${year} Date: ${short} (${day}) – ${suffix}`;
+  // CTR experiment 2026-06-10 (baseline GSC: 0.13-0.55% CTR at pos 5-9
+  // on festival pages — 16K imp/mo on Hartalika Teej alone). Hypothesis:
+  // adding the high-search-intent words "Vidhi" + "Mantra" to the title
+  // wins clicks against competitor SERPs that only show date + muhurat.
+  // Re-measure at 2026-07-10; revert if no lift.
+  const suffix = hasMuhurat ? 'Puja Muhurat, Vidhi & Mantra' : 'Date, Vidhi & Mantra';
+  return `${name} ${year}: ${short} (${day}) – ${suffix}`;
 }
 
 /**
@@ -128,9 +133,12 @@ export function festivalCanonicalTitleHi(
   if (pujaTimeStr) {
     // "गणेश चतुर्थी 2027 कब है: 4 सितम्बर, शनिवार | पूजा समय"
     // Drop the actual time from title (it goes in description) to keep title short
-    return `${name} ${year} कब है: ${short}, ${day} | पूजा समय`;
+    return `${name} ${year} कब है: ${short}, ${day} | शुभ पूजा मुहूर्त`;
   }
-  const suffix = hasMuhurat ? 'पूजा मुहूर्त' : 'तिथि व मुहूर्त';
+  // CTR experiment 2026-06-10 — see festivalCanonicalTitle EN. Adding
+  // "विधि" (vidhi/procedure) + "मंत्र" (mantra) — top non-date queries
+  // for Hindi festival searches per GSC keyword data. Re-measure +30d.
+  const suffix = hasMuhurat ? 'पूजा मुहूर्त, विधि व मंत्र' : 'तिथि, विधि व मंत्र';
   return `${name} ${year} कब है: ${short}, ${day} – ${suffix}`;
 }
 

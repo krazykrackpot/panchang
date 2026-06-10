@@ -49,6 +49,20 @@ if [ -n "$STAGED_TS" ]; then
     VIOLATIONS="${VIOLATIONS}\n  ⚠ Browser timezone used for time comparison (use nowMinutesInTimezone): $BAD_TZ"
   fi
 
+  # Ban: TechArticle / Article JSON-LD without generatePersonLD() author.
+  # Gemini PRs #659 + #660 — E-E-A-T pattern across the project is to
+  # use the canonical Person author identity (Aditya Jha + credentials)
+  # not a hard-coded { '@type': 'Organization', name: ... }. Any new
+  # TechArticle block must `import { generatePersonLD }` and pass it.
+  TA_FILES=$(echo "$STAGED_TS" | xargs grep -lE "'(Tech)?Article'" /dev/null 2>/dev/null)
+  if [ -n "$TA_FILES" ]; then
+    for f in $TA_FILES; do
+      if ! grep -q 'generatePersonLD' "$f"; then
+        VIOLATIONS="${VIOLATIONS}\n  ⚠ TechArticle/Article JSON-LD without generatePersonLD() author (E-E-A-T): $f"
+      fi
+    done
+  fi
+
   if [ -n "$VIOLATIONS" ]; then
     echo ""
     echo "COMMIT BLOCKED: Banned patterns detected:"
@@ -75,6 +89,28 @@ if [ -n "$STAGED_HYDRATION_RISK" ]; then
     echo "  To intentionally accept (NOT recommended), update the baseline:"
     echo "    npx tsx scripts/audit-isr-hydration.ts --update-baseline"
     echo "  (bypass with: git commit --no-verify — document why)"
+    exit 1
+  fi
+fi
+
+# 2c. Thin-content audit — guards against new /learn/* pages landing
+# below the 400-EN-word THIN threshold. Pre-existing THIN pages are
+# baselined; only NEW ones block. Companion to the 2026-06-10 GSC
+# URL-Inspection audit that confirmed /festivals/{slug}/{year}
+# pages PASS and /year/city variants are noindex+canonical-to-year,
+# so the Learn section is the remaining thin-content risk surface.
+STAGED_LEARN_JSON=$(git diff --cached --name-only --diff-filter=ACM | grep -E 'src/messages/learn/.*\.json$')
+STAGED_LEARN_PAGE=$(echo "$STAGED_TS" | grep -E 'src/app/\[locale\]/learn/.+/page\.tsx$')
+if [ -n "$STAGED_LEARN_JSON" ] || [ -n "$STAGED_LEARN_PAGE" ]; then
+  echo "  [2c/3] thin-content audit (vs baseline)..."
+  npx tsx scripts/audit-thin-content.ts 2>&1
+  THIN_EXIT=$?
+  if [ $THIN_EXIT -ne 0 ]; then
+    echo ""
+    echo "COMMIT BLOCKED: new THIN /learn/* page detected (below 400 EN words)."
+    echo "  See audit output above. Expand the page or — if intentional —"
+    echo "  baseline it: npx tsx scripts/audit-thin-content.ts --update-baseline"
+    echo "  (bypass with: git commit --no-verify)"
     exit 1
   fi
 fi

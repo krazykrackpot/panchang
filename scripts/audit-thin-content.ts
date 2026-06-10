@@ -65,21 +65,51 @@ function classify(words: number): PageReport['tier'] {
   return 'COMPREHENSIVE';
 }
 
+/**
+ * Recursively collect EN + HI strings from arbitrarily-nested JSON.
+ *
+ * A leaf is a LocaleText-shaped object: any object with at least one
+ * of `en` / `hi` set to a string. The leaf check uses presence of
+ * those keys so we don't recurse INTO a LocaleText whose other locale
+ * values happen to be objects (defensive — current files are flat
+ * LocaleText, but the audit may run after schema changes).
+ *
+ * Originally only walked the top-level keys, which would silently
+ * undercount any nested JSON and risk false PASS for thin pages.
+ * Gemini #661 HIGH.
+ */
+function extractText(value: unknown): { en: string; hi: string } {
+  let en = '';
+  let hi = '';
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      const r = extractText(item);
+      en += r.en; hi += r.hi;
+    }
+  } else if (value && typeof value === 'object') {
+    const obj = value as Record<string, unknown>;
+    const hasLocaleText =
+      typeof obj.en === 'string' || typeof obj.hi === 'string';
+    if (hasLocaleText) {
+      if (typeof obj.en === 'string') en += ' ' + obj.en;
+      if (typeof obj.hi === 'string') hi += ' ' + obj.hi;
+    } else {
+      for (const child of Object.values(obj)) {
+        const r = extractText(child);
+        en += r.en; hi += r.hi;
+      }
+    }
+  }
+  return { en, hi };
+}
+
 function audit(): PageReport[] {
   const files = fs.readdirSync(MESSAGES_DIR).filter((f) => f.endsWith('.json'));
   const reports: PageReport[] = [];
   for (const file of files) {
     const slug = file.replace(/\.json$/, '');
-    const data = JSON.parse(fs.readFileSync(path.join(MESSAGES_DIR, file), 'utf8')) as Record<string, unknown>;
-    let enText = '';
-    let hiText = '';
-    for (const value of Object.values(data)) {
-      if (value && typeof value === 'object') {
-        const v = value as Record<string, string>;
-        if (typeof v.en === 'string') enText += ' ' + v.en;
-        if (typeof v.hi === 'string') hiText += ' ' + v.hi;
-      }
-    }
+    const data = JSON.parse(fs.readFileSync(path.join(MESSAGES_DIR, file), 'utf8')) as unknown;
+    const { en: enText, hi: hiText } = extractText(data);
     const enWords = countWords(enText);
     const hiWords = countWords(hiText);
     const hasRoute = fs.existsSync(path.join(PAGES_DIR, slug, 'page.tsx'));

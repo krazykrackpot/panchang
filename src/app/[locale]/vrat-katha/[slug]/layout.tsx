@@ -1,7 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getVratKatha, getAllVratKathaSlugs } from '@/lib/content/vrat-kathas-with-overlay';
-import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { generateBreadcrumbLD, generatePersonLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { locales } from '@/lib/i18n/config';
 
@@ -79,7 +79,7 @@ export default async function Layout({ children, params }: { children: React.Rea
     '@type': 'Article',
     headline: title,
     description,
-    author: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
+    author: generatePersonLD(),
     publisher: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
     datePublished: '2026-04-25',
     dateModified: '2026-04-28',

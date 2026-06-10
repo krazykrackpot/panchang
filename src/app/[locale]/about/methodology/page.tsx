@@ -1,6 +1,6 @@
 import { getLocale, setRequestLocale } from 'next-intl/server';
 import { isDevanagariLocale, pickByLocale, pickByScript } from '@/lib/utils/locale-fonts';
-import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { generateBreadcrumbLD, generatePersonLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { TOTAL_MODULES } from '@/lib/learn/module-sequence';
 
@@ -437,7 +437,7 @@ export default async function MethodologyPage({
           '@type': 'TechArticle',
           headline: 'Dekho Panchang — Computational Methodology',
           description: 'Astronomical computation methodology: ephemeris sources, ayanamsha convention, and classical references used by the dekhopanchang.com engine.',
-          author: { '@type': 'Organization', name: 'Dekho Panchang' },
+          author: generatePersonLD(),
           dateModified: '2026-06-10',
           proficiencyLevel: 'Expert',
           about: [

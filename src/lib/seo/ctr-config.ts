@@ -114,8 +114,18 @@ export function festivalCanonicalTitle(
   // adding the high-search-intent words "Vidhi" + "Mantra" to the title
   // wins clicks against competitor SERPs that only show date + muhurat.
   // Re-measure at 2026-07-10; revert if no lift.
+  //
+  // Length guard (Gemini #661 MED): Google truncates SERP titles at
+  // ~60 chars. The "Vidhi & Mantra" suffix is the experiment's value
+  // prop — it MUST stay visible. Step the title down progressively
+  // (full weekday → short weekday → drop weekday entirely) so the
+  // suffix is preserved at the cost of the day name.
   const suffix = hasMuhurat ? 'Puja Muhurat, Vidhi & Mantra' : 'Date, Vidhi & Mantra';
-  return `${name} ${year}: ${short} (${day}) – ${suffix}`;
+  const withFullDay  = `${name} ${year}: ${short} (${day}) – ${suffix}`;
+  if (withFullDay.length <= 60) return withFullDay;
+  const withShortDay = `${name} ${year}: ${short} (${dayShort}) – ${suffix}`;
+  if (withShortDay.length <= 60) return withShortDay;
+  return `${name} ${year}: ${short} – ${suffix}`;
 }
 
 /**
@@ -138,8 +148,15 @@ export function festivalCanonicalTitleHi(
   // CTR experiment 2026-06-10 — see festivalCanonicalTitle EN. Adding
   // "विधि" (vidhi/procedure) + "मंत्र" (mantra) — top non-date queries
   // for Hindi festival searches per GSC keyword data. Re-measure +30d.
+  //
+  // Length guard (Gemini #661 MED): Devanagari characters render wider
+  // so the practical SERP-truncation threshold is around 55 chars. If
+  // the title with weekday would exceed that, drop the weekday so
+  // "विधि व मंत्र" stays in the visible portion of the SERP snippet.
   const suffix = hasMuhurat ? 'पूजा मुहूर्त, विधि व मंत्र' : 'तिथि, विधि व मंत्र';
-  return `${name} ${year} कब है: ${short}, ${day} – ${suffix}`;
+  const withDay = `${name} ${year} कब है: ${short}, ${day} – ${suffix}`;
+  if (withDay.length <= 55) return withDay;
+  return `${name} ${year} कब है: ${short} – ${suffix}`;
 }
 
 /**

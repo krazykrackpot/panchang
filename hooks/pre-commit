@@ -49,17 +49,23 @@ if [ -n "$STAGED_TS" ]; then
     VIOLATIONS="${VIOLATIONS}\n  ⚠ Browser timezone used for time comparison (use nowMinutesInTimezone): $BAD_TZ"
   fi
 
-  # Ban: TechArticle / Article JSON-LD without generatePersonLD() author.
-  # Gemini PRs #659 + #660 — E-E-A-T pattern across the project is to
-  # use the canonical Person author identity (Aditya Jha + credentials)
-  # not a hard-coded { '@type': 'Organization', name: ... }. Any new
-  # TechArticle block must `import { generatePersonLD }` and pass it.
-  TA_FILES=$(echo "$STAGED_TS" | xargs grep -lE "'(Tech)?Article'" /dev/null 2>/dev/null)
-  if [ -n "$TA_FILES" ]; then
-    for f in $TA_FILES; do
-      if ! grep -q 'generatePersonLD' "$f"; then
-        VIOLATIONS="${VIOLATIONS}\n  ⚠ TechArticle/Article JSON-LD without generatePersonLD() author (E-E-A-T): $f"
-      fi
+  # Ban the SPECIFIC author-as-Organization anti-pattern in inline
+  # TechArticle / Article JSON-LD. Gemini PRs #659 + #660 caught five
+  # instances of `author: { '@type': 'Organization', name: '...' }`
+  # in pages that should be using the canonical generatePersonLD() per
+  # E-E-A-T. Many pages legitimately use `generateArticleLD()` (which
+  # already returns the right Person author internally) — those are
+  # fine and won't match this pattern. Quote class covers all three
+  # string-literal styles (single / double / backtick). Gemini #661 MED.
+  # Tests under __tests__/ are exempted — `eeat-author-credentials`
+  # quotes the anti-pattern in its JSDoc to document what to avoid.
+  BAD_AUTHOR_CANDIDATES=$(echo "$STAGED_TS" | xargs grep -lE "author:\s*\{\s*['\"\`]@type['\"\`]:\s*['\"\`]Organization['\"\`]" /dev/null 2>/dev/null)
+  if [ -n "$BAD_AUTHOR_CANDIDATES" ]; then
+    for f in $BAD_AUTHOR_CANDIDATES; do
+      case "$f" in
+        *"/__tests__/"*) ;; # test files are exempt
+        *) VIOLATIONS="${VIOLATIONS}\n  ⚠ Article/TechArticle author hardcoded as Organization (use generatePersonLD): $f" ;;
+      esac
     done
   fi
 

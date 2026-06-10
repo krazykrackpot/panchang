@@ -8,6 +8,7 @@ import { RASHIS } from "@/lib/constants/rashis";
 import { RashiIconById } from "@/components/icons/RashiIcons";
 import { getCityBySlug } from "@/lib/constants/cities";
 import { tl } from "@/lib/utils/trilingual";
+import { generatePersonLD } from "@/lib/seo/structured-data";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
@@ -146,7 +147,7 @@ export default async function CityDailyPanchangArticle({
     description: article.description[loc],
     datePublished: article.publishedAt,
     dateModified: article.publishedAt,
-    author: { "@type": "Organization", name: "Dekho Panchang", url: BASE_URL },
+    author: generatePersonLD(),
     publisher: {
       "@type": "Organization",
       name: "Dekho Panchang",

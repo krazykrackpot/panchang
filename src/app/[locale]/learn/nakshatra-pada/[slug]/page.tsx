@@ -13,6 +13,7 @@ import { ArrowLeft, Star, Briefcase, Heart, Activity, Hash, BookOpen, Flame, Com
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
+import { generatePersonLD } from '@/lib/seo/structured-data';
 const NAK_SLUGS = ['ashwini','bharani','krittika','rohini','mrigashira','ardra','punarvasu','pushya','ashlesha','magha','purva-phalguni','uttara-phalguni','hasta','chitra','swati','vishakha','anuradha','jyeshtha','mula','purva-ashadha','uttara-ashadha','shravana','dhanishta','shatabhisha','purva-bhadrapada','uttara-bhadrapada','revati'];
 
 const ELEMENT_COLORS: Record<string, string> = {
@@ -68,7 +69,7 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
     '@type': 'Article',
     headline: `${nakName} Pada ${parsed.pada}  –  Vedic Nakshatra Analysis`,
     description: profile.personality.en,
-    author: { '@type': 'Organization', name: 'Dekho Panchang' },
+    author: generatePersonLD(),
     publisher: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
   };
 

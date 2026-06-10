@@ -659,10 +659,31 @@ export default function proxy(request: NextRequest) {
     }
   }
 
-  // Redirect to locale-prefixed path
+  // Redirect to locale-prefixed path.
+  //
+  // The response body carries the AdSense site-verification meta tag in
+  // addition to the standard `Location` redirect header. Without this,
+  // AdSense's verifier hits the apex domain, gets a 307 with an empty
+  // body, can't find the meta tag, and rejects the site with "Not
+  // found" status — even when /en/ has the meta tag, the script, and
+  // /ads.txt is correct. (Rejection reproduced 2026-06-10 00:37 CEST.)
+  // The body is also useful for any static-fetch consumer that doesn't
+  // follow 307s (some social-card scrapers, some custom monitors).
+  // Browsers and proper crawlers continue to follow the `Location`
+  // header and ignore the body.
   const url = request.nextUrl.clone();
   url.pathname = `/${locale}${pathname}`;
-  const response = NextResponse.redirect(url);
+  const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID?.trim();
+  const verificationBody = `<!DOCTYPE html><html><head>${
+    adsenseClient ? `<meta name="google-adsense-account" content="${adsenseClient}">` : ''
+  }<meta http-equiv="refresh" content="0;url=${url.pathname}"><title>Redirecting…</title></head><body><p>Redirecting to <a href="${url.pathname}">${url.pathname}</a>…</p></body></html>`;
+  const response = new NextResponse(verificationBody, {
+    status: 307,
+    headers: {
+      Location: url.toString(),
+      'Content-Type': 'text/html; charset=utf-8',
+    },
+  });
   response.cookies.set('NEXT_LOCALE', locale, { path: '/', sameSite: 'lax' });
   return response;
 }

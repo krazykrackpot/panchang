@@ -158,6 +158,21 @@ describe('proxy — pre-existing locale behaviour still works', () => {
     expect(res.headers.get('location')).toContain('/en/panchang');
   });
 
+  it('bare-path redirect body carries AdSense verification meta tag', async () => {
+    // AdSense verifies the apex (dekhopanchang.com), but the apex
+    // redirects to /en — empty 307 body causes "Not found" rejection.
+    // The verifier reads the body (and HTML meta refresh fallback);
+    // browsers ignore the body and follow Location. 2026-06-10 incident.
+    process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID = 'ca-pub-4787764488539456';
+    const res = proxy(makeRequest('https://dekhopanchang.com/'));
+    expect([307, 308]).toContain(res.status);
+    const body = await res.text();
+    expect(body).toContain('google-adsense-account');
+    expect(body).toContain('ca-pub-4787764488539456');
+    expect(body).toContain('http-equiv="refresh"');
+    expect(res.headers.get('content-type')).toContain('text/html');
+  });
+
   it('honours Accept-Language for bare paths', () => {
     const res = proxy(
       makeRequest('https://dekhopanchang.com/panchang', {

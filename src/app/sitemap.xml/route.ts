@@ -1,30 +1,48 @@
-// Custom sitemap route — emits the full sitemap with gzip compression.
+// Sitemap INDEX — emits a small XML pointing at 9 per-locale sub-sitemaps.
 //
-// Why not Next.js's app/sitemap.ts metadata-route convention:
-//   1. Turbopack's metadata-route bundler shipped EMPTY chunks for our
-//      generateSitemaps()-sharded sitemap in the 2026-06-09 deploy
-//      (commit 07d2181f). The compiled bundle at
-//      .next/server/chunks/_next-internal_server_app_sitemap_*.js was
-//      143 bytes containing an empty function — buildAllEntries() never
-//      executed at build time. All 6 shards rendered as <urlset></urlset>.
-//      Locally the same code returned 1,842 URLs per shard.
-//   2. Next.js's MetadataRoute helper has no Content-Encoding control,
-//      so even when it does work, it serves the raw XML — 13.8 MB on
-//      the current 11,061-URL fan-out. GSC's sitemap fetcher reliably
-//      chokes on uncompressed XML above ~10 MB, producing "Couldn't
-//      fetch" — the original incident that prompted the sharding
-//      attempt.
+// Why this exists (2026-06-10 hotfix):
+//   The previous single-sitemap implementation built one ~13.5 MB
+//   uncompressed XML (10,820 URLs × 9 locales of alternates each).
+//   That fit Google's 50 MB / 50,000-URL sitemap limit comfortably,
+//   but Vercel's edge-cache layer enforces a tighter 5 MB UNCOMPRESSED
+//   response-body cap on prerendered routes. On a cold edge, the
+//   response was rejected with `x-vercel-error: CONTENT_TOO_LARGE`
+//   (HTTP 413) — Google's sitemap fetcher then reported "Couldn't
+//   fetch" and the index dried up.
 //
-// This route handler bypasses both. It calls buildSitemapEntries()
-// directly, serialises the urlset by hand, gzips, and returns the
-// compressed body with the right Content-Encoding header. ~13.8 MB raw
-// → ~500 KB gzipped, single fetch, no shard discovery needed.
+// History of attempts:
+//   - PR #622 (2026-06-09): sharded via Next.js `generateSitemaps()`
+//     metadata-route — shipped broken because Turbopack emitted empty
+//     bundles for the sharded variants (each `<urlset>` came out empty
+//     in prod, populated locally).
+//   - PR #625 (2026-06-09): replaced metadata-route with a single
+//     gzip route handler — fixed the Turbopack issue but kept the
+//     monolithic body, hitting the 5 MB cap once the URL count grew.
+//
+// This commit reuses the PR #625 route-handler approach (not affected
+// by the Turbopack bug) but splits the body into:
+//   /sitemap.xml      → this file, the INDEX (tiny — ~9 entries)
+//   /sitemaps/en      → per-locale child (handled by
+//                       app/sitemaps/[loc]/route.ts)
+//   /sitemaps/hi      → "
+//   ... × 9
+//
+// The shard path uses `/sitemaps/<loc>` rather than
+// `/sitemap-<loc>.xml` because Next.js dynamic segments must match an
+// entire folder name — a literal-prefixed folder like `sitemap-[loc].xml`
+// is parsed as a static name, not as a dynamic route.
+//
+// Each sub-sitemap is ~1,200 URLs / ~1.4 MB raw / ~25 KB gzipped.
+// All well inside Vercel's 5 MB cap.
+//
+// Google sitemap index spec: https://www.sitemaps.org/protocol.html#index
+// — Google accepts any URL as a sitemap location regardless of the
+// `.xml` suffix; Content-Type alone is what they check.
 
 import { gzipSync } from 'node:zlib';
-import { buildSitemapEntries } from '@/lib/seo/sitemap-data';
+import { BASE_URL } from '@/lib/seo/base-url';
+import { visibleLocales } from '@/lib/i18n/config';
 
-// Match what app/sitemap.ts used (1-day ISR — sitemap regen needs to
-// reflect daily content rolls like the 7-day horoscope window).
 export const revalidate = 86400;
 
 function xmlEscape(s: string): string {
@@ -36,39 +54,25 @@ function xmlEscape(s: string): string {
     .replace(/'/g, '&apos;');
 }
 
-function serializeSitemap(entries: ReturnType<typeof buildSitemapEntries>): string {
+function serializeIndex(): string {
+  const lastmod = new Date().toISOString();
   const lines: string[] = [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+    '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
   ];
-  for (const e of entries) {
-    lines.push('<url>');
-    lines.push(`<loc>${xmlEscape(e.url)}</loc>`);
-    // alternates.languages emits <xhtml:link rel="alternate" hreflang="…" href="…" />
-    const langs = (e.alternates?.languages ?? {}) as Record<string, string>;
-    for (const [lang, href] of Object.entries(langs)) {
-      lines.push(`<xhtml:link rel="alternate" hreflang="${xmlEscape(lang)}" href="${xmlEscape(href)}" />`);
-    }
-    if (e.lastModified) {
-      const iso = e.lastModified instanceof Date ? e.lastModified.toISOString() : String(e.lastModified);
-      lines.push(`<lastmod>${iso}</lastmod>`);
-    }
-    if (e.changeFrequency) {
-      lines.push(`<changefreq>${e.changeFrequency}</changefreq>`);
-    }
-    if (e.priority !== undefined) {
-      lines.push(`<priority>${e.priority}</priority>`);
-    }
-    lines.push('</url>');
+  for (const loc of visibleLocales) {
+    lines.push('<sitemap>');
+    lines.push(`<loc>${xmlEscape(`${BASE_URL}/sitemaps/${loc}`)}</loc>`);
+    lines.push(`<lastmod>${lastmod}</lastmod>`);
+    lines.push('</sitemap>');
   }
-  lines.push('</urlset>');
+  lines.push('</sitemapindex>');
   return lines.join('\n');
 }
 
 export function GET(): Response {
   try {
-    const entries = buildSitemapEntries();
-    const xml = serializeSitemap(entries);
+    const xml = serializeIndex();
     const gzipped = gzipSync(Buffer.from(xml, 'utf-8'));
     return new Response(gzipped, {
       status: 200,
@@ -80,7 +84,7 @@ export function GET(): Response {
       },
     });
   } catch (err) {
-    console.error('[sitemap.xml] generation failed:', err);
-    return new Response('Sitemap generation failed.', { status: 500 });
+    console.error('[sitemap.xml] index generation failed:', err);
+    return new Response('Sitemap index generation failed.', { status: 500 });
   }
 }

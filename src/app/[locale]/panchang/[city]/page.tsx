@@ -10,6 +10,8 @@ import WhatsAppShareBanner from '@/components/ui/WhatsAppShareBanner';
 import LearnConceptsBlock from '@/components/seo/LearnConceptsBlock';
 import { getCityBySlugExtended, getNearbyCitiesIndexable, isSeoIndexableCity } from '@/lib/constants/cities-extended';
 import { getCityDescriptor } from '@/lib/constants/city-descriptors';
+import { getStateLocale } from '@/lib/constants/state-name-locale';
+import { hasLocaleNativeCityContent } from '@/lib/seo/city-content-floor';
 import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
 import { generateDailyArticle, type ArticleCityConfig } from '@/lib/horoscope/daily-article';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -133,7 +135,7 @@ export async function generateMetadata({
       })
     : formatPanchangCityLabel('descDomesticTemplate', locale, {
         CITY: cityName,
-        STATE: city.state ?? '',
+        STATE: getStateLocale(city.state, locale),
       });
 
   const url = `${BASE_URL}/${locale}/panchang/${citySlug}`;
@@ -143,7 +145,15 @@ export async function generateMetadata({
   // is asked to drop it from the index. See cities-extended.ts
   // SEO_INDEXABLE_CITY_SLUGS for the keep-list and rationale (post-demotion
   // thin-content cut, 2026-06-07).
-  const isIndexable = isSeoIndexableCity(citySlug);
+  //
+  // Additional content-floor guard (Phase 0c, 2026-06-10): even for
+  // keep-list slugs, only index the (locale, slug) pair when the page
+  // carries a locale-native city name AND a non-empty locale descriptor.
+  // Catches the case where ta/te/bn/kn/gu overlays missed a slug — the
+  // page renders but Google isn't asked to canonicalise a near-duplicate
+  // English-fallback variant against the English page.
+  const isIndexable =
+    isSeoIndexableCity(citySlug) && hasLocaleNativeCityContent(citySlug, locale);
 
   return {
     title,
@@ -192,6 +202,10 @@ export default async function CityPanchangPage({
 
   const loc = (locale || 'en') as Locale;
   const cityName = tl(city.name, locale);
+  // Locale-rendered state/country — closes the "मुंबई, Maharashtra के लिए"
+  // mixed-script bleed (Phase 0a). JSON-LD blocks below keep `city.state`
+  // (English) on purpose — schema.org expects canonical names.
+  const stateLocale = getStateLocale(city.state, locale);
 
   const { date: now, year, month, day } = getCityLocalDate(city.timezone);
   const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
@@ -321,7 +335,7 @@ export default async function CityPanchangPage({
       <header className="text-center mb-12">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold-primary/20 bg-gold-primary/5 text-gold-primary text-xs font-bold mb-4">
           <MapPin size={14} />
-          {city.state}
+          {stateLocale}
         </div>
         <h1 className="text-4xl sm:text-5xl font-bold text-gold-light mb-3">
           {`${cityName} ${msg('panchangTitle', locale)}`}
@@ -340,7 +354,7 @@ export default async function CityPanchangPage({
         <p className="text-text-primary/80 text-sm leading-relaxed">
           {formatPanchangCityLabel('introTemplate', locale, {
             CITY: cityName,
-            STATE: city.state ?? '',
+            STATE: stateLocale,
             LAT: latStr,
             LNG: lngStr,
           })}
@@ -615,7 +629,7 @@ export default async function CityPanchangPage({
           {`${msg('aboutPanchang', locale)} ${cityName}`}
         </h2>
         <div className="prose prose-invert max-w-none text-text-primary/75 text-sm leading-relaxed space-y-4">
-          <p>{formatPanchangCityLabel('aboutPara1Template', locale, { CITY: cityName, STATE: city.state ?? '', LAT: latStr, LNG: lngStr })}</p>
+          <p>{formatPanchangCityLabel('aboutPara1Template', locale, { CITY: cityName, STATE: stateLocale, LAT: latStr, LNG: lngStr })}</p>
           <p>{formatPanchangCityLabel('aboutPara2Template', locale, { CITY: cityName, TZ: city.timezone })}</p>
           <p>{CL('aboutPara3', locale)}</p>
         </div>
@@ -672,7 +686,7 @@ export default async function CityPanchangPage({
               <div className="text-gold-light text-sm font-medium group-hover:text-gold-primary transition-colors">
                 {tl(c.name, locale)}
               </div>
-              <div className="text-text-secondary/50 text-xs">{c.state}</div>
+              <div className="text-text-secondary/50 text-xs">{getStateLocale(c.state, locale)}</div>
             </Link>
           ))}
         </div>

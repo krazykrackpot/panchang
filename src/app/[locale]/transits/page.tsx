@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Filter } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import InfoBlock from '@/components/ui/InfoBlock';
+import EmbedThisLink from '@/components/ui/EmbedThisLink';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import type { Locale,  LocaleText} from '@/types/panchang';
 import { useBirthDataStore } from '@/stores/birth-data-store';
@@ -348,6 +349,23 @@ export default function TransitsPage() {
           <span className="text-gold-gradient">{t('title')}</span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto" style={bodyFont}>{t('subtitle')}</p>
+        <div className="mt-4 flex justify-center">
+          <EmbedThisLink
+            type="transits"
+            locale={locale}
+            label={tl({
+              en: 'Embed this widget',
+              hi: 'इस विजेट को एम्बेड करें',
+              mr: 'हे विजेट एम्बेड करा',
+              mai: 'इ विजेटकेँ एम्बेड करू',
+              ta: 'இந்த விட்ஜெட்டை எம்பெட் செய்க',
+              te: 'ఈ విడ్జెట్‌ను పొందుపరచండి',
+              bn: 'এই উইজেটটি এম্বেড করুন',
+              gu: 'આ વિજેટ એમ્બેડ કરો',
+              kn: 'ಈ ವಿಜೆಟ್ ಅನ್ನು ಎಂಬೆಡ್ ಮಾಡಿ',
+            }, locale)}
+          />
+        </div>
       </motion.div>
 
       {/* What are Transits? */}

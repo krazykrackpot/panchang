@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
+import { tl } from '@/lib/utils/trilingual';
 
 const LABELS = {
   title: {
@@ -94,6 +95,31 @@ const FESTIVALS = [
   { month: 'Dhanu', en: 'Thiruvathira (Dhanu — women\'s festival honouring Shiva and Parvati; Thiruvathira Kali dance performed overnight)', hi: 'तिरुवातिरा (धनु — महिलाओं का उत्सव; तिरुवातिरा काळि नृत्य)' },
   { month: 'Kumbham', en: 'Shivaratri (Kumbham — all-night vigil at Shiva temples across Kerala)', hi: 'शिवरात्रि (कुंभम् — केरल के शिव मन्दिरों में रात्रि जागरण)' },
   { month: 'Karkidakam', en: 'Karkidaka Ramayana (entire month — daily recitation of Adhyatma Ramayana at homes and temples; considered spiritually protective during the difficult monsoon month)', hi: 'कर्कटक रामायणम् (पूरा माह — आध्यात्म रामायण का दैनिक पठन)' },
+];
+
+// ── Onam 10-day chronology ──
+const ONAM_DAYS: Array<{ day: string; tithi: string; desc: string }> = [
+  { day: 'Day 1 — Atham', tithi: 'Atham nakshatra', desc: 'The festival opens with the first Pookalam (Atha-poo) — a small circular flower arrangement at the entrance of the household, traditionally using only yellow flowers in a single concentric ring. Households visit the Thrikkakara temple (the principal Onam shrine, where Vamana is enshrined). Local fairs (Athachamayam) at Thripunithura include caparisoned elephants and pulikali (tiger dance) performers.' },
+  { day: 'Days 2–9 — Chithira through Uthradam', tithi: 'Chithira → Uthradam nakshatras', desc: 'Each day adds rings and colour palette to the pookalam. The famous Aranmula Vallamkali (snake-boat race) on the Pamba River is traditionally held on Uthrattathi, with elimination heats on Anizham. The snake boats (chundan vallam) and ritual songs (vanchipattu) trace back to Aranmula Parthasarathy temple tradition. Athapoo competitions are held — the largest community pookalams now reach 20+ feet in diameter.' },
+  { day: 'Day 10 — Thiruvonam', tithi: 'Thiruvonam nakshatra', desc: 'Mahabali arrives. The pookalam reaches its full magnificence with figurines of Vamana and Mahabali at the centre. The Onam Sadya is served on a plantain leaf at noon. Traditional accounts cite 24–26 dishes, served in a strict order: pickles (mango, lime, inji-puli) and pappadam on the upper-left; rice in the centre; parippu (lentil curry) followed by sambar, then aviyal, olan, kaalan, thoran, erissery, pachadi, kichadi; and finally three or four payasams (palada, ada-pradhaman, paal-pradhaman).' },
+];
+
+// ── Kerala school astronomers ──
+const KERALA_SCHOLARS: Array<{ name: string; dates: string; bio: string }> = [
+  { name: 'Madhava of Sangamagrama', dates: 'c. 1340–1425', bio: 'Founded the school at Tirur in modern Malappuram district. He is credited with discovering infinite-series expansions for trigonometric functions — sine, cosine, and arctangent — and an infinite series for π. These results predate Newton, Leibniz and Gregory by 250–300 years.' },
+  { name: 'Parameshvara', dates: 'c. 1380–1460', bio: 'A student of Madhava’s lineage, observed eclipses and refined Bhaskara II’s astronomical parameters. He authored Drigganita, a treatise that established a Kerala-school observational standard. Parameshvara is regarded by Kerala-tradition pandits as the source of the Drik tradition in panchanga computation.' },
+  { name: 'Nilakantha Somayaji', dates: '1444–1545', bio: 'Author of the Tantrasangraha (c. 1500) — the most influential single Kerala astronomer. Nilakantha proposed a partially heliocentric model: the inner planets Mercury and Venus orbit the Sun, while the Sun orbits the Earth. This is roughly the Tychonic model — proposed by Tycho Brahe 80 years later.' },
+  { name: 'Sankara Varman', dates: '1774–1839', bio: 'Completed Sadratnamala in 1819, the last great treatise of the Kerala school. Varman computed the value of π to 17 decimal places. The British civil servant C.M. Whish met Varman in Travancore and introduced his work to Western mathematics through his 1832 paper to the Royal Asiatic Society.' },
+];
+
+// ── Kollam Era ME table ──
+const KOLLAM_ERA_TABLE: Array<{ me: string; span: string; chingam: string }> = [
+  { me: '1201 ME', span: '17 Aug 2025 – 16 Aug 2026', chingam: '17 Aug 2025' },
+  { me: '1202 ME', span: '17 Aug 2026 – 16 Aug 2027', chingam: '17 Aug 2026' },
+  { me: '1203 ME', span: '17 Aug 2027 – 16 Aug 2028', chingam: '17 Aug 2027' },
+  { me: '1204 ME', span: '17 Aug 2028 – 16 Aug 2029', chingam: '17 Aug 2028' },
+  { me: '1205 ME', span: '17 Aug 2029 – 16 Aug 2030', chingam: '17 Aug 2029' },
+  { me: '1206 ME', span: '17 Aug 2030 – 16 Aug 2031', chingam: '17 Aug 2030' },
 ];
 
 export default function MalayalamCalendarPage() {
@@ -198,6 +224,123 @@ export default function MalayalamCalendarPage() {
           <p className="text-text-secondary text-sm leading-relaxed">
             {L('calendarText')}
           </p>
+        </section>
+
+        {/* Kollam Era + Malayalam Calendar Origin */}
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Kollam Era and the Malayalam Calendar Origin', hi: 'कोल्लम युग और मलयालम कैलेंडर की उत्पत्ति' }, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              The Malayalam calendar — known as the <strong>Kollavarsham</strong> or <strong>Kollam Era (Kollam Andu)</strong> — is one of the few South Asian calendars whose origin point can be dated to a single recorded historical year: <strong>825 CE</strong>. The era celebrated the foundation by Maruwan Sapir Iso, leader of Persian Christian settlers and trading guilds, following the liberation of Venad from Chola rule. A great convention was convened in the port city of Kollam by King Kulashekharan in 825 CE.
+            </p>
+            <p>
+              <strong>Kollam Andu vs Saka Andu in Kerala.</strong> Kerala’s traditional almanacs operate in two parallel eras. The civic year is the Kollam Era (Malayalam Era, ME), a sidereal solar calendar: the year begins on Chingam 1 (mid-August), the day the Sun enters sidereal Leo. The festival/temple year is computed against the Saka Era. For 2026 CE, the Kollam Era equivalence is <strong>ME 1201 → ME 1202</strong>, with the changeover at Chingam 1 (17 August 2026).
+            </p>
+            <p>
+              <strong>Why solar Kollam Andu while Tamil tradition is lunar — the divergence.</strong> Kerala’s astronomers — heirs to the Kerala School of Mathematics — refined sidereal solar computation to a level of precision sufficient to anchor major festivals to solar markers, while Tamil Nadu’s panchanga tradition preserved the lunar tithi as primary for ritual selection. The result is that Onam (Chingam Tiruvonam) falls on a fixed solar date roughly each year, while comparable Tamil festivals slide with the lunar cycle.
+            </p>
+            <p>
+              Kerala’s month names are zodiacal: <strong>Chingam (Leo), Kanni (Virgo), Thulam (Libra), Vrischikam (Scorpio), Dhanu (Sagittarius), Makaram (Capricorn), Kumbham (Aquarius), Meenam (Pisces), Medam (Aries), Edavam (Taurus), Mithunam (Gemini), Karkidakam (Cancer)</strong>.
+            </p>
+          </div>
+        </section>
+
+        {/* Onam day-by-day chronology */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Onam Day-by-Day Chronology — Atham to Thiruvonam', hi: 'ओणम् दिन-क्रम — अथम् से थिरुवोणम् तक' }, locale)}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-4">
+            Onam is Kerala’s grand harvest festival, celebrated over ten days in the Malayalam month of Chingam (August–September). The ten days are each named after the nakshatra (asterism) that anchors them: <strong>Atham → Chithira → Chodhi → Vishakam → Anizham → Thriketa → Moolam → Pooradam → Uthradam → Thiruvonam</strong>.
+          </p>
+          <div className="space-y-3">
+            {ONAM_DAYS.map((d) => (
+              <div key={d.day} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1.5">
+                  <span className="text-gold-light font-semibold text-sm">{d.day}</span>
+                  <span className="text-amber-400/70 text-xs">{d.tithi}</span>
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed">{d.desc}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-text-secondary text-sm leading-relaxed mt-4">
+            <strong>The Mahabali legend.</strong> Mahabali was a benevolent Asura king under whose rule Kerala flourished — no caste, no inequality, no hunger. The Devas, threatened by Mahabali’s prestige, requested Vishnu’s intervention. Vishnu took the form of <strong>Vamana</strong>, a young Brahmin dwarf, and approached Mahabali. Asked what he desired, Vamana requested “three paces of land.” Vamana expanded to cosmic stature: with one stride he covered all the earth, with the second the heavens. He asked where to place the third. Mahabali offered his own head; Vamana pressed him down to the netherworld (Patala). Recognising Mahabali’s devotion, Vishnu granted him an annual return to visit his people — that homecoming is Onam.
+          </p>
+        </section>
+
+        {/* Vishu — Agricultural New Year */}
+        <section className="bg-gradient-to-br from-amber-900/15 via-bg-secondary/40 to-bg-primary border border-amber-500/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Vishu — Kerala’s Agricultural New Year', hi: 'विशु — केरल का कृषि नव वर्ष' }, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              Vishu is the <strong>astronomical and agricultural new year</strong> of Kerala, observed on Medam 1 (Mesha Sankranti), 14 or 15 April. The word “Vishu” derives from Sanskrit meaning “equal,” historically connected to spring equinox celebrations.
+            </p>
+            <p>
+              <strong>Why is Vishu the agricultural new year while Kollam Andu marks the civic year?</strong> The Kollam Era begins in Chingam (August) — civically a moment of harvest gratitude, after the southwest monsoon. Vishu begins in Medam (April) — agriculturally the start of the planting cycle. Kerala’s farming calendar is built on Vishu, while its land registers and government year are built on Kollam Era.
+            </p>
+            <p>
+              <strong>Vishu Kani arrangement.</strong> The defining ritual is the <em>Kani</em> (“that which is seen first”) — a tray of auspicious items arranged the night before in the puja room, to be viewed at dawn as the very first sight of the new year. Items: <em>Uri</em> filled with raw rice, Konna flowers (Cassia fistula, golden shower tree blossoms), golden cucumber and golden lemon, a coconut cut open, jackfruit, betel leaves, arecanut, and gold coins, an Aranmula kannadi (polished bronze mirror), and a Krishna or Vishnu idol at the centre.
+            </p>
+            <p>
+              <strong>Konna flower significance.</strong> The Cassia fistula (Indian laburnum, Malayalam: <em>konna</em>) blooms in cascading yellow clusters precisely during Medam, and is the floral signifier of Vishu. Konna is considered the favourite flower of Krishna. A Vishu Kani without konna is considered incomplete.
+            </p>
+          </div>
+        </section>
+
+        {/* Kerala school astronomers */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Kerala’s Calendrical Scholars', hi: 'केरल के पंचांग-विद्वान' }, locale)}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-4">
+            Kerala’s calendar tradition is inseparable from the <strong>Kerala School of Astronomy and Mathematics</strong> — a school that, between the 14th and 19th centuries, produced some of the most sophisticated mathematical and astronomical work anywhere in the world.
+          </p>
+          <div className="space-y-3">
+            {KERALA_SCHOLARS.map((s) => (
+              <div key={s.name} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1.5">
+                  <span className="text-gold-light font-semibold text-sm">{s.name}</span>
+                  <span className="text-amber-400/70 text-xs">{s.dates}</span>
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed">{s.bio}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-text-secondary text-sm leading-relaxed mt-4">
+            <strong>Modern Devaswom Board Panchanga.</strong> The Kerala Devaswom Boards — five autonomous statutory bodies (Travancore, Cochin, Malabar, Guruvayur, Koodalmanikyam) — manage nearly 3,000 temples between them. Each board issues a temple festival calendar in consultation with <strong>hereditary tantris</strong>.
+          </p>
+        </section>
+
+        {/* Kollam Era 1201–1206 ME */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Kollam Era 1201–1206 ME (≈ 2025–2031 CE)', hi: 'कोल्लम युग 1201–1206 ME (≈ 2025–2031 CE)' }, locale)}
+          </h2>
+          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Kollam Era (ME)</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Gregorian Span</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Chingam 1</th>
+                </tr>
+              </thead>
+              <tbody>
+                {KOLLAM_ERA_TABLE.map((y, i) => (
+                  <tr key={y.me} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-gold-light font-semibold whitespace-nowrap">{y.me}</td>
+                    <td className="px-4 py-2.5 text-amber-400/80 text-xs whitespace-nowrap">{y.span}</td>
+                    <td className="px-4 py-2.5 text-text-secondary whitespace-nowrap">{y.chingam}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         {/* Related Links */}

@@ -311,6 +311,32 @@ const RELATED_LINKS = [
   { slug: 'ram-navami', en: 'Ramnavami Puja', hi: 'रामनवमी पूजा' },
 ];
 
+// ── Chhath Puja day-by-day chronology (Mithila variant) ──
+const CHHATH_DAYS: Array<{ day: string; name: string; desc: string }> = [
+  { day: 'Day 1', name: 'Nahay Khay (Chaturthi)', desc: 'The vrati takes a holy dip in a river or pond, returns home with water in a brass vessel, and prepares a single sattvic meal — typically lauki-bhaat (bottle gourd with rice) cooked in mud-pot over a wood fire, with kala chana. In Mithila this meal is shared with the household and is the last food before the next day’s nirjala fast begins.' },
+  { day: 'Day 2', name: 'Kharna (Panchami)', desc: 'The vrati observes nirjala fast from sunrise to sunset. After dusk, gur-ka-kheer (known in Maithili as rasiyaav) is prepared on a freshly plastered chulha and offered to Chhathi Maiya before being eaten with roti. From this evening’s last bite the 36-hour waterless fast begins — the most demanding austerity in the popular Hindu calendar. The Mithila household decorates the prasad area with aripan (rice-paste floor designs) featuring the sun, lotus, and footprints of Chhathi Maiya.' },
+  { day: 'Day 3', name: 'Sandhya Arghya (Shashthi)', desc: 'Family members carry the daura — a bamboo basket loaded with thekua (wheat-flour-jaggery biscuits), khajuriya, fresh sugarcane, bananas, coconut, ginger, turmeric root, radish, and seasonal fruit — to the riverbank or pond. The vrati stands in the water and offers arghya to the setting Sun from a brass sup (winnow) decorated with aripan motifs. Folk songs of Chhath are sung in chorus by women.' },
+  { day: 'Day 4', name: 'Usha Arghya (Saptami) and Parana', desc: 'Before sunrise, the family returns to the same ghat. Arghya is offered to the rising Sun. The vrati sips river water and consumes a morsel of prasad to break the 36-hour fast (parana). The thekua is distributed across the village as prasad — a Mithila Chhath household typically prepares 5–10 kg of thekua for distribution.' },
+];
+
+// ── Lakshmana Era table ──
+const MITHILA_ERA_TABLE: Array<{ year: number; le: number; tirhuta: string }> = [
+  { year: 2025, le: 907, tirhuta: '14 Apr 2025' },
+  { year: 2026, le: 908, tirhuta: '14 Apr 2026' },
+  { year: 2027, le: 909, tirhuta: '14 Apr 2027' },
+  { year: 2028, le: 910, tirhuta: '14 Apr 2028' },
+  { year: 2029, le: 911, tirhuta: '14 Apr 2029' },
+  { year: 2030, le: 912, tirhuta: '14 Apr 2030' },
+];
+
+// ── Famous Maithili scholars of the panchang tradition ──
+const MITHILA_SCHOLARS: Array<{ name: string; dates: string; bio: string }> = [
+  { name: 'Vidyapati Thakur', dates: 'c. 1352–1448 CE', bio: 'Stands first. Poet-laureate of the Oiniwar dynasty; served seven kings and two queens; King Sivasimha (r. 1402–1406) granted him the village of Bisapi and called him “the new Jayadeva.” Composed approximately five hundred love songs in vernacular Maithili between 1380 and 1406. Beyond poetry, his Sanskrit and Maithili colophons are dated in dual era (Lakshmana + Shaka), and his ritual treatises Durgabhakti-tarangini, Vivada-chudamani, and Likhanavali embed extensive calendrical material on vrata observance.' },
+  { name: 'Jyotirishwar Thakur', dates: 'c. 1290–1350 CE', bio: 'An older contemporary, authored Varnaratnakara — a Maithili encyclopaedic prose work that catalogues nakshatras, tithis, and ritual seasons. He is considered the first Maithili prose author.' },
+  { name: 'Surendra Jha “Suman”', dates: '1910–2002', bio: 'Represented Maithili at the Sahitya Akademi; his anthologies preserved the festival corpus that informs contemporary Maithili Panchanga publishing. Baldev Mishra (1890–1975) and Radha Krishna Choudhary (1921–1985) continued the work as Maithili literary historians; Jaykant Mishra (1922–2009) wrote the standard History of Maithili Literature in two volumes.' },
+  { name: 'Pt. Ramchandra Jha and modern compilers', dates: '20th–21st c.', bio: 'In the panchang-publishing tradition, Pt. Ramchandra Jha edited Vidyapati Panchang. The Vidyapati Gourav Manch produces an annual Maithili Panchang. The Kameshwar Singh Darbhanga Sanskrit University publishes a Vishwavidyala Panchang computed for Sitamarhi latitude. Contemporary almanac compilers include Dr. Mukti Kant Jha.' },
+];
+
 export default async function MithilaCalendarPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: localeStr } = await params;
   setRequestLocale(localeStr);
@@ -419,6 +445,113 @@ export default async function MithilaCalendarPage({ params }: { params: Promise<
                   </span>
                 </h3>
                 <p className="text-text-secondary text-sm leading-relaxed">{isHi ? f.hi : f.en}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Mithila Panchang + Lakshmana Era */}
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Mithila Panchang and the Maithili Calendar Origin', hi: 'मिथिला पंजी और मैथिली कैलेंडर की उत्पत्ति', mai: 'मिथिला पंजी आ मैथिली पंचांगक उद्गम' }, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              The Mithila Panchang tradition is one of the oldest continuously transmitted calendrical systems in South Asia, rooted in the literary and astronomical culture of medieval Mithila — straddling north Bihar (Darbhanga, Madhubani, Sitamarhi, Saharsa) and the Janakpur-Mithila plains of southern Nepal. Unlike many Indian regional panchangs that converge on either the Vikram or Shaka era, the Mithila tradition retains a distinct era of its own: the <strong>Lakshmana Era (also called Lakshmana Sena Samvat or La Sam)</strong>, established around 1118–1119 CE in honour of Lakshmana Sena, the Sena dynasty ruler of eastern India.
+            </p>
+            <p>
+              Most events in medieval Mithila were dated using this era, which saw extensive application throughout medieval Bengal and Bihar for roughly 400 years. For 2026 CE the corresponding Lakshmana Era year falls around <strong>908 LE</strong>. Scholars reconstructed the era’s start date primarily from Maithili and Bengali manuscripts plus copper-plate inscriptions, cross-referenced against Abul Fazl’s Akbarnama. The towering figure of the medieval Maithili calendar tradition is <strong>Vidyapati</strong> (c. 1352–1448 CE), whose dated colophons cite both the Lakshmana Era and the Shaka Era simultaneously — giving modern scholars one of the few solid anchors for dating medieval Mithila manuscripts.
+            </p>
+            <p>
+              Beneath the era system, the Maithili calendar proper follows the <strong>Tirhuta tradition</strong> — a tropical solar Hindu calendar in which the year begins on <strong>Mesh Sankranti</strong> (mid-April), the day the Sun enters sidereal Aries. The twelve months — Baishakh, Jyeshtha, Asharha, Shrabana, Bhadra, Ashvina, Kartika, Margashirsha, Pausha, Magha, Falguna, Chaitra — are grouped into six seasons. By tradition, panchang authors in Mithila compute longitudes for <strong>Sitamarhi</strong> (the latitude/longitude reference Maithili almanac publishers — including the Kameshwar Singh Darbhanga Sanskrit University almanac — have used for generations).
+            </p>
+            <p>
+              The <strong>Sarvatobhadra Chakra</strong> is the predictive instrument most closely associated with Maithil jyotish. It is a 9×9 grid of 81 cells integrating 28 nakshatras (including Abhijit), 12 rashis, 30 tithis from both pakshas, 7 weekdays and 50 Sanskrit aksharas. Because Abhijit nakshatra figures in it — a feature now absent from most predictive techniques — the chakra is considered an ancient transmission preserved through regional jyotish lineages. Source: Brahmayamala Tantra. Madhubani astrologers continue to draw the chakra by hand on aripan-style grids during important muhurta selections.
+            </p>
+          </div>
+        </section>
+
+        {/* Chhath Puja day-by-day */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Chhath Puja — Day-by-Day Mithila Chronology', hi: 'छठ पूजा — मिथिला दिन-क्रम', mai: 'छठ पूजा — मिथिला दिन-क्रम' }, locale)}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-4">
+            {tl({ en: 'The four-day arc proceeds as follows. Engine dates for Kartik Chhath 2026 will be confirmed by the panchang engine.', hi: 'चार दिनों का क्रम इस प्रकार है। 2026 के लिए कार्तिक छठ की engine-तिथियाँ engine पर पुष्टि होती हैं।', mai: 'चारि दिनक क्रम एहि प्रकारेँ अछि।' }, locale)}
+          </p>
+          <div className="space-y-3">
+            {CHHATH_DAYS.map((d) => (
+              <div key={d.day} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1.5">
+                  <span className="text-gold-light font-semibold text-sm">{d.day} — {d.name}</span>
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed">{d.desc}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-text-secondary text-sm leading-relaxed mt-4">
+            What distinguishes the Mithila observance: the use of <strong>aripan</strong> at every ritual surface; the singing of Maithili chhathi-geet rather than Bhojpuri chhath songs; the <em>sup</em> decorated in Madhubani style; and the explicit identification of Chhathi Maiya with <strong>Shashthi Devi</strong> of the Mithila folk pantheon.
+          </p>
+        </section>
+
+        {/* Sama-Chakeva */}
+        <section className="bg-gradient-to-br from-amber-900/15 via-bg-secondary/40 to-bg-primary border border-amber-500/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Sama-Chakeva — The Post-Chhath Sister-Brother Festival', hi: 'सामा-चकेवा — छठ-पश्चात् भगिनी-भ्राता पर्व', mai: 'सामा-चकेवा — छठक बाद बहिन-भाइक पर्व' }, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              Sama-Chakeva is celebrated <strong>only in Mithila</strong> and unknown in neighbouring regions. The festival begins on the night of Kartik Chhath (Shukla Saptami) and concludes seven to eleven days later on <strong>Kartik Purnima</strong>.
+            </p>
+            <p>
+              The mythological core: <strong>Sama</strong>, daughter of Krishna, was falsely accused of impropriety by a courtier named Chugala and cursed by Krishna to be transformed into a bird (chakeva is the male, sama the female of a migratory pair). Her brother Samba performs tapas, and through his devotion she is restored to human form. The painted clay birds are tributes to the migratory birds that begin arriving in the Mithila plains from the Himalayas at exactly this season.
+            </p>
+            <p>
+              On the opening night, unmarried girls acquire painted clay figurines of Sama, Chakeva, Chugala (the slanderer), Jhailwala (cymbalist), Mirdangiya (drummer), satabhaiya (seven brothers), and various animals. Local artisans hand-paint these with the same red, black, and yellow pigments used in Madhubani painting. Across the seven to eleven days, every evening at dusk the girls carry the clay figurines in baskets to a courtyard or the village pond, sing the <em>Sama-Chakeva geet</em> — a corpus of folk songs older than recorded Maithili literature — and arrange the figurines in tableaux; the Chugala figurine is symbolically punished (its mouth burned with a torch) each evening. On Kartik Purnima the clay figurines are ritually immersed; sisters weep for “Sama returning to her bird-form,” and brothers promise to bring her back next year.
+            </p>
+          </div>
+        </section>
+
+        {/* Lakshmana Era table */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Mithila Cultural Calendar 2025–2030', hi: 'मिथिला सांस्कृतिक कैलेंडर 2025–2030', mai: 'मिथिला सांस्कृतिक कैलेंडर 2025–2030' }, locale)}
+          </h2>
+          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Gregorian Year</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Lakshmana Era</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Tirhuta Year Start (Jur Sital)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {MITHILA_ERA_TABLE.map((y, i) => (
+                  <tr key={y.year} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-text-primary font-medium">{y.year} CE</td>
+                    <td className="px-4 py-2.5 text-gold-light">{y.le} LE</td>
+                    <td className="px-4 py-2.5 text-amber-400/80 text-xs">{y.tirhuta}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Famous Maithili scholars of the panchang tradition */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Maithili Poets and Scholars of the Panchang Tradition', hi: 'पंजी परम्परा के मैथिली कवि एवं विद्वान', mai: 'पंजी परम्पराक मैथिली कवि आ विद्वान' }, locale)}
+          </h2>
+          <div className="space-y-3">
+            {MITHILA_SCHOLARS.map((s) => (
+              <div key={s.name} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1.5">
+                  <span className="text-gold-light font-semibold text-sm">{s.name}</span>
+                  <span className="text-amber-400/70 text-xs">{s.dates}</span>
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed">{s.bio}</p>
               </div>
             ))}
           </div>

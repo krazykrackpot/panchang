@@ -364,6 +364,28 @@ const nextConfig: NextConfig = {
           { key: 'X-Robots-Tag', value: 'noindex' },
         ],
       },
+      // Sitemap index + per-locale shards — Next.js's app-router layer
+      // injects `Vary: rsc, next-router-...` on every route response,
+      // dropping the `Vary: Accept-Encoding` the route handler sets.
+      // Those RSC variants are inert for a `route.ts` returning a single
+      // gzipped body but the missing Accept-Encoding leaves CDNs unable
+      // to vary on compression negotiation. Override at the framework
+      // layer for both the index (/sitemap.xml) and each shard
+      // (/sitemap-{en,hi,…}.xml). Shards added 2026-06-10 to bypass
+      // Vercel's 5 MB prerender body cap (single sitemap hit 13.5 MB
+      // and returned HTTP 413 CONTENT_TOO_LARGE).
+      {
+        source: '/sitemap.xml',
+        headers: [
+          { key: 'Vary', value: 'Accept-Encoding' },
+        ],
+      },
+      {
+        source: '/sitemaps/:loc',
+        headers: [
+          { key: 'Vary', value: 'Accept-Encoding' },
+        ],
+      },
       {
         source: '/(.*)',
         headers: [

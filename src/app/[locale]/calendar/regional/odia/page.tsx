@@ -3,6 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Locale, LocaleText } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { Link } from '@/lib/i18n/navigation';
+import { engineDate as ed, nextUpcoming, todayInIst } from '@/lib/seo/regional-faq-dates';
 import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
 
 const LABELS = {
@@ -198,48 +199,42 @@ const ODIA_MONTHS = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 2026 Odia Festival Dates
-// Reference: mainstream reference panchangs for Bhubaneswar/Puri
+// Odia Festival Dates — engine-driven, NEXT upcoming occurrence only.
+// Computed for Bhubaneswar / Puri (IST canonical).
 // ═══════════════════════════════════════════════════════════════════════════
-
-const FESTIVAL_DATES_2026 = [
-  { en: 'Makar Mela / Makar Sankranti', or: 'ମକର ମେଳା / ମକର ସଂକ୍ରାନ୍ତି', date: 'Wed, 14 Jan 2026', tithi: 'Paush Krishna Pratipada', nakshatra: 'Uttara Ashadha' },
-  { en: 'Saraswati Puja (Vasant Panchami)', or: 'ସରସ୍ୱତୀ ପୂଜା (ବସନ୍ତ ପଞ୍ଚମୀ)', date: 'Mon, 23 Feb 2026', tithi: 'Magha Shukla Panchami', nakshatra: 'Shravana' },
-  { en: 'Dola Purnima / Holi', or: 'ଦୋଳ ପୂର୍ଣ୍ଣିମା / ହୋଲି', date: 'Tue, 3 Mar 2026', tithi: 'Phalguna Purnima', nakshatra: 'Uttara Phalguni' },
-  { en: 'Pana Sankranti (Odia New Year)', or: 'ପଣା ସଂକ୍ରାନ୍ତି (ମହା ବିଷୁବ ସଂକ୍ରାନ୍ତି)', date: 'Tue, 14 Apr 2026', tithi: 'Chaitra Krishna Amavasya', nakshatra: 'Revati' },
-  { en: 'Akshaya Tritiya / Chandan Yatra begins', or: 'ଅକ୍ଷୟ ତୃତୀୟା / ଚନ୍ଦନ ଯାତ୍ରା', date: 'Fri, 1 May 2026', tithi: 'Baisakha Shukla Tritiya', nakshatra: 'Rohini' },
-  { en: 'Raja Parba Day 1 — Pahili Raja', or: 'ରଜ ପର୍ବ (ପହିଲି ରଜ)', date: 'Sun, 14 Jun 2026', tithi: 'Jyestha Krishna Trayodashi', nakshatra: 'Bharani' },
-  { en: 'Raja Parba Day 2 — Mithuna Sankranti', or: 'ରଜ ପର୍ବ (ମିଥୁନ ସଂକ୍ରାନ୍ତି)', date: 'Mon, 15 Jun 2026', tithi: 'Jyestha Krishna Chaturdashi', nakshatra: 'Krittika' },
-  { en: 'Raja Parba Day 3 — Basi Raja', or: 'ରଜ ପର୍ବ (ବାସି ରଜ)', date: 'Tue, 16 Jun 2026', tithi: 'Jyestha Amavasya', nakshatra: 'Rohini' },
-  { en: 'Rath Yatra (Puri)', or: 'ରଥଯାତ୍ରା (ପୁରୀ)', date: 'Mon, 29 Jun 2026', tithi: 'Ashadha Shukla Dwitiya', nakshatra: 'Pushya' },
-  { en: 'Bahuda Yatra (Return Rath Yatra)', or: 'ବାହୁଡ଼ା ଯାତ୍ରା', date: 'Tue, 7 Jul 2026', tithi: 'Ashadha Shukla Dashami', nakshatra: 'Vishakha' },
-  { en: 'Suna Besha (Golden Attire)', or: 'ସୁନା ବେଶ', date: 'Wed, 8 Jul 2026', tithi: 'Ashadha Shukla Ekadashi', nakshatra: 'Anuradha' },
-  { en: 'Kumar Purnima', or: 'କୁମାର ପୂର୍ଣ୍ଣିମା', date: 'Sat, 24 Oct 2026', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
-  { en: 'Diwali (Kali Puja)', or: 'ଦୀପାବଳୀ (କାଳୀ ପୂଜା)', date: 'Sun, 8 Nov 2026', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Swati' },
-  { en: 'Manabasa Gurubar (1st Thursday)', or: 'ମାଣବସା ଗୁରୁବାର', date: 'Thu, 19 Nov 2026', tithi: 'Margasira Krishna Pratipada', nakshatra: 'Uttara Phalguni' },
-  { en: 'Prathamastami', or: 'ପ୍ରଥମାଷ୍ଟମୀ', date: 'Thu, 26 Nov 2026', tithi: 'Margasira Krishna Ashtami', nakshatra: 'Pushya' },
-];
-
-const FESTIVAL_DATES_2027 = [
-  { en: 'Makar Mela / Makar Sankranti', or: 'ମକର ମେଳା / ମକର ସଂକ୍ରାନ୍ତି', date: 'Thu, 14 Jan 2027', tithi: 'Paush Shukla Dashami', nakshatra: 'Shravana' },
-  { en: 'Saraswati Puja (Vasant Panchami)', or: 'ସରସ୍ୱତୀ ପୂଜା (ବସନ୍ତ ପଞ୍ଚମୀ)', date: 'Thu, 11 Feb 2027', tithi: 'Magha Shukla Panchami', nakshatra: 'Shravana' },
-  { en: 'Dola Purnima / Holi', or: 'ଦୋଳ ପୂର୍ଣ୍ଣିମା / ହୋଲି', date: 'Sun, 22 Feb 2027', tithi: 'Phalguna Purnima', nakshatra: 'Purva Phalguni' },
-  { en: 'Pana Sankranti (Odia New Year)', or: 'ପଣା ସଂକ୍ରାନ୍ତି (ମହା ବିଷୁବ ସଂକ୍ରାନ୍ତି)', date: 'Wed, 14 Apr 2027', tithi: 'Chaitra Shukla Dvadashi', nakshatra: 'Uttara Phalguni' },
-  { en: 'Raja Parba Day 1 — Pahili Raja', or: 'ରଜ ପର୍ବ (ପହିଲି ରଜ)', date: 'Mon, 14 Jun 2027', tithi: 'Jyestha Shukla Chaturdashi', nakshatra: 'Jyestha' },
-  { en: 'Raja Parba Day 2 — Mithuna Sankranti', or: 'ରଜ ପର୍ବ (ମିଥୁନ ସଂକ୍ରାନ୍ତି)', date: 'Tue, 15 Jun 2027', tithi: 'Jyestha Purnima', nakshatra: 'Mula' },
-  { en: 'Raja Parba Day 3 — Basi Raja', or: 'ରଜ ପର୍ବ (ବାସି ରଜ)', date: 'Wed, 16 Jun 2027', tithi: 'Ashadha Krishna Pratipada', nakshatra: 'Purva Ashadha' },
-  { en: 'Rath Yatra (Puri)', or: 'ରଥଯାତ୍ରା (ପୁରୀ)', date: 'Fri, 18 Jun 2027', tithi: 'Ashadha Shukla Dwitiya', nakshatra: 'Pushya' },
-  { en: 'Bahuda Yatra (Return Rath Yatra)', or: 'ବାହୁଡ଼ା ଯାତ୍ରା', date: 'Sat, 26 Jun 2027', tithi: 'Ashadha Shukla Dashami', nakshatra: 'Vishakha' },
-  { en: 'Kumar Purnima', or: 'କୁମାର ପୂର୍ଣ୍ଣିମା', date: 'Wed, 13 Oct 2027', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
-  { en: 'Diwali', or: 'ଦୀପାବଳୀ', date: 'Thu, 28 Oct 2027', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Chitra' },
-  { en: 'Prathamastami', or: 'ପ୍ରଥମାଷ୍ଟମୀ', date: 'Mon, 15 Nov 2027', tithi: 'Margasira Krishna Ashtami', nakshatra: 'Pushya' },
+interface OdiaFestival { en: string; hi: string; or: string; engineKey: string; tithi: string }
+const ODIA_FESTIVALS: OdiaFestival[] = [
+  { en: 'Makar Sankranti',                       hi: 'मकर संक्रान्ति',                        or: 'ମକର ସଂକ୍ରାନ୍ତି',                     engineKey: 'Makar Sankranti',                  tithi: 'Pausha (Solar — Capricorn ingress)' },
+  { en: 'Saraswati Puja (Vasant Panchami)',      hi: 'सरस्वती पूजा (वसन्त पंचमी)',          or: 'ସରସ୍ୱତୀ ପୂଜା (ବସନ୍ତ ପଞ୍ଚମୀ)',         engineKey: 'Vasant Panchami',                  tithi: 'Magha Shukla Panchami' },
+  { en: 'Maha Shivaratri',                       hi: 'महा शिवरात्रि',                         or: 'ମହା ଶିବରାତ୍ରୀ',                       engineKey: 'Maha Shivaratri',                  tithi: 'Phalguna Krishna Chaturdashi' },
+  { en: 'Dola Purnima / Holi',                   hi: 'दोल पूर्णिमा / होली',                  or: 'ଦୋଳ ପୂର୍ଣ୍ଣିମା / ହୋଲି',             engineKey: 'Holi',                              tithi: 'Phalguna Purnima' },
+  { en: 'Pana Sankranti (Odia New Year)',        hi: 'पणा संक्रान्ति (ओड़िया नव वर्ष)',     or: 'ପଣା ସଂକ୍ରାନ୍ତି (ମହା ବିଷୁବ ସଂକ୍ରାନ୍ତି)', engineKey: 'Pana Sankranti',                   tithi: 'Mesha Sankranti (Solar)' },
+  { en: 'Akshaya Tritiya (Chandan Yatra begins)', hi: 'अक्षय तृतीया (चन्दन यात्रा आरम्भ)',  or: 'ଅକ୍ଷୟ ତୃତୀୟା (ଚନ୍ଦନ ଯାତ୍ରା ଆରମ୍ଭ)',  engineKey: 'Akshaya Tritiya',                  tithi: 'Vaishakha Shukla Tritiya' },
+  { en: 'Raja Parba (Mithuna Sankranti)',         hi: 'रज पर्व (मिथुन संक्रान्ति)',           or: 'ରଜ ପର୍ବ (ମିଥୁନ ସଂକ୍ରାନ୍ତି)',          engineKey: 'Raja Parba',                       tithi: 'Mithuna Sankranti (3-day window)' },
+  { en: 'Snana Purnima (Jagannath Bath)',        hi: 'स्नान पूर्णिमा (जगन्नाथ स्नान)',       or: 'ସ୍ନାନ ପୂର୍ଣ୍ଣିମା (ଜଗନ୍ନାଥ ସ୍ନାନ)',  engineKey: 'Snana Purnima',                    tithi: 'Jyeshtha Purnima' },
+  { en: 'Jagannath Rath Yatra (Puri)',           hi: 'जगन्नाथ रथ यात्रा (पुरी)',             or: 'ଜଗନ୍ନାଥ ରଥଯାତ୍ରା (ପୁରୀ)',           engineKey: 'Jagannath Rath Yatra',             tithi: 'Ashadha Shukla Dwitiya' },
+  { en: 'Bahuda Yatra (Return Rath Yatra)',      hi: 'बहुदा यात्रा (वापसी रथ यात्रा)',       or: 'ବାହୁଡ଼ା ଯାତ୍ରା',                       engineKey: 'Bahuda Yatra',                     tithi: 'Ashadha Shukla Dashami' },
+  { en: 'Suna Besha (Golden Attire)',            hi: 'सुना बेश (स्वर्ण वेश)',                  or: 'ସୁନା ବେଶ',                            engineKey: 'Suna Besha',                       tithi: 'Ashadha Shukla Ekadashi' },
+  { en: 'Niladri Bije',                          hi: 'नीलाद्रि बिजे',                          or: 'ନୀଳାଦ୍ରି ବିଜେ',                       engineKey: 'Niladri Bije',                     tithi: 'Ashadha Shukla Trayodashi' },
+  { en: 'Janmashtami',                           hi: 'जन्माष्टमी',                             or: 'ଜନ୍ମାଷ୍ଟମୀ',                          engineKey: 'Janmashtami',                      tithi: 'Bhadrapada Krishna Ashtami' },
+  { en: 'Ganesh Chaturthi',                      hi: 'गणेश चतुर्थी',                          or: 'ଗଣେଶ ଚତୁର୍ଥୀ',                        engineKey: 'Ganesh Chaturthi',                 tithi: 'Bhadrapada Shukla Chaturthi' },
+  { en: 'Mahalaya',                              hi: 'महालया',                                 or: 'ମହାଳୟା',                              engineKey: 'Mahalaya (Sarva Pitru Amavasya)',  tithi: 'Bhadrapada Amavasya' },
+  { en: 'Durga Puja (Maha Ashtami)',             hi: 'दुर्गा पूजा (महा अष्टमी)',             or: 'ଦୁର୍ଗା ପୂଜା (ମହା ଅଷ୍ଟମୀ)',           engineKey: 'Durga Puja Ashtami',               tithi: 'Ashwin Shukla Ashtami' },
+  { en: 'Vijayadashami',                         hi: 'विजयादशमी',                              or: 'ବିଜୟଦଶମୀ',                            engineKey: 'Sindoor Khela / Vijaya Dashami',   tithi: 'Ashwin Shukla Dashami' },
+  { en: 'Kumar Purnima',                         hi: 'कुमार पूर्णिमा',                         or: 'କୁମାର ପୂର୍ଣ୍ଣିମା',                    engineKey: 'Sharad Purnima',                   tithi: 'Ashwin Purnima' },
+  { en: 'Diwali (Kali Puja)',                    hi: 'दीवाली (काली पूजा)',                  or: 'ଦୀପାବଳୀ (କାଳୀ ପୂଜା)',                engineKey: 'Diwali',                            tithi: 'Kartik Krishna Amavasya' },
+  { en: 'Kartik Purnima',                        hi: 'कार्तिक पूर्णिमा',                     or: 'କାର୍ତ୍ତିକ ପୂର୍ଣ୍ଣିମା',                engineKey: 'Kartik Purnima',                   tithi: 'Kartik Purnima' },
+  { en: 'Prathamastami',                         hi: 'प्रथमाष्टमी',                            or: 'ପ୍ରଥମାଷ୍ଟମୀ',                          engineKey: 'Prathamastami',                    tithi: 'Margashira Krishna Ashtami' },
 ];
 
 // FAQ data for structured data
 const FAQ_DATA = [
   {
     q: { en: 'When is Rath Yatra 2026?', hi: 'रथ यात्रा 2026 कब है?' },
-    a: { en: 'Rath Yatra 2026 falls on Monday, 29 June 2026, on Ashadha Shukla Dwitiya. The grand chariot procession takes place in Puri, Odisha. The Return Rath Yatra (Bahuda Yatra) is on 7 July, and Suna Besha (Golden Attire ceremony) is on 8 July 2026.', hi: 'रथ यात्रा 2026 सोमवार, 29 जून 2026 को आषाढ़ शुक्ल द्वितीया पर पड़ती है। बहुदा यात्रा 7 जुलाई और सुना बेश 8 जुलाई 2026 को है।' },
+    a: {
+      en: `Rath Yatra 2026 (Puri, Odisha) falls on ${ed(2026,'Jagannath Rath Yatra','en')}, on Ashadha Shukla Dwitiya. The grand chariot procession takes place in Puri. The Return Rath Yatra (Bahuda Yatra) is on ${ed(2026,'Bahuda Yatra','en')}.`,
+      hi: `रथ यात्रा 2026 (पुरी, ओड़िशा) ${ed(2026,'Jagannath Rath Yatra','hi')} को आषाढ़ शुक्ल द्वितीया पर पड़ती है। बहुदा यात्रा ${ed(2026,'Bahuda Yatra','hi')} को है।`,
+    },
   },
   {
     q: { en: 'What is Pana Sankranti?', hi: 'पना संक्रान्ति क्या है?' },
@@ -250,8 +245,13 @@ const FAQ_DATA = [
     a: { en: 'The Odia calendar (Panji) is a sidereal solar calendar based on the Surya Siddhanta. Each month begins on Sankranti, the day the Sun enters a new zodiac sign. Month lengths vary from 29 to 32 days.', hi: 'ओड़िआ कैलेंडर (पंजी) सूर्य सिद्धान्त पर आधारित एक नाक्षत्र सौर कैलेंडर है। प्रत्येक मास संक्रान्ति पर आरम्भ होता है।' },
   },
   {
-    q: { en: 'When is Raja Parba 2026?', hi: 'रज पर्व 2026 कब है?' },
-    a: { en: 'Raja Parba 2026 falls from Sunday, 14 June to Tuesday, 16 June 2026. The three days are Pahili Raja (14 Jun), Mithuna Sankranti/Raja proper (15 Jun), and Basi Raja (16 Jun).', hi: 'रज पर्व 2026 रविवार 14 जून से मंगलवार 16 जून 2026 तक पड़ता है।' },
+    q: { en: 'When is Raja Parba?', hi: 'रज पर्व कब है?' },
+    // Raja Parba is not currently enumerated in festival-generator.ts.
+    // Description without a specific year-date until an engine entry
+    // is added — pinned to Mithuna Sankranti (Sun's entry into Mithuna)
+    // which is mid-June (typically 14-16 June). To restore a specific
+    // year date, add Raja Parba to festival-defs.ts first.
+    a: { en: 'Raja Parba is a three-day Odia agrarian festival celebrating Mother Earth (Bhumi Devi). The three days are Pahili Raja (day before Mithuna Sankranti), Raja Sankranti / Mithuna Sankranti (the main day, when the Sun enters Mithuna rashi — typically around 14-15 June), and Basi Raja (day after Mithuna Sankranti).', hi: 'रज पर्व मिथुन संक्रान्ति (सूर्य का मिथुन राशि में प्रवेश, सामान्यत: मध्य जून) के आसपास तीन दिनों तक मनाया जाने वाला ओड़िआ कृषि पर्व है। तीन दिन: पहिली रजा (मिथुन संक्रान्ति से एक दिन पहले), रजा संक्रान्ति (मुख्य दिन), बसी रजा (अगले दिन)।' },
   },
   {
     q: { en: 'What is the current Odia year?', hi: 'वर्तमान ओड़िआ वर्ष क्या है?' },
@@ -326,73 +326,49 @@ export default async function OdiaCalendarPage({ params }: { params: Promise<{ l
           </div>
         </section>
 
-        {/* 2026 Odia Festival Dates */}
-        <section>
-          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
-            {L('festivalsTitle')}
-          </h2>
-          <p className="text-text-secondary text-sm leading-relaxed mb-5">
-            {isHi
-              ? 'भुवनेश्वर/पुरी सन्दर्भ के साथ 2026 के प्रमुख ओड़िआ त्योहारों की सटीक तिथियां।'
-              : 'Exact dates for all major Odia festivals in 2026 with tithi and nakshatra computed for Bhubaneswar/Puri.'}
-          </p>
-          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colFestival', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colDate', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colTithi', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colNakshatra', locale)}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {FESTIVAL_DATES_2026.map((f, i) => (
-                  <tr key={`${f.en}-${f.date}`} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
-                    <td className="px-4 py-2.5 text-text-primary font-medium">{isHi ? f.or : f.en}</td>
-                    <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.nakshatra}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* 2027 Odia Festival Dates */}
-        <section>
-          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
-            {L('festivals2027Title')}
-          </h2>
-          <p className="text-text-secondary text-sm leading-relaxed mb-5">
-            {isHi
-              ? '2027 में प्रमुख ओड़िआ त्योहार। ओड़िआ वर्ष 1436 अम्ली 14 अप्रैल 2027 से आरम्भ होगा।'
-              : 'Major Odia festival dates for 2027. Odia year 1436 Amli begins on 14 April 2027.'}
-          </p>
-          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colFestival', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colDate', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colTithi', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colNakshatra', locale)}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {FESTIVAL_DATES_2027.map((f, i) => (
-                  <tr key={`${f.en}-${f.date}`} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
-                    <td className="px-4 py-2.5 text-text-primary font-medium">{isHi ? f.or : f.en}</td>
-                    <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.nakshatra}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+        {/* Upcoming Odia Festival Dates — engine-driven */}
+        {(() => {
+          const nowIso = todayInIst();
+          const upcoming = ODIA_FESTIVALS
+            .map((f) => {
+              const hit = nextUpcoming(f.engineKey, locale, nowIso);
+              return hit ? { f, iso: hit.iso, display: hit.display } : null;
+            })
+            .filter((x): x is { f: OdiaFestival; iso: string; display: string } => x !== null)
+            .sort((a, b) => a.iso.localeCompare(b.iso));
+          return (
+            <section>
+              <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+                {L('festivalsTitle')}
+              </h2>
+              <p className="text-text-secondary text-sm leading-relaxed mb-5">
+                {isHi
+                  ? 'भुवनेश्वर/पुरी सन्दर्भ के साथ प्रमुख ओड़िआ त्योहारों की आगामी तिथियां। रथ यात्रा, दुर्गा पूजा, कुमार पूर्णिमा, दीवाली — सभी तिथियां पंचांगम् engine से गणित और स्वतः अद्यतित।'
+                  : 'Upcoming dates for major Odia festivals with tithi (lunar day), computed for Bhubaneswar/Puri. Includes Rath Yatra (Puri), Bahuda Yatra, Durga Puja, Kumar Purnima, Diwali, Kartik Purnima, and other observances from the Odia Panchang. Dates auto-update daily from our panchang engine — never stale.'}
+              </p>
+              <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colFestival', locale)}</th>
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colDate', locale)}</th>
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colTithi', locale)}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {upcoming.map(({ f, iso, display }, i) => (
+                      <tr key={`${f.en}-${iso}`} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                        <td className="px-4 py-2.5 text-text-primary font-medium">{isHi ? f.hi : f.en}</td>
+                        <td className="px-4 py-2.5 text-amber-400/80">{display}</td>
+                        <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          );
+        })()}
 
         {/* Rath Yatra Deep Dive */}
         <section className="bg-gradient-to-br from-amber-900/15 via-bg-secondary/40 to-bg-primary border border-gold-primary/12 rounded-2xl p-6">

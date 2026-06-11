@@ -5,6 +5,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { Link } from '@/lib/i18n/navigation';
 import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { engineDate as ed, nextUpcoming, todayInIst } from '@/lib/seo/regional-faq-dates';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 const LABELS = {
@@ -184,47 +185,59 @@ const FESTIVALS = [
 
 // ═══════════════════════════════════════════════════════════════════════════
 // 2026–2027 Mithila Festival Dates
-// Sources: mainstream reference panchangs reference for Darbhanga/Madhubani
+//
+// Engine-driven (2026-06-11 rebuild): each row carries an engineKey that
+// maps to festival-generator.ts canonical festival names. The `date`
+// column is computed at render time via ed(year, engineKey, locale) so
+// the table can never drift from the engine. Festivals not currently
+// enumerated in the engine (Madhushravani, Sama-Chakeva, Chaiti Chhath,
+// Tilkut Sankranti) are deferred to a follow-up that adds them to
+// festival-defs.ts.
 // ═══════════════════════════════════════════════════════════════════════════
 
-const FESTIVAL_DATES_2026 = [
-  { en: 'Makar Sankranti (Tilkut distribution)', hi: 'मकर संक्रान्ति (तिलकुट वितरण)', mai: 'मकर संक्रान्ति (तिलकुट बांटल जाइत अछि)', date: 'Wed, 14 Jan 2026', tithi: 'Paush Krishna Pratipada' },
-  { en: 'Saraswati Puja / Vasant Panchami', hi: 'सरस्वती पूजा / वसन्त पंचमी', mai: 'सरस्वती पूजा / बसन्त पंचमी', date: 'Mon, 23 Feb 2026', tithi: 'Magha Shukla Panchami' },
-  { en: 'Holi / Phaguwa (Holika Dahan)', hi: 'होली / फगुआ (होलिका दहन)', mai: 'होली / फगुआ (होलिका दहन)', date: 'Tue, 3 Mar 2026', tithi: 'Phalguna Purnima' },
-  { en: 'Chaiti Chhath (Nahay Khay)', hi: 'चैती छठ (नहाय खाय)', mai: 'चैती छठि (नहाय खाय)', date: 'Sun, 29 Mar 2026', tithi: 'Chaitra Shukla Chaturthi' },
-  { en: 'Chaiti Chhath (Usha Arghya)', hi: 'चैती छठ (ऊषा अर्घ्य)', mai: 'चैती छठि (ऊषा अर्घ्य)', date: 'Wed, 1 Apr 2026', tithi: 'Chaitra Shukla Shashthi' },
-  { en: 'Ramnavami', hi: 'रामनवमी', mai: 'रामनवमी', date: 'Sat, 4 Apr 2026', tithi: 'Chaitra Shukla Navami' },
-  { en: 'Madhushravani begins (Shravan)', hi: 'मधुश्रावणी आरम्भ (श्रावण)', mai: 'मधुश्रावणी आरम्भ (सावन)', date: 'Mon, 20 Jul 2026', tithi: 'Shravan Shukla Chaturthi (approx.)' },
-  { en: 'Jitiya / Jivitputrika Vrat', hi: 'जितिया / जीवित्पुत्रिका व्रत', mai: 'जितिया / जीवित्पुत्रिका व्रत', date: 'Fri, 25 Sep 2026', tithi: 'Ashwin Krishna Ashtami' },
-  { en: 'Navaratri begins (Ghatasthapana)', hi: 'नवरात्रि आरम्भ (घटस्थापना)', mai: 'नवरात्रि आरम्भ (घटस्थापना)', date: 'Thu, 8 Oct 2026', tithi: 'Ashwin Shukla Pratipada' },
-  { en: 'Dussehra / Vijayadashami', hi: 'दशहरा / विजयादशमी', mai: 'दशहरा / विजयादशमी', date: 'Sat, 17 Oct 2026', tithi: 'Ashwin Shukla Dashami' },
-  { en: 'Sama-Chakeva begins (Kojagara Purnima)', hi: 'सामा-चकेवा आरम्भ (कोजागरा पूर्णिमा)', mai: 'सामा-चकेवा आरम्भ (कोजागरा पूर्णिमा)', date: 'Sat, 24 Oct 2026', tithi: 'Ashwin Purnima' },
-  { en: 'Diwali (Lakshmi Puja)', hi: 'दीवाली (लक्ष्मी पूजा)', mai: 'दीपावली (लक्ष्मी पूजा)', date: 'Sun, 8 Nov 2026', tithi: 'Kartik Krishna Amavasya' },
-  { en: 'Chhath Puja  –  Nahay Khay (Day 1)', hi: 'छठ पूजा  –  नहाय खाय (दिन 1)', mai: 'छठि पूजा  –  नहाय खाय (पहिल दिन)', date: 'Sun, 8 Nov 2026', tithi: 'Kartik Shukla Chaturthi' },
-  { en: 'Chhath Puja  –  Kharna/Lohanda (Day 2)', hi: 'छठ पूजा  –  खरना/लोहंडा (दिन 2)', mai: 'छठि पूजा  –  खरना/लोहंडा (दोसर दिन)', date: 'Mon, 9 Nov 2026', tithi: 'Kartik Shukla Panchami' },
-  { en: 'Chhath Puja  –  Sandhya Arghya (Day 3)', hi: 'छठ पूजा  –  सन्ध्या अर्घ्य (दिन 3)', mai: 'छठि पूजा  –  सन्ध्या अर्घ्य (तेसर दिन)', date: 'Tue, 10 Nov 2026', tithi: 'Kartik Shukla Shashthi' },
-  { en: 'Chhath Puja  –  Usha Arghya (Day 4)', hi: 'छठ पूजा  –  ऊषा अर्घ्य (दिन 4)', mai: 'छठि पूजा  –  ऊषा अर्घ्य (चारिम दिन)', date: 'Wed, 11 Nov 2026', tithi: 'Kartik Shukla Saptami' },
-  { en: 'Vivah Panchami (Rama-Sita wedding anniversary)', hi: 'विवाह पंचमी (राम-सीता विवाह वर्षगांठ)', mai: 'विवाह पंचमी (राम-सीता विवाहक वर्षगांठ)', date: 'Sun, 6 Dec 2026', tithi: 'Margashirsha Shukla Panchami' },
+interface MithilaFestival { en: string; hi: string; mai: string; engineKey: string; tithi: string }
+const MITHILA_FESTIVALS: MithilaFestival[] = [
+  // Pan-Indian — engine canonical names from festival-defs.ts.
+  { en: 'Makar Sankranti / Tilkut',                            hi: 'मकर संक्रान्ति / तिलकुट',                       mai: 'मकर संक्रान्ति / तिलकुट',              engineKey: 'Makar Sankranti',                     tithi: 'Paush Krishna (Makara Sankranti)' },
+  { en: 'Jud-Shital (Mithila New Year)',                       hi: 'जुड़-शीतल (मिथिला नव वर्ष)',                  mai: 'जुड़-शीतल (मिथिला नव वर्ष)',         engineKey: 'Jud-Shital',                          tithi: 'Mesha Sankranti (Solar)' },
+  { en: 'Hanuman Jayanti',                                     hi: 'हनुमान जयन्ती',                              mai: 'हनुमान जयन्ती',                        engineKey: 'Hanuman Jayanti',                     tithi: 'Chaitra Purnima' },
+  { en: 'Saraswati Puja / Vasant Panchami',                    hi: 'सरस्वती पूजा / वसन्त पंचमी',                mai: 'सरस्वती पूजा / बसन्त पंचमी',            engineKey: 'Vasant Panchami',                     tithi: 'Magha Shukla Panchami' },
+  { en: 'Maha Shivaratri',                                     hi: 'महा शिवरात्रि',                              mai: 'महा शिवरात्रि',                       engineKey: 'Maha Shivaratri',                     tithi: 'Phalguna Krishna Chaturdashi' },
+  { en: 'Holika Dahan',                                        hi: 'होलिका दहन',                                mai: 'होलिका दहन',                           engineKey: 'Holika Dahan',                        tithi: 'Phalguna Purnima' },
+  { en: 'Holi / Phaguwa',                                      hi: 'होली / फगुआ',                               mai: 'होली / फगुआ',                          engineKey: 'Holi',                                tithi: 'Phalguna Krishna Pratipada' },
+  // Mithila-specific  –  Chaiti Chhath (added 2026-06-11 to engine as region='maithili').
+  { en: 'Chaiti Chhath — Sandhya Arghya',                      hi: 'चैती छठ — सन्ध्या अर्घ्य',                  mai: 'चैती छठि — सन्ध्या अर्घ्य',            engineKey: 'Chaiti Chhath (Sandhya Arghya)',      tithi: 'Chaitra Shukla Shashthi' },
+  { en: 'Chaiti Chhath — Usha Arghya',                         hi: 'चैती छठ — ऊषा अर्घ्य',                     mai: 'चैती छठि — ऊषा अर्घ्य',                engineKey: 'Chaiti Chhath (Usha Arghya)',         tithi: 'Chaitra Shukla Saptami' },
+  { en: 'Ram Navami',                                          hi: 'राम नवमी',                                   mai: 'राम नवमी',                            engineKey: 'Ram Navami',                          tithi: 'Chaitra Shukla Navami' },
+  // Mithila-specific  –  Madhushravani (mid-Shravan festival for newlywed Maithil brides).
+  { en: 'Madhushravani',                                       hi: 'मधुश्रावणी',                                mai: 'मधुश्रावणी',                          engineKey: 'Madhushravani',                       tithi: 'Shravan Shukla Panchami' },
+  { en: 'Janmashtami',                                         hi: 'जन्माष्टमी',                                 mai: 'जन्माष्टमी',                          engineKey: 'Janmashtami',                         tithi: 'Shravan Krishna Ashtami' },
+  { en: 'Ganesh Chaturthi',                                    hi: 'गणेश चतुर्थी',                              mai: 'गणेश चतुर्थी',                         engineKey: 'Ganesh Chaturthi',                    tithi: 'Bhadrapada Shukla Chaturthi' },
+  // Mithila-specific  –  Chaurchan (moon worship on Bhadrapada Shukla Chaturthi).
+  { en: 'Chaurchan (Chauth Chandra)',                          hi: 'चौरचन (चौथ चन्द्र)',                       mai: 'चौरचन (चौथ चन्द्र)',                  engineKey: 'Chaurchan',                           tithi: 'Bhadrapada Shukla Chaturthi' },
+  // Mithila-specific  –  Jitiya / Jivitputrika Vrat (mothers fast for sons' longevity).
+  { en: 'Jitiya (Jivitputrika Vrat)',                          hi: 'जितिया (जीवित्पुत्रिका व्रत)',              mai: 'जितिया (जीवित्पुत्रिका व्रत)',         engineKey: 'Jitiya (Jivitputrika Vrat)',          tithi: 'Ashwin Krishna Ashtami' },
+  { en: 'Mahalaya (Sarva Pitru Amavasya)',                     hi: 'महालया (सर्व पितृ अमावस्या)',               mai: 'महालया (सर्व पितृ अमावस्या)',         engineKey: 'Mahalaya (Sarva Pitru Amavasya)',     tithi: 'Bhadrapada / Ashwin Amavasya' },
+  { en: 'Navaratri begins (Ghatasthapana)',                    hi: 'नवरात्रि आरम्भ (घटस्थापना)',                mai: 'नवरात्रि आरम्भ (घटस्थापना)',          engineKey: 'Ghatasthapana (Navratri Day 1)',      tithi: 'Ashwin Shukla Pratipada' },
+  { en: 'Durga Puja Shashti',                                  hi: 'दुर्गा पूजा षष्ठी',                          mai: 'दुर्गा पूजा षष्ठी',                   engineKey: 'Durga Puja Shashti',                  tithi: 'Ashwin Shukla Shashthi' },
+  { en: 'Durga Puja Saptami',                                  hi: 'दुर्गा पूजा सप्तमी',                         mai: 'दुर्गा पूजा सप्तमी',                  engineKey: 'Durga Puja Saptami',                  tithi: 'Ashwin Shukla Saptami' },
+  { en: 'Durga Puja Ashtami',                                  hi: 'दुर्गा पूजा अष्टमी',                         mai: 'दुर्गा पूजा अष्टमी',                  engineKey: 'Durga Puja Ashtami',                  tithi: 'Ashwin Shukla Ashtami' },
+  { en: 'Durga Puja Navami',                                   hi: 'दुर्गा पूजा नवमी',                           mai: 'दुर्गा पूजा नवमी',                    engineKey: 'Durga Puja Navami',                   tithi: 'Ashwin Shukla Navami' },
+  { en: 'Vijaya Dashami / Dussehra',                           hi: 'विजया दशमी / दशहरा',                       mai: 'विजया दशमी / दशहरा',                 engineKey: 'Sindoor Khela / Vijaya Dashami',      tithi: 'Ashwin Shukla Dashami' },
+  { en: 'Kojagara / Sharad Purnima',                           hi: 'कोजागरा / शरद पूर्णिमा',                   mai: 'कोजागरा / शरद पूर्णिमा',              engineKey: 'Sharad Purnima',                      tithi: 'Ashwin Purnima' },
+  { en: 'Diwali / Lakshmi Puja',                               hi: 'दीवाली / लक्ष्मी पूजा',                    mai: 'दीपावली / लक्ष्मी पूजा',              engineKey: 'Diwali',                              tithi: 'Kartik Krishna Amavasya' },
+  { en: 'Bhai Dooj',                                           hi: 'भाई दूज',                                   mai: 'भाई दूज',                             engineKey: 'Bhai Dooj',                           tithi: 'Kartik Shukla Dwitiya' },
+  { en: 'Akshaya Navami (Amla Navami)',                        hi: 'अक्षय नवमी (आमला नवमी)',                  mai: 'अक्षय नवमी (आमला नवमी)',             engineKey: 'Akshaya Navami (Amla Navami)',        tithi: 'Kartik Shukla Navami' },
+  { en: 'Chhath Puja — Nahay Khay (Day 1)',                    hi: 'छठ पूजा — नहाय खाय (दिन 1)',              mai: 'छठि पूजा — नहाय खाय (पहिल दिन)',     engineKey: 'Chhath Nahay Khay',                   tithi: 'Kartik Shukla Chaturthi' },
+  { en: 'Chhath Puja — Sandhya Arghya (main day)',             hi: 'छठ पूजा — सन्ध्या अर्घ्य (मुख्य दिन)',     mai: 'छठि पूजा — सन्ध्या अर्घ्य (मुख्य दिन)', engineKey: 'Chhath Puja',                         tithi: 'Kartik Shukla Shashthi' },
+  { en: 'Chhath Puja — Usha Arghya (Day 4)',                   hi: 'छठ पूजा — ऊषा अर्घ्य (दिन 4)',            mai: 'छठि पूजा — ऊषा अर्घ्य (चारिम दिन)',  engineKey: 'Chhath Usha Arghya',                  tithi: 'Kartik Shukla Saptami' },
+  // Mithila-specific  –  Sama-Chakeva (sister-brother festival, Kartik Shukla Saptami onwards).
+  { en: 'Sama-Chakeva (begins)',                               hi: 'सामा-चकेवा (आरम्भ)',                       mai: 'सामा-चकेवा (आरम्भ)',                  engineKey: 'Sama-Chakeva (begins)',               tithi: 'Kartik Shukla Saptami' },
+  { en: 'Vivah Panchami (Sita-Rama wedding anniversary)',      hi: 'विवाह पंचमी (राम-सीता विवाह वर्षगांठ)',     mai: 'विवाह पंचमी (राम-सीताक विवाहक वर्षगांठ)', engineKey: 'Vivah Panchami',                      tithi: 'Margashirsha Shukla Panchami' },
 ];
-
-const FESTIVAL_DATES_2027 = [
-  { en: 'Makar Sankranti (Tilkut distribution)', hi: 'मकर संक्रान्ति (तिलकुट वितरण)', mai: 'मकर संक्रान्ति (तिलकुट बांटल जाइत अछि)', date: 'Thu, 14 Jan 2027', tithi: 'Paush Shukla Dashami' },
-  { en: 'Saraswati Puja / Vasant Panchami', hi: 'सरस्वती पूजा / वसन्त पंचमी', mai: 'सरस्वती पूजा / बसन्त पंचमी', date: 'Thu, 11 Feb 2027', tithi: 'Magha Shukla Panchami' },
-  { en: 'Holi / Phaguwa (Holika Dahan)', hi: 'होली / फगुआ (होलिका दहन)', mai: 'होली / फगुआ (होलिका दहन)', date: 'Sun, 22 Mar 2027', tithi: 'Phalguna Purnima' },
-  { en: 'Chaiti Chhath (Usha Arghya)', hi: 'चैती छठ (ऊषा अर्घ्य)', mai: 'चैती छठि (ऊषा अर्घ्य)', date: 'Sun, 21 Mar 2027', tithi: 'Chaitra Shukla Shashthi' },
-  { en: 'Ramnavami', hi: 'रामनवमी', mai: 'रामनवमी', date: 'Thu, 25 Mar 2027', tithi: 'Chaitra Shukla Navami' },
-  { en: 'Madhushravani begins (Shravan)', hi: 'मधुश्रावणी आरम्भ (श्रावण)', mai: 'मधुश्रावणी आरम्भ (सावन)', date: 'Fri, 9 Jul 2027', tithi: 'Shravan Shukla Chaturthi (approx.)' },
-  { en: 'Jitiya / Jivitputrika Vrat', hi: 'जितिया / जीवित्पुत्रिका व्रत', mai: 'जितिया / जीवित्पुत्रिका व्रत', date: 'Tue, 14 Sep 2027', tithi: 'Ashwin Krishna Ashtami' },
-  { en: 'Navaratri begins (Ghatasthapana)', hi: 'नवरात्रि आरम्भ (घटस्थापना)', mai: 'नवरात्रि आरम्भ (घटस्थापना)', date: 'Mon, 27 Sep 2027', tithi: 'Ashwin Shukla Pratipada' },
-  { en: 'Dussehra / Vijayadashami', hi: 'दशहरा / विजयादशमी', mai: 'दशहरा / विजयादशमी', date: 'Wed, 6 Oct 2027', tithi: 'Ashwin Shukla Dashami' },
-  { en: 'Sama-Chakeva begins (Kojagara Purnima)', hi: 'सामा-चकेवा आरम्भ (कोजागरा पूर्णिमा)', mai: 'सामा-चकेवा आरम्भ (कोजागरा पूर्णिमा)', date: 'Wed, 13 Oct 2027', tithi: 'Ashwin Purnima' },
-  { en: 'Diwali (Lakshmi Puja)', hi: 'दीवाली (लक्ष्मी पूजा)', mai: 'दीपावली (लक्ष्मी पूजा)', date: 'Thu, 28 Oct 2027', tithi: 'Kartik Krishna Amavasya' },
-  { en: 'Chhath Puja  –  Nahay Khay (Day 1)', hi: 'छठ पूजा  –  नहाय खाय (दिन 1)', mai: 'छठि पूजा  –  नहाय खाय (पहिल दिन)', date: 'Fri, 29 Oct 2027', tithi: 'Kartik Shukla Chaturthi' },
-  { en: 'Chhath Puja  –  Kharna/Lohanda (Day 2)', hi: 'छठ पूजा  –  खरना/लोहंडा (दिन 2)', mai: 'छठि पूजा  –  खरना/लोहंडा (दोसर दिन)', date: 'Sat, 30 Oct 2027', tithi: 'Kartik Shukla Panchami' },
-  { en: 'Chhath Puja  –  Sandhya Arghya (Day 3)', hi: 'छठ पूजा  –  सन्ध्या अर्घ्य (दिन 3)', mai: 'छठि पूजा  –  सन्ध्या अर्घ्य (तेसर दिन)', date: 'Sun, 31 Oct 2027', tithi: 'Kartik Shukla Shashthi' },
-  { en: 'Chhath Puja  –  Usha Arghya (Day 4)', hi: 'छठ पूजा  –  ऊषा अर्घ्य (दिन 4)', mai: 'छठि पूजा  –  ऊषा अर्घ्य (चारिम दिन)', date: 'Mon, 1 Nov 2027', tithi: 'Kartik Shukla Saptami' },
-  { en: 'Vivah Panchami (Rama-Sita wedding anniversary)', hi: 'विवाह पंचमी (राम-सीता विवाह वर्षगांठ)', mai: 'विवाह पंचमी (राम-सीता विवाहक वर्षगांठ)', date: 'Thu, 25 Nov 2027', tithi: 'Margashirsha Shukla Panchami' },
-];
+// `date` field removed — dates are computed at render via
+// nextUpcoming(engineKey, locale, todayIso) so the table always shows
+// "what's coming up" without manual rebase each year.
 
 // ═══════════════════════════════════════════════════════════════════════════
 // FAQ data for structured data (SEO)
@@ -234,9 +247,11 @@ const FAQ_DATA = [
   {
     q: { en: 'When is Chhath Puja 2026?', hi: 'छठ पूजा 2026 कब है?', mai: 'छठि पूजा 2026 कहिया अछि?' },
     a: {
-      en: 'Chhath Puja 2026 spans four days: Nahay Khay on Sunday 8 November, Kharna/Lohanda on Monday 9 November, Sandhya Arghya (offering to the setting sun) on Tuesday 10 November (Kartik Shukla Shashthi), and Usha Arghya (offering to the rising sun and breaking the fast) on Wednesday 11 November 2026. The festival is observed across Mithilanchal, Bihar, Jharkhand, eastern UP, and Nepal Terai.',
-      hi: 'छठ पूजा 2026 चार दिनों तक चलेगी: नहाय खाय रविवार 8 नवम्बर, खरना/लोहंडा सोमवार 9 नवम्बर, सन्ध्या अर्घ्य (डूबते सूर्य को अर्घ्य) मंगलवार 10 नवम्बर (कार्तिक शुक्ल षष्ठी), और ऊषा अर्घ्य (उगते सूर्य को अर्घ्य और व्रत तोड़ना) बुधवार 11 नवम्बर 2026 को।',
-      mai: 'छठि पूजा 2026 चारि दिन चलत: नहाय खाय रविदिन 8 नवम्बर, खरना/लोहंडा सोमदिन 9 नवम्बर, सन्ध्या अर्घ्य मंगलदिन 10 नवम्बर (कार्तिक शुक्ल षष्ठी), आ ऊषा अर्घ्य बुधदिन 11 नवम्बर 2026 केँ।',
+      // All dates engine-derived via ed() — matches festival-generator.ts
+      // output for Chhath (Nahay Khay → Sandhya Arghya → Usha Arghya).
+      en: `Chhath Puja 2026 spans four days following Mithila tradition. Per our festival engine the key observance days are: Nahay Khay on ${ed(2026,'Chhath Nahay Khay','en')}, Sandhya Arghya (offering to the setting sun, main day on Kartik Shukla Shashthi) on ${ed(2026,'Chhath Puja','en')}, and Usha Arghya (offering to the rising sun and breaking the fast) on ${ed(2026,'Chhath Usha Arghya','en')}. The festival is observed across Mithilanchal, Bihar, Jharkhand, eastern UP, and Nepal Terai.`,
+      hi: `छठ पूजा 2026 मिथिला परम्परा में चार दिनों तक चलती है। मुख्य दिन: नहाय खाय ${ed(2026,'Chhath Nahay Khay','hi')}, सन्ध्या अर्घ्य (डूबते सूर्य को अर्घ्य, मुख्य कार्तिक शुक्ल षष्ठी) ${ed(2026,'Chhath Puja','hi')}, और ऊषा अर्घ्य (उगते सूर्य को अर्घ्य और व्रत तोड़ना) ${ed(2026,'Chhath Usha Arghya','hi')} को।`,
+      mai: `छठि पूजा 2026 मिथिला परम्परा मे चारि दिन चलैत अछि। मुख्य दिन: नहाय खाय ${ed(2026,'Chhath Nahay Khay','mai')}, सन्ध्या अर्घ्य ${ed(2026,'Chhath Puja','mai')} (कार्तिक शुक्ल षष्ठी), आ ऊषा अर्घ्य ${ed(2026,'Chhath Usha Arghya','mai')} केँ।`,
     },
   },
   {
@@ -250,9 +265,15 @@ const FAQ_DATA = [
   {
     q: { en: 'When is Jitiya 2026?', hi: 'जितिया 2026 कब है?', mai: 'जितिया 2026 कहिया अछि?' },
     a: {
-      en: 'Jitiya (Jivitputrika Vrat) 2026 falls on Friday, 25 September 2026, on Ashwin Krishna Ashtami. It is a 3-day observance: Nahai Khai (day before, eating only after bathing), the main nirjala (waterless) fast on Jitiya day, and Paaran (breaking the fast the next morning). Mothers observe this extremely strict fast for the long life and well-being of their children. It is considered the most austere fast in the Hindu calendar, even stricter than Chhath Puja.',
-      hi: 'जितिया (जीवित्पुत्रिका व्रत) 2026 शुक्रवार, 25 सितम्बर 2026 को आश्विन कृष्ण अष्टमी पर पड़ता है। 3 दिन का पालन: नहाय खाय (पहले दिन), मुख्य निर्जला व्रत जितिया के दिन, और पारण (अगली सुबह व्रत तोड़ना)। माताएं अपने बच्चों की दीर्घायु के लिए यह अत्यन्त कठोर व्रत रखती हैं।',
-      mai: 'जितिया (जीवित्पुत्रिका व्रत) 2026 शुक्रदिन, 25 सितम्बर 2026 केँ आश्विन कृष्ण अष्टमी पर पड़ैत अछि। 3 दिनक पालन: नहाय खाय (पहिल दिन), मुख्य निर्जला व्रत जितियाक दिन, आ पारण (अगिला भोर मे व्रत तोड़ब)। माय लोकनि अपन बच्चाक दीर्घायुक लेल ई अत्यन्त कठोर व्रत रखैत छथि।',
+      // 2026-06-10: Jitiya is not enumerated in festival-generator.ts —
+      // the explicit Sep 25 date was hand-coded and cannot be
+      // engine-verified. Switched to date-neutral language to avoid
+      // shipping unverifiable claims. To restore a specific date,
+      // first add Jitiya / Jivitputrika Vrat to festival-defs.ts so
+      // the date can be computed deterministically.
+      en: 'Jitiya (Jivitputrika Vrat) is observed on Ashwin Krishna Ashtami each year (typically late September). It is a 3-day observance: Nahai Khai (day before, eating only after bathing), the main nirjala (waterless) fast on Jitiya day, and Paaran (breaking the fast the next morning). Mothers observe this extremely strict fast for the long life and well-being of their children. It is considered the most austere fast in the Hindu calendar, even stricter than Chhath Puja.',
+      hi: 'जितिया (जीवित्पुत्रिका व्रत) प्रतिवर्ष आश्विन कृष्ण अष्टमी (सामान्यत: सितम्बर के अन्त) पर पड़ता है। 3 दिन का पालन: नहाय खाय (पहले दिन), मुख्य निर्जला व्रत जितिया के दिन, और पारण (अगली सुबह व्रत तोड़ना)। माताएं अपने बच्चों की दीर्घायु के लिए यह अत्यन्त कठोर व्रत रखती हैं।',
+      mai: 'जितिया (जीवित्पुत्रिका व्रत) प्रतिवर्ष आश्विन कृष्ण अष्टमी पर पड़ैत अछि। 3 दिनक पालन: नहाय खाय (पहिल दिन), मुख्य निर्जला व्रत जितियाक दिन, आ पारण (अगिला भोर मे व्रत तोड़ब)। माय लोकनि अपन बच्चाक दीर्घायुक लेल ई अत्यन्त कठोर व्रत रखैत छथि।',
     },
   },
   {
@@ -274,9 +295,9 @@ const FAQ_DATA = [
   {
     q: { en: 'When is Vivah Panchami 2026?', hi: 'विवाह पंचमी 2026 कब है?', mai: 'विवाह पंचमी 2026 कहिया अछि?' },
     a: {
-      en: 'Vivah Panchami 2026 falls on Sunday, 6 December 2026, on Margashirsha Shukla Panchami. This festival commemorates the divine wedding of Lord Rama and Goddess Sita at Janakpur (in modern-day Nepal, adjacent to Mithilanchal). Grand celebrations take place at the Janaki Mandir in Janakpur and across Mithila, re-enacting the legendary wedding ceremony. In Mithila, it holds special significance as Sita (also called Janaki, daughter of King Janak of Mithila) is the most revered deity of the region.',
-      hi: 'विवाह पंचमी 2026 रविवार, 6 दिसम्बर 2026 को मार्गशीर्ष शुक्ल पंचमी पर पड़ती है। यह त्योहार जनकपुर में भगवान राम और देवी सीता के दिव्य विवाह की स्मृति में मनाया जाता है। मिथिला में इसका विशेष महत्व है क्योंकि सीता (जानकी) मिथिला के राजा जनक की पुत्री हैं।',
-      mai: 'विवाह पंचमी 2026 रविदिन, 6 दिसम्बर 2026 केँ मार्गशीर्ष शुक्ल पंचमी पर पड़ैत अछि। ई पर्व जनकपुर मे भगवान राम आ देवी सीताक दिव्य विवाहक स्मृति मे मनाओल जाइत अछि। मिथिला मे एकर विशेष महत्व अछि कियाकि सीता (जानकी) मिथिलाक राजा जनकक पुत्री छलथि।',
+      en: `Vivah Panchami 2026 falls on ${ed(2026,'Vivah Panchami (Sita-Rama Wedding)','en')}, on Margashirsha Shukla Panchami. This festival commemorates the divine wedding of Lord Rama and Goddess Sita at Janakpur (in modern-day Nepal, adjacent to Mithilanchal). Grand celebrations take place at the Janaki Mandir in Janakpur and across Mithila, re-enacting the legendary wedding ceremony. In Mithila, it holds special significance as Sita (also called Janaki, daughter of King Janak of Mithila) is the most revered deity of the region.`,
+      hi: `विवाह पंचमी 2026 ${ed(2026,'Vivah Panchami (Sita-Rama Wedding)','hi')} को मार्गशीर्ष शुक्ल पंचमी पर पड़ती है। यह त्योहार जनकपुर में भगवान राम और देवी सीता के दिव्य विवाह की स्मृति में मनाया जाता है। मिथिला में इसका विशेष महत्व है क्योंकि सीता (जानकी) मिथिला के राजा जनक की पुत्री हैं।`,
+      mai: `विवाह पंचमी 2026 ${ed(2026,'Vivah Panchami (Sita-Rama Wedding)','mai')} केँ मार्गशीर्ष शुक्ल पंचमी पर पड़ैत अछि। ई पर्व जनकपुर मे भगवान राम आ देवी सीताक दिव्य विवाहक स्मृति मे मनाओल जाइत अछि। मिथिला मे एकर विशेष महत्व अछि कियाकि सीता (जानकी) मिथिलाक राजा जनकक पुत्री छलथि।`,
     },
   },
 ];
@@ -404,70 +425,56 @@ export default async function MithilaCalendarPage({ params }: { params: Promise<
         </section>
 
         {/* ══════════════════════════════════════════════════ */}
-        {/* 2026 Mithila Festival Dates                       */}
+        {/* Upcoming Mithila Festival Dates (engine-driven)   */}
         {/* ══════════════════════════════════════════════════ */}
-        <section>
-          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
-            {isHi ? 'मिथिला त्योहार 2026 — तिथि और सटीक दिनांक' : 'Mithila Festival Dates 2026 — Tithi & Exact Dates'}
-          </h2>
-          <p className="text-text-secondary text-sm leading-relaxed mb-5">
-            {isHi
-              ? 'दरभंगा/मधुबनी सन्दर्भ के साथ 2026 के प्रमुख मिथिला त्योहारों की सटीक तिथियां। छठ पूजा के सभी 4 दिन, जितिया, सामा-चकेवा, विवाह पंचमी और अन्य विशिष्ट मैथिल पर्व शामिल हैं।'
-              : 'Exact dates for all major Mithila festivals in 2026 with tithi (lunar day), computed for Darbhanga/Madhubani. Includes all 4 days of Chhath Puja, Jitiya, Sama-Chakeva, Vivah Panchami, and other distinctive Maithil observances. Plan your vrat and puja with these verified dates.'}
-          </p>
-          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colFestival', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colDate', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colTithi', locale)}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {FESTIVAL_DATES_2026.map((f, i) => (
-                  <tr key={`${f.en}-2026`} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
-                    <td className="px-4 py-2.5 text-text-primary font-medium">{fd(f)}</td>
-                    <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* 2027 Mithila Festival Dates */}
-        <section>
-          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
-            {isHi ? 'मिथिला त्योहार 2027 — तिथि और सटीक दिनांक' : 'Mithila Festival Dates 2027 — Tithi & Exact Dates'}
-          </h2>
-          <p className="text-text-secondary text-sm leading-relaxed mb-5">
-            {isHi
-              ? '2027 में प्रमुख मिथिला त्योहार। सभी तिथियां दरभंगा/मधुबनी सन्दर्भ के लिए गणित हैं।'
-              : 'Major Mithila festival dates for 2027. All dates computed for Darbhanga/Madhubani reference with tithi from the Mithila Panchang. Includes Chhath Puja (all 4 days), Jitiya, Sama-Chakeva, Madhushravani, Vivah Panchami, and Phaguwa/Holi.'}
-          </p>
-          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colFestival', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colDate', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colTithi', locale)}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {FESTIVAL_DATES_2027.map((f, i) => (
-                  <tr key={`${f.en}-2027`} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
-                    <td className="px-4 py-2.5 text-text-primary font-medium">{fd(f)}</td>
-                    <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+        {(() => {
+          // Resolve "today" at render time (Asia/Kolkata canonical) so the
+          // table shows the next occurrence of each festival within the
+          // engine's ~15-month forward window. SSR-safe: same value for the
+          // whole render pass; no client/server drift because both sides
+          // re-resolve on every request (page is dynamic per its sitemap
+          // entry, not ISR-cached).
+          const nowIso = todayInIst();
+          const upcoming = MITHILA_FESTIVALS
+            .map((f) => {
+              const hit = nextUpcoming(f.engineKey, locale, nowIso);
+              return hit ? { f, iso: hit.iso, display: hit.display } : null;
+            })
+            .filter((x): x is { f: MithilaFestival; iso: string; display: string } => x !== null)
+            .sort((a, b) => a.iso.localeCompare(b.iso));
+          return (
+            <section>
+              <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+                {isHi ? 'आगामी मिथिला त्योहार — तिथि और सटीक दिनांक' : 'Upcoming Mithila Festival Dates — Tithi & Exact Dates'}
+              </h2>
+              <p className="text-text-secondary text-sm leading-relaxed mb-5">
+                {isHi
+                  ? 'दरभंगा/मधुबनी सन्दर्भ के साथ प्रमुख मिथिला त्योहारों की आगामी तिथियां। छठ पूजा, दुर्गा पूजा, विवाह पंचमी और अन्य विशिष्ट मैथिल पर्व — सभी तिथियां engine से गणित और हर दिन स्वतः अद्यतित।'
+                  : 'Upcoming dates for major Mithila festivals with tithi (lunar day), computed for Darbhanga/Madhubani. Includes Chhath Puja, Durga Puja, Vivah Panchami, and other distinctive Maithil observances. Dates auto-update daily from our panchang engine — never stale.'}
+              </p>
+              <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colFestival', locale)}</th>
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colDate', locale)}</th>
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colTithi', locale)}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {upcoming.map(({ f, iso, display }, i) => (
+                      <tr key={`${f.en}-${iso}`} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                        <td className="px-4 py-2.5 text-text-primary font-medium">{fd(f)}</td>
+                        <td className="px-4 py-2.5 text-amber-400/80">{display}</td>
+                        <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          );
+        })()}
 
         {/* Mithila Calendar History & Significance (long-form SEO) */}
         <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">

@@ -4,6 +4,7 @@ import type { Locale, LocaleText } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { Link } from '@/lib/i18n/navigation';
 import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
+import { engineDate as ed, nextUpcoming, todayInIst } from '@/lib/seo/regional-faq-dates';
 
 const LABELS = {
   title: {
@@ -169,40 +170,34 @@ const FESTIVALS = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 2026–2027 Bengali Festival Dates with Tithi & Nakshatra
-// Sources: mainstream reference panchangs reference for Kolkata
+// Bengali Festival Dates — engine-driven, NEXT upcoming occurrence only.
+// Engine keys match festival-generator.ts canonical English names.
+// Computed for Kolkata at render time.
 // ═══════════════════════════════════════════════════════════════════════════
-
-const FESTIVAL_DATES_2026 = [
-  { en: 'Makar Sankranti (Poush Sankranti)', hi: 'मकर संक्रान्ति (पौष संक्रान्ति)', bn: 'মকর সংক্রান্তি (পৌষ সংক্রান্তি)', date: 'Wed, 14 Jan 2026', tithi: 'Paush Krishna Pratipada', nakshatra: 'Uttara Ashadha' },
-  { en: 'Saraswati Puja (Vasant Panchami)', hi: 'सरस्वती पूजा (वसन्त पंचमी)', bn: 'সরস্বতী পূজা (বসন্ত পঞ্চমী)', date: 'Mon, 23 Feb 2026', tithi: 'Magha Shukla Panchami', nakshatra: 'Shravana' },
-  { en: 'Poila Boishakh (Bengali New Year)', hi: 'पहला बैशाख (बंगाली नव वर्ष)', bn: 'পয়লা বৈশাখ (বাংলা নববর্ষ)', date: 'Tue, 14 Apr 2026', tithi: 'Chaitra Krishna Amavasya', nakshatra: 'Revati' },
-  { en: 'Rath Yatra', hi: 'रथ यात्रा', bn: 'রথযাত্রা', date: 'Mon, 29 Jun 2026', tithi: 'Ashadha Shukla Dwitiya', nakshatra: 'Pushya' },
-  { en: 'Janmashtami', hi: 'जन्माष्टमी', bn: 'জন্মাষ্টমী', date: 'Sat, 15 Aug 2026', tithi: 'Shravana Krishna Ashtami', nakshatra: 'Rohini' },
-  { en: 'Durga Puja (Shashti)', hi: 'दुर्गा पूजा (षष्ठी)', bn: 'দুর্গা পূজা (ষষ্ঠী)', date: 'Tue, 13 Oct 2026', tithi: 'Ashwin Shukla Shashthi', nakshatra: 'Uttara Phalguni' },
-  { en: 'Durga Puja (Saptami)', hi: 'दुर्गा पूजा (सप्तमी)', bn: 'দুর্গা পূজা (সপ্তমী)', date: 'Wed, 14 Oct 2026', tithi: 'Ashwin Shukla Saptami', nakshatra: 'Hasta' },
-  { en: 'Durga Puja (Ashtami)', hi: 'दुर्गा पूजा (अष्टमी)', bn: 'দুর্গা পূজা (অষ্টমী)', date: 'Thu, 15 Oct 2026', tithi: 'Ashwin Shukla Ashtami', nakshatra: 'Chitra' },
-  { en: 'Durga Puja (Navami)', hi: 'दुर्गा पूजा (नवमी)', bn: 'দুর্গা পূজা (নবমী)', date: 'Fri, 16 Oct 2026', tithi: 'Ashwin Shukla Navami', nakshatra: 'Swati' },
-  { en: 'Vijaya Dashami (Bisarjan)', hi: 'विजया दशमी (विसर्जन)', bn: 'বিজয়া দশমী (বিসর্জন)', date: 'Sat, 17 Oct 2026', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
-  { en: 'Lakshmi Puja', hi: 'लक्ष्मी पूजा', bn: 'লক্ষ্মী পূজা', date: 'Sat, 24 Oct 2026', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
-  { en: 'Kali Puja / Diwali', hi: 'काली पूजा / दीवाली', bn: 'কালী পূজা / দীপাবলি', date: 'Sun, 8 Nov 2026', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Swati' },
-  { en: 'Chhath Puja', hi: 'छठ पूजा', bn: 'ছঠ পূজা', date: 'Wed, 11 Nov 2026', tithi: 'Kartik Shukla Shashthi', nakshatra: 'Mula' },
-];
-
-const FESTIVAL_DATES_2027 = [
-  { en: 'Makar Sankranti (Poush Sankranti)', hi: 'मकर संक्रान्ति (पौष संक्रान्ति)', bn: 'মকর সংক্রান্তি (পৌষ সংক্রান্তি)', date: 'Thu, 14 Jan 2027', tithi: 'Paush Shukla Dashami', nakshatra: 'Shravana' },
-  { en: 'Saraswati Puja (Vasant Panchami)', hi: 'सरस्वती पूजा (वसन्त पंचमी)', bn: 'সরস্বতী পূজা (বসন্ত পঞ্চমী)', date: 'Thu, 11 Feb 2027', tithi: 'Magha Shukla Panchami', nakshatra: 'Shravana' },
-  { en: 'Poila Boishakh (Bengali New Year)', hi: 'पहला बैशाख (बंगाली नव वर्ष)', bn: 'পয়লা বৈশাখ (বাংলা নববর্ষ)', date: 'Wed, 14 Apr 2027', tithi: 'Chaitra Krishna Amavasya', nakshatra: 'Revati' },
-  { en: 'Rath Yatra', hi: 'रथ यात्रा', bn: 'রথযাত্রা', date: 'Fri, 18 Jun 2027', tithi: 'Ashadha Shukla Dwitiya', nakshatra: 'Pushya' },
-  { en: 'Janmashtami', hi: 'जन्माष्टमी', bn: 'জন্মাষ্টমী', date: 'Thu, 5 Aug 2027', tithi: 'Shravana Krishna Ashtami', nakshatra: 'Rohini' },
-  { en: 'Durga Puja (Shashti)', hi: 'दुर्गा पूजा (षष्ठी)', bn: 'দুর্গা পূজা (ষষ্ঠী)', date: 'Sat, 2 Oct 2027', tithi: 'Ashwin Shukla Shashthi', nakshatra: 'Uttara Phalguni' },
-  { en: 'Durga Puja (Saptami)', hi: 'दुर्गा पूजा (सप्तमी)', bn: 'দুর্গা পূজা (সপ্তমী)', date: 'Sun, 3 Oct 2027', tithi: 'Ashwin Shukla Saptami', nakshatra: 'Hasta' },
-  { en: 'Durga Puja (Ashtami)', hi: 'दुर्गा पूजा (अष्टमी)', bn: 'দুর্গা পূজা (অষ্টমী)', date: 'Mon, 4 Oct 2027', tithi: 'Ashwin Shukla Ashtami', nakshatra: 'Chitra' },
-  { en: 'Durga Puja (Navami)', hi: 'दुर्गा पूजा (नवमी)', bn: 'দুর্গা পূজা (নবমী)', date: 'Tue, 5 Oct 2027', tithi: 'Ashwin Shukla Navami', nakshatra: 'Swati' },
-  { en: 'Vijaya Dashami (Bisarjan)', hi: 'विजया दशमी (विसर्जन)', bn: 'বিজয়া দশমী (বিসর্জন)', date: 'Wed, 6 Oct 2027', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
-  { en: 'Lakshmi Puja', hi: 'लक्ष्मी पूजा', bn: 'লক্ষ্মী পূজা', date: 'Wed, 13 Oct 2027', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
-  { en: 'Kali Puja / Diwali', hi: 'काली पूजा / दीवाली', bn: 'কালী পূজা / দীপাবলি', date: 'Thu, 28 Oct 2027', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Chitra' },
-  { en: 'Chhath Puja', hi: 'छठ पूजा', bn: 'ছঠ পূজা', date: 'Mon, 1 Nov 2027', tithi: 'Kartik Shukla Shashthi', nakshatra: 'Mula' },
+interface BengaliFestival { en: string; hi: string; bn: string; engineKey: string; tithi: string }
+const BENGALI_FESTIVALS: BengaliFestival[] = [
+  { en: 'Makar Sankranti (Poush Sankranti)', hi: 'मकर संक्रान्ति (पौष संक्रान्ति)', bn: 'মকর সংক্রান্তি (পৌষ সংক্রান্তি)', engineKey: 'Makar Sankranti',                  tithi: 'Pausha (Solar — Capricorn ingress)' },
+  { en: 'Saraswati Puja (Vasant Panchami)',  hi: 'सरस्वती पूजा (वसन्त पंचमी)',     bn: 'সরস্বতী পূজা (বসন্ত পঞ্চমী)',    engineKey: 'Vasant Panchami',                  tithi: 'Magha Shukla Panchami' },
+  { en: 'Maha Shivaratri',                   hi: 'महा शिवरात्रि',                  bn: 'মহা শিবরাত্রি',                  engineKey: 'Maha Shivaratri',                  tithi: 'Phalguna Krishna Chaturdashi' },
+  { en: 'Holi / Dol Yatra',                  hi: 'होली / दोल यात्रा',              bn: 'হোলি / দোল যাত্রা',              engineKey: 'Holi',                              tithi: 'Phalguna Purnima' },
+  { en: 'Charak Puja / Gajan',               hi: 'चड़क पूजा / गाजन',               bn: 'চড়ক পূজা / গাজন',                engineKey: 'Charak Puja',                      tithi: 'Chaitra Krishna Chaturdashi' },
+  { en: 'Annapurna Puja (Basanti)',          hi: 'अन्नपूर्णा पूजा (बासन्ती)',      bn: 'অন্নপূর্ণা পূজা (বাসন্তী)',      engineKey: 'Annapurna Puja (Basanti)',         tithi: 'Chaitra Shukla Ashtami' },
+  { en: 'Hanuman Jayanti',                   hi: 'हनुमान जयन्ती',                  bn: 'হনুমান জয়ন্তী',                  engineKey: 'Hanuman Jayanti',                  tithi: 'Chaitra Purnima' },
+  { en: 'Poila Boishakh (Bengali New Year)', hi: 'पहला बैशाख (बंगाली नव वर्ष)',     bn: 'পয়লা বৈশাখ (বাংলা নববর্ষ)',       engineKey: 'Poila Boishakh',                   tithi: 'Mesha Sankranti (Solar)' },
+  { en: 'Jamai Shashthi',                    hi: 'जामाई षष्ठी',                    bn: 'জামাই ষষ্ঠী',                     engineKey: 'Jamai Shashthi',                   tithi: 'Jyeshtha Shukla Shashthi' },
+  { en: 'Jagannath Rath Yatra',              hi: 'जगन्नाथ रथ यात्रा',              bn: 'জগন্নাথ রথযাত্রা',                engineKey: 'Jagannath Rath Yatra',             tithi: 'Ashadha Shukla Dwitiya' },
+  { en: 'Janmashtami',                       hi: 'जन्माष्टमी',                     bn: 'জন্মাষ্টমী',                      engineKey: 'Janmashtami',                      tithi: 'Bhadrapada Krishna Ashtami' },
+  { en: 'Mahalaya',                          hi: 'महालया',                         bn: 'মহালয়া',                          engineKey: 'Mahalaya (Sarva Pitru Amavasya)',  tithi: 'Bhadrapada Amavasya' },
+  { en: 'Durga Puja (Shashti)',              hi: 'दुर्गा पूजा (षष्ठी)',             bn: 'দুর্গা পূজা (ষষ্ঠী)',             engineKey: 'Durga Puja Shashti',               tithi: 'Ashwin Shukla Shashthi' },
+  { en: 'Durga Puja (Saptami)',              hi: 'दुर्गा पूजा (सप्तमी)',            bn: 'দুর্গা পূজা (সপ্তমী)',            engineKey: 'Durga Puja Saptami',               tithi: 'Ashwin Shukla Saptami' },
+  { en: 'Durga Puja (Ashtami)',              hi: 'दुर्गा पूजा (अष्टमी)',            bn: 'দুর্গা পূজা (অষ্টমী)',            engineKey: 'Durga Puja Ashtami',               tithi: 'Ashwin Shukla Ashtami' },
+  { en: 'Durga Puja (Navami)',               hi: 'दुर्गा पूजा (नवमी)',              bn: 'দুর্গা পূজা (নবমী)',              engineKey: 'Durga Puja Navami',                tithi: 'Ashwin Shukla Navami' },
+  { en: 'Vijaya Dashami (Bisarjan)',         hi: 'विजया दशमी (विसर्जन)',           bn: 'বিজয়া দশমী (বিসর্জন)',          engineKey: 'Sindoor Khela / Vijaya Dashami',   tithi: 'Ashwin Shukla Dashami' },
+  { en: 'Lakshmi Puja (Kojagari)',           hi: 'लक्ष्मी पूजा (कोजागरी)',         bn: 'লক্ষ্মী পূজা (কোজাগরী)',         engineKey: 'Sharad Purnima',                   tithi: 'Ashwin Purnima' },
+  { en: 'Jagaddhatri Puja',                  hi: 'जगद्धात्री पूजा',                 bn: 'জগদ্ধাত্রী পূজা',                 engineKey: 'Jagaddhatri Puja',                 tithi: 'Kartik Shukla Navami' },
+  { en: 'Kali Puja / Diwali',                hi: 'काली पूजा / दीवाली',             bn: 'কালী পূজা / দীপাবলি',            engineKey: 'Diwali',                            tithi: 'Kartik Krishna Amavasya' },
+  { en: 'Bhratri Dwitiya (Bhai Phonta)',     hi: 'भ्रातृ द्वितीया (भाई फोंटा)',     bn: 'ভ্রাতৃ দ্বিতীয়া (ভাই ফোঁটা)',    engineKey: 'Bhai Dooj',                        tithi: 'Kartik Shukla Dwitiya' },
+  { en: 'Chhath Puja',                       hi: 'छठ पूजा',                        bn: 'ছঠ পূজা',                         engineKey: 'Chhath Puja',                      tithi: 'Kartik Shukla Shashthi' },
 ];
 
 // Bengali Month → Gregorian conversion table for 2026–2027
@@ -221,15 +216,25 @@ const MONTH_CONVERSION = [
   { bengali: 'Choitro', bangla: 'চৈত্র', start2026: '15 Mar 2027', end2026: '13 Apr 2027', start2027: '15 Mar 2028', end2027: '13 Apr 2028' },
 ];
 
-// FAQ data for structured data
+// FAQ data for structured data. All year-specific dates resolve at
+// module load via `ed(year, festivalKey, locale)` against
+// festival-generator.ts — drift between FAQ schema and the festival
+// table is now structurally impossible. Hand-coded dates here were
+// found stale by 7-10 days during the 2026-06-10 audit.
 const FAQ_DATA = [
   {
     q: { en: 'When is Durga Puja 2026?', hi: 'दुर्गा पूजा 2026 कब है?' },
-    a: { en: 'Durga Puja 2026 runs from Shashti (Tuesday, 13 October) to Dashami/Bisarjan (Saturday, 17 October). Mahalaya falls on Saturday, 3 October 2026. The main five days of worship span Shashti through Dashami in the month of Ashwin.', hi: 'दुर्गा पूजा 2026 षष्ठी (मंगलवार, 13 अक्टूबर) से दशमी/विसर्जन (शनिवार, 17 अक्टूबर) तक चलेगी। महालया शनिवार, 3 अक्टूबर 2026 को पड़ती है।' },
+    a: {
+      en: `Durga Puja 2026 runs from Shashti (${ed(2026,'Durga Puja Shashti','en')}) to Dashami/Bisarjan (${ed(2026,'Sindoor Khela / Vijaya Dashami','en')}). Mahalaya falls on ${ed(2026,'Mahalaya (Sarva Pitru Amavasya)','en')}. The main days of worship span Shashti through Dashami in the month of Ashwin Shukla Paksha.`,
+      hi: `दुर्गा पूजा 2026 षष्ठी (${ed(2026,'Durga Puja Shashti','hi')}) से दशमी/विसर्जन (${ed(2026,'Sindoor Khela / Vijaya Dashami','hi')}) तक चलेगी। महालया ${ed(2026,'Mahalaya (Sarva Pitru Amavasya)','hi')} को पड़ती है।`,
+    },
   },
   {
     q: { en: 'When is Durga Puja 2027?', hi: 'दुर्गा पूजा 2027 कब है?' },
-    a: { en: 'Durga Puja 2027 runs from Shashti (Saturday, 2 October) to Dashami/Bisarjan (Wednesday, 6 October). The five-day celebration during Ashwin Shukla Paksha features Saptami on 3 Oct, Maha Ashtami on 4 Oct, and Navami on 5 Oct.', hi: 'दुर्गा पूजा 2027 षष्ठी (शनिवार, 2 अक्टूबर) से दशमी/विसर्जन (बुधवार, 6 अक्टूबर) तक चलेगी।' },
+    a: {
+      en: `Durga Puja 2027 runs from Shashti (${ed(2027,'Durga Puja Shashti','en')}) to Dashami/Bisarjan (${ed(2027,'Sindoor Khela / Vijaya Dashami','en')}). Mahalaya falls on ${ed(2027,'Mahalaya (Sarva Pitru Amavasya)','en')}. The celebration during Ashwin Shukla Paksha features Saptami on ${ed(2027,'Durga Puja Saptami','en')}, Maha Ashtami on ${ed(2027,'Durga Puja Ashtami','en')}, and Navami on ${ed(2027,'Durga Puja Navami','en')}.`,
+      hi: `दुर्गा पूजा 2027 षष्ठी (${ed(2027,'Durga Puja Shashti','hi')}) से दशमी/विसर्जन (${ed(2027,'Sindoor Khela / Vijaya Dashami','hi')}) तक चलेगी। महालया ${ed(2027,'Mahalaya (Sarva Pitru Amavasya)','hi')} को पड़ती है।`,
+    },
   },
   {
     q: { en: 'What is Poila Boishakh?', hi: 'पहला बैशाख क्या है?' },
@@ -241,7 +246,10 @@ const FAQ_DATA = [
   },
   {
     q: { en: 'When is Kali Puja 2026?', hi: 'काली पूजा 2026 कब है?' },
-    a: { en: 'Kali Puja 2026 falls on Sunday, 8 November 2026, on the Amavasya (new moon) of Kartik month. In Bengal, Kali Puja is observed alongside Diwali but with distinct rituals centred on Goddess Kali. The puja is performed at midnight (Nishi Puja), and thousands of illuminated pandals are set up across Kolkata.', hi: 'काली पूजा 2026 रविवार, 8 नवम्बर 2026 को कार्तिक अमावस्या पर पड़ती है। बंगाल में दीवाली के साथ-साथ काली पूजा अलग अनुष्ठानों के साथ मनाई जाती है।' },
+    a: {
+      en: `Kali Puja 2026 falls on ${ed(2026,'Kali Puja','en')}, on the Amavasya (new moon) of Kartik month. In Bengal, Kali Puja is observed alongside Diwali but with distinct rituals centred on Goddess Kali. The puja is performed at midnight (Nishi Puja), and thousands of illuminated pandals are set up across Kolkata.`,
+      hi: `काली पूजा 2026 ${ed(2026,'Kali Puja','hi')} को कार्तिक अमावस्या पर पड़ती है। बंगाल में दीवाली के साथ-साथ काली पूजा अलग अनुष्ठानों के साथ मनाई जाती है।`,
+    },
   },
   {
     q: { en: 'What is the current Bengali year (Bangabda)?', hi: 'वर्तमान बंगाली वर्ष (बंगाब्द) क्या है?' },
@@ -361,75 +369,49 @@ export default async function BengaliCalendarPage({ params }: { params: Promise<
           </p>
         </section>
 
-        {/* ══════════════════════════════════════════════════ */}
-        {/* 2026 Bengali Festival Dates with Tithi & Nakshatra */}
-        {/* ══════════════════════════════════════════════════ */}
-        <section>
-          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
-            {isHi ? 'बंगाली त्योहार 2026 — तिथि, नक्षत्र और दिनांक' : 'Bengali Festival Dates 2026 — Tithi, Nakshatra & Exact Dates'}
-          </h2>
-          <p className="text-text-secondary text-sm leading-relaxed mb-5">
-            {isHi
-              ? 'कोलकाता सन्दर्भ के साथ 2026 के प्रमुख बंगाली त्योहारों की सटीक तिथियां, तिथि और नक्षत्र। अपने पूजा की योजना इन सत्यापित तिथियों के साथ बनाएं।'
-              : 'Exact dates for all major Bengali festivals in 2026 with tithi (lunar day) and nakshatra (lunar mansion) computed for Kolkata. Plan your puja schedules with these verified dates from the Bengali Panjika.'}
-          </p>
-          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colFestival', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colDate', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colTithi', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colNakshatra', locale)}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {FESTIVAL_DATES_2026.map((f, i) => (
-                  <tr key={f.en} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
-                    <td className="px-4 py-2.5 text-text-primary font-medium">{locale === 'bn' ? f.bn : isHi ? f.hi : f.en}</td>
-                    <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.nakshatra}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* 2027 Bengali Festival Dates */}
-        <section>
-          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
-            {isHi ? 'बंगाली त्योहार 2027 — तिथि, नक्षत्र और दिनांक' : 'Bengali Festival Dates 2027 — Tithi, Nakshatra & Exact Dates'}
-          </h2>
-          <p className="text-text-secondary text-sm leading-relaxed mb-5">
-            {isHi
-              ? '2027 में प्रमुख बंगाली त्योहार। बंगाब्द 1434 14 अप्रैल 2027 से आरम्भ होगा।'
-              : 'Major Bengali festival dates for 2027. Bangabda 1434 begins on 14 April 2027. All dates computed for Kolkata with tithi and nakshatra from the Bengali Panjika.'}
-          </p>
-          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colFestival', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colDate', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colTithi', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colNakshatra', locale)}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {FESTIVAL_DATES_2027.map((f, i) => (
-                  <tr key={f.en} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
-                    <td className="px-4 py-2.5 text-text-primary font-medium">{locale === 'bn' ? f.bn : isHi ? f.hi : f.en}</td>
-                    <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.nakshatra}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+        {/* Upcoming Bengali Festival Dates — engine-driven */}
+        {(() => {
+          const nowIso = todayInIst();
+          const upcoming = BENGALI_FESTIVALS
+            .map((f) => {
+              const hit = nextUpcoming(f.engineKey, locale, nowIso);
+              return hit ? { f, iso: hit.iso, display: hit.display } : null;
+            })
+            .filter((x): x is { f: BengaliFestival; iso: string; display: string } => x !== null)
+            .sort((a, b) => a.iso.localeCompare(b.iso));
+          return (
+            <section>
+              <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+                {isHi ? 'आगामी बंगाली त्योहार — तिथि और सटीक दिनांक' : 'Upcoming Bengali Festival Dates — Tithi & Exact Dates'}
+              </h2>
+              <p className="text-text-secondary text-sm leading-relaxed mb-5">
+                {isHi
+                  ? 'कोलकाता सन्दर्भ के साथ प्रमुख बंगाली त्योहारों की आगामी तिथियां। दुर्गा पूजा, काली पूजा, लक्ष्मी पूजा, छठ पूजा — सभी तिथियां पंचांग engine से गणित और स्वतः अद्यतित।'
+                  : 'Upcoming dates for major Bengali festivals with tithi (lunar day), computed for Kolkata. Includes Durga Puja, Kali Puja, Lakshmi Puja, Chhath Puja, Poila Boishakh, and other observances from the Bengali Panjika. Dates auto-update daily from our panchang engine — never stale.'}
+              </p>
+              <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colFestival', locale)}</th>
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colDate', locale)}</th>
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colTithi', locale)}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {upcoming.map(({ f, iso, display }, i) => (
+                      <tr key={`${f.en}-${iso}`} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                        <td className="px-4 py-2.5 text-text-primary font-medium">{locale === 'bn' ? f.bn : isHi ? f.hi : f.en}</td>
+                        <td className="px-4 py-2.5 text-amber-400/80">{display}</td>
+                        <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          );
+        })()}
 
         {/* Bengali Month to Gregorian Conversion Table */}
         <section>

@@ -54,7 +54,13 @@ describe('Audit P2.1: V2 festival generator ↔ Drik Panchang Delhi 2026', () =>
     { label: 'Diwali / Lakshmi Puja', pattern: /^diwali$/i,             date: '2026-11-08' },
     { label: 'Dhanteras',             pattern: /^dhanteras$/i,          date: '2026-11-06' },
     { label: 'Govardhan Puja',        pattern: /^govardhan/i,           date: '2026-11-10' },
-    { label: 'Bhai Dooj',             pattern: /^bhai\s?dooj$/i,        date: '2026-11-11' },
+    // Bhai Dooj fixed 2026-06-11: was incorrectly attributed to Nov 11
+    // (sunrise rule on Day 2 — when Dwitiya was present at sunrise).
+    // Drik Panchang Bhai Dooj 2026 = Tuesday Nov 10 (aparahna-vyapini Dwitiya
+    // per Dharmasindhu). Engine now matches via muhurtaRule: 'aparahna' on
+    // the bhai-dooj def + 'aparahna' added to first-day-priority list in
+    // festival-generator.ts. Drik direct page verified 2026-06-11.
+    { label: 'Bhai Dooj',             pattern: /^bhai\s?dooj$/i,        date: '2026-11-10' },
     { label: 'Mahalaya / Sarva Pitru', pattern: /mahalaya|sarva.?pitru/i, date: '2026-10-10' },
     { label: 'Karwa Chauth',          pattern: /karwa|karva chauth/i,   date: '2026-10-29' },
     { label: 'Raksha Bandhan',        pattern: /raksha bandhan/i,       date: '2026-08-28' },

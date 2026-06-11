@@ -4,6 +4,7 @@ import type { Locale, LocaleText } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
 import { Link } from '@/lib/i18n/navigation';
+import { engineDate as ed, nextUpcoming, todayInIst } from '@/lib/seo/regional-faq-dates';
 
 const LABELS = {
   title: {
@@ -154,49 +155,46 @@ const FESTIVALS = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 2026 Gujarati Festival Dates with Tithi & Nakshatra
-// Sources: mainstream reference panchangs reference for Ahmedabad
+// Gujarati Festival Dates — engine-driven, NEXT upcoming occurrence only.
+// Computed for Ahmedabad (IST canonical).
 // ═══════════════════════════════════════════════════════════════════════════
-
-const FESTIVAL_DATES_2026 = [
-  { en: 'Uttarayan / Makar Sankranti', hi: 'उत्तरायण / मकर संक्रान्ति', gu: 'ઉત્તરાયણ / મકર સંક્રાન્તિ', date: 'Wed, 14 Jan 2026', tithi: 'Paush Krishna Pratipada', nakshatra: 'Uttara Ashadha' },
-  { en: 'Maha Shivaratri', hi: 'महा शिवरात्रि', gu: 'મહા શિવરાત્રી', date: 'Sat, 14 Feb 2026', tithi: 'Magha Krishna Chaturdashi', nakshatra: 'Shatabhisha' },
-  { en: 'Holi / Dhuleti', hi: 'होली / धुलेटी', gu: 'હોળી / ધુળેટી', date: 'Wed, 4 Mar 2026', tithi: 'Phalguna Purnima', nakshatra: 'Uttara Phalguni' },
-  { en: 'Ram Navami', hi: 'राम नवमी', gu: 'રામ નવમી', date: 'Sat, 28 Mar 2026', tithi: 'Chaitra Shukla Navami', nakshatra: 'Punarvasu' },
-  { en: 'Rath Yatra (Ahmedabad)', hi: 'रथ यात्रा (अहमदाबाद)', gu: 'રથયાત્રા (અમદાવાદ)', date: 'Mon, 29 Jun 2026', tithi: 'Ashadha Shukla Dwitiya', nakshatra: 'Pushya' },
-  { en: 'Janmashtami', hi: 'जन्माष्टमी', gu: 'જન્માષ્ટમી', date: 'Sat, 15 Aug 2026', tithi: 'Shravana Krishna Ashtami', nakshatra: 'Rohini' },
-  { en: 'Ganesh Chaturthi', hi: 'गणेश चतुर्थी', gu: 'ગણેશ ચતુર્થી', date: 'Wed, 9 Sep 2026', tithi: 'Bhadrapada Shukla Chaturthi', nakshatra: 'Chitra' },
-  { en: 'Navratri begins (Ghatasthapana)', hi: 'नवरात्रि आरम्भ (घटस्थापना)', gu: 'નવરાત્રિ શરૂ (ઘટસ્થાપના)', date: 'Wed, 7 Oct 2026', tithi: 'Ashwin Shukla Pratipada', nakshatra: 'Uttara Phalguni' },
-  { en: 'Dussehra / Vijaya Dashami', hi: 'दशहरा / विजया दशमी', gu: 'દશેરા / વિજયા દશમી', date: 'Sat, 17 Oct 2026', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
-  { en: 'Sharad Purnima', hi: 'शरद पूर्णिमा', gu: 'શરદ પૂનમ', date: 'Sat, 24 Oct 2026', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
-  { en: 'Diwali (Gujarati Year End)', hi: 'दीवाली (गुजराती वर्ष का अन्त)', gu: 'દિવાળી (ગુજરાતી વર્ષનો અંત)', date: 'Sun, 8 Nov 2026', tithi: 'Ashwin Amavasya', nakshatra: 'Swati' },
-  { en: 'Bestu Varas / Gujarati New Year (VS 2083)', hi: 'बेस्टु वरस / गुजराती नव वर्ष (वि.सं. 2083)', gu: 'બેસ્તુ વર્સ / ગુજરાતી નવું વર્ષ (વિ.સં. 2083)', date: 'Mon, 9 Nov 2026', tithi: 'Kartik Shukla Pratipada', nakshatra: 'Vishakha' },
-  { en: 'Annakut', hi: 'अन्नकूट', gu: 'અન્નકૂટ', date: 'Mon, 9 Nov 2026', tithi: 'Kartik Shukla Dwitiya', nakshatra: 'Anuradha' },
-  { en: 'Dev Diwali', hi: 'देव दीवाली', gu: 'દેવ દિવાળી', date: 'Mon, 23 Nov 2026', tithi: 'Kartik Purnima', nakshatra: 'Rohini' },
-];
-
-const FESTIVAL_DATES_2027 = [
-  { en: 'Uttarayan / Makar Sankranti', hi: 'उत्तरायण / मकर संक्रान्ति', gu: 'ઉત્તરાયણ / મકર સંક્રાન્તિ', date: 'Thu, 14 Jan 2027', tithi: 'Paush Shukla Dashami', nakshatra: 'Shravana' },
-  { en: 'Maha Shivaratri', hi: 'महा शिवरात्रि', gu: 'મહા શિવરાત્રી', date: 'Thu, 4 Feb 2027', tithi: 'Magha Krishna Chaturdashi', nakshatra: 'Shatabhisha' },
-  { en: 'Holi / Dhuleti', hi: 'होली / धुलेटी', gu: 'હોળી / ધુળેટી', date: 'Sun, 22 Feb 2027', tithi: 'Phalguna Purnima', nakshatra: 'Uttara Phalguni' },
-  { en: 'Ram Navami', hi: 'राम नवमी', gu: 'રામ નવમી', date: 'Wed, 17 Mar 2027', tithi: 'Chaitra Shukla Navami', nakshatra: 'Punarvasu' },
-  { en: 'Rath Yatra (Ahmedabad)', hi: 'रथ यात्रा (अहमदाबाद)', gu: 'રથયાત્રા (અમદાવાદ)', date: 'Fri, 18 Jun 2027', tithi: 'Ashadha Shukla Dwitiya', nakshatra: 'Pushya' },
-  { en: 'Janmashtami', hi: 'जन्माष्टमी', gu: 'જન્માષ્ટમી', date: 'Thu, 5 Aug 2027', tithi: 'Shravana Krishna Ashtami', nakshatra: 'Rohini' },
-  { en: 'Ganesh Chaturthi', hi: 'गणेश चतुर्थी', gu: 'ગણેશ ચતુર્થી', date: 'Sun, 29 Aug 2027', tithi: 'Bhadrapada Shukla Chaturthi', nakshatra: 'Chitra' },
-  { en: 'Navratri begins (Ghatasthapana)', hi: 'नवरात्रि आरम्भ (घटस्थापना)', gu: 'નવરાત્રિ શરૂ (ઘટસ્થાપના)', date: 'Mon, 27 Sep 2027', tithi: 'Ashwin Shukla Pratipada', nakshatra: 'Uttara Phalguni' },
-  { en: 'Dussehra / Vijaya Dashami', hi: 'दशहरा / विजया दशमी', gu: 'દશેરા / વિજયા દશમી', date: 'Wed, 6 Oct 2027', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
-  { en: 'Sharad Purnima', hi: 'शरद पूर्णिमा', gu: 'શરદ પૂનમ', date: 'Wed, 13 Oct 2027', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
-  { en: 'Diwali (Gujarati Year End)', hi: 'दीवाली (गुजराती वर्ष का अन्त)', gu: 'દિવાળી (ગુજરાતી વર્ષનો અંત)', date: 'Thu, 28 Oct 2027', tithi: 'Ashwin Amavasya', nakshatra: 'Chitra' },
-  { en: 'Bestu Varas / Gujarati New Year (VS 2084)', hi: 'बेस्टु वरस / गुजराती नव वर्ष (वि.सं. 2084)', gu: 'બેસ્તુ વર્સ / ગુજરાતી નવું વર્ષ (વિ.સં. 2084)', date: 'Fri, 29 Oct 2027', tithi: 'Kartik Shukla Pratipada', nakshatra: 'Vishakha' },
-  { en: 'Annakut', hi: 'अन्नकूट', gu: 'અન્નકૂટ', date: 'Fri, 29 Oct 2027', tithi: 'Kartik Shukla Dwitiya', nakshatra: 'Anuradha' },
-  { en: 'Dev Diwali', hi: 'देव दीवाली', gu: 'દેવ દિવાળી', date: 'Fri, 12 Nov 2027', tithi: 'Kartik Purnima', nakshatra: 'Rohini' },
+interface GujaratiFestival { en: string; hi: string; gu: string; engineKey: string; tithi: string }
+const GUJARATI_FESTIVALS: GujaratiFestival[] = [
+  { en: 'Uttarayan / Makar Sankranti',                hi: 'उत्तरायण / मकर संक्रान्ति',         gu: 'ઉત્તરાયણ / મકર સંક્રાન્તિ',           engineKey: 'Uttarayan',                          tithi: 'Pausha (Solar — Capricorn ingress)' },
+  { en: 'Maha Shivaratri',                            hi: 'महा शिवरात्रि',                     gu: 'મહા શિવરાત્રી',                       engineKey: 'Maha Shivaratri',                    tithi: 'Phalguna Krishna Chaturdashi' },
+  { en: 'Holi / Dhuleti',                             hi: 'होली / धुलेटी',                     gu: 'હોળી / ધુળેટી',                       engineKey: 'Holi',                                tithi: 'Phalguna Purnima' },
+  { en: 'Ram Navami',                                 hi: 'राम नवमी',                          gu: 'રામ નવમી',                            engineKey: 'Ram Navami',                         tithi: 'Chaitra Shukla Navami' },
+  { en: 'Hanuman Jayanti',                            hi: 'हनुमान जयन्ती',                    gu: 'હનુમાન જયંતી',                       engineKey: 'Hanuman Jayanti',                    tithi: 'Chaitra Purnima' },
+  { en: 'Akshaya Tritiya',                            hi: 'अक्षय तृतीया',                      gu: 'અક્ષય તૃતીયા',                        engineKey: 'Akshaya Tritiya',                    tithi: 'Vaishakha Shukla Tritiya' },
+  { en: 'Vat Savitri Vrat',                           hi: 'वट सावित्री व्रत',                  gu: 'વટ સાવિત્રી વ્રત',                    engineKey: 'Vat Savitri Vrat',                   tithi: 'Jyeshtha Purnima' },
+  { en: 'Jagannath Rath Yatra (Ahmedabad)',           hi: 'जगन्नाथ रथ यात्रा (अहमदाबाद)',     gu: 'જગન્નાથ રથયાત્રા (અમદાવાદ)',         engineKey: 'Jagannath Rath Yatra',               tithi: 'Ashadha Shukla Dwitiya' },
+  { en: 'Janmashtami',                                hi: 'जन्माष्टमी',                        gu: 'જન્માષ્ટમી',                          engineKey: 'Janmashtami',                        tithi: 'Bhadrapada Krishna Ashtami' },
+  { en: 'Ganesh Chaturthi',                           hi: 'गणेश चतुर्थी',                      gu: 'ગણેશ ચતુર્થી',                        engineKey: 'Ganesh Chaturthi',                   tithi: 'Bhadrapada Shukla Chaturthi' },
+  { en: 'Navratri begins (Ghatasthapana)',            hi: 'नवरात्रि आरम्भ (घटस्थापना)',       gu: 'નવરાત્રિ શરૂ (ઘટસ્થાપના)',           engineKey: 'Ghatasthapana (Navratri Day 1)',     tithi: 'Ashwin Shukla Pratipada' },
+  { en: 'Dussehra / Vijaya Dashami',                  hi: 'दशहरा / विजया दशमी',                gu: 'દશેરા / વિજયા દશમી',                  engineKey: 'Sindoor Khela / Vijaya Dashami',     tithi: 'Ashwin Shukla Dashami' },
+  { en: 'Sharad Purnima',                             hi: 'शरद पूर्णिमा',                       gu: 'શરદ પૂનમ',                             engineKey: 'Sharad Purnima',                     tithi: 'Ashwin Purnima' },
+  { en: 'Dhanteras',                                  hi: 'धनतेरस',                            gu: 'ધનતેરસ',                              engineKey: 'Dhanteras',                          tithi: 'Kartik Krishna Trayodashi' },
+  { en: 'Diwali (Gujarati Year End)',                 hi: 'दीवाली (गुजराती वर्ष का अन्त)',    gu: 'દિવાળી (ગુજરાતી વર્ષનો અંત)',        engineKey: 'Diwali',                              tithi: 'Ashwin Amavasya' },
+  { en: 'Bestu Varas / Gujarati New Year',            hi: 'बेस्टु वरस / गुजराती नव वर्ष',     gu: 'બેસ્તુ વર્સ / ગુજરાતી નવું વર્ષ',     engineKey: 'Gujarati New Year',                  tithi: 'Kartik Shukla Pratipada' },
+  { en: 'Annakut',                                    hi: 'अन्नकूट',                           gu: 'અન્નકૂટ',                             engineKey: 'Govardhan Puja',                     tithi: 'Kartik Shukla Pratipada/Dwitiya' },
+  { en: 'Labh Pancham',                               hi: 'लाभ पंचमी',                         gu: 'લાભ પાંચમ',                          engineKey: 'Labh Pancham',                       tithi: 'Kartik Shukla Panchami' },
+  { en: 'Bhai Beej',                                  hi: 'भाई बीज',                           gu: 'ભાઈ બીજ',                            engineKey: 'Bhai Dooj',                          tithi: 'Kartik Shukla Dwitiya' },
+  { en: 'Dev Diwali',                                 hi: 'देव दीवाली',                        gu: 'દેવ દિવાળી',                          engineKey: 'Dev Diwali',                         tithi: 'Kartik Purnima' },
 ];
 
 // FAQ data for structured data
 const FAQ_DATA = [
+  // All year-specific dates resolved via ed(year, festivalKey, locale)
+  // against festival-generator.ts. Drift between FAQ schema and the
+  // festival table is now structurally impossible. Hand-coded dates
+  // here were 1-7 days stale during the 2026-06-10 audit.
   {
     q: { en: 'When is Gujarati New Year 2026?', hi: 'गुजराती नव वर्ष 2026 कब है?', gu: 'ગુજરાતી નવું વર્ષ 2026 ક્યારે છે?' },
-    a: { en: 'Gujarati New Year 2026 (Bestu Varas, Vikram Samvat 2083) falls on Monday, 9 November 2026. It is the day after Diwali, which occurs on Sunday, 8 November 2026. The tithi is Kartik Shukla Pratipada. On Diwali evening, Gujarati families perform Chopda Pujan (worship of account books) and on Bestu Varas morning, new account books are opened with "Shubh Labh" inscriptions. Families greet each other with "Sal Mubarak" (happy new year).', hi: 'गुजराती नव वर्ष 2026 (बेस्टु वरस, विक्रम संवत् 2083) सोमवार, 9 नवम्बर 2026 को पड़ता है। यह दीवाली (रविवार, 8 नवम्बर 2026) के अगले दिन है। तिथि कार्तिक शुक्ल प्रतिपदा है। दीवाली की शाम को चोपड़ा पूजन और बेस्टु वरस की सुबह "शुभ लाभ" के साथ नई खाता-बहियाँ खोली जाती हैं।', gu: 'ગુજરાતી નવું વર્ષ 2026 (બેસ્તુ વર્સ, વિક્રમ સંવત 2083) સોમવાર, 9 નવેમ્બર 2026ના રોજ છે. તે દિવાળી (રવિવાર, 8 નવેમ્બર 2026) ના બીજા દિવસે છે. તિથિ કારતક સુદ એકમ છે.' },
+    a: {
+      en: `Gujarati New Year 2026 (Bestu Varas, Vikram Samvat 2083) falls on ${ed(2026,'Gujarati New Year (Bestu Varas)','en')}. It is the day after Diwali (${ed(2026,'Diwali','en')}). The tithi is Kartik Shukla Pratipada. On Diwali evening, Gujarati families perform Chopda Pujan (worship of account books) and on Bestu Varas morning, new account books are opened with "Shubh Labh" inscriptions. Families greet each other with "Sal Mubarak" (happy new year).`,
+      hi: `गुजराती नव वर्ष 2026 (बेस्टु वरस, विक्रम संवत् 2083) ${ed(2026,'Gujarati New Year (Bestu Varas)','hi')} को पड़ता है। यह दीवाली (${ed(2026,'Diwali','hi')}) के अगले दिन है। तिथि कार्तिक शुक्ल प्रतिपदा है। दीवाली की शाम को चोपड़ा पूजन और बेस्टु वरस की सुबह "शुभ लाभ" के साथ नई खाता-बहियाँ खोली जाती हैं।`,
+      gu: `ગુજરાતી નવું વર્ષ 2026 (બેસ્તુ વર્સ, વિક્રમ સંવત 2083) ${ed(2026,'Gujarati New Year (Bestu Varas)','gu')}ના રોજ છે. તે દિવાળી (${ed(2026,'Diwali','gu')}) ના બીજા દિવસે છે. તિથિ કારતક સુદ એકમ છે.`,
+    },
   },
   {
     q: { en: 'What is the Gujarati calendar system?', hi: 'गुजराती कैलेंडर प्रणाली क्या है?', gu: 'ગુજરાતી કૅલેન્ડર પ્રણાળી શું છે?' },
@@ -204,7 +202,11 @@ const FAQ_DATA = [
   },
   {
     q: { en: 'When is Navratri 2026 in Gujarat?', hi: 'गुजरात में नवरात्रि 2026 कब है?', gu: 'ગુજરાતમાં નવરાત્રી 2026 ક્યારે છે?' },
-    a: { en: 'Navratri 2026 in Gujarat begins on Wednesday, 7 October 2026 (Ghatasthapana, Ashwin Shukla Pratipada) and runs for 9 nights until Thursday, 15 October 2026. The culmination is Dussehra / Vijaya Dashami on Saturday, 17 October 2026. Garba and Dandiya Raas events are held nightly across Gujarat, with the largest celebrations in Ahmedabad, Vadodara, Surat, and Rajkot. Each night is dedicated to one of the nine forms of Goddess Durga (Navadurga).', hi: 'गुजरात में नवरात्रि 2026 बुधवार, 7 अक्टूबर 2026 (घटस्थापना, आश्विन शुक्ल प्रतिपदा) से 9 रातों तक गुरुवार, 15 अक्टूबर 2026 तक चलती है। दशहरा / विजया दशमी शनिवार, 17 अक्टूबर 2026 को है। अहमदाबाद, वडोदरा, सूरत और राजकोट में सबसे बड़े उत्सव होते हैं।', gu: 'ગુજરાતમાં નવરાત્રી 2026 બુધવાર, 7 ઓક્ટોબર 2026 (ઘટસ્થાપના, આસો સુદ 1) થી 9 રાત ગુરુવાર, 15 ઓક્ટોબર 2026 સુધી ચાલે છે. દશેરા શનિવાર, 17 ઓક્ટોબર 2026ના રોજ છે. અમદાવાદ, વડોદરા, સૂરત અને રાજકોટમાં સૌથી મોટા ઉત્સવ.' },
+    a: {
+      en: `Navratri 2026 in Gujarat begins on ${ed(2026,'Ghatasthapana (Navratri Day 1)','en')} (Ghatasthapana, Ashwin Shukla Pratipada) and culminates with Dussehra / Vijaya Dashami on ${ed(2026,'Sindoor Khela / Vijaya Dashami','en')}. Garba and Dandiya Raas events are held nightly across Gujarat, with the largest celebrations in Ahmedabad, Vadodara, Surat, and Rajkot. Each night is dedicated to one of the nine forms of Goddess Durga (Navadurga).`,
+      hi: `गुजरात में नवरात्रि 2026 ${ed(2026,'Ghatasthapana (Navratri Day 1)','hi')} (घटस्थापना, आश्विन शुक्ल प्रतिपदा) से शुरू होती है। दशहरा / विजया दशमी ${ed(2026,'Sindoor Khela / Vijaya Dashami','hi')} को है। अहमदाबाद, वडोदरा, सूरत और राजकोट में सबसे बड़े उत्सव होते हैं।`,
+      gu: `ગુજરાતમાં નવરાત્રી 2026 ${ed(2026,'Ghatasthapana (Navratri Day 1)','gu')} (ઘટસ્થાપના, આસો સુદ 1) થી શરૂ થાય છે. દશેરા ${ed(2026,'Sindoor Khela / Vijaya Dashami','gu')}ના રોજ છે. અમદાવાદ, વડોદરા, સૂરત અને રાજકોટમાં સૌથી મોટા ઉત્સવ.`,
+    },
   },
   {
     q: { en: 'How does the Gujarati calendar differ from the North Indian calendar?', hi: 'गुजराती कैलेंडर उत्तर भारतीय कैलेंडर से कैसे भिन्न है?', gu: 'ગુજરાતી કૅલેન્ડર ઉત્તર ભારતીય કૅલેન્ડરથી કેવી રીતે અલગ છે?' },
@@ -212,7 +214,11 @@ const FAQ_DATA = [
   },
   {
     q: { en: 'What is the current Vikram Samvat year?', hi: 'वर्तमान विक्रम संवत् वर्ष क्या है?', gu: 'વર્તમાન વિક્રમ સંવત વર્ષ શું છે?' },
-    a: { en: 'As of May 2026, the current Gujarati Vikram Samvat year is 2082, which began on 22 October 2025 (the day after Diwali 2025). Vikram Samvat 2083 will begin on Monday, 9 November 2026 (Bestu Varas, the day after Diwali 2026). In the North Indian reckoning (Chaitra start), VS 2083 began in March 2026. To convert: CE year + 57 = approximate VS year (after Bestu Varas). The Vikram Samvat era is attributed to 57 BCE and is 57 years ahead of the Common Era, making it one of the oldest continuously used calendrical systems.', hi: 'मई 2026 तक, वर्तमान गुजराती विक्रम संवत् वर्ष 2082 है, जो 22 अक्टूबर 2025 (दीवाली 2025 के अगले दिन) से शुरू हुआ। विक्रम संवत् 2083 सोमवार, 9 नवम्बर 2026 (बेस्टु वरस) से शुरू होगा। रूपान्तरण: ई. वर्ष + 57 = अनुमानित वि.सं. वर्ष (बेस्टु वरस के बाद)।', gu: 'મે 2026 સુધી, વર્તમાન ગુજરાતી વિક્રમ સંવત વર્ષ 2082 છે, જે 22 ઓક્ટોબર 2025 (દિવાળી 2025 પછી) થી શરૂ થયું. વિક્રમ સંવત 2083 સોમવાર, 9 નવેમ્બર 2026 (બેસ્તુ વર્સ) થી શરૂ થશે. રૂપાંતરણ: ઈ.સ. વર્ષ + 57 = અંદાજિત વિ.સં. વર્ષ.' },
+    a: {
+      en: `The current Gujarati Vikram Samvat year is 2082 (started day after Diwali 2025). Vikram Samvat 2083 will begin on ${ed(2026,'Gujarati New Year (Bestu Varas)','en')} (Bestu Varas, the day after Diwali 2026). In the North Indian reckoning (Chaitra start), VS 2083 began in spring 2026. To convert: CE year + 57 = approximate VS year (after Bestu Varas). The Vikram Samvat era is attributed to 57 BCE and is 57 years ahead of the Common Era, making it one of the oldest continuously used calendrical systems.`,
+      hi: `वर्तमान गुजराती विक्रम संवत् वर्ष 2082 है (दीवाली 2025 के अगले दिन से शुरू)। विक्रम संवत् 2083 ${ed(2026,'Gujarati New Year (Bestu Varas)','hi')} (बेस्टु वरस) से शुरू होगा। रूपान्तरण: ई. वर्ष + 57 = अनुमानित वि.सं. वर्ष (बेस्टु वरस के बाद)।`,
+      gu: `વર્તમાન ગુજરાતી વિક્રમ સંવત વર્ષ 2082 છે (દિવાળી 2025 પછી શરૂ થયું). વિક્રમ સંવત 2083 ${ed(2026,'Gujarati New Year (Bestu Varas)','gu')} (બેસ્તુ વર્સ) થી શરૂ થશે. રૂપાંતરણ: ઈ.સ. વર્ષ + 57 = અંદાજિત વિ.સં. વર્ષ.`,
+    },
   },
   {
     q: { en: 'What is Chopda Pujan and when is it performed?', hi: 'चोपड़ा पूजन क्या है और कब किया जाता है?', gu: 'ચોપડા પૂજન શું છે અને ક્યારે કરવામાં આવે છે?' },
@@ -389,79 +395,51 @@ export default async function GujaratiCalendarPage({ params }: { params: Promise
           </p>
         </section>
 
-        {/* ══════════════════════════════════════════════════ */}
-        {/* 2026 Gujarati Festival Dates with Tithi & Nakshatra */}
-        {/* ══════════════════════════════════════════════════ */}
-        <section>
-          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
-            {tl({ en: 'Gujarati Festival Dates 2026 — Tithi, Nakshatra & Exact Dates', hi: 'गुजराती त्योहार 2026 — तिथि, नक्षत्र और दिनांक', gu: 'ગુજરાતી તહેવાર 2026 — તિથિ, નક્ષત્ર અને તારીખો' } as LocaleText, locale)}
-          </h2>
-          <p className="text-text-secondary text-sm leading-relaxed mb-5">
-            {tl({
-              en: 'Exact dates for all major Gujarati festivals in 2026 with tithi (lunar day) and nakshatra (lunar mansion) computed for Ahmedabad. Plan your puja, Garba nights, and Chopda Pujan with these verified dates from the Gujarati Panchang.',
-              hi: 'अहमदाबाद सन्दर्भ के साथ 2026 के प्रमुख गुजराती त्योहारों की सटीक तिथियां, तिथि और नक्षत्र। अपने पूजा, गरबा रातों और चोपड़ा पूजन की योजना इन सत्यापित तिथियों के साथ बनाएं।',
-              gu: 'અમદાવાદ સંદર્ભ સાથે 2026ના મુખ્ય ગુજરાતી તહેવારોની ચોક્કસ તારીખો, તિથિ અને નક્ષત્ર. તમારી પૂજા, ગરબા રાત અને ચોપડા પૂજનની યોજના આ ચકાસાયેલ તારીખો સાથે બનાવો.',
-            } as LocaleText, locale)}
-          </p>
-          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Festival', hi: 'त्योहार', gu: 'તહેવાર' } as LocaleText, locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Date', hi: 'दिनांक', gu: 'તારીખ' } as LocaleText, locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Tithi', hi: 'तिथि', gu: 'તિથિ' } as LocaleText, locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Nakshatra', hi: 'नक्षत्र', gu: 'નક્ષત્ર' } as LocaleText, locale)}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {FESTIVAL_DATES_2026.map((f, i) => (
-                  <tr key={f.en} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
-                    <td className="px-4 py-2.5 text-text-primary font-medium">{isGu ? f.gu : isHi ? f.hi : f.en}</td>
-                    <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.nakshatra}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* 2027 Gujarati Festival Dates */}
-        <section>
-          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
-            {tl({ en: 'Gujarati Festival Dates 2027 — Tithi, Nakshatra & Exact Dates', hi: 'गुजराती त्योहार 2027 — तिथि, नक्षत्र और दिनांक', gu: 'ગુજરાતી તહેવાર 2027 — તિથિ, નક્ષત્ર અને તારીખો' } as LocaleText, locale)}
-          </h2>
-          <p className="text-text-secondary text-sm leading-relaxed mb-5">
-            {tl({
-              en: 'Major Gujarati festival dates for 2027. Vikram Samvat 2084 begins after Diwali on 29 October 2027. All dates computed for Ahmedabad with tithi and nakshatra from the Gujarati Panchang.',
-              hi: '2027 में प्रमुख गुजराती त्योहार। विक्रम संवत् 2084 दीवाली के बाद 29 अक्टूबर 2027 से आरम्भ होगा। अहमदाबाद सन्दर्भ के साथ सभी तिथियां।',
-              gu: '2027ના મુખ્ય ગુજરાતી તહેવારો. વિક્રમ સંવત 2084 દિવાળી પછી 29 ઓક્ટોબર 2027થી શરૂ થશે. અમદાવાદ સંદર્ભ સાથે તમામ તારીખો.',
-            } as LocaleText, locale)}
-          </p>
-          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Festival', hi: 'त्योहार', gu: 'તહેવાર' } as LocaleText, locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Date', hi: 'दिनांक', gu: 'તારીખ' } as LocaleText, locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Tithi', hi: 'तिथि', gu: 'તિથિ' } as LocaleText, locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Nakshatra', hi: 'नक्षत्र', gu: 'નક્ષત્ર' } as LocaleText, locale)}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {FESTIVAL_DATES_2027.map((f, i) => (
-                  <tr key={f.en} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
-                    <td className="px-4 py-2.5 text-text-primary font-medium">{isGu ? f.gu : isHi ? f.hi : f.en}</td>
-                    <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.nakshatra}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+        {/* Upcoming Gujarati Festival Dates — engine-driven */}
+        {(() => {
+          const nowIso = todayInIst();
+          const upcoming = GUJARATI_FESTIVALS
+            .map((f) => {
+              const hit = nextUpcoming(f.engineKey, locale, nowIso);
+              return hit ? { f, iso: hit.iso, display: hit.display } : null;
+            })
+            .filter((x): x is { f: GujaratiFestival; iso: string; display: string } => x !== null)
+            .sort((a, b) => a.iso.localeCompare(b.iso));
+          return (
+            <section>
+              <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+                {tl({ en: 'Upcoming Gujarati Festival Dates — Tithi & Exact Dates', hi: 'आगामी गुजराती त्योहार — तिथि और सटीक दिनांक', gu: 'આગામી ગુજરાતી તહેવાર — તિથિ અને ચોક્કસ તારીખો' } as LocaleText, locale)}
+              </h2>
+              <p className="text-text-secondary text-sm leading-relaxed mb-5">
+                {tl({
+                  en: 'Upcoming dates for major Gujarati festivals with tithi (lunar day), computed for Ahmedabad. Includes Uttarayan, Janmashtami, Navratri, Diwali, Bestu Varas (Gujarati New Year), and Dev Diwali. Dates auto-update daily from our panchang engine — never stale.',
+                  hi: 'अहमदाबाद सन्दर्भ के साथ प्रमुख गुजराती त्योहारों की आगामी तिथियां। उत्तरायण, जन्माष्टमी, नवरात्रि, दीवाली, बेस्टु वरस (गुजराती नव वर्ष) और देव दीवाली — सभी तिथियां पंचांग engine से गणित और स्वतः अद्यतित।',
+                  gu: 'અમદાવાદ સંદર્ભ સાથે મુખ્ય ગુજરાતી તહેવારોની આગામી તારીખો. ઉત્તરાયણ, જન્માષ્ટમી, નવરાત્રિ, દિવાળી, બેસ્તુ વર્સ (ગુજરાતી નવું વર્ષ), દેવ દિવાળી — બધી તારીખો પંચાંગ એન્જિનમાંથી ગણતરી અને દરરોજ સ્વતઃ-અપડેટ.',
+                } as LocaleText, locale)}
+              </p>
+              <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Festival', hi: 'त्योहार', gu: 'તહેવાર' } as LocaleText, locale)}</th>
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Date', hi: 'दिनांक', gu: 'તારીખ' } as LocaleText, locale)}</th>
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Tithi', hi: 'तिथि', gu: 'તિથિ' } as LocaleText, locale)}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {upcoming.map(({ f, iso, display }, i) => (
+                      <tr key={`${f.en}-${iso}`} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                        <td className="px-4 py-2.5 text-text-primary font-medium">{isGu ? f.gu : isHi ? f.hi : f.en}</td>
+                        <td className="px-4 py-2.5 text-amber-400/80">{display}</td>
+                        <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          );
+        })()}
 
         {/* History & Cultural Significance (SEO long-form) */}
         <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">

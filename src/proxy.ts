@@ -737,6 +737,13 @@ export const config = {
     '/(en|hi|sa|ta|te|bn|kn|mr|gu|mai)/:path*',
     // Note: matcher keeps `sa` so the retired-locale 301 still fires; LOCALES
     // (active) and RETIRED_LOCALES are the runtime gates.
-    '/((?!api|_next|_vercel|embed|.*\\..*).*)',
+    //
+    // `sitemaps` is excluded so the per-locale sitemap shards at
+    // /sitemaps/{en,hi,…} don't get the auto-locale prefix the proxy
+    // applies to unprefixed paths. Without this exemption,
+    // /sitemaps/en redirects 307 → /en/sitemaps/en → 404. (The literal
+    // sitemap path /sitemap.xml is already exempt via the `.*\\..*`
+    // file-extension catch.)
+    '/((?!api|_next|_vercel|embed|sitemaps|.*\\..*).*)',
   ],
 };

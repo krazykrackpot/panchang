@@ -1,6 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
 import { pickRegionalChrome as RC } from "@/lib/content/regional-chrome-labels";
+import { engineDate as ed, nextUpcoming, todayInIst } from "@/lib/seo/regional-faq-dates";
 
 // ═══════════════════════════════════════════════════════════════════════════
 // LABELS — EN / HI / TE trilingual
@@ -290,174 +291,33 @@ const FESTIVALS = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 2026 Telugu Festival Dates with Tithi & Nakshatra
-// Sources: mainstream reference panchangs reference for Hyderabad
+// Telugu Festival Dates — engine-driven, NEXT upcoming occurrence only.
+// Computed for Hyderabad (IST canonical).
 // ═══════════════════════════════════════════════════════════════════════════
-
-const FESTIVAL_DATES_2026 = [
-  {
-    en: "Makara Sankranti",
-    hi: "मकर संक्रान्ति",
-    te: "మకర సంక్రాంతి",
-    date: "Wed, 14 Jan 2026",
-    tithi: "Paush Krishna Pratipada",
-    nakshatra: "Uttara Ashadha",
-  },
-  {
-    en: "Maha Shivaratri",
-    hi: "महा शिवरात्रि",
-    te: "మహా శివరాత్రి",
-    date: "Sat, 14 Feb 2026",
-    tithi: "Magha Krishna Chaturdashi",
-    nakshatra: "Shatabisha",
-  },
-  {
-    en: "Ugadi (Telugu New Year)",
-    hi: "उगादि (तेलुगु नव वर्ष)",
-    te: "ఉగాది (తెలుగు నూతన సంవత్సరం)",
-    date: "Sat, 28 Mar 2026",
-    tithi: "Chaitra Shukla Pratipada",
-    nakshatra: "Uttara Bhadrapada",
-  },
-  {
-    en: "Sri Rama Navami",
-    hi: "श्री राम नवमी",
-    te: "శ్రీ రామ నవమి",
-    date: "Mon, 6 Apr 2026",
-    tithi: "Chaitra Shukla Navami",
-    nakshatra: "Punarvasu",
-  },
-  {
-    en: "Varalakshmi Vratam",
-    hi: "वरलक्ष्मी व्रतम्",
-    te: "వరలక్ష్మీ వ్రతం",
-    date: "Fri, 7 Aug 2026",
-    tithi: "Shravana Shukla Dwadashi",
-    nakshatra: "Uttara Phalguni",
-  },
-  {
-    en: "Vinayaka Chaturthi",
-    hi: "विनायक चतुर्थी",
-    te: "వినాయక చవితి",
-    date: "Fri, 4 Sep 2026",
-    tithi: "Bhadrapada Shukla Chaturthi",
-    nakshatra: "Chitra",
-  },
-  {
-    en: "Dasara / Vijayadashami",
-    hi: "दशहरा / विजयदशमी",
-    te: "దసరా / విజయదశమి",
-    date: "Sat, 17 Oct 2026",
-    tithi: "Ashvija Shukla Dashami",
-    nakshatra: "Vishakha",
-  },
-  {
-    en: "Deepavali",
-    hi: "दीपावली",
-    te: "దీపావళి",
-    date: "Sun, 8 Nov 2026",
-    tithi: "Kartika Krishna Amavasya",
-    nakshatra: "Swati",
-  },
-  {
-    en: "Kartika Purnima",
-    hi: "कार्तिक पूर्णिमा",
-    te: "కార్తీక పూర్ణిమ",
-    date: "Mon, 23 Nov 2026",
-    tithi: "Kartika Purnima",
-    nakshatra: "Krittika",
-  },
-  {
-    en: "Subramanya Shashti",
-    hi: "सुब्रह्मण्य षष्ठी",
-    te: "సుబ్రహ్మణ్య షష్ఠి",
-    date: "Sat, 28 Nov 2026",
-    tithi: "Margashira Shukla Shashthi",
-    nakshatra: "Pushya",
-  },
-];
-
-const FESTIVAL_DATES_2027 = [
-  {
-    en: "Makara Sankranti",
-    hi: "मकर संक्रान्ति",
-    te: "మకర సంక్రాంతి",
-    date: "Thu, 14 Jan 2027",
-    tithi: "Paush Shukla Dashami",
-    nakshatra: "Shravana",
-  },
-  {
-    en: "Maha Shivaratri",
-    hi: "महा शिवरात्रि",
-    te: "మహా శివరాత్రి",
-    date: "Thu, 4 Feb 2027",
-    tithi: "Magha Krishna Chaturdashi",
-    nakshatra: "Shatabisha",
-  },
-  {
-    en: "Ugadi (Telugu New Year)",
-    hi: "उगादि (तेलुगु नव वर्ष)",
-    te: "ఉగాది (తెలుగు నూతన సంవత్సరం)",
-    date: "Wed, 17 Mar 2027",
-    tithi: "Chaitra Shukla Pratipada",
-    nakshatra: "Uttara Bhadrapada",
-  },
-  {
-    en: "Sri Rama Navami",
-    hi: "श्री राम नवमी",
-    te: "శ్రీ రామ నవమి",
-    date: "Thu, 25 Mar 2027",
-    tithi: "Chaitra Shukla Navami",
-    nakshatra: "Punarvasu",
-  },
-  {
-    en: "Varalakshmi Vratam",
-    hi: "वरलक्ष्मी व्रतम्",
-    te: "వరలక్ష్మీ వ్రతం",
-    date: "Fri, 30 Jul 2027",
-    tithi: "Shravana Shukla Trayodashi",
-    nakshatra: "Hasta",
-  },
-  {
-    en: "Vinayaka Chaturthi",
-    hi: "विनायक चतुर्थी",
-    te: "వినాయక చవితి",
-    date: "Wed, 25 Aug 2027",
-    tithi: "Bhadrapada Shukla Chaturthi",
-    nakshatra: "Chitra",
-  },
-  {
-    en: "Dasara / Vijayadashami",
-    hi: "दशहरा / विजयदशमी",
-    te: "దసరా / విజయదశమి",
-    date: "Wed, 6 Oct 2027",
-    tithi: "Ashvija Shukla Dashami",
-    nakshatra: "Vishakha",
-  },
-  {
-    en: "Deepavali",
-    hi: "दीपावली",
-    te: "దీపావళి",
-    date: "Thu, 28 Oct 2027",
-    tithi: "Kartika Krishna Amavasya",
-    nakshatra: "Chitra",
-  },
-  {
-    en: "Kartika Purnima",
-    hi: "कार्तिक पूर्णिमा",
-    te: "కార్తీక పూర్ణిమ",
-    date: "Fri, 12 Nov 2027",
-    tithi: "Kartika Purnima",
-    nakshatra: "Krittika",
-  },
-  {
-    en: "Subramanya Shashti",
-    hi: "सुब्रह्मण्य षष्ठी",
-    te: "సుబ్రహ్మణ్య షష్ఠి",
-    date: "Wed, 17 Nov 2027",
-    tithi: "Margashira Shukla Shashthi",
-    nakshatra: "Pushya",
-  },
+interface TeluguFestival { en: string; hi: string; te: string; engineKey: string; tithi: string }
+const TELUGU_FESTIVALS: TeluguFestival[] = [
+  { en: 'Makara Sankranti',                hi: 'मकर संक्रान्ति',           te: 'మకర సంక్రాంతి',                engineKey: 'Makar Sankranti',                  tithi: 'Pausha (Solar — Capricorn ingress)' },
+  { en: 'Maha Shivaratri',                 hi: 'महा शिवरात्रि',             te: 'మహా శివరాత్రి',                engineKey: 'Maha Shivaratri',                  tithi: 'Magha Krishna Chaturdashi' },
+  { en: 'Holi',                            hi: 'होली',                      te: 'హోళీ',                          engineKey: 'Holi',                              tithi: 'Phalguna Purnima' },
+  { en: 'Ugadi (Telugu New Year)',         hi: 'उगादि (तेलुगु नव वर्ष)',    te: 'ఉగాది (తెలుగు నూతన సంవత్సరం)', engineKey: 'Ugadi',                            tithi: 'Chaitra Shukla Pratipada' },
+  { en: 'Sri Rama Navami',                 hi: 'श्री राम नवमी',             te: 'శ్రీ రామ నవమి',                engineKey: 'Ram Navami',                       tithi: 'Chaitra Shukla Navami' },
+  { en: 'Akshaya Tritiya',                 hi: 'अक्षय तृतीया',              te: 'అక్షయ తృతీయ',                  engineKey: 'Akshaya Tritiya',                  tithi: 'Vaishakha Shukla Tritiya' },
+  { en: 'Nag Panchami',                    hi: 'नाग पंचमी',                te: 'నాగ పంచమి',                    engineKey: 'Nag Panchami',                     tithi: 'Shravana Shukla Panchami' },
+  { en: 'Varalakshmi Vratam',              hi: 'वरलक्ष्मी व्रतम्',          te: 'వరలక్ష్మీ వ్రతం',              engineKey: 'Varalakshmi Vratam',               tithi: 'Friday before Shravana Purnima' },
+  { en: 'Sri Krishna Janmashtami',         hi: 'श्री कृष्ण जन्माष्टमी',     te: 'శ్రీ కృష్ణ జన్మాష్టమి',         engineKey: 'Janmashtami',                      tithi: 'Bhadrapada Krishna Ashtami' },
+  { en: 'Vinayaka Chaturthi',              hi: 'विनायक चतुर्थी',           te: 'వినాయక చవితి',                 engineKey: 'Ganesh Chaturthi',                 tithi: 'Bhadrapada Shukla Chaturthi' },
+  { en: 'Mahalaya Amavasya',               hi: 'महालया अमावस्या',           te: 'మహాలయ అమావాస్య',              engineKey: 'Mahalaya (Sarva Pitru Amavasya)',  tithi: 'Bhadrapada Amavasya' },
+  { en: 'Devi Navaratri (Ghatasthapana)',  hi: 'देवी नवरात्रि (घटस्थापना)', te: 'దేవీ నవరాత్రి (ఘటస్థాపన)',     engineKey: 'Ghatasthapana (Navratri Day 1)',   tithi: 'Ashvija Shukla Pratipada' },
+  { en: 'Saraswati Puja (Maha Navami)',    hi: 'सरस्वती पूजा (महा नवमी)',  te: 'సరస్వతీ పూజ (మహా నవమి)',       engineKey: 'Maha Navami',                      tithi: 'Ashvija Shukla Navami' },
+  { en: 'Dasara / Vijayadashami',          hi: 'दशहरा / विजयदशमी',         te: 'దసరా / విజయదశమి',              engineKey: 'Sindoor Khela / Vijaya Dashami',   tithi: 'Ashvija Shukla Dashami' },
+  { en: 'Deepavali',                       hi: 'दीपावली',                   te: 'దీపావళి',                       engineKey: 'Diwali',                            tithi: 'Kartika Krishna Amavasya' },
+  { en: 'Karthika Pournami',               hi: 'कार्तिक पूर्णिमा',          te: 'కార్తీక పూర్ణిమ',              engineKey: 'Tripurari Purnima',                tithi: 'Kartika Purnima' },
+  { en: 'Subramanya Shashthi',             hi: 'सुब्रह्मण्य षष्ठी',          te: 'సుబ్రహ్మణ్య షష్ఠి',             engineKey: 'Skanda Shashthi',                  tithi: 'Margashira Shukla Shashthi' },
+  { en: 'Bonalu (Telangana)',              hi: 'बोनालू (तेलंगाना)',         te: 'బోనాలు (తెలంగాణ)',              engineKey: 'Bonalu (Telangana)',               tithi: 'Ashadha Shukla Pratipada' },
+  { en: 'Tholi Ekadashi (Devshayani)',     hi: 'तोली एकादशी (देवशयनी)',     te: 'తోలి ఏకాదశి (దేవశయని)',         engineKey: 'Devshayani Ekadashi',              tithi: 'Ashadha Shukla Ekadashi' },
+  { en: 'Bathukamma (begins)',             hi: 'बतुकम्मा (आरम्भ)',          te: 'బతుకమ్మ (ఆరంభం)',               engineKey: 'Bathukamma (begins)',              tithi: 'Bhadrapada Amavasya' },
+  { en: 'Atla Tadde',                      hi: 'अटला तद्दे',                te: 'అట్ల తద్దె',                    engineKey: 'Atla Tadde',                       tithi: 'Ashwin Krishna Tritiya' },
+  { en: 'Vaikuntha Ekadashi (Mukkoti)',    hi: 'वैकुण्ठ एकादशी (मुक्कोटि)', te: 'వైకుంఠ ఏకాదశి (ముక్కోటి)',      engineKey: 'Gita Jayanti',                     tithi: 'Margashira Shukla Ekadashi' },
 ];
 
 // Telugu Month → Gregorian conversion table for 2026–2027
@@ -645,10 +505,14 @@ const FAQ_DATA = [
       hi: "उगादि 2026 कब है?",
       te: "ఉగాది 2026 ఎప్పుడు?",
     },
+    // All year-specific dates resolved via ed(year, festivalKey, locale)
+    // against festival-generator.ts. Ugadi 2026 is not enumerated in
+    // the engine year-26 output (only Ugadi 2027), so the 2026 date
+    // pin stays in narrative form.
     a: {
-      en: "Ugadi 2026 falls on Saturday, 28 March 2026, on Chaitra Shukla Pratipada. This marks the beginning of the Telugu year Shobhakrit. The tithi is Pratipada (first lunar day of the bright fortnight) and the nakshatra is Uttara Bhadrapada. Ugadi Pachadi preparation and Panchangam Sravanam are the central rituals of the day.",
-      hi: "उगादि 2026 शनिवार, 28 मार्च 2026 को चैत्र शुक्ल प्रतिपदा पर पड़ता है। यह तेलुगु वर्ष शोभकृत् का आरम्भ है। तिथि प्रतिपदा (शुक्ल पक्ष का पहला चन्द्र दिवस) है और नक्षत्र उत्तर भाद्रपद है।",
-      te: "ఉగాది 2026 శనివారం, 28 మార్చి 2026 న చైత్ర శుద్ధ పాడ్యమి నాడు వస్తుంది. ఇది తెలుగు సంవత్సరం శోభకృత్ ప్రారంభం. తిథి పాడ్యమి (శుక్ల పక్షం మొదటి తిథి) మరియు నక్షత్రం ఉత్తర భాద్రపద.",
+      en: "Ugadi 2026 falls on Chaitra Shukla Pratipada (typically around late March / early April). This marks the beginning of the Telugu year Shobhakrit. The tithi is Pratipada (first lunar day of the bright fortnight). Ugadi Pachadi preparation and Panchangam Sravanam are the central rituals of the day.",
+      hi: "उगादि 2026 चैत्र शुक्ल प्रतिपदा (सामान्यत: मार्च के अन्त / अप्रैल के आरम्भ) पर पड़ता है। यह तेलुगु वर्ष शोभकृत् का आरम्भ है। तिथि प्रतिपदा (शुक्ल पक्ष का पहला चन्द्र दिवस) है।",
+      te: "ఉగాది 2026 చైత్ర శుద్ధ పాడ్యమి (సాధారణంగా మార్చి ఆఖరు / ఏప్రిల్ ప్రారంభం) నాడు వస్తుంది. ఇది తెలుగు సంవత్సరం శోభకృత్ ప్రారంభం. తిథి పాడ్యమి (శుక్ల పక్షం మొదటి తిథి).",
     },
   },
   {
@@ -669,10 +533,18 @@ const FAQ_DATA = [
       hi: "विनायक चतुर्थी 2026 कब है?",
       te: "వినాయక చవితి 2026 ఎప్పుడు?",
     },
+    // Vinayaka Chaturthi = Ganesh Chaturthi (Bhadrapada Shukla
+    // Chaturthi). Engine uses "Ganesh Chaturthi" for this canonical
+    // event; the engine also emits monthly "Vinayaka Chaturthi"
+    // entries which are different (every Shukla Chaturthi each month)
+    // and would mis-match — pin to the engine's "Ganesh Chaturthi"
+    // key explicitly. Ananta Chaturdashi is 10 days later (page used
+    // to assert "Sun 13 Sep 2026"; we keep the narrative form since
+    // Ananta Chaturdashi isn't in the engine).
     a: {
-      en: "Vinayaka Chaturthi 2026 falls on Friday, 4 September 2026, on Bhadrapada Shukla Chaturthi. The nakshatra is Chitra. The festival is a 10-day celebration in Andhra Pradesh and Telangana, beginning with the installation of Ganesha idols and concluding with the immersion procession (Nimajjanam) on Ananta Chaturdashi (Sunday, 13 September 2026). Hyderabad is particularly famous for its grand Ganesh immersion procession at Tank Bund.",
-      hi: "विनायक चतुर्थी 2026 शुक्रवार, 4 सितम्बर 2026 को भाद्रपद शुक्ल चतुर्थी पर पड़ती है। नक्षत्र चित्रा है। यह 10 दिवसीय उत्सव अनन्त चतुर्दशी (रविवार, 13 सितम्बर) पर गणेश निमज्जन के साथ समाप्त होता है। हैदराबाद का टैंक बंड निमज्जन विशेष रूप से प्रसिद्ध है।",
-      te: "వినాయక చవితి 2026 శుక్రవారం, 4 సెప్టెంబర్ 2026 న భాద్రపద శుద్ధ చవితి నాడు వస్తుంది. నక్షత్రం చిత్ర. ఈ పండుగ 10 రోజుల వేడుక, అనంత చతుర్దశి (ఆదివారం, 13 సెప్టెంబర్ 2026) నాడు నిమజ్జనంతో ముగుస్తుంది. హైదరాబాద్ ట్యాంక్ బండ్ నిమజ్జన ఊరేగింపు ప్రత్యేకంగా ప్రసిద్ధం.",
+      en: `Vinayaka Chaturthi 2026 falls on ${ed(2026,'Ganesh Chaturthi','en')}, on Bhadrapada Shukla Chaturthi. The festival is a 10-day celebration in Andhra Pradesh and Telangana, beginning with the installation of Ganesha idols and concluding with the immersion procession (Nimajjanam) on Ananta Chaturdashi (10 days later). Hyderabad is particularly famous for its grand Ganesh immersion procession at Tank Bund.`,
+      hi: `विनायक चतुर्थी 2026 ${ed(2026,'Ganesh Chaturthi','hi')} को भाद्रपद शुक्ल चतुर्थी पर पड़ती है। यह 10 दिवसीय उत्सव अनन्त चतुर्दशी (10 दिन बाद) पर गणेश निमज्जन के साथ समाप्त होता है। हैदराबाद का टैंक बंड निमज्जन विशेष रूप से प्रसिद्ध है।`,
+      te: `వినాయక చవితి 2026 ${ed(2026,'Ganesh Chaturthi','te')} న భాద్రపద శుద్ధ చవితి నాడు వస్తుంది. ఈ పండుగ 10 రోజుల వేడుక, అనంత చతుర్దశి (10 రోజుల తర్వాత) నాడు నిమజ్జనంతో ముగుస్తుంది. హైదరాబాద్ ట్యాంక్ బండ్ నిమజ్జన ఊరేగింపు ప్రత్యేకంగా ప్రసిద్ధం.`,
     },
   },
   {
@@ -694,9 +566,12 @@ const FAQ_DATA = [
       te: "ప్రస్తుత తెలుగు సంవత్సరం పేరు ఏమిటి?",
     },
     a: {
-      en: 'The current Telugu year is Shobhakrit (శోభకృత్), which began on Ugadi, 28 March 2026, and runs until the next Ugadi in March 2027. Shobhakrit is the 37th year in the 60-year Jovian (Brihaspati) cycle. The name Shobhakrit means "creator of splendour" and is considered a generally auspicious year in traditional Telugu Panchangam predictions. The ruling planet (Rajya Prabhu) and other planetary influences for the year are announced during the Panchangam Sravanam ceremony on Ugadi day.',
-      hi: 'वर्तमान तेलुगु वर्ष शोभकृत् (శోభకృత్) है, जो उगादि 28 मार्च 2026 से आरम्भ हुआ और मार्च 2027 में अगले उगादि तक चलेगा। शोभकृत् 60-वर्षीय गुरु (बृहस्पति) चक्र का 37वां वर्ष है। शोभकृत् का अर्थ है "शोभा का रचयिता" और इसे सामान्यतः शुभ वर्ष माना जाता है।',
-      te: 'ప్రస్తుత తెలుగు సంవత్సరం శోభకృత్, ఇది ఉగాది 28 మార్చి 2026 న ప్రారంభమై, మార్చి 2027 లో తదుపరి ఉగాది వరకు కొనసాగుతుంది. శోభకృత్ 60 సంవత్సరాల గురు (బృహస్పతి) చక్రంలో 37వ సంవత్సరం. శోభకృత్ అనగా "శోభను సృష్టించేది" మరియు ఇది సాధారణంగా శుభ సంవత్సరంగా పరిగణించబడుతుంది.',
+      // Engine has Ugadi 2027 (Wed 7 Apr 2027) but not Ugadi 2026.
+      // Until that's added to the engine, the current-year boundaries
+      // stay in narrative form.
+      en: 'The current Telugu year is Shobhakrit (శోభకృత్), which began on Ugadi 2026 and runs until the next Ugadi in 2027 (engine: ' + ed(2027,'Ugadi','en') + '). Shobhakrit is the 37th year in the 60-year Jovian (Brihaspati) cycle. The name Shobhakrit means "creator of splendour" and is considered a generally auspicious year in traditional Telugu Panchangam predictions. The ruling planet (Rajya Prabhu) and other planetary influences for the year are announced during the Panchangam Sravanam ceremony on Ugadi day.',
+      hi: 'वर्तमान तेलुगु वर्ष शोभकृत् (శోభకృత్) है, जो उगादि 2026 से आरम्भ हुआ और 2027 में अगले उगादि (' + ed(2027,'Ugadi','hi') + ') तक चलेगा। शोभकृत् 60-वर्षीय गुरु (बृहस्पति) चक्र का 37वां वर्ष है।',
+      te: 'ప్రస్తుత తెలుగు సంవత్సరం శోభకృత్, ఇది ఉగాది 2026 న ప్రారంభమై, 2027 లో తదుపరి ఉగాది (' + ed(2027,'Ugadi','te') + ') వరకు కొనసాగుతుంది. శోభకృత్ 60 సంవత్సరాల గురు (బృహస్పతి) చక్రంలో 37వ సంవత్సరం.',
     },
   },
   {
@@ -706,9 +581,9 @@ const FAQ_DATA = [
       te: "తెలుగు పంచాంగంలో దీపావళి 2026 ఎప్పుడు?",
     },
     a: {
-      en: "Deepavali 2026 falls on Sunday, 8 November 2026, on Kartika Krishna Amavasya. The nakshatra is Swati. In the Telugu tradition, Deepavali is celebrated on the Amavasya (new moon) of Kartika month. The celebrations in Andhra Pradesh and Telangana include an early-morning oil bath (Abhyanga Snanam) before sunrise, followed by new clothes, sweets (especially Chakralu, Sunnundalu, and Ariselu), and fireworks. Naraka Chaturdashi, the day before Deepavali, is also observed as the victory of Lord Krishna over the demon Narakasura.",
-      hi: "दीपावली 2026 रविवार, 8 नवम्बर 2026 को कार्तिक कृष्ण अमावस्या पर पड़ती है। नक्षत्र स्वाति है। तेलुगु परम्परा में, दीपावली कार्तिक मास की अमावस्या पर मनाई जाती है। उत्सव में सूर्योदय से पहले तैलाभ्यंग (तेल स्नान), नए वस्त्र, मिठाइयां (चकरालु, सुन्नुन्डालु, अरिसेलु) और आतिशबाजी शामिल है।",
-      te: "దీపావళి 2026 ఆదివారం, 8 నవంబర్ 2026 న కార్తీక కృష్ణ అమావాస్య నాడు వస్తుంది. నక్షత్రం స్వాతి. తెలుగు సంప్రదాయంలో, దీపావళి కార్తీక మాసం అమావాస్య నాడు జరుపుకుంటారు. ఆంధ్రప్రదేశ్ మరియు తెలంగాణలో సూర్యోదయానికి ముందు తైలాభ్యంగం (నూనె స్నానం), కొత్త బట్టలు, మిఠాయిలు (చక్రాలు, సున్నుండాలు, అరిసెలు) మరియు బాణసంచా ఉంటాయి.",
+      en: `Deepavali 2026 falls on ${ed(2026,'Diwali','en')}, on Kartika Krishna Amavasya. In the Telugu tradition, Deepavali is celebrated on the Amavasya (new moon) of Kartika month. The celebrations in Andhra Pradesh and Telangana include an early-morning oil bath (Abhyanga Snanam) before sunrise, followed by new clothes, sweets (especially Chakralu, Sunnundalu, and Ariselu), and fireworks. Naraka Chaturdashi, the day before Deepavali, is also observed as the victory of Lord Krishna over the demon Narakasura.`,
+      hi: `दीपावली 2026 ${ed(2026,'Diwali','hi')} को कार्तिक कृष्ण अमावस्या पर पड़ती है। तेलुगु परम्परा में, दीपावली कार्तिक मास की अमावस्या पर मनाई जाती है। उत्सव में सूर्योदय से पहले तैलाभ्यंग (तेल स्नान), नए वस्त्र, मिठाइयां (चकरालु, सुन्नुन्डालु, अरिसेलु) और आतिशबाजी शामिल है।`,
+      te: `దీపావళి 2026 ${ed(2026,'Diwali','te')} న కార్తీక కృష్ణ అమావాస్య నాడు వస్తుంది. తెలుగు సంప్రదాయంలో, దీపావళి కార్తీక మాసం అమావాస్య నాడు జరుపుకుంటారు. ఆంధ్రప్రదేశ్ మరియు తెలంగాణలో సూర్యోదయానికి ముందు తైలాభ్యంగం (నూనె స్నానం), కొత్త బట్టలు, మిఠాయిలు (చక్రాలు, సున్నుండాలు, అరిసెలు) మరియు బాణసంచా ఉంటాయి.`,
     },
   },
 ];
@@ -1022,123 +897,55 @@ export default async function TeluguCalendarPage({
           </div>
         </section>
 
-        {/* 2026 Telugu Festival Dates with Tithi & Nakshatra */}
-        <section>
-          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
-            {isTe
-              ? "తెలుగు పండుగల తేదీలు 2026 — తిథి, నక్షత్రం & ఖచ్చితమైన తేదీలు"
-              : isHi
-                ? "तेलुगु त्योहार 2026 — तिथि, नक्षत्र और दिनांक"
-                : "Telugu Festival Dates 2026 — Tithi, Nakshatra & Exact Dates"}
-          </h2>
-          <p className="text-text-secondary text-sm leading-relaxed mb-5">
-            {isTe
-              ? "హైదరాబాద్ సూచన ప్రకారం 2026 లో ముఖ్యమైన తెలుగు పండుగల ఖచ్చితమైన తేదీలు, తిథి (చంద్ర దినం) మరియు నక్షత్రం (చంద్ర నక్షత్రం). మీ పూజా కార్యక్రమాలను ఈ ధృవీకరించిన తేదీలతో ప్రణాళిక చేసుకోండి."
-              : isHi
-                ? "हैदराबाद सन्दर्भ के साथ 2026 के प्रमुख तेलुगु त्योहारों की सटीक तिथियां, तिथि (चन्द्र दिवस) और नक्षत्र (चन्द्र भवन)। अपनी पूजा की योजना इन सत्यापित तिथियों के साथ बनाएं।"
-                : "Exact dates for all major Telugu festivals in 2026 with tithi (lunar day) and nakshatra (lunar mansion) computed for Hyderabad. Plan your puja schedules and family celebrations with these verified dates from the Telugu Panchangam."}
-          </p>
-          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {RC('colFestival', locale)}
-                  </th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {RC('colDate', locale)}
-                  </th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {RC('colTithi', locale)}
-                  </th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {RC('colNakshatra', locale)}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {FESTIVAL_DATES_2026.map((f, i) => (
-                  <tr
-                    key={f.en}
-                    className={
-                      i % 2 === 0 ? "bg-bg-secondary/20" : "bg-bg-secondary/40"
-                    }
-                  >
-                    <td className="px-4 py-2.5 text-text-primary font-medium">
-                      {fLang(f)}
-                    </td>
-                    <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">
-                      {f.tithi}
-                    </td>
-                    <td className="px-4 py-2.5 text-text-secondary">
-                      {f.nakshatra}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* 2027 Telugu Festival Dates */}
-        <section>
-          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
-            {isTe
-              ? "తెలుగు పండుగల తేదీలు 2027 — తిథి, నక్షత్రం & ఖచ్చితమైన తేదీలు"
-              : isHi
-                ? "तेलुगु त्योहार 2027 — तिथि, नक्षत्र और दिनांक"
-                : "Telugu Festival Dates 2027 — Tithi, Nakshatra & Exact Dates"}
-          </h2>
-          <p className="text-text-secondary text-sm leading-relaxed mb-5">
-            {isTe
-              ? "2027 లో ముఖ్యమైన తెలుగు పండుగల తేదీలు. తెలుగు సంవత్సరం క్రోధి మార్చి 2027 లో ఉగాదితో ప్రారంభమవుతుంది."
-              : isHi
-                ? "2027 में प्रमुख तेलुगु त्योहार। तेलुगु वर्ष क्रोधी मार्च 2027 में उगादि से आरम्भ होगा।"
-                : "Major Telugu festival dates for 2027. The Telugu year Krodhi begins with Ugadi in March 2027. All dates computed for Hyderabad with tithi and nakshatra from the Telugu Panchangam."}
-          </p>
-          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {RC('colFestival', locale)}
-                  </th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {RC('colDate', locale)}
-                  </th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {RC('colTithi', locale)}
-                  </th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">
-                    {RC('colNakshatra', locale)}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {FESTIVAL_DATES_2027.map((f, i) => (
-                  <tr
-                    key={f.en}
-                    className={
-                      i % 2 === 0 ? "bg-bg-secondary/20" : "bg-bg-secondary/40"
-                    }
-                  >
-                    <td className="px-4 py-2.5 text-text-primary font-medium">
-                      {fLang(f)}
-                    </td>
-                    <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">
-                      {f.tithi}
-                    </td>
-                    <td className="px-4 py-2.5 text-text-secondary">
-                      {f.nakshatra}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+        {/* Upcoming Telugu Festival Dates — engine-driven */}
+        {(() => {
+          const nowIso = todayInIst();
+          const upcoming = TELUGU_FESTIVALS
+            .map((f) => {
+              const hit = nextUpcoming(f.engineKey, locale, nowIso);
+              return hit ? { f, iso: hit.iso, display: hit.display } : null;
+            })
+            .filter((x): x is { f: TeluguFestival; iso: string; display: string } => x !== null)
+            .sort((a, b) => a.iso.localeCompare(b.iso));
+          return (
+            <section>
+              <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+                {isTe
+                  ? "రాబోయే తెలుగు పండుగల తేదీలు — తిథి & ఖచ్చితమైన తేదీలు"
+                  : isHi
+                    ? "आगामी तेलुगु त्योहार — तिथि और सटीक दिनांक"
+                    : "Upcoming Telugu Festival Dates — Tithi & Exact Dates"}
+              </h2>
+              <p className="text-text-secondary text-sm leading-relaxed mb-5">
+                {isTe
+                  ? "హైదరాబాద్ సూచనతో ముఖ్యమైన తెలుగు పండుగల రాబోయే తేదీలు. ఉగాది, వరలక్ష్మీ వ్రతం, వినాయక చవితి, దసరా, దీపావళి, కార్తీక పూర్ణిమ — అన్ని తేదీలు పంచాంగ ఎంజిన్ నుండి లెక్కించబడతాయి మరియు ప్రతిరోజూ స్వయంచాలకంగా నవీకరించబడతాయి."
+                  : isHi
+                    ? "हैदराबाद सन्दर्भ के साथ प्रमुख तेलुगु त्योहारों की आगामी तिथियां। उगादि, वरलक्ष्मी व्रतम्, विनायक चतुर्थी, दशहरा, दीपावली, कार्तिक पूर्णिमा — सभी तिथियां पंचांगम् engine से गणित और स्वतः अद्यतित।"
+                    : "Upcoming dates for major Telugu festivals with tithi (lunar day), computed for Hyderabad. Includes Ugadi, Varalakshmi Vratam, Vinayaka Chaturthi, Dasara, Deepavali, Karthika Pournami, and other observances from the Telugu Panchangam. Dates auto-update daily from our panchang engine — never stale."}
+              </p>
+              <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colFestival', locale)}</th>
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colDate', locale)}</th>
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colTithi', locale)}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {upcoming.map(({ f, iso, display }, i) => (
+                      <tr key={`${f.en}-${iso}`} className={i % 2 === 0 ? "bg-bg-secondary/20" : "bg-bg-secondary/40"}>
+                        <td className="px-4 py-2.5 text-text-primary font-medium">{fLang(f)}</td>
+                        <td className="px-4 py-2.5 text-amber-400/80">{display}</td>
+                        <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          );
+        })()}
 
         {/* Ugadi */}
         <section className="bg-gradient-to-br from-amber-900/15 via-bg-secondary/40 to-bg-primary border border-gold-primary/12 rounded-2xl p-6">

@@ -252,6 +252,7 @@ const routes = [
   '/calendar/regional/malayalam',
   '/calendar/regional/gujarati',
   '/calendar/regional/kannada',
+  '/calendar/regional/marathi',
   '/calendar/regional/odia',
   // Tools
   '/tools',

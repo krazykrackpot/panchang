@@ -250,8 +250,6 @@ const VIKRAM_SAMVAT_TABLE: Array<{ vs: string; bestu: string; span: string }> = 
   { vs: 'VS 2081', bestu: '2 Nov 2024', span: 'Nov 2024 – Oct 2025' },
   { vs: 'VS 2082', bestu: '22 Oct 2025', span: 'Oct 2025 – Nov 2026 (Adhika Jyeshtha)' },
   { vs: 'VS 2083', bestu: '9 Nov 2026', span: 'Nov 2026 – Oct 2027' },
-  { vs: 'VS 2084', bestu: 'engine — late Oct 2027', span: 'engine-confirmed' },
-  { vs: 'VS 2085', bestu: 'engine — mid Nov 2028', span: 'engine-confirmed' },
 ];
 
 export default async function GujaratiCalendarPage({ params }: { params: Promise<{ locale: string }> }) {

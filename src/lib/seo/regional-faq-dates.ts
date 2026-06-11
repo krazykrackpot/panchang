@@ -37,29 +37,27 @@
  */
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 
-// Canonical IST reference: Ujjain (23.18°N, 75.78°E) — the classical Hindu
-// prime meridian (Mahakaleshwar) used in Surya Siddhanta and most Indian
-// panchangs. Replaced Kolkata (22.57°N, 88.36°E) on 2026-06-11.
+// Canonical IST reference: Ujjain (Mahakaleshwar) — the traditional Hindu
+// prime meridian per Surya Siddhanta. Already used as the project's
+// IST-anchor in cron/social-post/route.ts, horoscope/daily-article.ts,
+// the /hi/ locale's SEO_CITY_BY_LOCALE, and the WhatsApp API default;
+// coordinates here match cities.ts so all paths agree to the digit.
 //
-// Why the swap mattered: festival-generator.ts relies on tithi-table.ts'
-// `sunriseJdForDate`, which calls sunriseUTHoursOr with tzOffset=0, then
-// stamps the returned UT-hours back onto the *input* Gregorian date. For
-// far-east longitudes (Kolkata at 88°E, Dhaka, Yangon) the local sunrise
-// occurs at UT ~23:5x of the *previous* UT day. The hours-to-JD reconstruct
-// then mislabels that JD as "this date's sunrise" — pushing the wrong
-// sunriseDate into the tithi entry. Net effect: Kolkata-anchored engine
-// calls give Hanuman Jayanti 2026 = Apr 1 (Drik = Apr 2), Bahuda Yatra =
-// Jul 23 (Drik = Jul 23 — Kolkata happens to be right here), and a
-// handful of other tithi-boundary festivals shift by one day.
-//
-// Ujjain at 75.78°E sits squarely within the IST nominal meridian (82.5°E)
-// minus ~6.7°, putting its local sunrise inside the UT 00:00-06:00 window
-// the engine searches. Delhi (77.21°E) works equally well; Ujjain is
-// chosen for its classical-canonical status. The underlying engine bug
-// in sunriseJdForDate is tracked separately for a focused fix that
-// doesn't ride this PR.
-const UJJAIN_LAT = 23.18;
-const UJJAIN_LNG = 75.78;
+// (Initial commit on this file picked Kolkata, which broke tithi-boundary
+// festivals via a longitude-edge bug in tithi-table.ts' sunriseJdForDate:
+// the function calls sunriseUTHoursOr with tzOffset=0 and then stamps the
+// returned UT-hours back onto the *input* Gregorian date. For longitudes
+// east of ~85°E the local sunrise occurs at UT ~23:5x of the *previous*
+// UT day, so the reconstructed sunrise JD is mis-labelled and the wrong
+// sunriseDate gets pushed into the tithi entry. Net effect at Kolkata
+// coords: Hanuman Jayanti 2026 = Apr 1 instead of Drik's Apr 2, plus a
+// few other tithi-boundary festivals shift by one day. Ujjain at 75.78°E
+// is well west of the bug zone, AND it's already the project-wide
+// canonical Jyotish anchor — should have been the default from the start.
+// The underlying engine bug in sunriseJdForDate is tracked separately;
+// fixing it doesn't ride this PR.)
+const UJJAIN_LAT = 23.1765;
+const UJJAIN_LNG = 75.7885;
 const IST = 'Asia/Kolkata';
 
 // Module-load memo so each year only runs the engine once.

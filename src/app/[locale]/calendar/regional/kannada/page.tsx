@@ -4,6 +4,55 @@ import { useLocale } from 'next-intl';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
+import { engineDate as ed, nextUpcoming } from '@/lib/seo/regional-faq-dates';
+
+// FAQ data — page-native (kn) + en + hi. All year-specific dates
+// resolve at render via ed(year, festivalKey, locale) against
+// festival-generator.ts, so the FAQ schema cannot drift from the
+// festival table on the page. Added 2026-06-10 as part of the
+// 9-region FAQ-correctness pass.
+const FAQ_DATA = [
+  {
+    q: { en: 'When is Ugadi 2027?', hi: 'उगादि 2027 कब है?', kn: 'ಯುಗಾದಿ 2027 ಯಾವಾಗ?' },
+    a: {
+      en: `Ugadi (also called Yugadi in Karnataka) 2027 falls on ${ed(2027,'Yugadi (Karnataka)','en')}, on Chaitra Shukla Pratipada. This marks the beginning of the Kannada new year. Traditional rituals include Bevu-Bella (a symbolic mix of neem and jaggery representing life's bitterness and sweetness), oil bath at dawn, new clothes, and Panchangam Sravanam (recitation of the year's almanac predictions).`,
+      hi: `उगादि (कर्नाटक में युगादि भी कहा जाता है) 2027 ${ed(2027,'Yugadi (Karnataka)','hi')} को चैत्र शुक्ल प्रतिपदा पर पड़ता है। यह कन्नड़ नव वर्ष का आरम्भ है। पारम्परिक अनुष्ठान: बेवु-बेल्ला (नीम-गुड़, जीवन की कड़वाहट और मिठास का प्रतीक), तेल स्नान, नए वस्त्र, और पंचांगम् श्रवण।`,
+      kn: `ಯುಗಾದಿ 2027 ${ed(2027,'Yugadi (Karnataka)','kn')} ರಂದು ಚೈತ್ರ ಶುದ್ಧ ಪಾಡ್ಯಮಿಯಲ್ಲಿ ಬರುತ್ತದೆ. ಇದು ಕನ್ನಡ ಹೊಸ ವರ್ಷದ ಆರಂಭ. ಸಂಪ್ರದಾಯಿಕ ಆಚರಣೆಗಳು: ಬೇವು-ಬೆಲ್ಲ (ಬೇವು ಮತ್ತು ಬೆಲ್ಲದ ಸಾಂಕೇತಿಕ ಮಿಶ್ರಣ — ಜೀವನದ ಕಹಿ-ಸಿಹಿಯ ಪ್ರತೀಕ), ಬೆಳಗಿನ ಎಣ್ಣೆ ಸ್ನಾನ, ಹೊಸ ಬಟ್ಟೆಗಳು, ಮತ್ತು ಪಂಚಾಂಗ ಶ್ರವಣ.`,
+    },
+  },
+  {
+    q: { en: 'When is Ganesha Chaturthi 2026?', hi: 'गणेश चतुर्थी 2026 कब है?', kn: 'ಗಣೇಶ ಚತುರ್ಥಿ 2026 ಯಾವಾಗ?' },
+    a: {
+      en: `Ganesha Chaturthi 2026 falls on ${ed(2026,'Ganesh Chaturthi','en')}, on Bhadrapada Shukla Chaturthi. In Karnataka, the festival is observed for 11 days starting on Chaturthi and culminating in the immersion (Visarjana) procession. Bangalore, Mysore, and Hubli host major public celebrations. Traditional offerings include modaka and karjikayi.`,
+      hi: `गणेश चतुर्थी 2026 ${ed(2026,'Ganesh Chaturthi','hi')} को भाद्रपद शुक्ल चतुर्थी पर पड़ती है। कर्नाटक में 11 दिनों तक मनाई जाती है। बेंगलुरु, मैसूर और हुबली में बड़े सार्वजनिक उत्सव होते हैं। मोदक और करजिकायी मुख्य भोग हैं।`,
+      kn: `ಗಣೇಶ ಚತುರ್ಥಿ 2026 ${ed(2026,'Ganesh Chaturthi','kn')} ರಂದು ಭಾದ್ರಪದ ಶುದ್ಧ ಚತುರ್ಥಿಯಲ್ಲಿ ಬರುತ್ತದೆ. ಕರ್ನಾಟಕದಲ್ಲಿ 11 ದಿನಗಳವರೆಗೆ ಆಚರಿಸಲಾಗುತ್ತದೆ. ಬೆಂಗಳೂರು, ಮೈಸೂರು ಮತ್ತು ಹುಬ್ಬಳ್ಳಿಯಲ್ಲಿ ದೊಡ್ಡ ಸಾರ್ವಜನಿಕ ಉತ್ಸವಗಳಾಗುತ್ತವೆ. ಮೋದಕ ಮತ್ತು ಕರಜಿಕಾಯಿ ಮುಖ್ಯ ನೈವೇದ್ಯಗಳು.`,
+    },
+  },
+  {
+    q: { en: 'When is Deepavali 2026 in the Kannada calendar?', hi: 'कन्नड़ कैलेंडर में दीपावली 2026 कब है?', kn: 'ಕನ್ನಡ ಪಂಚಾಂಗದಲ್ಲಿ ದೀಪಾವಳಿ 2026 ಯಾವಾಗ?' },
+    a: {
+      en: `Deepavali 2026 falls on ${ed(2026,'Diwali','en')}, on Kartika Krishna Amavasya. In Karnataka, the celebration spans three days: Naraka Chaturdashi (day before Amavasya), Deepavali Amavasya (main day, oil bath, Lakshmi puja, fireworks), and Bali Padyami (day after). Traditional sweets include obbattu (holige), karjikayi, and chakkuli.`,
+      hi: `दीपावली 2026 ${ed(2026,'Diwali','hi')} को कार्तिक कृष्ण अमावस्या पर पड़ती है। कर्नाटक में तीन दिन तक मनाई जाती है: नरक चतुर्दशी (पहले दिन), दीपावली अमावस्या (मुख्य दिन — तेल स्नान, लक्ष्मी पूजा, आतिशबाजी), और बलि पाड्यमि (अगले दिन)। ओब्बट्टु (होलिगे), करजिकायी और चकलि पारम्परिक मिठाइयां हैं।`,
+      kn: `ದೀಪಾವಳಿ 2026 ${ed(2026,'Diwali','kn')} ರಂದು ಕಾರ್ತಿಕ ಕೃಷ್ಣ ಅಮಾವಾಸ್ಯೆಯಲ್ಲಿ ಬರುತ್ತದೆ. ಕರ್ನಾಟಕದಲ್ಲಿ ಮೂರು ದಿನಗಳವರೆಗೆ ಆಚರಿಸಲಾಗುತ್ತದೆ: ನರಕ ಚತುರ್ದಶಿ, ದೀಪಾವಳಿ ಅಮಾವಾಸ್ಯೆ (ಮುಖ್ಯ ದಿನ — ಎಣ್ಣೆ ಸ್ನಾನ, ಲಕ್ಷ್ಮಿ ಪೂಜೆ, ಪಟಾಕಿ), ಮತ್ತು ಬಲಿ ಪಾಡ್ಯಮಿ. ಒಬ್ಬಟ್ಟು (ಹೋಳಿಗೆ), ಕರಜಿಕಾಯಿ ಮತ್ತು ಚಕ್ಕುಲಿ ಸಾಂಪ್ರದಾಯಿಕ ಸಿಹಿತಿಂಡಿಗಳು.`,
+    },
+  },
+  {
+    q: { en: 'When is Maha Shivaratri 2027?', hi: 'महा शिवरात्रि 2027 कब है?', kn: 'ಮಹಾ ಶಿವರಾತ್ರಿ 2027 ಯಾವಾಗ?' },
+    a: {
+      en: `Maha Shivaratri 2027 falls on ${ed(2027,'Maha Shivaratri','en')}, on Phalguna Krishna Chaturdashi. Devotees observe an all-night vigil at Shiva temples; in Karnataka, major celebrations take place at Murudeshwara, Gokarna, and the Sri Manjunatha Swamy temple at Dharmasthala. The night is marked by abhisheka, bilva leaves offerings, and continuous chanting.`,
+      hi: `महा शिवरात्रि 2027 ${ed(2027,'Maha Shivaratri','hi')} को फाल्गुन कृष्ण चतुर्दशी पर पड़ती है। भक्त शिव मन्दिरों में रात्रि जागरण करते हैं; कर्नाटक में मुरुदेश्वर, गोकर्ण और श्री मंजुनाथ स्वामी मन्दिर (धर्मस्थल) में बड़े उत्सव होते हैं।`,
+      kn: `ಮಹಾ ಶಿವರಾತ್ರಿ 2027 ${ed(2027,'Maha Shivaratri','kn')} ರಂದು ಫಾಲ್ಗುಣ ಕೃಷ್ಣ ಚತುರ್ದಶಿಯಲ್ಲಿ ಬರುತ್ತದೆ. ಭಕ್ತರು ಶಿವ ದೇವಾಲಯಗಳಲ್ಲಿ ರಾತ್ರಿ ಜಾಗರಣೆ ಮಾಡುತ್ತಾರೆ; ಕರ್ನಾಟಕದಲ್ಲಿ ಮುರುಡೇಶ್ವರ, ಗೋಕರ್ಣ ಮತ್ತು ಧರ್ಮಸ್ಥಳದ ಶ್ರೀ ಮಂಜುನಾಥ ಸ್ವಾಮಿ ದೇವಾಲಯದಲ್ಲಿ ದೊಡ್ಡ ಉತ್ಸವಗಳಾಗುತ್ತವೆ.`,
+    },
+  },
+  {
+    q: { en: 'What is the Kannada Panchanga?', hi: 'कन्नड़ पंचांग क्या है?', kn: 'ಕನ್ನಡ ಪಂಚಾಂಗ ಎಂದರೇನು?' },
+    a: {
+      en: 'The Kannada Panchanga is the traditional lunisolar almanac used by Kannada-speaking people. It follows the Chandramana (lunar) system — months run from one Amavasya (new moon) to the next, and the year begins on Yugadi (Chaitra Shukla Pratipada, typically late March or early April). The Panchanga tracks five daily elements: Tithi, Vara, Nakshatra, Yoga, and Karana. It is essential for determining auspicious timings (Muhurta) for weddings, housewarming, business openings, and religious observances. Famous traditional Panchangas include the Mysore Sthana Panchanga and Bangalore-published almanacs.',
+      hi: 'कन्नड़ पंचांग कन्नड़ भाषियों द्वारा उपयोग किया जाने वाला पारम्परिक चान्द्रसौर पंचांग है। यह चान्द्रमान प्रणाली का अनुसरण करता है — मास अमावस्या से अमावस्या तक चलते हैं, और वर्ष युगादि (चैत्र शुक्ल प्रतिपदा) पर आरम्भ होता है। दैनिक पांच तत्व: तिथि, वार, नक्षत्र, योग, और करण। विवाह, गृहप्रवेश और सभी धार्मिक अनुष्ठानों के लिए मुहूर्त निर्धारित करने के लिए आवश्यक।',
+      kn: 'ಕನ್ನಡ ಪಂಚಾಂಗವು ಕನ್ನಡ ಭಾಷಿಗರು ಬಳಸುವ ಸಾಂಪ್ರದಾಯಿಕ ಚಾಂದ್ರಮಾನ ಪಂಚಾಂಗ. ಚಾಂದ್ರಮಾನ ಪದ್ಧತಿಯನ್ನು ಅನುಸರಿಸುತ್ತದೆ — ತಿಂಗಳುಗಳು ಅಮಾವಾಸ್ಯೆಯಿಂದ ಅಮಾವಾಸ್ಯೆಗೆ ನಡೆಯುತ್ತವೆ, ಮತ್ತು ವರ್ಷ ಯುಗಾದಿಯಿಂದ (ಚೈತ್ರ ಶುದ್ಧ ಪಾಡ್ಯಮಿ) ಪ್ರಾರಂಭವಾಗುತ್ತದೆ. ದೈನಿಕ ಐದು ಅಂಶಗಳು: ತಿಥಿ, ವಾರ, ನಕ್ಷತ್ರ, ಯೋಗ, ಮತ್ತು ಕರಣ. ವಿವಾಹ, ಗೃಹ ಪ್ರವೇಶ ಮತ್ತು ಎಲ್ಲಾ ಧಾರ್ಮಿಕ ಆಚರಣೆಗಳಿಗೆ ಮುಹೂರ್ತ ನಿರ್ಧಾರಕ್ಕೆ ಅಗತ್ಯ.',
+    },
+  },
+];
 
 const LABELS = {
   title: {
@@ -102,6 +151,40 @@ const FESTIVALS = [
   { month: 'Kartika', en: 'Deepavali (Kartika Amavasya), Kartika Deepotsava (lamp festivals at Shaiva temples, especially Dharmasthala)', hi: 'दीपावली (कार्तिक अमावस्या), कार्तिक दीपोत्सव (धर्मस्थल सहित शैव मन्दिरों में दीप उत्सव)', kn: 'ದೀಪಾವಳಿ (ಕಾರ್ತಿಕ ಅಮಾವಾಸ್ಯೆ), ಕಾರ್ತಿಕ ದೀಪೋತ್ಸವ (ಧರ್ಮಸ್ಥಳ ಸೇರಿದಂತೆ ಶೈವ ದೇವಾಲಯಗಳಲ್ಲಿ ದೀಪ ಉತ್ಸವ)' },
 ];
 
+// ═══════════════════════════════════════════════════════════════════════════
+// Karnataka festival dates — resolved at render via the panchang engine so
+// each entry shows its NEXT upcoming occurrence. Engine keys are matched
+// (case-insensitive, exact-then-substring) against
+// `src/lib/calendar/festival-defs.ts` canonical English names.
+// ═══════════════════════════════════════════════════════════════════════════
+interface KannadaFestival { en: string; hi: string; kn: string; engineKey: string; tithi: string }
+const KANNADA_FESTIVALS: KannadaFestival[] = [
+  { en: 'Makar Sankranti / Sankranthi',                hi: 'मकर संक्रान्ति / संक्रान्ति',           kn: 'ಮಕರ ಸಂಕ್ರಾಂತಿ',                            engineKey: 'Makar Sankranti',                  tithi: 'Pausha (Solar — Capricorn ingress)' },
+  { en: 'Ratha Saptami',                                hi: 'रथ सप्तमी',                             kn: 'ರಥ ಸಪ್ತಮಿ',                                engineKey: 'Ratha Saptami',                    tithi: 'Magha Shukla Saptami' },
+  { en: 'Maha Shivaratri',                              hi: 'महा शिवरात्रि',                          kn: 'ಮಹಾ ಶಿವರಾತ್ರಿ',                            engineKey: 'Maha Shivaratri',                  tithi: 'Phalguna Krishna Chaturdashi' },
+  { en: 'Holi',                                         hi: 'होली',                                  kn: 'ಹೋಳಿ',                                      engineKey: 'Holi',                              tithi: 'Phalguna Purnima' },
+  { en: 'Yugadi / Ugadi (Kannada New Year)',            hi: 'युगादि / उगादि (कन्नड़ नव वर्ष)',         kn: 'ಯುಗಾದಿ / ಉಗಾದಿ (ಕನ್ನಡ ಹೊಸ ವರ್ಷ)',           engineKey: 'Yugadi (Karnataka)',               tithi: 'Chaitra Shukla Pratipada' },
+  { en: 'Sri Rama Navami',                              hi: 'श्री राम नवमी',                         kn: 'ಶ್ರೀ ರಾಮ ನವಮಿ',                            engineKey: 'Ram Navami',                       tithi: 'Chaitra Shukla Navami' },
+  { en: 'Hanuman Jayanti',                              hi: 'हनुमान जयन्ती',                         kn: 'ಹನುಮಂತ ಜಯಂತಿ',                              engineKey: 'Hanuman Jayanti',                  tithi: 'Chaitra Purnima' },
+  { en: 'Akshaya Tritiya',                              hi: 'अक्षय तृतीया',                          kn: 'ಅಕ್ಷಯ ತೃತೀಯ',                              engineKey: 'Akshaya Tritiya',                  tithi: 'Vaishakha Shukla Tritiya' },
+  { en: 'Vat Savitri Vrat',                             hi: 'वट सावित्री व्रत',                      kn: 'ವಟ ಸಾವಿತ್ರಿ ವ್ರತ',                          engineKey: 'Vat Savitri Vrat',                 tithi: 'Jyeshtha Purnima' },
+  { en: 'Naga Panchami',                                hi: 'नाग पंचमी',                             kn: 'ನಾಗ ಪಂಚಮಿ',                                engineKey: 'Nag Panchami',                     tithi: 'Shravana Shukla Panchami' },
+  { en: 'Varamahalakshmi Vratam',                       hi: 'वरमहालक्ष्मी व्रतम्',                   kn: 'ವರಮಹಾಲಕ್ಷ್ಮಿ ವ್ರತ',                        engineKey: 'Varalakshmi Vratam',               tithi: 'Friday before Shravana Purnima' },
+  { en: 'Krishna Janmashtami',                          hi: 'कृष्ण जन्माष्टमी',                      kn: 'ಕೃಷ್ಣ ಜನ್ಮಾಷ್ಟಮಿ',                          engineKey: 'Janmashtami',                      tithi: 'Bhadrapada Krishna Ashtami' },
+  { en: 'Ganesha Chaturthi',                            hi: 'गणेश चतुर्थी',                          kn: 'ಗಣೇಶ ಚತುರ್ಥಿ',                              engineKey: 'Ganesh Chaturthi',                 tithi: 'Bhadrapada Shukla Chaturthi' },
+  { en: 'Mahalaya Amavasya',                            hi: 'महालया अमावस्या',                       kn: 'ಮಹಾಲಯ ಅಮಾವಾಸ್ಯೆ',                          engineKey: 'Mahalaya (Sarva Pitru Amavasya)',  tithi: 'Bhadrapada Amavasya' },
+  { en: 'Navaratri begins (Ghatasthapana)',             hi: 'नवरात्रि आरम्भ (घटस्थापना)',            kn: 'ನವರಾತ್ರಿ ಆರಂಭ (ಘಟಸ್ಥಾಪನೆ)',                 engineKey: 'Ghatasthapana (Navratri Day 1)',   tithi: 'Ashvija Shukla Pratipada' },
+  { en: 'Ayudha Puja (Mahanavami)',                     hi: 'आयुध पूजा (महानवमी)',                   kn: 'ಆಯುಧ ಪೂಜೆ (ಮಹಾನವಮಿ)',                      engineKey: 'Maha Navami',                      tithi: 'Ashvija Shukla Navami' },
+  { en: 'Mysore Dasara / Vijayadashami',                hi: 'मैसूर दशहरा / विजयदशमी',                kn: 'ಮೈಸೂರು ದಸರಾ / ವಿಜಯದಶಮಿ',                   engineKey: 'Sindoor Khela / Vijaya Dashami',   tithi: 'Ashvija Shukla Dashami' },
+  { en: 'Naraka Chaturdashi',                           hi: 'नरक चतुर्दशी',                          kn: 'ನರಕ ಚತುರ್ದಶಿ',                             engineKey: 'Narak Chaturdashi',                tithi: 'Kartika Krishna Chaturdashi' },
+  { en: 'Deepavali / Lakshmi Puja',                     hi: 'दीपावली / लक्ष्मी पूजा',                 kn: 'ದೀಪಾವಳಿ / ಲಕ್ಷ್ಮಿ ಪೂಜೆ',                    engineKey: 'Diwali',                           tithi: 'Kartika Krishna Amavasya' },
+  { en: 'Bali Padyami',                                 hi: 'बलि पाड्यमी',                           kn: 'ಬಲಿ ಪಾಡ್ಯಮಿ',                              engineKey: 'Bali Padyami',                     tithi: 'Kartika Shukla Pratipada' },
+  { en: 'Tulsi Vivah',                                  hi: 'तुलसी विवाह',                           kn: 'ತುಳಸಿ ವಿವಾಹ',                              engineKey: 'Tulsi Vivah',                      tithi: 'Kartika Shukla Dwadashi' },
+  { en: 'Karthika Pournami / Tripurari Purnima',        hi: 'कार्तिक पूर्णिमा / त्रिपुरारी पूर्णिमा',   kn: 'ಕಾರ್ತಿಕ ಪೂರ್ಣಿಮಾ / ತ್ರಿಪುರಾರಿ ಪೂರ್ಣಿಮಾ',     engineKey: 'Tripurari Purnima',                tithi: 'Kartika Shukla Purnima' },
+  { en: 'Subramanya Shashthi (Skanda Shashthi)',        hi: 'सुब्रह्मण्य षष्ठी (स्कन्द षष्ठी)',         kn: 'ಸುಬ್ರಹ್ಮಣ್ಯ ಷಷ್ಠಿ (ಸ್ಕಂದ ಷಷ್ಠಿ)',           engineKey: 'Skanda Shashthi',                  tithi: 'Margashira Shukla Shashthi' },
+  { en: 'Vaikuntha Ekadashi (Gita Jayanti)',            hi: 'वैकुण्ठ एकादशी (गीता जयन्ती)',          kn: 'ವೈಕುಂಠ ಏಕಾದಶಿ (ಗೀತಾ ಜಯಂತಿ)',                engineKey: 'Gita Jayanti',                     tithi: 'Margashira Shukla Ekadashi' },
+];
+
 export default function KannadaCalendarPage() {
   const locale = useLocale() as Locale;
   const isKn = String(locale) === 'kn';
@@ -178,6 +261,60 @@ export default function KannadaCalendarPage() {
           </div>
         </section>
 
+        {/* Upcoming festival dates — engine-driven, NEXT occurrence only */}
+        {(() => {
+          // Render-time "today" in IST (Asia/Kolkata) so the table always
+          // shows what's coming up. Client component, but the engine output
+          // is deterministic per (year, festival) so SSR & client agree.
+          const nowIso = new Date().toISOString().slice(0, 10);
+          const fdLabel = (f: KannadaFestival) => (isKn ? (f.kn || f.en) : isHi ? f.hi : f.en);
+          const upcoming = KANNADA_FESTIVALS
+            .map((f) => {
+              const hit = nextUpcoming(f.engineKey, locale, nowIso);
+              return hit ? { f, iso: hit.iso, display: hit.display } : null;
+            })
+            .filter((x): x is { f: KannadaFestival; iso: string; display: string } => x !== null)
+            .sort((a, b) => a.iso.localeCompare(b.iso));
+          return (
+            <section>
+              <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+                {isKn
+                  ? 'ಮುಂಬರುವ ಕರ್ನಾಟಕ ಹಬ್ಬಗಳು — ತಿಥಿ ಮತ್ತು ನಿಖರ ದಿನಾಂಕ'
+                  : isHi
+                  ? 'आगामी कर्नाटक त्योहार — तिथि और सटीक दिनांक'
+                  : 'Upcoming Karnataka Festival Dates — Tithi & Exact Dates'}
+              </h2>
+              <p className="text-text-secondary text-sm leading-relaxed mb-5">
+                {isKn
+                  ? 'ಬೆಂಗಳೂರು/ಮೈಸೂರು ಉಲ್ಲೇಖದೊಂದಿಗೆ ಪ್ರಮುಖ ಕರ್ನಾಟಕ ಹಬ್ಬಗಳ ಮುಂಬರುವ ದಿನಾಂಕಗಳು. ಯುಗಾದಿ, ವರಮಹಾಲಕ್ಷ್ಮಿ, ಗಣೇಶ ಚತುರ್ಥಿ, ಮೈಸೂರು ದಸರಾ, ದೀಪಾವಳಿ — ಎಲ್ಲಾ ದಿನಾಂಕಗಳು ಪಂಚಾಂಗ ಎಂಜಿನ್‌ನಿಂದ ಲೆಕ್ಕ ಹಾಕಲಾಗುತ್ತದೆ ಮತ್ತು ಪ್ರತಿದಿನ ಸ್ವಯಂ-ನವೀಕರಿಸಲಾಗುತ್ತದೆ.'
+                  : isHi
+                  ? 'बेंगलूरु/मैसूर सन्दर्भ के साथ प्रमुख कर्नाटक त्योहारों की आगामी तिथियां। युगादि, वरमहालक्ष्मी, गणेश चतुर्थी, मैसूर दशहरा, दीपावली — सभी तिथियां पंचांग इंजन से गणित और हर दिन स्वतः अद्यतित।'
+                  : 'Upcoming dates for major Karnataka festivals with tithi (lunar day), computed for Bangalore/Mysore. Includes Yugadi, Varamahalakshmi, Ganesha Chaturthi, Mysore Dasara, Deepavali, and other observances. Dates auto-update daily from our panchang engine — never stale.'}
+              </p>
+              <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colFestival', locale)}</th>
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colDate', locale)}</th>
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colTithi', locale)}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {upcoming.map(({ f, iso, display }, i) => (
+                      <tr key={`${f.en}-${iso}`} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                        <td className="px-4 py-2.5 text-text-primary font-medium">{fdLabel(f)}</td>
+                        <td className="px-4 py-2.5 text-amber-400/80">{display}</td>
+                        <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          );
+        })()}
+
         {/* Ugadi */}
         <section className="bg-gradient-to-br from-amber-900/15 via-bg-secondary/40 to-bg-primary border border-gold-primary/12 rounded-2xl p-6">
           <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
@@ -207,6 +344,46 @@ export default function KannadaCalendarPage() {
             {L('calendarText')}
           </p>
         </section>
+
+        {/* FAQ Section — page native (kn) + en + hi. JSON-LD below for
+            Google's FAQ rich-result eligibility. */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-5" style={hf}>
+            {isKn ? 'ಸಾಮಾನ್ಯವಾಗಿ ಕೇಳಲಾಗುವ ಪ್ರಶ್ನೆಗಳು (FAQ)' : isHi ? 'अक्सर पूछे जाने वाले प्रश्न (FAQ)' : 'Frequently Asked Questions (FAQ)'}
+          </h2>
+          <div className="space-y-4">
+            {FAQ_DATA.map((faq) => (
+              <details key={faq.q.en} className="group bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl overflow-hidden">
+                <summary className="cursor-pointer px-5 py-4 text-gold-light font-medium text-sm flex items-center justify-between hover:border-gold-primary/30">
+                  <span>{isKn ? faq.q.kn : isHi ? faq.q.hi : faq.q.en}</span>
+                  <span className="ml-3 text-gold-primary/50 group-open:rotate-180 transition-transform">&#9660;</span>
+                </summary>
+                <div className="px-5 pb-4 text-text-secondary text-sm leading-relaxed border-t border-gold-primary/8 pt-3">
+                  {isKn ? faq.a.kn : isHi ? faq.a.hi : faq.a.en}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        {/* JSON-LD FAQ Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: FAQ_DATA.map((faq) => ({
+                '@type': 'Question',
+                name: faq.q.en,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: faq.a.en,
+                },
+              })),
+            }),
+          }}
+        />
 
         {/* Related Links */}
         <section>

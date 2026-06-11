@@ -245,7 +245,13 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
   { masa: 'kartika', paksha: 'krishna', tithi: 15, slug: 'diwali',          type: 'major', category: 'festival', muhurtaRule: 'pradosh' },
   { masa: 'kartika', paksha: 'shukla',  tithi: 1,  slug: 'govardhan-puja',  type: 'major', category: 'festival',
     name: { en: 'Govardhan Puja', hi: 'गोवर्धन पूजा', sa: 'गोवर्धनपूजा' } },
-  { masa: 'kartika', paksha: 'shukla',  tithi: 2,  slug: 'bhai-dooj',       type: 'major', category: 'festival',
+  // Bhai Dooj = aparahna-vyapini Dwitiya (Dharmasindhu / Nirnayasindhu).
+  // Without muhurtaRule it defaulted to 'sunrise' (Udaya Tithi), which placed
+  // Bhai Dooj on Day 2 even when Dwitiya entered aparahna only on Day 1 — Drik
+  // 2026 = Nov 10, engine pre-fix = Nov 11. Pair with the 'aparahna'
+  // first-day-priority addition in festival-generator.ts so the tie-breaker
+  // picks Day 1 (purva-vyapini) when Dwitiya is present in aparahna on both.
+  { masa: 'kartika', paksha: 'shukla',  tithi: 2,  slug: 'bhai-dooj',       type: 'major', category: 'festival', muhurtaRule: 'aparahna',
     name: { en: 'Bhai Dooj', hi: 'भाई दूज', sa: 'भ्रातृद्वितीया' } },
   { masa: 'kartika', paksha: 'shukla',  tithi: 6,  slug: 'chhath-puja',     type: 'major', category: 'festival',
     name: { en: 'Chhath Puja', hi: 'छठ पूजा', sa: 'षष्ठीपूजा' } },
@@ -354,11 +360,24 @@ export const SOLAR_FESTIVALS: FestivalDef[] = [
     name: { en: 'Poila Boishakh', hi: 'पोइला बोइशाख', sa: 'पोइलाबोइशाख' } },
   { solarMonth: 1, tithi: 1, slug: 'bohag-bihu', type: 'regional', category: 'sankranti', region: 'assamese',
     name: { en: 'Bohag Bihu', hi: 'बोहाग बिहू', sa: 'बोहागबिहू' } },
+  // Pana Sankranti / Maha Vishuva Sankranti — Odia New Year, Sun enters Aries.
+  { solarMonth: 1, tithi: 1, slug: 'pana-sankranti', type: 'regional', category: 'sankranti', region: 'odisha',
+    name: { en: 'Pana Sankranti (Odia New Year)', hi: 'पना संक्रान्ति (ओड़िआ नव वर्ष)', sa: 'पनासंक्रान्तिः' } },
+  // Jud-Shital / Jur-Sital — Mithila New Year, observed on Mesha Sankranti day.
+  // Cold-rice tradition; elders sprinkle water on younger family members.
+  { solarMonth: 1, tithi: 1, slug: 'jud-shital', type: 'regional', category: 'sankranti', region: 'maithili',
+    name: { en: 'Jud-Shital (Mithila New Year)', hi: 'जुड़-शीतल (मिथिला नव वर्ष)', sa: 'जुड़शीतलम्', mai: 'जुड़-शीतल (मिथिला नव वर्ष)' } },
   // Other Sankrantis (remaining signs)
   { solarMonth: 2, tithi: 1, slug: 'vrishabha-sankranti', type: 'vrat', category: 'sankranti',
     name: { en: 'Vrishabha Sankranti', hi: 'वृषभ संक्रान्ति', sa: 'वृषभसंक्रान्तिः' } },
   { solarMonth: 3, tithi: 1, slug: 'mithuna-sankranti', type: 'vrat', category: 'sankranti',
     name: { en: 'Mithuna Sankranti', hi: 'मिथुन संक्रान्ति', sa: 'मिथुनसंक्रान्तिः' } },
+  // Raja Parba — 3-day Odia festival around Mithuna Sankranti. Mithuna
+  // Sankranti is Day 2 (Mithuna Sankranti = Raja Sankranti). Day 1 (Pahili
+  // Raja) and Day 3 (Basi Raja) flank it. Engine reports the main day; copy
+  // in regional pages mentions the 3-day window.
+  { solarMonth: 3, tithi: 1, slug: 'raja-parba', type: 'regional', category: 'festival', region: 'odisha',
+    name: { en: 'Raja Parba (Mithuna Sankranti)', hi: 'रज पर्व (मिथुन संक्रान्ति)', sa: 'रजपर्वम्' } },
   { solarMonth: 4, tithi: 1, slug: 'karka-sankranti', type: 'major', category: 'sankranti',
     name: { en: 'Karka Sankranti (Dakshinayana)', hi: 'कर्क संक्रान्ति (दक्षिणायन)', sa: 'कर्कसंक्रान्तिः (दक्षिणायनम्)' } },
   { solarMonth: 5, tithi: 1, slug: 'simha-sankranti', type: 'vrat', category: 'sankranti',
@@ -597,7 +616,7 @@ export const JAYANTI_FESTIVALS: FestivalDef[] = [
   { masa: 'pausha', paksha: 'krishna', tithi: 5, slug: 'saphala-jayanti', type: 'regional', category: 'jayanti',
     name: { en: 'Safala Jayanti', hi: 'सफला जयन्ती', sa: 'सफलाजयन्ती' } },
   { masa: 'kartika', paksha: 'shukla', tithi: 9, slug: 'akshaya-navami-kartik', type: 'regional', category: 'jayanti',
-    name: { en: 'Akshaya Navami', hi: 'अक्षय नवमी', sa: 'अक्षयनवमी' } },
+    name: { en: 'Akshaya Navami (Amla Navami)', hi: 'अक्षय नवमी (आमला नवमी)', sa: 'अक्षयनवमी' } },
 ];
 
 // ─── Additional Major Festivals & Purnima Aliases ───
@@ -691,9 +710,20 @@ export const ADDITIONAL_MAJOR_FESTIVALS: FestivalDef[] = [
 
 export const MORE_REGIONAL_FESTIVALS: FestivalDef[] = [
   // Odia festivals
-  { masa: 'chaitra', paksha: 'shukla', tithi: 1, slug: 'pana-sankranti', type: 'regional', category: 'festival', region: 'odisha',
-    name: { en: 'Pana Sankranti (Odia New Year)', hi: 'पना संक्रान्ति', sa: 'पनासंक्रान्तिः' } },
-  { masa: 'ashadha', paksha: 'shukla', tithi: 14, slug: 'bahuda-yatra', type: 'regional', category: 'festival', region: 'odisha',
+  { masa: 'margashirsha', paksha: 'krishna', tithi: 8, slug: 'prathamastami', type: 'regional', category: 'festival', region: 'odisha',
+    name: { en: 'Prathamastami', hi: 'प्रथमाष्टमी', sa: 'प्रथमाष्टमी' } },
+  // Pana Sankranti / Maha Vishuva Sankranti = Odia New Year = Sun's ingress
+  // into Aries (Mesha Sankranti, ~April 14). MOVED to SOLAR_FESTIVALS so
+  // resolveSolarFestivals picks it up — entries with `solarMonth` in
+  // MORE_REGIONAL_FESTIVALS are silently filtered out by isLunarDef.
+  // Previous lunar def at Chaitra Shukla 1 (= Ugadi) produced wrong dates
+  // (Mar 19 2026 instead of Apr 14 2026). Surfaced 2026-06-11.
+  // Bahuda Yatra = Return Rath Yatra, deities procession back from Gundicha
+  // temple to the main Jagannath temple on Ashadha Shukla Dashami (10), NOT 14.
+  // Previous def at tithi=14 placed it 4 days late vs Drik Panchang.
+  // Sequence: Rath Yatra (Sh.2) → Hera Panchami (Sh.5) → Bahuda Yatra (Sh.10)
+  // → Suna Besha (Sh.11) → Niladri Bije (Sh.13).
+  { masa: 'ashadha', paksha: 'shukla', tithi: 10, slug: 'bahuda-yatra', type: 'regional', category: 'festival', region: 'odisha',
     name: { en: 'Bahuda Yatra', hi: 'बहुदा यात्रा', sa: 'बहुदायात्रा' } },
   // Gujarat
   { masa: 'kartika', paksha: 'shukla', tithi: 1, slug: 'gujarati-new-year', type: 'regional', category: 'festival', region: 'gujarati', family: 'diwali',
@@ -750,6 +780,69 @@ export const MORE_REGIONAL_FESTIVALS: FestivalDef[] = [
     name: { en: 'Chhath Nahay Khay', hi: 'छठ नहाय खाय', sa: 'छठनहायखाय' } },
   { masa: 'kartika', paksha: 'shukla', tithi: 7, slug: 'chhath-usha-arghya', type: 'regional', category: 'festival', region: 'bihari',
     name: { en: 'Chhath Usha Arghya', hi: 'छठ ऊषा अर्घ्य', sa: 'छठऊषार्घ्यम्' } },
+  // Mithila (Maithili-speaking Mithilanchal — north Bihar, Tarai of Nepal)
+  // Sources: Mithila Panchang (Drik / Vidyaapati / official Maithili Panchang); cross-checked vs
+  // Drik Panchang Madhubani/Darbhanga listings 2026. These are tithi-based — engine resolves them
+  // for any year. Names use canonical Sanskrit/Maithili spellings.
+  { masa: 'ashwina', paksha: 'krishna', tithi: 8, slug: 'jitiya', type: 'regional', category: 'vrat', region: 'maithili',
+    name: { en: 'Jitiya (Jivitputrika Vrat)', hi: 'जितिया (जीवित्पुत्रिका व्रत)', sa: 'जीवित्पुत्रिकाव्रतम्', mai: 'जितिया (जीवित्पुत्रिका व्रत)', bn: 'জিতিয়া (জীবিতপুত্রিকা ব্রত)' } },
+  { masa: 'shravana', paksha: 'shukla', tithi: 5, slug: 'madhushravani', type: 'regional', category: 'festival', region: 'maithili',
+    name: { en: 'Madhushravani', hi: 'मधुश्रावणी', sa: 'मधुश्रावणी', mai: 'मधुश्रावणी' } },
+  { masa: 'kartika', paksha: 'shukla', tithi: 7, slug: 'sama-chakeva', type: 'regional', category: 'festival', region: 'maithili',
+    name: { en: 'Sama-Chakeva (begins)', hi: 'सामा-चकेवा (आरम्भ)', sa: 'सामाचकेवा', mai: 'सामा-चकेवा (आरम्भ)' } },
+  { masa: 'chaitra', paksha: 'shukla', tithi: 6, slug: 'chaiti-chhath-sandhya', type: 'regional', category: 'festival', region: 'maithili',
+    name: { en: 'Chaiti Chhath (Sandhya Arghya)', hi: 'चैती छठ (सन्ध्या अर्घ्य)', sa: 'चैत्रच्छष्ठीसन्ध्यार्घ्यम्', mai: 'चैती छठि (सन्ध्या अर्घ्य)' } },
+  { masa: 'chaitra', paksha: 'shukla', tithi: 7, slug: 'chaiti-chhath-usha', type: 'regional', category: 'festival', region: 'maithili',
+    name: { en: 'Chaiti Chhath (Usha Arghya)', hi: 'चैती छठ (ऊषा अर्घ्य)', sa: 'चैत्रच्छष्ठ्युषार्घ्यम्', mai: 'चैती छठि (ऊषा अर्घ्य)' } },
+  // Chaurchan / Chauth Chandra — Maithil women revere the moon on Bhadrapada
+  // Shukla Chaturthi (same tithi as Ganesh Chaturthi, but a distinct Mithila
+  // observance with kosi-arghya and dahi-chuda offerings).
+  { masa: 'bhadrapada', paksha: 'shukla', tithi: 4, slug: 'chaurchan', type: 'regional', category: 'festival', region: 'maithili',
+    name: { en: 'Chaurchan (Chauth Chandra)', hi: 'चौरचन (चौथ चन्द्र)', sa: 'चतुर्थचन्द्रः', mai: 'चौरचन (चौथ चन्द्र)' } },
+  // Jud-Shital moved to SOLAR_FESTIVALS (solarMonth=1) — see same note for
+  // Pana Sankranti above. Solar entries cannot live in MORE_REGIONAL_FESTIVALS.
+
+  // Bengali — additional festivals cross-checked vs Bengali Panjika (Vishuddha Siddhanta)
+  // and Drik Panchang Kolkata 2026 listings.
+  { masa: 'jyeshtha', paksha: 'shukla', tithi: 6, slug: 'jamai-shashthi', type: 'regional', category: 'festival', region: 'bengali',
+    name: { en: 'Jamai Shashthi', hi: 'जामाई षष्ठी', sa: 'जामातृषष्ठी', bn: 'জামাই ষষ্ঠী' } },
+  { masa: 'chaitra', paksha: 'shukla', tithi: 8, slug: 'annapurna-puja-basanti', type: 'regional', category: 'festival', region: 'bengali',
+    name: { en: 'Annapurna Puja (Basanti)', hi: 'अन्नपूर्णा पूजा (बासन्ती)', sa: 'अन्नपूर्णापूजा', bn: 'অন্নপূর্ণা পূজা (বাসন্তী)' } },
+  { masa: 'kartika', paksha: 'shukla', tithi: 9, slug: 'jagaddhatri-puja', type: 'regional', category: 'festival', region: 'bengali',
+    name: { en: 'Jagaddhatri Puja', hi: 'जगद्धात्री पूजा', sa: 'जगद्धात्रीपूजा', bn: 'জগদ্ধাত্রী পূজা' } },
+  { masa: 'chaitra', paksha: 'krishna', tithi: 14, slug: 'charak-puja', type: 'regional', category: 'festival', region: 'bengali',
+    name: { en: 'Charak Puja / Gajan', hi: 'चड़क पूजा / गाजन', sa: 'चड़कपूजा', bn: 'চড়ক পূজা / গাজন' } },
+
+  // Gujarati — additional festivals
+  { masa: 'kartika', paksha: 'shukla', tithi: 5, slug: 'labh-pancham', type: 'regional', category: 'festival', region: 'gujarati',
+    name: { en: 'Labh Pancham', hi: 'लाभ पंचमी', sa: 'लाभपञ्चमी', gu: 'લાભ પાંચમ' } },
+  // Hariyali Amavasya intentionally omitted — the engine's amavasya naming
+  // overrides def.name with "{masa} Amavasya" (see festival-generator.ts:854),
+  // so the def becomes invisible under its own slug. Plus the 2026 Adhika
+  // Jyeshtha makes the Shravana-Krishna-15 attribution ambiguous against
+  // Purnimanta-aligned mainstream-reference Gujarati dates. Re-add once the
+  // panchang_day_attribution_bug is resolved.
+
+  // Telugu / Telangana — additional festivals
+  { masa: 'ashadha', paksha: 'shukla', tithi: 1, slug: 'bonalu', type: 'regional', category: 'festival', region: 'telugu',
+    name: { en: 'Bonalu (Telangana)', hi: 'बोनालू (तेलंगाना)', sa: 'बोणालु', te: 'బోనాలు (తెలంగాణ)' } },
+  { masa: 'bhadrapada', paksha: 'krishna', tithi: 15, slug: 'bathukamma-start', type: 'regional', category: 'festival', region: 'telugu',
+    name: { en: 'Bathukamma (begins)', hi: 'बतुकम्मा (आरम्भ)', sa: 'बतुकम्मा', te: 'బతుకమ్మ (ఆరంభం)' } },
+  { masa: 'ashwina', paksha: 'krishna', tithi: 3, slug: 'atla-tadde', type: 'regional', category: 'festival', region: 'telugu',
+    name: { en: 'Atla Tadde', hi: 'अटला तद्दे', sa: 'अटलातद्दे', te: 'అట్ల తద్దె' } },
+
+  // Odia — additional festivals
+  // Snana Purnima — Lord Jagannath's ceremonial bath (Jyeshtha Purnima)
+  { masa: 'jyeshtha', paksha: 'shukla', tithi: 15, slug: 'snana-purnima', type: 'regional', category: 'purnima', region: 'odisha',
+    name: { en: 'Snana Purnima (Jagannath Bath)', hi: 'स्नान पूर्णिमा (जगन्नाथ स्नान)', sa: 'स्नानपूर्णिमा' } },
+  // Niladri Bije — Jagannath returns to Puri temple after Rath Yatra (Ashadha Shukla 13)
+  { masa: 'ashadha', paksha: 'shukla', tithi: 13, slug: 'niladri-bije', type: 'regional', category: 'festival', region: 'odisha',
+    name: { en: 'Niladri Bije', hi: 'नीलाद्रि बिजे', sa: 'नीलाद्रिविजयः' } },
+  // Suna Besha — Jagannath in golden attire (Ashadha Shukla 11)
+  { masa: 'ashadha', paksha: 'shukla', tithi: 11, slug: 'suna-besha', type: 'regional', category: 'festival', region: 'odisha',
+    name: { en: 'Suna Besha (Golden Attire)', hi: 'सुना बेश (स्वर्ण वेश)', sa: 'सुवर्णवेषः' } },
+  // Raja Parba moved to SOLAR_FESTIVALS (solarMonth=3) — same reason as
+  // Pana Sankranti / Jud-Shital above.
   // Misc
   { masa: 'magha', paksha: 'shukla', tithi: 3, slug: 'til-kund-tritiya', type: 'regional', category: 'vrat',
     name: { en: 'Til Kund Tritiya', hi: 'तिल कुण्ड तृतीया', sa: 'तिलकुण्डतृतीया' } },

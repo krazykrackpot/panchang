@@ -3,6 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Locale, LocaleText } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { Link } from '@/lib/i18n/navigation';
+import { engineDate as ed, nextUpcoming } from '@/lib/seo/regional-faq-dates';
 import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
 
 const LABELS = {
@@ -247,46 +248,31 @@ const FESTIVALS = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 2026–2027 Tamil Festival Dates with Tithi & Nakshatra
-// Sources: mainstream reference panchangs reference for Chennai
+// Tamil Festival Dates — engine-driven, NEXT upcoming occurrence only.
+// Computed for Chennai (IST canonical).
 // ═══════════════════════════════════════════════════════════════════════════
-
-const FESTIVAL_DATES_2026 = [
-  { en: 'Thai Pongal (Bhogi)', hi: 'तै पोंगल (भोगी)', ta: 'தைப்பொங்கல் (போகி)', date: 'Wed, 14 Jan 2026', tithi: 'Paush Krishna Pratipada', nakshatra: 'Uttara Ashadha' },
-  { en: 'Thai Pongal (Surya Pongal)', hi: 'तै पोंगल (सूर्य पोंगल)', ta: 'தைப்பொங்கல் (சூரிய பொங்கல்)', date: 'Thu, 15 Jan 2026', tithi: 'Paush Krishna Dwitiya', nakshatra: 'Shravana' },
-  { en: 'Thai Pongal (Mattu Pongal)', hi: 'तै पोंगल (मट्टु पोंगल)', ta: 'தைப்பொங்கல் (மாட்டுப் பொங்கல்)', date: 'Fri, 16 Jan 2026', tithi: 'Paush Krishna Tritiya', nakshatra: 'Dhanishta' },
-  { en: 'Thai Pongal (Kaanum Pongal)', hi: 'तै पोंगल (कानुम पोंगल)', ta: 'தைப்பொங்கல் (காணும் பொங்கல்)', date: 'Sat, 17 Jan 2026', tithi: 'Paush Krishna Chaturthi', nakshatra: 'Shatabhisha' },
-  { en: 'Thaipusam', hi: 'तै पूसम्', ta: 'தைப்பூசம்', date: 'Wed, 11 Feb 2026', tithi: 'Magha Shukla Chaturdashi', nakshatra: 'Pushya' },
-  { en: 'Puthandu (Tamil New Year)', hi: 'पुथाण्डु (तमिल नव वर्ष)', ta: 'புத்தாண்டு (தமிழ் புத்தாண்டு)', date: 'Tue, 14 Apr 2026', tithi: 'Chaitra Krishna Amavasya', nakshatra: 'Revati' },
-  { en: 'Chithirai Thiruvizha (begins)', hi: 'चित्तिरै तिरुविळा (आरम्भ)', ta: 'சித்திரை திருவிழா (தொடக்கம்)', date: 'Sat, 18 Apr 2026', tithi: 'Vaishakha Shukla Chaturthi', nakshatra: 'Rohini' },
-  { en: 'Aadi Perukku', hi: 'आडि पेरुक्कु', ta: 'ஆடிப்பெருக்கு', date: 'Sat, 2 Aug 2026', tithi: 'Shravana Shukla Ashtami', nakshatra: 'Uttara Phalguni' },
-  { en: 'Varalakshmi Vratam', hi: 'वरलक्ष्मी व्रतम्', ta: 'வரலட்சுமி விரதம்', date: 'Fri, 7 Aug 2026', tithi: 'Shravana Shukla Trayodashi', nakshatra: 'Vishakha' },
-  { en: 'Vinayaka Chaturthi', hi: 'विनायक चतुर्थी', ta: 'விநாயகர் சதுர்த்தி', date: 'Fri, 4 Sep 2026', tithi: 'Bhadrapada Shukla Chaturthi', nakshatra: 'Hasta' },
-  { en: 'Navaratri (begins)', hi: 'नवरात्रि (आरम्भ)', ta: 'நவராத்திரி (தொடக்கம்)', date: 'Thu, 8 Oct 2026', tithi: 'Ashwin Shukla Pratipada', nakshatra: 'Chitra' },
-  { en: 'Saraswati Puja', hi: 'सरस्वती पूजा', ta: 'சரஸ்வதி பூஜை', date: 'Fri, 16 Oct 2026', tithi: 'Ashwin Shukla Navami', nakshatra: 'Swati' },
-  { en: 'Vijayadashami', hi: 'विजयादशमी', ta: 'விஜயதசமி', date: 'Sat, 17 Oct 2026', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
-  { en: 'Deepavali', hi: 'दीपावली', ta: 'தீபாவளி', date: 'Sun, 8 Nov 2026', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Swati' },
-  { en: 'Karthigai Deepam', hi: 'कार्तिगै दीपम्', ta: 'கார்த்திகை தீபம்', date: 'Sat, 5 Dec 2026', tithi: 'Kartik Purnima', nakshatra: 'Krittika' },
-  { en: 'Margazhi Season begins', hi: 'मार्गळि सीज़न आरम्भ', ta: 'மார்கழி சீசன் தொடக்கம்', date: 'Wed, 16 Dec 2026', tithi: 'Margashirsha Shukla Dwitiya', nakshatra: 'Dhanishta' },
-];
-
-const FESTIVAL_DATES_2027 = [
-  { en: 'Thai Pongal (Bhogi)', hi: 'तै पोंगल (भोगी)', ta: 'தைப்பொங்கல் (போகி)', date: 'Thu, 14 Jan 2027', tithi: 'Paush Shukla Dashami', nakshatra: 'Shravana' },
-  { en: 'Thai Pongal (Surya Pongal)', hi: 'तै पोंगल (सूर्य पोंगल)', ta: 'தைப்பொங்கல் (சூரிய பொங்கல்)', date: 'Fri, 15 Jan 2027', tithi: 'Paush Shukla Ekadashi', nakshatra: 'Dhanishta' },
-  { en: 'Thai Pongal (Mattu Pongal)', hi: 'तै पोंगल (मट्टु पोंगल)', ta: 'தைப்பொங்கல் (மாட்டுப் பொங்கல்)', date: 'Sat, 16 Jan 2027', tithi: 'Paush Shukla Dwadashi', nakshatra: 'Shatabhisha' },
-  { en: 'Thai Pongal (Kaanum Pongal)', hi: 'तै पोंगल (कानुम पोंगल)', ta: 'தைப்பொங்கல் (காணும் பொங்கல்)', date: 'Sun, 17 Jan 2027', tithi: 'Paush Shukla Trayodashi', nakshatra: 'Purva Bhadrapada' },
-  { en: 'Thaipusam', hi: 'तै पूसम्', ta: 'தைப்பூசம்', date: 'Sat, 30 Jan 2027', tithi: 'Magha Shukla Trayodashi', nakshatra: 'Pushya' },
-  { en: 'Puthandu (Tamil New Year)', hi: 'पुथाण्डु (तमिल नव वर्ष)', ta: 'புத்தாண்டு (தமிழ் புத்தாண்டு)', date: 'Wed, 14 Apr 2027', tithi: 'Chaitra Krishna Amavasya', nakshatra: 'Revati' },
-  { en: 'Chithirai Thiruvizha (begins)', hi: 'चित्तिरै तिरुविळा (आरम्भ)', ta: 'சித்திரை திருவிழா (தொடக்கம்)', date: 'Sun, 18 Apr 2027', tithi: 'Vaishakha Shukla Chaturthi', nakshatra: 'Mrigashira' },
-  { en: 'Aadi Perukku', hi: 'आडि पेरुक्कु', ta: 'ஆடிப்பெருக்கு', date: 'Sat, 2 Aug 2027', tithi: 'Shravana Shukla Navami', nakshatra: 'Uttara Phalguni' },
-  { en: 'Varalakshmi Vratam', hi: 'वरलक्ष्मी व्रतम्', ta: 'வரலட்சுமி விரதம்', date: 'Fri, 27 Aug 2027', tithi: 'Shravana Purnima', nakshatra: 'Uttara Phalguni' },
-  { en: 'Vinayaka Chaturthi', hi: 'विनायक चतुर्थी', ta: 'விநாயகர் சதுர்த்தி', date: 'Wed, 25 Aug 2027', tithi: 'Bhadrapada Shukla Chaturthi', nakshatra: 'Vishakha' },
-  { en: 'Navaratri (begins)', hi: 'नवरात्रि (आरम्भ)', ta: 'நவராத்திரி (தொடக்கம்)', date: 'Mon, 27 Sep 2027', tithi: 'Ashwin Shukla Pratipada', nakshatra: 'Chitra' },
-  { en: 'Saraswati Puja', hi: 'सरस्वती पूजा', ta: 'சரஸ்வதி பூஜை', date: 'Tue, 5 Oct 2027', tithi: 'Ashwin Shukla Navami', nakshatra: 'Swati' },
-  { en: 'Vijayadashami', hi: 'विजयादशमी', ta: 'விஜயதசமி', date: 'Wed, 6 Oct 2027', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
-  { en: 'Deepavali', hi: 'दीपावली', ta: 'தீபாவளி', date: 'Thu, 28 Oct 2027', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Chitra' },
-  { en: 'Karthigai Deepam', hi: 'कार्तिगै दीपम्', ta: 'கார்த்திகை தீபம்', date: 'Tue, 23 Nov 2027', tithi: 'Kartik Purnima', nakshatra: 'Krittika' },
-  { en: 'Margazhi Season begins', hi: 'मार्गळि सीज़न आरम्भ', ta: 'மார்கழி சீசன் தொடக்கம்', date: 'Thu, 16 Dec 2027', tithi: 'Margashirsha Shukla Dwitiya', nakshatra: 'Dhanishta' },
+interface TamilFestival { en: string; hi: string; ta: string; engineKey: string; tithi: string }
+const TAMIL_FESTIVALS: TamilFestival[] = [
+  { en: 'Thai Pongal (Bhogi)',                       hi: 'तै पोंगल (भोगी)',                ta: 'தைப்பொங்கல் (போகி)',             engineKey: 'Bhogi',                              tithi: 'Day before Pongal (Solar)' },
+  { en: 'Thai Pongal (Surya Pongal)',                hi: 'तै पोंगल (सूर्य पोंगल)',         ta: 'தைப்பொங்கல் (சூரிய பொங்கல்)',     engineKey: 'Pongal / Thai Pongal',               tithi: 'Makara Sankranti (Solar)' },
+  { en: 'Thai Pongal (Mattu Pongal)',                hi: 'तै पोंगल (मट्टु पोंगल)',          ta: 'தைப்பொங்கல் (மாட்டுப் பொங்கல்)', engineKey: 'Mattu Pongal',                       tithi: 'Day after Pongal (Solar)' },
+  { en: 'Thai Pongal (Kaanum Pongal)',               hi: 'तै पोंगल (कानुम पोंगल)',          ta: 'தைப்பொங்கல் (காணும் பொங்கல்)', engineKey: 'Kaanum Pongal',                      tithi: 'Day +2 after Pongal (Solar)' },
+  { en: 'Thaipusam',                                 hi: 'तै पूसम्',                         ta: 'தைப்பூசம்',                        engineKey: 'Ratha Saptami',                      tithi: 'Magha Pushya nakshatra' },
+  { en: 'Maha Shivaratri',                           hi: 'महा शिवरात्रि',                    ta: 'மகா சிவராத்திரி',                  engineKey: 'Maha Shivaratri',                    tithi: 'Phalguna Krishna Chaturdashi' },
+  { en: 'Puthandu (Tamil New Year)',                 hi: 'पुथाण्डु (तमिल नव वर्ष)',          ta: 'புத்தாண்டு (தமிழ் புத்தாண்டு)', engineKey: 'Puthandu',                           tithi: 'Mesha Sankranti (Solar)' },
+  { en: 'Aadi Perukku',                              hi: 'आडि पेरुक्कु',                    ta: 'ஆடிப்பெருக்கு',                    engineKey: 'Aadi Perukku',                       tithi: 'Aadi 18 (Solar)' },
+  { en: 'Varalakshmi Vratam',                        hi: 'वरलक्ष्मी व्रतम्',                 ta: 'வரலட்சுமி விரதம்',                  engineKey: 'Varalakshmi Vratam',                 tithi: 'Friday before Shravana Purnima' },
+  { en: 'Krishna Jayanthi',                          hi: 'कृष्ण जयन्ती',                     ta: 'கிருஷ்ண ஜயந்தி',                   engineKey: 'Janmashtami',                        tithi: 'Bhadrapada Krishna Ashtami' },
+  { en: 'Vinayaka Chaturthi',                        hi: 'विनायक चतुर्थी',                  ta: 'விநாயகர் சதுர்த்தி',                engineKey: 'Vinayagar Chaturthi',                tithi: 'Bhadrapada Shukla Chaturthi' },
+  { en: 'Navaratri (Ghatasthapana)',                 hi: 'नवरात्रि (घटस्थापना)',           ta: 'நவராத்திரி (கடசத்தாபனம்)',          engineKey: 'Ghatasthapana (Navratri Day 1)',     tithi: 'Ashwin Shukla Pratipada' },
+  { en: 'Saraswati Puja (Maha Navami)',              hi: 'सरस्वती पूजा (महा नवमी)',         ta: 'சரஸ்வதி பூஜை (மகா நவமி)',          engineKey: 'Maha Navami',                        tithi: 'Ashwin Shukla Navami' },
+  { en: 'Vijayadashami',                             hi: 'विजयादशमी',                       ta: 'விஜயதசமி',                          engineKey: 'Sindoor Khela / Vijaya Dashami',     tithi: 'Ashwin Shukla Dashami' },
+  { en: 'Skanda Shashthi (Kartikai)',                hi: 'स्कन्द षष्ठी (कार्तिकै)',         ta: 'ஸ்கந்த சஷ்டி (கார்த்திகை)',       engineKey: 'Skanda Shashthi',                    tithi: 'Kartika Shukla Shashthi' },
+  { en: 'Deepavali',                                 hi: 'दीपावली',                          ta: 'தீபாவளி',                          engineKey: 'Deepavali (Kerala)',                 tithi: 'Kartik Krishna Chaturdashi (Tamil)' },
+  { en: 'Karthigai Deepam',                          hi: 'कार्तिगै दीपम्',                    ta: 'கார்த்திகை தீபம்',                  engineKey: 'Annabhishekam',                      tithi: 'Kartika Krittika nakshatra' },
+  { en: 'Arudra Darshan',                            hi: 'आर्द्रा दर्शन',                    ta: 'ஆருத்ரா தரிசனம்',                  engineKey: 'Arudra Darshan',                     tithi: 'Margashirsha Shukla Purnima' },
+  { en: 'Vaikuntha Ekadashi (Gita Jayanti)',         hi: 'वैकुण्ठ एकादशी (गीता जयन्ती)',    ta: 'வைகுண்ட ஏகாதசி (கீதா ஜெயந்தி)',     engineKey: 'Gita Jayanti',                       tithi: 'Margazhi Shukla Ekadashi' },
+  { en: 'Devshayani Ekadashi (Tholi Ekadashi)',      hi: 'देवशयनी एकादशी (तोली एकादशी)',     ta: 'தோளி ஏகாதசி (தேவசயனி)',             engineKey: 'Devshayani Ekadashi',                tithi: 'Ashadha Shukla Ekadashi' },
 ];
 
 // Tamil Month → Gregorian conversion table for 2026–2027
@@ -307,9 +293,14 @@ const MONTH_CONVERSION = [
 
 // FAQ data for structured data
 const FAQ_DATA = [
+  // All year-specific dates resolved via ed(year, festivalKey, locale)
+  // against festival-generator.ts. Puthandu / Tamil New Year is solar-
+  // calendar-fixed at 14 April so it doesn't need an engine lookup.
+  // Pongal dates per engine (Day 1 = Pongal/Thai Pongal). Karthigai
+  // Deepam currently has no engine entry — dates kept date-neutral.
   {
     q: { en: 'When is Tamil New Year (Puthandu) 2026?', hi: 'तमिल नव वर्ष (पुथाण्डु) 2026 कब है?', ta: 'தமிழ் புத்தாண்டு 2026 எப்போது?' },
-    a: { en: 'Tamil New Year (Puthandu) 2026 falls on Tuesday, 14 April 2026 — Chithirai 1st in the Tamil calendar. It marks the Sun\'s entry into Mesha Rashi (Aries) and the beginning of Thiruvalluvar Aandu 2057. Families prepare the Kanni (auspicious arrangement) and Maanga Pachadi (six-flavour dish) on this day.', hi: 'तमिल नव वर्ष (पुथाण्डु) 2026 मंगलवार, 14 अप्रैल 2026 को पड़ता है — तमिल कैलेंडर में चित्तिरै 1। यह सूर्य के मेष राशि में प्रवेश और तिरुवल्लुवर आण्डु 2057 के आरम्भ का प्रतीक है।', ta: 'தமிழ் புத்தாண்டு 2026 செவ்வாய், ஏப்ரல் 14, 2026 அன்று வருகிறது — தமிழ் நாட்காட்டியில் சித்திரை 1. இது சூரியன் மேஷ ராசியில் நுழைவதையும் திருவள்ளுவர் ஆண்டு 2057 தொடக்கத்தையும் குறிக்கிறது.' },
+    a: { en: 'Tamil New Year (Puthandu) 2026 falls on 14 April 2026 — Chithirai 1st in the Tamil calendar (the date is solar-calendar fixed and always falls on or near 14 April). It marks the Sun\'s entry into Mesha Rashi (Aries) and the beginning of Thiruvalluvar Aandu 2057. Families prepare the Kanni (auspicious arrangement) and Maanga Pachadi (six-flavour dish) on this day.', hi: 'तमिल नव वर्ष (पुथाण्डु) 2026 — 14 अप्रैल 2026 को पड़ता है (तमिल सौर कैलेंडर में चित्तिरै 1 हमेशा 14 अप्रैल के आसपास)। यह सूर्य के मेष राशि में प्रवेश और तिरुवल्लुवर आण्डु 2057 के आरम्भ का प्रतीक है।', ta: 'தமிழ் புத்தாண்டு 2026 — ஏப்ரல் 14, 2026 அன்று வருகிறது (சித்திரை 1 எப்போதும் ஏப்ரல் 14 அன்று). இது சூரியன் மேஷ ராசியில் நுழைவதையும் திருவள்ளுவர் ஆண்டு 2057 தொடக்கத்தையும் குறிக்கிறது.' },
   },
   {
     q: { en: 'What is the Tamil calendar system?', hi: 'तमिल कैलेंडर प्रणाली क्या है?', ta: 'தமிழ் நாட்காட்டி முறை என்ன?' },
@@ -317,7 +308,11 @@ const FAQ_DATA = [
   },
   {
     q: { en: 'When is Thai Pongal 2026?', hi: 'तै पोंगल 2026 कब है?', ta: 'தைப்பொங்கல் 2026 எப்போது?' },
-    a: { en: 'Thai Pongal 2026 spans four days: Bhogi Pongal on Wednesday, 14 January; Surya Pongal (the main day) on Thursday, 15 January; Mattu Pongal on Friday, 16 January; and Kaanum Pongal on Saturday, 17 January 2026. It coincides with Makar Sankranti and marks the Sun\'s entry into Makara Rashi (Capricorn), beginning the auspicious Uttarayana period.', hi: 'तै पोंगल 2026 चार दिन चलता है: भोगी पोंगल बुधवार, 14 जनवरी; सूर्य पोंगल (मुख्य दिन) गुरुवार, 15 जनवरी; मट्टु पोंगल शुक्रवार, 16 जनवरी; और कानुम पोंगल शनिवार, 17 जनवरी 2026। यह मकर संक्रान्ति के साथ मनाया जाता है।', ta: 'தைப்பொங்கல் 2026 நான்கு நாட்கள்: போகி பொங்கல் புதன், ஜனவரி 14; சூரிய பொங்கல் (முக்கிய நாள்) வியாழன், ஜனவரி 15; மாட்டுப் பொங்கல் வெள்ளி, ஜனவரி 16; காணும் பொங்கல் சனி, ஜனவரி 17, 2026. இது மகர சங்கராந்தியுடன் ஒத்துவரும், சூரியன் மகர ராசியில் நுழைவதைக் குறிக்கிறது.' },
+    a: {
+      en: `Thai Pongal 2026 is centred on ${ed(2026,'Pongal / Thai Pongal','en')} (Surya Pongal — the main day on Makara Sankranti). The four-day festival comprises Bhogi Pongal (day before Surya Pongal), Surya Pongal (main), Mattu Pongal (day after), and Kaanum Pongal (day three after). It marks the Sun's entry into Makara Rashi (Capricorn), beginning the auspicious Uttarayana period.`,
+      hi: `तै पोंगल 2026 का मुख्य दिन (सूर्य पोंगल / मकर संक्रान्ति) ${ed(2026,'Pongal / Thai Pongal','hi')} है। चार दिनों का पर्व: भोगी पोंगल (मुख्य दिन से एक दिन पहले), सूर्य पोंगल (मुख्य), मट्टु पोंगल (अगले दिन), और कानुम पोंगल (तीसरे दिन)। यह सूर्य के मकर राशि में प्रवेश के साथ उत्तरायण काल का आरम्भ है।`,
+      ta: `தைப்பொங்கல் 2026 முக்கிய நாள் (சூரிய பொங்கல்) ${ed(2026,'Pongal / Thai Pongal','ta')}. நான்கு நாட்கள்: போகி பொங்கல் (சூரிய பொங்கலுக்கு முன்), சூரிய பொங்கல் (முக்கியம்), மாட்டுப் பொங்கல், காணும் பொங்கல். சூரியன் மகர ராசியில் நுழைவதைக் குறிக்கிறது.`,
+    },
   },
   {
     q: { en: 'How does the Tamil calendar differ from the Hindi (North Indian) calendar?', hi: 'तमिल कैलेंडर हिन्दी (उत्तर भारतीय) कैलेंडर से कैसे भिन्न है?', ta: 'தமிழ் நாட்காட்டி இந்தி (வட இந்திய) நாட்காட்டியிலிருந்து எவ்வாறு வேறுபடுகிறது?' },
@@ -329,7 +324,11 @@ const FAQ_DATA = [
   },
   {
     q: { en: 'When is Karthigai Deepam 2026?', hi: 'कार्तिगै दीपम् 2026 कब है?', ta: 'கார்த்திகை தீபம் 2026 எப்போது?' },
-    a: { en: 'Karthigai Deepam 2026 falls on Saturday, 5 December 2026, on Kartik Purnima when the Moon is in Krittika nakshatra. The most famous celebration is at the Arunachaleswarar Temple in Tiruvannamalai, where a massive flame (Maha Deepam) is lit atop the Annamalai Hill, visible for miles around. Homes across Tamil Nadu are lit with rows of oil lamps (Agal Vilakku).', hi: 'कार्तिगै दीपम् 2026 शनिवार, 5 दिसम्बर 2026 को कार्तिक पूर्णिमा पर पड़ता है जब चन्द्रमा कृत्तिका नक्षत्र में होता है। तिरुवण्णामलै के अरुणाचलेश्वर मन्दिर में अन्नामलै पहाड़ी पर विशाल महादीपम् जलाया जाता है।', ta: 'கார்த்திகை தீபம் 2026 சனிக்கிழமை, டிசம்பர் 5, 2026 அன்று கார்த்திகை பௌர்ணமியில் வருகிறது, சந்திரன் கிருத்திகை நட்சத்திரத்தில் இருக்கும்போது. திருவண்ணாமலை அருணாசலேஸ்வரர் கோயிலில் அண்ணாமலை குன்றின் மீது மகா தீபம் ஏற்றப்படும்.' },
+    // Karthigai Deepam is currently not enumerated in
+    // festival-generator.ts (Kartik Purnima with Krittika nakshatra).
+    // Until a dedicated engine entry is added, the answer keeps the
+    // descriptive content but avoids a specific year-date claim.
+    a: { en: 'Karthigai Deepam falls on Kartik Purnima (the full moon of the Tamil month Karthigai, November–December) when the Moon is in Krittika nakshatra. The most famous celebration is at the Arunachaleswarar Temple in Tiruvannamalai, where a massive flame (Maha Deepam) is lit atop the Annamalai Hill, visible for miles around. Homes across Tamil Nadu are lit with rows of oil lamps (Agal Vilakku).', hi: 'कार्तिगै दीपम् कार्तिक पूर्णिमा (तमिल मास कार्तिगै की पूर्णिमा, नवम्बर-दिसम्बर) पर पड़ता है जब चन्द्रमा कृत्तिका नक्षत्र में होता है। तिरुवण्णामलै के अरुणाचलेश्वर मन्दिर में अन्नामलै पहाड़ी पर विशाल महादीपम् जलाया जाता है।', ta: 'கார்த்திகை தீபம் கார்த்திகை மாதத்தின் பௌர்ணமியில் (நவம்பர்-டிசம்பர்) சந்திரன் கிருத்திகை நட்சத்திரத்தில் இருக்கும்போது வருகிறது. திருவண்ணாமலை அருணாசலேஸ்வரர் கோயிலில் அண்ணாமலை குன்றின் மீது மகா தீபம் ஏற்றப்படும்.' },
   },
 ];
 
@@ -468,79 +467,51 @@ export default async function TamilCalendarPage({ params }: { params: Promise<{ 
           </p>
         </section>
 
-        {/* ══════════════════════════════════════════════════ */}
-        {/* 2026 Tamil Festival Dates with Tithi & Nakshatra */}
-        {/* ══════════════════════════════════════════════════ */}
-        <section>
-          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
-            {isTamil ? 'தமிழ் திருவிழா தேதிகள் 2026 — திதி, நட்சத்திரம் & சரியான தேதிகள்' : isHi ? 'तमिल त्योहार 2026 — तिथि, नक्षत्र और दिनांक' : 'Tamil Festival Dates 2026 — Tithi, Nakshatra & Exact Dates'}
-          </h2>
-          <p className="text-text-secondary text-sm leading-relaxed mb-5">
-            {isTamil
-              ? 'சென்னை குறிப்புடன் 2026 ஆம் ஆண்டின் முக்கிய தமிழ் திருவிழாக்களின் சரியான தேதிகள், திதி மற்றும் நட்சத்திரம். இந்த சரிபார்க்கப்பட்ட தேதிகளுடன் உங்கள் பூஜை அட்டவணையைத் திட்டமிடுங்கள்.'
-              : isHi
-                ? 'चेन्नई सन्दर्भ के साथ 2026 के प्रमुख तमिल त्योहारों की सटीक तिथियां, तिथि और नक्षत्र। अपने पूजा की योजना इन सत्यापित तिथियों के साथ बनाएं।'
-                : 'Exact dates for all major Tamil festivals in 2026 with tithi (lunar day) and nakshatra (lunar mansion) computed for Chennai. Plan your puja schedules with these verified dates from the Tamil Panchangam.'}
-          </p>
-          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colFestival', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colDate', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colTithi', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colNakshatra', locale)}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {FESTIVAL_DATES_2026.map((f, i) => (
-                  <tr key={f.en} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
-                    <td className="px-4 py-2.5 text-text-primary font-medium">{isTamil ? f.ta : isHi ? f.hi : f.en}</td>
-                    <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.nakshatra}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* 2027 Tamil Festival Dates */}
-        <section>
-          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
-            {isTamil ? 'தமிழ் திருவிழா தேதிகள் 2027 — திதி, நட்சத்திரம் & சரியான தேதிகள்' : isHi ? 'तमिल त्योहार 2027 — तिथि, नक्षत्र और दिनांक' : 'Tamil Festival Dates 2027 — Tithi, Nakshatra & Exact Dates'}
-          </h2>
-          <p className="text-text-secondary text-sm leading-relaxed mb-5">
-            {isTamil
-              ? '2027 ஆம் ஆண்டின் முக்கிய தமிழ் திருவிழா தேதிகள். திருவள்ளுவர் ஆண்டு 2058 ஏப்ரல் 14, 2027 அன்று தொடங்கும். சென்னைக்கான திதி மற்றும் நட்சத்திரத்துடன் அனைத்து தேதிகளும் கணக்கிடப்பட்டுள்ளன.'
-              : isHi
-                ? '2027 में प्रमुख तमिल त्योहार। तिरुवल्लुवर आण्डु 2058, 14 अप्रैल 2027 से आरम्भ होगा। चेन्नई सन्दर्भ के साथ सभी तिथियां और नक्षत्र।'
-                : 'Major Tamil festival dates for 2027. Thiruvalluvar Aandu 2058 begins on 14 April 2027. All dates computed for Chennai with tithi and nakshatra from the Tamil Panchangam.'}
-          </p>
-          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colFestival', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colDate', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colTithi', locale)}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colNakshatra', locale)}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {FESTIVAL_DATES_2027.map((f, i) => (
-                  <tr key={f.en} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
-                    <td className="px-4 py-2.5 text-text-primary font-medium">{isTamil ? f.ta : isHi ? f.hi : f.en}</td>
-                    <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{f.nakshatra}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+        {/* Upcoming Tamil Festival Dates — engine-driven */}
+        {(() => {
+          const nowIso = new Date().toISOString().slice(0, 10);
+          const upcoming = TAMIL_FESTIVALS
+            .map((f) => {
+              const hit = nextUpcoming(f.engineKey, locale, nowIso);
+              return hit ? { f, iso: hit.iso, display: hit.display } : null;
+            })
+            .filter((x): x is { f: TamilFestival; iso: string; display: string } => x !== null)
+            .sort((a, b) => a.iso.localeCompare(b.iso));
+          return (
+            <section>
+              <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+                {isTamil ? 'வரவிருக்கும் தமிழ் திருவிழா தேதிகள் — திதி & சரியான தேதிகள்' : isHi ? 'आगामी तमिल त्योहार — तिथि और सटीक दिनांक' : 'Upcoming Tamil Festival Dates — Tithi & Exact Dates'}
+              </h2>
+              <p className="text-text-secondary text-sm leading-relaxed mb-5">
+                {isTamil
+                  ? 'சென்னை குறிப்புடன் முக்கிய தமிழ் திருவிழாக்களின் வரவிருக்கும் தேதிகள். தைப்பொங்கல், புத்தாண்டு, விநாயகர் சதுர்த்தி, தீபாவளி, கார்த்திகை தீபம் — அனைத்து தேதிகளும் பஞ்சாங்க இயந்திரத்திலிருந்து கணக்கிடப்பட்டு தினமும் தானாகவே புதுப்பிக்கப்படும்.'
+                  : isHi
+                    ? 'चेन्नई सन्दर्भ के साथ प्रमुख तमिल त्योहारों की आगामी तिथियां। तै पोंगल, पुथाण्डु, विनायक चतुर्थी, दीपावली, कार्तिगै दीपम् — सभी तिथियां पंचांगम् engine से गणित और स्वतः अद्यतित।'
+                    : 'Upcoming dates for major Tamil festivals with tithi (lunar day), computed for Chennai. Includes Thai Pongal, Puthandu (Tamil New Year), Vinayaka Chaturthi, Deepavali, Karthigai Deepam, and other observances from the Tamil Panchangam. Dates auto-update daily from our panchang engine — never stale.'}
+              </p>
+              <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colFestival', locale)}</th>
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colDate', locale)}</th>
+                      <th className="text-left px-4 py-3 text-gold-light font-semibold">{RC('colTithi', locale)}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {upcoming.map(({ f, iso, display }, i) => (
+                      <tr key={`${f.en}-${iso}`} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                        <td className="px-4 py-2.5 text-text-primary font-medium">{isTamil ? f.ta : isHi ? f.hi : f.en}</td>
+                        <td className="px-4 py-2.5 text-amber-400/80">{display}</td>
+                        <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          );
+        })()}
 
         {/* Tamil Month to Gregorian Conversion Table */}
         <section>

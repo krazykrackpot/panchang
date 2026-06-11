@@ -687,12 +687,22 @@ export function generateFestivalCalendarV2(
         // Dharmasindhu resolution:
         // 1. Active only on Day 1 → pick Day 1
         // 2. Active only on Day 2 → keep Day 2 (sunriseDate)
-        // 3. Active on both → night festivals (pradosh/nishita) prefer Day 1;
-        //    day festivals pick the greater overlap
+        // 3. Active on both → purva-vyapini festivals (pradosh/nishita/aparahna)
+        //    prefer Day 1 regardless of overlap size; other day-festivals pick
+        //    the greater overlap.
+        //    Why 'aparahna' joined the list (2026-06-11): Bhai Dooj is aparahna-
+        //    vyapini per Dharmasindhu — observe on Day 1 if Dwitiya is present
+        //    in Day 1's aparahna kaal at all, even if Day 2's overlap is larger.
+        //    Drik 2026 Bhai Dooj = Nov 10 (Day 1) confirmed via WebFetch.
+        //    Safe side-effect surface: grep confirmed Bhai Dooj is the only
+        //    festival using muhurtaRule: 'aparahna' at the time of this change.
+        //    If any future festival opts into 'aparahna' with para-vyapini
+        //    semantics, introduce an explicit `vyapini` field instead of
+        //    coupling it to the rule.
         if (overlap1 > 0 && overlap2 === 0) {
           festivalDate = `${y1}-${String(m1).padStart(2, '0')}-${String(d1).padStart(2, '0')}`;
         } else if (overlap1 > 0 && overlap2 > 0) {
-          if (['pradosh', 'nishita'].includes(rule) || overlap1 >= overlap2) {
+          if (['pradosh', 'nishita', 'aparahna'].includes(rule) || overlap1 >= overlap2) {
             festivalDate = `${y1}-${String(m1).padStart(2, '0')}-${String(d1).padStart(2, '0')}`;
           }
         }

@@ -1,10 +1,20 @@
-import { getLocale, setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/lib/i18n/navigation';
 import { Calendar, Sparkles, MapPin, ChevronRight } from 'lucide-react';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { visibleLocales } from '@/lib/i18n/config';
 import AuthorByline from '@/components/ui/AuthorByline';
 
 export const revalidate = 86400; // 24 hours  –  festival listing changes rarely
+// Pre-render every visible locale so the festivals hub is a fully-static
+// HTML response, not a dynamic SSR-with-Suspense render. Without this,
+// the page's top-level `await getLocale()` (now removed in favour of
+// `params`) caused Next.js to emit a Suspense boundary, and the
+// /[locale]/loading.tsx fallback ("Loading…") appeared as the first
+// content inside <main> in crawled HTML. 2026-06-11 SEO audit Item 9.
+export function generateStaticParams() {
+  return visibleLocales.map((locale) => ({ locale }));
+}
 
 // ─── Festival data ────────────────────────────────────────────────────────────
 
@@ -165,8 +175,17 @@ const NEXT_YEAR = 2027;
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default async function FestivalsHubPage() {
-  const locale = await getLocale();
+export default async function FestivalsHubPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  // Receive locale from params (same as every other [locale]/page.tsx in
+  // the tree) instead of `await getLocale()` — the async i18n lookup was
+  // the source of the Suspense boundary that put loading.tsx HTML at the
+  // top of <main>. Combined with the generateStaticParams() above the
+  // page now renders as fully-static HTML at build time.
+  const { locale } = await params;
   setRequestLocale(locale);
   // Devanagari-script locales (hi, sa, mr, mai) share the Hindi rendering.
   // Other locales fall back to English — proper translations tracked

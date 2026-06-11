@@ -98,13 +98,25 @@ export async function generateMetadata({
   setRequestLocale(locale);
 
   const yearNum = parseInt(year, 10);
+  // noindex, follow on all year-children (Core-Update protection). These
+  // pages are ~310-word self-canonical pages whose content overlaps the
+  // /calendar/regional/bengali parent's content + has no FAQ JSON-LD of
+  // its own; per 2026-06-11 SEO audit Item 2 they are textbook Helpful
+  // Content / Core Update targets. The crawler-discoverable index entry
+  // stays via `follow`; we just stop offering them as ranking candidates.
+  // Re-enable indexing only when each year-page has 1500+ words of
+  // genuinely year-specific content (the PR A festival YoY pattern can
+  // be reused here).
+  const robots = { index: false, follow: true } as const;
   if (STATIC_META_YEARS.has(yearNum)) {
-    return getPageMetadata(`/calendar/regional/bengali/${year}`, locale);
+    const base = getPageMetadata(`/calendar/regional/bengali/${year}`, locale) ?? {};
+    return { ...base, robots };
   }
   // ISR fallback for years outside the curated PAGE_META set.
   return {
     title: dynamicTitle(yearNum, locale),
     description: dynamicDescription(yearNum, locale),
+    robots,
     alternates: {
       canonical: `https://dekhopanchang.com/${locale}/calendar/regional/bengali/${year}`,
     },

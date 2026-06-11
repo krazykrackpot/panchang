@@ -326,6 +326,15 @@ export default async function FestivalCanonicalPage({
   };
 
   // ── JSON-LD: FAQPage ──
+  // FAQ expanded 2026-06-11 (SEO audit Item 7) from 4 stub answers
+  // (shortest 41 chars: "Diwali is observed on ashwina krishna 15.") to
+  // 8 answers averaging ~220 chars. Tithi-name proper-cased ("Ashwin
+  // Krishna 15" instead of "ashwina krishna 15") on the way through.
+  const tithiStrProper = tithiStr ? tithiStr.replace(/\b([a-z])([a-z]+)/g, (_, a, b) => a.toUpperCase() + b) : tithiStr;
+  const ctxForFaq = (() => {
+    try { return computeYearContext(slug, year, festivalDate); }
+    catch { return null; }
+  })();
   const faqLD = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -335,33 +344,69 @@ export default async function FestivalCanonicalPage({
         name: `When is ${festivalNameEn} ${year}?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `${festivalNameEn} ${year} falls on ${formatDate(festivalDate, 'en')}.`,
+          text: `${festivalNameEn} ${year} falls on ${formatDate(festivalDate, 'en')}. The date is derived from the Vedic lunisolar calendar — specifically the ${ruleLabel} rule applied to ${tithiStrProper || 'the festival tithi'} — so it shifts year-on-year as the lunar months drift against the solar year. ${ctxForFaq?.previousYearDate ? `Last year (${year - 1}) it fell on ${ctxForFaq.previousYearDate}.` : ''}`,
         },
       },
       {
         '@type': 'Question',
-        name: `What time is ${festivalNameEn} puja muhurat?`,
+        name: `What time is ${festivalNameEn} puja muhurat in ${year}?`,
         acceptedAnswer: {
           '@type': 'Answer',
           text: refRow.pujaMuhurat
-            ? `The ${refRow.pujaMuhurat.name} is from ${fmt12h(refRow.pujaMuhurat.start)} to ${fmt12h(refRow.pujaMuhurat.end)} (${refRow.nameEn}). Timings vary by city — see the city-wise table above.`
-            : `${festivalNameEn} observance follows the ${ruleLabel} rule. Timings vary by city.`,
+            ? `The ${refRow.pujaMuhurat.name} muhurat in Delhi for ${festivalNameEn} ${year} runs from ${fmt12h(refRow.pujaMuhurat.start)} to ${fmt12h(refRow.pujaMuhurat.end)} (${refRow.nameEn}, India Standard Time). These timings are computed from this year's tithi-end clock and the city's sunset/sunrise — they're not lifted from a fixed table. For Mumbai, Bangalore, Kolkata and 50+ other Indian and international cities, see the city-wise muhurat table above on this page.`
+            : `${festivalNameEn} observance follows the ${ruleLabel} rule for muhurat selection — the tithi must be present during the relevant time window (sunrise, midday, evening or midnight depending on the festival's central rite). Specific timings vary city-by-city; consult the table above.`,
         },
       },
       {
         '@type': 'Question',
-        name: `What Tithi is ${festivalNameEn} observed on?`,
+        name: `What tithi is ${festivalNameEn} observed on?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: tithiStr
-            ? `${festivalNameEn} is observed on ${tithiStr}.`
-            : `${festivalNameEn} follows the ${ruleLabel} rule for Tithi determination.`,
+          text: tithiStrProper
+            ? `${festivalNameEn} is observed on ${tithiStrProper}. The tithi (lunar day) is the canonical anchor — the Gregorian date shifts each year, but the tithi assignment stays fixed. A tithi averages 23 hours 37 minutes (because the Moon advances 12° relative to the Sun, not 12° per solar day), so it almost always spans two Gregorian dates; the ${ruleLabel} rule picks which one.`
+            : `${festivalNameEn} follows the ${ruleLabel} rule for tithi determination — the tithi must be present during the relevant time window of the chosen day for the festival to fall on that day.`,
         },
       },
       {
         '@type': 'Question',
-        name: `Why is ${festivalNameEn} on this date?`,
+        name: `Why is ${festivalNameEn} on a different date each year?`,
         acceptedAnswer: { '@type': 'Answer', text: kalaExplanation },
+      },
+      {
+        '@type': 'Question',
+        name: `What weekday does ${festivalNameEn} fall on in ${year}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: ctxForFaq?.weekdayEn
+            ? `${festivalNameEn} ${year} falls on a ${ctxForFaq.weekdayEn}. ${ctxForFaq.weekdayNoteEn} ${ctxForFaq.previousYearWeekdayEn ? `Last year (${year - 1}) it was a ${ctxForFaq.previousYearWeekdayEn};` : ''} ${ctxForFaq.nextYearWeekdayEn ? `next year (${year + 1}) it will be a ${ctxForFaq.nextYearWeekdayEn}.` : ''}`
+            : `${festivalNameEn} ${year} falls on ${formatDate(festivalDate, 'en')}.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `When was ${festivalNameEn} last year, and when is it next year?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: ctxForFaq?.previousYearDate || ctxForFaq?.nextYearDate
+            ? `${ctxForFaq.previousYearDate ? `${festivalNameEn} ${year - 1} fell on ${ctxForFaq.previousYearDate}` : ''}${ctxForFaq.previousYearDate && ctxForFaq.nextYearDate ? `; ` : ''}${ctxForFaq.nextYearDate ? `${festivalNameEn} ${year + 1} will fall on ${ctxForFaq.nextYearDate}` : ''}. The Hindu lunisolar calendar runs ~11 days shorter than the Gregorian year, so most festivals shift earlier year-on-year; in Adhika-masa years (the intercalary 13th month inserted every 2-3 years) they jump ~19 days later instead.`
+            : `${festivalNameEn} dates are computed from the lunisolar Vedic calendar; consult the festivals hub for the multi-year date table.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `Is ${festivalNameEn} ${year} a regional festival, or is it observed nationwide?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `${festivalNameEn} is part of the pan-Indian Hindu festival calendar but its observance style varies by region — North India (the Holi/Diwali/Navratri stream), Bengal (the Durga Puja stream), Maharashtra (the Ganesh Chaturthi tradition), Tamil Nadu (the Pongal/Karthikai cluster) and Kerala (Onam) each contribute distinct regional vidhi. The date computed here applies pan-regionally to the lunar Hindu calendar — the rituals attached to that date differ by community.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `How are ${festivalNameEn} ${year} timings computed for my city?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `Each city's muhurat is derived from that city's exact sunrise, sunset and the tithi-end clock for ${festivalDate}, not from a fixed India-centric table. We compute sunrise and sunset via Swiss Ephemeris using the city's coordinates (latitude, longitude, altitude) and then apply the festival's classical muhurta rule (${ruleLabel}) to identify the auspicious window. Cities further east see earlier sunrise and thus earlier muhurat windows; cities at higher latitudes see broader daytime windows in summer.`,
+        },
       },
     ],
   };
@@ -423,6 +468,35 @@ export default async function FestivalCanonicalPage({
           >
             {festivalNameLocale} {year}
           </h1>
+          {/* Direct-answer paragraph — Google featured-snippet target.
+              Lifts the year, exact weekday + date, and puja-muhurat window
+              into the first ~45 words after H1 so the snippet bot doesn't
+              have to dig past the H1 + cross-link buttons. 2026-06-11
+              SEO audit Item G — hartalika teej 0.16% CTR, diwali puja
+              0.21% CTR were both losing snippet capture to competing
+              SERPs that lead with the answer. */}
+          <p
+            className="text-text-primary text-sm sm:text-base max-w-2xl mx-auto leading-relaxed"
+            style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
+          >
+            <strong className="text-gold-light">{festivalNameLocale} {year}</strong>
+            {' '}{isHi ? 'का पर्व' : 'falls on'}{' '}
+            <strong className="text-gold-light">{getWeekday(festivalDate, locale)}, {formatDate(festivalDate, locale)}</strong>
+            {refRow.pujaMuhurat && (
+              <>
+                {'. '}{isHi ? `${refRow.pujaMuhurat.name} मुहूर्त` : `The ${refRow.pujaMuhurat.name} muhurat`}{' '}
+                {isHi ? 'का समय' : 'is from'}{' '}
+                <strong className="text-gold-light">{fmt12h(refRow.pujaMuhurat.start)} – {fmt12h(refRow.pujaMuhurat.end)}</strong>{' '}
+                {isHi ? '(दिल्ली)' : '(Delhi)'}
+              </>
+            )}
+            {tithiStr && (
+              <>
+                {'. '}{isHi ? 'तिथि' : 'Observed on'}: {tithiStr}
+              </>
+            )}
+            {'.'}
+          </p>
           <p className="text-text-secondary text-sm max-w-lg mx-auto" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
             {formatFestivalLabel('subtitleTemplate', locale, { NAME: festivalNameLocale, YEAR: String(year) })}
           </p>
@@ -553,6 +627,43 @@ export default async function FestivalCanonicalPage({
                 <p className="text-text-primary/80 text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   {driftSentence}
                 </p>
+              )}
+              {/* Year-specific prose block — drops YoY duplicate-content
+                  exposure (Item 6 of 2026-06-11 SEO audit found 89%
+                  byte-identical sentences between /diwali/2026 and /2027
+                  because the templated mythology/vidhi blocks dominate;
+                  computeYearContext now returns enough year-varying data
+                  to compose ~100-120 words of demonstrably different
+                  prose per year). EN-only — Google reads this for the
+                  duplicate-content signal regardless of locale. */}
+              {ctx.weekdayNoteEn && (
+                <div className="border-t border-gold-primary/10 pt-3 mt-3 space-y-2">
+                  <p className="text-text-primary/85 text-sm leading-relaxed">
+                    <span className="text-gold-light font-medium">{ctx.weekdayNoteEn}</span>
+                  </p>
+                  {(ctx.previousYearDate && ctx.previousYearWeekdayEn) && (
+                    <p className="text-text-primary/75 text-sm leading-relaxed">
+                      The {year - 1} observance fell on {ctx.previousYearWeekdayEn}, {ctx.previousYearDate}
+                      {ctx.driftFromPreviousYear != null && Math.abs(ctx.driftFromPreviousYear) >= 3 ? (
+                        <>{` — `}this year arrives {Math.abs(ctx.driftFromPreviousYear)} days {ctx.driftFromPreviousYear > 0 ? 'later' : 'earlier'} in the Gregorian calendar, the {Math.abs(ctx.driftFromPreviousYear) >= 18 ? 'Adhika-masa pattern when an intercalary lunar month pushes the cycle forward' : 'familiar 11-day shift of the unmodified lunar year'}.</>
+                      ) : '.'}
+                    </p>
+                  )}
+                  {(ctx.nextYearDate && ctx.nextYearWeekdayEn) && (
+                    <p className="text-text-primary/75 text-sm leading-relaxed">
+                      Looking ahead to {year + 1}, {festivalNameEn} will fall on {ctx.nextYearWeekdayEn}, {ctx.nextYearDate}
+                      {ctx.driftToNextYear != null && Math.abs(ctx.driftToNextYear) >= 3 ? (
+                        <>{` (`}{Math.abs(ctx.driftToNextYear)} days {ctx.driftToNextYear > 0 ? 'later' : 'earlier'} than this year)</>
+                      ) : ''}
+                      {`. `}So planning ritual schedules across years means anchoring to the tithi rather than the Gregorian date.
+                    </p>
+                  )}
+                  {refRow.pujaMuhurat && (
+                    <p className="text-text-primary/75 text-sm leading-relaxed">
+                      The {year} {refRow.pujaMuhurat.name} window in Delhi runs from {fmt12h(refRow.pujaMuhurat.start)} to {fmt12h(refRow.pujaMuhurat.end)} — these timings are year-specific because they're derived from the tithi-end clock and sunset/sunrise at this date, not a fixed table; other Indian cities shift by ±10-30 minutes from the Delhi reference.
+                    </p>
+                  )}
+                </div>
               )}
             </div>
           );

@@ -796,8 +796,12 @@ export const MORE_REGIONAL_FESTIVALS: FestivalDef[] = [
     name: { en: 'Chaiti Chhath (Usha Arghya)', hi: 'चैती छठ (ऊषा अर्घ्य)', sa: 'चैत्रच्छष्ठ्युषार्घ्यम्', mai: 'चैती छठि (ऊषा अर्घ्य)' } },
   // Chaurchan / Chauth Chandra — Maithil women revere the moon on Bhadrapada
   // Shukla Chaturthi (same tithi as Ganesh Chaturthi, but a distinct Mithila
-  // observance with kosi-arghya and dahi-chuda offerings).
-  { masa: 'bhadrapada', paksha: 'shukla', tithi: 4, slug: 'chaurchan', type: 'regional', category: 'festival', region: 'maithili',
+  // observance with kosi-arghya and dahi-chuda offerings). The rite happens
+  // in pradosh kaal (moon worship after sunset), so use the pradosh rule —
+  // without it the default sunrise rule lands on Sep 15 2026 while the
+  // moon-evening with Chaturthi present is actually Sep 14 (the same day
+  // Ganesh Chaturthi falls on via its madhyahna rule).
+  { masa: 'bhadrapada', paksha: 'shukla', tithi: 4, slug: 'chaurchan', type: 'regional', category: 'festival', region: 'maithili', muhurtaRule: 'pradosh',
     name: { en: 'Chaurchan (Chauth Chandra)', hi: 'चौरचन (चौथ चन्द्र)', sa: 'चतुर्थचन्द्रः', mai: 'चौरचन (चौथ चन्द्र)' } },
   // Jud-Shital moved to SOLAR_FESTIVALS (solarMonth=1) — see same note for
   // Pana Sankranti above. Solar entries cannot live in MORE_REGIONAL_FESTIVALS.

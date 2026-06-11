@@ -37,11 +37,29 @@
  */
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 
-// Use Kolkata as the canonical IST reference. Tithi resolution doesn't
-// vary meaningfully within India because tithis change at a single
-// universal moment that the engine pins to IST.
-const KOLKATA_LAT = 22.5726;
-const KOLKATA_LNG = 88.3639;
+// Canonical IST reference: Ujjain (23.18°N, 75.78°E) — the classical Hindu
+// prime meridian (Mahakaleshwar) used in Surya Siddhanta and most Indian
+// panchangs. Replaced Kolkata (22.57°N, 88.36°E) on 2026-06-11.
+//
+// Why the swap mattered: festival-generator.ts relies on tithi-table.ts'
+// `sunriseJdForDate`, which calls sunriseUTHoursOr with tzOffset=0, then
+// stamps the returned UT-hours back onto the *input* Gregorian date. For
+// far-east longitudes (Kolkata at 88°E, Dhaka, Yangon) the local sunrise
+// occurs at UT ~23:5x of the *previous* UT day. The hours-to-JD reconstruct
+// then mislabels that JD as "this date's sunrise" — pushing the wrong
+// sunriseDate into the tithi entry. Net effect: Kolkata-anchored engine
+// calls give Hanuman Jayanti 2026 = Apr 1 (Drik = Apr 2), Bahuda Yatra =
+// Jul 23 (Drik = Jul 23 — Kolkata happens to be right here), and a
+// handful of other tithi-boundary festivals shift by one day.
+//
+// Ujjain at 75.78°E sits squarely within the IST nominal meridian (82.5°E)
+// minus ~6.7°, putting its local sunrise inside the UT 00:00-06:00 window
+// the engine searches. Delhi (77.21°E) works equally well; Ujjain is
+// chosen for its classical-canonical status. The underlying engine bug
+// in sunriseJdForDate is tracked separately for a focused fix that
+// doesn't ride this PR.
+const UJJAIN_LAT = 23.18;
+const UJJAIN_LNG = 75.78;
 const IST = 'Asia/Kolkata';
 
 // Module-load memo so each year only runs the engine once.
@@ -49,7 +67,7 @@ const _enginePerYear = new Map<number, ReturnType<typeof generateFestivalCalenda
 function engineEntries(year: number) {
   let entries = _enginePerYear.get(year);
   if (!entries) {
-    entries = generateFestivalCalendarV2(year, KOLKATA_LAT, KOLKATA_LNG, IST);
+    entries = generateFestivalCalendarV2(year, UJJAIN_LAT, UJJAIN_LNG, IST);
     _enginePerYear.set(year, entries);
   }
   return entries;

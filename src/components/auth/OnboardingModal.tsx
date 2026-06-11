@@ -14,7 +14,20 @@ import { dbToPersonaMode } from '@/lib/persona/types';
 
 interface OnboardingModalProps {
   isOpen: boolean;
+  /**
+   * Called when the modal closes — either via successful submit, skip, or
+   * dismissal (Escape key). Parent uses this to flip the open state. Fires
+   * for ALL close paths (success and skip alike) — see onBirthDataSaved
+   * below for a success-only hook.
+   */
   onComplete: () => void;
+  /**
+   * Called immediately before onComplete on the SUBMIT path only (not on
+   * skip / dismiss). Parent uses this to navigate the user to a chart-
+   * surface page (e.g. /profile) once their birth data is in. Optional —
+   * existing call sites that only pass onComplete preserve prior behaviour.
+   */
+  onBirthDataSaved?: () => void;
   userName?: string;
   userEmail?: string;
 }
@@ -118,7 +131,7 @@ const LABELS = {
   },
 };
 
-export default function OnboardingModal({ isOpen, onComplete, userName, userEmail }: OnboardingModalProps) {
+export default function OnboardingModal({ isOpen, onComplete, onBirthDataSaved, userName, userEmail }: OnboardingModalProps) {
   const locale = useLocale();
   const labelsKey = isDevanagariLocale(locale) ? (locale === 'sa' ? 'sa' : 'hi') : 'en';
   const L = LABELS[labelsKey];
@@ -299,6 +312,12 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
         console.error('[OnboardingModal] birth-data cache invalidate failed (non-critical):', cacheErr);
       }
 
+      // Success-only hook. Fires BEFORE onComplete so the parent can
+      // initiate navigation (e.g. router.push to /profile) before the
+      // modal's `isOpen` flips false. Skipped path at line ~520 calls
+      // only onComplete — there's no birth data to celebrate / route to
+      // a chart surface for.
+      onBirthDataSaved?.();
       onComplete();
     } catch (err) {
       console.error('[OnboardingModal] submit failed:', err);

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo, useRef, Suspense } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import { tl } from '@/lib/utils/trilingual';
 import { pickKundaliLabel as KL } from '@/lib/content/kundali-page-labels';
 import { normalizeBirthTime } from '@/lib/utils/birth-data';
@@ -366,6 +367,11 @@ export default function KundaliClient() {
   const t = useTranslations('kundali');
   const tTip = useTranslations('tippanni');
   const locale = useLocale() as Locale;
+  // Read ?from= so handleGenerate can decide whether to redirect to
+  // /profile after a successful save (nudge-source entries) or keep the
+  // user inline on /kundali (organic entries). See handleGenerate for
+  // the source whitelist.
+  const searchParams = useSearchParams();
   const isTamil = (locale as string) === 'ta';
   const isBengali = (locale as string) === 'bn';
   const isDevanagari = isDevanagariLocale(locale);
@@ -1296,6 +1302,44 @@ export default function KundaliClient() {
       // forget: failure is logged but does NOT alert the user since
       // they didn't request a save explicitly.
       if (user) {
+        // ?from= drives the post-save redirect. Set by:
+        //   - /profile's "Add Birth Details" link (?from=profile) — though
+        //     the profile page link currently routes to /settings, this
+        //     param is used by the BirthDetailsBanner CTA Link inside
+        //     NeedsBirthDataBanner's flow at /kundali?from=banner
+        //   - chart-nudge drip emails (?from=email_nudge_d3 / _d5)
+        //   - direct in-app banner CTA (?from=banner)
+        // Other entry paths (organic discovery via navbar, direct URL,
+        // share links) carry no ?from and stay on /kundali — chart
+        // renders inline, no surprise navigation.
+        const fromParam = searchParams?.get('from') ?? '';
+        const NUDGE_SOURCES = new Set([
+          'profile',
+          'banner',
+          'email_nudge_d3',
+          'email_nudge_d5',
+          'dashboard',
+        ]);
+        const shouldRedirectAfterSave = NUDGE_SOURCES.has(fromParam)
+          && (birthData.relationship ?? 'self') === 'self';
+
+        if (shouldRedirectAfterSave) {
+          // Await the persist so /profile reads the freshly-saved row
+          // and renders the chart immediately (the snapshot is computed
+          // on-demand by GET /api/user/profile from the user_profiles
+          // birth fields that save_self_chart populated atomically with
+          // saved_charts). Without the await, /profile may briefly miss
+          // the snapshot and show the empty-state instead.
+          const persistResult = await persistKundaliToSavedCharts(data);
+          if (!persistResult.ok) {
+            console.error('[kundali] auto-save (await before redirect) failed:', persistResult.error);
+          }
+          // Plain assignment — full navigation triggers the /profile
+          // server-render to fetch the freshly-saved snapshot.
+          window.location.href = `/${locale}/profile`;
+          return; // skip the setLoading(false) below — page is unmounting
+        }
+
         // The helper has an internal try-catch and never rejects, but
         // attach .catch as belt-and-braces against a future refactor
         // dropping the guard. (Gemini PR #320 HIGH.)

@@ -5,7 +5,7 @@ import { User, LogOut, Settings } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
-import { ONBOARDING_OPEN_EVENT } from './onboarding-events';
+import { ONBOARDING_OPEN_EVENT, type OnboardingOpenEventDetail } from './onboarding-events';
 import dynamic from 'next/dynamic';
 // Modals only mount after a user click; lazy-load to keep the every-page
 // navbar bundle small. ssr:false because both modals are interaction-only.
@@ -52,6 +52,16 @@ export default function UserMenu() {
   const [showAuth, setShowAuth] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [showOnboarding, setShowOnboarding] = useState(false);
+  // Track which surface opened the modal — used to decide whether to
+  // navigate the user to /profile after they save their birth data, or
+  // leave them on the current page.
+  //
+  // Sources that get the post-save redirect to /profile (the chart-
+  // surface page): banner-style nudges meant to onboard chart-less users.
+  // Sources that do NOT redirect: explicit edit flows (Settings page,
+  // UserMenu profile dropdown) where the user is intentionally editing
+  // existing data and would be surprised to land on /profile.
+  const [openSource, setOpenSource] = useState<string | undefined>(undefined);
   const [profileChecked, setProfileChecked] = useState(false);
   // profileIncomplete pill removed — SadhakaBanner serves this nudge on every page now.
   const ref = useRef<HTMLDivElement>(null);
@@ -73,7 +83,11 @@ export default function UserMenu() {
   // routing to /settings. The modal is mounted here so we own the open
   // state.
   useEffect(() => {
-    const handler = () => setShowOnboarding(true);
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<OnboardingOpenEventDetail>).detail;
+      setOpenSource(detail?.source);
+      setShowOnboarding(true);
+    };
     window.addEventListener(ONBOARDING_OPEN_EVENT, handler);
     return () => window.removeEventListener(ONBOARDING_OPEN_EVENT, handler);
   }, []);
@@ -165,7 +179,31 @@ export default function UserMenu() {
 
       <OnboardingModal
         isOpen={showOnboarding}
-        onComplete={() => setShowOnboarding(false)}
+        onComplete={() => {
+          setShowOnboarding(false);
+          setOpenSource(undefined);
+        }}
+        onBirthDataSaved={() => {
+          // Sources where the user clicked an onboarding-style nudge —
+          // after they save their birth details, navigate them to
+          // /profile so they immediately see the chart-derived view
+          // their birth data unlocked. Other sources (explicit edit
+          // from /settings, dropdown click) leave the user on the
+          // current page so the edit feels like an inline action.
+          const NUDGE_SOURCES = new Set([
+            'birth-details-banner',
+            'dashboard-prompt',
+            'festival-page',
+            'panchang-page',
+          ]);
+          if (openSource && NUDGE_SOURCES.has(openSource)) {
+            // Plain assignment ensures a full navigation — the /profile
+            // page reads the freshly-saved birth data via the same
+            // /api/user/profile call that auto-computes the snapshot,
+            // and the user lands on the chart-surface view directly.
+            window.location.href = `/${locale}/profile`;
+          }
+        }}
         userName={user.user_metadata?.name || user.user_metadata?.full_name}
         userEmail={user.email}
       />

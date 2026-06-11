@@ -80,12 +80,44 @@ export async function GET(req: NextRequest) {
       ? (preferred as Locale)
       : 'en';
 
+    // Chart-nudge swap on Day 3 + Day 5: if the user hasn't generated a
+    // birth chart by these checkpoints, replace the regular drip content
+    // with a focused chart-nudge email. Same drip cadence — no extra email
+    // volume — just a re-targeted message for chart-less users at the two
+    // points where the regular content (Day 3 cultural / Day 5 modules) is
+    // less relevant than getting them past the chart-form friction.
+    //
+    // Day 3 is the first follow-up reminder; Day 5 is the gentler last
+    // touch. Days 4 + 6 + 7 are intentionally NOT nudged: Day 4 (eclipse)
+    // gracefully degrades without chart data, Day 6 (dasha) does too, and
+    // Day 7 is the family-charts pitch which works either way.
+    let hasChart = true;
+    if (dripDay === 3 || dripDay === 5) {
+      const { count: chartCount, error: chartCountErr } = await supabase
+        .from('saved_charts')
+        .select('id', { count: 'exact', head: true })
+        .eq('user_id', user.id);
+      if (chartCountErr) {
+        // Conservative: on a count-query failure, fall through to the
+        // regular drip template rather than guessing chart-less. The
+        // chart-nudge path is opt-in correctness — defaulting to the
+        // existing path preserves prior behaviour on DB blips.
+        console.error('[OnboardingDrip] chart count failed for', user.id, ':', chartCountErr.message);
+      } else {
+        hasChart = (chartCount ?? 0) > 0;
+      }
+    }
+
     try {
-      const template = getOnboardingEmail(
-        dripDay as 1 | 2 | 3 | 4 | 5 | 6 | 7,
-        locale,
-        { name: user.display_name || undefined },
-      );
+      const template = (dripDay === 3 && !hasChart)
+        ? (await import('@/lib/email/templates/chart-nudge')).chartNudgeDay3(locale, user.display_name || undefined)
+        : (dripDay === 5 && !hasChart)
+          ? (await import('@/lib/email/templates/chart-nudge')).chartNudgeDay5(locale, user.display_name || undefined)
+          : getOnboardingEmail(
+            dripDay as 1 | 2 | 3 | 4 | 5 | 6 | 7,
+            locale,
+            { name: user.display_name || undefined },
+          );
 
       // P1-18 — CLAIM-FIRST, send-after. Previously sent email first then
       // updated drip_day; any update failure (RLS, row-gone, network blip)

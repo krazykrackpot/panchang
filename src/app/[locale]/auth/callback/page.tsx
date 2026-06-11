@@ -34,6 +34,29 @@ export default function AuthCallbackPage() {
       if (user) {
         setUserName(user.user_metadata?.name || user.email?.split('@')[0] || '');
         setStatus('success');
+
+        // Fire-and-forget the immediate post-signup welcome email. The
+        // route is idempotent (guarded by user_profiles.signup_welcome_sent_at
+        // — only the first call per user actually sends) and claims drip
+        // Day 1 so tomorrow's onboarding-drip cron does not double-email.
+        //
+        // Errors are swallowed: the welcome is non-critical UX polish; the
+        // user is mid-redirect to /profile and shouldn't see anything go
+        // wrong here. The route logs server-side for ops to follow up.
+        const accessToken = data.session?.access_token;
+        if (accessToken) {
+          fetch('/api/user/signup-welcome', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify({ locale }),
+          }).catch((err) => {
+            console.error('[auth/callback] signup-welcome fetch failed:', err);
+          });
+        }
+
         // Redirect to profile after 2 seconds
         setTimeout(() => { window.location.href = `/${locale}/profile`; }, 2500);
       } else {

@@ -235,6 +235,25 @@ const RELATED_LINKS = [
   { slug: 'ganesh-chaturthi', en: 'Ganesh Chaturthi Puja', hi: 'गणेश चतुर्थी पूजा', gu: 'ગણેશ ચતુર્થી પૂજા' },
 ];
 
+// ── Diwali → Bestu Varas → Bhai Bij 5-day chronology ──
+const GUJARATI_DIWALI_DAYS: Array<{ day: string; tithi: string; desc: string }> = [
+  { day: 'Day 1 — Dhanteras / Dhan Trayodashi', tithi: 'Kartik Krishna Trayodashi', desc: 'Households purchase new utensils, silver coins, or gold. The literal meaning “wealth-thirteenth” reflects Dhanvantari’s emergence from the cosmic ocean (Samudra Manthan) on this tithi.' },
+  { day: 'Day 2 — Kali Chaudas / Roop Chaudas', tithi: 'Kartik Krishna Chaturdashi', desc: 'Gujarat-specific naming. Pre-dawn Abhyanga snana (oil bath with til-oil and ubtan) is the central ritual.' },
+  { day: 'Day 3 — Diwali / Lakshmi Puja / Chopda Pujan', tithi: 'Kartik Amavasya', desc: 'The principal Diwali night. Gujarati merchants, traders, and family businesses perform Chopda Pujan — the worship of new account books. Fresh chopda are inscribed with the auspicious salutation “Shubh Labh” — Shubh (auspiciousness) on the left page, Labh (profit) on the right.' },
+  { day: 'Day 4 — Bestu Varas / Gujarati New Year', tithi: 'Kartik Shukla Pratipada', desc: 'The new Vikram Samvat year formally begins at sunrise. Gujarati families wear new clothes, exchange “Saal Mubarak” greetings, and visit family elders. Businesses open their new chopda for the first transaction of the year. Govardhan Puja is observed in parallel.' },
+  { day: 'Day 5 — Bhai Bij', tithi: 'Kartik Shukla Dwitiya', desc: 'The Diwali cycle closes with Bhai Bij — sisters apply tilak to their brothers’ foreheads, perform aarti, and feed them sweets; brothers offer gifts and a promise of lifelong protection. The myth ties to Yama and Yamuna.' },
+];
+
+// ── Vikram Samvat year cycle table ──
+const VIKRAM_SAMVAT_TABLE: Array<{ vs: string; bestu: string; span: string }> = [
+  { vs: 'VS 2080', bestu: '14 Nov 2023', span: 'Nov 2023 – Oct 2024' },
+  { vs: 'VS 2081', bestu: '2 Nov 2024', span: 'Nov 2024 – Oct 2025' },
+  { vs: 'VS 2082', bestu: '22 Oct 2025', span: 'Oct 2025 – Nov 2026 (Adhika Jyeshtha)' },
+  { vs: 'VS 2083', bestu: '9 Nov 2026', span: 'Nov 2026 – Oct 2027' },
+  { vs: 'VS 2084', bestu: 'engine — late Oct 2027', span: 'engine-confirmed' },
+  { vs: 'VS 2085', bestu: 'engine — mid Nov 2028', span: 'engine-confirmed' },
+];
+
 export default async function GujaratiCalendarPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: localeParam } = await params;
   setRequestLocale(localeParam);
@@ -393,6 +412,111 @@ export default async function GujaratiCalendarPage({ params }: { params: Promise
           <p className="text-text-secondary text-sm leading-relaxed">
             {L('calendarText')}
           </p>
+        </section>
+
+        {/* Vikram Samvat origin */}
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Vikram Samvat and the Gujarati New Year (Bestu Varas)', hi: 'विक्रम संवत् और गुजराती नव वर्ष (बेस्तु वरस)', gu: 'વિક્રમ સંવત અને ગુજરાતી નૂતન વર્ષ (બેસ્તુ વર્ષ)' } as LocaleText, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              The Gujarati Panchang is built on the <strong>Vikram Samvat</strong> — by some measures the most widely consulted Hindu calendar era in continuous use. The era runs roughly 56 years and 8 months ahead of the Gregorian calendar; <strong>Vikram Samvat 2083 begins on 9 November 2026</strong> at Bestu Varas, while Vikram Samvat 2082 (the current lunar year) includes an Adhika Jyeshtha intercalary month.
+            </p>
+            <p>
+              The popular origin story attributes the era to King <strong>Vikramaditya</strong> of Ujjain, who legend says inaugurated it after defeating the Shakas. The historical record is more nuanced. The name “Vikram Samvat” does not appear in historical records before the 9th century CE. Earlier inscriptions called it “Kṛṭa,” “Kritaa,” or “the era of the Malava tribe.” The earliest inscription using “Vikrama” dates to 842 CE; the literary association with Vikramaditya appears around 993–994 CE. Modern scholarship considers Vikramaditya a “legendary composite figure.”
+            </p>
+            <p>
+              <strong>Why does Gujarat begin its new year on Kartik Shukla Pratipada (the day after Diwali)?</strong> Gujarat distinctly observes “Varsha Pratipada or <em>Bestu Varas</em>” as New Year, falling on the first day of the bright fortnight of Kartik. This is unique to Gujarat — the rest of North India that uses Vikram Samvat (Rajasthan, Madhya Pradesh, Himachal) begins the year on Chaitra Shukla 1 (March/April). The Gujarati exception reflects the <strong>mercantile tradition</strong>: Gujarati Bania and Jain trading communities historically closed their account books on Diwali (laying Lakshmi to rest with the year’s profits) and opened fresh ledgers on the morning after — Bestu Varas.
+            </p>
+            <p>
+              Within Gujarat, the Vikram Samvat itself runs in the <strong>Amanta system</strong> — months end at the new moon (Amavasya). The northern Vikram Samvat (Rajasthan, Punjab) runs <strong>Purnimanta</strong> — months end at the full moon (Purnima). The consequence is that for the dark fortnight (Krishna Paksha) only, a Gujarati panchang will assign a different month name than a Rajasthani one. Shukla Paksha months (where most festivals fall) align in both systems.
+            </p>
+          </div>
+        </section>
+
+        {/* Diwali → Bestu Varas → Bhai Bij chronology */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Diwali → Bestu Varas → Bhai Bij Chronology', hi: 'दीवाली → बेस्तु वरस → भाई बीज क्रम', gu: 'દિવાળી → બેસ્તુ વર્ષ → ભાઈ બીજ ક્રમ' } as LocaleText, locale)}
+          </h2>
+          <div className="space-y-3">
+            {GUJARATI_DIWALI_DAYS.map((d) => (
+              <div key={d.day} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1.5">
+                  <span className="text-gold-light font-semibold text-sm">{d.day}</span>
+                  <span className="text-amber-400/70 text-xs">{d.tithi}</span>
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed">{d.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Navratri Garba */}
+        <section className="bg-gradient-to-br from-red-900/10 via-bg-secondary/40 to-bg-primary border border-red-500/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Navratri Garba — Nine Nights of the Goddess', hi: 'नवरात्रि गरबा — नौ रात देवी', gu: 'નવરાત્રી ગરબા — દેવીના નવ રાત' } as LocaleText, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              Navratri, the nine nights of the Goddess, is celebrated across Hindu India but Gujarat owns the dance idiom: <strong>Garba</strong>. The word “garba” comes from Sanskrit, meaning ‘womb,’ symbolising life and gestation.
+            </p>
+            <p>
+              <strong>Garba vs Dandiya — the distinction.</strong> Garba is danced <em>around the central garbo lamp</em> (which represents the womb of the goddess, the universe), in a counter-clockwise circle, with the hands clapping or moving in elegant arcs. No sticks. The footwork is the <em>taali</em> (clap), <em>chutki</em> (snap), <em>trataka</em> (whirl). Dandiya Raas is danced in <em>paired lines facing each other</em>, with each dancer holding two dandiyas (short polished wooden sticks). Partners strike each other’s sticks on the downbeat.
+            </p>
+            <p>
+              Traditional accompaniment is <strong>dhol, dholak, manjira (cymbals), and shehnai</strong>. Women wear the <strong>chaniya choli</strong> — a three-piece outfit of embroidered skirt (chaniya), blouse (choli), and dupatta. Men wear the <strong>kediyu</strong> (a flared short jacket) with churidar and pagdi.
+            </p>
+            <p>
+              The corpus of Gujarati Navratri songs is called <em>garbo</em> (plural: garba). The most famous composer is the medieval Vaishnava poet <strong>Vallabh Mewada (Vallabh Bhatt, 18th c.)</strong>, whose <em>Anand-no-Garbo</em> and <em>Bahucharaji-no-Garbo</em> are still sung in households across Gujarat during Navratri.
+            </p>
+          </div>
+        </section>
+
+        {/* Vikram Samvat year cycle */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Vikram Samvat Year-Cycle Table — VS 2080 to VS 2085', hi: 'विक्रम संवत् वर्ष-चक्र — VS 2080 से VS 2085', gu: 'વિક્રમ સંવત વર્ષ-ચક્ર — VS 2080 થી VS 2085' } as LocaleText, locale)}
+          </h2>
+          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Vikram Samvat</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Bestu Varas (Gujarati New Year date)</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Gregorian Year Span</th>
+                </tr>
+              </thead>
+              <tbody>
+                {VIKRAM_SAMVAT_TABLE.map((y, i) => (
+                  <tr key={y.vs} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-gold-light font-semibold whitespace-nowrap">{y.vs}</td>
+                    <td className="px-4 py-2.5 text-amber-400/80 whitespace-nowrap">{y.bestu}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{y.span}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Pushti Marga and Gujarati publishing tradition */}
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Gujarati Astrologers and Calendar Tradition', hi: 'गुजराती ज्योतिषी एवं पंचांग परम्परा', gu: 'ગુજરાતી જ્યોતિષી અને પંચાંગ પરંપરા' } as LocaleText, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              <strong>Pushti Marga (Vallabha Sampradaya)</strong> founded by Vallabhacharya (1479–1531) — though Vallabha himself was Telugu, his sampradaya took deep root in Gujarat — produces its own annual panchang focused on Krishna-bhakti seasonal observance.
+            </p>
+            <p>
+              <strong>Sankheda Panchang and Surat Panchang publishers</strong> are the historical authorities for Gujarat-region almanac compilation. These traditional publishers compute longitudes against Ahmedabad / Vadodara reference latitudes (approximately 23°N) and observe the Amanta convention. Modern keepers include the panchang section of the Kapadia Samaj almanac (Surat tradition), the Bhuj-based Kutchi panchang for the Kutch region, and several Jain panchanga publishers (notably from the Tapagachha lineage).
+            </p>
+            <p>
+              The <strong>Saurashtra calendar</strong> is a sub-tradition that observes additional regional festivals: <strong>Tarnetar Fair</strong> (Bhadrapad Shukla 3, near Surendranagar), <strong>Madhavpur Fair</strong> (Chaitra Shukla 9, Madhavpur Ghed, marking Krishna–Rukmini wedding), and <strong>Lili Parikrama of Girnar</strong> (Kartik Purnima).
+            </p>
+          </div>
         </section>
 
         {/* Upcoming Gujarati Festival Dates — engine-driven */}

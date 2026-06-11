@@ -5,7 +5,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { Link } from '@/lib/i18n/navigation';
 import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
-import { engineDate as ed, nextUpcoming } from '@/lib/seo/regional-faq-dates';
+import { engineDate as ed, nextUpcoming, todayInIst } from '@/lib/seo/regional-faq-dates';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 const LABELS = {
@@ -434,7 +434,7 @@ export default async function MithilaCalendarPage({ params }: { params: Promise<
           // whole render pass; no client/server drift because both sides
           // re-resolve on every request (page is dynamic per its sitemap
           // entry, not ISR-cached).
-          const nowIso = new Date().toISOString().slice(0, 10);
+          const nowIso = todayInIst();
           const upcoming = MITHILA_FESTIVALS
             .map((f) => {
               const hit = nextUpcoming(f.engineKey, locale, nowIso);

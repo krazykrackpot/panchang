@@ -4,7 +4,7 @@ import { useLocale } from 'next-intl';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
-import { engineDate as ed, nextUpcoming } from '@/lib/seo/regional-faq-dates';
+import { engineDate as ed, nextUpcoming, todayInIst } from '@/lib/seo/regional-faq-dates';
 
 // FAQ data — page-native (kn) + en + hi. All year-specific dates
 // resolve at render via ed(year, festivalKey, locale) against
@@ -266,7 +266,7 @@ export default function KannadaCalendarPage() {
           // Render-time "today" in IST (Asia/Kolkata) so the table always
           // shows what's coming up. Client component, but the engine output
           // is deterministic per (year, festival) so SSR & client agree.
-          const nowIso = new Date().toISOString().slice(0, 10);
+          const nowIso = todayInIst();
           const fdLabel = (f: KannadaFestival) => (isKn ? (f.kn || f.en) : isHi ? f.hi : f.en);
           const upcoming = KANNADA_FESTIVALS
             .map((f) => {

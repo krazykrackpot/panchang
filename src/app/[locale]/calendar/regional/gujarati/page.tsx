@@ -4,7 +4,7 @@ import type { Locale, LocaleText } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
 import { Link } from '@/lib/i18n/navigation';
-import { engineDate as ed, nextUpcoming } from '@/lib/seo/regional-faq-dates';
+import { engineDate as ed, nextUpcoming, todayInIst } from '@/lib/seo/regional-faq-dates';
 
 const LABELS = {
   title: {
@@ -397,7 +397,7 @@ export default async function GujaratiCalendarPage({ params }: { params: Promise
 
         {/* Upcoming Gujarati Festival Dates — engine-driven */}
         {(() => {
-          const nowIso = new Date().toISOString().slice(0, 10);
+          const nowIso = todayInIst();
           const upcoming = GUJARATI_FESTIVALS
             .map((f) => {
               const hit = nextUpcoming(f.engineKey, locale, nowIso);

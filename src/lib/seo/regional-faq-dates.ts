@@ -164,6 +164,24 @@ export function engineDate(year: number, festivalKey: string, locale: string): s
  * inject `new Date().toISOString().slice(0,10)` at render time and stay
  * SSR-stable per request.
  */
+/**
+ * "Today" in IST as YYYY-MM-DD. Use this for the `nowIso` argument to
+ * nextUpcoming() on the regional calendar pages instead of
+ * `new Date().toISOString().slice(0, 10)` — the latter is UTC, which
+ * falls a day BEHIND IST between 18:30 UTC and midnight UTC every day
+ * (Gemini PR #669 review, 2026-06-11). For a page rendered at 04:00 IST
+ * on Nov 11, UTC slice gives "Nov 10" and the upcoming-festival
+ * sort would include a festival that already passed in IST.
+ *
+ * `toLocaleDateString('en-CA', ...)` returns ISO YYYY-MM-DD because the
+ * en-CA locale's date format is the ISO one — same output as
+ * Intl.DateTimeFormat with year/month/day in 4-2-2 with hyphens, but
+ * a single-call form that's easier to spot at the call site.
+ */
+export function todayInIst(): string {
+  return new Date().toLocaleDateString('en-CA', { timeZone: IST });
+}
+
 export function nextUpcoming(
   festivalKey: string,
   locale: string,

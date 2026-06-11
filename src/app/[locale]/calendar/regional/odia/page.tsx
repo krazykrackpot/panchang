@@ -3,7 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Locale, LocaleText } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { Link } from '@/lib/i18n/navigation';
-import { engineDate as ed, nextUpcoming } from '@/lib/seo/regional-faq-dates';
+import { engineDate as ed, nextUpcoming, todayInIst } from '@/lib/seo/regional-faq-dates';
 import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
 
 const LABELS = {
@@ -328,7 +328,7 @@ export default async function OdiaCalendarPage({ params }: { params: Promise<{ l
 
         {/* Upcoming Odia Festival Dates — engine-driven */}
         {(() => {
-          const nowIso = new Date().toISOString().slice(0, 10);
+          const nowIso = todayInIst();
           const upcoming = ODIA_FESTIVALS
             .map((f) => {
               const hit = nextUpcoming(f.engineKey, locale, nowIso);

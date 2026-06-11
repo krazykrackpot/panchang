@@ -267,6 +267,36 @@ const RELATED_LINKS = [
   { href: 'panchang', en: 'Daily Panchang', hi: 'दैनिक पंचांग' },
 ];
 
+// ── Rath Yatra 22-day chronology ──
+const RATH_YATRA_STAGES: Array<{ stage: string; tithi: string; desc: string }> = [
+  { stage: 'Snana Yatra', tithi: 'Jyeshtha Purnima', desc: 'The three deities are brought out from the temple and bathed with 108 pots of consecrated water.' },
+  { stage: 'Anavasara / Anasara', tithi: '15 days following Snana Yatra', desc: 'The deities, said to have caught a fever after the bath, are placed in seclusion. Substitute icons are worshipped during this window.' },
+  { stage: 'Gundicha Marjana', tithi: 'Ashadha Shukla Pratipada', desc: 'The ritual cleaning of the Gundicha Temple to prepare for the deities’ arrival.' },
+  { stage: 'Rath Yatra proper', tithi: 'Ashadha Shukla Dvitiya', desc: 'The deities ride in procession on three chariots from the Jagannath Temple to the Gundicha Temple, roughly 3 km away.' },
+  { stage: 'Bahuda Yatra', tithi: 'Ashadha Shukla Dashami', desc: 'The homeward journey to the main temple.' },
+  { stage: 'Suna Besha', tithi: 'Ashadha Shukla Ekadashi', desc: 'The “golden attire” darshan: the deities appear on the chariots adorned with more than 200 kg of gold ornaments.' },
+  { stage: 'Niladri Bije', tithi: 'Ashadha Shukla Trayodashi', desc: 'The final ritual in which the deities re-enter the sanctum sanctorum.' },
+];
+
+// ── Three chariots ──
+const RATH_YATRA_CHARIOTS: Array<{ name: string; deity: string; size: string; cloth: string }> = [
+  { name: 'Nandighosa', deity: 'Lord Jagannath', size: '45 ft tall · 16 wheels of 7 ft diameter', cloth: 'red and yellow' },
+  { name: 'Taladhwaja', deity: 'Lord Balabhadra', size: '44 ft tall · 14 wheels', cloth: 'red and blue · flies a palm-tree (tala) standard' },
+  { name: 'Darpadalana / Devadalana', deity: 'Devi Subhadra', size: '43 ft tall · 12 wheels', cloth: 'name means “trampler of pride”' },
+];
+
+// ── Odia cultural calendar 2025–2030 ──
+// Gregorian dates are resolved at render time via the engine for years where
+// `engine` is set; 2025 carries a precomputed reference row.
+const ODIA_TABLE: Array<{ year: number; pana: string | null; rath: string | null; raja: string | null; utkaliya: string }> = [
+  { year: 2025, pana: '14 Apr 2025', rath: '27 Jun 2025', raja: '15 Jun 2025', utkaliya: '1434' },
+  { year: 2026, pana: null, rath: null, raja: null, utkaliya: '1435' },
+  { year: 2027, pana: null, rath: null, raja: null, utkaliya: '1436' },
+  { year: 2028, pana: null, rath: null, raja: null, utkaliya: '1437' },
+  { year: 2029, pana: null, rath: null, raja: null, utkaliya: '1438' },
+  { year: 2030, pana: null, rath: null, raja: null, utkaliya: '1439' },
+];
+
 export default async function OdiaCalendarPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -321,6 +351,145 @@ export default async function OdiaCalendarPage({ params }: { params: Promise<{ l
                     <td className="px-4 py-2.5 text-text-secondary text-center">{m.days}</td>
                   </tr>
                 ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Pana Sankranti + Odia solar calendar */}
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Pana Sankranti and the Odia Solar Calendar', hi: 'पना संक्रान्ति और ओड़िया सौर कैलेंडर' }, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              The Odia Panji is a <strong>sidereal solar calendar</strong> with a lunisolar overlay for religious observance. The Odia year opens on <strong>Maha Bishuba Sankranti</strong>, also called Pana Sankranti or Mesha Sankranti — the day the Sun enters sidereal Mesha (Aries) at the spring equinox point. The term <em>Bishuba / Vishuba</em> derives from the Sanskrit root <em>viṣu</em> (“equally, balanced”) and in astronomical usage denotes the equinox. The festival falls on 13 or 14 April each year on the Gregorian calendar and marks the start of the solar month of Mesha.
+            </p>
+            <p>
+              The Odia calendar is a hybrid: the <strong>civic / month-counting frame is sidereal solar</strong> — months change at Sankranti, and the year length tracks the tropical-to-sidereal drift via the Lahiri ayanamsa convention. <strong>Religious observance uses Purnimanta lunar phasing</strong> — tithi-anchored festivals (Janmashtami, Ekadashis, Shivaratri) fall on dates computed against the full-moon-ending lunar month.
+            </p>
+            <p>
+              This is structurally different from Bengal, whose Panjika is primarily solar and uses Amanta lunar phasing where lunar overlay is needed; the same tithi can fall on slightly different observance days in the two systems even when the Sankranti anchor agrees.
+            </p>
+            <p>
+              The Odia calendar has been carried by an additional, regional <strong>Utkaliya era</strong> said to have begun in 592 CE on Bhadra Shukla Dvadashi — the day on which the legendary king Indradyumna is recorded as having installed the Neela Madhava (Jagannath) icon at Puri. The Utkaliya year appears in old Odia almanac headers alongside the Shaka and Vikram years.
+            </p>
+          </div>
+        </section>
+
+        {/* Rath Yatra 22-day chronology */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Rath Yatra — The 22-Day Puri Chronology', hi: 'रथ यात्रा — 22-दिवसीय पुरी क्रम' }, locale)}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-4">
+            The Jagannath Rath Yatra at Puri is the only festival in the Hindu world in which the principal deities of a major temple leave their sanctum and travel publicly. The festival is not a single day; it is a 22-day arc that begins with the deities’ ceremonial bath and ends with their final re-entry into the temple.
+          </p>
+          <div className="space-y-3">
+            {RATH_YATRA_STAGES.map((s) => (
+              <div key={s.stage} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1.5">
+                  <span className="text-gold-light font-semibold text-sm">{s.stage}</span>
+                  <span className="text-amber-400/70 text-xs">{s.tithi}</span>
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-text-secondary text-sm leading-relaxed mt-4">
+            <strong>The three chariots</strong> have distinct names, sizes, and symbolism, attested in the Madala Panji:
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12 mt-3">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Chariot</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Deity</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Size</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Cloth / standard</th>
+                </tr>
+              </thead>
+              <tbody>
+                {RATH_YATRA_CHARIOTS.map((c, i) => (
+                  <tr key={c.name} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-gold-light font-semibold">{c.name}</td>
+                    <td className="px-4 py-2.5 text-text-primary">{c.deity}</td>
+                    <td className="px-4 py-2.5 text-text-secondary text-xs">{c.size}</td>
+                    <td className="px-4 py-2.5 text-text-secondary text-xs">{c.cloth}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Raja Parba */}
+        <section className="bg-gradient-to-br from-amber-900/15 via-bg-secondary/40 to-bg-primary border border-amber-500/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Raja Parba — The Menstruation Festival of Bhumi Devi', hi: 'राजा पर्व — भूमि देवी का ऋतु-काल पर्व' }, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              Raja Parba (also called Mithuna Sankranti) is a three- to four-day festival held in mid-June, in which the goddess Bhumi Devi (Mother Earth, consort of Vishnu) is said to undergo her annual menstruation. It is one of the few major festivals in the Hindu world that ritually centres a goddess’s menstrual cycle — and during it, all agricultural operations are suspended in observance of the Earth’s rest.
+            </p>
+            <p>
+              The stages: <strong>Pahili Raja</strong> — the day before Raja Sankranti; preparation, oil-bath, and decoration of swings. <strong>Raja Sankranti / Mithuna Sankranti</strong> — the central day; the Sun enters sidereal Mithuna; women and unmarried girls wear new clothes, swing on flower-decorated rope swings hung from trees, and refrain from any work that would touch the earth. <strong>Basi Raja / Bhumi Daha</strong> — the third day; the festival’s last day of explicit rest. <strong>Vasumati Snana</strong> — the ceremonial bath of Bhumi Devi, performed with grinding stones (a domestic symbol of the goddess) being anointed with sandalwood paste and turmeric.
+            </p>
+            <p>
+              Etymologically, <em>Raja</em> derives from Sanskrit <em>rajas</em> (“menstruation”); a menstruating woman is a <em>rajasvala</em>. The festival is explicitly framed as a celebration of female fertility, of the unmarried daughters of the household as potential mothers, and of the agricultural Earth’s right to rest. Over 100 regional varieties of paan and dozens of pithas (rice-flour preparations) are eaten across the three days. The festival has no exact parallel in any other Indian regional calendar.
+            </p>
+          </div>
+        </section>
+
+        {/* Madala Panji and Odia scholarship */}
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'The Madala Panji and Odia Calendrical Scholarship', hi: 'मदला पंजी और ओड़िया पंचांग विद्वत्ता' }, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              The Madala Panji is a palm-leaf chronicle preserved at the Jagannath Temple, recording temple administration, royal lineages of Odisha, and major historical events from ancient epochs to the early nineteenth century. The chronicle was traditionally inscribed on Vijaya Dashami (the tenth day of Ashwin Shukla Paksha) every year by the Karanas — the temple’s official scribes.
+            </p>
+            <p>
+              Scholarly opinion on its origin is divided. Some dating attributes the tradition to King <strong>Anantavarman Chodaganga Dev (r. 1078–1150)</strong> of the Eastern Ganga dynasty, who is said to have created 24 families of Karanas to preserve temple records, of which five were entrusted with the Madala Panji itself. Other scholars date the manuscript’s earliest surviving compilations to the sixteenth century under Ramachandra Deva I of the Bhoi dynasty.
+            </p>
+            <p>
+              <strong>Pathani Samanta (1835–1904)</strong>, also known as Samanta Chandra Sekhar, was a self-taught astronomer from the princely state of Khandapara, who refined planetary calculations and eclipse predictions using naked-eye observation and instruments built from bamboo and wood. His treatise <em>Siddhanta Darpana</em>, written on palm leaves and completed by 1869 (published 1899 with patronage from the kings of Athmallik and Mayurbhanj), runs to over 2,500 Sanskrit verses. He was awarded the title Mahamahopadhyay by the British government in 1893 for a successful eclipse prediction.
+            </p>
+          </div>
+        </section>
+
+        {/* Odia cultural calendar 2025–2030 */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Odia Cultural Calendar 2025–2030', hi: 'ओड़िया सांस्कृतिक कैलेंडर 2025–2030' }, locale)}
+          </h2>
+          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Year</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Pana Sankranti</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Rath Yatra</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Raja Sankranti</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Utkaliya Era</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ODIA_TABLE.map((y, i) => {
+                  const pana = y.pana ?? ed(y.year, 'Pana Sankranti (Odia New Year)', locale);
+                  const rath = y.rath ?? ed(y.year, 'Jagannath Rath Yatra', locale);
+                  const raja = y.raja ?? ed(y.year, 'Raja Parba (Mithuna Sankranti)', locale);
+                  return (
+                    <tr key={y.year} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                      <td className="px-4 py-2.5 text-text-primary font-medium">{y.year}</td>
+                      <td className="px-4 py-2.5 text-amber-400/80 text-xs">{pana}</td>
+                      <td className="px-4 py-2.5 text-amber-400/80 text-xs">{rath}</td>
+                      <td className="px-4 py-2.5 text-amber-400/80 text-xs">{raja}</td>
+                      <td className="px-4 py-2.5 text-text-secondary">{y.utkaliya}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

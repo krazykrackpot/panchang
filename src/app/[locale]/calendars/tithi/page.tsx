@@ -381,13 +381,73 @@ export default function TithiCalendarPage() {
           </div>
         )}
 
-        {/* Legend */}
-        <div className="flex flex-wrap items-center gap-4 mb-5 justify-center text-xs text-text-secondary">
+        {/* Legend — two rows. Top: highlight categories (Purnima / Amavasya /
+            Ekadashi / Festival / Vrat) that drive cell colouring + iconography.
+            Bottom: the per-cell panchang icons (Sunrise / Sunset / Rahu Kaal /
+            Nakshatra / Moon Sign / Yoga + Karana) — these were previously
+            unlabelled, leaving users to guess what each tiny icon meant. The
+            SVGs here mirror exactly what TithiMonthGrid renders in each cell
+            so the visual link is obvious. */}
+        <div className="flex flex-wrap items-center gap-4 mb-2 justify-center text-xs text-text-secondary">
           <div className="flex items-center gap-1.5"><div className="w-4 h-4 rounded-full bg-amber-400/80 shadow-sm shadow-amber-400/30" /><span>{tl(MSG.legendPurnima, locale)}</span></div>
           <div className="flex items-center gap-1.5"><div className="w-4 h-4 rounded-full bg-[#1a1040] border-2 border-violet-400/40" /><span>{tl(MSG.legendAmavasya, locale)}</span></div>
           <div className="flex items-center gap-1.5"><div className="w-4 h-4 rounded bg-emerald-500/20 border border-emerald-500/30" /><span>{tl(MSG.legendEkadashi, locale)}</span></div>
           <div className="flex items-center gap-1.5"><div className="w-4 h-3 rounded bg-gold-primary/20 border border-gold-primary/30" /><span>{tl(MSG.legendFestival, locale)}</span></div>
           <div className="flex items-center gap-1.5"><div className="w-4 h-3 rounded bg-violet-500/15 border border-violet-500/25" /><span>{tl(MSG.legendVrat, locale)}</span></div>
+        </div>
+        <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-5 justify-center text-[10px] sm:text-xs text-text-secondary border-t border-gold-primary/10 pt-2">
+          {/* Sunrise — mirrors SunriseIcon at TithiMonthGrid.tsx:122 */}
+          {/* No `title=` attribute on these — the visible <span> label already
+              names each item, and a duplicate `title` causes screen readers
+              to announce the same text twice ("Sunrise Sunrise"). The SVGs
+              carry aria-hidden="true" so they're skipped, leaving the label
+              as the single accessible name. Gemini PR #674 MED. */}
+          <div className="flex items-center gap-1.5">
+            <svg width="12" height="12" viewBox="0 0 16 16" className="shrink-0" aria-hidden="true">
+              <circle cx="8" cy="10" r="3" fill="none" stroke="#d4a853" strokeWidth="1.2" />
+              <line x1="8" y1="4" x2="8" y2="6" stroke="#d4a853" strokeWidth="0.8" strokeLinecap="round" />
+              <line x1="4" y1="6.5" x2="5.2" y2="7.7" stroke="#d4a853" strokeWidth="0.7" strokeLinecap="round" />
+              <line x1="12" y1="6.5" x2="10.8" y2="7.7" stroke="#d4a853" strokeWidth="0.7" strokeLinecap="round" />
+              <line x1="2" y1="13" x2="14" y2="13" stroke="#d4a853" strokeWidth="0.6" opacity="0.3" />
+            </svg>
+            <span>{tl(MSG.cellSunrise, locale)}</span>
+          </div>
+          {/* Sunset — mirrors SunsetIcon at TithiMonthGrid.tsx:134 */}
+          <div className="flex items-center gap-1.5">
+            <svg width="12" height="12" viewBox="0 0 16 16" className="shrink-0" aria-hidden="true">
+              <circle cx="8" cy="10" r="3" fill="none" stroke="#8a6d2b" strokeWidth="1.2" />
+              <line x1="8" y1="6" x2="8" y2="4" stroke="#8a6d2b" strokeWidth="0.8" strokeLinecap="round" />
+              <line x1="2" y1="13" x2="14" y2="13" stroke="#8a6d2b" strokeWidth="0.6" opacity="0.3" />
+            </svg>
+            <span>{tl(MSG.cellSunset, locale)}</span>
+          </div>
+          {/* Rahu Kaal — mirrors the red-dot marker at TithiMonthGrid.tsx:880 */}
+          <div className="flex items-center gap-1.5 text-red-300/90">
+            <span className="inline-block w-2 h-2 rounded-full bg-red-400/90 shadow-[0_0_3px_rgba(239,68,68,0.6)]" aria-hidden="true" />
+            <span>{tl(MSG.rahuKaal, locale)}</span>
+          </div>
+          {/* Nakshatra — mirrors the cyan-star SVG at TithiMonthGrid.tsx:889 */}
+          <div className="flex items-center gap-1.5 text-cyan-200/95">
+            <svg width="12" height="12" viewBox="0 0 16 16" className="shrink-0" aria-hidden="true">
+              <polygon points="8,1 10,6 15,6.5 11,10 12.5,15 8,12 3.5,15 5,10 1,6.5 6,6" fill="#67e8f9" opacity="0.9" />
+            </svg>
+            <span>{tl(MSG.cellNakshatra, locale)}</span>
+          </div>
+          {/* Moon Sign / Rashi — mirrors the half-shaded crescent at TithiMonthGrid.tsx:901 */}
+          <div className="flex items-center gap-1.5 text-slate-200/95">
+            <svg width="12" height="12" viewBox="0 0 16 16" className="shrink-0" aria-hidden="true">
+              <circle cx="8" cy="8" r="5.5" fill="none" stroke="#cbd5e1" strokeWidth="1" />
+              <path d="M9.5 4 A4.5 4.5 0 0 0 9.5 12 A5.5 5.5 0 0 1 9.5 4Z" fill="#cbd5e1" opacity="0.75" />
+            </svg>
+            <span>{tl(MSG.cellMoonSign, locale)}</span>
+          </div>
+          {/* Yoga + Karana — mirrors the fuchsia knot SVG at TithiMonthGrid.tsx:916 */}
+          <div className="flex items-center gap-1.5 text-fuchsia-200/95">
+            <svg width="12" height="12" viewBox="0 0 16 16" className="shrink-0" aria-hidden="true">
+              <path d="M5 4 Q8 7 11 4 Q14 8 11 12 Q8 9 5 12 Q2 8 5 4Z" fill="none" stroke="#e879f9" strokeWidth="1.1" opacity="0.85" />
+            </svg>
+            <span>{tl(MSG.cellYoga, locale)} / <span className="text-gold-light/80">{tl(MSG.cellKarana, locale)}</span></span>
+          </div>
         </div>
 
         {/* Grid */}

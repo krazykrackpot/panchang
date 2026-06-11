@@ -693,10 +693,13 @@ export default async function FestivalCanonicalPage({
           if (sortedBySunrise.length < 2) return null;
           const earliestSunrise = sortedBySunrise[0];
           const latestSunrise = sortedBySunrise[sortedBySunrise.length - 1];
-          // Daylight span in minutes — converts HH:MM to minutes
+          // Daylight span in minutes — converts HH:MM to minutes.
+          // Use `||` instead of `??` so NaN (from a malformed string like
+          // "HH:MM") coerces to 0 rather than propagating into Math.min /
+          // Math.max and breaking the surrounding render. Gemini PR #686 MED.
           const hhmmToMin = (s: string) => {
             const [h, m] = s.split(':').map(Number);
-            return (h ?? 0) * 60 + (m ?? 0);
+            return (h || 0) * 60 + (m || 0);
           };
           const refRowDaylight = refRow.sunrise && refRow.sunset ? hhmmToMin(refRow.sunset) - hhmmToMin(refRow.sunrise) : null;
           const daylightHours = refRowDaylight != null ? Math.floor(refRowDaylight / 60) : null;
@@ -724,7 +727,7 @@ export default async function FestivalCanonicalPage({
               )}
               {detail.observance && (
                 <p className="text-text-primary/75 text-sm leading-relaxed">
-                  For {festivalNameEn} {year}, the central rite of {refRow.pujaMuhurat ? `${refRow.pujaMuhurat.name.toLowerCase()} observance` : ruleLabel.toLowerCase()} depends on the {tithiStrProper || 'festival tithi'} being present during that window on {festivalDate} — confirmed across {citiesWithMuhurat.length || cityRows.length} reference cities in this year's computation pass. Cities further east (Kolkata, Chennai) see the window open ~15-25 minutes before Delhi; cities west of Delhi (Mumbai, Pune, Bangalore) see it start later by a similar margin.
+                  For {festivalNameEn} {year}, the central rite of {refRow.pujaMuhurat ? `${refRow.pujaMuhurat.name.toLowerCase()} observance` : ruleLabel.toLowerCase()} depends on the {tithiStrProper || 'festival tithi'} being present during that window on {formatDate(festivalDate, locale)} — confirmed across {citiesWithMuhurat.length || cityRows.length} reference cities in this year's computation pass. Cities further east (Kolkata, Chennai) see the window open ~15-25 minutes before Delhi; cities west of Delhi (Mumbai, Pune, Bangalore) see it start later by a similar margin.
                 </p>
               )}
             </div>

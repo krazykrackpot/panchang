@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
 import { pickRegionalChrome as RC } from "@/lib/content/regional-chrome-labels";
 import { engineDate as ed, nextUpcoming, todayInIst } from "@/lib/seo/regional-faq-dates";
+import { tl } from "@/lib/utils/trilingual";
 
 // ═══════════════════════════════════════════════════════════════════════════
 // LABELS — EN / HI / TE trilingual
@@ -588,6 +589,26 @@ const FAQ_DATA = [
   },
 ];
 
+// ── Ugadi Pachadi six-taste table ──
+const UGADI_PACHADI: Array<{ taste: string; ingredient: string; represents: string }> = [
+  { taste: 'Sweet (Madhuram)', ingredient: 'Jaggery (bellam)', represents: 'Happiness, joy' },
+  { taste: 'Sour (Pulupu)', ingredient: 'Tamarind paste', represents: 'Disgust, displeasing experiences' },
+  { taste: 'Salty (Uppu)', ingredient: 'Salt', represents: 'Interest, the spice of engagement' },
+  { taste: 'Spicy (Karam)', ingredient: 'Green chilli or pepper', represents: 'Anger, intensity' },
+  { taste: 'Bitter (Chedu)', ingredient: 'Neem flowers', represents: 'Sadness, grief' },
+  { taste: 'Astringent (Vagaru)', ingredient: 'Raw mango pieces', represents: 'Surprise, the unexpected' },
+];
+
+// ── Telugu 60-year Jovian cycle 2024–2030 ──
+const TELUGU_60_YEAR_CYCLE: Array<{ span: string; n: number; name: string; telugu: string; shaka: string }> = [
+  { span: '2024-03-09 → 2025-03-29', n: 38, name: 'Krodhi', telugu: 'క్రోధి', shaka: '1946' },
+  { span: '2025-03-30 → 2026-03-18', n: 39, name: 'Visvavasu', telugu: 'విశ్వావసు', shaka: '1947' },
+  { span: '2026-03-19 → 2027-04-07', n: 40, name: 'Parabhava', telugu: 'పరాభవ', shaka: '1948' },
+  { span: '2027-04-08 → 2028-03-26', n: 41, name: 'Plavanga', telugu: 'ప్లవంగ', shaka: '1949' },
+  { span: '2028-03-27 → 2029-04-13', n: 42, name: 'Kilaka', telugu: 'కీలక', shaka: '1950' },
+  { span: '2029-04-14 → 2030-04-02', n: 43, name: 'Saumya', telugu: 'సౌమ్య', shaka: '1951' },
+];
+
 function L(key: string, locale: string): string {
   const entry = LABELS[key];
   if (!entry) return "";
@@ -894,6 +915,135 @@ export default async function TeluguCalendarPage({
                 </p>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Telugu Calendar Structure + Shaka Era */}
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'The Telugu Calendar Structure and the Shaka Era', hi: 'तेलुगु पंचांग संरचना और शक संवत्', te: 'తెలుగు పంచాంగ నిర్మాణం మరియు శక శకం' }, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              The Telugu calendar is a lunisolar reckoning system whose annual cycle is anchored to the <strong>Salivahana Shaka era</strong>, an epoch that began in <strong>78 CE</strong>. The scholarly consensus is that the era’s true historical origin most likely lies in the ascension of Indo-Scythian king Chashtana in 78 CE, documented in coin inscriptions found in Kutch. The popular tradition, however, attributes the era to the legendary South Indian emperor Salivahana, who is said to have defeated the invading Shakas — historian Dineshchandra Sircar notes that the “Shalivahana era” attribution appears to be derived from the victory of the Satavahana ruler Gautamiputra Satakarni over certain Shaka kings. Either way, the Telugu Panchangam and every traditional liturgical document in Andhra Pradesh and Telangana counts years from this 78 CE epoch. The Government of India adopted the same Shaka era as the basis of the official Indian National Calendar in 1957.
+            </p>
+            <p>
+              The Telugu calendar uses <strong>chandramana</strong> (lunar reckoning), in which months are defined by lunations rather than solar transits. Month boundaries follow the <strong>amanta</strong> convention, ending on the new moon (amavasya) — the convention shared with Maharashtra, Karnataka and the broader Deccan. This contrasts with the <em>souramana</em> (solar) calendars of Tamil Nadu and Kerala, where year-beginnings such as Puthandu fall in mid-April. Because chandramana months drift against the solar year, an intercalary month (<strong>Adhika Masa</strong>) is inserted approximately every 32–33 months to restore alignment, following the rules codified in the Surya Siddhanta.
+            </p>
+            <p>
+              The Telugu New Year — <strong>Ugadi</strong> — falls on Chaitra Shukla Pratipada, the first lunar day of the bright fortnight of Chaitra. In 2026, Ugadi corresponds to <strong>19 March 2026</strong>, opening the <strong>Parabhava Nama Samvatsara</strong>.
+            </p>
+            <p>
+              Layered on top of the Shaka year-count is the <strong>60-year Jovian cycle</strong> (Brihaspati cycle), known as the <em>Prabhavadi</em> cycle because it begins with the year named Prabhava. The cycle corresponds roughly to the least common multiple of Jupiter and Saturn’s orbital periods (~12 and ~30 solar years); every sixty years, both planets return nearly to their starting sidereal coordinates. The 60 samvatsaras are divided into three groups of twenty, traditionally assigned to Brahma, Vishnu and Shiva. The Telugu tradition uses the same name-list as the Kannada tradition (Prabhava → Vibhava → Shukla → Pramodutha … Akshaya), with Telugu-script orthographic variants such as Sobhakritu (శోభకృతు), Krodhi (క్రోధి), Visvavasu (విశ్వావసు) and Parabhava (పరాభవ).
+            </p>
+            <p>
+              This three-layered structure — Shaka year + 60-year samvatsara name + chandramana month/tithi — is what gives every Telugu Panchangam its formal title, e.g. <em>Sri Parabhava Nama Samvatsara Panchangam, Shaka 1948</em> for the year inaugurated at Ugadi 2026.
+            </p>
+          </div>
+        </section>
+
+        {/* Ugadi Pachadi */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Ugadi Day-by-Day and the Ugadi Pachadi Tradition', hi: 'उगादि का दिन-क्रम और उगादि पच्चड़ी', te: 'ఉగాది రోజువారీ క్రమం మరియు ఉగాది పచ్చడి' }, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed mb-4">
+            <p>
+              Ugadi day in the Telugu tradition begins before sunrise. The standard sequence followed across Andhra Pradesh and Telangana households is: (i) an oil bath (<em>abhyangasnanam</em>); (ii) decoration of the home entrance with <em>muggu</em> (rangoli) and mango-leaf festoons (<em>toranam</em>); (iii) temple visit; (iv) preparation of <strong>Ugadi Pachadi</strong>, the symbolic six-taste relish; and (v) attendance at <strong>Panchanga Shravanam</strong>, the formal reading of the year’s almanac.
+            </p>
+            <p>
+              The Ugadi Pachadi combines six tastes representing life’s complexity. Consuming the pachadi at sunrise is the ritual acknowledgement that the coming year will hold all six — and that equanimity through all six is the householder’s resolution.
+            </p>
+          </div>
+          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Taste</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Ingredient</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Represents</th>
+                </tr>
+              </thead>
+              <tbody>
+                {UGADI_PACHADI.map((p, i) => (
+                  <tr key={p.taste} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-gold-light font-semibold">{p.taste}</td>
+                    <td className="px-4 py-2.5 text-amber-400/80">{p.ingredient}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{p.represents}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-text-secondary text-sm leading-relaxed mt-4">
+            The <strong>Panchanga Shravanam</strong> ritual, performed later in the morning at the village or community temple, is the formal reading of the new Panchangam by a pandit or learned elder. The reading covers planetary positions, eclipse dates, equinoxes and solstices, predicted rainfall patterns (<em>varsha phala</em>), agricultural indicators, the year’s ruling king (<em>raja</em>) and minister (<em>mantri</em>), and the general nakshatra-by-nakshatra outlook. At the Tirumala Tirupati temple, this is conducted as the formal <strong>Ugadi Asthanam</strong> ceremony.
+          </p>
+        </section>
+
+        {/* Bonalu + Bathukamma */}
+        <section className="bg-gradient-to-br from-amber-900/15 via-bg-secondary/40 to-bg-primary border border-amber-500/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Bonalu and Bathukamma — Telangana’s Living Festival Calendar', hi: 'बोनालू और बथुकम्मा — तेलंगाना की जीवित पर्व-परम्परा', te: 'బోనాలు మరియు బతుకమ్మ — తెలంగాణ సజీవ పండుగ క్యాలెండర్' }, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              Two festivals distinguish the Telangana wing of the Telugu calendar from the wider Andhra tradition: <strong>Bonalu</strong> in the lunar month of Ashada (July–August) and <strong>Bathukamma</strong> during Sharad Navaratri (September–October). Both were declared state festivals after the formation of Telangana in 2014, and their dating is read directly off the Panchangam.
+            </p>
+            <p>
+              <strong>Bonalu</strong> is a thanksgiving festival to the goddess Mahakali, celebrated across the four Sundays of Ashada Masam. The origin traces to 1813, when a plague devastated Hyderabad and Secunderabad. According to tradition, soldiers of a Hyderabad military battalion then stationed in Ujjain prayed at the Mahakaleshwara temple — they vowed to install the goddess in their hometown and offer the <em>bonam</em> (cooked rice with milk and jaggery, in a decorated earthen pot) if the epidemic subsided. When it did, Suriti Appiah, a soldier returned from Ujjain, established the <strong>Ujjaini Mahankali Temple in Secunderabad in 1815</strong>. The Secunderabad event is therefore called <strong>Lashkar Bonalu</strong>, and is considered the most prominent of the four Sundays.
+            </p>
+            <p>
+              <strong>Bathukamma</strong> is a nine-day floral festival observed exclusively by Telangana’s women, running from Mahalaya Amavasya (the new moon before Sharad Navaratri) to Durgashtami. Blooms are stacked in seven concentric layers in the shape of a temple gopuram, using seasonal wild flowers — <em>gunuka</em> (yellow), <em>tangedu</em> (orange-yellow), marigold, chrysanthemum and lotus. Each of the nine days has its own name and distinctive ritual food offering, and the immersion procession is accompanied by <em>Bathukamma paatalu</em> (women’s folk songs).
+            </p>
+          </div>
+        </section>
+
+        {/* Telugu 60-year cycle table */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Telugu 60-Year Cycle 2024–2030', hi: 'तेलुगु 60-वर्षीय चक्र 2024–2030', te: 'తెలుగు 60-సంవత్సర చక్రం 2024–2030' }, locale)}
+          </h2>
+          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold whitespace-nowrap">{tl({ en: 'Gregorian span', hi: 'अवधि', te: 'కాలం' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">#</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Name', hi: 'नाम', te: 'పేరు' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">తెలుగు</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Shaka</th>
+                </tr>
+              </thead>
+              <tbody>
+                {TELUGU_60_YEAR_CYCLE.map((y, i) => (
+                  <tr key={y.name} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-amber-400/80 text-xs whitespace-nowrap">{y.span}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{y.n}</td>
+                    <td className="px-4 py-2.5 text-gold-light font-semibold">{y.name}</td>
+                    <td className="px-4 py-2.5 text-text-primary">{y.telugu}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{y.shaka}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Telugu calendar scholarship */}
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Telugu Calendar Scholarship and Modern Panchanga Publishing', hi: 'तेलुगु पंचांग विद्वत्ता और आधुनिक प्रकाशन', te: 'తెలుగు పంచాంగ పాండిత్యం మరియు ఆధునిక ప్రచురణ' }, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              The Telugu Panchangam tradition is unusually well-documented because it has been continuously produced by major temples and astrological houses for centuries. The <strong>Tirumala Tirupati Devasthanams (TTD)</strong> publishes one of the most widely circulated Telugu Panchangams; the TTD edition is formally read at the Ugadi Asthanam ceremony at the Sri Venkateswara temple.
+            </p>
+            <p>
+              The Telugu calendar has been shaped by individual <em>siddhantis</em> — astrologer-mathematicians who carry forward the Surya Siddhanta tradition. The <strong>Pidaparthi</strong> lineage of <em>Pidaparthi Vari Gantala Panchangam</em> publishes annually and is one of the longest-running family-published Telugu almanacs. Other widely consulted modern editions include the <strong>Mulugu Panchangam</strong> (compiled by the Mulugu Siddhanti family).
+            </p>
+            <p>
+              The South Indian Jyotisha tradition that feeds the Telugu Panchangam draws on regional astronomers including <strong>Bhaskara I (c. 600–680 CE)</strong>, whose school of mathematicians was probably based in Asmaka — most likely the <strong>Nizamabad district of present-day Telangana</strong>. His two principal works, the <em>Mahabhaskariya</em> and <em>Laghubhaskariya</em>, are astronomical treatises in verse that remain part of the canonical reading list for traditional South Indian Jyotisha training, and his prose commentary on the <em>Aryabhatiya</em> (the <em>Aryabhatiyabhashya</em> of 629 CE) is one of the earliest surviving treatments of Aryabhata’s astronomy.
+            </p>
           </div>
         </section>
 

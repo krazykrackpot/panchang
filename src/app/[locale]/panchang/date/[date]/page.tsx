@@ -46,6 +46,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { pickPanchangDateLabel as PDL, formatPanchangDateLabel } from '@/lib/content/panchang-date-labels';
 import { isStrictYmd } from '@/lib/seo/date-validation';
 import { isStale } from '@/lib/seo/staleness';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import LearnConceptsBlock from '@/components/seo/LearnConceptsBlock';
@@ -270,6 +271,68 @@ export default async function PanchangDatePage({
     </tr>
   );
 
+  // ── FAQPage JSON-LD ──────────────────────────────────────────────────
+  // Date-derived FAQ schema. GSC showed `30 may 2026 panchang` at pos
+  // 2.20 with 0.37% CTR — the page was ranking but losing the snippet
+  // because there were no FAQs Google could lift. All answers come from
+  // the already-computed `panchang` object, so per-date drift is
+  // structurally impossible. EN-only answers — Google processes the
+  // English variant for rich-result eligibility. 2026-06-11 audit Item 8.
+  const longDate = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString('en-US', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+  });
+  const faqPairs: Array<{ q: string; a: string }> = [];
+  if (panchang) {
+    const tithiEn = panchang.tithi.name.en ?? '—';
+    const nakEn = panchang.nakshatra.name.en ?? '—';
+    const yogaEn = panchang.yoga?.name?.en ?? '—';
+    const karanaEn = panchang.karana?.name?.en ?? '—';
+    const sunriseAns = panchang.sunrise ?? '—';
+    const sunsetAns = panchang.sunset ?? '—';
+    const rkStartAns = panchang.rahuKaal?.start ?? '—';
+    const rkEndAns = panchang.rahuKaal?.end ?? '—';
+    faqPairs.push({
+      q: `What is the tithi on ${longDate}?`,
+      a: `The tithi at sunrise on ${longDate} is ${tithiEn} (Vedic lunar day). Tithis change throughout the day as the Moon advances 12° relative to the Sun; the displayed value is the tithi prevailing at sunrise (Udaya Tithi rule) — the standard for daily panchang reading in ${cityName}.`,
+    });
+    faqPairs.push({
+      q: `What time is sunrise and sunset on ${longDate} in ${cityName}?`,
+      a: `On ${longDate}, sunrise in ${cityName} is at ${sunriseAns} and sunset is at ${sunsetAns}. These are computed from Swiss Ephemeris using the city's exact coordinates (${city.lat.toFixed(4)}°N, ${city.lng.toFixed(4)}°E), not approximate tables — so they're accurate to the minute.`,
+    });
+    faqPairs.push({
+      q: `What is the nakshatra on ${longDate}?`,
+      a: `The nakshatra (lunar mansion) at sunrise on ${longDate} is ${nakEn}. There are 27 nakshatras spanning the zodiac at 13°20' each; the Moon takes about a day to transit one. Each nakshatra has a presiding deity and a ruling planet that flavour the day's activities and muhurta selection.`,
+    });
+    faqPairs.push({
+      q: `What is the Rahu Kaal time on ${longDate} in ${cityName}?`,
+      a: `Rahu Kaal on ${longDate} in ${cityName} runs from ${rkStartAns} to ${rkEndAns}. Rahu Kaal is the inauspicious 90-minute window each day during which new ventures are traditionally avoided; its start and end are derived from sunrise and sunset, so they vary by city — the times shown are for ${cityName} specifically.`,
+    });
+    faqPairs.push({
+      q: `What yoga and karana fall on ${longDate}?`,
+      a: `On ${longDate}, the yoga at sunrise is ${yogaEn} and the karana is ${karanaEn}. The yoga is one of 27 sum-position combinations of Sun and Moon longitudes; the karana is half a tithi. Both feed muhurta selection — some yogas (like Vyatipata, Vaidhriti) are avoided for new beginnings.`,
+    });
+    if (festivalToday) {
+      faqPairs.push({
+        q: `Which festival falls on ${longDate}?`,
+        a: `${festivalToday.name} is observed on ${longDate}. Festival dates are computed from the Vedic tithi calendar using city-specific sunrise — so the date here is correct for ${cityName} and may differ by one day from other cities where the relevant tithi falls at a different sunrise.`,
+      });
+    } else {
+      faqPairs.push({
+        q: `Is there a festival on ${longDate}?`,
+        a: `No major Hindu festival falls on ${longDate} in ${cityName} per the engine's festival calendar (computed from masa + paksha + tithi against the canonical Drik-tradition rule set). For the full festival list for ${year}, see the festivals hub.`,
+      });
+    }
+  }
+  const faqLD = faqPairs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqPairs.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  } : null;
+
   // Render a locale-specific summary template with [[1]]..[[5]] markers
   // interleaved as <Link> wrappers around the linkText1..linkText5
   // anchors. Splitting on /\[\[(\d+)\]\]/ keeps the surrounding prose
@@ -286,6 +349,12 @@ export default async function PanchangDatePage({
 
   return (
     <main className="min-h-screen bg-bg-primary">
+      {faqLD && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }}
+        />
+      )}
       <div className="max-w-4xl mx-auto px-4 pt-10 pb-10 sm:px-6 lg:px-8">
         {/* Adjacent-date nav (crawl spine + UX) */}
         <nav className="flex items-center justify-between mb-6 text-sm" aria-label={PDL('dateNavAria', locale)}>

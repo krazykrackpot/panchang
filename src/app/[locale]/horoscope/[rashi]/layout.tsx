@@ -2,10 +2,8 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { RASHIS } from '@/lib/constants/rashis';
 import { getRashiBySlug } from '@/lib/constants/rashi-slugs';
-import { generateHoroscopeFAQ } from '@/lib/seo/faq-data';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { buildIndexableHreflang, buildCanonicalUrl } from '@/lib/seo/hreflang';
 import { isLocaleIndexable } from '@/lib/seo/indexable-locales';
 
@@ -105,25 +103,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string; rashi: string }> }) {
-  const { locale, rashi } = await params;
+  const { locale } = await params;
   setRequestLocale(locale);
-  const r = getRashiBySlug(rashi);
-  const name = r ? r.name.en : rashi;
-  const vedicName = r ? tl(r.name, locale) : rashi;
 
-  // Breadcrumb + Article moved to page.tsx so nested
-  // weekly/monthly/[date] routes don't get a 2nd copy from this shared
-  // layout (2026-06-02 audit — same shape of bug as the FAQPage dup
-  // that PR #353 fixed). See src/lib/seo/faq-data.ts for the sitewide
-  // "emit from the most specific layout/page" rule. FAQ stays here
-  // because it is the per-rashi FAQ inherited by all children, and
-  // descendant layouts intentionally do NOT add another (PR #353).
-  const faqLD = generateHoroscopeFAQ(vedicName, name, 'daily');
-
-  return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
-      {children}
-    </>
-  );
+  // FAQPage JSON-LD moved to page.tsx — emitting it from this shared
+  // layout duplicated the FAQ schema on every indexable child
+  // (/[date], /weekly, /monthly), surfacing as identical FAQPage
+  // markup at /horoscope/aries AND /horoscope/aries/2026-06-11.
+  // The "emit from the most-specific page" rule already governs
+  // Breadcrumb + Article from this same layout; FAQ now follows it.
+  // 2026-06-11 audit.
+  return <>{children}</>;
 }

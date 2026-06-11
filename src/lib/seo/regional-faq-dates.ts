@@ -123,8 +123,11 @@ function format(iso: string, locale: string): string {
 
 /**
  * Returns the engine's date for the given festival key formatted in the
- * target locale. The festival key is matched against the engine's
- * canonical English festival name via case-insensitive substring match.
+ * target locale. Match order: exact case-insensitive, then word-boundary
+ * regex (so "Diwali" doesn't match "Diwalish"-style partial-word entries
+ * even though it intentionally still matches inside multi-word names
+ * like "Diwali (Lakshmi Puja)" — drop down to exact-name keys if you
+ * specifically need to disambiguate "Diwali" from "Dev Diwali").
  *
  * Examples:
  *   engineDate(2026, 'Durga Puja Shashti', 'en')   → "Friday, 16 October 2026"
@@ -135,13 +138,33 @@ function format(iso: string, locale: string): string {
  * marker like `(Durga Puja Shashti: not in engine)` so drift surfaces
  * loudly in the rendered HTML.
  */
+
+// Regex escape for arbitrary user-supplied needle text — shared by the
+// engineDate + nextUpcoming fallback paths so they stay in lockstep.
+function escapeRegex(s: string): string {
+  return s.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+}
+
+/**
+ * Word-boundary fallback search. Prevents partial-word false matches
+ * like "yoga" matching "yogasana" (no real engine entry, but defensive).
+ * Word boundaries still allow whole-word matches inside multi-word
+ * festival names — exact-match handles the Diwali / Dev Diwali split
+ * earlier in the pipeline. Gemini PR #672 review 2026-06-11 MED.
+ */
+function wordBoundaryMatch(name: string, needleLower: string): boolean {
+  const re = new RegExp(`\\b${escapeRegex(needleLower)}\\b`, 'i');
+  return re.test(name);
+}
+
 export function engineDate(year: number, festivalKey: string, locale: string): string {
   const needle = festivalKey.toLowerCase();
   const entries = engineEntries(year);
-  // Prefer exact-name match. Fall back to substring contains.
+  // Prefer exact-name match. Fall back to word-boundary regex search
+  // rather than substring contains — see wordBoundaryMatch above.
   let hit = entries.find((f) => (f.name?.en ?? '').toLowerCase() === needle);
   if (!hit) {
-    hit = entries.find((f) => (f.name?.en ?? '').toLowerCase().includes(needle));
+    hit = entries.find((f) => wordBoundaryMatch(f.name?.en ?? '', needle));
   }
   if (!hit) return `(${festivalKey}: not in engine)`;
   return format(hit.date, locale);
@@ -195,9 +218,12 @@ export function nextUpcoming(
   for (const yr of [currentYear, currentYear + 1]) {
     const entries = engineEntries(yr);
     const exact = entries.filter((f) => (f.name?.en ?? '').toLowerCase() === needle);
+    // Word-boundary fallback (same rationale as engineDate). Gemini PR
+    // #672 review 2026-06-11 MED — substring-contains could prefer
+    // longer-name matches over the intended key in pathological cases.
     const candidates = exact.length > 0
       ? exact
-      : entries.filter((f) => (f.name?.en ?? '').toLowerCase().includes(needle));
+      : entries.filter((f) => wordBoundaryMatch(f.name?.en ?? '', needle));
     if (candidates.length === 0) continue;
     // Ascending by ISO date, then find first ≥ nowIso.
     candidates.sort((a, b) => a.date.localeCompare(b.date));

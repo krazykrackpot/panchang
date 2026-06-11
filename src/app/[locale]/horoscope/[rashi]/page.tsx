@@ -13,6 +13,7 @@ import { scoreLabel, getScoreBgClass } from '@/lib/horoscope/score-utils';
 import { Link } from '@/lib/i18n/navigation';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { generateHoroscopeFAQ } from '@/lib/seo/faq-data';
 import { BASE_URL } from '@/lib/seo/base-url';
 
 function ordinal(n: number): string {
@@ -196,12 +197,21 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
   const jupTransit = tl(ts.jupiterSignName, locale);
   const satTransit = tl(ts.saturnSignName, locale);
 
-  // Breadcrumb + Article JSON-LD emitted from page.tsx (the most-specific
-  // emitter for the bare /horoscope/[rashi] route) so the shared
-  // [rashi]/layout.tsx no longer fires them on nested weekly/monthly/
-  // [date] children — those children emit their own. 2026-06-02 audit;
-  // sitewide rule documented in src/lib/seo/faq-data.ts.
+  // Breadcrumb + Article + FAQPage JSON-LD all emitted from page.tsx
+  // (the most-specific emitter for the bare /horoscope/[rashi] route)
+  // so the shared [rashi]/layout.tsx no longer fires them on nested
+  // weekly/monthly/[date] children — those children emit their own.
+  //
+  // FAQ joined this group on 2026-06-11 after an audit found
+  // /horoscope/aries and /horoscope/aries/2026-06-11 were serving
+  // byte-identical FAQPage markup (7/7 Q&A pairs) — Google's textbook
+  // duplicate-schema flag. By the same audit: vedicName here is
+  // rashi.name.hi (Devanagari), so the FAQ template's "{rashi} ({en})"
+  // slots now read "मेष (Aries)" instead of the previous "Aries (Aries)"
+  // (layout was passing tl(r.name, locale) which returns English when
+  // locale === 'en').
   const breadcrumbLD = generateBreadcrumbLD(`/${locale}/horoscope/${rashiSlug}`, locale);
+  const faqLD = generateHoroscopeFAQ(vedicName, westernName, 'daily');
   const articleDateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   const articleLD = {
     '@context': 'https://schema.org',
@@ -231,6 +241,7 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
     <main className="min-h-screen bg-[#0a0e27] pb-20">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleLD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />
       {/* ═══ SSR: H1 + primary answer ═══ */}
       <div className="max-w-4xl mx-auto px-4 pt-8 sm:px-6 lg:px-8">
         <h1 suppressHydrationWarning className="text-2xl sm:text-3xl font-bold text-gold-light text-center" style={{ fontFamily: 'var(--font-heading)' }}>

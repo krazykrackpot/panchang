@@ -5,6 +5,7 @@ import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
 import { engineDate as ed, nextUpcoming, todayInIst } from '@/lib/seo/regional-faq-dates';
+import { tl } from '@/lib/utils/trilingual';
 
 // FAQ data — page-native (kn) + en + hi. All year-specific dates
 // resolve at render via ed(year, festivalKey, locale) against
@@ -185,6 +186,41 @@ const KANNADA_FESTIVALS: KannadaFestival[] = [
   { en: 'Vaikuntha Ekadashi (Gita Jayanti)',            hi: 'वैकुण्ठ एकादशी (गीता जयन्ती)',          kn: 'ವೈಕುಂಠ ಏಕಾದಶಿ (ಗೀತಾ ಜಯಂತಿ)',                engineKey: 'Gita Jayanti',                     tithi: 'Margashira Shukla Ekadashi' },
 ];
 
+// ── Mysore Dasara 10-day chronology ──
+const MYSORE_DASARA_DAYS: Array<{ day: string; tithi: string; observance: string }> = [
+  { day: 'Day 1', tithi: 'Shukla Pratipada', observance: 'Ghatasthapana — installation of the kalasha and family deity puja inside the palace.' },
+  { day: 'Days 2–3', tithi: 'Shukla Dvitiya–Tritiya', observance: 'Continuation of Devi Mahatmyam recitation; nightly palace illumination (~100,000 light bulbs).' },
+  { day: 'Days 4–6', tithi: 'Shukla Chaturthi–Shashthi', observance: 'Cultural programmes — Carnatic music, classical dance, wrestling at the palace grounds.' },
+  { day: 'Day 7', tithi: 'Shukla Saptami', observance: 'Saraswati Puja — the Maharaja venerates Saraswati and Mahishasuramardhini.' },
+  { day: 'Day 8', tithi: 'Shukla Ashtami', observance: 'Durga Ashtami.' },
+  { day: 'Day 9', tithi: 'Mahanavami', observance: 'Ayudha Puja — the royal sword is worshipped and taken out in procession.' },
+  { day: 'Day 10', tithi: 'Vijayadashami', observance: 'Jamboo Savari — the great procession from the palace to Bannimantap; the Chamundeshwari idol travels in a ~750 kg golden mantapa on the back of a lead elephant; Banni mara puja at Bannimantap recalls the Pandavas’ Shami-tree concealment.' },
+];
+
+// ── Karnataka sampradaya festival emphasis ──
+const KANNADA_SAMPRADAYAS: Array<{ name: string; founder: string; centre: string; signature: string; almanacs: string }> = [
+  { name: 'Madhva (Dvaita)', founder: 'Madhvacharya, 13th c.', centre: 'Vishnu / Narayana with consort Lakshmi', signature: 'Madhva Navami (Magha Shukla Navami), Krishna Janmashtami, Sri Krishna Paryaya at Udupi, Madhva Jayanti.', almanacs: 'Uttaradi Matha, Sri Vyasaraja Matha, Sri Raghavendra Matha' },
+  { name: 'Smarta (Pancayatana)', founder: 'Adi Shankara codification', centre: 'Five deities — Vishnu, Shiva, Durga, Surya, Ganesha — as expressions of one Brahman', signature: 'Ganesha Chaturthi, Maha Shivaratri, Navaratri / Vijayadashami, Krishna Janmashtami, Deepavali.', almanacs: 'Sringeri Panchanga' },
+  { name: 'Veerashaiva (Lingayata)', founder: '12th-century vachana movement (Basavanna)', centre: 'Shiva, mediated through the ishtalinga', signature: 'Maha Shivaratri, Basava Jayanti (Vaishakha Shukla Tritiya), Allamaprabhu Jayanti, Jangama-aradhane.', almanacs: 'Various Veerashaiva matha calendars' },
+];
+
+// ── Kannada 60-year samvatsara cycle 2026–2030 ──
+const KANNADA_YEARS: Array<{ year: number; samvatsara: string; shaka: string; yugadiNote: string }> = [
+  { year: 2026, samvatsara: 'Parabhava', shaka: '1948', yugadiNote: '19 March 2026 — current year' },
+  { year: 2027, samvatsara: 'Plavanga', shaka: '1949', yugadiNote: 'engine — Yugadi early April 2027' },
+  { year: 2028, samvatsara: 'Kilaka', shaka: '1950', yugadiNote: 'engine — late March 2028' },
+  { year: 2029, samvatsara: 'Saumya', shaka: '1951', yugadiNote: 'engine — mid-April 2029' },
+  { year: 2030, samvatsara: 'Sadharana', shaka: '1952', yugadiNote: 'engine — early April 2030' },
+];
+
+// ── Famous Kannada calendrical scholars ──
+const KANNADA_SCHOLARS: Array<{ name: string; dates: string; bio: string }> = [
+  { name: 'Madhvacharya', dates: 'c. 1238–1317 CE', bio: 'Founder of the Dvaita Vedanta school and the architect of the Karnataka Vaishnava festival calendar. He established the eight Udupi mathas (the Ashta Mathas) whose worship procedures and festival timings he codified in his Tantrasara. The annual Sri Krishna Paryaya rotation among the eight mathas is one of the longest-running festival institutions in India.' },
+  { name: 'Vyasatirtha (Vyasaraja)', dates: '1460–1539 CE', bio: 'The pivotal figure for Karnataka panchanga production. Patron saint of the Vijayanagara Empire and a great Madhva polymath, he founded the Sri Vyasaraja Matha, whose annual Kannada Panchanga remains in continuous circulation. His three principal works — Nyayamruta, Tatparya Chandrika and Tarka Tandava — were credited by the Advaita scholar Appayya Dikshita with “securing the melon of Madhvaism with three bands.” His samadhi at Navabrindavana, an island in the Tungabhadra near Anegundi, remains an active pilgrimage site.' },
+  { name: 'Bhaskara II (Bhaskaracharya)', dates: '1114–1185 CE', bio: 'Born in Bijapur, Karnataka. His Siddhanta Shiromani is one of the foundational Sanskrit astronomical treatises that subsequent Karnataka almanac-makers built on. The Lilavati and Bijaganita portions of the work also encode the mathematical machinery — including treatment of zero, equations and the chakravala cyclic method — that the panchanga-makers of later centuries relied on for planetary mean motions.' },
+  { name: 'Basavanna and Allamaprabhu', dates: '12th c.', bio: 'The Veerashaiva calendrical tradition draws on their vachana literature; the festival days Basava Jayanti (Vaishakha Shukla Tritiya) and Allamaprabhu Jayanti are integrated into the Karnataka chandramana calendar. Together they ground the Lingayata sampradaya’s liturgical year independently of any matha-issued almanac.' },
+];
+
 export default function KannadaCalendarPage() {
   const locale = useLocale() as Locale;
   const isKn = String(locale) === 'kn';
@@ -259,6 +295,125 @@ export default function KannadaCalendarPage() {
               </div>
             ))}
           </div>
+        </section>
+
+        {/* Kannada Calendar + Shaka Era */}
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'The Kannada Calendar and the Salivahana Shaka Tradition', hi: 'कन्नड़ पंचांग और शालिवाहन शक परम्परा', kn: 'ಕನ್ನಡ ಪಂಚಾಂಗ ಮತ್ತು ಶಾಲಿವಾಹನ ಶಕ ಪರಂಪರೆ' }, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              The Kannada calendar shares its core architecture with the Telugu calendar — both are chandramana, amanta-month, lunisolar reckonings anchored to the <strong>Salivahana Shaka era of 78 CE</strong> — but it inherits a distinctive Karnataka-specific implementation shaped by the major Karnataka sampradayas (Madhva, Smarta and Veerashaiva). The Karnataka adoption of the Shaka system is unbroken from the medieval Vijayanagara period; the saint and Madhva scholar <strong>Vyasatirtha (Vyasaraja, c. 1460–1539)</strong>, patron saint of the Vijayanagara Empire, established Panchanga-producing mathas that continue to publish authoritative Kannada Panchangas today.
+            </p>
+            <p>
+              Karnataka’s New Year, <strong>Yugadi</strong> (ಯುಗಾದಿ — <em>yuga-adi</em>, “the beginning of an age”), falls on the same chandramana date as Telugu Ugadi: Chaitra Shukla Pratipada. Yugadi 2026 falls on <strong>19 March 2026</strong>, inaugurating the <strong>Parabhava Nama Samvatsara</strong> in Shaka 1948.
+            </p>
+            <p>
+              The distinction from Tamil Nadu and Kerala is sharp. Tamil Puthandu and Malayali Vishu follow the <em>souramana</em> (solar) calendar, marking the day the Sun enters Mesha (Aries); these fall in mid-April, typically 14 or 15 April, and are <em>not</em> on the same day as Yugadi. There is also no equivalence with Pongal, which is the Tamil mid-January harvest festival marking Makara Sankranti; Karnataka’s parallel for Pongal is <strong>Sankranti / Suggi Habba</strong>, observed on the same Gregorian day (around 14 January) but as a harvest thanksgiving rather than as the new year.
+            </p>
+          </div>
+        </section>
+
+        {/* Karnataka festival cycle across three sampradayas */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'The Karnataka Festival Cycle — Three Sampradayas', hi: 'कर्नाटक का पर्व-चक्र — तीन सम्प्रदाय', kn: 'ಕರ್ನಾಟಕ ಹಬ್ಬ ಚಕ್ರ — ಮೂರು ಸಂಪ್ರದಾಯಗಳು' }, locale)}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-4">
+            {tl({ en: 'All three traditions share the same chandramana dates; the divergence is in which festivals receive principal household observance.', hi: 'तीनों परम्पराओं की चान्द्रमान तिथियाँ समान हैं; अंतर है कि कौन-से पर्व का प्रमुख गृह-अनुष्ठान होता है।', kn: 'ಎಲ್ಲಾ ಮೂರೂ ಸಂಪ್ರದಾಯಗಳು ಒಂದೇ ಚಾಂದ್ರಮಾನ ದಿನಾಂಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳುತ್ತವೆ; ವ್ಯತ್ಯಾಸವು ಯಾವ ಹಬ್ಬವನ್ನು ಪ್ರಮುಖ ಮನೆಯ ಆಚರಣೆಯಾಗಿ ಸ್ವೀಕರಿಸಲಾಗುತ್ತದೆ ಎಂಬುದರಲ್ಲಿದೆ.' }, locale)}
+          </p>
+          <div className="space-y-3">
+            {KANNADA_SAMPRADAYAS.map((s) => (
+              <div key={s.name} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+                <div className="text-gold-light font-semibold text-sm mb-1">{s.name}</div>
+                <div className="text-amber-400/70 text-xs mb-2">{s.founder} · {s.centre}</div>
+                <p className="text-text-secondary text-sm leading-relaxed mb-1.5">
+                  <span className="text-gold-light/80 font-medium">Signature observances:</span> {s.signature}
+                </p>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  <span className="text-gold-light/80 font-medium">Authoritative almanacs:</span> {s.almanacs}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Mysore Dasara 10-day chronology */}
+        <section className="bg-gradient-to-br from-red-900/10 via-bg-secondary/40 to-bg-primary border border-red-500/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Mysore Dasara — The 10-Day Navaratri Chronology', hi: 'मैसूर दशहरा — 10-दिवसीय नवरात्रि क्रम', kn: 'ಮೈಸೂರು ದಸರಾ — 10-ದಿನಗಳ ನವರಾತ್ರಿ ಕ್ರಮ' }, locale)}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-4">
+            Mysore Dasara, the official state festival of Karnataka, is the most public ceremonial expression of the Kannada chandramana calendar. The modern royal celebration was initiated by <strong>Raja Wodeyar I in mid-September 1610 at Srirangapatna</strong>, and has run almost continuously for over four centuries. The festival spans Ashvina Shukla Pratipada to Ashvina Shukla Dashami.
+          </p>
+          <div className="space-y-3">
+            {MYSORE_DASARA_DAYS.map((d) => (
+              <div key={d.day} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1.5">
+                  <span className="text-gold-light font-semibold text-sm">{d.day}</span>
+                  <span className="text-amber-400/70 text-xs">{d.tithi}</span>
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed">{d.observance}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-text-secondary text-sm leading-relaxed mt-4">
+            The <strong>Jamboo Savari</strong> procession on Vijayadashami is the climactic day: the idol of Goddess Chamundeshwari is placed inside a <strong>golden mantapa weighing approximately 750 kg of gold</strong> on the back of a decorated lead elephant. The procession features elephants, camels, horses, mounted units of the Karnataka Mounted Police, folk dance troupes from across Karnataka, and tableaux representing the state’s districts. At Bannimantap, the festival concludes with the Banni mara puja (worship of the Shami tree), recalling the Mahabharata episode where the Pandavas concealed their weapons in a Shami tree during their year of exile.
+          </p>
+        </section>
+
+        {/* Kannada cultural events table 2026–2030 */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Kannada Cultural Calendar 2026–2030', hi: 'कन्नड़ सांस्कृतिक कैलेंडर 2026–2030', kn: 'ಕನ್ನಡ ಸಾಂಸ್ಕೃತಿಕ ಕ್ಯಾಲೆಂಡರ್ 2026–2030' }, locale)}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-4">
+            {tl({ en: 'Samvatsara numbering: Parabhava is the 40th of the 60-year Prabhavadi cycle; Plavanga, Kilaka, Saumya and Sadharana follow.', hi: 'संवत्सर क्रमांक: परावभ 60-वर्षीय प्रभवादि चक्र का 40वाँ है; प्लवंग, कीलक, सौम्य और साधारण उसके बाद आते हैं।', kn: 'ಸಂವತ್ಸರ ಸಂಖ್ಯೆ: ಪರಾಭವ 60-ವರ್ಷದ ಪ್ರಭವಾದಿ ಚಕ್ರದ 40 ನೆಯದು.' }, locale)}
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Year</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Samvatsara', hi: 'संवत्सर', kn: 'ಸಂವತ್ಸರ' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Shaka</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Yugadi note</th>
+                </tr>
+              </thead>
+              <tbody>
+                {KANNADA_YEARS.map((y, i) => (
+                  <tr key={y.year} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-text-primary font-medium">{y.year}</td>
+                    <td className="px-4 py-2.5 text-gold-light">{y.samvatsara}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{y.shaka}</td>
+                    <td className="px-4 py-2.5 text-amber-400/80 text-xs">{y.yugadiNote}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Famous Kannada calendrical scholars */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Famous Kannada Calendrical Scholars', hi: 'प्रसिद्ध कन्नड़ पंचांग-विद्वान', kn: 'ಪ್ರಸಿದ್ಧ ಕನ್ನಡ ಪಂಚಾಂಗ ವಿದ್ವಾಂಸರು' }, locale)}
+          </h2>
+          <div className="space-y-3">
+            {KANNADA_SCHOLARS.map((s) => (
+              <div key={s.name} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1.5">
+                  <span className="text-gold-light font-semibold text-sm">{s.name}</span>
+                  <span className="text-amber-400/70 text-xs">{s.dates}</span>
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed">{s.bio}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-text-secondary text-sm leading-relaxed mt-4">
+            The modern Madhva matha lineages — <strong>Uttaradi Matha</strong>, <strong>Sri Raghavendra Matha</strong> and <strong>Sri Vyasaraja Matha</strong> — together with the Smarta <strong>Sringeri Sharada Peetham</strong>, have institutionalised Kannada panchanga publishing into an annual cycle that continues uninterrupted into the twenty-first century.
+          </p>
         </section>
 
         {/* Upcoming festival dates — engine-driven, NEXT occurrence only */}

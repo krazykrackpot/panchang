@@ -3,6 +3,7 @@ import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { sendEmail } from '@/lib/email/resend-client';
 import { getOnboardingEmail } from '@/lib/email/onboarding-templates';
+import { chartNudgeDay3, chartNudgeDay5 } from '@/lib/email/templates/chart-nudge';
 import { locales, type Locale } from '@/lib/i18n/config';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
@@ -109,10 +110,14 @@ export async function GET(req: NextRequest) {
     }
 
     try {
+      // chartNudgeDay3/5 + getOnboardingEmail are static imports at the
+      // top — was previously dynamic `await import()` per loop iteration
+      // which paid a module-resolution cost on every chart-less Day-3/5
+      // user. Gemini PR #673 MED.
       const template = (dripDay === 3 && !hasChart)
-        ? (await import('@/lib/email/templates/chart-nudge')).chartNudgeDay3(locale, user.display_name || undefined)
+        ? chartNudgeDay3(locale, user.display_name || undefined)
         : (dripDay === 5 && !hasChart)
-          ? (await import('@/lib/email/templates/chart-nudge')).chartNudgeDay5(locale, user.display_name || undefined)
+          ? chartNudgeDay5(locale, user.display_name || undefined)
           : getOnboardingEmail(
             dripDay as 1 | 2 | 3 | 4 | 5 | 6 | 7,
             locale,

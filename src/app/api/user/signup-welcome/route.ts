@@ -103,11 +103,30 @@ export async function POST(req: NextRequest) {
 
   const template = getOnboardingEmail(1, locale, { name: displayName });
 
-  const result = await sendEmail({
-    to: user.email,
-    subject: template.subject,
-    html: template.html,
-  });
+  // Send wrapped in try/catch so a thrown exception from sendEmail
+  // (network blip / DNS / Resend API timeout) still hits the rollback
+  // path. Without this, a throw would propagate as an unhandled 500 and
+  // leave the user marked welcomed-but-not-actually-welcomed — they'd
+  // never receive the email and the drip cron would skip Day 1 because
+  // onboarding_drip_day was set to 1 during the claim. Gemini PR #673 HIGH.
+  let result: Awaited<ReturnType<typeof sendEmail>>;
+  try {
+    result = await sendEmail({
+      to: user.email,
+      subject: template.subject,
+      html: template.html,
+    });
+  } catch (sendErr) {
+    console.error('[signup-welcome] sendEmail threw:', sendErr);
+    const { error: rollbackErr } = await supabase
+      .from('user_profiles')
+      .update({ signup_welcome_sent_at: null, onboarding_drip_day: 0 })
+      .eq('id', user.id);
+    if (rollbackErr) {
+      console.error('[signup-welcome] rollback failed (after sendEmail throw):', rollbackErr.message);
+    }
+    return NextResponse.json({ error: 'Email send failed' }, { status: 502 });
+  }
 
   if (!result.success) {
     // Roll back the claim so the next /auth/callback retry (or the cron

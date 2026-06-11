@@ -13,11 +13,25 @@ export default function AuthCallbackPage() {
   const [userName, setUserName] = useState('');
 
   useEffect(() => {
+    // Track every redirect-timeout we schedule inside this effect so the
+    // cleanup return can clear them all on unmount. Without this, a user
+    // who navigates away (back button, route change, modal dismiss) within
+    // the redirect window would still fire `window.location.href` after
+    // they'd already moved on — yanking them to /profile or / unexpectedly.
+    // The handleAuth callback also schedules timeouts on the same array.
+    // Gemini PR #673 MED.
+    const redirectTimeouts: ReturnType<typeof setTimeout>[] = [];
+    const scheduleRedirect = (href: string, delayMs: number) => {
+      redirectTimeouts.push(setTimeout(() => { window.location.href = href; }, delayMs));
+    };
+
     const supabase = getSupabase();
     if (!supabase) {
       setStatus('error');
-      setTimeout(() => { window.location.href = `/${locale}`; }, 3000);
-      return;
+      scheduleRedirect(`/${locale}`, 3000);
+      return () => {
+        for (const t of redirectTimeouts) clearTimeout(t);
+      };
     }
 
     let handled = false;
@@ -57,11 +71,11 @@ export default function AuthCallbackPage() {
           });
         }
 
-        // Redirect to profile after 2 seconds
-        setTimeout(() => { window.location.href = `/${locale}/profile`; }, 2500);
+        // Redirect to profile after 2 seconds (tracked for cleanup)
+        scheduleRedirect(`/${locale}/profile`, 2500);
       } else {
         setStatus('error');
-        setTimeout(() => { window.location.href = `/${locale}`; }, 3000);
+        scheduleRedirect(`/${locale}`, 3000);
       }
     };
 
@@ -85,6 +99,7 @@ export default function AuthCallbackPage() {
     return () => {
       subscription.unsubscribe();
       clearTimeout(timeout);
+      for (const t of redirectTimeouts) clearTimeout(t);
     };
   }, [locale]);
 

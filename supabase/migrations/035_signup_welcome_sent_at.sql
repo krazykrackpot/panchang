@@ -12,15 +12,39 @@
 -- double-emailing, the signup-welcome route also sets onboarding_drip_day
 -- = 1 on the same row, which makes the daily cron skip Day 1 (it claims
 -- the row only when current drip_day < 1).
+--
+-- Idempotency
+-- -----------
+-- The whole column-add + backfill is wrapped in a DO block guarded by
+-- IF NOT EXISTS on information_schema. The earlier draft was
+--   ALTER TABLE ... ADD COLUMN IF NOT EXISTS ...; UPDATE ... WHERE col IS NULL;
+-- — but on a re-apply (CI replay, local-dev reset, etc.) the UPDATE would
+-- run against any users who signed up AFTER the first apply but hadn't
+-- yet received their welcome email, stamping them as "already welcomed"
+-- and permanently silencing the welcome route for them (Gemini PR #673
+-- HIGH). Wrapping in a DO block tied to the column's existence makes the
+-- backfill a one-time event that fires exactly once across all reapplications.
 
-ALTER TABLE user_profiles
-  ADD COLUMN IF NOT EXISTS signup_welcome_sent_at timestamptz;
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1
+    FROM information_schema.columns
+    WHERE table_schema = 'public'
+      AND table_name = 'user_profiles'
+      AND column_name = 'signup_welcome_sent_at'
+  ) THEN
+    ALTER TABLE user_profiles
+      ADD COLUMN signup_welcome_sent_at timestamptz;
 
-COMMENT ON COLUMN user_profiles.signup_welcome_sent_at IS
-  'Set when the immediate post-signup welcome email was sent via /api/user/signup-welcome. NULL = not yet sent. Idempotency guard against duplicate sends across retried auth callbacks.';
+    COMMENT ON COLUMN user_profiles.signup_welcome_sent_at IS
+      'Set when the immediate post-signup welcome email was sent via /api/user/signup-welcome. NULL = not yet sent. Idempotency guard against duplicate sends across retried auth callbacks.';
 
--- Existing users (signed up before this column existed) are stamped with
--- created_at so the route does not re-welcome them.
-UPDATE user_profiles
-SET signup_welcome_sent_at = COALESCE(signup_welcome_sent_at, created_at, now())
-WHERE signup_welcome_sent_at IS NULL;
+    -- Existing users (signed up before this column existed) are stamped
+    -- with created_at so the route does not re-welcome them. Runs exactly
+    -- once — at the time of first column creation, when by definition no
+    -- "new since the column was added" users can exist yet.
+    UPDATE user_profiles
+    SET signup_welcome_sent_at = COALESCE(created_at, now());
+  END IF;
+END $$;

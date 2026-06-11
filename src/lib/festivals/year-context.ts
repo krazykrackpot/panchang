@@ -95,7 +95,22 @@ function weekdaySignificanceEn(weekday: number, _slug: string): string {
   }
 }
 
-function driftDaysFromYearReference(slug: string, refYear: number, refUtc: number): { date: string | null; drift: number | null; weekdayEn: string | null } {
+// Gemini PR #675 HIGH: previously the sign-of-drift was inferred from
+// `refYear - new Date(refUtc).getUTCFullYear() || 1`, which silently
+// defaulted to `1` whenever the festival date's Gregorian year matched
+// `refYear`. That happens for any festival whose date crosses a Gregorian
+// year boundary (e.g., Pausha festivals in late December whose previous-
+// year occurrence sits in the SAME Gregorian year as `refUtc`), turning
+// the drift into a ~-730 nonsense value. Take the Hindu calendar year
+// (`currentYear` — the `year` parameter of the page) explicitly instead
+// so the sign is derived from the lunar year delta, not from a Gregorian
+// year that may coincide.
+function driftDaysFromYearReference(
+  slug: string,
+  refYear: number,
+  refUtc: number,
+  currentYear: number,
+): { date: string | null; drift: number | null; weekdayEn: string | null } {
   try {
     const list = generateFestivalCalendarV2(refYear, REFERENCE_CITY_LAT, REFERENCE_CITY_LNG, REFERENCE_TIMEZONE);
     const hit = list.find(f => f.slug === slug);
@@ -104,10 +119,11 @@ function driftDaysFromYearReference(slug: string, refYear: number, refUtc: numbe
     if (!pm) return { date: hit.date, drift: null, weekdayEn: null };
     const pUtc = Date.UTC(Number(pm[1]), Number(pm[2]) - 1, Number(pm[3]));
     // Drift = total Gregorian days between the two festival dates, minus
-    // 365. Positive = ref year is *later* in its Gregorian calendar than
-    // the reference UTC; negative = earlier. Caller decides sign meaning.
+    // 365 per Hindu-year-step. Positive = ref year is *later* in its
+    // Gregorian calendar than the reference UTC; negative = earlier.
+    // Caller decides sign meaning.
     const totalDays = Math.round((pUtc - refUtc) / 86400000);
-    const drift = totalDays - 365 * Math.sign(refYear - new Date(refUtc).getUTCFullYear() || 1);
+    const drift = totalDays - 365 * Math.sign(refYear - currentYear);
     const wd = new Date(pUtc).getUTCDay();
     return { date: hit.date, drift, weekdayEn: WEEKDAYS_EN[wd] };
   } catch (err) {
@@ -144,8 +160,10 @@ export function computeYearContext(slug: string, year: number, festivalDate: str
   // Resolve previous-year same-slug date via the festival generator.
   // Most festivals recur annually so the previous-year calendar will
   // contain the slug; for those that don't (eclipses, occasional
-  // observances), returns null.
-  const prev = driftDaysFromYearReference(slug, year - 1, utc);
+  // observances), returns null. `year` is passed through so the drift
+  // sign is computed from the Hindu calendar year delta — see the
+  // Gemini PR #675 HIGH comment on driftDaysFromYearReference.
+  const prev = driftDaysFromYearReference(slug, year - 1, utc, year);
   // Sign for previous-year drift is the conventional one: positive =
   // this year is later than last year by N days, negative = earlier.
   // (driftDaysFromYearReference returned `pUtc - utc`; flip for prev.)
@@ -154,7 +172,7 @@ export function computeYearContext(slug: string, year: number, festivalDate: str
   // Next-year same-slug date and drift. Positive = next year is later
   // than this year (typical Adhika-masa pattern); negative = earlier
   // (typical 11-day-shift pattern).
-  const next = driftDaysFromYearReference(slug, year + 1, utc);
+  const next = driftDaysFromYearReference(slug, year + 1, utc, year);
   const driftToNextYear = next.drift;
 
   return {

@@ -266,6 +266,38 @@ const RELATED_LINKS = [
   { slug: 'makar-sankranti', en: 'Makar Sankranti / Poush Parbon', hi: 'मकर संक्रान्ति / पौष पर्व' },
 ];
 
+// ── Day-by-day Durga Puja chronology — engineKey lets us interpolate the actual computed date ──
+const DURGA_PUJA_DAYS: Array<{ name: string; tithi: string; engineKey: string | null; desc: string }> = [
+  { name: 'Mahalaya', tithi: 'Ashwin Krishna Amavasya', engineKey: 'Mahalaya (Sarva Pitru Amavasya)', desc: 'Opening day, dominated by tarpana, the ritual offering of water to ancestors performed on the banks of the Ganges and other rivers. The predawn radio broadcast of Birendra Krishna Bhadra’s Mahishasura Mardini still anchors the day. By twilight, sculptors paint the eyes onto the unfinished clay idols of Durga in the chokkhu daan ritual.' },
+  { name: 'Pratipada through Panchami', tithi: 'Ashwin Shukla 1–5', engineKey: null, desc: 'Interior days: domestic rites of remembrance for Durga’s manifestations as Kumari, Mai, Ajima and Lakshmi. The pandals are usually not yet thrown open. The calm preparation before the noise.' },
+  { name: 'Shashthi', tithi: 'Ashwin Shukla Shashthi', engineKey: 'Durga Puja Shashti', desc: 'First day of major public ceremony. The Bodhana rite formally invokes Durga into the idol; the Adhivasa anointing ceremony follows. From this evening the pandals are open to the public.' },
+  { name: 'Maha Saptami', tithi: 'Ashwin Shukla Saptami', engineKey: 'Durga Puja Saptami', desc: 'Worship proper begins with the Navapatrika snan, the ritual bathing of nine sacred plants — banana, turmeric, jayanti, bel, pomegranate, ashoka, mana, dhan and kachu — which together constitute the goddess in her vegetal aspect. The Navapatrika is dressed in a white sari with a red border and installed beside the idol, often colloquially called Kala Bou.' },
+  { name: 'Maha Ashtami', tithi: 'Ashwin Shukla Ashtami', engineKey: 'Durga Puja Ashtami', desc: 'The most attended day. The morning Pushpanjali, in which devotees offer flowers in successive batches led by a priest’s recitation, draws the largest pandal crowds of the week.' },
+  { name: 'Sandhi Puja', tithi: 'Ashtami–Navami junction (48 minutes)', engineKey: null, desc: 'The forty-eight-minute window straddling the last 24 minutes of Ashtami tithi and the first 24 minutes of Navami tithi. Unique to the Bengali tradition and the ritual heart of the Puja. The mythological frame is that Goddess Chamunda emerged from Durga’s third eye at this precise junction and killed the demons Chanda and Munda. The liturgy requires 108 lotus flowers and 108 lit oil lamps offered within the window. The window cannot be displaced or compressed: if the tithi junction falls at three in the morning, the priesthood and the dhakis assemble at three.' },
+  { name: 'Maha Navami', tithi: 'Ashwin Shukla Navami', engineKey: 'Durga Puja Navami', desc: 'The morning is dominated by the homa, the fire oblation, and by the distribution of bhog — typically khichuri, labra and chutney — to all who come to the pandal.' },
+  { name: 'Vijayadashami', tithi: 'Ashwin Shukla Dashami', engineKey: 'Sindoor Khela / Vijaya Dashami', desc: 'The day opens with sindoor khela, in which married women apply vermilion first to the idol’s forehead and feet and then to one another. From afternoon to late evening the bishorjon processions begin: the clay idols are loaded onto trucks, paraded through the lanes, and immersed in the Hooghly, Ganges or local tanks, returning the goddess to the formless water from which her clay was drawn.' },
+];
+
+// ── Bangabda year cycle with cultural anchors ──
+const BANGABDA_YEARS: Array<{ bs: string; span: string; anchor: string }> = [
+  { bs: '1432 BS', span: '14 Apr 2025 – 13 Apr 2026', anchor: 'The 200th birth anniversary year window of Ishwarchandra Vidyasagar (b. 26 September 1820), a figure central to Bengali educational and social reform.' },
+  { bs: '1433 BS', span: '14 Apr 2026 – 13 Apr 2027', anchor: 'Marks the 71st anniversary of Satyajit Ray’s first film Pather Panchali (1955), the cinematic landmark from which post-Independence Bengali film identity is often dated.' },
+  { bs: '1434 BS', span: '14 Apr 2027 – 13 Apr 2028', anchor: 'Approaches the centenary of Rabindranath Tagore’s lecture tour to Southeast Asia (1927).' },
+  { bs: '1435 BS', span: '14 Apr 2028 – 13 Apr 2029', anchor: 'Centenary year of the founding of the Indian Statistical Institute by P. C. Mahalanobis (17 December 1931) approaches.' },
+  { bs: '1436 BS', span: '14 Apr 2029 – 13 Apr 2030', anchor: 'Centenary of the Indian Statistical Institute founding (1931) falls in this window.' },
+  { bs: '1437 BS', span: '14 Apr 2030 – 13 Apr 2031', anchor: 'Falls in the bicentenary window of the Brahmo Samaj founding (1828).' },
+  { bs: '1438 BS', span: '14 Apr 2031 – 13 Apr 2032', anchor: 'Falls in the 75-year window of the Indian Republic (formed 26 January 1950).' },
+  { bs: '1439 BS', span: '14 Apr 2032 – 13 Apr 2033', anchor: 'Falls in the centenary decade of Rabindranath Tagore’s death (1941).' },
+];
+
+// ── Famous Bengali calendrical scholars ──
+const BENGALI_SCHOLARS: Array<{ name: string; dates: string; bio: string }> = [
+  { name: 'Madhab Chandra Chattopadhyay', dates: '1829–1905', bio: 'The central figure of modern Bengali calendrical scholarship. A retired engineer trained in Bengal, Chattopadhyay turned his late life to the systematic comparison of computed planetary positions in the existing nineteenth-century panjikas against actually observed sky positions. From 1297 BS (1890 CE) Chattopadhyay published the Vishuddha Siddhanta Panjika using the British Nautical Almanac as his observational anchor. The resulting almanac became the foundation of the Driksiddhanta school of Bengali panjika-making and remains in continuous publication.' },
+  { name: 'Pathani Samanta', dates: '1835–1904', bio: 'Also known as Samanta Chandra Sekhar. A self-taught astronomer from the princely state of Khandapara in neighbouring Odisha, Samanta worked in parallel to Chattopadhyay. He refined planetary calculations and eclipse predictions using naked-eye observation and instruments built from bamboo and wood; his treatise Siddhanta Darpana, written on palm leaves and completed by 1869 (published 1899), runs to over 2,500 Sanskrit verses. He was awarded the title Mahamahopadhyay by the British government in 1893 for a successful eclipse prediction.' },
+  { name: 'Ishwarchandra Vidyasagar', dates: '1820–1891', bio: 'Whose verifiable contributions to Bengali intellectual life were Bengali primer composition, widow remarriage advocacy, founding thirty-five girls’ schools across Bengal, and refining Bengali typography and prose, was undeniably a contemporary of the early printed-panjika era. The documented almanac reform of his lifetime was the printing of the Gupta Press Panjika in 1869 (institutional, not personal to Vidyasagar) and Chattopadhyay’s 1890 Vishuddha work (a year before Vidyasagar’s death).' },
+  { name: 'Debendranath Tagore', dates: '1817–1905', bio: 'Father of Rabindranath, founder of the Brahmo Samaj in its reformed 1848 incarnation. The Brahmo movement organised its observances by the Bengali calendar — the 7th Poush observance of Maghotsav remains its central anniversary — and the movement helped normalise the Bengali calendar as a public ceremonial framework distinct from both the Hindu samvat and the Islamic Hijri.' },
+];
+
 export default async function BengaliCalendarPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: localeParam } = await params;
   setRequestLocale(localeParam);
@@ -357,6 +389,123 @@ export default async function BengaliCalendarPage({ params }: { params: Promise<
           <p className="text-text-secondary text-sm leading-relaxed">
             {L('durgaPujaText')}
           </p>
+        </section>
+
+        {/* Bangabda Origin — Akbar 1584, Shashanka prehistory */}
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'The Bangabda — Two Origin Stories', hi: 'बंगाब्द — दो उत्पत्ति-कथाएँ', bn: 'বঙ্গাব্দের উৎস — দুটি কাহিনি' }, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              The modern Bengali calendar — the Bangabda, also called Bangla San or Bangla Sal — sits at the confluence of two origin stories that scholars have not fully reconciled. The dominant administrative narrative places its formation under the Mughal emperor Akbar in 1584 CE. Akbar commissioned his court polymath Amir Fathullah Shirazi, a Shia astronomer from Safavid Iran who had joined the imperial court in Agra in 1583, to design a new fiscal calendar. The result, promulgated around 10–11 March 1584, was the Tarikh-i-Ilahi or “Divine Era” — a solar calendar that began with Nawruz, the day of the vernal equinox, with its zero year set retrospectively at 1556 CE, the year of Akbar’s accession.
+            </p>
+            <p>
+              The instrument was administrative before it was cultural. The Mughal state’s working calendar had been the Hijri lunar system, which is roughly eleven days shorter than the solar year. For a fiscal year that needed to be anchored to the actual harvest, this drift was intolerable: a tax cycle nominally fixed to a Hijri month would walk slowly across the seasons, sometimes falling weeks before any crop was in the field. By fusing the structure of the Hijri count with the rhythm of the existing Hindu solar calendar already in use in Bengal, Fathullah Shirazi produced what the Bengali historical record sometimes calls the Fasholi shan — literally the “harvest calendar.”
+            </p>
+            <p>
+              The competing narrative is older and contested. A line of historians credits the seventh-century Gauda king Shashanka, whose reign is variously dated to roughly 593–636 CE, with founding a regional solar era. The case for Shashanka is essentially arithmetic: the Bangabda epoch sits at 593/594 CE, exactly where a Shashanka-era count would begin. Bengali year 1432 BS, which ran from 14 April 2025 to 13 April 2026, corresponds to 2025/2026 CE because the offset is 593 after Pohela Boishakh and 594 before it. That precise alignment is suggestive but not decisive. Critics point out that the calendar is universally called Bangla San or Bangla Sal — both terms with Arabic-Persian roots — which would be peculiar nomenclature for a calendar founded a millennium before any Persianate administration touched Bengal.
+            </p>
+            <p>
+              What survives in lived practice is the harvest-tax cycle that Akbar’s reform institutionalised. Even after the Mughal centre lost effective power in Bengal, Nawab Murshid Quli Khan (governor from 1717) is credited with formalising the Punyaho — a “day for ceremonial land tax collection” — and tying it to the spring cycle. The fiscal infrastructure outlived the empire that built it: Bengali zamindars continued to collect rent on Pohela Boishakh into the colonial period, and the day’s modern identity as Bengali New Year is descended directly from that administrative anchor.
+            </p>
+          </div>
+        </section>
+
+        {/* Day-by-day Durga Puja chronology with engine dates */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Day-by-day Durga Puja Chronology', hi: 'दिन-प्रतिदिन दुर्गा पूजा क्रम', bn: 'দিন-ব-দিন দুর্গাপূজার ক্রম' }, locale)}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-4">
+            {tl({ en: 'Each day of the Puja sequence below carries its own tithi anchor and its own ritual. Engine-computed dates appear where the festival is registered in our panchang.', hi: 'पूजा क्रम के प्रत्येक दिन की अपनी तिथि और अनुष्ठान हैं। पंचांग engine से गणित तिथियाँ संगत स्थानों पर दर्शाई गई हैं।', bn: 'নিম্নলিখিত পূজার ক্রমের প্রতিটি দিনের নিজস্ব তিথি এবং নিজস্ব রীতি রয়েছে। পঞ্জিকা ইঞ্জিন থেকে গণনা করা তারিখ যেখানে প্রযোজ্য সেখানে দেখানো হয়েছে।' }, locale)}
+          </p>
+          <div className="space-y-3">
+            {DURGA_PUJA_DAYS.map((d) => {
+              const eDate = d.engineKey ? ed(2026, d.engineKey, locale) : null;
+              return (
+                <div key={d.name} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1.5">
+                    <span className="text-gold-light font-semibold text-sm">{d.name}</span>
+                    <span className="text-amber-400/70 text-xs">{d.tithi}{eDate ? ` · ${eDate}` : ''}</span>
+                  </div>
+                  <p className="text-text-secondary text-sm leading-relaxed">{d.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Bengali-specific tithi reckoning — two computational schools */}
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Bengali-Specific Tithi Reckoning', hi: 'बंगाली तिथि गणना — दो परम्पराएँ', bn: 'বাংলা তিথি-গণনার দুই ধারা' }, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              The Bengali panjika is the product of a nineteenth-century scientific reform movement whose disagreements still shape what appears on the calendar today.
+            </p>
+            <p>
+              Two computational schools dominate. The older school, exemplified by the Gupta Press Panjika whose printed edition appeared in 1869, follows calculations rooted in the sixteenth-century compilation Ashtabingshatitatwa by Raghunandan, which in turn rests on the much older Surya Siddhanta. The accumulated drift of those parameters, against actually observed planetary positions, is the problem that the second school was founded to fix.
+            </p>
+            <p>
+              The reform school is associated with Madhab Chandra Chattopadhyay (1829–1905), a retired engineer turned astronomer who, on examining the panjikas in circulation in late nineteenth-century Bengal, found systematic discrepancies between their computed planetary longitudes and the positions actually observed in the sky. From 1297 BS (1890 CE) Chattopadhyay began publishing the Vishuddha Siddhanta Panjika (“Pure Doctrine Almanac”), computing tithi, nakshatra and the windows for festivals on the basis of the British Nautical Almanac, which itself derived from contemporary observational astronomy with corrections for precession and nutation. The result was an almanac in which the computed times of celestial events corresponded closely to observation — the Driksiddhanta tradition.
+            </p>
+            <p>
+              These two schools sometimes assign different dates to the same festival, and Bengali households still divide along this fault line. A devout family may keep the Vishuddha tradition for tithi-sensitive rites such as Ekadashi vrata while consulting a Gupta Press panjika for cultural events that depend on Raghunandan’s older smriti precedents. The Sandhi Puja window can fall as much as a day apart between the two schools in years where Ashtami straddles dawn.
+            </p>
+          </div>
+        </section>
+
+        {/* Bangabda year cycle with cultural anchors */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Bangabda Year Cycle 1432–1439 BS', hi: 'बंगाब्द वर्ष-चक्र 1432–1439', bn: 'বঙ্গাব্দ বর্ষচক্র ১৪৩২–১৪৩৯' }, locale)}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-4">
+            {tl({ en: 'Each Bengali year is read against a cultural anchor — a centenary, an anniversary, a movement. The pairing below shows how the Bangabda count threads through the long arc of modern Bengal.', hi: 'प्रत्येक बंगाली वर्ष किसी सांस्कृतिक स्मरण-बिन्दु से जुड़ा है — एक शताब्दी, एक वर्षगाँठ, एक आन्दोलन।', bn: 'প্রতিটি বঙ্গাব্দ একটি সাংস্কৃতিক চিহ্নের সঙ্গে সংযুক্ত — একটি শতবর্ষ, একটি বার্ষিকী, একটি আন্দোলন।' }, locale)}
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold whitespace-nowrap">{tl({ en: 'BS Year', hi: 'बंगाब्द', bn: 'বঙ্গাব্দ' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold whitespace-nowrap">{tl({ en: 'Gregorian Span', hi: 'ग्रेगोरियन अवधि', bn: 'গ্রেগরিয়ান কাল' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Cultural Anchor', hi: 'सांस्कृतिक स्मरण', bn: 'সাংস্কৃতিক চিহ্ন' }, locale)}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {BANGABDA_YEARS.map((y, i) => (
+                  <tr key={y.bs} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-gold-light font-semibold whitespace-nowrap">{y.bs}</td>
+                    <td className="px-4 py-2.5 text-amber-400/80 text-xs whitespace-nowrap">{y.span}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{y.anchor}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Famous Bengali calendrical scholars */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Bengali Calendrical Scholars', hi: 'प्रसिद्ध बंगाली पंजिका-विद्वान', bn: 'বিখ্যাত পঞ্জিকা-বিদগণ' }, locale)}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-4">
+            {tl({ en: 'The Bengali Panjika tradition was carried forward by a small number of nineteenth-century scholar-astronomers whose computational decisions still echo in every modern almanac.', hi: 'बंगाली पंजिका परम्परा को कुछ उन्नीसवीं सदी के विद्वान-खगोलज्ञों ने आगे बढ़ाया, जिनके गणनात्मक निर्णय आज भी प्रत्येक आधुनिक पंचांग में प्रतिध्वनित होते हैं।', bn: 'বাংলা পঞ্জিকা ঐতিহ্য কয়েকজন ঊনবিংশ শতকের বিদ্বান-জ্যোতির্বিদ এগিয়ে নিয়ে গেছেন, যাঁদের গণনা-সিদ্ধান্ত আজও প্রতিটি আধুনিক পঞ্জিকায় প্রতিধ্বনিত হয়।' }, locale)}
+          </p>
+          <div className="space-y-3">
+            {BENGALI_SCHOLARS.map((s) => (
+              <div key={s.name} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1.5">
+                  <span className="text-gold-light font-semibold text-sm">{s.name}</span>
+                  <span className="text-amber-400/70 text-xs">{s.dates}</span>
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed">{s.bio}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* How Panjika Differs */}

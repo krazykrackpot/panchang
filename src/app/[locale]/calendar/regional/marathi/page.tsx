@@ -70,14 +70,14 @@ const MARATHI_SCHOLARS: Array<{ name: string; dates: string; bio: string }> = [
   { name: 'Modern Pune almanac houses', dates: '20th–21st c.', bio: 'Twentieth-century almanac houses based in Pune (Dixit, Date, Datey lineages) computed annual tithi tables that became the reference for marriage muhurta, naming ceremonies, and the festival calendar across western Maharashtra. Their tables anchor most contemporary Maharashtrian household panchang work.' },
 ];
 
-const SHAKA_TABLE: Array<{ shaka: string; greg: string; samvatsara: string }> = [
-  { shaka: '1947', greg: '30 March 2025', samvatsara: 'Vishvavasu' },
-  { shaka: '1948', greg: 'engine — 19 March 2026', samvatsara: 'Parabhava' },
-  { shaka: '1949', greg: 'engine', samvatsara: 'Plavanga' },
-  { shaka: '1950', greg: 'engine', samvatsara: 'Kilaka' },
-  { shaka: '1951', greg: 'engine', samvatsara: 'Saumya' },
-  { shaka: '1952', greg: 'engine', samvatsara: 'Sadharana' },
-  { shaka: '1953', greg: 'engine', samvatsara: 'Virodhakrit' },
+const SHAKA_TABLE: Array<{ shaka: number; samvatsara: string }> = [
+  { shaka: 1947, samvatsara: 'Vishvavasu' },
+  { shaka: 1948, samvatsara: 'Parabhava' },
+  { shaka: 1949, samvatsara: 'Plavanga' },
+  { shaka: 1950, samvatsara: 'Kilaka' },
+  { shaka: 1951, samvatsara: 'Saumya' },
+  { shaka: 1952, samvatsara: 'Sadharana' },
+  { shaka: 1953, samvatsara: 'Virodhakrit' },
 ];
 
 export default async function MarathiCalendarPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -215,13 +215,18 @@ export default async function MarathiCalendarPage({ params }: { params: Promise<
                 </tr>
               </thead>
               <tbody>
-                {SHAKA_TABLE.map((y, i) => (
-                  <tr key={y.shaka} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
-                    <td className="px-4 py-2.5 text-gold-light font-semibold">{y.shaka}</td>
-                    <td className="px-4 py-2.5 text-amber-400/80 text-xs">{y.greg}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{y.samvatsara}</td>
-                  </tr>
-                ))}
+                {SHAKA_TABLE.map((y, i) => {
+                  // Shaka year + 78 = Gregorian CE; Chaitra Shukla 1 = Gudi Padwa
+                  const gregYear = y.shaka + 78;
+                  const gregDate = ed(gregYear, 'Gudi Padwa', locale);
+                  return (
+                    <tr key={y.shaka} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                      <td className="px-4 py-2.5 text-gold-light font-semibold">{y.shaka}</td>
+                      <td className="px-4 py-2.5 text-amber-400/80 text-xs">{gregDate}</td>
+                      <td className="px-4 py-2.5 text-text-secondary">{y.samvatsara}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

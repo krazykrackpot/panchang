@@ -182,7 +182,15 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
   // Vaishakha
   { masa: 'vaishakha', paksha: 'shukla', tithi: 3,  slug: 'akshaya-tritiya', type: 'major', category: 'festival', muhurtaRule: 'madhyahna',
     name: { en: 'Akshaya Tritiya', hi: 'अक्षय तृतीया', sa: 'अक्षयतृतीया' } },
-  { masa: 'vaishakha', paksha: 'shukla', tithi: 3,  slug: 'parashurama-jayanti', type: 'major', category: 'jayanti',
+  // Parashurama Jayanti shares Vaishakha Shukla Tritiya with Akshaya Tritiya
+  // and follows the same kala-vyapti rule: madhyahna-vyapini Tritiya (the avatar
+  // is said to have appeared at noon, mirroring the Akshaya Tritiya midday
+  // observance). The mainstream Indian panchang labels the per-festival page
+  // muhurat as "Madhyahna Time" — same as Akshaya Tritiya. Without this rule
+  // the engine defaulted to Udaya Tithi and landed 1 day later than the
+  // mainstream observance (2026: engine without rule = Apr 20, with rule =
+  // Apr 19, same day as Akshaya Tritiya). Drik audit 2026-06-11.
+  { masa: 'vaishakha', paksha: 'shukla', tithi: 3,  slug: 'parashurama-jayanti', type: 'major', category: 'jayanti', muhurtaRule: 'madhyahna',
     name: { en: 'Parashurama Jayanti', hi: 'परशुराम जयन्ती', sa: 'परशुरामजयन्ती' } },
   { masa: 'vaishakha', paksha: 'shukla', tithi: 14, slug: 'narasimha-jayanti', type: 'major', category: 'jayanti',
     name: { en: 'Narasimha Jayanti', hi: 'नरसिंह जयन्ती', sa: 'नरसिंहजयन्ती' } },
@@ -240,8 +248,26 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
     name: { en: 'Durga Ashtami', hi: 'दुर्गा अष्टमी', sa: 'दुर्गाष्टमी' } },
   { masa: 'ashwina', paksha: 'shukla',  tithi: 9,  slug: 'maha-navami',     type: 'major', category: 'festival',
     name: { en: 'Maha Navami', hi: 'महा नवमी', sa: 'महानवमी' } },
-  { masa: 'ashwina', paksha: 'shukla',  tithi: 10, slug: 'dussehra',        type: 'major', category: 'festival' },
-  { masa: 'ashwina', paksha: 'shukla',  tithi: 15, slug: 'sharad-purnima', type: 'major', category: 'festival',
+  // Dussehra (Vijayadashami) is aparahna-vyāpinī Dashami — observed during the
+  // Vijaya Muhurat which sits in aparahna kaal (4th 1/5 of daytime). Classical
+  // basis: the Vijaya Muhurat is the moment of Rama's victory over Ravana,
+  // anchored to afternoon (Dharmasindhu, Nirnayasindhu). The mainstream Indian
+  // panchang labels the per-festival page muhurat as "Aparahna Puja Time" /
+  // "Vijaya Muhurat". With the bhuyo-vyapini tie-break (post-PR #670), Day with
+  // majority Dashami-in-aparahna overlap wins. For 2026: engine without rule =
+  // Oct 21 (Udaya Tithi), with rule = Oct 20 (Dashami fills aparahna of Oct 20
+  // for ~2h 16m vs partial-window on Oct 21). Drik audit 2026-06-11.
+  { masa: 'ashwina', paksha: 'shukla',  tithi: 10, slug: 'dussehra',        type: 'major', category: 'festival', muhurtaRule: 'aparahna' },
+  // Sharad Purnima / Kojagara Puja is nishita-vyāpinī Purnima — the rite
+  // (Kojagara Lakshmi vigil, moon-watching, distribution of poha/kheer offered
+  // to the moon) is performed at nishita kaal (midnight). Classical basis:
+  // Lakshmi descends at midnight on Kojagara, asking "ko jagarti?" ("who is
+  // awake?"); the awake receive prosperity. The mainstream Indian panchang
+  // labels the per-festival page muhurat as "Kojagara Puja Nishita Time".
+  // For 2026: engine without rule = Oct 26 (Udaya Tithi on the day Purnima
+  // ends in morning), with rule = Oct 25 (Purnima fully covers nishita window
+  // ~11:40 PM Oct 25 to ~12:31 AM Oct 26). Drik audit 2026-06-11.
+  { masa: 'ashwina', paksha: 'shukla',  tithi: 15, slug: 'sharad-purnima', type: 'major', category: 'festival', muhurtaRule: 'nishita',
     name: { en: 'Sharad Purnima', hi: 'शरद पूर्णिमा', sa: 'शारदपूर्णिमा' } },
   // Karwa Chauth  –  fast broken at moonrise (chandrodaya rule)
   // In Purnimant: "Kartika Krishna 4". Our matching uses getNextHinduMonth(amanta)
@@ -253,7 +279,20 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
   // Kartika  –  Diwali cluster (Dhanteras, Narak Chaturdashi are Kartika Krishna, NOT Ashwina)
   { masa: 'kartika', paksha: 'krishna', tithi: 13, slug: 'dhanteras',       type: 'major', category: 'festival', muhurtaRule: 'pradosh',
     name: { en: 'Dhanteras', hi: 'धनतेरस', sa: 'धन्वन्तरित्रयोदशी' } },
-  { masa: 'kartika', paksha: 'krishna', tithi: 14, slug: 'narak-chaturdashi', type: 'major', category: 'festival', muhurtaRule: 'nishita',
+  // Naraka Chaturdashi (Choti Diwali) in the mainstream North Indian
+  // observance is the Abhyang Snan day — the ritual pre-dawn oil bath at
+  // arunodaya kaal (the ~96-minute window before sunrise). Classical basis:
+  // Krishna slayed Narakasura in the early morning hours; the abhyang snan
+  // commemorates the cleansing that followed. The mainstream Indian panchang
+  // labels the per-festival page muhurat as "Abhyang Snan Muhurat".
+  // The previous rule `nishita` produces the Kali Chaudas / Kali Puja date
+  // (Bengali / East Indian observance, midnight Kali worship — same tithi,
+  // different observance). For 2026: arunodaya rule places Naraka Chaturdashi
+  // on Nov 8 (the morning Chaturdashi is at sunrise/arunodaya), matching the
+  // mainstream Indian "Choti Diwali" observance. The Kali Chaudas observance
+  // would land on Nov 7 if it had a separate slug with `nishita`. Drik audit
+  // 2026-06-11.
+  { masa: 'kartika', paksha: 'krishna', tithi: 14, slug: 'narak-chaturdashi', type: 'major', category: 'festival', muhurtaRule: 'arunodaya',
     name: { en: 'Narak Chaturdashi', hi: 'नरक चतुर्दशी', sa: 'नरकचतुर्दशी' } },
   { masa: 'kartika', paksha: 'krishna', tithi: 15, slug: 'diwali',          type: 'major', category: 'festival', muhurtaRule: 'pradosh' },
   { masa: 'kartika', paksha: 'shukla',  tithi: 1,  slug: 'govardhan-puja',  type: 'major', category: 'festival',
@@ -459,16 +498,31 @@ export const REGIONAL_FESTIVALS: FestivalDef[] = [
     name: { en: 'Durga Puja Navami', hi: 'दुर्गा पूजा नवमी', sa: 'दुर्गापूजानवमी' } },
   { masa: 'ashwina', paksha: 'shukla', tithi: 10, slug: 'sindoor-khela', type: 'regional', category: 'festival', region: 'bengali', tradition: 'shakta',
     name: { en: 'Sindoor Khela / Vijaya Dashami', hi: 'सिन्दूर खेला / विजया दशमी', sa: 'सिन्दूरखेला' } },
-  { masa: 'ashwina', paksha: 'shukla', tithi: 15, slug: 'kojagiri-purnima', type: 'regional', category: 'purnima', region: 'marathi',
+  // Kojagiri Purnima (Maharashtra) and Lakshmi Puja Bengali both share Ashwina
+  // Shukla 15 with Sharad Purnima and follow the same nishita-vyāpinī rule —
+  // moon-watching at midnight, Lakshmi vigil. See sharad-purnima def above for
+  // full classical citation. Without the rule the engine defaulted to Udaya
+  // Tithi and landed 1 day later than the mainstream observance (2026: engine
+  // without rule = Oct 26, with rule = Oct 25). Drik audit 2026-06-11.
+  { masa: 'ashwina', paksha: 'shukla', tithi: 15, slug: 'kojagiri-purnima', type: 'regional', category: 'purnima', region: 'marathi', muhurtaRule: 'nishita',
     name: { en: 'Kojagiri Purnima', hi: 'कोजागिरी पूर्णिमा', sa: 'कोजागरीपूर्णिमा' } },
-  { masa: 'ashwina', paksha: 'shukla', tithi: 15, slug: 'lakshmi-puja-bengali', type: 'regional', category: 'festival', region: 'bengali', tradition: 'shakta',
+  { masa: 'ashwina', paksha: 'shukla', tithi: 15, slug: 'lakshmi-puja-bengali', type: 'regional', category: 'festival', region: 'bengali', tradition: 'shakta', muhurtaRule: 'nishita',
     name: { en: 'Lakshmi Puja', hi: 'लक्ष्मी पूजा', sa: 'लक्ष्मीपूजा' } },
   { masa: 'ashwina', paksha: 'shukla', tithi: 3, slug: 'meera-jayanti', type: 'regional', category: 'jayanti', tradition: 'vaishnava',
     name: { en: 'Meera Jayanti', hi: 'मीरा जयन्ती', sa: 'मीराजयन्ती' } },
   { masa: 'ashwina', paksha: 'shukla', tithi: 9, slug: 'akshaya-navami', type: 'regional', category: 'festival', region: 'odisha',
     name: { en: 'Akshaya Navami', hi: 'अक्षय नवमी', sa: 'अक्षयनवमी' } },
   // Kartika  –  Diwali extensions & Bengal
-  { masa: 'kartika', paksha: 'krishna', tithi: 14, slug: 'kali-puja', type: 'regional', category: 'festival', region: 'bengali', tradition: 'shakta',
+  // Kali Puja (Bengali / East Indian observance — Kali Chaudas in some
+  // regions) is nishita-vyāpinī Chaturdashi — midnight Kali worship. Same
+  // tithi as Naraka Chaturdashi but a different observance (arunodaya vs
+  // nishita). When Naraka Chaturdashi moved to `arunodaya` (mainstream
+  // Choti Diwali / Abhyang Snan), Kali Puja keeps `nishita` to preserve the
+  // East Indian midnight observance on its own slug. For 2026: Kali Puja =
+  // Nov 7 (Chaturdashi present during nishita kaal of Nov 7), Naraka
+  // Chaturdashi = Nov 8 (Chaturdashi present at arunodaya/sunrise of Nov 8).
+  // Drik audit 2026-06-11.
+  { masa: 'kartika', paksha: 'krishna', tithi: 14, slug: 'kali-puja', type: 'regional', category: 'festival', region: 'bengali', tradition: 'shakta', muhurtaRule: 'nishita',
     name: { en: 'Kali Puja', hi: 'काली पूजा', sa: 'कालीपूजा' } },
   { masa: 'kartika', paksha: 'krishna', tithi: 14, slug: 'roop-chaturdashi', type: 'regional', category: 'festival', family: 'diwali',
     name: { en: 'Roop Chaturdashi', hi: 'रूप चतुर्दशी', sa: 'रूपचतुर्दशी' } },
@@ -476,7 +530,17 @@ export const REGIONAL_FESTIVALS: FestivalDef[] = [
     name: { en: 'Annakut', hi: 'अन्नकूट', sa: 'अन्नकूटः' } },
   { masa: 'kartika', paksha: 'shukla', tithi: 2, slug: 'yama-dwitiya', type: 'regional', category: 'festival', family: 'diwali',
     name: { en: 'Yama Dwitiya', hi: 'यम द्वितीया', sa: 'यमद्वितीया' } },
-  { masa: 'kartika', paksha: 'krishna', tithi: 8, slug: 'ahoi-ashtami', type: 'regional', category: 'vrat',
+  // Ahoi Ashtami is pradosh-vyāpinī Ashtami — the fast is broken in the
+  // evening after the mother sights the stars and offers worship in the
+  // pradosh window (sunset + ~96 minutes). Classical basis: the legend
+  // attaches to the evening sighting of Goddess Ahoi after a day-long
+  // nirjala fast for children's welfare. The mainstream Indian panchang
+  // labels the per-festival page muhurat as "Ahoi Ashtami Puja Muhurat"
+  // and "Sanjh time for sighting Stars". Without this rule the engine
+  // defaulted to Udaya Tithi and landed 1 day later (2026: engine without
+  // rule = Nov 2, with rule = Nov 1 — Ashtami present in pradosh of Nov 1).
+  // Drik audit 2026-06-11.
+  { masa: 'kartika', paksha: 'krishna', tithi: 8, slug: 'ahoi-ashtami', type: 'regional', category: 'vrat', muhurtaRule: 'pradosh',
     name: { en: 'Ahoi Ashtami', hi: 'अहोई अष्टमी', sa: 'अहोईअष्टमी' } },
   { masa: 'kartika', paksha: 'shukla', tithi: 15, slug: 'dev-diwali', type: 'regional', category: 'festival', region: 'varanasi',
     name: { en: 'Dev Diwali', hi: 'देव दीवाली', sa: 'देवदीपावलिः' } },

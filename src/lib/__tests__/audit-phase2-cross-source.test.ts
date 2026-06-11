@@ -54,13 +54,19 @@ describe('Audit P2.1: V2 festival generator ↔ Drik Panchang Delhi 2026', () =>
     { label: 'Diwali / Lakshmi Puja', pattern: /^diwali$/i,             date: '2026-11-08' },
     { label: 'Dhanteras',             pattern: /^dhanteras$/i,          date: '2026-11-06' },
     { label: 'Govardhan Puja',        pattern: /^govardhan/i,           date: '2026-11-10' },
-    // Bhai Dooj fixed 2026-06-11: was incorrectly attributed to Nov 11
-    // (sunrise rule on Day 2 — when Dwitiya was present at sunrise).
-    // Drik Panchang Bhai Dooj 2026 = Tuesday Nov 10 (aparahna-vyapini Dwitiya
-    // per Dharmasindhu). Engine now matches via muhurtaRule: 'aparahna' on
-    // the bhai-dooj def + 'aparahna' added to first-day-priority list in
-    // festival-generator.ts. Drik direct page verified 2026-06-11.
-    { label: 'Bhai Dooj',             pattern: /^bhai\s?dooj$/i,        date: '2026-11-10' },
+    // Bhai Dooj history (post-PR #670 correction): the original audit
+    // expected Nov 10 based on a memory-based Drik citation that proved
+    // wrong. Direct fetch of the mainstream Indian panchang per-festival
+    // page confirms Bhai Dooj 2026 = Wednesday Nov 11 — the festival is
+    // aparahna-vyapini Dwitiya, and the published-panchang interpretation
+    // when Dwitiya touches aparahna on both candidate days is bhuyo-vyapini
+    // (majority-overlap), which picks Day 2 (Wed Nov 11) where Dwitiya
+    // fully covers the aparahna window. The engine matches via
+    // muhurtaRule: 'aparahna' on the bhai-dooj def + the priority-list
+    // revert in festival-generator.ts that took 'aparahna' out of the
+    // pradosh/nishita pure-purva-vyapini set. Mainstream panchang
+    // verified 2026-06-11.
+    { label: 'Bhai Dooj',             pattern: /^bhai\s?dooj$/i,        date: '2026-11-11' },
     { label: 'Mahalaya / Sarva Pitru', pattern: /mahalaya|sarva.?pitru/i, date: '2026-10-10' },
     { label: 'Karwa Chauth',          pattern: /karwa|karva chauth/i,   date: '2026-10-29' },
     { label: 'Raksha Bandhan',        pattern: /raksha bandhan/i,       date: '2026-08-28' },

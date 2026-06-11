@@ -341,6 +341,32 @@ const RELATED_LINKS = [
   { slug: 'makar-sankranti', en: 'Makar Sankranti / Pongal', hi: 'मकर संक्रांति / पोंगल', ta: 'மகர சங்கராந்தி / பொங்கல்' },
 ];
 
+// ── Day-by-day Pongal chronology with regional detail and engine dates ──
+const PONGAL_DAYS: Array<{ name: string; subtitle: string; engineKey: string | null; desc: string }> = [
+  { name: 'Bhogi', subtitle: 'last day of Mārgazhi', engineKey: 'Bhogi', desc: 'Bhogi falls on the last day of Mārgazhi. Households “discard old possessions” and light a bonfire to burn the heaps of discards before dawn. In the Kongunadu belt around Coimbatore the Kaappu Kattu ritual ties protective neem and palm leaves above the entrance. Madras households dispose of broken furniture and old clothes into the street bonfire and re-whitewash exterior walls.' },
+  { name: 'Thai Pongal (Surya Pongal)', subtitle: 'Makara Sankranti', engineKey: 'Pongal / Thai Pongal', desc: 'Marks the start of the auspicious Thai month and the Sun’s turn northward (uttarāyaṇa under the sidereal reckoning). New rice from the just-completed harvest is boiled with milk and jaggery in a clay pot in the open courtyard; the moment the mixture boils over, the family shouts “Pongalō Pongal!” Decorations include kolam with sugarcane stalks, turmeric plants tied to the pot, and offerings to the Sun at dawn. Chettinad households serve sakkarai pongal (sweet) and venn pongal (savoury, with pepper and cumin) on banana leaves.' },
+  { name: 'Mattu Pongal', subtitle: 'day after Pongal', engineKey: 'Mattu Pongal', desc: 'Honours cattle — “mattu” means cow/bull. Animals are washed, their horns painted and decorated with shining metal caps, multi-coloured beads, tinkling bells, sheaves of corn and flower garlands. In southern Tamil Nadu, especially the Madurai–Tiruchirappalli–Thanjavur–Tirunelveli–Ramanathapuram belt, this is the day of Jallikattu (“ēru taḻuvuṭal” — bull-embracing — attested in Sangam literature, c. 400–100 BCE) at famed venues like Alanganallur, Avaniyapuram, and Palamedu.' },
+  { name: 'Kaanum Pongal', subtitle: 'day +2 after Pongal', engineKey: 'Kaanum Pongal', desc: '“Kaanum” means “to see/visit”. Young people visit elders for blessings, families pack leftover Pongal into picnic baskets and gather on river banks or beach fronts. Chennai’s Marina and Madurai’s Vaigai banks see lakhs of visitors. In Telangana-bordering districts the day is observed as Kanum Pongal — kanu = “to see” — with girls offering leftover rice to crows in the “kaaka padaippu” ritual.' },
+];
+
+// ── 60-year Jovian (Bṛhaspati) cycle table ──
+const TAMIL_60_YEAR_CYCLE: Array<{ span: string; n: number; name: string; tamil: string; sense: string }> = [
+  { span: 'Apr 2024 – Apr 2025', n: 38, name: 'Krōdhī', tamil: 'குரோதி', sense: '“the wrathful” — high tempers, political volatility' },
+  { span: 'Apr 2025 – Apr 2026', n: 39, name: 'Viśvāvasu', tamil: 'விசுவாவசு', sense: '“wealth of all” / “abode of the universe”' },
+  { span: 'Apr 2026 – Apr 2027', n: 40, name: 'Parābhava', tamil: 'பராபவ', sense: '“defeat / humbling” — classically difficult' },
+  { span: 'Apr 2027 – Apr 2028', n: 41, name: 'Plavaṅga', tamil: 'பிலவங்க', sense: '“leaping (monkey)” — restless energy' },
+  { span: 'Apr 2028 – Apr 2029', n: 42, name: 'Kīlaka', tamil: 'கீலக', sense: '“wedge / linchpin” — pivotal' },
+  { span: 'Apr 2029 – Apr 2030', n: 43, name: 'Saumya', tamil: 'சௌமிய', sense: '“gentle, lunar, benevolent”' },
+];
+
+// ── Famous Tamil calendrical scholars ──
+const TAMIL_SCHOLARS: Array<{ name: string; dates: string; bio: string }> = [
+  { name: 'Vatasseri Parameśvara Nambūdiri', dates: 'c. 1380–1460', bio: 'The pivotal Drik figure. The Kerala-school mathematician who, after a sustained programme of his own eclipse observations, found that the parameters in use since Āryabhaṭa had drifted noticeably from the sky. His Dṛggaṇita (“computed by observation”) was composed in 1431 CE with corrected planetary mean motions and equation-of-centre terms. Parameśvara was the disciple of Mādhava of Sangamagrāma, founder of the Kerala school whose infinite-series work would centuries later prefigure the Newton–Leibniz calculus.' },
+  { name: 'Chinthamani Ragoonatha Chary', dates: '1822 – 5 February 1880', bio: 'The first Indian Fellow of the Royal Astronomical Society and the first Indian to publish modern astronomical discoveries — the variable star R Reticuli (1867), made from the Madras Observatory under N. R. Pogson. Chary came from a family of hereditary Tamil panchangam-compilers and grew unhappy about the errors in the traditional pañcāṅga — Vakya-computed positions were off the observed sky by minutes of arc, occasionally a full degree, on slow planets. During the 1870s he published a Drigganita-pañcāṅga in Tamil and Telugu built on observed planetary parameters. His son Chinthamani Raghava Chary carried on the work.' },
+  { name: 'Konnur Manicka Mudaliar', dates: 'fl. 1880s', bio: 'Founder in 1883 of the Pambu Panchangam — the most influential commercial Tamil almanac, now producing roughly 300,000 copies per year from Chennai. The name comes from the cover illustration of a snake (pambu) encircling 27 nakshatra-circles — the snake symbolising the wandering, near-elliptical lunar path. Modern editions are labelled “Suddha Vakya Panchangam,” confirming the Vakya lineage.' },
+  { name: 'Sri Chandrasekarendra Saraswati (Kanchi Mahāperiyava)', dates: '1894–1994', bio: 'Under his pontificate the Kanchi Kamakoti Peetham’s own Madathu Panchangam shifted to Drik in 1952 — the highest-profile adoption of observational ephemerides by a major southern matha. The Sringeri Sharada Peetham and the Ranganathaswamy Temple at Srirangam meanwhile continued the Vākyapañcāṅga tradition, ensuring that both schools remain in continuous publication in the twenty-first century.' },
+];
+
 export default async function TamilCalendarPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: localeParam } = await params;
   setRequestLocale(localeParam);
@@ -465,6 +491,127 @@ export default async function TamilCalendarPage({ params }: { params: Promise<{ 
           <p className="text-text-secondary text-sm leading-relaxed">
             {L('margazhiText')}
           </p>
+        </section>
+
+        {/* Tamil Calendar Origin + Vakya/Drik split */}
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Tamil Calendar Origin — Sidereal Solar with a Jovian Cycle', hi: 'तमिल कैलेंडर — सायन सौर और बार्हस्पत्य चक्र', ta: 'தமிழ் நாள்காட்டியின் தோற்றம் — சூரியச் சக்கரமும் வியாழ ஓட்டமும்' }, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              The Tamil calendar is a <strong>sidereal solar calendar</strong> that tracks the Sun’s transit through the twelve zodiac signs rather than lunar phases. Each month begins on the day the Sun enters a new rāśi — a transition called <em>Sūrya Sankramana</em> — making month length variable (29–32 days). The twelve months are Chithirai, Vaikāsi, Āni, Ādi, Āvani, Puratāsi, Aippasi, Kārthigai, Mārgazhi, Thai, Māsi, Panguni. Each month is named for the nakshatra at which the full moon (pournami) falls in that solar month — a sidereal-solar convention older than the lunisolar systems of north India.
+            </p>
+            <p>
+              Riding alongside the twelve months is a <strong>60-year Jovian (Bṛhaspati) cycle</strong> running from Prabhāva to Akshaya. The cycle reflects the orbital LCM of Jupiter (~12 years) and Saturn (~30 years). The current cycle began with Prabhāva in 1987–88 and will close with Akshaya in 2046–47. Each year carries a name that is read out in temple courtyards at the <em>Panchanga Sravanam</em> on Chithirai 1.
+            </p>
+            <p>
+              The Tamil and Malayalam (Kollam Era) systems are close cousins but not identical. Both are sidereal solar, but the Malayalam calendar starts the year on 1 Chingam (mid-August, Sun’s entry into Leo/Simha) rather than 1 Chithirai (mid-April, Sun’s entry into Aries/Mesha). The Kollam Era itself is dated to 825 CE, commemorating the foundation of the port-city Kollam.
+            </p>
+            <p>
+              The most consequential intra-Tamil split is between <strong>Vakya Panchangam</strong> and <strong>Tirugaṇita (Drik) Panchangam</strong>. Vakya — from <em>vākya</em>, “sentence” — encodes planetary positions in mnemonic Sanskrit verses using the <em>kaṭapayādi</em> number-letter code, drawing on the <em>Vākyakaraṇa</em> and the <em>Sūrya Siddhānta</em>. Tirugaṇita (literally “true computation”) uses observation-based ephemerides. Kerala overwhelmingly uses Drik since Vatasseri Parameshvara’s <em>Dṛggaṇita</em> reforms of 1431 CE, while conservative Tamil mathas, the Srirangam Ranganathaswamy temple, and a portion of Palakkad Tamil Brahmins continue to publish Vakya for ritual dates. The Kanchi Shankara matha adopted Drik as its official system in 1952.
+            </p>
+            <p>
+              The <strong>Roja Muthiah Research Library (RMRL)</strong> in Chennai, founded 1994 on the collector Roja Muthiah Chettiar’s personal hoard, is the largest archive of printed Tamil panchangams and ephemerides — over 300,000 items spanning more than two centuries of Tamil print culture.
+            </p>
+          </div>
+        </section>
+
+        {/* Pongal day-by-day with engine dates and regional detail */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Day-by-day Pongal Chronology', hi: 'दिन-प्रतिदिन पोंगल क्रम', ta: 'பொங்கல் — நாள் வாரியான விழாக் கதை' }, locale)}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-4">
+            {tl({ en: 'Each day of the four-day arc carries its own ritual, regional variations, and engine-computed date.', hi: 'चार दिनों के क्रम का प्रत्येक दिन अपनी अनुष्ठान-विशेषता और engine-संगणित तिथि रखता है।', ta: 'நான்கு நாள் விழாவின் ஒவ்வொரு நாளும் தனித்த சடங்கையும், பிராந்திய மாறுபாட்டையும், engine-கணித தேதியையும் கொண்டிருக்கிறது.' }, locale)}
+          </p>
+          <div className="space-y-3">
+            {PONGAL_DAYS.map((d) => {
+              const eDate = d.engineKey ? ed(2026, d.engineKey, locale) : null;
+              return (
+                <div key={d.name} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1.5">
+                    <span className="text-gold-light font-semibold text-sm">{d.name}</span>
+                    <span className="text-amber-400/70 text-xs">{d.subtitle}{eDate ? ` · ${eDate}` : ''}</span>
+                  </div>
+                  <p className="text-text-secondary text-sm leading-relaxed">{d.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Karthigai Deepam + Aippasi–Karthigai pedantry */}
+        <section className="bg-gradient-to-br from-amber-900/15 via-bg-secondary/40 to-bg-primary border border-amber-500/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Karthigai Deepam — Festival of Lights, Sangam-attested', hi: 'कार्थिगै दीपम् — दीपोत्सव (संगम साहित्य प्रमाणित)', ta: 'கார்த்திகை தீபம் — சங்க காலத்திலிருந்து வழங்கும் ஒளி விழா' }, locale)}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              Karthigai Deepam — the festival from which the month takes its name — is celebrated on the first pournami of Kārthigai when Krittikā nakshatra is in force, usually November or December. Streets and temple gopurams are lit with rows of <em>agal vilakku</em> (clay oil lamps). The premier observance is at Arunachaleswara Temple, Tiruvannamalai: a giant ghee cauldron — the <em>Mahā Deepam</em> — is hauled to the summit of Arunachala hill at dusk and lit, said to make Shiva’s <em>jyōtirliṅgam</em> form (a “column of fire stretching across the three worlds” in the Shiva Purana) momentarily visible. Millions perform the 14-km hill circumambulation (<em>girivalam</em>).
+            </p>
+            <p>
+              The festival is documented in Sangam-era poetry (<em>Akanāṉūṟu</em>, c. 200 BCE – 300 CE) where it is called <em>Peruviḻā</em> (“the great festival”) — predating the southern adoption of Deepavali by several centuries. Tamil temple-tradition reads Krittika as the nakshatra of Murugan (“Karthikēya” = the one nursed by the Krittikas/Pleiades), tying the festival into the wider cult of Murugan and his six abodes (Aṟupaṭai Vīṭu).
+            </p>
+            <p>
+              The Aippasi–Karthigai month boundary is a recurring point of pedantic discussion among Tamil pandits. Because the months are defined by the Sun’s entry into Vrishchika (Scorpio) rather than by the nakshatra cycle, Krittikā nakshatra can fall either side of the Aippasi/Karthigai sankranti depending on the year. When Krittikā occurs <em>before</em> the Vrishchika sankranti, some Vakya almanacs list a “Mahā Karthigai” observance in late Aippasi. There is no single ecclesiastical authority, so Pambu Panchangam, Srirangam Vakya, and Drik almanacs can list slightly different “official” Karthigai Deepam dates — typically within a 24-hour window.
+            </p>
+          </div>
+        </section>
+
+        {/* Tamil 60-year cycle table */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Tamil 60-Year Cycle 2024–2030', hi: 'तमिल 60-वर्षीय चक्र 2024–2030', ta: 'தமிழ் 60 ஆண்டுச் சக்கரம் 2024–2030' }, locale)}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-4">
+            {tl({ en: 'The transition happens at Chithirai 1 (Tamil New Year, ~14 April) each year; the Panchanga Sravanam — the public reading of the new year’s almanac in temple courtyards — formally announces the new samvatsara name.', hi: 'प्रत्येक चैत्र (तमिल नव वर्ष, ~14 अप्रैल) को संक्रमण होता है; पंचांग श्रवणम — मन्दिर प्रांगणों में नवीन वर्ष के पंचांग का सार्वजनिक वाचन — नवीन संवत्सर-नाम की औपचारिक घोषणा है।', ta: 'ஒவ்வொரு வருடமும் சித்திரை 1 (தமிழ் புத்தாண்டு, ~14 ஏப்ரல்) அன்று மாற்றம் நிகழ்கிறது; கோயில் வளாகங்களில் புத்தாண்டுப் பஞ்சாங்கத்தைப் பகிரங்கமாகப் படிக்கும் பஞ்சாங்க ஶ்ரவணம் புதிய சம்வத்சர-நாமத்தை அறிவிக்கிறது.' }, locale)}
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold whitespace-nowrap">{tl({ en: 'Span', hi: 'अवधि', ta: 'காலம்' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">#</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold whitespace-nowrap">{tl({ en: 'Name', hi: 'नाम', ta: 'பெயர்' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">தமிழ்</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Sense', hi: 'अर्थ', ta: 'பொருள்' }, locale)}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {TAMIL_60_YEAR_CYCLE.map((y, i) => (
+                  <tr key={y.name} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-amber-400/80 text-xs whitespace-nowrap">{y.span}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{y.n}</td>
+                    <td className="px-4 py-2.5 text-gold-light font-semibold">{y.name}</td>
+                    <td className="px-4 py-2.5 text-text-primary">{y.tamil}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{y.sense}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Famous Tamil calendrical scholars */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {tl({ en: 'Tamil Calendrical Scholars', hi: 'प्रसिद्ध तमिल पंचांग-विद्वान', ta: 'பஞ்சாங்க அறிஞர்கள்' }, locale)}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-4">
+            {tl({ en: 'The Tamil pañcāṅga tradition is the work of a small number of mathematician-astronomers whose computational decisions still echo in every modern almanac.', hi: 'तमिल पञ्चाङ्ग परम्परा को कुछ गणितज्ञ-खगोलज्ञों ने आगे बढ़ाया, जिनके गणनात्मक निर्णय आज भी हर आधुनिक पंचांग में प्रतिध्वनित होते हैं।', ta: 'தமிழ்ப் பஞ்சாங்க பாரம்பரியம் ஒரு சில கணித-வானியல் அறிஞர்களின் கையில் வளர்ந்தது; அவர்களின் கணித முடிவுகள் இன்றும் ஒவ்வொரு பஞ்சாங்கத்திலும் ஒலிக்கின்றன.' }, locale)}
+          </p>
+          <div className="space-y-3">
+            {TAMIL_SCHOLARS.map((s) => (
+              <div key={s.name} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1.5">
+                  <span className="text-gold-light font-semibold text-sm">{s.name}</span>
+                  <span className="text-amber-400/70 text-xs">{s.dates}</span>
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed">{s.bio}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* Upcoming Tamil Festival Dates — engine-driven */}

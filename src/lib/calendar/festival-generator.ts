@@ -687,22 +687,28 @@ export function generateFestivalCalendarV2(
         // Dharmasindhu resolution:
         // 1. Active only on Day 1 → pick Day 1
         // 2. Active only on Day 2 → keep Day 2 (sunriseDate)
-        // 3. Active on both → purva-vyapini festivals (pradosh/nishita/aparahna)
-        //    prefer Day 1 regardless of overlap size; other day-festivals pick
-        //    the greater overlap.
-        //    Why 'aparahna' joined the list (2026-06-11): Bhai Dooj is aparahna-
-        //    vyapini per Dharmasindhu — observe on Day 1 if Dwitiya is present
-        //    in Day 1's aparahna kaal at all, even if Day 2's overlap is larger.
-        //    Drik 2026 Bhai Dooj = Nov 10 (Day 1) confirmed via WebFetch.
-        //    Safe side-effect surface: grep confirmed Bhai Dooj is the only
-        //    festival using muhurtaRule: 'aparahna' at the time of this change.
-        //    If any future festival opts into 'aparahna' with para-vyapini
-        //    semantics, introduce an explicit `vyapini` field instead of
-        //    coupling it to the rule.
+        // 3. Active on both → purva-vyapini festivals (pradosh/nishita) prefer
+        //    Day 1 regardless of overlap size; other day-festivals (including
+        //    aparahna-vyapini) pick the greater overlap (bhuyo-vyapini).
+        //
+        //    Why 'aparahna' is NOT in the priority list (2026-06-11 revert):
+        //    The original PR #669 added 'aparahna' here based on the assumption
+        //    that Bhai Dooj is purva-vyapini ("observe Day 1 if Dwitiya touches
+        //    aparahna at all"). Direct Drik fetch on Bhai Dooj 2026 page shows
+        //    Drik = Nov 11, NOT Nov 10 as PR #669 claimed, and Drik's own
+        //    explanation on that page uses the aparahna-vyapini framing —
+        //    Drik picks the day where Dwitiya occupies the larger portion of
+        //    aparahna (bhuyo-vyapini). For 2026 that's Day 2 (full ~130 min)
+        //    over Day 1 (~80 min). pradosh and nishita ARE classically
+        //    purva-vyapini (no real lineage disagreement); aparahna is split,
+        //    and Drik + Prokerala + AstroSage + mainstream panchangs all
+        //    apply bhuyo-vyapini. Going with the majority + verifiable
+        //    reference. Bhai Dooj 2026: engine pre-revert Nov 10, Drik Nov 11,
+        //    engine post-revert Nov 11.
         if (overlap1 > 0 && overlap2 === 0) {
           festivalDate = `${y1}-${String(m1).padStart(2, '0')}-${String(d1).padStart(2, '0')}`;
         } else if (overlap1 > 0 && overlap2 > 0) {
-          if (['pradosh', 'nishita', 'aparahna'].includes(rule) || overlap1 >= overlap2) {
+          if (['pradosh', 'nishita'].includes(rule) || overlap1 >= overlap2) {
             festivalDate = `${y1}-${String(m1).padStart(2, '0')}-${String(d1).padStart(2, '0')}`;
           }
         }

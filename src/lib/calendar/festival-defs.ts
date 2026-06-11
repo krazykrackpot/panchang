@@ -207,14 +207,27 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
   { masa: 'shravana', paksha: 'shukla', tithi: 15, slug: 'raksha-bandhan',  type: 'major', category: 'festival' },
   { masa: 'shravana', paksha: 'shukla', tithi: 3,  slug: 'hariyali-teej',   type: 'major', category: 'festival',
     name: { en: 'Hariyali Teej', hi: 'हरियाली तीज', sa: 'हरितालिकातृतीया' } },
-  { masa: 'shravana', paksha: 'krishna', tithi: 5,  slug: 'nag-panchami',    type: 'major', category: 'festival',
+  // Nag Panchami is Shravana SHUKLA Panchami uniformly across India (Drik /
+  // Prokerala / Karnataka / North India / Gujarat all agree on the same
+  // calendar day). Shukla paksha is unambiguous between Amanta and Purnimanta
+  // — the month-name divergence only happens for Krishna paksha. Original def
+  // had `paksha: 'krishna'` (typo / regression), which resolved to Ashadha
+  // Krishna 5 in Amanta (= Shravana Krishna 5 in Purnimanta) and produced
+  // dates ~14 days before the actual festival (Aug 3 instead of Aug 17 in
+  // 2026). Direct Drik fetch 2026-06-11 confirms Shravana Shukla 5.
+  { masa: 'shravana', paksha: 'shukla', tithi: 5,  slug: 'nag-panchami',    type: 'major', category: 'festival',
     name: { en: 'Nag Panchami', hi: 'नाग पंचमी', sa: 'नागपञ्चमी' } },
   // Bhadrapada
   // Janmashtami: major festival AND a vrat (full-day fast until midnight,
   // broken at the Nishita Kala muhurat after Krishna's birth.)
   { masa: 'bhadrapada', paksha: 'krishna', tithi: 8,  slug: 'janmashtami',    type: 'major', category: 'festival', muhurtaRule: 'nishita', isVrat: true },
   // Hartalika Teej: women's nirjala (waterless) fast for Shiva-Parvati.
-  { masa: 'bhadrapada', paksha: 'shukla',  tithi: 3,  slug: 'hartalika-teej', type: 'major', category: 'festival', muhurtaRule: 'madhyahna', isVrat: true,
+  // No muhurtaRule — defaults to sunrise (Udaya Tithi). Previously had
+  // `muhurtaRule: 'madhyahna'`, which forced Day 1 attribution when Tritiya
+  // touched madhyahna on Day 1 but had ended before madhyahna on Day 2.
+  // That produced Sep 13 for 2026; Drik (Udaya Tithi) shows Sep 14.
+  // Drik audit 2026-06-11.
+  { masa: 'bhadrapada', paksha: 'shukla',  tithi: 3,  slug: 'hartalika-teej', type: 'major', category: 'festival', isVrat: true,
     name: { en: 'Hartalika Teej', hi: 'हरतालिका तीज', sa: 'हरितालिकातृतीया' } },
   { masa: 'bhadrapada', paksha: 'shukla',  tithi: 4,  slug: 'ganesh-chaturthi', type: 'major', category: 'festival', muhurtaRule: 'madhyahna' },
   { masa: 'bhadrapada', paksha: 'shukla',  tithi: 12, slug: 'onam',             type: 'major', category: 'festival',

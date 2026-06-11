@@ -286,13 +286,15 @@ const RATH_YATRA_CHARIOTS: Array<{ name: string; deity: string; size: string; cl
 ];
 
 // ── Odia cultural calendar 2025–2030 ──
-const ODIA_TABLE: Array<{ year: number; pana: string; rath: string; raja: string; utkaliya: string }> = [
+// Gregorian dates are resolved at render time via the engine for years where
+// `engine` is set; 2025 carries a precomputed reference row.
+const ODIA_TABLE: Array<{ year: number; pana: string | null; rath: string | null; raja: string | null; utkaliya: string }> = [
   { year: 2025, pana: '14 Apr 2025', rath: '27 Jun 2025', raja: '15 Jun 2025', utkaliya: '1434' },
-  { year: 2026, pana: 'engine', rath: 'engine', raja: 'engine', utkaliya: '1435' },
-  { year: 2027, pana: 'engine', rath: 'engine', raja: 'engine', utkaliya: '1436' },
-  { year: 2028, pana: 'engine', rath: 'engine', raja: 'engine', utkaliya: '1437' },
-  { year: 2029, pana: 'engine', rath: 'engine', raja: 'engine', utkaliya: '1438' },
-  { year: 2030, pana: 'engine', rath: 'engine', raja: 'engine', utkaliya: '1439' },
+  { year: 2026, pana: null, rath: null, raja: null, utkaliya: '1435' },
+  { year: 2027, pana: null, rath: null, raja: null, utkaliya: '1436' },
+  { year: 2028, pana: null, rath: null, raja: null, utkaliya: '1437' },
+  { year: 2029, pana: null, rath: null, raja: null, utkaliya: '1438' },
+  { year: 2030, pana: null, rath: null, raja: null, utkaliya: '1439' },
 ];
 
 export default async function OdiaCalendarPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -474,15 +476,20 @@ export default async function OdiaCalendarPage({ params }: { params: Promise<{ l
                 </tr>
               </thead>
               <tbody>
-                {ODIA_TABLE.map((y, i) => (
-                  <tr key={y.year} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
-                    <td className="px-4 py-2.5 text-text-primary font-medium">{y.year}</td>
-                    <td className="px-4 py-2.5 text-amber-400/80 text-xs">{y.pana}</td>
-                    <td className="px-4 py-2.5 text-amber-400/80 text-xs">{y.rath}</td>
-                    <td className="px-4 py-2.5 text-amber-400/80 text-xs">{y.raja}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{y.utkaliya}</td>
-                  </tr>
-                ))}
+                {ODIA_TABLE.map((y, i) => {
+                  const pana = y.pana ?? ed(y.year, 'Pana Sankranti (Odia New Year)', locale);
+                  const rath = y.rath ?? ed(y.year, 'Jagannath Rath Yatra', locale);
+                  const raja = y.raja ?? ed(y.year, 'Raja Parba (Mithuna Sankranti)', locale);
+                  return (
+                    <tr key={y.year} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                      <td className="px-4 py-2.5 text-text-primary font-medium">{y.year}</td>
+                      <td className="px-4 py-2.5 text-amber-400/80 text-xs">{pana}</td>
+                      <td className="px-4 py-2.5 text-amber-400/80 text-xs">{rath}</td>
+                      <td className="px-4 py-2.5 text-amber-400/80 text-xs">{raja}</td>
+                      <td className="px-4 py-2.5 text-text-secondary">{y.utkaliya}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

@@ -267,35 +267,37 @@ const RELATED_LINKS = [
 ];
 
 // ── Day-by-day Durga Puja chronology — engineKey lets us interpolate the actual computed date ──
-const DURGA_PUJA_DAYS: Array<{ name: string; tithi: string; engineKey: string | null; desc: string }> = [
-  { name: 'Mahalaya', tithi: 'Ashwin Krishna Amavasya', engineKey: 'Mahalaya (Sarva Pitru Amavasya)', desc: 'Opening day, dominated by tarpana, the ritual offering of water to ancestors performed on the banks of the Ganges and other rivers. The predawn radio broadcast of Birendra Krishna Bhadra’s Mahishasura Mardini still anchors the day. By twilight, sculptors paint the eyes onto the unfinished clay idols of Durga in the chokkhu daan ritual.' },
-  { name: 'Pratipada through Panchami', tithi: 'Ashwin Shukla 1–5', engineKey: null, desc: 'Interior days: domestic rites of remembrance for Durga’s manifestations as Kumari, Mai, Ajima and Lakshmi. The pandals are usually not yet thrown open. The calm preparation before the noise.' },
-  { name: 'Shashthi', tithi: 'Ashwin Shukla Shashthi', engineKey: 'Durga Puja Shashti', desc: 'First day of major public ceremony. The Bodhana rite formally invokes Durga into the idol; the Adhivasa anointing ceremony follows. From this evening the pandals are open to the public.' },
-  { name: 'Maha Saptami', tithi: 'Ashwin Shukla Saptami', engineKey: 'Durga Puja Saptami', desc: 'Worship proper begins with the Navapatrika snan, the ritual bathing of nine sacred plants — banana, turmeric, jayanti, bel, pomegranate, ashoka, mana, dhan and kachu — which together constitute the goddess in her vegetal aspect. The Navapatrika is dressed in a white sari with a red border and installed beside the idol, often colloquially called Kala Bou.' },
-  { name: 'Maha Ashtami', tithi: 'Ashwin Shukla Ashtami', engineKey: 'Durga Puja Ashtami', desc: 'The most attended day. The morning Pushpanjali, in which devotees offer flowers in successive batches led by a priest’s recitation, draws the largest pandal crowds of the week.' },
-  { name: 'Sandhi Puja', tithi: 'Ashtami–Navami junction (48 minutes)', engineKey: null, desc: 'The forty-eight-minute window straddling the last 24 minutes of Ashtami tithi and the first 24 minutes of Navami tithi. Unique to the Bengali tradition and the ritual heart of the Puja. The mythological frame is that Goddess Chamunda emerged from Durga’s third eye at this precise junction and killed the demons Chanda and Munda. The liturgy requires 108 lotus flowers and 108 lit oil lamps offered within the window. The window cannot be displaced or compressed: if the tithi junction falls at three in the morning, the priesthood and the dhakis assemble at three.' },
-  { name: 'Maha Navami', tithi: 'Ashwin Shukla Navami', engineKey: 'Durga Puja Navami', desc: 'The morning is dominated by the homa, the fire oblation, and by the distribution of bhog — typically khichuri, labra and chutney — to all who come to the pandal.' },
-  { name: 'Vijayadashami', tithi: 'Ashwin Shukla Dashami', engineKey: 'Sindoor Khela / Vijaya Dashami', desc: 'The day opens with sindoor khela, in which married women apply vermilion first to the idol’s forehead and feet and then to one another. From afternoon to late evening the bishorjon processions begin: the clay idols are loaded onto trucks, paraded through the lanes, and immersed in the Hooghly, Ganges or local tanks, returning the goddess to the formless water from which her clay was drawn.' },
+// LocaleText shape on name/tithi/desc enables the Gemini overlay translator to
+// fill hi/bn/ta/te/kn/mai/mr/gu values in a follow-up PR. tl() falls back to .en.
+const DURGA_PUJA_DAYS: Array<{ name: LocaleText; tithi: LocaleText; engineKey: string | null; desc: LocaleText }> = [
+  { name: { en: 'Mahalaya' }, tithi: { en: 'Ashwin Krishna Amavasya' }, engineKey: 'Mahalaya (Sarva Pitru Amavasya)', desc: { en: 'Opening day, dominated by tarpana, the ritual offering of water to ancestors performed on the banks of the Ganges and other rivers. The predawn radio broadcast of Birendra Krishna Bhadra’s Mahishasura Mardini still anchors the day. By twilight, sculptors paint the eyes onto the unfinished clay idols of Durga in the chokkhu daan ritual.' } },
+  { name: { en: 'Pratipada through Panchami' }, tithi: { en: 'Ashwin Shukla 1–5' }, engineKey: null, desc: { en: 'Interior days: domestic rites of remembrance for Durga’s manifestations as Kumari, Mai, Ajima and Lakshmi. The pandals are usually not yet thrown open. The calm preparation before the noise.' } },
+  { name: { en: 'Shashthi' }, tithi: { en: 'Ashwin Shukla Shashthi' }, engineKey: 'Durga Puja Shashti', desc: { en: 'First day of major public ceremony. The Bodhana rite formally invokes Durga into the idol; the Adhivasa anointing ceremony follows. From this evening the pandals are open to the public.' } },
+  { name: { en: 'Maha Saptami' }, tithi: { en: 'Ashwin Shukla Saptami' }, engineKey: 'Durga Puja Saptami', desc: { en: 'Worship proper begins with the Navapatrika snan, the ritual bathing of nine sacred plants — banana, turmeric, jayanti, bel, pomegranate, ashoka, mana, dhan and kachu — which together constitute the goddess in her vegetal aspect. The Navapatrika is dressed in a white sari with a red border and installed beside the idol, often colloquially called Kala Bou.' } },
+  { name: { en: 'Maha Ashtami' }, tithi: { en: 'Ashwin Shukla Ashtami' }, engineKey: 'Durga Puja Ashtami', desc: { en: 'The most attended day. The morning Pushpanjali, in which devotees offer flowers in successive batches led by a priest’s recitation, draws the largest pandal crowds of the week.' } },
+  { name: { en: 'Sandhi Puja' }, tithi: { en: 'Ashtami–Navami junction (48 minutes)' }, engineKey: null, desc: { en: 'The forty-eight-minute window straddling the last 24 minutes of Ashtami tithi and the first 24 minutes of Navami tithi. Unique to the Bengali tradition and the ritual heart of the Puja. The mythological frame is that Goddess Chamunda emerged from Durga’s third eye at this precise junction and killed the demons Chanda and Munda. The liturgy requires 108 lotus flowers and 108 lit oil lamps offered within the window. The window cannot be displaced or compressed: if the tithi junction falls at three in the morning, the priesthood and the dhakis assemble at three.' } },
+  { name: { en: 'Maha Navami' }, tithi: { en: 'Ashwin Shukla Navami' }, engineKey: 'Durga Puja Navami', desc: { en: 'The morning is dominated by the homa, the fire oblation, and by the distribution of bhog — typically khichuri, labra and chutney — to all who come to the pandal.' } },
+  { name: { en: 'Vijayadashami' }, tithi: { en: 'Ashwin Shukla Dashami' }, engineKey: 'Sindoor Khela / Vijaya Dashami', desc: { en: 'The day opens with sindoor khela, in which married women apply vermilion first to the idol’s forehead and feet and then to one another. From afternoon to late evening the bishorjon processions begin: the clay idols are loaded onto trucks, paraded through the lanes, and immersed in the Hooghly, Ganges or local tanks, returning the goddess to the formless water from which her clay was drawn.' } },
 ];
 
 // ── Bangabda year cycle with cultural anchors ──
-const BANGABDA_YEARS: Array<{ bs: string; span: string; anchor: string }> = [
-  { bs: '1432 BS', span: '14 Apr 2025 – 13 Apr 2026', anchor: 'The 200th birth anniversary year window of Ishwarchandra Vidyasagar (b. 26 September 1820), a figure central to Bengali educational and social reform.' },
-  { bs: '1433 BS', span: '14 Apr 2026 – 13 Apr 2027', anchor: 'Marks the 71st anniversary of Satyajit Ray’s first film Pather Panchali (1955), the cinematic landmark from which post-Independence Bengali film identity is often dated.' },
-  { bs: '1434 BS', span: '14 Apr 2027 – 13 Apr 2028', anchor: 'Approaches the centenary of Rabindranath Tagore’s lecture tour to Southeast Asia (1927).' },
-  { bs: '1435 BS', span: '14 Apr 2028 – 13 Apr 2029', anchor: 'Centenary year of the founding of the Indian Statistical Institute by P. C. Mahalanobis (17 December 1931) approaches.' },
-  { bs: '1436 BS', span: '14 Apr 2029 – 13 Apr 2030', anchor: 'Centenary of the Indian Statistical Institute founding (1931) falls in this window.' },
-  { bs: '1437 BS', span: '14 Apr 2030 – 13 Apr 2031', anchor: 'Falls in the bicentenary window of the Brahmo Samaj founding (1828).' },
-  { bs: '1438 BS', span: '14 Apr 2031 – 13 Apr 2032', anchor: 'Falls in the 75-year window of the Indian Republic (formed 26 January 1950).' },
-  { bs: '1439 BS', span: '14 Apr 2032 – 13 Apr 2033', anchor: 'Falls in the centenary decade of Rabindranath Tagore’s death (1941).' },
+const BANGABDA_YEARS: Array<{ bs: string; span: string; anchor: LocaleText }> = [
+  { bs: '1432 BS', span: '14 Apr 2025 – 13 Apr 2026', anchor: { en: 'The 200th birth anniversary year window of Ishwarchandra Vidyasagar (b. 26 September 1820), a figure central to Bengali educational and social reform.' } },
+  { bs: '1433 BS', span: '14 Apr 2026 – 13 Apr 2027', anchor: { en: 'Marks the 71st anniversary of Satyajit Ray’s first film Pather Panchali (1955), the cinematic landmark from which post-Independence Bengali film identity is often dated.' } },
+  { bs: '1434 BS', span: '14 Apr 2027 – 13 Apr 2028', anchor: { en: 'Approaches the centenary of Rabindranath Tagore’s lecture tour to Southeast Asia (1927).' } },
+  { bs: '1435 BS', span: '14 Apr 2028 – 13 Apr 2029', anchor: { en: 'Centenary year of the founding of the Indian Statistical Institute by P. C. Mahalanobis (17 December 1931) approaches.' } },
+  { bs: '1436 BS', span: '14 Apr 2029 – 13 Apr 2030', anchor: { en: 'Centenary of the Indian Statistical Institute founding (1931) falls in this window.' } },
+  { bs: '1437 BS', span: '14 Apr 2030 – 13 Apr 2031', anchor: { en: 'Falls in the bicentenary window of the Brahmo Samaj founding (1828).' } },
+  { bs: '1438 BS', span: '14 Apr 2031 – 13 Apr 2032', anchor: { en: 'Falls in the 75-year window of the Indian Republic (formed 26 January 1950).' } },
+  { bs: '1439 BS', span: '14 Apr 2032 – 13 Apr 2033', anchor: { en: 'Falls in the centenary decade of Rabindranath Tagore’s death (1941).' } },
 ];
 
 // ── Famous Bengali calendrical scholars ──
-const BENGALI_SCHOLARS: Array<{ name: string; dates: string; bio: string }> = [
-  { name: 'Madhab Chandra Chattopadhyay', dates: '1829–1905', bio: 'The central figure of modern Bengali calendrical scholarship. A retired engineer trained in Bengal, Chattopadhyay turned his late life to the systematic comparison of computed planetary positions in the existing nineteenth-century panjikas against actually observed sky positions. From 1297 BS (1890 CE) Chattopadhyay published the Vishuddha Siddhanta Panjika using the British Nautical Almanac as his observational anchor. The resulting almanac became the foundation of the Driksiddhanta school of Bengali panjika-making and remains in continuous publication.' },
-  { name: 'Pathani Samanta', dates: '1835–1904', bio: 'Also known as Samanta Chandra Sekhar. A self-taught astronomer from the princely state of Khandapara in neighbouring Odisha, Samanta worked in parallel to Chattopadhyay. He refined planetary calculations and eclipse predictions using naked-eye observation and instruments built from bamboo and wood; his treatise Siddhanta Darpana, written on palm leaves and completed by 1869 (published 1899), runs to over 2,500 Sanskrit verses. He was awarded the title Mahamahopadhyay by the British government in 1893 for a successful eclipse prediction.' },
-  { name: 'Ishwarchandra Vidyasagar', dates: '1820–1891', bio: 'Whose verifiable contributions to Bengali intellectual life were Bengali primer composition, widow remarriage advocacy, founding thirty-five girls’ schools across Bengal, and refining Bengali typography and prose, was undeniably a contemporary of the early printed-panjika era. The documented almanac reform of his lifetime was the printing of the Gupta Press Panjika in 1869 (institutional, not personal to Vidyasagar) and Chattopadhyay’s 1890 Vishuddha work (a year before Vidyasagar’s death).' },
-  { name: 'Debendranath Tagore', dates: '1817–1905', bio: 'Father of Rabindranath, founder of the Brahmo Samaj in its reformed 1848 incarnation. The Brahmo movement organised its observances by the Bengali calendar — the 7th Poush observance of Maghotsav remains its central anniversary — and the movement helped normalise the Bengali calendar as a public ceremonial framework distinct from both the Hindu samvat and the Islamic Hijri.' },
+const BENGALI_SCHOLARS: Array<{ name: LocaleText; dates: string; bio: LocaleText }> = [
+  { name: { en: 'Madhab Chandra Chattopadhyay' }, dates: '1829–1905', bio: { en: 'The central figure of modern Bengali calendrical scholarship. A retired engineer trained in Bengal, Chattopadhyay turned his late life to the systematic comparison of computed planetary positions in the existing nineteenth-century panjikas against actually observed sky positions. From 1297 BS (1890 CE) Chattopadhyay published the Vishuddha Siddhanta Panjika using the British Nautical Almanac as his observational anchor. The resulting almanac became the foundation of the Driksiddhanta school of Bengali panjika-making and remains in continuous publication.' } },
+  { name: { en: 'Pathani Samanta' }, dates: '1835–1904', bio: { en: 'Also known as Samanta Chandra Sekhar. A self-taught astronomer from the princely state of Khandapara in neighbouring Odisha, Samanta worked in parallel to Chattopadhyay. He refined planetary calculations and eclipse predictions using naked-eye observation and instruments built from bamboo and wood; his treatise Siddhanta Darpana, written on palm leaves and completed by 1869 (published 1899), runs to over 2,500 Sanskrit verses. He was awarded the title Mahamahopadhyay by the British government in 1893 for a successful eclipse prediction.' } },
+  { name: { en: 'Ishwarchandra Vidyasagar' }, dates: '1820–1891', bio: { en: 'Whose verifiable contributions to Bengali intellectual life were Bengali primer composition, widow remarriage advocacy, founding thirty-five girls’ schools across Bengal, and refining Bengali typography and prose, was undeniably a contemporary of the early printed-panjika era. The documented almanac reform of his lifetime was the printing of the Gupta Press Panjika in 1869 (institutional, not personal to Vidyasagar) and Chattopadhyay’s 1890 Vishuddha work (a year before Vidyasagar’s death).' } },
+  { name: { en: 'Debendranath Tagore' }, dates: '1817–1905', bio: { en: 'Father of Rabindranath, founder of the Brahmo Samaj in its reformed 1848 incarnation. The Brahmo movement organised its observances by the Bengali calendar — the 7th Poush observance of Maghotsav remains its central anniversary — and the movement helped normalise the Bengali calendar as a public ceremonial framework distinct from both the Hindu samvat and the Islamic Hijri.' } },
 ];
 
 export default async function BengaliCalendarPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -424,12 +426,12 @@ export default async function BengaliCalendarPage({ params }: { params: Promise<
             {DURGA_PUJA_DAYS.map((d) => {
               const eDate = d.engineKey ? ed(2026, d.engineKey, locale) : null;
               return (
-                <div key={d.name} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+                <div key={d.name.en} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
                   <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1.5">
-                    <span className="text-gold-light font-semibold text-sm">{d.name}</span>
-                    <span className="text-amber-400/70 text-xs">{d.tithi}{eDate ? ` · ${eDate}` : ''}</span>
+                    <span className="text-gold-light font-semibold text-sm">{tl(d.name, locale)}</span>
+                    <span className="text-amber-400/70 text-xs">{tl(d.tithi, locale)}{eDate ? ` · ${eDate}` : ''}</span>
                   </div>
-                  <p className="text-text-secondary text-sm leading-relaxed">{d.desc}</p>
+                  <p className="text-text-secondary text-sm leading-relaxed">{tl(d.desc, locale)}</p>
                 </div>
               );
             })}
@@ -479,7 +481,7 @@ export default async function BengaliCalendarPage({ params }: { params: Promise<
                   <tr key={y.bs} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
                     <td className="px-4 py-2.5 text-gold-light font-semibold whitespace-nowrap">{y.bs}</td>
                     <td className="px-4 py-2.5 text-amber-400/80 text-xs whitespace-nowrap">{y.span}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{y.anchor}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{tl(y.anchor, locale)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -497,12 +499,12 @@ export default async function BengaliCalendarPage({ params }: { params: Promise<
           </p>
           <div className="space-y-3">
             {BENGALI_SCHOLARS.map((s) => (
-              <div key={s.name} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+              <div key={s.name.en} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1.5">
-                  <span className="text-gold-light font-semibold text-sm">{s.name}</span>
+                  <span className="text-gold-light font-semibold text-sm">{tl(s.name, locale)}</span>
                   <span className="text-amber-400/70 text-xs">{s.dates}</span>
                 </div>
-                <p className="text-text-secondary text-sm leading-relaxed">{s.bio}</p>
+                <p className="text-text-secondary text-sm leading-relaxed">{tl(s.bio, locale)}</p>
               </div>
             ))}
           </div>

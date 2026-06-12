@@ -58,16 +58,18 @@ const MARATHI_FESTIVALS: MarathiFestival[] = [
   { en: 'Rangpanchami', hi: 'रंग पंचमी', mr: 'रंगपंचमी', engineKey: 'Rangpanchami', tithi: 'Phalguna Krishna Panchami' },
 ];
 
-const GANESH_CHATURTHI_ARC: Array<{ day: string; ritual: string }> = [
-  { day: 'Day 1 — Ganesh Chaturthi (Bhadrapada Shukla Chaturthi)', ritual: 'Pranapratishtha (life-installation) of the murti, abhisheka, modak offering, first aarti.' },
-  { day: 'Days 2–9', ritual: 'Daily morning and evening aartis, recitation of the Atharvashirsha, devotional music, and (for sarvajanik mandals) cultural programmes — kirtans, lavani, plays, lectures.' },
-  { day: 'Day 10 — Anant Chaturdashi (Bhadrapada Shukla Chaturdashi)', ritual: 'Visarjan procession. In Mumbai alone, roughly 6,500 sarvajanik Ganpati murtis and 1.75 lakh household murtis are immersed at 65 natural water bodies and 205 artificial ponds. The Lalbaugcha Raja → Girgaum Chowpatty procession, accompanied by the chant Ganpati Bappa Morya, Pudhchya Varshi Lavkar Ya, remains the largest annual urban gathering in India.' },
+// LocaleText shape on day/ritual/name/bio enables Gemini overlay translator to
+// fill mr/hi/regional values in a follow-up PR. tl() falls back to .en.
+const GANESH_CHATURTHI_ARC: Array<{ day: LocaleText; ritual: LocaleText }> = [
+  { day: { en: 'Day 1 — Ganesh Chaturthi (Bhadrapada Shukla Chaturthi)' }, ritual: { en: 'Pranapratishtha (life-installation) of the murti, abhisheka, modak offering, first aarti.' } },
+  { day: { en: 'Days 2–9' }, ritual: { en: 'Daily morning and evening aartis, recitation of the Atharvashirsha, devotional music, and (for sarvajanik mandals) cultural programmes — kirtans, lavani, plays, lectures.' } },
+  { day: { en: 'Day 10 — Anant Chaturdashi (Bhadrapada Shukla Chaturdashi)' }, ritual: { en: 'Visarjan procession. In Mumbai alone, roughly 6,500 sarvajanik Ganpati murtis and 1.75 lakh household murtis are immersed at 65 natural water bodies and 205 artificial ponds. The Lalbaugcha Raja → Girgaum Chowpatty procession, accompanied by the chant Ganpati Bappa Morya, Pudhchya Varshi Lavkar Ya, remains the largest annual urban gathering in India.' } },
 ];
 
-const MARATHI_SCHOLARS: Array<{ name: string; dates: string; bio: string }> = [
-  { name: 'Bal Gangadhar Tilak', dates: '1856–1920', bio: 'Pune-based polymath and editor of Kesari (founded 1881). Orion, or Researches into the Antiquity of the Vedas (1893) used the precession of the equinoxes to argue for a Vedic composition date around 4500 BCE; The Arctic Home in the Vedas (1903) extended this with a controversial polar-origin hypothesis. Tilak’s astronomical chronology, though now considered outside mainstream Indology, set the template for using precession arithmetic as a calendrical argument. Tilak also publicly championed the Sarvajanik Ganesh Utsav from 1893 as a community festival bridging Brahmin and non-Brahmin households.' },
-  { name: 'The Pune ephemeris circle', dates: 'late 19th–20th c.', bio: 'Tilak’s collaborators at Kesari produced and distributed annual Marathi panchang almanacs that codified the Shaka / Amanta convention for a mass readership. The convention they fixed — Chaitra as the first month, Shukla Paksha as the start of every month — remains the canonical Marathi panchang convention today.' },
-  { name: 'Modern Pune almanac houses', dates: '20th–21st c.', bio: 'Twentieth-century almanac houses based in Pune (Dixit, Date, Datey lineages) computed annual tithi tables that became the reference for marriage muhurta, naming ceremonies, and the festival calendar across western Maharashtra. Their tables anchor most contemporary Maharashtrian household panchang work.' },
+const MARATHI_SCHOLARS: Array<{ name: LocaleText; dates: string; bio: LocaleText }> = [
+  { name: { en: 'Bal Gangadhar Tilak' }, dates: '1856–1920', bio: { en: 'Pune-based polymath and editor of Kesari (founded 1881). Orion, or Researches into the Antiquity of the Vedas (1893) used the precession of the equinoxes to argue for a Vedic composition date around 4500 BCE; The Arctic Home in the Vedas (1903) extended this with a controversial polar-origin hypothesis. Tilak’s astronomical chronology, though now considered outside mainstream Indology, set the template for using precession arithmetic as a calendrical argument. Tilak also publicly championed the Sarvajanik Ganesh Utsav from 1893 as a community festival bridging Brahmin and non-Brahmin households.' } },
+  { name: { en: 'The Pune ephemeris circle' }, dates: 'late 19th–20th c.', bio: { en: 'Tilak’s collaborators at Kesari produced and distributed annual Marathi panchang almanacs that codified the Shaka / Amanta convention for a mass readership. The convention they fixed — Chaitra as the first month, Shukla Paksha as the start of every month — remains the canonical Marathi panchang convention today.' } },
+  { name: { en: 'Modern Pune almanac houses' }, dates: '20th–21st c.', bio: { en: 'Twentieth-century almanac houses based in Pune (Dixit, Date, Datey lineages) computed annual tithi tables that became the reference for marriage muhurta, naming ceremonies, and the festival calendar across western Maharashtra. Their tables anchor most contemporary Maharashtrian household panchang work.' } },
 ];
 
 const SHAKA_TABLE: Array<{ shaka: number; samvatsara: string }> = [
@@ -189,9 +191,9 @@ export default async function MarathiCalendarPage({ params }: { params: Promise<
           </p>
           <div className="space-y-3">
             {GANESH_CHATURTHI_ARC.map((d) => (
-              <div key={d.day} className="bg-bg-primary/40 border border-gold-primary/12 rounded-xl p-4">
-                <div className="text-gold-light font-semibold text-sm mb-1.5">{d.day}</div>
-                <p className="text-text-secondary text-sm leading-relaxed">{d.ritual}</p>
+              <div key={d.day.en} className="bg-bg-primary/40 border border-gold-primary/12 rounded-xl p-4">
+                <div className="text-gold-light font-semibold text-sm mb-1.5">{tl(d.day, locale)}</div>
+                <p className="text-text-secondary text-sm leading-relaxed">{tl(d.ritual, locale)}</p>
               </div>
             ))}
           </div>
@@ -239,12 +241,12 @@ export default async function MarathiCalendarPage({ params }: { params: Promise<
           </h2>
           <div className="space-y-3">
             {MARATHI_SCHOLARS.map((s) => (
-              <div key={s.name} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+              <div key={s.name.en} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1.5">
-                  <span className="text-gold-light font-semibold text-sm">{s.name}</span>
+                  <span className="text-gold-light font-semibold text-sm">{tl(s.name, locale)}</span>
                   <span className="text-amber-400/70 text-xs">{s.dates}</span>
                 </div>
-                <p className="text-text-secondary text-sm leading-relaxed">{s.bio}</p>
+                <p className="text-text-secondary text-sm leading-relaxed">{tl(s.bio, locale)}</p>
               </div>
             ))}
           </div>

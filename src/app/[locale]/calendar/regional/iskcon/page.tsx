@@ -239,8 +239,8 @@ export default function ISKCONCalendarPage() {
               <thead>
                 <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">#</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Vishnu Month</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">Conventional Lunar Month</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Vishnu Month', hi: 'विष्णु मास' }, locale)}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: 'Conventional Lunar Month', hi: 'पारंपरिक चंद्र मास' }, locale)}</th>
                 </tr>
               </thead>
               <tbody>

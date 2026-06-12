@@ -3,6 +3,7 @@ import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
 import { pickRegionalChrome as RC } from "@/lib/content/regional-chrome-labels";
 import { engineDate as ed, nextUpcoming, todayInIst } from "@/lib/seo/regional-faq-dates";
 import { tl } from "@/lib/utils/trilingual";
+import type { LocaleText } from "@/types/panchang";
 
 // ═══════════════════════════════════════════════════════════════════════════
 // LABELS — EN / HI / TE trilingual
@@ -590,13 +591,15 @@ const FAQ_DATA = [
 ];
 
 // ── Ugadi Pachadi six-taste table ──
-const UGADI_PACHADI: Array<{ taste: string; ingredient: string; represents: string }> = [
-  { taste: 'Sweet (Madhuram)', ingredient: 'Jaggery (bellam)', represents: 'Happiness, joy' },
-  { taste: 'Sour (Pulupu)', ingredient: 'Tamarind paste', represents: 'Disgust, displeasing experiences' },
-  { taste: 'Salty (Uppu)', ingredient: 'Salt', represents: 'Interest, the spice of engagement' },
-  { taste: 'Spicy (Karam)', ingredient: 'Green chilli or pepper', represents: 'Anger, intensity' },
-  { taste: 'Bitter (Chedu)', ingredient: 'Neem flowers', represents: 'Sadness, grief' },
-  { taste: 'Astringent (Vagaru)', ingredient: 'Raw mango pieces', represents: 'Surprise, the unexpected' },
+// LocaleText shape enables the Gemini overlay translator to fill hi/te
+// (+ all 7 visible locales) values in a follow-up PR. tl() falls back to .en.
+const UGADI_PACHADI: Array<{ taste: LocaleText; ingredient: LocaleText; represents: LocaleText }> = [
+  { taste: { en: 'Sweet (Madhuram)' }, ingredient: { en: 'Jaggery (bellam)' }, represents: { en: 'Happiness, joy' } },
+  { taste: { en: 'Sour (Pulupu)' }, ingredient: { en: 'Tamarind paste' }, represents: { en: 'Disgust, displeasing experiences' } },
+  { taste: { en: 'Salty (Uppu)' }, ingredient: { en: 'Salt' }, represents: { en: 'Interest, the spice of engagement' } },
+  { taste: { en: 'Spicy (Karam)' }, ingredient: { en: 'Green chilli or pepper' }, represents: { en: 'Anger, intensity' } },
+  { taste: { en: 'Bitter (Chedu)' }, ingredient: { en: 'Neem flowers' }, represents: { en: 'Sadness, grief' } },
+  { taste: { en: 'Astringent (Vagaru)' }, ingredient: { en: 'Raw mango pieces' }, represents: { en: 'Surprise, the unexpected' } },
 ];
 
 // ── Telugu 60-year Jovian cycle 2024–2030 ──
@@ -966,10 +969,10 @@ export default async function TeluguCalendarPage({
               </thead>
               <tbody>
                 {UGADI_PACHADI.map((p, i) => (
-                  <tr key={p.taste} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
-                    <td className="px-4 py-2.5 text-gold-light font-semibold">{p.taste}</td>
-                    <td className="px-4 py-2.5 text-amber-400/80">{p.ingredient}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{p.represents}</td>
+                  <tr key={p.taste.en} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-gold-light font-semibold">{tl(p.taste, locale)}</td>
+                    <td className="px-4 py-2.5 text-amber-400/80">{tl(p.ingredient, locale)}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{tl(p.represents, locale)}</td>
                   </tr>
                 ))}
               </tbody>

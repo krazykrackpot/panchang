@@ -22,7 +22,7 @@ const INR_DISPLAY: Record<BrihaspatiPricingTier, string> = {
   annual: '₹11,000',
 };
 const USD_DISPLAY: Record<BrihaspatiPricingTier, string> = {
-  single: '$0.99',
+  single: '$1.30',
   pack_5: '$2.99',
   monthly: '$12.99',
   annual: '$129.99',

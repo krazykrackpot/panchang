@@ -222,7 +222,7 @@ describe('Stripe — verifyWebhookEvent', () => {
 
 describe('Stripe — displayCents', () => {
   it.each([
-    ['single', 99],
+    ['single', 130],
     ['pack_5', 299],
     ['monthly', 1299],
     ['annual', 12999],

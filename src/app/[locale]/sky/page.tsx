@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useLocale } from 'next-intl';
 import { LiveSkyMap } from '@/components/sky/LiveSkyMap';
+import { SkyTourVideo } from '@/components/sky/SkyTourVideo';
 import type { SkyPlanetPosition } from '@/lib/sky/positions';
 import { parsePositionsResponse } from '@/lib/sky/positions-response';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -252,6 +253,10 @@ export default function SkyPage() {
             )}
           </div>
         </section>
+
+        {/* Tour video — locale-aware (Hindi VO for /hi, English VO elsewhere).
+            Click-to-play so the 500KB+ YouTube iframe only loads on intent. */}
+        <SkyTourVideo locale={locale} />
 
         {/* Disclaimer */}
         <p className="text-[#6a5a28] text-xs leading-relaxed max-w-3xl">

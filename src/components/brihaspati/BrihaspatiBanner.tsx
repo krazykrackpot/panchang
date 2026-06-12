@@ -75,7 +75,7 @@ export function BrihaspatiBanner({ locale = 'en' }: { locale?: 'en' | 'hi' | 'ta
         ? t('banner.freeWithCredits', { count: balance.credits })
         : `${balance.credits} credit${balance.credits === 1 ? '' : 's'} left`;
     }
-    return currency === 'INR' ? '₹99' : '$0.99';
+    return currency === 'INR' ? '₹99' : '$1.30';
   }, [balance, currency, t]);
 
   if (dismissed) return null;

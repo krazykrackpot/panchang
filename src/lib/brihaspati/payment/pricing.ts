@@ -57,7 +57,7 @@ export const STRIPE_PRICING: Record<BrihaspatiPricingTier, StripePricing> = {
  * uncapped AI calls.
  */
 export const USD_DISPLAY_CENTS: Record<BrihaspatiPricingTier, number> = {
-  single: 99,
+  single: 130,
   pack_5: 299,
   monthly: 1299,
   annual: 12999,

@@ -71,6 +71,9 @@ def translate_to(en_text: str, target: str, cache: dict) -> str:
             if not out:
                 raise RuntimeError("empty translation")
             cache[key] = escape_single_quotes(out)
+            # Throttle to avoid free-tier rate-limit / IP block when running
+            # over hundreds of strings (Gemini #688 MED finding).
+            time.sleep(0.2)
             return cache[key]
         except Exception as e:
             last_err = e

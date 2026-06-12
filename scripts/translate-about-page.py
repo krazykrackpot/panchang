@@ -13,6 +13,7 @@ Inserts the new blocks immediately AFTER the `mr: { ... },` block
 """
 import re
 import sys
+import time
 from pathlib import Path
 from deep_translator import GoogleTranslator
 
@@ -33,17 +34,23 @@ def translate(text: str, target: str) -> str:
     key = (text, target)
     if key in CACHE:
         return CACHE[key]
-    try:
-        result = GoogleTranslator(source="en", target=target).translate(text)
-        if not result:
-            return text
-        # Normalize apostrophes to U+2019 so single-quoted TS literals stay well-formed
-        result = result.replace("'", "’")
-        CACHE[key] = result
-        return result
-    except Exception as e:
-        print(f"  WARN: translate {target!r} failed for {text[:40]!r}: {e}", file=sys.stderr)
-        return text
+    last_err = None
+    for attempt in range(3):
+        try:
+            result = GoogleTranslator(source="en", target=target).translate(text)
+            if not result:
+                raise RuntimeError("empty translation")
+            # Normalize apostrophes to U+2019 so single-quoted TS literals stay well-formed
+            result = result.replace("'", "’")
+            CACHE[key] = result
+            # Throttle to avoid free-tier rate-limit / IP block.
+            time.sleep(0.2)
+            return result
+        except Exception as e:
+            last_err = e
+            time.sleep(1 + attempt)
+    print(f"  WARN: translate {target!r} failed for {text[:40]!r}: {last_err}", file=sys.stderr)
+    return text
 
 
 def extract_en_block(src: str) -> tuple[int, int, str]:

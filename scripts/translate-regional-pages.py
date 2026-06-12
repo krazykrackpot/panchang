@@ -48,9 +48,10 @@ PAGES = [
     ("iskcon",    ["hi"]),
 ]
 
-# Match { en: '...' } where ... contains no plain ASCII single quote.
-# (We use U+2019 for in-string apostrophes per the file convention.)
-RE_LOCALE_TEXT = re.compile(r"\{\s*en:\s*'([^']*)'\s*\}")
+# Match { en: '...' } correctly handling escaped `\'` inside the value
+# (e.g. `Bhadra\'s`). The `(?:\\.|[^'\\])*` pattern walks past any
+# backslash-escape pair before treating `'` as the closing delimiter.
+RE_LOCALE_TEXT = re.compile(r"\{\s*en:\s*'((?:\\.|[^'\\])*)'\s*\}")
 
 
 def escape_single_quotes(s: str) -> str:

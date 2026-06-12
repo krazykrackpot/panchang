@@ -384,6 +384,64 @@ describe('soft-404 fix — per-route year clamps (Gemini round 2 CRITICAL)', () 
   });
 });
 
+describe('GSC Coverage Drilldown 2026-06-12 — bare hub redirects (308)', () => {
+  // 3 of 234 404s in GSC Coverage Drilldown were external typos hitting
+  // bare hub paths. 308 to the canonical surface; SEO equity follows.
+  const BARE_HUB_CASES: ReadonlyArray<{ url: string; expected: RegExp }> = [
+    { url: 'https://dekhopanchang.com/te/pancha-pakshi',  expected: /^\/te\/learn\/pancha-pakshi$/ },
+    { url: 'https://dekhopanchang.com/gu/hindu-calendar', expected: /^\/gu\/hindu-calendar\/\d{4}$/ },
+    { url: 'https://dekhopanchang.com/ta/hindu-calendar', expected: /^\/ta\/hindu-calendar\/\d{4}$/ },
+    { url: 'https://dekhopanchang.com/en/pancha-pakshi',  expected: /^\/en\/learn\/pancha-pakshi$/ },
+    { url: 'https://dekhopanchang.com/mai/hindu-calendar', expected: /^\/mai\/hindu-calendar\/\d{4}$/ },
+  ];
+
+  it.each(BARE_HUB_CASES)('308 redirects $url → matches $expected', ({ url, expected }) => {
+    const res = proxy(makeRequest(url));
+    expect(res.status).toBe(308);
+    const location = res.headers.get('location') ?? '';
+    expect(new URL(location).pathname).toMatch(expected);
+  });
+});
+
+describe('GSC Coverage Drilldown 2026-06-12 — puja-vidhi typo redirects (308)', () => {
+  // 2 of 234 404s were `/learn/puja-vidhi/<slug>` — the data-file path
+  // pattern. Canonical route is `/[locale]/puja/<slug>`.
+  const PUJA_VIDHI_CASES: ReadonlyArray<{ url: string; expected: string }> = [
+    { url: 'https://dekhopanchang.com/te/learn/puja-vidhi/raksha-bandhan', expected: '/te/puja/raksha-bandhan' },
+    { url: 'https://dekhopanchang.com/hi/learn/puja-vidhi/dhanteras',      expected: '/hi/puja/dhanteras' },
+    { url: 'https://dekhopanchang.com/en/learn/puja-vidhi/diwali',         expected: '/en/puja/diwali' },
+  ];
+
+  it.each(PUJA_VIDHI_CASES)('308 redirects $url → $expected', ({ url, expected }) => {
+    const res = proxy(makeRequest(url));
+    expect(res.status).toBe(308);
+    const location = res.headers.get('location') ?? '';
+    expect(new URL(location).pathname).toBe(expected);
+  });
+});
+
+describe('GSC Coverage Drilldown 2026-06-12 — double-locale strip (308)', () => {
+  // 2 of 234 404s were /<loc1>/<loc2>/<rest> — strip outer locale, keep inner.
+  const DOUBLE_LOCALE_CASES: ReadonlyArray<{ url: string; expected: string }> = [
+    { url: 'https://dekhopanchang.com/en/bn/panchang/mumbai', expected: '/bn/panchang/mumbai' },
+    { url: 'https://dekhopanchang.com/en/gu/panchang/nagpur', expected: '/gu/panchang/nagpur' },
+    { url: 'https://dekhopanchang.com/hi/ta/learn/kundali',    expected: '/ta/learn/kundali' },
+  ];
+
+  it.each(DOUBLE_LOCALE_CASES)('308 redirects $url → $expected', ({ url, expected }) => {
+    const res = proxy(makeRequest(url));
+    expect(res.status).toBe(308);
+    const location = res.headers.get('location') ?? '';
+    expect(new URL(location).pathname).toBe(expected);
+  });
+
+  it('does NOT mistake non-locale segment as inner locale (/en/foo/bar → pass-through)', () => {
+    const res = proxy(makeRequest('https://dekhopanchang.com/en/calendar/today'));
+    // Should hit the existing pass-through (200 next response), not 308
+    expect(res.status).not.toBe(308);
+  });
+});
+
 describe('soft-404 fix — adjacent surfaces unaffected', () => {
   // Routes that look related but are distinct page handlers must not be
   // accidentally gated. Spec §3.5 (city / type whitelists deferred).

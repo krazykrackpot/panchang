@@ -458,6 +458,91 @@ function isInvalidPanchangCityPath(segments: string[]): boolean {
 }
 
 /**
+ * Returns the 308 target if `segmentsAfterLocale` is one of the bare hub
+ * paths that GSC found 404ing from external backlinks / guessed URLs:
+ *
+ *   /<locale>/hindu-calendar         → /<locale>/hindu-calendar/<curYear>
+ *   /<locale>/pancha-pakshi          → /<locale>/learn/pancha-pakshi
+ *
+ * GSC Coverage Drilldown 2026-06-12 surfaced 3 such 404s
+ * (te/pancha-pakshi, gu/hindu-calendar, ta/hindu-calendar). They aren't
+ * in our sitemap — external typos / guess-the-URL crawlers landing on the
+ * obvious hub path. Permanent 308 sends them to the canonical surface.
+ *
+ * Year resolved in {@link SEO_CITY_TZ} so the redirect target tracks the
+ * current Gregorian year — we publish hindu-calendar/2026 and /2027 in
+ * the sitemap. Returns null if no bare-hub match.
+ */
+function bareHubRedirect(
+  locale: string,
+  segmentsAfterLocale: string[],
+): string | null {
+  if (segmentsAfterLocale.length !== 1) return null;
+  const hub = segmentsAfterLocale[0];
+  if (hub === 'hindu-calendar') {
+    const year = todayInTimezone(SEO_CITY_TZ).slice(0, 4);
+    return `/${locale}/hindu-calendar/${year}`;
+  }
+  if (hub === 'pancha-pakshi') {
+    return `/${locale}/learn/pancha-pakshi`;
+  }
+  return null;
+}
+
+/**
+ * Returns the 308 target if the path is `/learn/puja-vidhi/<slug>` —
+ * a known external-typo pattern (people guess the data-file path based
+ * on `src/lib/constants/puja-vidhi/`). The canonical route is
+ * `/[locale]/puja/[slug]`. GSC Coverage Drilldown 2026-06-12 surfaced 2
+ * (te/raksha-bandhan, hi/dhanteras).
+ *
+ * Slug pass-through — the canonical `/puja/[slug]` route's own
+ * `getPujaVidhiBySlug` + notFound() handles unknown slugs. The proxy
+ * doesn't need to know the slug catalogue.
+ */
+function pujaVidhiTypoRedirect(
+  locale: string,
+  segmentsAfterLocale: string[],
+): string | null {
+  if (segmentsAfterLocale.length !== 3) return null;
+  if (segmentsAfterLocale[0] !== 'learn') return null;
+  if (segmentsAfterLocale[1] !== 'puja-vidhi') return null;
+  const slug = segmentsAfterLocale[2];
+  if (!slug) return null;
+  return `/${locale}/puja/${slug}`;
+}
+
+/**
+ * Returns the 308 target if the path is `/<loc1>/<loc2>/<rest>` —
+ * a double-locale typo where the URL has BOTH an outer locale prefix
+ * AND another active locale as the next segment. Caller has already
+ * confirmed the OUTER `<loc1>` is a valid locale (via `pathnameLocale`);
+ * we just check whether the next segment is also one of LOCALES and
+ * strip the outer.
+ *
+ * GSC Coverage Drilldown 2026-06-12 surfaced 2 examples:
+ *   /en/bn/panchang/mumbai → /bn/panchang/mumbai
+ *   /en/gu/panchang/nagpur → /gu/panchang/nagpur
+ *
+ * Both came from external backlinks. We strip the outer locale (not the
+ * inner) because the inner is the intent — someone meant Bengali Mumbai
+ * panchang, not English-with-spurious-bn-segment.
+ *
+ * Returns null if `segmentsAfterLocale[0]` isn't a locale, or if the
+ * path has nothing after the double-locale prefix (`/en/bn` with no
+ * rest — falls through to bare-locale handling, low value to gate).
+ */
+function doubleLocaleRedirect(
+  segmentsAfterLocale: string[],
+): string | null {
+  if (segmentsAfterLocale.length < 2) return null;
+  const inner = segmentsAfterLocale[0];
+  if (!LOCALES.includes(inner as (typeof LOCALES)[number])) return null;
+  const rest = segmentsAfterLocale.slice(1).join('/');
+  return `/${inner}/${rest}`;
+}
+
+/**
  * Returns true if `segments` hits `/devotional/[type]/[slug]` with
  * either an unknown `type` (not aarti/chalisa/mantra/stotram) or an
  * unknown `slug` (not in CANONICAL_DEVOTIONAL_SLUGS).
@@ -614,6 +699,43 @@ export default function proxy(request: NextRequest) {
     if (yogaCanonical !== null) {
       const url = request.nextUrl.clone();
       url.pathname = `/${pathnameLocale}/learn/yoga/${yogaCanonical}`;
+      return NextResponse.redirect(url, 308);
+    }
+
+    // Phase 1.6 — double-locale strip → 308. `/en/bn/panchang/mumbai`
+    // → `/bn/panchang/mumbai`. Surfaced by GSC Coverage Drilldown
+    // 2026-06-12 as external typos on backlinks. Runs BEFORE the bare-hub
+    // and puja-vidhi-typo redirects so the inner locale handles those
+    // checks (a double-locale + bare-hub stack like /en/bn/hindu-calendar
+    // strips to /bn/hindu-calendar and re-enters the proxy on the next
+    // request, which then hits the bare-hub redirect for bn).
+    const doubleLocale = doubleLocaleRedirect(segmentsAfterLocale);
+    if (doubleLocale !== null) {
+      const url = request.nextUrl.clone();
+      url.pathname = doubleLocale;
+      return NextResponse.redirect(url, 308);
+    }
+
+    // Phase 1.7 — bare hub paths → 308 to canonical hub URL.
+    //   /<loc>/hindu-calendar → /<loc>/hindu-calendar/<currentYear>
+    //   /<loc>/pancha-pakshi  → /<loc>/learn/pancha-pakshi
+    // GSC Coverage Drilldown 2026-06-12: 3 of 234 404s; external typos
+    // not in our sitemap but worth catching for UX + crawl-budget hygiene.
+    const bareHub = bareHubRedirect(pathnameLocale, segmentsAfterLocale);
+    if (bareHub !== null) {
+      const url = request.nextUrl.clone();
+      url.pathname = bareHub;
+      return NextResponse.redirect(url, 308);
+    }
+
+    // Phase 1.8 — puja-vidhi data-file-path typo → 308 to canonical
+    // `/[locale]/puja/[slug]` route. People guess the URL from
+    // `src/lib/constants/puja-vidhi/`; the canonical route is `/puja/<slug>`.
+    // GSC Coverage Drilldown 2026-06-12: 2 of 234 404s.
+    const pujaVidhi = pujaVidhiTypoRedirect(pathnameLocale, segmentsAfterLocale);
+    if (pujaVidhi !== null) {
+      const url = request.nextUrl.clone();
+      url.pathname = pujaVidhi;
       return NextResponse.redirect(url, 308);
     }
 

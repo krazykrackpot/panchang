@@ -31,7 +31,8 @@ from pathlib import Path
 
 from deep_translator import GoogleTranslator
 
-ROOT = Path("/Users/adityakumar/Desktop/venture/panchang/src/app/[locale]/calendar/regional")
+# Repo-relative path so the script works for any contributor and in CI.
+ROOT = Path(__file__).resolve().parent.parent / "src" / "app" / "[locale]" / "calendar" / "regional"
 
 # (page-folder, [target_locales])
 PAGES = [

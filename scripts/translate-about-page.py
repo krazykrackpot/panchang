@@ -53,29 +53,49 @@ def translate(text: str, target: str) -> str:
     return text
 
 
+# String-literal-aware brace walker. Tracks single-quote, double-quote,
+# and backtick string contexts so that `{` / `}` characters appearing
+# inside a string value do not throw off the brace depth count.
+def _scan_block_end(src: str, start: int) -> int:
+    """Starting at `start` (right after the opening `{`), walk forward
+    until the matching `}` is found at depth 0. Returns the index of
+    that `}`."""
+    depth = 1
+    i = start
+    string_char: str | None = None
+    escape = False
+    while i < len(src) and depth > 0:
+        c = src[i]
+        if escape:
+            escape = False
+        elif string_char is not None:
+            if c == '\\':
+                escape = True
+            elif c == string_char:
+                string_char = None
+        elif c in ("'", '"', '`'):
+            string_char = c
+        elif c == '{':
+            depth += 1
+        elif c == '}':
+            depth -= 1
+            if depth == 0:
+                return i
+        i += 1
+    sys.exit("unbalanced braces in block")
+
+
 def extract_en_block(src: str) -> tuple[int, int, str]:
     """Find the en: { ... } block and return (start, end, body)."""
     pat = re.compile(r"^  en: \{$", re.MULTILINE)
     m = pat.search(src)
     if not m:
         sys.exit("could not find `  en: {` in source")
-    # Walk forward until matching `  },`
-    depth = 1
-    i = m.end()
-    while i < len(src) and depth > 0:
-        c = src[i]
-        if c == '{':
-            depth += 1
-        elif c == '}':
-            depth -= 1
-            if depth == 0:
-                # Include the closing `},`
-                end = i + 1
-                if src[end:end+1] == ',':
-                    end += 1
-                return m.start(), end, src[m.start():end]
-        i += 1
-    sys.exit("unbalanced braces in en block")
+    close = _scan_block_end(src, m.end())
+    end = close + 1
+    if src[end:end+1] == ',':
+        end += 1
+    return m.start(), end, src[m.start():end]
 
 
 def find_mr_block_end(src: str) -> int:
@@ -84,21 +104,11 @@ def find_mr_block_end(src: str) -> int:
     m = pat.search(src)
     if not m:
         sys.exit("could not find `  mr: {` in source")
-    depth = 1
-    i = m.end()
-    while i < len(src) and depth > 0:
-        c = src[i]
-        if c == '{':
-            depth += 1
-        elif c == '}':
-            depth -= 1
-            if depth == 0:
-                end = i + 1
-                if src[end:end+1] == ',':
-                    end += 1
-                return end
-        i += 1
-    sys.exit("unbalanced braces in mr block")
+    close = _scan_block_end(src, m.end())
+    end = close + 1
+    if src[end:end+1] == ',':
+        end += 1
+    return end
 
 
 def build_locale_block(en_block: str, target: str) -> str:

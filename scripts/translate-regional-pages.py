@@ -94,10 +94,18 @@ def process_file(folder: str, targets: list[str], dry_run: bool) -> tuple[int, i
     total_chars = 0
     replacements: list[tuple[int, int, str]] = []
     for m in matches:
-        en_text = m.group(1)
-        if not en_text.strip():
+        raw_en_text = m.group(1)
+        if not raw_en_text.strip():
             continue
-        parts = [f"en: '{en_text}'"]
+        # Source preserves escaped `\'` for embedded ASCII apostrophes.
+        # Send the unescaped form to Google so it doesn't translate the
+        # backslash literally; on the output side, escape_single_quotes
+        # in translate_to() normalizes apostrophes to U+2019 so the
+        # rewritten literal stays well-formed without needing escapes.
+        en_text = raw_en_text.replace("\\'", "'")
+        # Preserve the original escaped form in the en: field so the
+        # rewritten file's en value matches the source byte-for-byte.
+        parts = [f"en: '{raw_en_text}'"]
         for target in targets:
             translated = translate_to(en_text, target, cache)
             parts.append(f"{target}: '{translated}'")

@@ -271,20 +271,20 @@ const RELATED_LINKS = [
 // LocaleText shape enables Gemini overlay translator to fill hi/or/regional values
 // in a follow-up PR. tl() falls back to .en.
 const RATH_YATRA_STAGES: Array<{ stage: LocaleText; tithi: LocaleText; desc: LocaleText }> = [
-  { stage: { en: 'Snana Yatra' }, tithi: { en: 'Jyeshtha Purnima' }, desc: { en: 'The three deities are brought out from the temple and bathed with 108 pots of consecrated water.' } },
-  { stage: { en: 'Anavasara / Anasara' }, tithi: { en: '15 days following Snana Yatra' }, desc: { en: 'The deities, said to have caught a fever after the bath, are placed in seclusion. Substitute icons are worshipped during this window.' } },
-  { stage: { en: 'Gundicha Marjana' }, tithi: { en: 'Ashadha Shukla Pratipada' }, desc: { en: 'The ritual cleaning of the Gundicha Temple to prepare for the deities’ arrival.' } },
-  { stage: { en: 'Rath Yatra proper' }, tithi: { en: 'Ashadha Shukla Dvitiya' }, desc: { en: 'The deities ride in procession on three chariots from the Jagannath Temple to the Gundicha Temple, roughly 3 km away.' } },
-  { stage: { en: 'Bahuda Yatra' }, tithi: { en: 'Ashadha Shukla Dashami' }, desc: { en: 'The homeward journey to the main temple.' } },
-  { stage: { en: 'Suna Besha' }, tithi: { en: 'Ashadha Shukla Ekadashi' }, desc: { en: 'The “golden attire” darshan: the deities appear on the chariots adorned with more than 200 kg of gold ornaments.' } },
-  { stage: { en: 'Niladri Bije' }, tithi: { en: 'Ashadha Shukla Trayodashi' }, desc: { en: 'The final ritual in which the deities re-enter the sanctum sanctorum.' } },
+  { stage: { en: 'Snana Yatra', hi: 'स्नान यात्रा' }, tithi: { en: 'Jyeshtha Purnima', hi: 'ज्येष्ठ पूर्णिमा' }, desc: { en: 'The three deities are brought out from the temple and bathed with 108 pots of consecrated water.', hi: 'तीनों देवताओं को मंदिर से बाहर लाया जाता है और पवित्र जल के 108 घड़ों से स्नान कराया जाता है।' } },
+  { stage: { en: 'Anavasara / Anasara', hi: 'अनावासरा/अनासरा' }, tithi: { en: '15 days following Snana Yatra', hi: 'स्नान यात्रा के 15 दिन बाद' }, desc: { en: 'The deities, said to have caught a fever after the bath, are placed in seclusion. Substitute icons are worshipped during this window.', hi: 'कहा जाता है कि स्नान के बाद देवताओं को बुखार हो गया था, इसलिए उन्हें एकांत में रखा गया है। इस विंडो के दौरान स्थानापन्न चिह्नों की पूजा की जाती है।' } },
+  { stage: { en: 'Gundicha Marjana', hi: 'गुंडिचा मार्जाना' }, tithi: { en: 'Ashadha Shukla Pratipada', hi: 'आषाढ़ शुक्ल प्रतिपदा' }, desc: { en: 'The ritual cleaning of the Gundicha Temple to prepare for the deities’ arrival.', hi: 'देवताओं के आगमन की तैयारी के लिए गुंडिचा मंदिर की अनुष्ठानिक सफाई।' } },
+  { stage: { en: 'Rath Yatra proper', hi: 'रथयात्रा उचित' }, tithi: { en: 'Ashadha Shukla Dvitiya', hi: 'आषाढ़ शुक्ल द्वितीया' }, desc: { en: 'The deities ride in procession on three chariots from the Jagannath Temple to the Gundicha Temple, roughly 3 km away.', hi: 'देवतागण तीन रथों पर सवार होकर लगभग 3 किमी दूर, जगन्नाथ मंदिर से गुंडिचा मंदिर तक जुलूस में निकलते हैं।' } },
+  { stage: { en: 'Bahuda Yatra', hi: 'बाहुड़ा यात्रा' }, tithi: { en: 'Ashadha Shukla Dashami', hi: 'आषाढ़ शुक्ल दशमी' }, desc: { en: 'The homeward journey to the main temple.', hi: 'मुख्य मंदिर तक घर की ओर यात्रा।' } },
+  { stage: { en: 'Suna Besha', hi: 'सुना बेशा' }, tithi: { en: 'Ashadha Shukla Ekadashi', hi: 'आषाढ़ शुक्ल एकादशी' }, desc: { en: 'The “golden attire” darshan: the deities appear on the chariots adorned with more than 200 kg of gold ornaments.', hi: '"स्वर्ण पोशाक" दर्शन: देवता 200 किलोग्राम से अधिक सोने के आभूषणों से सजे रथों पर दिखाई देते हैं।' } },
+  { stage: { en: 'Niladri Bije', hi: 'नीलाद्रि बिजे' }, tithi: { en: 'Ashadha Shukla Trayodashi', hi: 'आषाढ़ शुक्ल त्रयोदशी' }, desc: { en: 'The final ritual in which the deities re-enter the sanctum sanctorum.', hi: 'अंतिम अनुष्ठान जिसमें देवता गर्भगृह में पुनः प्रवेश करते हैं।' } },
 ];
 
 // ── Three chariots ──
 const RATH_YATRA_CHARIOTS: Array<{ name: LocaleText; deity: LocaleText; size: LocaleText; cloth: LocaleText }> = [
-  { name: { en: 'Nandighosa' }, deity: { en: 'Lord Jagannath' }, size: { en: '45 ft tall · 16 wheels of 7 ft diameter' }, cloth: { en: 'red and yellow' } },
-  { name: { en: 'Taladhwaja' }, deity: { en: 'Lord Balabhadra' }, size: { en: '44 ft tall · 14 wheels' }, cloth: { en: 'red and blue · flies a palm-tree (tala) standard' } },
-  { name: { en: 'Darpadalana / Devadalana' }, deity: { en: 'Devi Subhadra' }, size: { en: '43 ft tall · 12 wheels' }, cloth: { en: 'name means “trampler of pride”' } },
+  { name: { en: 'Nandighosa', hi: 'नंदीघोसा' }, deity: { en: 'Lord Jagannath', hi: 'भगवान जगन्नाथ' }, size: { en: '45 ft tall · 16 wheels of 7 ft diameter', hi: '45 फीट लंबा · 7 फीट व्यास के 16 पहिये' }, cloth: { en: 'red and yellow', hi: 'लाल और पीले' } },
+  { name: { en: 'Taladhwaja', hi: 'तालध्वजा' }, deity: { en: 'Lord Balabhadra', hi: 'भगवान बलभद्र' }, size: { en: '44 ft tall · 14 wheels', hi: '44 फीट लंबा · 14 पहिये' }, cloth: { en: 'red and blue · flies a palm-tree (tala) standard', hi: 'लाल और नीला · ताड़ के पेड़ (ताला) मानक को उड़ाता है' } },
+  { name: { en: 'Darpadalana / Devadalana', hi: 'दर्पदलाना/देवदलाना' }, deity: { en: 'Devi Subhadra', hi: 'देवी सुभद्रा' }, size: { en: '43 ft tall · 12 wheels', hi: '43 फीट लंबा · 12 पहिये' }, cloth: { en: 'name means “trampler of pride”', hi: 'नाम का अर्थ है "गर्व को कुचलने वाला"' } },
 ];
 
 // ── Odia cultural calendar 2025–2030 ──

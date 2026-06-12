@@ -594,12 +594,12 @@ const FAQ_DATA = [
 // LocaleText shape enables the Gemini overlay translator to fill hi/te
 // (+ all 7 visible locales) values in a follow-up PR. tl() falls back to .en.
 const UGADI_PACHADI: Array<{ taste: LocaleText; ingredient: LocaleText; represents: LocaleText }> = [
-  { taste: { en: 'Sweet (Madhuram)' }, ingredient: { en: 'Jaggery (bellam)' }, represents: { en: 'Happiness, joy' } },
-  { taste: { en: 'Sour (Pulupu)' }, ingredient: { en: 'Tamarind paste' }, represents: { en: 'Disgust, displeasing experiences' } },
-  { taste: { en: 'Salty (Uppu)' }, ingredient: { en: 'Salt' }, represents: { en: 'Interest, the spice of engagement' } },
-  { taste: { en: 'Spicy (Karam)' }, ingredient: { en: 'Green chilli or pepper' }, represents: { en: 'Anger, intensity' } },
-  { taste: { en: 'Bitter (Chedu)' }, ingredient: { en: 'Neem flowers' }, represents: { en: 'Sadness, grief' } },
-  { taste: { en: 'Astringent (Vagaru)' }, ingredient: { en: 'Raw mango pieces' }, represents: { en: 'Surprise, the unexpected' } },
+  { taste: { en: 'Sweet (Madhuram)', hi: 'मीठा (मधुरम)', te: 'తీపి (మధురం)' }, ingredient: { en: 'Jaggery (bellam)', hi: 'गुड़ (बेलम)', te: 'బెల్లం (బెల్లం)' }, represents: { en: 'Happiness, joy', hi: 'खुशी, आनंद', te: 'ఆనందం, ఆనందం' } },
+  { taste: { en: 'Sour (Pulupu)', hi: 'खट्टा (पुलुपु)', te: 'పుల్లని (పులుపు)' }, ingredient: { en: 'Tamarind paste', hi: 'इमली का पेस्ट', te: 'చింతపండు ముద్ద' }, represents: { en: 'Disgust, displeasing experiences', hi: 'घृणा, अप्रिय अनुभव', te: 'అసహ్యం, అసహ్యకరమైన అనుభవాలు' } },
+  { taste: { en: 'Salty (Uppu)', hi: 'नमकीन (उप्पू)', te: 'ఉప్పు (ఉప్పు)' }, ingredient: { en: 'Salt', hi: 'नमक', te: 'ఉప్పు' }, represents: { en: 'Interest, the spice of engagement', hi: 'रुचि, सगाई का मसाला', te: 'ఆసక్తి, నిశ్చితార్థం యొక్క మసాలా' } },
+  { taste: { en: 'Spicy (Karam)', hi: 'मसालेदार (करम)', te: 'తెలంగాణ (కారం)' }, ingredient: { en: 'Green chilli or pepper', hi: 'हरी मिर्च या काली मिर्च', te: 'పచ్చి మిర్చి లేదా మిరియాలు' }, represents: { en: 'Anger, intensity', hi: 'क्रोध, तीव्रता', te: 'కోపం, తీవ్రత' } },
+  { taste: { en: 'Bitter (Chedu)', hi: 'कड़वा (चेडु)', te: 'చేదు (చేదు)' }, ingredient: { en: 'Neem flowers', hi: 'नीम के फूल', te: 'వేప పూలు' }, represents: { en: 'Sadness, grief', hi: 'दुःख, शोक', te: 'దుఃఖం, దుఃఖం' } },
+  { taste: { en: 'Astringent (Vagaru)', hi: 'कसैला (वागारू)', te: 'ఆస్ట్రింజెంట్ (వగరు)' }, ingredient: { en: 'Raw mango pieces', hi: 'कच्चे आम के टुकड़े', te: 'పచ్చి మామిడికాయ ముక్కలు' }, represents: { en: 'Surprise, the unexpected', hi: 'आश्चर्य, अप्रत्याशित', te: 'ఆశ్చర్యం, ఊహించనిది' } },
 ];
 
 // ── Telugu 60-year Jovian cycle 2024–2030 ──

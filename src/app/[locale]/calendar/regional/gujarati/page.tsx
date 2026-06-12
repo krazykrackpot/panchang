@@ -236,12 +236,14 @@ const RELATED_LINKS = [
 ];
 
 // ── Diwali → Bestu Varas → Bhai Bij 5-day chronology ──
-const GUJARATI_DIWALI_DAYS: Array<{ day: string; tithi: string; desc: string }> = [
-  { day: 'Day 1 — Dhanteras / Dhan Trayodashi', tithi: 'Kartik Krishna Trayodashi', desc: 'Households purchase new utensils, silver coins, or gold. The literal meaning “wealth-thirteenth” reflects Dhanvantari’s emergence from the cosmic ocean (Samudra Manthan) on this tithi.' },
-  { day: 'Day 2 — Kali Chaudas / Roop Chaudas', tithi: 'Kartik Krishna Chaturdashi', desc: 'Gujarat-specific naming. Pre-dawn Abhyanga snana (oil bath with til-oil and ubtan) is the central ritual.' },
-  { day: 'Day 3 — Diwali / Lakshmi Puja / Chopda Pujan', tithi: 'Kartik Amavasya', desc: 'The principal Diwali night. Gujarati merchants, traders, and family businesses perform Chopda Pujan — the worship of new account books. Fresh chopda are inscribed with the auspicious salutation “Shubh Labh” — Shubh (auspiciousness) on the left page, Labh (profit) on the right.' },
-  { day: 'Day 4 — Bestu Varas / Gujarati New Year', tithi: 'Kartik Shukla Pratipada', desc: 'The new Vikram Samvat year formally begins at sunrise. Gujarati families wear new clothes, exchange “Saal Mubarak” greetings, and visit family elders. Businesses open their new chopda for the first transaction of the year. Govardhan Puja is observed in parallel.' },
-  { day: 'Day 5 — Bhai Bij', tithi: 'Kartik Shukla Dwitiya', desc: 'The Diwali cycle closes with Bhai Bij — sisters apply tilak to their brothers’ foreheads, perform aarti, and feed them sweets; brothers offer gifts and a promise of lifelong protection. The myth ties to Yama and Yamuna.' },
+// LocaleText shape enables Gemini overlay translator to fill gu/hi values
+// in a follow-up PR. tl() falls back to .en.
+const GUJARATI_DIWALI_DAYS: Array<{ day: LocaleText; tithi: LocaleText; desc: LocaleText }> = [
+  { day: { en: 'Day 1 — Dhanteras / Dhan Trayodashi' }, tithi: { en: 'Kartik Krishna Trayodashi' }, desc: { en: 'Households purchase new utensils, silver coins, or gold. The literal meaning “wealth-thirteenth” reflects Dhanvantari’s emergence from the cosmic ocean (Samudra Manthan) on this tithi.' } },
+  { day: { en: 'Day 2 — Kali Chaudas / Roop Chaudas' }, tithi: { en: 'Kartik Krishna Chaturdashi' }, desc: { en: 'Gujarat-specific naming. Pre-dawn Abhyanga snana (oil bath with til-oil and ubtan) is the central ritual.' } },
+  { day: { en: 'Day 3 — Diwali / Lakshmi Puja / Chopda Pujan' }, tithi: { en: 'Kartik Amavasya' }, desc: { en: 'The principal Diwali night. Gujarati merchants, traders, and family businesses perform Chopda Pujan — the worship of new account books. Fresh chopda are inscribed with the auspicious salutation “Shubh Labh” — Shubh (auspiciousness) on the left page, Labh (profit) on the right.' } },
+  { day: { en: 'Day 4 — Bestu Varas / Gujarati New Year' }, tithi: { en: 'Kartik Shukla Pratipada' }, desc: { en: 'The new Vikram Samvat year formally begins at sunrise. Gujarati families wear new clothes, exchange “Saal Mubarak” greetings, and visit family elders. Businesses open their new chopda for the first transaction of the year. Govardhan Puja is observed in parallel.' } },
+  { day: { en: 'Day 5 — Bhai Bij' }, tithi: { en: 'Kartik Shukla Dwitiya' }, desc: { en: 'The Diwali cycle closes with Bhai Bij — sisters apply tilak to their brothers’ foreheads, perform aarti, and feed them sweets; brothers offer gifts and a promise of lifelong protection. The myth ties to Yama and Yamuna.' } },
 ];
 
 // ── Vikram Samvat year cycle table ──
@@ -440,12 +442,12 @@ export default async function GujaratiCalendarPage({ params }: { params: Promise
           </h2>
           <div className="space-y-3">
             {GUJARATI_DIWALI_DAYS.map((d) => (
-              <div key={d.day} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+              <div key={d.day.en} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1.5">
-                  <span className="text-gold-light font-semibold text-sm">{d.day}</span>
-                  <span className="text-amber-400/70 text-xs">{d.tithi}</span>
+                  <span className="text-gold-light font-semibold text-sm">{tl(d.day, locale)}</span>
+                  <span className="text-amber-400/70 text-xs">{tl(d.tithi, locale)}</span>
                 </div>
-                <p className="text-text-secondary text-sm leading-relaxed">{d.desc}</p>
+                <p className="text-text-secondary text-sm leading-relaxed">{tl(d.desc, locale)}</p>
               </div>
             ))}
           </div>

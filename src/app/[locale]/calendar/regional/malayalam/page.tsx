@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import type { Locale } from '@/types/panchang';
+import type { Locale, LocaleText } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { pickRegionalChrome as RC } from '@/lib/content/regional-chrome-labels';
 import { tl } from '@/lib/utils/trilingual';
@@ -98,18 +98,20 @@ const FESTIVALS = [
 ];
 
 // ── Onam 10-day chronology ──
-const ONAM_DAYS: Array<{ day: string; tithi: string; desc: string }> = [
-  { day: 'Day 1 — Atham', tithi: 'Atham nakshatra', desc: 'The festival opens with the first Pookalam (Atha-poo) — a small circular flower arrangement at the entrance of the household, traditionally using only yellow flowers in a single concentric ring. Households visit the Thrikkakara temple (the principal Onam shrine, where Vamana is enshrined). Local fairs (Athachamayam) at Thripunithura include caparisoned elephants and pulikali (tiger dance) performers.' },
-  { day: 'Days 2–9 — Chithira through Uthradam', tithi: 'Chithira → Uthradam nakshatras', desc: 'Each day adds rings and colour palette to the pookalam. The famous Aranmula Vallamkali (snake-boat race) on the Pamba River is traditionally held on Uthrattathi, with elimination heats on Anizham. The snake boats (chundan vallam) and ritual songs (vanchipattu) trace back to Aranmula Parthasarathy temple tradition. Athapoo competitions are held — the largest community pookalams now reach 20+ feet in diameter.' },
-  { day: 'Day 10 — Thiruvonam', tithi: 'Thiruvonam nakshatra', desc: 'Mahabali arrives. The pookalam reaches its full magnificence with figurines of Vamana and Mahabali at the centre. The Onam Sadya is served on a plantain leaf at noon. Traditional accounts cite 24–26 dishes, served in a strict order: pickles (mango, lime, inji-puli) and pappadam on the upper-left; rice in the centre; parippu (lentil curry) followed by sambar, then aviyal, olan, kaalan, thoran, erissery, pachadi, kichadi; and finally three or four payasams (palada, ada-pradhaman, paal-pradhaman).' },
+// LocaleText shape enables Gemini overlay translator to fill hi/ml/regional values
+// in a follow-up PR. tl() falls back to .en.
+const ONAM_DAYS: Array<{ day: LocaleText; tithi: LocaleText; desc: LocaleText }> = [
+  { day: { en: 'Day 1 — Atham' }, tithi: { en: 'Atham nakshatra' }, desc: { en: 'The festival opens with the first Pookalam (Atha-poo) — a small circular flower arrangement at the entrance of the household, traditionally using only yellow flowers in a single concentric ring. Households visit the Thrikkakara temple (the principal Onam shrine, where Vamana is enshrined). Local fairs (Athachamayam) at Thripunithura include caparisoned elephants and pulikali (tiger dance) performers.' } },
+  { day: { en: 'Days 2–9 — Chithira through Uthradam' }, tithi: { en: 'Chithira → Uthradam nakshatras' }, desc: { en: 'Each day adds rings and colour palette to the pookalam. The famous Aranmula Vallamkali (snake-boat race) on the Pamba River is traditionally held on Uthrattathi, with elimination heats on Anizham. The snake boats (chundan vallam) and ritual songs (vanchipattu) trace back to Aranmula Parthasarathy temple tradition. Athapoo competitions are held — the largest community pookalams now reach 20+ feet in diameter.' } },
+  { day: { en: 'Day 10 — Thiruvonam' }, tithi: { en: 'Thiruvonam nakshatra' }, desc: { en: 'Mahabali arrives. The pookalam reaches its full magnificence with figurines of Vamana and Mahabali at the centre. The Onam Sadya is served on a plantain leaf at noon. Traditional accounts cite 24–26 dishes, served in a strict order: pickles (mango, lime, inji-puli) and pappadam on the upper-left; rice in the centre; parippu (lentil curry) followed by sambar, then aviyal, olan, kaalan, thoran, erissery, pachadi, kichadi; and finally three or four payasams (palada, ada-pradhaman, paal-pradhaman).' } },
 ];
 
 // ── Kerala school astronomers ──
-const KERALA_SCHOLARS: Array<{ name: string; dates: string; bio: string }> = [
-  { name: 'Madhava of Sangamagrama', dates: 'c. 1340–1425', bio: 'Founded the school at Tirur in modern Malappuram district. He is credited with discovering infinite-series expansions for trigonometric functions — sine, cosine, and arctangent — and an infinite series for π. These results predate Newton, Leibniz and Gregory by 250–300 years.' },
-  { name: 'Parameshvara', dates: 'c. 1380–1460', bio: 'A student of Madhava’s lineage, observed eclipses and refined Bhaskara II’s astronomical parameters. He authored Drigganita, a treatise that established a Kerala-school observational standard. Parameshvara is regarded by Kerala-tradition pandits as the source of the Drik tradition in panchanga computation.' },
-  { name: 'Nilakantha Somayaji', dates: '1444–1545', bio: 'Author of the Tantrasangraha (c. 1500) — the most influential single Kerala astronomer. Nilakantha proposed a partially heliocentric model: the inner planets Mercury and Venus orbit the Sun, while the Sun orbits the Earth. This is roughly the Tychonic model — proposed by Tycho Brahe 80 years later.' },
-  { name: 'Sankara Varman', dates: '1774–1839', bio: 'Completed Sadratnamala in 1819, the last great treatise of the Kerala school. Varman computed the value of π to 17 decimal places. The British civil servant C.M. Whish met Varman in Travancore and introduced his work to Western mathematics through his 1832 paper to the Royal Asiatic Society.' },
+const KERALA_SCHOLARS: Array<{ name: LocaleText; dates: string; bio: LocaleText }> = [
+  { name: { en: 'Madhava of Sangamagrama' }, dates: 'c. 1340–1425', bio: { en: 'Founded the school at Tirur in modern Malappuram district. He is credited with discovering infinite-series expansions for trigonometric functions — sine, cosine, and arctangent — and an infinite series for π. These results predate Newton, Leibniz and Gregory by 250–300 years.' } },
+  { name: { en: 'Parameshvara' }, dates: 'c. 1380–1460', bio: { en: 'A student of Madhava’s lineage, observed eclipses and refined Bhaskara II’s astronomical parameters. He authored Drigganita, a treatise that established a Kerala-school observational standard. Parameshvara is regarded by Kerala-tradition pandits as the source of the Drik tradition in panchanga computation.' } },
+  { name: { en: 'Nilakantha Somayaji' }, dates: '1444–1545', bio: { en: 'Author of the Tantrasangraha (c. 1500) — the most influential single Kerala astronomer. Nilakantha proposed a partially heliocentric model: the inner planets Mercury and Venus orbit the Sun, while the Sun orbits the Earth. This is roughly the Tychonic model — proposed by Tycho Brahe 80 years later.' } },
+  { name: { en: 'Sankara Varman' }, dates: '1774–1839', bio: { en: 'Completed Sadratnamala in 1819, the last great treatise of the Kerala school. Varman computed the value of π to 17 decimal places. The British civil servant C.M. Whish met Varman in Travancore and introduced his work to Western mathematics through his 1832 paper to the Royal Asiatic Society.' } },
 ];
 
 // ── Kollam Era ME table ──
@@ -257,12 +259,12 @@ export default function MalayalamCalendarPage() {
           </p>
           <div className="space-y-3">
             {ONAM_DAYS.map((d) => (
-              <div key={d.day} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+              <div key={d.day.en} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1.5">
-                  <span className="text-gold-light font-semibold text-sm">{d.day}</span>
-                  <span className="text-amber-400/70 text-xs">{d.tithi}</span>
+                  <span className="text-gold-light font-semibold text-sm">{tl(d.day, locale)}</span>
+                  <span className="text-amber-400/70 text-xs">{tl(d.tithi, locale)}</span>
                 </div>
-                <p className="text-text-secondary text-sm leading-relaxed">{d.desc}</p>
+                <p className="text-text-secondary text-sm leading-relaxed">{tl(d.desc, locale)}</p>
               </div>
             ))}
           </div>
@@ -302,12 +304,12 @@ export default function MalayalamCalendarPage() {
           </p>
           <div className="space-y-3">
             {KERALA_SCHOLARS.map((s) => (
-              <div key={s.name} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+              <div key={s.name.en} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1.5">
-                  <span className="text-gold-light font-semibold text-sm">{s.name}</span>
+                  <span className="text-gold-light font-semibold text-sm">{tl(s.name, locale)}</span>
                   <span className="text-amber-400/70 text-xs">{s.dates}</span>
                 </div>
-                <p className="text-text-secondary text-sm leading-relaxed">{s.bio}</p>
+                <p className="text-text-secondary text-sm leading-relaxed">{tl(s.bio, locale)}</p>
               </div>
             ))}
           </div>

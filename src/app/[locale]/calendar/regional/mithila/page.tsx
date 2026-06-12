@@ -312,11 +312,13 @@ const RELATED_LINKS = [
 ];
 
 // ── Chhath Puja day-by-day chronology (Mithila variant) ──
-const CHHATH_DAYS: Array<{ day: string; name: string; desc: string }> = [
-  { day: 'Day 1', name: 'Nahay Khay (Chaturthi)', desc: 'The vrati takes a holy dip in a river or pond, returns home with water in a brass vessel, and prepares a single sattvic meal — typically lauki-bhaat (bottle gourd with rice) cooked in mud-pot over a wood fire, with kala chana. In Mithila this meal is shared with the household and is the last food before the next day’s nirjala fast begins.' },
-  { day: 'Day 2', name: 'Kharna (Panchami)', desc: 'The vrati observes nirjala fast from sunrise to sunset. After dusk, gur-ka-kheer (known in Maithili as rasiyaav) is prepared on a freshly plastered chulha and offered to Chhathi Maiya before being eaten with roti. From this evening’s last bite the 36-hour waterless fast begins — the most demanding austerity in the popular Hindu calendar. The Mithila household decorates the prasad area with aripan (rice-paste floor designs) featuring the sun, lotus, and footprints of Chhathi Maiya.' },
-  { day: 'Day 3', name: 'Sandhya Arghya (Shashthi)', desc: 'Family members carry the daura — a bamboo basket loaded with thekua (wheat-flour-jaggery biscuits), khajuriya, fresh sugarcane, bananas, coconut, ginger, turmeric root, radish, and seasonal fruit — to the riverbank or pond. The vrati stands in the water and offers arghya to the setting Sun from a brass sup (winnow) decorated with aripan motifs. Folk songs of Chhath are sung in chorus by women.' },
-  { day: 'Day 4', name: 'Usha Arghya (Saptami) and Parana', desc: 'Before sunrise, the family returns to the same ghat. Arghya is offered to the rising Sun. The vrati sips river water and consumes a morsel of prasad to break the 36-hour fast (parana). The thekua is distributed across the village as prasad — a Mithila Chhath household typically prepares 5–10 kg of thekua for distribution.' },
+// LocaleText shape enables Gemini overlay translator to fill mai/hi/regional values
+// in a follow-up PR. tl() falls back to .en.
+const CHHATH_DAYS: Array<{ day: LocaleText; name: LocaleText; desc: LocaleText }> = [
+  { day: { en: 'Day 1' }, name: { en: 'Nahay Khay (Chaturthi)' }, desc: { en: 'The vrati takes a holy dip in a river or pond, returns home with water in a brass vessel, and prepares a single sattvic meal — typically lauki-bhaat (bottle gourd with rice) cooked in mud-pot over a wood fire, with kala chana. In Mithila this meal is shared with the household and is the last food before the next day’s nirjala fast begins.' } },
+  { day: { en: 'Day 2' }, name: { en: 'Kharna (Panchami)' }, desc: { en: 'The vrati observes nirjala fast from sunrise to sunset. After dusk, gur-ka-kheer (known in Maithili as rasiyaav) is prepared on a freshly plastered chulha and offered to Chhathi Maiya before being eaten with roti. From this evening’s last bite the 36-hour waterless fast begins — the most demanding austerity in the popular Hindu calendar. The Mithila household decorates the prasad area with aripan (rice-paste floor designs) featuring the sun, lotus, and footprints of Chhathi Maiya.' } },
+  { day: { en: 'Day 3' }, name: { en: 'Sandhya Arghya (Shashthi)' }, desc: { en: 'Family members carry the daura — a bamboo basket loaded with thekua (wheat-flour-jaggery biscuits), khajuriya, fresh sugarcane, bananas, coconut, ginger, turmeric root, radish, and seasonal fruit — to the riverbank or pond. The vrati stands in the water and offers arghya to the setting Sun from a brass sup (winnow) decorated with aripan motifs. Folk songs of Chhath are sung in chorus by women.' } },
+  { day: { en: 'Day 4' }, name: { en: 'Usha Arghya (Saptami) and Parana' }, desc: { en: 'Before sunrise, the family returns to the same ghat. Arghya is offered to the rising Sun. The vrati sips river water and consumes a morsel of prasad to break the 36-hour fast (parana). The thekua is distributed across the village as prasad — a Mithila Chhath household typically prepares 5–10 kg of thekua for distribution.' } },
 ];
 
 // ── Lakshmana Era table ──
@@ -330,11 +332,11 @@ const MITHILA_ERA_TABLE: Array<{ year: number; le: number; tirhuta: string }> = 
 ];
 
 // ── Famous Maithili scholars of the panchang tradition ──
-const MITHILA_SCHOLARS: Array<{ name: string; dates: string; bio: string }> = [
-  { name: 'Vidyapati Thakur', dates: 'c. 1352–1448 CE', bio: 'Stands first. Poet-laureate of the Oiniwar dynasty; served seven kings and two queens; King Sivasimha (r. 1402–1406) granted him the village of Bisapi and called him “the new Jayadeva.” Composed approximately five hundred love songs in vernacular Maithili between 1380 and 1406. Beyond poetry, his Sanskrit and Maithili colophons are dated in dual era (Lakshmana + Shaka), and his ritual treatises Durgabhakti-tarangini, Vivada-chudamani, and Likhanavali embed extensive calendrical material on vrata observance.' },
-  { name: 'Jyotirishwar Thakur', dates: 'c. 1290–1350 CE', bio: 'An older contemporary, authored Varnaratnakara — a Maithili encyclopaedic prose work that catalogues nakshatras, tithis, and ritual seasons. He is considered the first Maithili prose author.' },
-  { name: 'Surendra Jha “Suman”', dates: '1910–2002', bio: 'Represented Maithili at the Sahitya Akademi; his anthologies preserved the festival corpus that informs contemporary Maithili Panchanga publishing. Baldev Mishra (1890–1975) and Radha Krishna Choudhary (1921–1985) continued the work as Maithili literary historians; Jaykant Mishra (1922–2009) wrote the standard History of Maithili Literature in two volumes.' },
-  { name: 'Pt. Ramchandra Jha and modern compilers', dates: '20th–21st c.', bio: 'In the panchang-publishing tradition, Pt. Ramchandra Jha edited Vidyapati Panchang. The Vidyapati Gourav Manch produces an annual Maithili Panchang. The Kameshwar Singh Darbhanga Sanskrit University publishes a Vishwavidyala Panchang computed for Sitamarhi latitude. Contemporary almanac compilers include Dr. Mukti Kant Jha.' },
+const MITHILA_SCHOLARS: Array<{ name: LocaleText; dates: string; bio: LocaleText }> = [
+  { name: { en: 'Vidyapati Thakur' }, dates: 'c. 1352–1448 CE', bio: { en: 'Stands first. Poet-laureate of the Oiniwar dynasty; served seven kings and two queens; King Sivasimha (r. 1402–1406) granted him the village of Bisapi and called him “the new Jayadeva.” Composed approximately five hundred love songs in vernacular Maithili between 1380 and 1406. Beyond poetry, his Sanskrit and Maithili colophons are dated in dual era (Lakshmana + Shaka), and his ritual treatises Durgabhakti-tarangini, Vivada-chudamani, and Likhanavali embed extensive calendrical material on vrata observance.' } },
+  { name: { en: 'Jyotirishwar Thakur' }, dates: 'c. 1290–1350 CE', bio: { en: 'An older contemporary, authored Varnaratnakara — a Maithili encyclopaedic prose work that catalogues nakshatras, tithis, and ritual seasons. He is considered the first Maithili prose author.' } },
+  { name: { en: 'Surendra Jha “Suman”' }, dates: '1910–2002', bio: { en: 'Represented Maithili at the Sahitya Akademi; his anthologies preserved the festival corpus that informs contemporary Maithili Panchanga publishing. Baldev Mishra (1890–1975) and Radha Krishna Choudhary (1921–1985) continued the work as Maithili literary historians; Jaykant Mishra (1922–2009) wrote the standard History of Maithili Literature in two volumes.' } },
+  { name: { en: 'Pt. Ramchandra Jha and modern compilers' }, dates: '20th–21st c.', bio: { en: 'In the panchang-publishing tradition, Pt. Ramchandra Jha edited Vidyapati Panchang. The Vidyapati Gourav Manch produces an annual Maithili Panchang. The Kameshwar Singh Darbhanga Sanskrit University publishes a Vishwavidyala Panchang computed for Sitamarhi latitude. Contemporary almanac compilers include Dr. Mukti Kant Jha.' } },
 ];
 
 export default async function MithilaCalendarPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -481,11 +483,11 @@ export default async function MithilaCalendarPage({ params }: { params: Promise<
           </p>
           <div className="space-y-3">
             {CHHATH_DAYS.map((d) => (
-              <div key={d.day} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+              <div key={d.day.en} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1.5">
-                  <span className="text-gold-light font-semibold text-sm">{d.day} — {d.name}</span>
+                  <span className="text-gold-light font-semibold text-sm">{tl(d.day, locale)} — {tl(d.name, locale)}</span>
                 </div>
-                <p className="text-text-secondary text-sm leading-relaxed">{d.desc}</p>
+                <p className="text-text-secondary text-sm leading-relaxed">{tl(d.desc, locale)}</p>
               </div>
             ))}
           </div>
@@ -546,12 +548,12 @@ export default async function MithilaCalendarPage({ params }: { params: Promise<
           </h2>
           <div className="space-y-3">
             {MITHILA_SCHOLARS.map((s) => (
-              <div key={s.name} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+              <div key={s.name.en} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1.5">
-                  <span className="text-gold-light font-semibold text-sm">{s.name}</span>
+                  <span className="text-gold-light font-semibold text-sm">{tl(s.name, locale)}</span>
                   <span className="text-amber-400/70 text-xs">{s.dates}</span>
                 </div>
-                <p className="text-text-secondary text-sm leading-relaxed">{s.bio}</p>
+                <p className="text-text-secondary text-sm leading-relaxed">{tl(s.bio, locale)}</p>
               </div>
             ))}
           </div>

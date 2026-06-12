@@ -268,21 +268,23 @@ const RELATED_LINKS = [
 ];
 
 // ── Rath Yatra 22-day chronology ──
-const RATH_YATRA_STAGES: Array<{ stage: string; tithi: string; desc: string }> = [
-  { stage: 'Snana Yatra', tithi: 'Jyeshtha Purnima', desc: 'The three deities are brought out from the temple and bathed with 108 pots of consecrated water.' },
-  { stage: 'Anavasara / Anasara', tithi: '15 days following Snana Yatra', desc: 'The deities, said to have caught a fever after the bath, are placed in seclusion. Substitute icons are worshipped during this window.' },
-  { stage: 'Gundicha Marjana', tithi: 'Ashadha Shukla Pratipada', desc: 'The ritual cleaning of the Gundicha Temple to prepare for the deities’ arrival.' },
-  { stage: 'Rath Yatra proper', tithi: 'Ashadha Shukla Dvitiya', desc: 'The deities ride in procession on three chariots from the Jagannath Temple to the Gundicha Temple, roughly 3 km away.' },
-  { stage: 'Bahuda Yatra', tithi: 'Ashadha Shukla Dashami', desc: 'The homeward journey to the main temple.' },
-  { stage: 'Suna Besha', tithi: 'Ashadha Shukla Ekadashi', desc: 'The “golden attire” darshan: the deities appear on the chariots adorned with more than 200 kg of gold ornaments.' },
-  { stage: 'Niladri Bije', tithi: 'Ashadha Shukla Trayodashi', desc: 'The final ritual in which the deities re-enter the sanctum sanctorum.' },
+// LocaleText shape enables Gemini overlay translator to fill hi/or/regional values
+// in a follow-up PR. tl() falls back to .en.
+const RATH_YATRA_STAGES: Array<{ stage: LocaleText; tithi: LocaleText; desc: LocaleText }> = [
+  { stage: { en: 'Snana Yatra' }, tithi: { en: 'Jyeshtha Purnima' }, desc: { en: 'The three deities are brought out from the temple and bathed with 108 pots of consecrated water.' } },
+  { stage: { en: 'Anavasara / Anasara' }, tithi: { en: '15 days following Snana Yatra' }, desc: { en: 'The deities, said to have caught a fever after the bath, are placed in seclusion. Substitute icons are worshipped during this window.' } },
+  { stage: { en: 'Gundicha Marjana' }, tithi: { en: 'Ashadha Shukla Pratipada' }, desc: { en: 'The ritual cleaning of the Gundicha Temple to prepare for the deities’ arrival.' } },
+  { stage: { en: 'Rath Yatra proper' }, tithi: { en: 'Ashadha Shukla Dvitiya' }, desc: { en: 'The deities ride in procession on three chariots from the Jagannath Temple to the Gundicha Temple, roughly 3 km away.' } },
+  { stage: { en: 'Bahuda Yatra' }, tithi: { en: 'Ashadha Shukla Dashami' }, desc: { en: 'The homeward journey to the main temple.' } },
+  { stage: { en: 'Suna Besha' }, tithi: { en: 'Ashadha Shukla Ekadashi' }, desc: { en: 'The “golden attire” darshan: the deities appear on the chariots adorned with more than 200 kg of gold ornaments.' } },
+  { stage: { en: 'Niladri Bije' }, tithi: { en: 'Ashadha Shukla Trayodashi' }, desc: { en: 'The final ritual in which the deities re-enter the sanctum sanctorum.' } },
 ];
 
 // ── Three chariots ──
-const RATH_YATRA_CHARIOTS: Array<{ name: string; deity: string; size: string; cloth: string }> = [
-  { name: 'Nandighosa', deity: 'Lord Jagannath', size: '45 ft tall · 16 wheels of 7 ft diameter', cloth: 'red and yellow' },
-  { name: 'Taladhwaja', deity: 'Lord Balabhadra', size: '44 ft tall · 14 wheels', cloth: 'red and blue · flies a palm-tree (tala) standard' },
-  { name: 'Darpadalana / Devadalana', deity: 'Devi Subhadra', size: '43 ft tall · 12 wheels', cloth: 'name means “trampler of pride”' },
+const RATH_YATRA_CHARIOTS: Array<{ name: LocaleText; deity: LocaleText; size: LocaleText; cloth: LocaleText }> = [
+  { name: { en: 'Nandighosa' }, deity: { en: 'Lord Jagannath' }, size: { en: '45 ft tall · 16 wheels of 7 ft diameter' }, cloth: { en: 'red and yellow' } },
+  { name: { en: 'Taladhwaja' }, deity: { en: 'Lord Balabhadra' }, size: { en: '44 ft tall · 14 wheels' }, cloth: { en: 'red and blue · flies a palm-tree (tala) standard' } },
+  { name: { en: 'Darpadalana / Devadalana' }, deity: { en: 'Devi Subhadra' }, size: { en: '43 ft tall · 12 wheels' }, cloth: { en: 'name means “trampler of pride”' } },
 ];
 
 // ── Odia cultural calendar 2025–2030 ──
@@ -387,12 +389,12 @@ export default async function OdiaCalendarPage({ params }: { params: Promise<{ l
           </p>
           <div className="space-y-3">
             {RATH_YATRA_STAGES.map((s) => (
-              <div key={s.stage} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+              <div key={s.stage.en} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1.5">
-                  <span className="text-gold-light font-semibold text-sm">{s.stage}</span>
-                  <span className="text-amber-400/70 text-xs">{s.tithi}</span>
+                  <span className="text-gold-light font-semibold text-sm">{tl(s.stage, locale)}</span>
+                  <span className="text-amber-400/70 text-xs">{tl(s.tithi, locale)}</span>
                 </div>
-                <p className="text-text-secondary text-sm leading-relaxed">{s.desc}</p>
+                <p className="text-text-secondary text-sm leading-relaxed">{tl(s.desc, locale)}</p>
               </div>
             ))}
           </div>
@@ -411,11 +413,11 @@ export default async function OdiaCalendarPage({ params }: { params: Promise<{ l
               </thead>
               <tbody>
                 {RATH_YATRA_CHARIOTS.map((c, i) => (
-                  <tr key={c.name} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
-                    <td className="px-4 py-2.5 text-gold-light font-semibold">{c.name}</td>
-                    <td className="px-4 py-2.5 text-text-primary">{c.deity}</td>
-                    <td className="px-4 py-2.5 text-text-secondary text-xs">{c.size}</td>
-                    <td className="px-4 py-2.5 text-text-secondary text-xs">{c.cloth}</td>
+                  <tr key={c.name.en} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-gold-light font-semibold">{tl(c.name, locale)}</td>
+                    <td className="px-4 py-2.5 text-text-primary">{tl(c.deity, locale)}</td>
+                    <td className="px-4 py-2.5 text-text-secondary text-xs">{tl(c.size, locale)}</td>
+                    <td className="px-4 py-2.5 text-text-secondary text-xs">{tl(c.cloth, locale)}</td>
                   </tr>
                 ))}
               </tbody>

@@ -342,29 +342,31 @@ const RELATED_LINKS = [
 ];
 
 // ── Day-by-day Pongal chronology with regional detail and engine dates ──
-const PONGAL_DAYS: Array<{ name: string; subtitle: string; engineKey: string | null; desc: string }> = [
-  { name: 'Bhogi', subtitle: 'last day of Mārgazhi', engineKey: 'Bhogi', desc: 'Bhogi falls on the last day of Mārgazhi. Households “discard old possessions” and light a bonfire to burn the heaps of discards before dawn. In the Kongunadu belt around Coimbatore the Kaappu Kattu ritual ties protective neem and palm leaves above the entrance. Madras households dispose of broken furniture and old clothes into the street bonfire and re-whitewash exterior walls.' },
-  { name: 'Thai Pongal (Surya Pongal)', subtitle: 'Makara Sankranti', engineKey: 'Pongal / Thai Pongal', desc: 'Marks the start of the auspicious Thai month and the Sun’s turn northward (uttarāyaṇa under the sidereal reckoning). New rice from the just-completed harvest is boiled with milk and jaggery in a clay pot in the open courtyard; the moment the mixture boils over, the family shouts “Pongalō Pongal!” Decorations include kolam with sugarcane stalks, turmeric plants tied to the pot, and offerings to the Sun at dawn. Chettinad households serve sakkarai pongal (sweet) and venn pongal (savoury, with pepper and cumin) on banana leaves.' },
-  { name: 'Mattu Pongal', subtitle: 'day after Pongal', engineKey: 'Mattu Pongal', desc: 'Honours cattle — “mattu” means cow/bull. Animals are washed, their horns painted and decorated with shining metal caps, multi-coloured beads, tinkling bells, sheaves of corn and flower garlands. In southern Tamil Nadu, especially the Madurai–Tiruchirappalli–Thanjavur–Tirunelveli–Ramanathapuram belt, this is the day of Jallikattu (“ēru taḻuvuṭal” — bull-embracing — attested in Sangam literature, c. 400–100 BCE) at famed venues like Alanganallur, Avaniyapuram, and Palamedu.' },
-  { name: 'Kaanum Pongal', subtitle: 'day +2 after Pongal', engineKey: 'Kaanum Pongal', desc: '“Kaanum” means “to see/visit”. Young people visit elders for blessings, families pack leftover Pongal into picnic baskets and gather on river banks or beach fronts. Chennai’s Marina and Madurai’s Vaigai banks see lakhs of visitors. In Telangana-bordering districts the day is observed as Kanum Pongal — kanu = “to see” — with girls offering leftover rice to crows in the “kaaka padaippu” ritual.' },
+// LocaleText shape on name/subtitle/desc enables the Gemini overlay translator
+// to fill hi/ta/te/kn/bn/mai/mr/gu values in a follow-up PR. tl() falls back to .en.
+const PONGAL_DAYS: Array<{ name: LocaleText; subtitle: LocaleText; engineKey: string | null; desc: LocaleText }> = [
+  { name: { en: 'Bhogi' }, subtitle: { en: 'last day of Mārgazhi' }, engineKey: 'Bhogi', desc: { en: 'Bhogi falls on the last day of Mārgazhi. Households “discard old possessions” and light a bonfire to burn the heaps of discards before dawn. In the Kongunadu belt around Coimbatore the Kaappu Kattu ritual ties protective neem and palm leaves above the entrance. Madras households dispose of broken furniture and old clothes into the street bonfire and re-whitewash exterior walls.' } },
+  { name: { en: 'Thai Pongal (Surya Pongal)' }, subtitle: { en: 'Makara Sankranti' }, engineKey: 'Pongal / Thai Pongal', desc: { en: 'Marks the start of the auspicious Thai month and the Sun’s turn northward (uttarāyaṇa under the sidereal reckoning). New rice from the just-completed harvest is boiled with milk and jaggery in a clay pot in the open courtyard; the moment the mixture boils over, the family shouts “Pongalō Pongal!” Decorations include kolam with sugarcane stalks, turmeric plants tied to the pot, and offerings to the Sun at dawn. Chettinad households serve sakkarai pongal (sweet) and venn pongal (savoury, with pepper and cumin) on banana leaves.' } },
+  { name: { en: 'Mattu Pongal' }, subtitle: { en: 'day after Pongal' }, engineKey: 'Mattu Pongal', desc: { en: 'Honours cattle — “mattu” means cow/bull. Animals are washed, their horns painted and decorated with shining metal caps, multi-coloured beads, tinkling bells, sheaves of corn and flower garlands. In southern Tamil Nadu, especially the Madurai–Tiruchirappalli–Thanjavur–Tirunelveli–Ramanathapuram belt, this is the day of Jallikattu (“ēru taḻuvuṭal” — bull-embracing — attested in Sangam literature, c. 400–100 BCE) at famed venues like Alanganallur, Avaniyapuram, and Palamedu.' } },
+  { name: { en: 'Kaanum Pongal' }, subtitle: { en: 'day +2 after Pongal' }, engineKey: 'Kaanum Pongal', desc: { en: '“Kaanum” means “to see/visit”. Young people visit elders for blessings, families pack leftover Pongal into picnic baskets and gather on river banks or beach fronts. Chennai’s Marina and Madurai’s Vaigai banks see lakhs of visitors. In Telangana-bordering districts the day is observed as Kanum Pongal — kanu = “to see” — with girls offering leftover rice to crows in the “kaaka padaippu” ritual.' } },
 ];
 
 // ── 60-year Jovian (Bṛhaspati) cycle table ──
-const TAMIL_60_YEAR_CYCLE: Array<{ span: string; n: number; name: string; tamil: string; sense: string }> = [
-  { span: 'Apr 2024 – Apr 2025', n: 38, name: 'Krōdhī', tamil: 'குரோதி', sense: '“the wrathful” — high tempers, political volatility' },
-  { span: 'Apr 2025 – Apr 2026', n: 39, name: 'Viśvāvasu', tamil: 'விசுவாவசு', sense: '“wealth of all” / “abode of the universe”' },
-  { span: 'Apr 2026 – Apr 2027', n: 40, name: 'Parābhava', tamil: 'பராபவ', sense: '“defeat / humbling” — classically difficult' },
-  { span: 'Apr 2027 – Apr 2028', n: 41, name: 'Plavaṅga', tamil: 'பிலவங்க', sense: '“leaping (monkey)” — restless energy' },
-  { span: 'Apr 2028 – Apr 2029', n: 42, name: 'Kīlaka', tamil: 'கீலக', sense: '“wedge / linchpin” — pivotal' },
-  { span: 'Apr 2029 – Apr 2030', n: 43, name: 'Saumya', tamil: 'சௌமிய', sense: '“gentle, lunar, benevolent”' },
+const TAMIL_60_YEAR_CYCLE: Array<{ span: string; n: number; name: string; tamil: string; sense: LocaleText }> = [
+  { span: 'Apr 2024 – Apr 2025', n: 38, name: 'Krōdhī', tamil: 'குரோதி', sense: { en: '“the wrathful” — high tempers, political volatility' } },
+  { span: 'Apr 2025 – Apr 2026', n: 39, name: 'Viśvāvasu', tamil: 'விசுவாவசு', sense: { en: '“wealth of all” / “abode of the universe”' } },
+  { span: 'Apr 2026 – Apr 2027', n: 40, name: 'Parābhava', tamil: 'பராபவ', sense: { en: '“defeat / humbling” — classically difficult' } },
+  { span: 'Apr 2027 – Apr 2028', n: 41, name: 'Plavaṅga', tamil: 'பிலவங்க', sense: { en: '“leaping (monkey)” — restless energy' } },
+  { span: 'Apr 2028 – Apr 2029', n: 42, name: 'Kīlaka', tamil: 'கீலக', sense: { en: '“wedge / linchpin” — pivotal' } },
+  { span: 'Apr 2029 – Apr 2030', n: 43, name: 'Saumya', tamil: 'சௌமிய', sense: { en: '“gentle, lunar, benevolent”' } },
 ];
 
 // ── Famous Tamil calendrical scholars ──
-const TAMIL_SCHOLARS: Array<{ name: string; dates: string; bio: string }> = [
-  { name: 'Vatasseri Parameśvara Nambūdiri', dates: 'c. 1380–1460', bio: 'The pivotal Drik figure. The Kerala-school mathematician who, after a sustained programme of his own eclipse observations, found that the parameters in use since Āryabhaṭa had drifted noticeably from the sky. His Dṛggaṇita (“computed by observation”) was composed in 1431 CE with corrected planetary mean motions and equation-of-centre terms. Parameśvara was the disciple of Mādhava of Sangamagrāma, founder of the Kerala school whose infinite-series work would centuries later prefigure the Newton–Leibniz calculus.' },
-  { name: 'Chinthamani Ragoonatha Chary', dates: '1822 – 5 February 1880', bio: 'The first Indian Fellow of the Royal Astronomical Society and the first Indian to publish modern astronomical discoveries — the variable star R Reticuli (1867), made from the Madras Observatory under N. R. Pogson. Chary came from a family of hereditary Tamil panchangam-compilers and grew unhappy about the errors in the traditional pañcāṅga — Vakya-computed positions were off the observed sky by minutes of arc, occasionally a full degree, on slow planets. During the 1870s he published a Drigganita-pañcāṅga in Tamil and Telugu built on observed planetary parameters. His son Chinthamani Raghava Chary carried on the work.' },
-  { name: 'Konnur Manicka Mudaliar', dates: 'fl. 1880s', bio: 'Founder in 1883 of the Pambu Panchangam — the most influential commercial Tamil almanac, now producing roughly 300,000 copies per year from Chennai. The name comes from the cover illustration of a snake (pambu) encircling 27 nakshatra-circles — the snake symbolising the wandering, near-elliptical lunar path. Modern editions are labelled “Suddha Vakya Panchangam,” confirming the Vakya lineage.' },
-  { name: 'Sri Chandrasekarendra Saraswati (Kanchi Mahāperiyava)', dates: '1894–1994', bio: 'Under his pontificate the Kanchi Kamakoti Peetham’s own Madathu Panchangam shifted to Drik in 1952 — the highest-profile adoption of observational ephemerides by a major southern matha. The Sringeri Sharada Peetham and the Ranganathaswamy Temple at Srirangam meanwhile continued the Vākyapañcāṅga tradition, ensuring that both schools remain in continuous publication in the twenty-first century.' },
+const TAMIL_SCHOLARS: Array<{ name: string; dates: string; bio: LocaleText }> = [
+  { name: 'Vatasseri Parameśvara Nambūdiri', dates: 'c. 1380–1460', bio: { en: 'The pivotal Drik figure. The Kerala-school mathematician who, after a sustained programme of his own eclipse observations, found that the parameters in use since Āryabhaṭa had drifted noticeably from the sky. His Dṛggaṇita (“computed by observation”) was composed in 1431 CE with corrected planetary mean motions and equation-of-centre terms. Parameśvara was the disciple of Mādhava of Sangamagrāma, founder of the Kerala school whose infinite-series work would centuries later prefigure the Newton–Leibniz calculus.' } },
+  { name: 'Chinthamani Ragoonatha Chary', dates: '1822 – 5 February 1880', bio: { en: 'The first Indian Fellow of the Royal Astronomical Society and the first Indian to publish modern astronomical discoveries — the variable star R Reticuli (1867), made from the Madras Observatory under N. R. Pogson. Chary came from a family of hereditary Tamil panchangam-compilers and grew unhappy about the errors in the traditional pañcāṅga — Vakya-computed positions were off the observed sky by minutes of arc, occasionally a full degree, on slow planets. During the 1870s he published a Drigganita-pañcāṅga in Tamil and Telugu built on observed planetary parameters. His son Chinthamani Raghava Chary carried on the work.' } },
+  { name: 'Konnur Manicka Mudaliar', dates: 'fl. 1880s', bio: { en: 'Founder in 1883 of the Pambu Panchangam — the most influential commercial Tamil almanac, now producing roughly 300,000 copies per year from Chennai. The name comes from the cover illustration of a snake (pambu) encircling 27 nakshatra-circles — the snake symbolising the wandering, near-elliptical lunar path. Modern editions are labelled “Suddha Vakya Panchangam,” confirming the Vakya lineage.' } },
+  { name: 'Sri Chandrasekarendra Saraswati (Kanchi Mahāperiyava)', dates: '1894–1994', bio: { en: 'Under his pontificate the Kanchi Kamakoti Peetham’s own Madathu Panchangam shifted to Drik in 1952 — the highest-profile adoption of observational ephemerides by a major southern matha. The Sringeri Sharada Peetham and the Ranganathaswamy Temple at Srirangam meanwhile continued the Vākyapañcāṅga tradition, ensuring that both schools remain in continuous publication in the twenty-first century.' } },
 ];
 
 export default async function TamilCalendarPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -529,12 +531,12 @@ export default async function TamilCalendarPage({ params }: { params: Promise<{ 
             {PONGAL_DAYS.map((d) => {
               const eDate = d.engineKey ? ed(2026, d.engineKey, locale) : null;
               return (
-                <div key={d.name} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+                <div key={d.name.en} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
                   <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1.5">
-                    <span className="text-gold-light font-semibold text-sm">{d.name}</span>
-                    <span className="text-amber-400/70 text-xs">{d.subtitle}{eDate ? ` · ${eDate}` : ''}</span>
+                    <span className="text-gold-light font-semibold text-sm">{tl(d.name, locale)}</span>
+                    <span className="text-amber-400/70 text-xs">{tl(d.subtitle, locale)}{eDate ? ` · ${eDate}` : ''}</span>
                   </div>
-                  <p className="text-text-secondary text-sm leading-relaxed">{d.desc}</p>
+                  <p className="text-text-secondary text-sm leading-relaxed">{tl(d.desc, locale)}</p>
                 </div>
               );
             })}
@@ -585,7 +587,7 @@ export default async function TamilCalendarPage({ params }: { params: Promise<{ 
                     <td className="px-4 py-2.5 text-text-secondary">{y.n}</td>
                     <td className="px-4 py-2.5 text-gold-light font-semibold">{y.name}</td>
                     <td className="px-4 py-2.5 text-text-primary">{y.tamil}</td>
-                    <td className="px-4 py-2.5 text-text-secondary">{y.sense}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{tl(y.sense, locale)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -608,7 +610,7 @@ export default async function TamilCalendarPage({ params }: { params: Promise<{ 
                   <span className="text-gold-light font-semibold text-sm">{s.name}</span>
                   <span className="text-amber-400/70 text-xs">{s.dates}</span>
                 </div>
-                <p className="text-text-secondary text-sm leading-relaxed">{s.bio}</p>
+                <p className="text-text-secondary text-sm leading-relaxed">{tl(s.bio, locale)}</p>
               </div>
             ))}
           </div>

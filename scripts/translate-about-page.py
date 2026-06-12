@@ -148,9 +148,12 @@ def main() -> int:
             continue
         block = build_locale_block(en_block, target)
         new_blocks.append(block)
-        # Approximate char count for the block we just translated
-        keyed_pat = re.compile(r"\w+:\s*'([^']*)'")
-        chars = sum(len(m.group(1)) for m in keyed_pat.finditer(en_block))
+        # Approximate char count for the block we just translated. Use
+        # the same escape-aware pattern as build_locale_block so that
+        # values containing `\'` are measured accurately (and source
+        # \' is unescaped before counting, matching translation input).
+        keyed_pat = re.compile(r"\w+:\s*'((?:\\.|[^'\\])*)'")
+        chars = sum(len(m.group(1).replace("\\'", "'")) for m in keyed_pat.finditer(en_block))
         print(f"  {target}: ready ({chars} chars translated)")
 
     if not new_blocks:

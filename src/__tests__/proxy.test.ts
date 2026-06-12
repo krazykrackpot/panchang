@@ -426,6 +426,9 @@ describe('GSC Coverage Drilldown 2026-06-12 — double-locale strip (308)', () =
     { url: 'https://dekhopanchang.com/en/bn/panchang/mumbai', expected: '/bn/panchang/mumbai' },
     { url: 'https://dekhopanchang.com/en/gu/panchang/nagpur', expected: '/gu/panchang/nagpur' },
     { url: 'https://dekhopanchang.com/hi/ta/learn/kundali',    expected: '/ta/learn/kundali' },
+    // Gemini PR #689: bare double-locale (no rest) → inner locale home
+    { url: 'https://dekhopanchang.com/en/bn',                  expected: '/bn' },
+    { url: 'https://dekhopanchang.com/hi/te',                  expected: '/te' },
   ];
 
   it.each(DOUBLE_LOCALE_CASES)('308 redirects $url → $expected', ({ url, expected }) => {

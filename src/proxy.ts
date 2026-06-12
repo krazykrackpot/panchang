@@ -528,18 +528,22 @@ function pujaVidhiTypoRedirect(
  * inner) because the inner is the intent — someone meant Bengali Mumbai
  * panchang, not English-with-spurious-bn-segment.
  *
- * Returns null if `segmentsAfterLocale[0]` isn't a locale, or if the
- * path has nothing after the double-locale prefix (`/en/bn` with no
- * rest — falls through to bare-locale handling, low value to gate).
+ * Bare double-locale paths (`/en/bn`, no rest) redirect to the inner
+ * locale's homepage (`/bn`). They DON'T fall through to bare-locale
+ * handling — the outer `/en` already satisfied `pathnameLocale`, so the
+ * page router would receive `/en/bn` and 404 (no `/[locale]/bn` page).
+ * Gemini PR #689 — caught the comment's earlier wrong assumption.
+ *
+ * Returns null only when `segmentsAfterLocale[0]` isn't a locale.
  */
 function doubleLocaleRedirect(
   segmentsAfterLocale: string[],
 ): string | null {
-  if (segmentsAfterLocale.length < 2) return null;
+  if (segmentsAfterLocale.length < 1) return null;
   const inner = segmentsAfterLocale[0];
   if (!LOCALES.includes(inner as (typeof LOCALES)[number])) return null;
   const rest = segmentsAfterLocale.slice(1).join('/');
-  return `/${inner}/${rest}`;
+  return rest ? `/${inner}/${rest}` : `/${inner}`;
 }
 
 /**

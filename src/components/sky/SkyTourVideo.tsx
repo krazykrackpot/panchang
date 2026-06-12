@@ -24,7 +24,11 @@ const VIDEOS: Record<string, { id: string; title: string }> = {
     title: 'ग्रहों की सटीक स्थिति, अभी, लाइव | Live Sky Map | देखो पंचांग',
   },
   en: {
-    id: '9Iqii8WzeqQ',
+    // 2026-06-12: replaced the 90s cut (9Iqii8WzeqQ — deleted) with a 105s
+    // cut so the VO sits at natural English-narrator pace instead of the
+    // 1.17× compression the 90s container forced. YouTube doesn't allow
+    // editing video content on an existing video ID, so the URL changed.
+    id: 'zCx9v44PplM',
     title: 'Where Are The Planets Right Now? Live Sky Map | Dekho Panchang',
   },
 };

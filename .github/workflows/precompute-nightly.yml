@@ -113,7 +113,7 @@ jobs:
           echo "dates=$DATES" >> "$GITHUB_OUTPUT"
           echo "Computed $(echo "$DATES" | tr ',' '\n' | wc -l) dates"
 
-      - name: Resolve top cities
+      - name: Resolve cities
         id: cities
         run: |
           # Derive the city list from the canonical CITIES module so
@@ -123,16 +123,23 @@ jobs:
           # failed loud on "unknown city: thane". This dynamic
           # resolution makes the workflow drift-proof against future
           # changes to the city catalog.
+          #
+          # 2026-06-13: dropped the `c.timezone === 'Asia/Kolkata'`
+          # filter — we now precompute for ALL cities (IST + diaspora).
+          # The diaspora cities (LA/NY/Dubai/London/Sydney/etc.) were
+          # previously hitting Vercel CPU for every page render; covering
+          # them brings the entire `/panchang/[city]` family off Vercel
+          # compute. Fan-out is 57 cities vs the prior 42.
           CITIES=$(npx tsx -e "
             import { CITIES } from './src/lib/constants/cities';
-            console.log(CITIES.filter(c => c.timezone === 'Asia/Kolkata').map(c => c.slug).join(','));
+            console.log(CITIES.map(c => c.slug).join(','));
           ")
           if [ -z "$CITIES" ]; then
             echo "::error::Resolved empty city list from CITIES constant"
             exit 1
           fi
           echo "cities=$CITIES" >> "$GITHUB_OUTPUT"
-          echo "Resolved $(echo "$CITIES" | tr ',' '\n' | wc -l) IST cities from CITIES module"
+          echo "Resolved $(echo "$CITIES" | tr ',' '\n' | wc -l) cities from CITIES module"
 
       - name: Precompute choghadiya
         env:
@@ -175,6 +182,22 @@ jobs:
           npx tsx scripts/precompute/horoscope.ts \
             --dates "${{ steps.window.outputs.dates }}" \
             --rashis "$RASHIS" \
+            --skip-if-present
+
+      - name: Precompute panchang-date
+        env:
+          PRECOMPUTE_STORAGE: blob
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+        run: |
+          # Panchang-date: (date × seo-city) fan-out — 9 SEO cities (one
+          # per visible locale, deduped) × the 60-day date window. The
+          # script derives the city set from SEO_CITY_BY_LOCALE itself,
+          # so no city-list arg is needed (drift-proof against future
+          # additions to the locale-city map). One Blob per (date, city);
+          # page resolves via `tl(field, locale)` at render time, so any
+          # locale that maps to the same SEO city hits the same Blob.
+          npx tsx scripts/precompute/panchang-date.ts \
+            --dates "${{ steps.window.outputs.dates }}" \
             --skip-if-present
 
       - name: Revalidate page paths
@@ -233,14 +256,30 @@ jobs:
                         (today + dt.timedelta(days=1)).isoformat()}
           dates = [d for d in all_dates if d in flip_dates]
           cities = os.environ["CITIES"].split(",")
+          # SEO cities for panchang-date — one per visible locale,
+          # deduped. Must match scripts/precompute/panchang-date.ts which
+          # derives the same set from SEO_CITY_BY_LOCALE.
+          seo_cities = sorted(set([
+              "delhi",    # en
+              "ujjain",   # hi
+              "mumbai",   # mr
+              "chennai",  # ta
+              "hyderabad",# te
+              "kolkata",  # bn
+              "vadodara", # gu
+              "bangalore",# kn
+              "darbhanga",# mai
+          ]))
           locales = ["en", "hi", "ta", "te", "bn", "gu", "kn", "mai", "mr"]
           paths = (
               [f"/{l}/choghadiya/{d}" for d in dates for l in locales]
               + [f"/{l}/gauri-panchang/{d}" for d in dates for l in locales]
+              + [f"/{l}/panchang/date/{d}" for d in dates for l in locales]
           )
           tags = (
               [f"precompute:choghadiya/{d}/{c}" for d in dates for c in cities]
               + [f"precompute:gauri-panchang/{d}/{c}" for d in dates for c in cities]
+              + [f"precompute:panchang-date/{d}/{c}" for d in dates for c in seo_cities]
           )
           print(json.dumps({"paths": paths, "tags": tags}))
           PY

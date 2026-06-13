@@ -1,8 +1,10 @@
 import { setRequestLocale } from 'next-intl/server';
 import { getCityBySlugExtended, getNearbyCities } from '@/lib/constants/cities-extended';
-import { scanDateRangeV2 } from '@/lib/muhurta/time-window-scanner';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
-import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import {
+  getMuhurtaMonthPageModel,
+  asScanWindows,
+} from '@/lib/precompute/muhurta-month-page-model';
 import { tl } from '@/lib/utils/trilingual';
 import { notFound } from 'next/navigation';
 import { ACTIVITY_SLUGS, MONTH_MAP, MONTH_NAMES } from './shared';
@@ -48,22 +50,19 @@ export default async function MuhurtaActivityPage({ params }: PageProps) {
   }
 
   const activity = getExtendedActivity(activityId);
-  const daysInMonth = new Date(Date.UTC(year, monthNum, 0)).getUTCDate();
-  const startDate = `${year}-${String(monthNum).padStart(2, '0')}-01`;
-  const endDate = `${year}-${String(monthNum).padStart(2, '0')}-${String(daysInMonth).padStart(2, '0')}`;
-  const tz = getUTCOffsetForDate(year, monthNum, 1, cityData.timezone);
 
-  const windows = scanDateRangeV2({
-    startDate,
-    endDate,
-    activity: activityId,
-    lat: cityData.lat,
-    lng: cityData.lng,
-    tz,
-    windowMinutes: 120,
-    preSunriseHours: 0,
-    postSunsetHours: 1,
+  // Read precomputed scan windows (Blob → live-compute fallback). The
+  // fallback delegates to the same scanDateRangeV2 call the page used
+  // to inline, so live and Blob paths produce byte-equivalent output
+  // (modulo _computedAt). Page does its own sort + top-10 slice below.
+  const muhurtaModel = await getMuhurtaMonthPageModel({
+    activitySlug,
+    activityId,
+    year,
+    month: monthNum,
+    city: cityData,
   });
+  const windows = asScanWindows(muhurtaModel.windows);
 
   // Sort by score descending, take top 10
   const topWindows = [...windows].sort((a, b) => b.score - a.score).slice(0, 10);

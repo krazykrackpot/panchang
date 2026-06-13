@@ -66,12 +66,14 @@ permissions:
 jobs:
   choghadiya:
     runs-on: ubuntu-latest
-    # 60 min covers the worst-case backfill (--backfill-days 365 → 17,892
-    # tuples at ~100-150 ms each = ~30-45 min sequential). Steady-state
-    # nightly runs (window-only, ~2,500 tuples) finish in <10 min so the
-    # bump costs nothing. Bumped from 30 after run 27061801184 was
-    # cancelled at the 30-min ceiling mid-backfill.
-    timeout-minutes: 60
+    # 120 min covers the now-larger pipeline:
+    #   - choghadiya / gauri-panchang / horoscope / panchang-date /
+    #     panchang-city / daily-article / hindu-calendar / festivals-year:
+    #     combined ~55 min worst-case backfill
+    #   - muhurta-month: ~40-60 min for the 7,524-tuple backfill (own
+    #     per-step timeout-minutes: 50)
+    # Steady-state nightly runs with --skip-if-present finish in <10 min.
+    timeout-minutes: 120
 
     steps:
       - name: Checkout
@@ -266,6 +268,27 @@ jobs:
           # year onward is essentially free.
           npx tsx scripts/precompute/festivals-year.ts \
             --years "2026,2027" \
+            --cities "${{ steps.cities.outputs.cities }}" \
+            --skip-if-present
+
+      - name: Precompute muhurta-month
+        env:
+          PRECOMPUTE_STORAGE: blob
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+        timeout-minutes: 50
+        run: |
+          # Muhurta-month: (activity × year × month × city) fan-out —
+          # the largest target in the pipeline. Current scope: 11
+          # activities × 12 months × 57 cities × 1 year = 7,524 Blobs.
+          # Each scanDateRangeV2 call is ~300-500ms; full backfill is
+          # ~40-60 min worst case. After --skip-if-present steady state,
+          # nightly delta is essentially zero until the year rollover.
+          # Per-step 50-min timeout absorbs the worst-case backfill
+          # without sharing budget with the other precompute steps.
+          # Currently covers 2026 only — extending to 2027 adds another
+          # 40-60 min and is deferred until we observe production runtime.
+          npx tsx scripts/precompute/muhurta-month.ts \
+            --years "2026" \
             --cities "${{ steps.cities.outputs.cities }}" \
             --skip-if-present
 

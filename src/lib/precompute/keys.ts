@@ -99,6 +99,24 @@ export function festivalsYearKey(year: number, citySlug: string): string {
 }
 
 /**
+ * Muhurta windows for an (activity, year, month, city) tuple — wraps
+ * the scanDateRangeV2 output. Consumed by
+ * /muhurta/[type]/[year]/[month]/[city] which sorts by score and
+ * surfaces the top 10. One Blob per tuple; trilingual labels baked in.
+ */
+export function muhurtaMonthKey(activitySlug: string, year: number, month: number, citySlug: string): string {
+  if (!Number.isInteger(year) || year < 1900 || year > 2200) {
+    throw new Error(`[keys] expected year in [1900, 2200], got ${year}`);
+  }
+  if (!Number.isInteger(month) || month < 1 || month > 12) {
+    throw new Error(`[keys] expected month 1..12, got ${month}`);
+  }
+  assertSlug(activitySlug);
+  assertSlug(citySlug);
+  return `muhurta-month/${activitySlug}/${year}/${month}/${citySlug}`;
+}
+
+/**
  * Horoscope for a rashi on a specific date — rashi + date.
  *
  * LOCALE-INDEPENDENT. The original keys.ts (2026-06-06) declared this

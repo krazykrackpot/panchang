@@ -33,6 +33,14 @@ interface RunArgs {
 export async function precomputePanchangDate(args: RunArgs): Promise<SetPrecomputedResult[]> {
   const results: SetPrecomputedResult[] = [];
 
+  // generateFestivalCalendarV2 builds the FULL yearly tithi table
+  // internally — running it per (date, city) means we redo a 365-day
+  // computation for every tuple. Cache by (year, city.slug) so the
+  // 60-day window collapses from 60 × 9 = 540 calls to at most 18
+  // (and typically 9 when the window stays inside one calendar year).
+  // Gemini PR #693 catch.
+  const festivalCache = new Map<string, ReturnType<typeof generateFestivalCalendarV2>>();
+
   // SEO cities — derived from the SEO_CITY_BY_LOCALE map. Each locale
   // maps to one city; the unique-city set is bounded at ~9 (one per
   // visible locale). We use Set/Array.from to dedupe.
@@ -88,7 +96,12 @@ export async function precomputePanchangDate(args: RunArgs): Promise<SetPrecompu
 
         let festivalToday: { name: typeof panchang.tithi.name; slug: string } | null = null;
         try {
-          const fests = generateFestivalCalendarV2(y, city.lat, city.lng, city.timezone);
+          const cacheKey = `${y}/${city.slug}`;
+          let fests = festivalCache.get(cacheKey);
+          if (!fests) {
+            fests = generateFestivalCalendarV2(y, city.lat, city.lng, city.timezone);
+            festivalCache.set(cacheKey, fests);
+          }
           const hit = fests.find((f) => f.date === dateStr);
           if (hit) festivalToday = { name: hit.name, slug: hit.slug ?? '' };
         } catch (err) {

@@ -127,7 +127,11 @@ export async function precomputePanchangDate(args: RunArgs): Promise<SetPrecompu
           sunset: panchang.sunset,
           rahuKaal: panchang.rahuKaal ?? null,
           abhijitMuhurta: panchang.abhijitMuhurta
-            ? { start: panchang.abhijitMuhurta.start, end: panchang.abhijitMuhurta.end }
+            ? {
+                start: panchang.abhijitMuhurta.start,
+                end: panchang.abhijitMuhurta.end,
+                available: panchang.abhijitMuhurta.available,
+              }
             : null,
           festivalToday,
         };

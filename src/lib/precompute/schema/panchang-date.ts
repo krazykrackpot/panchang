@@ -35,6 +35,16 @@ const TimeRange = z.object({
   end: z.string().regex(/^\d{2}:\d{2}$/),
 });
 
+/** Abhijit window carries an `available` flag — false on Wednesdays
+ *  (classical inauspicious-Abhijit rule). The page reads this to
+ *  decide whether to surface the muhurta row. Dropping the flag
+ *  would render Wednesday Abhijit as auspicious. Gemini PR #693. */
+const AbhijitWindow = z.object({
+  start: z.string().regex(/^\d{2}:\d{2}$/),
+  end: z.string().regex(/^\d{2}:\d{2}$/),
+  available: z.boolean().optional(),
+});
+
 const FestivalToday = z.object({
   name: LocaleText,
   slug: z.string(),
@@ -62,7 +72,7 @@ export const PanchangDatePageModel = z.object({
   sunrise: z.string().regex(/^\d{2}:\d{2}$/),
   sunset: z.string().regex(/^\d{2}:\d{2}$/),
   rahuKaal: TimeRange.nullable(),
-  abhijitMuhurta: TimeRange.nullable(),
+  abhijitMuhurta: AbhijitWindow.nullable(),
 
   /** First festival entry whose `.date` matches this YYYY-MM-DD; null otherwise. */
   festivalToday: FestivalToday.nullable(),

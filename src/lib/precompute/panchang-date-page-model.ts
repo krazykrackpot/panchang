@@ -76,7 +76,11 @@ export async function getPanchangDatePageModel(args: Args): Promise<PanchangDate
         sunset: panchang.sunset,
         rahuKaal: panchang.rahuKaal ?? null,
         abhijitMuhurta: panchang.abhijitMuhurta
-          ? { start: panchang.abhijitMuhurta.start, end: panchang.abhijitMuhurta.end }
+          ? {
+              start: panchang.abhijitMuhurta.start,
+              end: panchang.abhijitMuhurta.end,
+              available: panchang.abhijitMuhurta.available,
+            }
           : null,
         festivalToday,
       };

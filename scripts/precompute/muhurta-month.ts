@@ -21,6 +21,7 @@ import { setPrecomputed, type SetPrecomputedResult } from '@/lib/precompute/writ
 import { muhurtaMonthKey } from '@/lib/precompute/keys';
 import { MuhurtaMonthPageModel } from '@/lib/precompute/schema/muhurta-month';
 import { buildFreshModel } from '@/lib/precompute/muhurta-month-page-model';
+import { getStorage } from '@/lib/precompute/storage';
 import { ACTIVITY_SLUGS } from '@/app/[locale]/muhurta/[type]/[year]/[month]/[city]/shared';
 import { CITIES } from '@/lib/constants/cities';
 
@@ -60,9 +61,19 @@ export async function precomputeMuhurtaMonth(args: RunArgs): Promise<SetPrecompu
           }
 
           try {
+            const key = muhurtaMonthKey(activitySlug, year, month, city.slug);
+            // Existence check BEFORE buildFreshModel — scanDateRangeV2
+            // costs 300-500ms per tuple, dwarfing the storage write.
+            // Without this short-circuit, --skip-if-present still pays
+            // the full 40-60min backfill compute every run.
+            // Gemini PR #697 HIGH.
+            if (args.skipIfPresent && (await getStorage().exists(key))) {
+              results.push({ status: 'skipped', key });
+              continue;
+            }
             const data = buildFreshModel(activitySlug, activityId, year, month, city);
             const result = await setPrecomputed({
-              key: muhurtaMonthKey(activitySlug, year, month, city.slug),
+              key,
               schema: MuhurtaMonthPageModel,
               data,
               skipIfPresent: args.skipIfPresent,

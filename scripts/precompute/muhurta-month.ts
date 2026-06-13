@@ -34,8 +34,19 @@ interface RunArgs {
 export async function precomputeMuhurtaMonth(args: RunArgs): Promise<SetPrecomputedResult[]> {
   const results: SetPrecomputedResult[] = [];
 
+  // Resolve all cities upfront — fails fast on typo'd slugs before
+  // any expensive scan runs, and replaces 7,524 lookups with 57.
+  // Gemini PR #697 third-pass MEDIUM.
+  const resolvedCities = args.cities.map((citySlug) => {
+    const city = getCityBySlugExtended(citySlug);
+    if (!city) {
+      throw new Error(`[precompute/muhurta-month] unknown city: ${citySlug}`);
+    }
+    return city;
+  });
+
   const activityEntries = Object.entries(ACTIVITY_SLUGS);
-  const total = args.years.length * 12 * activityEntries.length * args.cities.length;
+  const total = args.years.length * 12 * activityEntries.length * resolvedCities.length;
   let processed = 0;
   const t0 = Date.now();
 
@@ -46,14 +57,8 @@ export async function precomputeMuhurtaMonth(args: RunArgs): Promise<SetPrecompu
 
     for (let month = 1; month <= 12; month++) {
       for (const [activitySlug, activityId] of activityEntries) {
-        for (const citySlug of args.cities) {
-          // O(1) lookup via the extended-cities map — matches what the
-          // page handler uses (page.tsx:44), so a city the page can
-          // resolve is always resolvable here too. Gemini PR #697.
-          const city = getCityBySlugExtended(citySlug);
-          if (!city) {
-            throw new Error(`[precompute/muhurta-month] unknown city: ${citySlug}`);
-          }
+        for (const city of resolvedCities) {
+          const citySlug = city.slug;
 
           processed++;
           if (processed % 500 === 0 || processed === 1) {

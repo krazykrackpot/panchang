@@ -1,9 +1,8 @@
 import { setRequestLocale } from "next-intl/server";
 import {
-  generateDailyArticle,
-  type ArticleCityConfig,
-} from "@/lib/horoscope/daily-article";
-import { generateDailyHoroscope } from "@/lib/horoscope/daily-engine";
+  getDailyArticlePageModel,
+  asHoroscopes,
+} from "@/lib/precompute/daily-article-page-model";
 import { RASHIS } from "@/lib/constants/rashis";
 import { RashiIconById } from "@/components/icons/RashiIcons";
 import { getCityBySlug } from "@/lib/constants/cities";
@@ -121,24 +120,20 @@ export default async function CityDailyPanchangArticle({
   const cityData = getCityBySlug(city);
   if (!cityData) notFound();
 
-  const cityConfig: ArticleCityConfig = {
-    name: cityData.name.en,
-    nameHi: cityData.name.hi || "",
-    lat: cityData.lat,
-    lng: cityData.lng,
-    timezone: cityData.timezone,
-  };
-
-  const article = generateDailyArticle(parsed, cityConfig);
+  // Read precomputed bundle (article + 12 horoscopes). The fallback
+  // mirrors the inline code this PR replaced — generateDailyArticle
+  // for the article + RASHIS.map(generateDailyHoroscope) for the
+  // grid — so live and Blob paths are byte-equivalent (modulo
+  // _computedAt).
+  const dailyModel = await getDailyArticlePageModel({ date, city: cityData });
+  const article = dailyModel.article;
   const isHi = isDevanagariLocale(locale);
   const loc = tl({ en: "en", hi: "hi", sa: "hi" }, locale) as "en" | "hi";
   const body = article.body[loc];
   const title = article.title[loc];
   const cityName = isHi ? cityData.name.hi : cityData.name.en;
   const hLabels = HOROSCOPE_LABELS[locale] || HOROSCOPE_LABELS.en;
-  const horoscopes = RASHIS.map((r) =>
-    generateDailyHoroscope({ moonSign: r.id, date }),
-  );
+  const horoscopes = asHoroscopes(dailyModel.horoscopes);
 
   const articleLD = {
     "@context": "https://schema.org",

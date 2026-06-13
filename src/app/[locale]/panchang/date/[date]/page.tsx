@@ -42,6 +42,7 @@ import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getSeoCityForLocale } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
+import { getPanchangDatePageModel } from '@/lib/precompute/panchang-date-page-model';
 import { tl } from '@/lib/utils/trilingual';
 import { pickPanchangDateLabel as PDL, formatPanchangDateLabel } from '@/lib/content/panchang-date-labels';
 import { isStrictYmd } from '@/lib/seo/date-validation';
@@ -195,35 +196,28 @@ export default async function PanchangDatePage({
   // and on-page H1 stay aligned (Marathi मुंबई / Bengali মুম্বই, etc).
   const cityName = tl(city.name, locale);
 
-  // Compute the panchang via the canonical engine. Same loader the root
-  // /panchang page uses (Lesson B: single source of truth). city is
-  // guaranteed non-null by getSeoCityForLocale.
-  let panchang: Awaited<ReturnType<typeof computePanchang>> | null = null;
+  // Read precomputed page model (Blob → live-compute fallback). The
+  // reader returns a flattened panchang shape that the rest of the
+  // handler consumes via the existing fields (tithi.name, nakshatra.name,
+  // …). See src/lib/precompute/panchang-date-page-model.ts for the
+  // four-state contract (kill switch / cold cache / hot Blob / schema
+  // mismatch). One Blob serves every locale that maps to the same
+  // SEO city; `tl(name, locale)` at render time picks the script.
+  let model: Awaited<ReturnType<typeof getPanchangDatePageModel>> | null = null;
   try {
-    const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
-    panchang = computePanchang({
-      year, month, day,
-      lat: city.lat, lng: city.lng,
-      tzOffset, timezone: city.timezone,
-      locationName: cityName,
-    });
+    model = await getPanchangDatePageModel({ date: dateStr, city });
   } catch (err) {
-    console.error('[panchang/date] SSR computation failed for', dateStr, ':', err);
+    console.error('[panchang/date] page-model load failed for', dateStr, ':', err);
   }
-
-  // Festival match via `.amanta` (Lesson ZC: festival defs use Amant
-  // month names; matching against `.purnimanta` shifts Diwali, Dussehra
-  // etc. by ~30 days during Krishna Paksha).
-  let festivalToday: { name: string; slug: string } | null = null;
-  try {
-    const fests = generateFestivalCalendarV2(year, city.lat, city.lng, city.timezone);
-    const hit = fests.find(f => f.date === dateStr);
-    if (hit) {
-      festivalToday = { name: tl(hit.name, locale), slug: hit.slug ?? '' };
-    }
-  } catch (err) {
-    console.error('[panchang/date] festival lookup failed:', err);
-  }
+  // Keep `panchang` as the local binding the rest of the handler
+  // already reads. The Blob shape is a subset of computePanchang's
+  // result, but every field the SSR consumes (tithi/nakshatra/yoga/
+  // karana/vara/sunrise/sunset/rahuKaal/abhijitMuhurta) is present.
+  const panchang = model;
+  const festivalToday: { name: string; slug: string } | null =
+    model?.festivalToday
+      ? { name: tl(model.festivalToday.name, locale), slug: model.festivalToday.slug }
+      : null;
 
   // Adjacent date links — the crawl spine. Built via Date.UTC arithmetic
   // (Lesson L) so we never roll into a server-local timezone bug.

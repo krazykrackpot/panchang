@@ -20,8 +20,10 @@
     "e2e:seed": "node --env-file=.env.local --import tsx scripts/e2e-seed.ts",
     "test:e2e:auth": "E2E_AUTH_COOKIE=\"$(npm run -s e2e:seed -- --token-only)\" npx playwright test e2e/dashboard-saved-kundalis.spec.ts e2e/error-surfacing.spec.ts",
     "analyze": "ANALYZE=true next build --webpack",
-    "deploy": "npm run test && vercel pull --yes --environment=production && rm -rf .next .vercel/output && NODE_OPTIONS='--max-old-space-size=6144' vercel build --prod --yes && vercel deploy --prebuilt --prod --yes --archive=tgz",
-    "deploy:fast": "rm -rf .next .vercel/output && NODE_OPTIONS='--max-old-space-size=6144' vercel build --prod --yes && vercel deploy --prebuilt --prod --yes --archive=tgz",
+    "deploy": "npm run test && ./scripts/build-sweph-linux-arm64.sh && vercel pull --yes --environment=production && rm -rf .next .vercel/output && NODE_OPTIONS='--max-old-space-size=6144' vercel build --prod --yes && vercel deploy --prebuilt --prod --yes --archive=tgz && ./scripts/build-sweph-linux-arm64.sh restore",
+    "deploy:fast": "./scripts/build-sweph-linux-arm64.sh && rm -rf .next .vercel/output && NODE_OPTIONS='--max-old-space-size=6144' vercel build --prod --yes && vercel deploy --prebuilt --prod --yes --archive=tgz && ./scripts/build-sweph-linux-arm64.sh restore",
+    "sweph:build-linux": "./scripts/build-sweph-linux-arm64.sh",
+    "sweph:restore-macos": "./scripts/build-sweph-linux-arm64.sh restore",
     "video:studio": "npx remotion studio src/video/index.ts",
     "video:render": "npx tsx scripts/render-video.ts"
   },

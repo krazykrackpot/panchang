@@ -8,6 +8,8 @@ import { buildYearlyTithiTable, lookupTithiAtSunrise } from '@/lib/calendar/tith
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { dateToJD } from '@/lib/ephem/astronomical';
 import { sunriseUTHours } from '@/lib/ephem/swiss-ephemeris';
+import { CITIES } from '@/lib/constants/cities';
+import { getPanchangCityPageModel } from '@/lib/precompute/panchang-city-page-model';
 
 const panchangSchema = z.object({
   year: z.coerce.number().int().min(1900).max(2200),
@@ -18,6 +20,11 @@ const panchangSchema = z.object({
   tz: z.coerce.number().min(-12).max(14).optional(),
   timezone: z.string().max(100).optional(), // IANA timezone (e.g., 'Europe/Zurich')
   location: z.string().max(200).optional(),
+  /** Optional hint from city-page consumers. If present AND resolves to a
+   *  known city, short-circuit through the precompute Blob and skip the
+   *  full live-compute pipeline below. Other callers (root /panchang with
+   *  arbitrary geo coords) omit this and live-compute as before. */
+  citySlug: z.string().regex(/^[a-z][a-z0-9-]*$/).max(60).optional(),
 });
 
 export async function GET(request: Request) {
@@ -44,6 +51,7 @@ export async function GET(request: Request) {
     tz: searchParams.get('tz') || undefined,
     timezone: searchParams.get('timezone') || undefined,
     location: searchParams.get('location') || undefined,
+    citySlug: searchParams.get('citySlug') || undefined,
   });
 
   if (!parsed.success) {
@@ -53,7 +61,7 @@ export async function GET(request: Request) {
     );
   }
 
-  const { year, month, day, lat, lng, tz, timezone, location } = parsed.data;
+  const { year, month, day, lat, lng, tz, timezone, location, citySlug } = parsed.data;
 
   // Reject requests with no real location — 0,0 is Null Island, not a valid user location
   if (lat === 0 && lng === 0) {
@@ -61,6 +69,33 @@ export async function GET(request: Request) {
       { error: 'Location required. Provide lat and lng parameters.' },
       { status: 400 }
     );
+  }
+
+  // Precompute short-circuit: when the caller passes a valid citySlug,
+  // try the Blob first. Live compute below remains the fallback for
+  // (a) callers with no citySlug, (b) unknown city slugs, (c) Blob miss.
+  if (citySlug) {
+    const city = CITIES.find((c) => c.slug === citySlug);
+    if (city) {
+      try {
+        const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        const model = await getPanchangCityPageModel({ date: dateStr, city });
+        const body: Record<string, unknown> = { ...model.panchang };
+        if (model.tithiTable) body.tithiTable = model.tithiTable;
+        if (model.festivals) body.festivals = model.festivals;
+        return NextResponse.json(body, {
+          headers: {
+            'X-RateLimit-Remaining': remaining.toString(),
+            'Cache-Control': 'public, s-maxage=43200, stale-while-revalidate=43200',
+            'X-Panchang-Source': 'precompute',
+          },
+        });
+      } catch (err) {
+        // Reader contract is "never throw" — but defence in depth: if
+        // anything escapes, drop to live compute rather than 500.
+        console.error('[API/panchang] precompute path failed (falling back to live):', err);
+      }
+    }
   }
 
   // Resolve timezone: prefer IANA string, fall back to numeric offset, then default

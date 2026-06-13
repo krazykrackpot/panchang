@@ -252,6 +252,23 @@ jobs:
             --years \"\$YEARS\" \
             --skip-if-present
 
+      - name: Precompute festivals-year
+        env:
+          PRECOMPUTE_STORAGE: blob
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+        run: |
+          # Festivals-year: (year × city) fan-out — same FestivalEntry[]
+          # shape as hindu-calendar but per-city (each city has slightly
+          # different sunrise-anchored tithi boundaries). One Blob per
+          # (year, city) reused across every festival slug — page does
+          # .find(f.slug === slug) at render time. Yearly tithi-table
+          # build is expensive (~0.5s); skip-if-present means the second
+          # year onward is essentially free.
+          npx tsx scripts/precompute/festivals-year.ts \
+            --years "2026,2027" \
+            --cities "${{ steps.cities.outputs.cities }}" \
+            --skip-if-present
+
       - name: Revalidate page paths
         env:
           DATES: ${{ steps.window.outputs.dates }}
@@ -336,9 +353,11 @@ jobs:
               + [f"/{l}/panchang/date/{d}" for d in dates for l in locales]
               + [f"/{l}/daily/{d}/{c}" for d in dates for l in locales for c in cities]
           )
-          # hindu-calendar pages aren't path-flipped — yearly fan-out is
-          # tiny and the page has revalidate=86400 so natural ISR picks
-          # up the new Blob within 24h. Tag-flip the current year only.
+          # hindu-calendar + festivals-year pages aren't path-flipped —
+          # yearly fan-out and the page's 7d/86400 revalidate means
+          # natural ISR picks up new Blobs without us flipping path
+          # caches. Tag-flip current year only for both (festivals-year
+          # tags include the city axis).
           import datetime as dt2
           this_year = dt2.date.today().year
           tags = (
@@ -348,6 +367,7 @@ jobs:
               + [f"precompute:panchang-city/{d}/{c}" for d in dates for c in cities]
               + [f"precompute:daily-article/{d}/{c}" for d in dates for c in cities]
               + [f"precompute:hindu-calendar/{this_year}"]
+              + [f"precompute:festivals-year/{this_year}/{c}" for c in cities]
           )
           print(json.dumps({"paths": paths, "tags": tags}))
           PY

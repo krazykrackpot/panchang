@@ -85,6 +85,20 @@ export function dailyArticleKey(date: string, citySlug: string): string {
 }
 
 /**
+ * Full yearly festival list keyed by (year, citySlug) — same shape as
+ * hindu-calendar but per-city. Consumed by /festivals/[slug]/[year]/[city]
+ * which does `.find(f.slug === slug)` at render time. One Blob per
+ * (year, city) is reused across every festival slug for that city.
+ */
+export function festivalsYearKey(year: number, citySlug: string): string {
+  if (!Number.isInteger(year) || year < 1900 || year > 2200) {
+    throw new Error(`[keys] expected year in [1900, 2200], got ${year}`);
+  }
+  assertSlug(citySlug);
+  return `festivals-year/${year}/${citySlug}`;
+}
+
+/**
  * Horoscope for a rashi on a specific date — rashi + date.
  *
  * LOCALE-INDEPENDENT. The original keys.ts (2026-06-06) declared this

@@ -22,25 +22,22 @@ import {
 interface Args {
   /** YYYY-MM-DD — must be pre-validated by the caller. */
   date: string;
-  /** Parsed Date object — passed through to generateDailyArticle. */
-  parsedDate: Date;
   /** Resolved city from getCityBySlug. */
   city: CityData;
 }
 
 export async function getDailyArticlePageModel(args: Args): Promise<DailyArticlePageModelT> {
-  const { date: dateStr, parsedDate, city } = args;
+  const { date: dateStr, city } = args;
 
   return await getPrecomputed({
     key: dailyArticleKey(dateStr, city.slug),
     schema: DailyArticlePageModel,
-    fallback: async () => buildFreshModel(dateStr, parsedDate, city),
+    fallback: async () => buildFreshModel(dateStr, city),
   });
 }
 
 export function buildFreshModel(
   dateStr: string,
-  parsedDate: Date,
   city: CityData,
 ): DailyArticlePageModelT {
   const cityConfig: ArticleCityConfig = {
@@ -50,7 +47,16 @@ export function buildFreshModel(
     lng: city.lng,
     timezone: city.timezone,
   };
-  const article = generateDailyArticle(parsedDate, cityConfig);
+  // Reconstruct the date object from dateStr using explicit UTC
+  // (Lesson L). The page handler's `parsed` is built via the local-tz
+  // `new Date(y, m-1, d)` constructor — fine on Vercel's UTC runners
+  // but fragile on any other server. Owning the construction here
+  // guarantees byte-equivalent output between live compute (page
+  // fallback path) and the writer script (which already uses
+  // Date.UTC). Gemini PR #695 HIGH.
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const utcDate = new Date(Date.UTC(y, m - 1, d));
+  const article = generateDailyArticle(utcDate, cityConfig);
   const horoscopes = RASHIS.map((r) => generateDailyHoroscope({ moonSign: r.id, date: dateStr }));
 
   return {

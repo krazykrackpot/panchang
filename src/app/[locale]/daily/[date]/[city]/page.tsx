@@ -125,7 +125,7 @@ export default async function CityDailyPanchangArticle({
   // for the article + RASHIS.map(generateDailyHoroscope) for the
   // grid — so live and Blob paths are byte-equivalent (modulo
   // _computedAt).
-  const dailyModel = await getDailyArticlePageModel({ date, parsedDate: parsed, city: cityData });
+  const dailyModel = await getDailyArticlePageModel({ date, city: cityData });
   const article = dailyModel.article;
   const isHi = isDevanagariLocale(locale);
   const loc = tl({ en: "en", hi: "hi", sa: "hi" }, locale) as "en" | "hi";

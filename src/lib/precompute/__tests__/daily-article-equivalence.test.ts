@@ -18,7 +18,6 @@ import { dailyArticleKey } from '@/lib/precompute/keys';
 import { CITIES } from '@/lib/constants/cities';
 
 const TEST_DATE = '2026-11-08';
-const TEST_PARSED = new Date(Date.UTC(2026, 10, 8));
 const DELHI = CITIES.find((c) => c.slug === 'delhi')!;
 
 describe('daily-article precompute equivalence', () => {
@@ -36,7 +35,7 @@ describe('daily-article precompute equivalence', () => {
   });
 
   it('live compute (fallback) returns a schema-valid model', async () => {
-    const live = await getDailyArticlePageModel({ date: TEST_DATE, parsedDate: TEST_PARSED, city: DELHI });
+    const live = await getDailyArticlePageModel({ date: TEST_DATE, city: DELHI });
     const parsed = DailyArticlePageModel.safeParse(live);
     expect(parsed.success).toBe(true);
     expect(live.date).toBe(TEST_DATE);
@@ -46,7 +45,7 @@ describe('daily-article precompute equivalence', () => {
   });
 
   it('round-trip: writer output → reader returns byte-equivalent payload', async () => {
-    const live = await getDailyArticlePageModel({ date: TEST_DATE, parsedDate: TEST_PARSED, city: DELHI });
+    const live = await getDailyArticlePageModel({ date: TEST_DATE, city: DELHI });
     const result = await setPrecomputed({
       key: dailyArticleKey(TEST_DATE, DELHI.slug),
       schema: DailyArticlePageModel,
@@ -54,7 +53,7 @@ describe('daily-article precompute equivalence', () => {
     });
     expect(result.status).toBe('written');
 
-    const fromBlob = await getDailyArticlePageModel({ date: TEST_DATE, parsedDate: TEST_PARSED, city: DELHI });
+    const fromBlob = await getDailyArticlePageModel({ date: TEST_DATE, city: DELHI });
     const { _computedAt: _a, ...liveSansTs } = live;
     const { _computedAt: _b, ...blobSansTs } = fromBlob;
     expect(blobSansTs).toEqual(liveSansTs);

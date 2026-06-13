@@ -40,11 +40,15 @@ export async function precomputeDailyArticle(args: RunArgs): Promise<SetPrecompu
       throw new Error(`[precompute/daily-article] invalid date format: ${JSON.stringify(dateStr)}`);
     }
     const [y, m, d] = dateStr.split('-').map(Number);
-    const parsedDate = new Date(Date.UTC(y, m - 1, d));
+    // Validate the date round-trips (catches "2026-99-99" which the
+    // regex shape accepts but Date.UTC silently overflows).
+    // buildFreshModel re-constructs its own UTC Date from dateStr —
+    // no parsedDate to pass through anymore.
+    const probe = new Date(Date.UTC(y, m - 1, d));
     if (
-      parsedDate.getUTCFullYear() !== y ||
-      parsedDate.getUTCMonth() !== m - 1 ||
-      parsedDate.getUTCDate() !== d
+      probe.getUTCFullYear() !== y ||
+      probe.getUTCMonth() !== m - 1 ||
+      probe.getUTCDate() !== d
     ) {
       throw new Error(`[precompute/daily-article] out-of-range date: ${dateStr}`);
     }
@@ -64,7 +68,7 @@ export async function precomputeDailyArticle(args: RunArgs): Promise<SetPrecompu
       }
 
       try {
-        const data = buildFreshModel(dateStr, parsedDate, city);
+        const data = buildFreshModel(dateStr, city);
         const result = await setPrecomputed({
           key: dailyArticleKey(dateStr, city.slug),
           schema: DailyArticlePageModel,

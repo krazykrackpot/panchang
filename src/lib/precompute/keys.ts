@@ -47,6 +47,19 @@ export function panchangDateKey(date: string, citySlug: string): string {
 }
 
 /**
+ * Full panchang model for a city on a date — wraps the entire
+ * computePanchang result + festival list + tithi-table enrichment.
+ * Consumed by /api/panchang on (date, citySlug) hint and (in future
+ * PR) by /panchang/[city] SSR. Locale-independent (all LocaleText
+ * fields baked in, page/API resolves at render time).
+ */
+export function panchangCityKey(date: string, citySlug: string): string {
+  assertDate(date);
+  assertSlug(citySlug);
+  return `panchang-city/${date}/${citySlug}`;
+}
+
+/**
  * Horoscope for a rashi on a specific date — rashi + date.
  *
  * LOCALE-INDEPENDENT. The original keys.ts (2026-06-06) declared this

@@ -17,7 +17,8 @@ import { getCityDescriptor } from '@/lib/constants/city-descriptors';
 import { getStateLocale } from '@/lib/constants/state-name-locale';
 import { hasLocaleNativeCityContent } from '@/lib/seo/city-content-floor';
 import { buildCityHreflangMap } from '@/lib/seo/city-hreflang';
-import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
+import { getPanchangCityPageModel } from '@/lib/precompute/panchang-city-page-model';
+import type { PanchangData } from '@/types/panchang';
 import { generateDailyArticle, type ArticleCityConfig } from '@/lib/horoscope/daily-article';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { Locale, TransitionInfo } from '@/types/panchang';
@@ -82,13 +83,12 @@ export async function generateMetadata({
     day: 'numeric', month: 'long', year: 'numeric',
     timeZone: 'UTC', // cityDate is already shifted — interpret as UTC to avoid double-shift
   });
-  const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
-  const metaPanchang = computePanchang({
-    year, month, day,
-    lat: city.lat, lng: city.lng,
-    tzOffset, timezone: city.timezone,
-    locationName: city.name.en,
-  });
+  // Precompute lookup mirrors the page handler — Blob is shared across
+  // generateMetadata and the page body (both call this loader). Cast
+  // mirrors the page handler's cast at the same boundary.
+  const metaDateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  const metaModel = await getPanchangCityPageModel({ date: metaDateStr, city });
+  const metaPanchang = metaModel.panchang as unknown as PanchangData;
   // tl() resolves the panchang field names per locale (10-locale ships
   // for tithi/nakshatra; auto-falls back to en where missing).
   const metaTithi = tl(metaPanchang.tithi.name, locale);
@@ -211,16 +211,14 @@ export default async function CityPanchangPage({
   const { date: now, year, month, day } = getCityLocalDate(city.timezone);
   const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
 
-  const input: PanchangInput = {
-    year, month, day,
-    lat: city.lat,
-    lng: city.lng,
-    tzOffset,
-    timezone: city.timezone,
-    locationName: city.name.en,
-  };
-
-  const panchang = computePanchang(input);
+  // Precompute Blob lookup with live-compute fallback. The inner
+  // `panchang` field is opaque-typed at the Blob boundary (full
+  // PanchangData has 100+ fields and a strict mirror would be
+  // brittle to engine changes) — cast back to the canonical type
+  // since every consumer below reads it as PanchangData.
+  const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  const model = await getPanchangCityPageModel({ date: dateStr, city });
+  const panchang = model.panchang as unknown as PanchangData;
 
   // Generate daily narrative article for unique content
   const articleCityConfig: ArticleCityConfig = {

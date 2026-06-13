@@ -200,6 +200,23 @@ jobs:
             --dates "${{ steps.window.outputs.dates }}" \
             --skip-if-present
 
+      - name: Precompute panchang-city
+        env:
+          PRECOMPUTE_STORAGE: blob
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+        run: |
+          # Panchang-city: (date × city) fan-out across the full 57-city
+          # catalogue. Each Blob holds the entire computePanchang output
+          # + tithi-table enrichment + festival list — the same shape
+          # /api/panchang returns on a (date, citySlug) hint.
+          # /panchang/[city] SSR + generateMetadata both read this Blob,
+          # so a cache hit eliminates 2 computePanchang calls per ISR
+          # rebuild.
+          npx tsx scripts/precompute/panchang-city.ts \
+            --dates "${{ steps.window.outputs.dates }}" \
+            --cities "${{ steps.cities.outputs.cities }}" \
+            --skip-if-present
+
       - name: Revalidate page paths
         env:
           DATES: ${{ steps.window.outputs.dates }}
@@ -271,6 +288,13 @@ jobs:
               "darbhanga",# mai
           ]))
           locales = ["en", "hi", "ta", "te", "bn", "gu", "kn", "mai", "mr"]
+          # /panchang/[city] uses "today in city.timezone" as the
+          # implicit date — there's no [date] segment in the URL. We
+          # don't path-flip it here; the page handler resolves today
+          # at render time, and the 6h ISR (PR-3) means a stale Blob
+          # is at most 6h behind anyway. Tag-flip on (date, city)
+          # is what propagates fresh Blob content to the inner fetch
+          # cache layer.
           paths = (
               [f"/{l}/choghadiya/{d}" for d in dates for l in locales]
               + [f"/{l}/gauri-panchang/{d}" for d in dates for l in locales]
@@ -280,6 +304,7 @@ jobs:
               [f"precompute:choghadiya/{d}/{c}" for d in dates for c in cities]
               + [f"precompute:gauri-panchang/{d}/{c}" for d in dates for c in cities]
               + [f"precompute:panchang-date/{d}/{c}" for d in dates for c in seo_cities]
+              + [f"precompute:panchang-city/{d}/{c}" for d in dates for c in cities]
           )
           print(json.dumps({"paths": paths, "tags": tags}))
           PY

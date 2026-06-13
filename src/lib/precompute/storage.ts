@@ -25,6 +25,26 @@
 
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
+import { ENGINE_VERSION } from '@/lib/kundali/engine-version';
+
+/**
+ * Auto-invalidation prefix. Every Blob path includes the first 7 chars of
+ * ENGINE_VERSION so a pipeline-file change automatically partitions reads
+ * away from stale Blobs (page handler reads return null → falls back to
+ * live compute → cron rewrites under the new prefix on next nightly run).
+ *
+ * Why 7 chars: same convention as `git rev-parse --short`. Collision
+ * resistance is ample for the handful of engine versions that exist at
+ * any time; ENGINE_VERSION is itself a 12-char hex slice of a SHA so
+ * 7-char prefixes are 28 bits = >250M before birthday-paradox concerns
+ * become theoretical.
+ *
+ * Old Blobs under retired prefixes are orphaned until a periodic cleanup
+ * script archives them (separate concern; storage cost of orphans is
+ * negligible at current scale).
+ */
+const ENGINE_PREFIX = ENGINE_VERSION.slice(0, 7);
+export { ENGINE_PREFIX };
 
 export interface PrecomputeStorage {
   /** Read a key. Returns null if absent (NOT throwing — fallback path). */
@@ -53,7 +73,9 @@ export class LocalFsStorage implements PrecomputeStorage {
     // a `..` substring filter (Gemini #470 finding #2) catches none of
     // those edge cases (e.g. an absolute `/etc/passwd` key would write
     // outside the root, despite containing no `..`).
-    const resolved = path.resolve(this.root, `${key}.json`);
+    // The ENGINE_PREFIX segment auto-partitions across pipeline versions
+    // so dev parity matches the Vercel Blob path shape.
+    const resolved = path.resolve(this.root, ENGINE_PREFIX, `${key}.json`);
     const rel = path.relative(this.root, resolved);
     if (rel.startsWith('..') || path.isAbsolute(rel)) {
       throw new Error(`[storage] illegal key: ${key}`);
@@ -163,7 +185,12 @@ export class VercelBlobStorage implements PrecomputeStorage {
 
   private pathFor(key: string): string {
     if (key.includes('..')) throw new Error(`[storage] illegal key: ${key}`);
-    return `${VERCEL_BLOB_PATH_PREFIX}${key}.json`;
+    // ENGINE_PREFIX auto-partitions writes/reads across engine versions:
+    // a code change that bumps ENGINE_VERSION steers reads away from
+    // stale Blobs (returns null → page falls back to live compute) and
+    // steers nightly cron writes onto a fresh prefix. Old Blobs are
+    // orphaned until a cleanup script archives them.
+    return `${VERCEL_BLOB_PATH_PREFIX}${ENGINE_PREFIX}/${key}.json`;
   }
 
   async put(key: string, json: string): Promise<void> {

@@ -45,7 +45,7 @@ vi.mock('@vercel/blob', () => sdkMock);
 const fetchMock = vi.fn();
 vi.stubGlobal('fetch', fetchMock);
 
-import { VercelBlobStorage } from '@/lib/precompute/storage';
+import { VercelBlobStorage, ENGINE_PREFIX } from '@/lib/precompute/storage';
 
 describe('VercelBlobStorage', () => {
   let storage: VercelBlobStorage;
@@ -57,14 +57,14 @@ describe('VercelBlobStorage', () => {
     fetchMock.mockReset();
   });
 
-  it('put: writes with precompute/v1/ prefix, .json suffix, public access', async () => {
+  it('put: writes with precompute/v1/<engine>/ prefix, .json suffix, public access', async () => {
     sdkMock.put.mockResolvedValue({ url: 'https://example.public.blob/test.json' });
 
     await storage.put('choghadiya/2026-06-07/delhi', '{"foo":1}');
 
     expect(sdkMock.put).toHaveBeenCalledTimes(1);
     expect(sdkMock.put).toHaveBeenCalledWith(
-      'precompute/v1/choghadiya/2026-06-07/delhi.json',
+      `precompute/v1/${ENGINE_PREFIX}/choghadiya/2026-06-07/delhi.json`,
       '{"foo":1}',
       expect.objectContaining({
         access: 'public',
@@ -73,6 +73,10 @@ describe('VercelBlobStorage', () => {
         contentType: 'application/json',
       }),
     );
+  });
+
+  it('ENGINE_PREFIX is a 7-char lowercase hex slice (auto-invalidation anchor)', () => {
+    expect(ENGINE_PREFIX).toMatch(/^[0-9a-f]{7}$/);
   });
 
   it('get: head + fetch on success', async () => {
@@ -86,7 +90,7 @@ describe('VercelBlobStorage', () => {
     const raw = await storage.get('choghadiya/2026-06-07/delhi');
 
     expect(raw).toBe('{"hello":"world"}');
-    expect(sdkMock.head).toHaveBeenCalledWith('precompute/v1/choghadiya/2026-06-07/delhi.json');
+    expect(sdkMock.head).toHaveBeenCalledWith(`precompute/v1/${ENGINE_PREFIX}/choghadiya/2026-06-07/delhi.json`);
     expect(fetchMock).toHaveBeenCalledWith(
       'https://example.public.blob/choghadiya.json',
       // `force-cache` (NOT 'no-store') keeps the calling route eligible for

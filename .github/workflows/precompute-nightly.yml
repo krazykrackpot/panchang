@@ -214,8 +214,24 @@ jobs:
           # (9 entries — sa retired per memory).
 
           REVALIDATE_JSON=$(python3 - <<PY
-          import json, os
-          dates = os.environ["DATES"].split(",")
+          import json, os, datetime as dt
+          # NARROWED FAN-OUT (2026-06-13): only flip today, yesterday, and
+          # tomorrow. The full 60-day forward window doesn't need flipping —
+          # future dates haven't been cached yet, so the first natural ISR
+          # render after the Blob is written produces fresh content with no
+          # revalidate call needed. Past dates are deterministic and never
+          # need re-flipping after their initial cache.
+          #
+          # Previous behaviour: paths = 60 dates × 9 locales × 2 = 1,098/night
+          # New behaviour:      paths = 3 dates × 9 locales × 2 = 54/night
+          # ISR Writes line on Vercel bill is the primary cost surface this
+          # narrowing addresses; see docs/superpowers/specs/...
+          all_dates = os.environ["DATES"].split(",")
+          today = dt.date.today()
+          flip_dates = {(today - dt.timedelta(days=1)).isoformat(),
+                        today.isoformat(),
+                        (today + dt.timedelta(days=1)).isoformat()}
+          dates = [d for d in all_dates if d in flip_dates]
           cities = os.environ["CITIES"].split(",")
           locales = ["en", "hi", "ta", "te", "bn", "gu", "kn", "mai", "mr"]
           paths = (

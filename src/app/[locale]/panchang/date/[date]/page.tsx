@@ -35,7 +35,7 @@
  */
 import React from 'react';
 import { setRequestLocale } from 'next-intl/server';
-import { isDevanagariLocale, pickByScript, getDateGenitive, isSuppressedSeoLocale, formatSeoDate } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, pickByScript, isSuppressedSeoLocale, formatSeoDate } from '@/lib/utils/locale-fonts';
 import { panchangDateSeo } from '@/lib/seo/date-page-seo';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { getSeoCityForLocale } from '@/lib/constants/cities';

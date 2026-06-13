@@ -12,10 +12,11 @@
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Link } from "@/lib/i18n/navigation";
+import { type FestivalEntry } from "@/lib/calendar/festival-generator";
 import {
-  generateFestivalCalendarV2,
-  type FestivalEntry,
-} from "@/lib/calendar/festival-generator";
+  getHinduCalendarPageModel,
+  asFestivalEntries,
+} from "@/lib/precompute/hindu-calendar-page-model";
 import { tl } from "@/lib/utils/trilingual";
 import {
   CalendarDays,
@@ -238,13 +239,12 @@ export default async function HinduCalendarPage({
     notFound();
   }
 
-  // Generate all festivals for the year at build time
-  const festivals = generateFestivalCalendarV2(
-    year,
-    UJJAIN_LAT,
-    UJJAIN_LNG,
-    UJJAIN_TZ,
-  );
+  // Read precomputed festivals (Blob → live-compute fallback). The
+  // page-model fallback hits the same generateFestivalCalendarV2 +
+  // Ujjain coords on a miss, so live and Blob paths are byte-
+  // equivalent (modulo _computedAt).
+  const calendarModel = await getHinduCalendarPageModel({ year });
+  const festivals = asFestivalEntries(calendarModel.festivals);
   const byMonth = groupByMonth(festivals);
   const totalCount = festivals.length;
 

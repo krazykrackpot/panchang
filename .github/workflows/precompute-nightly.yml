@@ -217,6 +217,41 @@ jobs:
             --cities "${{ steps.cities.outputs.cities }}" \
             --skip-if-present
 
+      - name: Precompute daily-article
+        env:
+          PRECOMPUTE_STORAGE: blob
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+        run: |
+          # Daily-article: (date × city) fan-out — bundles
+          # generateDailyArticle + the 12-rashi horoscope grid into
+          # a single Blob per tuple. The page makes one cache read
+          # instead of 1 computePanchang + 12 generateDailyHoroscope
+          # calls per ISR rebuild. The horoscope grid duplicates
+          # across cities for the same date (small storage cost vs
+          # avoiding 13 separate Blob reads per page render).
+          npx tsx scripts/precompute/daily-article.ts \
+            --dates "${{ steps.window.outputs.dates }}" \
+            --cities "${{ steps.cities.outputs.cities }}" \
+            --skip-if-present
+
+      - name: Precompute hindu-calendar
+        env:
+          PRECOMPUTE_STORAGE: blob
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+        run: |
+          # Hindu-calendar: year-keyed only. Single
+          # generateFestivalCalendarV2(year, Ujjain) per year — fan-out
+          # is trivial (2 Blobs at current VALID_YEARS = [2026, 2027]).
+          # Page does its own groupByMonth on the consumer side; one
+          # Blob serves every locale.
+          YEARS=$(npx tsx -e "
+            const yrs = [2026, 2027];
+            console.log(yrs.join(','));
+          ")
+          npx tsx scripts/precompute/hindu-calendar.ts \
+            --years \"\$YEARS\" \
+            --skip-if-present
+
       - name: Revalidate page paths
         env:
           DATES: ${{ steps.window.outputs.dates }}
@@ -299,12 +334,20 @@ jobs:
               [f"/{l}/choghadiya/{d}" for d in dates for l in locales]
               + [f"/{l}/gauri-panchang/{d}" for d in dates for l in locales]
               + [f"/{l}/panchang/date/{d}" for d in dates for l in locales]
+              + [f"/{l}/daily/{d}/{c}" for d in dates for l in locales for c in cities]
           )
+          # hindu-calendar pages aren't path-flipped — yearly fan-out is
+          # tiny and the page has revalidate=86400 so natural ISR picks
+          # up the new Blob within 24h. Tag-flip the current year only.
+          import datetime as dt2
+          this_year = dt2.date.today().year
           tags = (
               [f"precompute:choghadiya/{d}/{c}" for d in dates for c in cities]
               + [f"precompute:gauri-panchang/{d}/{c}" for d in dates for c in cities]
               + [f"precompute:panchang-date/{d}/{c}" for d in dates for c in seo_cities]
               + [f"precompute:panchang-city/{d}/{c}" for d in dates for c in cities]
+              + [f"precompute:daily-article/{d}/{c}" for d in dates for c in cities]
+              + [f"precompute:hindu-calendar/{this_year}"]
           )
           print(json.dumps({"paths": paths, "tags": tags}))
           PY

@@ -60,6 +60,31 @@ export function panchangCityKey(date: string, citySlug: string): string {
 }
 
 /**
+ * Hindu calendar for a year — flat festival list, computed once per
+ * year against Ujjain coordinates (the page's canonical anchor).
+ * Trilingual labels are baked in; one Blob per year serves every
+ * locale. Page does `tl(field, locale)` at render time.
+ */
+export function hinduCalendarKey(year: number): string {
+  if (!Number.isInteger(year) || year < 1900 || year > 2200) {
+    throw new Error(`[keys] expected year in [1900, 2200], got ${year}`);
+  }
+  return `hindu-calendar/${year}`;
+}
+
+/**
+ * Daily article + horoscope bundle for a city on a date — wraps
+ * generateDailyArticle output + the 12-rashi horoscope grid the
+ * /daily/[date]/[city] page surfaces in one Blob per (date, city).
+ * Trilingual fields baked in (one Blob per tuple regardless of locale).
+ */
+export function dailyArticleKey(date: string, citySlug: string): string {
+  assertDate(date);
+  assertSlug(citySlug);
+  return `daily-article/${date}/${citySlug}`;
+}
+
+/**
  * Horoscope for a rashi on a specific date — rashi + date.
  *
  * LOCALE-INDEPENDENT. The original keys.ts (2026-06-06) declared this

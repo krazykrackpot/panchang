@@ -23,7 +23,7 @@ import { MuhurtaMonthPageModel } from '@/lib/precompute/schema/muhurta-month';
 import { buildFreshModel } from '@/lib/precompute/muhurta-month-page-model';
 import { getStorage } from '@/lib/precompute/storage';
 import { ACTIVITY_SLUGS } from '@/app/[locale]/muhurta/[type]/[year]/[month]/[city]/shared';
-import { CITIES } from '@/lib/constants/cities';
+import { getCityBySlugExtended } from '@/lib/constants/cities-extended';
 
 interface RunArgs {
   years: number[];
@@ -47,7 +47,10 @@ export async function precomputeMuhurtaMonth(args: RunArgs): Promise<SetPrecompu
     for (let month = 1; month <= 12; month++) {
       for (const [activitySlug, activityId] of activityEntries) {
         for (const citySlug of args.cities) {
-          const city = CITIES.find((c) => c.slug === citySlug);
+          // O(1) lookup via the extended-cities map — matches what the
+          // page handler uses (page.tsx:44), so a city the page can
+          // resolve is always resolvable here too. Gemini PR #697.
+          const city = getCityBySlugExtended(citySlug);
           if (!city) {
             throw new Error(`[precompute/muhurta-month] unknown city: ${citySlug}`);
           }

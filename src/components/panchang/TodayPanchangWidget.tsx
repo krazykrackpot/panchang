@@ -10,6 +10,7 @@ import { MapPin, Loader2, Search, X } from 'lucide-react';
 import type { PanchangData, Locale } from '@/types/panchang';
 import { TithiIcon, NakshatraIcon, YogaIcon, KaranaIcon, VaraIcon } from '@/components/icons/PanchangIcons';
 import { useLocationStore } from '@/stores/location-store';
+import { findNearestPrecomputedCity } from '@/lib/constants/nearest-city';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, pickByLocale } from '@/lib/utils/locale-fonts';
 import { tl as _tl } from '@/lib/utils/trilingual';
 import { YOGAS } from '@/lib/constants/yogas';
@@ -47,6 +48,10 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
   const [searchResults, setSearchResults] = useState<{ name: string; lat: number; lng: number }[]>([]);
   const [searching, setSearching] = useState(false);
   const usedServerData = useRef(!!serverPanchang);
+  // Tracks the in-flight panchang fetch so rapid location updates
+  // cancel the prior request — prevents a slow earlier response from
+  // overwriting fresh state. Gemini PR #701.
+  const abortControllerRef = useRef<AbortController | null>(null);
   const locale = useLocale() as Locale;
   const t = useTranslations('panchang');
 
@@ -65,10 +70,68 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
     const now = new Date();
     // Location store timezone takes priority over browser timezone
     const ianaTimezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-    fetch(`/api/panchang?year=${now.getFullYear()}&month=${now.getMonth() + 1}&day=${now.getDate()}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(name)}`)
-      .then((res) => res.json())
+
+    // Resolve "today" in the LOCATION's timezone, not the browser's.
+    // If the browser is in NY at 23:50 local but the user's location
+    // is Mumbai, "today" in Mumbai is already tomorrow — sending the
+    // browser-local date would fetch the wrong day's panchang.
+    // Gemini PR #701 HIGH.
+    let targetYear = now.getFullYear();
+    let targetMonth = now.getMonth() + 1;
+    let targetDay = now.getDate();
+    try {
+      // 'en-CA' picks the YYYY-MM-DD format regardless of locale, so
+      // parsing is stable across browser locales.
+      const localDateStr = now.toLocaleDateString('en-CA', { timeZone: ianaTimezone });
+      const parts = localDateStr.split('-').map(Number);
+      if (parts.length === 3 && parts.every((n) => Number.isFinite(n))) {
+        [targetYear, targetMonth, targetDay] = parts;
+      }
+    } catch (err) {
+      console.error('[TodayPanchangWidget] failed to resolve local date for timezone:', ianaTimezone, err);
+    }
+
+    // Blob short-circuit: when the user's resolved coords fall within
+    // 50km of a precomputed city AND that city's timezone matches the
+    // request's (defensive — diaspora users with stale location-store
+    // entries could otherwise hit a Blob whose times don't match the
+    // requested TZ), append `?citySlug=` so /api/panchang serves the
+    // panchang-city Blob from PR #694 instead of running live compute.
+    // Gemini PR #701 HIGH.
+    const nearby = findNearestPrecomputedCity(lat, lng);
+    const citySlugParam =
+      nearby && nearby.timezone === ianaTimezone
+        ? `&citySlug=${encodeURIComponent(nearby.slug)}`
+        : '';
+
+    // Abort any prior in-flight fetch so a slow earlier response can't
+    // overwrite fresh state on rapid location updates. Gemini PR #701.
+    abortControllerRef.current?.abort();
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
+    fetch(
+      `/api/panchang?year=${targetYear}&month=${targetMonth}&day=${targetDay}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(name)}${citySlugParam}`,
+      { signal: controller.signal },
+    )
+      .then(async (res) => {
+        const data = await res.json().catch(() => ({ error: `HTTP ${res.status}: invalid JSON body` }));
+        // /api/panchang returns {error: string} on 4xx/5xx (rate-limit,
+        // bad params, etc.). Without this guard the widget would set
+        // panchang = {error: "..."}, then crash rendering tithi.name.
+        // Gemini PR #701 HIGH.
+        if (!res.ok || (data && typeof data === 'object' && 'error' in data)) {
+          throw new Error(
+            data && typeof data === 'object' && 'error' in data
+              ? String((data as { error: unknown }).error)
+              : `HTTP ${res.status}`,
+          );
+        }
+        return data;
+      })
       .then((data) => { setPanchang(data); setLoading(false); })
       .catch((err) => {
+        if (err?.name === 'AbortError') return; // expected on rapid updates
         console.error('[TodayPanchangWidget] fetch failed:', err);
         setLoading(false);
       });

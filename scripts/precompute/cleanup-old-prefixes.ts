@@ -28,7 +28,7 @@
 import { ENGINE_PREFIX } from '@/lib/precompute/storage';
 
 const PRECOMPUTE_PREFIX = 'precompute/v1/';
-const DEL_BATCH_SIZE = 100; // @vercel/blob `del` accepts up to 1000 URLs per call
+const DEL_BATCH_SIZE = 1000; // @vercel/blob `del` accepts up to 1000 URLs per call
 
 interface BlobMeta {
   url: string;
@@ -36,6 +36,15 @@ interface BlobMeta {
 }
 
 async function main(): Promise<void> {
+  // Fail fast on missing token rather than crashing mid-enumeration with
+  // a less obvious @vercel/blob error. The cleanup workflow injects this
+  // from secrets.BLOB_READ_WRITE_TOKEN.
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    throw new Error(
+      '[cleanup-old-prefixes] BLOB_READ_WRITE_TOKEN env var is required.',
+    );
+  }
+
   const apply = process.argv.includes('--apply');
 
   const { list, del } = await import('@vercel/blob');

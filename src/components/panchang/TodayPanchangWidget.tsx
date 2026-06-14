@@ -48,6 +48,10 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
   const [searchResults, setSearchResults] = useState<{ name: string; lat: number; lng: number }[]>([]);
   const [searching, setSearching] = useState(false);
   const usedServerData = useRef(!!serverPanchang);
+  // Tracks the in-flight panchang fetch so rapid location updates
+  // cancel the prior request — prevents a slow earlier response from
+  // overwriting fresh state. Gemini PR #701.
+  const abortControllerRef = useRef<AbortController | null>(null);
   const locale = useLocale() as Locale;
   const t = useTranslations('panchang');
 
@@ -99,7 +103,17 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
       nearby && nearby.timezone === ianaTimezone
         ? `&citySlug=${encodeURIComponent(nearby.slug)}`
         : '';
-    fetch(`/api/panchang?year=${targetYear}&month=${targetMonth}&day=${targetDay}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(name)}${citySlugParam}`)
+
+    // Abort any prior in-flight fetch so a slow earlier response can't
+    // overwrite fresh state on rapid location updates. Gemini PR #701.
+    abortControllerRef.current?.abort();
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
+    fetch(
+      `/api/panchang?year=${targetYear}&month=${targetMonth}&day=${targetDay}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(name)}${citySlugParam}`,
+      { signal: controller.signal },
+    )
       .then(async (res) => {
         const data = await res.json().catch(() => ({ error: `HTTP ${res.status}: invalid JSON body` }));
         // /api/panchang returns {error: string} on 4xx/5xx (rate-limit,
@@ -117,6 +131,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
       })
       .then((data) => { setPanchang(data); setLoading(false); })
       .catch((err) => {
+        if (err?.name === 'AbortError') return; // expected on rapid updates
         console.error('[TodayPanchangWidget] fetch failed:', err);
         setLoading(false);
       });

@@ -435,3 +435,71 @@ jobs:
                -H "authorization: Bearer ${PRECOMPUTE_REVALIDATE_SECRET}" \
                -H "content-type: application/json" \
                -d "${REVALIDATE_JSON}"
+
+  # ───────────────────────────────────────────────────────────────────
+  # Notify on failure — opens a GitHub issue if any precompute job
+  # (or revalidate) failed. Previously silent failures sat for days
+  # before we noticed in the bill: 2026-06-11/12/13 runs all hit
+  # "Argument list too long" on the revalidate step and were
+  # invisible until the daily Vercel rate spiked.
+  #
+  # Uses the default GITHUB_TOKEN — no external secrets required.
+  # The issue body links to the failed run; assignee is the repo
+  # owner so it surfaces in the dashboard inbox.
+  # ───────────────────────────────────────────────────────────────────
+  notify-failure:
+    needs:
+      - setup
+      - choghadiya
+      - gauri-panchang
+      - horoscope
+      - panchang-date
+      - panchang-city
+      - daily-article
+      - hindu-calendar
+      - festivals-year
+      - muhurta-month
+      - revalidate
+    if: failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      issues: write
+      contents: read
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const date = new Date().toISOString().slice(0, 10);
+            const title = `precompute-nightly: failure on ${date}`;
+            const body = [
+              `One or more jobs in the precompute-nightly workflow failed on ${date}.`,
+              '',
+              `**Run**: ${runUrl}`,
+              '',
+              `**Failed jobs** (see run for details):`,
+              `- setup: ${{ needs.setup.result }}`,
+              `- choghadiya: ${{ needs.choghadiya.result }}`,
+              `- gauri-panchang: ${{ needs.gauri-panchang.result }}`,
+              `- horoscope: ${{ needs.horoscope.result }}`,
+              `- panchang-date: ${{ needs.panchang-date.result }}`,
+              `- panchang-city: ${{ needs.panchang-city.result }}`,
+              `- daily-article: ${{ needs.daily-article.result }}`,
+              `- hindu-calendar: ${{ needs.hindu-calendar.result }}`,
+              `- festivals-year: ${{ needs.festivals-year.result }}`,
+              `- muhurta-month: ${{ needs.muhurta-month.result }}`,
+              `- revalidate: ${{ needs.revalidate.result }}`,
+              '',
+              'Triage: page handlers fall back to live compute on missing Blobs, so the',
+              'site continues to work — but Vercel CPU drifts up while the failure',
+              'persists. Fix the failed job and re-run via `gh workflow run',
+              'precompute-nightly.yml`.',
+            ].join('\n');
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+              labels: ['cron-failure', 'precompute'],
+            });

@@ -66,15 +66,40 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
     const now = new Date();
     // Location store timezone takes priority over browser timezone
     const ianaTimezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-    // If the user's resolved coordinates fall within 50km of a city
-    // that's part of the precompute set, hint /api/panchang with the
-    // citySlug so it short-circuits through the panchang-city Blob
-    // (PR #694) instead of running computePanchang live. ~5 min
-    // sunrise drift at the city edge is well inside what users
-    // perceive as "their" panchang.
+
+    // Resolve "today" in the LOCATION's timezone, not the browser's.
+    // If the browser is in NY at 23:50 local but the user's location
+    // is Mumbai, "today" in Mumbai is already tomorrow — sending the
+    // browser-local date would fetch the wrong day's panchang.
+    // Gemini PR #701 HIGH.
+    let targetYear = now.getFullYear();
+    let targetMonth = now.getMonth() + 1;
+    let targetDay = now.getDate();
+    try {
+      // 'en-CA' picks the YYYY-MM-DD format regardless of locale, so
+      // parsing is stable across browser locales.
+      const localDateStr = now.toLocaleDateString('en-CA', { timeZone: ianaTimezone });
+      const parts = localDateStr.split('-').map(Number);
+      if (parts.length === 3 && parts.every((n) => Number.isFinite(n))) {
+        [targetYear, targetMonth, targetDay] = parts;
+      }
+    } catch (err) {
+      console.error('[TodayPanchangWidget] failed to resolve local date for timezone:', ianaTimezone, err);
+    }
+
+    // Blob short-circuit: when the user's resolved coords fall within
+    // 50km of a precomputed city AND that city's timezone matches the
+    // request's (defensive — diaspora users with stale location-store
+    // entries could otherwise hit a Blob whose times don't match the
+    // requested TZ), append `?citySlug=` so /api/panchang serves the
+    // panchang-city Blob from PR #694 instead of running live compute.
+    // Gemini PR #701 HIGH.
     const nearby = findNearestPrecomputedCity(lat, lng);
-    const citySlugParam = nearby ? `&citySlug=${encodeURIComponent(nearby.slug)}` : '';
-    fetch(`/api/panchang?year=${now.getFullYear()}&month=${now.getMonth() + 1}&day=${now.getDate()}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(name)}${citySlugParam}`)
+    const citySlugParam =
+      nearby && nearby.timezone === ianaTimezone
+        ? `&citySlug=${encodeURIComponent(nearby.slug)}`
+        : '';
+    fetch(`/api/panchang?year=${targetYear}&month=${targetMonth}&day=${targetDay}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(name)}${citySlugParam}`)
       .then((res) => res.json())
       .then((data) => { setPanchang(data); setLoading(false); })
       .catch((err) => {

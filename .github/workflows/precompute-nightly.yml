@@ -19,10 +19,25 @@ name: precompute-nightly
 # CPU, not ours.
 # ─────────────────────────────────────────────────────────────────────
 #
-# Generates the deterministic content Blobs that the precompute pipeline
-# serves to /choghadiya/[date] and friends. Runs daily at 04:00 UTC
-# (≈ 09:30 IST, before peak Indian traffic; also avoids the global
-# midnight rush).
+# Architecture (2026-06-14 rewrite): 9 precompute targets run as
+# PARALLEL jobs that all depend on a single setup job, plus a final
+# revalidate job that depends on all of them. Total wall-clock time
+# is bounded by the slowest single target (muhurta-month ~50 min)
+# instead of the sum of all targets (~3.3 hours previously).
+#
+# Background — why the rewrite:
+#   - PR #692 introduced engine-hash Blob prefixing. Existing Blobs
+#     under the old prefix became unreachable on the new path, so
+#     --skip-if-present found zero existing entries → full backfill
+#     required for every target.
+#   - Combined with the 57-city extension (PR #693) and 4 new targets
+#     added over PRs #693-#697, the sequential pipeline hit the 2h
+#     job-level ceiling and got cancelled mid-daily-article on the
+#     2026-06-14 run.
+#   - Parallel jobs eliminate the cumulative-runtime problem entirely.
+#     Each job has its own runner + its own timeout. Setup work
+#     (checkout, setup-node, npm ci) duplicates per job — ~1 min
+#     overhead per — but parallelizes, so adds nothing to wall-clock.
 #
 # Three secrets must be set in the repo (Settings → Secrets → Actions):
 #
@@ -36,12 +51,11 @@ name: precompute-nightly
 #                                  revalidate webhook lives. Typically
 #                                  `https://dekhopanchang.com`.
 #
-# Failure mode: if precompute throws on a single tuple, the per-tuple
-# try/catch in scripts/precompute/choghadiya.ts logs and continues.
-# The job ONLY fails if the whole script crashes (config error, network
-# down) — in which case the workflow run shows red in the Actions UI
-# and the next morning's traffic falls back to live compute (page
-# handlers handle missing Blobs gracefully).
+# Failure mode: if a single precompute target's job fails (timeout,
+# script crash), the rest of the pipeline keeps going — the revalidate
+# job uses `if: always()` so it runs regardless. Page handlers fall
+# back to live compute on missing Blobs, so a partial-success run
+# still produces a usable site.
 
 on:
   schedule:
@@ -64,27 +78,26 @@ permissions:
   contents: read
 
 jobs:
-  choghadiya:
+  # ───────────────────────────────────────────────────────────────────
+  # Setup — resolves dates + cities once, exposes them as job outputs
+  # the parallel precompute jobs consume. Cheap (~30 sec) so per-target
+  # duplication of checkout+npm-ci is the only real overhead from the
+  # parallel architecture.
+  # ───────────────────────────────────────────────────────────────────
+  setup:
     runs-on: ubuntu-latest
-    # 120 min covers the now-larger pipeline:
-    #   - choghadiya / gauri-panchang / horoscope / panchang-date /
-    #     panchang-city / daily-article / hindu-calendar / festivals-year:
-    #     combined ~55 min worst-case backfill
-    #   - muhurta-month: ~40-60 min for the 7,524-tuple backfill (own
-    #     per-step timeout-minutes: 50)
-    # Steady-state nightly runs with --skip-if-present finish in <10 min.
-    timeout-minutes: 120
-
+    timeout-minutes: 5
+    outputs:
+      dates: ${{ steps.window.outputs.dates }}
+      cities: ${{ steps.cities.outputs.cities }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: 'npm'
-
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
@@ -94,9 +107,6 @@ jobs:
           WINDOW_DAYS: ${{ github.event.inputs.window_days || '60' }}
           BACKFILL_DAYS: ${{ github.event.inputs.backfill_days || '0' }}
         run: |
-          # Build the dates list (UTC) — past `BACKFILL_DAYS` through
-          # future `WINDOW_DAYS`. Output to GITHUB_OUTPUT for the next
-          # step.
           DATES=$(python3 - <<'PY'
           import os, datetime as dt
           backfill = int(os.environ["BACKFILL_DAYS"])
@@ -120,18 +130,7 @@ jobs:
         run: |
           # Derive the city list from the canonical CITIES module so
           # a typo in this YAML can't list a slug the engine doesn't
-          # know. Earlier hand-maintained list (run 27061683601)
-          # included "thane" and 20 others not in CITIES; precompute
-          # failed loud on "unknown city: thane". This dynamic
-          # resolution makes the workflow drift-proof against future
-          # changes to the city catalog.
-          #
-          # 2026-06-13: dropped the `c.timezone === 'Asia/Kolkata'`
-          # filter — we now precompute for ALL cities (IST + diaspora).
-          # The diaspora cities (LA/NY/Dubai/London/Sydney/etc.) were
-          # previously hitting Vercel CPU for every page render; covering
-          # them brings the entire `/panchang/[city]` family off Vercel
-          # compute. Fan-out is 57 cities vs the prior 42.
+          # know. 57 cities total (IST + diaspora).
           CITIES=$(npx tsx -e "
             import { CITIES } from './src/lib/constants/cities';
             console.log(CITIES.map(c => c.slug).join(','));
@@ -143,159 +142,218 @@ jobs:
           echo "cities=$CITIES" >> "$GITHUB_OUTPUT"
           echo "Resolved $(echo "$CITIES" | tr ',' '\n' | wc -l) cities from CITIES module"
 
+  # ───────────────────────────────────────────────────────────────────
+  # Per-target precompute jobs — all run in parallel after setup.
+  # Each has its own per-job timeout sized to its worst-case backfill.
+  # ───────────────────────────────────────────────────────────────────
+
+  choghadiya:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: 'npm' }
+      - run: npm ci --no-audit --no-fund
       - name: Precompute choghadiya
         env:
           PRECOMPUTE_STORAGE: blob
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
         run: |
           npx tsx scripts/precompute/choghadiya.ts \
-            --dates "${{ steps.window.outputs.dates }}" \
-            --cities "${{ steps.cities.outputs.cities }}" \
+            --dates "${{ needs.setup.outputs.dates }}" \
+            --cities "${{ needs.setup.outputs.cities }}" \
             --skip-if-present
 
+  gauri-panchang:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: 'npm' }
+      - run: npm ci --no-audit --no-fund
       - name: Precompute gauri-panchang
         env:
           PRECOMPUTE_STORAGE: blob
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
         run: |
-          # Same (date × city) fan-out as choghadiya — gauri-panchang
-          # is the South-Indian sibling and shares the page-keyed
-          # shape (date × city → locale-keyed slot table). One Blob
-          # per (date, city); page resolves at render time.
           npx tsx scripts/precompute/gauri-panchang.ts \
-            --dates "${{ steps.window.outputs.dates }}" \
-            --cities "${{ steps.cities.outputs.cities }}" \
+            --dates "${{ needs.setup.outputs.dates }}" \
+            --cities "${{ needs.setup.outputs.cities }}" \
             --skip-if-present
 
+  horoscope:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: 'npm' }
+      - run: npm ci --no-audit --no-fund
       - name: Precompute horoscope
         env:
           PRECOMPUTE_STORAGE: blob
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
         run: |
-          # Horoscope: (date × rashi) fan-out — 12 rashis × the same
-          # date window. ~30s for a 60-day forward window. The engine
-          # has no location input, so we skip the cities axis entirely
-          # — one Blob per (rashi, date), same trick that lets one
-          # choghadiya Blob serve every locale.
+          # No cities axis — engine has no location input.
           RASHIS=$(npx tsx -e "
             import { RASHIS } from './src/lib/constants/rashis';
             console.log(RASHIS.map(r => r.slug).join(','));
           ")
           npx tsx scripts/precompute/horoscope.ts \
-            --dates "${{ steps.window.outputs.dates }}" \
+            --dates "${{ needs.setup.outputs.dates }}" \
             --rashis "$RASHIS" \
             --skip-if-present
 
+  panchang-date:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: 'npm' }
+      - run: npm ci --no-audit --no-fund
       - name: Precompute panchang-date
         env:
           PRECOMPUTE_STORAGE: blob
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
         run: |
-          # Panchang-date: (date × seo-city) fan-out — 9 SEO cities (one
-          # per visible locale, deduped) × the 60-day date window. The
-          # script derives the city set from SEO_CITY_BY_LOCALE itself,
-          # so no city-list arg is needed (drift-proof against future
-          # additions to the locale-city map). One Blob per (date, city);
-          # page resolves via `tl(field, locale)` at render time, so any
-          # locale that maps to the same SEO city hits the same Blob.
+          # SEO cities derived from SEO_CITY_BY_LOCALE inside the script.
           npx tsx scripts/precompute/panchang-date.ts \
-            --dates "${{ steps.window.outputs.dates }}" \
+            --dates "${{ needs.setup.outputs.dates }}" \
             --skip-if-present
 
+  panchang-city:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: 'npm' }
+      - run: npm ci --no-audit --no-fund
       - name: Precompute panchang-city
         env:
           PRECOMPUTE_STORAGE: blob
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
         run: |
-          # Panchang-city: (date × city) fan-out across the full 57-city
-          # catalogue. Each Blob holds the entire computePanchang output
-          # + tithi-table enrichment + festival list — the same shape
-          # /api/panchang returns on a (date, citySlug) hint.
-          # /panchang/[city] SSR + generateMetadata both read this Blob,
-          # so a cache hit eliminates 2 computePanchang calls per ISR
-          # rebuild.
           npx tsx scripts/precompute/panchang-city.ts \
-            --dates "${{ steps.window.outputs.dates }}" \
-            --cities "${{ steps.cities.outputs.cities }}" \
+            --dates "${{ needs.setup.outputs.dates }}" \
+            --cities "${{ needs.setup.outputs.cities }}" \
             --skip-if-present
 
+  daily-article:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: 'npm' }
+      - run: npm ci --no-audit --no-fund
       - name: Precompute daily-article
         env:
           PRECOMPUTE_STORAGE: blob
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
         run: |
-          # Daily-article: (date × city) fan-out — bundles
-          # generateDailyArticle + the 12-rashi horoscope grid into
-          # a single Blob per tuple. The page makes one cache read
-          # instead of 1 computePanchang + 12 generateDailyHoroscope
-          # calls per ISR rebuild. The horoscope grid duplicates
-          # across cities for the same date (small storage cost vs
-          # avoiding 13 separate Blob reads per page render).
           npx tsx scripts/precompute/daily-article.ts \
-            --dates "${{ steps.window.outputs.dates }}" \
-            --cities "${{ steps.cities.outputs.cities }}" \
+            --dates "${{ needs.setup.outputs.dates }}" \
+            --cities "${{ needs.setup.outputs.cities }}" \
             --skip-if-present
 
+  hindu-calendar:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: 'npm' }
+      - run: npm ci --no-audit --no-fund
       - name: Precompute hindu-calendar
         env:
           PRECOMPUTE_STORAGE: blob
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
         run: |
-          # Hindu-calendar: year-keyed only. Single
-          # generateFestivalCalendarV2(year, Ujjain) per year — fan-out
-          # is trivial (2 Blobs at current VALID_YEARS = [2026, 2027]).
-          # Page does its own groupByMonth on the consumer side; one
-          # Blob serves every locale.
-          YEARS=$(npx tsx -e "
-            const yrs = [2026, 2027];
-            console.log(yrs.join(','));
-          ")
           npx tsx scripts/precompute/hindu-calendar.ts \
-            --years \"\$YEARS\" \
+            --years "2026,2027" \
             --skip-if-present
 
+  festivals-year:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: 'npm' }
+      - run: npm ci --no-audit --no-fund
       - name: Precompute festivals-year
         env:
           PRECOMPUTE_STORAGE: blob
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
         run: |
-          # Festivals-year: (year × city) fan-out — same FestivalEntry[]
-          # shape as hindu-calendar but per-city (each city has slightly
-          # different sunrise-anchored tithi boundaries). One Blob per
-          # (year, city) reused across every festival slug — page does
-          # .find(f.slug === slug) at render time. Yearly tithi-table
-          # build is expensive (~0.5s); skip-if-present means the second
-          # year onward is essentially free.
           npx tsx scripts/precompute/festivals-year.ts \
             --years "2026,2027" \
-            --cities "${{ steps.cities.outputs.cities }}" \
+            --cities "${{ needs.setup.outputs.cities }}" \
             --skip-if-present
 
+  muhurta-month:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: 'npm' }
+      - run: npm ci --no-audit --no-fund
       - name: Precompute muhurta-month
         env:
           PRECOMPUTE_STORAGE: blob
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
-        timeout-minutes: 50
         run: |
-          # Muhurta-month: (activity × year × month × city) fan-out —
-          # the largest target in the pipeline. Current scope: 11
-          # activities × 12 months × 57 cities × 1 year = 7,524 Blobs.
-          # Each scanDateRangeV2 call is ~300-500ms; full backfill is
-          # ~40-60 min worst case. After --skip-if-present steady state,
-          # nightly delta is essentially zero until the year rollover.
-          # Per-step 50-min timeout absorbs the worst-case backfill
-          # without sharing budget with the other precompute steps.
-          # Currently covers 2026 only — extending to 2027 adds another
-          # 40-60 min and is deferred until we observe production runtime.
+          # 11 activities × 12 months × 57 cities × 1 year = 7,524 Blobs.
+          # Each scanDateRangeV2 ~300-500ms; full backfill ~40-60 min.
           npx tsx scripts/precompute/muhurta-month.ts \
             --years "2026" \
-            --cities "${{ steps.cities.outputs.cities }}" \
+            --cities "${{ needs.setup.outputs.cities }}" \
             --skip-if-present
+
+  # ───────────────────────────────────────────────────────────────────
+  # Revalidate — runs after every precompute job, regardless of success.
+  # Even if some Blobs are missing, page handlers fall back to live
+  # compute so flipping the cache layers is always safe.
+  # ───────────────────────────────────────────────────────────────────
+  revalidate:
+    needs:
+      - setup
+      - choghadiya
+      - gauri-panchang
+      - horoscope
+      - panchang-date
+      - panchang-city
+      - daily-article
+      - hindu-calendar
+      - festivals-year
+      - muhurta-month
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: 'npm' }
+      - run: npm ci --no-audit --no-fund
 
       - name: Revalidate page paths
         env:
-          DATES: ${{ steps.window.outputs.dates }}
-          CITIES: ${{ steps.cities.outputs.cities }}
+          DATES: ${{ needs.setup.outputs.dates }}
+          CITIES: ${{ needs.setup.outputs.cities }}
           PRECOMPUTE_REVALIDATE_SECRET: ${{ secrets.PRECOMPUTE_REVALIDATE_SECRET }}
           PRECOMPUTE_TARGET_URL: ${{ secrets.PRECOMPUTE_TARGET_URL }}
         run: |
@@ -306,41 +364,15 @@ jobs:
           #   tags[]  → updateTag      → Data Cache (the inner fetch in
           #                              VercelBlobStorage.get)
           #
-          # Without the tags, revalidatePath invalidates the page cache,
-          # the page rebuilds, but the storage.get fetch (which now uses
-          # `cache: 'force-cache'`, per PR #507) still hits the Data
-          # Cache and returns the OLD Blob body — so the rebuilt page
-          # renders stale content. The tag format MUST match what
-          # storage.ts passes as `next: { tags: ['precompute:' + key] }`.
-          #
-          # Paths enumerate (date × visible-locale) because the SEO city
-          # is locale-resolved inside the page handler — one URL per
-          # (locale, date) covers every variant. Tags enumerate
-          # (date × city) because the Blob key itself is locale-
-          # independent (slot labels are trilingual; the page does
-          # tl(name, locale) at render time).
-          #
-          # Gauri-panchang shares the same shape — one paths entry
-          # per (locale, date) and one tag per (date, city). Both
-          # route paths get revalidated in a single POST so the
-          # cache layers flip atomically.
-          #
-          # Visible locales: en, hi, ta, te, bn, gu, kn, mai, mr
-          # (9 entries — sa retired per memory).
+          # NARROWED to today±1 since PR #692. The full 60-day forward
+          # window doesn't need flipping — future dates haven't been
+          # cached yet, so the first natural ISR render after the Blob
+          # write produces fresh content with no revalidate call needed.
+          # ISR Writes line on Vercel bill is the primary cost surface
+          # this narrowing addresses.
 
           REVALIDATE_JSON=$(python3 - <<PY
           import json, os, datetime as dt
-          # NARROWED FAN-OUT (2026-06-13): only flip today, yesterday, and
-          # tomorrow. The full 60-day forward window doesn't need flipping —
-          # future dates haven't been cached yet, so the first natural ISR
-          # render after the Blob is written produces fresh content with no
-          # revalidate call needed. Past dates are deterministic and never
-          # need re-flipping after their initial cache.
-          #
-          # Previous behaviour: paths = 60 dates × 9 locales × 2 = 1,098/night
-          # New behaviour:      paths = 3 dates × 9 locales × 2 = 54/night
-          # ISR Writes line on Vercel bill is the primary cost surface this
-          # narrowing addresses; see docs/superpowers/specs/...
           all_dates = os.environ["DATES"].split(",")
           today = dt.date.today()
           flip_dates = {(today - dt.timedelta(days=1)).isoformat(),
@@ -349,8 +381,8 @@ jobs:
           dates = [d for d in all_dates if d in flip_dates]
           cities = os.environ["CITIES"].split(",")
           # SEO cities for panchang-date — one per visible locale,
-          # deduped. Must match scripts/precompute/panchang-date.ts which
-          # derives the same set from SEO_CITY_BY_LOCALE.
+          # deduped. Must match scripts/precompute/panchang-date.ts
+          # which derives the same set from SEO_CITY_BY_LOCALE.
           seo_cities = sorted(set([
               "delhi",    # en
               "ujjain",   # hi
@@ -364,25 +396,17 @@ jobs:
           ]))
           locales = ["en", "hi", "ta", "te", "bn", "gu", "kn", "mai", "mr"]
           # /panchang/[city] uses "today in city.timezone" as the
-          # implicit date — there's no [date] segment in the URL. We
-          # don't path-flip it here; the page handler resolves today
-          # at render time, and the 6h ISR (PR-3) means a stale Blob
-          # is at most 6h behind anyway. Tag-flip on (date, city)
-          # is what propagates fresh Blob content to the inner fetch
-          # cache layer.
+          # implicit date — no [date] segment in the URL. Tag-flip
+          # only; the 6h ISR handles the page cache.
+          # hindu-calendar + festivals-year aren't path-flipped either;
+          # yearly fan-out and the 7d/86400 revalidate handle it.
           paths = (
               [f"/{l}/choghadiya/{d}" for d in dates for l in locales]
               + [f"/{l}/gauri-panchang/{d}" for d in dates for l in locales]
               + [f"/{l}/panchang/date/{d}" for d in dates for l in locales]
               + [f"/{l}/daily/{d}/{c}" for d in dates for l in locales for c in cities]
           )
-          # hindu-calendar + festivals-year pages aren't path-flipped —
-          # yearly fan-out and the page's 7d/86400 revalidate means
-          # natural ISR picks up new Blobs without us flipping path
-          # caches. Tag-flip current year only for both (festivals-year
-          # tags include the city axis).
-          import datetime as dt2
-          this_year = dt2.date.today().year
+          this_year = dt.date.today().year
           tags = (
               [f"precompute:choghadiya/{d}/{c}" for d in dates for c in cities]
               + [f"precompute:gauri-panchang/{d}/{c}" for d in dates for c in cities]

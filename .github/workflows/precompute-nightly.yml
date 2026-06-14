@@ -306,7 +306,7 @@ jobs:
   muhurta-month:
     needs: setup
     runs-on: ubuntu-latest
-    timeout-minutes: 70
+    timeout-minutes: 130
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -317,10 +317,13 @@ jobs:
           PRECOMPUTE_STORAGE: blob
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
         run: |
-          # 11 activities × 12 months × 57 cities × 1 year = 7,524 Blobs.
-          # Each scanDateRangeV2 ~300-500ms; full backfill ~40-60 min.
+          # 11 activities × 12 months × 57 cities × 2 years = 15,048 Blobs.
+          # Each scanDateRangeV2 ~300-500ms; worst-case full backfill
+          # ~80-120 min for both years. Steady-state with the
+          # exists-check optimization from PR #697 + skip-if-present:
+          # near-zero per cron run after initial backfill.
           npx tsx scripts/precompute/muhurta-month.ts \
-            --years "2026" \
+            --years "2026,2027" \
             --cities "${{ needs.setup.outputs.cities }}" \
             --skip-if-present
 

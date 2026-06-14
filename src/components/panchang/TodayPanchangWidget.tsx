@@ -10,6 +10,7 @@ import { MapPin, Loader2, Search, X } from 'lucide-react';
 import type { PanchangData, Locale } from '@/types/panchang';
 import { TithiIcon, NakshatraIcon, YogaIcon, KaranaIcon, VaraIcon } from '@/components/icons/PanchangIcons';
 import { useLocationStore } from '@/stores/location-store';
+import { findNearestPrecomputedCity } from '@/lib/constants/nearest-city';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, pickByLocale } from '@/lib/utils/locale-fonts';
 import { tl as _tl } from '@/lib/utils/trilingual';
 import { YOGAS } from '@/lib/constants/yogas';
@@ -65,7 +66,15 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
     const now = new Date();
     // Location store timezone takes priority over browser timezone
     const ianaTimezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-    fetch(`/api/panchang?year=${now.getFullYear()}&month=${now.getMonth() + 1}&day=${now.getDate()}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(name)}`)
+    // If the user's resolved coordinates fall within 50km of a city
+    // that's part of the precompute set, hint /api/panchang with the
+    // citySlug so it short-circuits through the panchang-city Blob
+    // (PR #694) instead of running computePanchang live. ~5 min
+    // sunrise drift at the city edge is well inside what users
+    // perceive as "their" panchang.
+    const nearby = findNearestPrecomputedCity(lat, lng);
+    const citySlugParam = nearby ? `&citySlug=${encodeURIComponent(nearby.slug)}` : '';
+    fetch(`/api/panchang?year=${now.getFullYear()}&month=${now.getMonth() + 1}&day=${now.getDate()}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(name)}${citySlugParam}`)
       .then((res) => res.json())
       .then((data) => { setPanchang(data); setLoading(false); })
       .catch((err) => {

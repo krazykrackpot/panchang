@@ -100,7 +100,21 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
         ? `&citySlug=${encodeURIComponent(nearby.slug)}`
         : '';
     fetch(`/api/panchang?year=${targetYear}&month=${targetMonth}&day=${targetDay}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(name)}${citySlugParam}`)
-      .then((res) => res.json())
+      .then(async (res) => {
+        const data = await res.json().catch(() => ({ error: `HTTP ${res.status}: invalid JSON body` }));
+        // /api/panchang returns {error: string} on 4xx/5xx (rate-limit,
+        // bad params, etc.). Without this guard the widget would set
+        // panchang = {error: "..."}, then crash rendering tithi.name.
+        // Gemini PR #701 HIGH.
+        if (!res.ok || (data && typeof data === 'object' && 'error' in data)) {
+          throw new Error(
+            data && typeof data === 'object' && 'error' in data
+              ? String((data as { error: unknown }).error)
+              : `HTTP ${res.status}`,
+          );
+        }
+        return data;
+      })
       .then((data) => { setPanchang(data); setLoading(false); })
       .catch((err) => {
         console.error('[TodayPanchangWidget] fetch failed:', err);

@@ -36,7 +36,10 @@ export function haversineKm(
   const a =
     Math.sin(dLat / 2) ** 2 +
     Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
-  return 2 * R * Math.asin(Math.sqrt(a));
+  // Clamp to [0, 1] before sqrt — floating-point can push `a` very
+  // slightly above 1 for near-antipodal points, which would make
+  // asin(sqrt(a > 1)) return NaN. Gemini PR #701.
+  return 2 * R * Math.asin(Math.sqrt(Math.min(1, a)));
 }
 
 /**
@@ -50,7 +53,20 @@ export function findNearestPrecomputedCity(
   lng: number,
   maxKm = 50,
 ): CityData | null {
-  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+  // Validate range as well as finiteness — out-of-bounds coords
+  // (a 200° lng from a buggy caller, a NaN bypass via a Number-like
+  // value) should fall back to live compute rather than match the
+  // first numerically-close city. Gemini PR #701.
+  if (
+    !Number.isFinite(lat) ||
+    !Number.isFinite(lng) ||
+    lat < -90 ||
+    lat > 90 ||
+    lng < -180 ||
+    lng > 180
+  ) {
+    return null;
+  }
   let best: { city: CityData; km: number } | null = null;
   for (const city of CITIES) {
     const km = haversineKm(lat, lng, city.lat, city.lng);

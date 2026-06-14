@@ -57,24 +57,27 @@ function parseUsageOutput(raw: string, scope: string): UsageSnapshot {
   // the billed (last) column.
   // Name uses [^$]+? rather than a tight allow-list so parenthesised
   // names like "Serverless Function Execution (GB-hours)" match too.
-  // Gemini PR #702.
+  // Costs allow commas so totals over $1000 (e.g. "$1,234.56") parse
+  // correctly; strip commas before parseFloat. Gemini PR #702.
   const services: UsageSnapshot['services'] = [];
-  const lineRe = /^\s{2}([^$]+?)\s+\$([\d.]+)\s+\$([\d.]+)\s+\$([\d.]+)\s*$/;
+  const lineRe = /^\s{2}([^$]+?)\s+\$([\d.,]+)\s+\$([\d.,]+)\s+\$([\d.,]+)\s*$/;
   for (const line of raw.split('\n')) {
     const m = lineRe.exec(line);
     if (!m) continue;
     const name = m[1].trim();
     if (name === 'Total') continue; // recorded separately below
-    const billed = parseFloat(m[4]);
+    const billed = parseFloat(m[4].replace(/,/g, ''));
     if (!Number.isFinite(billed)) continue;
     if (billed === 0) continue; // skip zero rows; the CSV is for non-trivial cost drivers
     services.push({ name, billedUsd: billed });
   }
 
   // Total appears in the same shape on its own row; record it too.
-  const totalMatch = raw.match(/^\s{2}Total\s+\$[\d.]+\s+\$[\d.]+\s+\$([\d.]+)\s*$/m);
+  // Same comma-strip applies here (Vercel formats >$1000 totals with
+  // thousands separators). Gemini PR #702.
+  const totalMatch = raw.match(/^\s{2}Total\s+\$[\d.,]+\s+\$[\d.,]+\s+\$([\d.,]+)\s*$/m);
   if (totalMatch) {
-    const total = parseFloat(totalMatch[1]);
+    const total = parseFloat(totalMatch[1].replace(/,/g, ''));
     if (Number.isFinite(total)) {
       services.push({ name: 'Total', billedUsd: total });
     }
@@ -88,15 +91,16 @@ function appendSnapshot(snapshot: UsageSnapshot): number {
     writeFileSync(CSV_PATH, CSV_HEADER, 'utf8');
   }
   const at = new Date().toISOString();
-  let appended = 0;
+  // Build the whole append payload in memory and write once instead of
+  // one disk roundtrip per service. Gemini PR #702.
+  let rows = '';
   for (const svc of snapshot.services) {
     // Escape commas in service names (none expected, but safe).
     const safeName = svc.name.includes(',') ? `"${svc.name}"` : svc.name;
-    const row = `${at},${snapshot.scope},${snapshot.periodStart},${snapshot.periodEnd},${safeName},${svc.billedUsd.toFixed(4)}\n`;
-    appendFileSync(CSV_PATH, row, 'utf8');
-    appended++;
+    rows += `${at},${snapshot.scope},${snapshot.periodStart},${snapshot.periodEnd},${safeName},${svc.billedUsd.toFixed(4)}\n`;
   }
-  return appended;
+  appendFileSync(CSV_PATH, rows, 'utf8');
+  return snapshot.services.length;
 }
 
 interface CsvRow {
@@ -145,14 +149,17 @@ function diffAgainstLastSnapshot(snapshot: UsageSnapshot): void {
   const lastByService = new Map(last.map((r) => [r.service, r.billed]));
 
   console.log(`\nDiff vs last snapshot at ${lastAt}:\n`);
+  // O(N) lookups via Map rather than O(N²) via .find() inside the
+  // union loop. Gemini PR #702.
+  const currByService = new Map(snapshot.services.map((s) => [s.name, s.billedUsd]));
   const all_services = new Set<string>([
-    ...snapshot.services.map((s) => s.name),
+    ...currByService.keys(),
     ...lastByService.keys(),
   ]);
   const rows: Array<{ service: string; prev: number; curr: number; delta: number }> = [];
   for (const service of all_services) {
     const prev = lastByService.get(service) ?? 0;
-    const curr = snapshot.services.find((s) => s.name === service)?.billedUsd ?? 0;
+    const curr = currByService.get(service) ?? 0;
     rows.push({ service, prev, curr, delta: curr - prev });
   }
   rows.sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));

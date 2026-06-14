@@ -1,18 +1,32 @@
 /* eslint-disable no-console */
 /**
- * One-off backfill: send the immediate post-signup welcome email to the
- * 2 new users from 2026-06-14 whose /auth/callback fire-and-forget POST
- * to /api/user/signup-welcome got cancelled by the 2.5s redirect before
- * the request reached the server. signup_welcome_sent_at is NULL on both.
+ * Reusable backfill: send the immediate post-signup welcome email to any
+ * user whose signup_welcome_sent_at is NULL. The /auth/callback fire-and-
+ * forget POST to /api/user/signup-welcome can be cancelled by the 2.5s
+ * redirect — root-caused 2026-06-14 (two real users hit it; the keepalive
+ * fix in /auth/callback prevents recurrence after deploy).
  *
- * After sending, atomically marks signup_welcome_sent_at=now() so the cron
- * doesn't double-send (drip_day=1 was already set by the onboarding cron's
- * Day-1 path, so no double-send risk on that side).
+ * After sending, marks signup_welcome_sent_at=now(). Doesn't touch
+ * onboarding_drip_day — if the cron already advanced it, tomorrow's run
+ * naturally progresses to Day 2 with no double-send.
  *
- * Bug to fix in a follow-up: use sendBeacon() in /auth/callback so the
- * request survives page unload — current fire-and-forget races the redirect.
+ * Usage (one of):
  *
- * Usage: npx tsx scripts/send-welcome-backfill.ts
+ *   1. JSON file (recommended for batch). Create scripts/welcome-backfill-targets.json
+ *      (gitignored — Gemini PR #699 flagged hardcoded PII as a privacy
+ *      issue). Schema: [{"id": "<uuid>", "email": "<email>"}, ...]
+ *
+ *        npx tsx scripts/send-welcome-backfill.ts
+ *
+ *   2. CLI args (one user). Pass --id and --email:
+ *
+ *        npx tsx scripts/send-welcome-backfill.ts --id <uuid> --email <email>
+ *
+ *   3. Inline JSON via --targets:
+ *
+ *        npx tsx scripts/send-welcome-backfill.ts --targets '[{"id":"...","email":"..."}]'
+ *
+ * No targets ever live in source. PII stays out of git.
  */
 import { readFileSync, existsSync } from 'fs';
 import path from 'path';
@@ -43,10 +57,70 @@ const supabase = createClient(SUPABASE_URL, SERVICE_KEY, {
   auth: { persistSession: false, autoRefreshToken: false },
 });
 
-const TARGETS = [
-  { id: '4f1290e6-41e2-4a26-b8a7-cc2dd5f9c160', email: 'sadentpak2015@gmail.com' },
-  { id: 'f941853a-ee2d-445a-b66b-ee03c7b1fbb4', email: 'idokar28@gmail.com' },
-];
+interface Target { id: string; email: string }
+
+function isValidTarget(x: unknown): x is Target {
+  if (typeof x !== 'object' || x === null) return false;
+  const t = x as Record<string, unknown>;
+  return typeof t.id === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(t.id)
+    && typeof t.email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t.email);
+}
+
+function argValue(flag: string): string | undefined {
+  const i = process.argv.indexOf(flag);
+  return i >= 0 && i + 1 < process.argv.length ? process.argv[i + 1] : undefined;
+}
+
+function loadTargets(): Target[] {
+  // Priority: --targets > --id/--email > targets file
+  const inlineJson = argValue('--targets');
+  if (inlineJson) {
+    let parsed: unknown;
+    try { parsed = JSON.parse(inlineJson); }
+    catch (e) {
+      console.error('[backfill] --targets is not valid JSON:', e);
+      process.exit(1);
+    }
+    if (!Array.isArray(parsed) || !parsed.every(isValidTarget)) {
+      console.error('[backfill] --targets must be an array of {id: UUID, email}');
+      process.exit(1);
+    }
+    return parsed;
+  }
+
+  const idArg = argValue('--id');
+  const emailArg = argValue('--email');
+  if (idArg || emailArg) {
+    const t = { id: idArg ?? '', email: emailArg ?? '' };
+    if (!isValidTarget(t)) {
+      console.error('[backfill] --id must be a UUID and --email must be a valid address');
+      process.exit(1);
+    }
+    return [t];
+  }
+
+  const targetsPath = path.resolve('scripts/welcome-backfill-targets.json');
+  if (existsSync(targetsPath)) {
+    let parsed: unknown;
+    try { parsed = JSON.parse(readFileSync(targetsPath, 'utf-8')); }
+    catch (e) {
+      console.error(`[backfill] Failed to parse ${targetsPath}:`, e);
+      process.exit(1);
+    }
+    if (!Array.isArray(parsed) || !parsed.every(isValidTarget)) {
+      console.error(`[backfill] ${targetsPath} must be an array of {id: UUID, email}`);
+      process.exit(1);
+    }
+    return parsed;
+  }
+
+  console.error('[backfill] No targets provided. Use --id/--email, --targets, or create');
+  console.error('           scripts/welcome-backfill-targets.json (gitignored).');
+  console.error('           See docstring at the top of this file for examples.');
+  process.exit(1);
+}
+
+const TARGETS = loadTargets();
 
 async function main(): Promise<void> {
   for (const t of TARGETS) {

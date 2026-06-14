@@ -54,6 +54,18 @@ export default function AuthCallbackPage() {
         // — only the first call per user actually sends) and claims drip
         // Day 1 so tomorrow's onboarding-drip cron does not double-email.
         //
+        // `keepalive: true` is critical here. Without it, the 2500ms
+        // redirect below tears down the page (modern browsers cancel
+        // in-flight non-keepalive fetches on page unload) before the
+        // request reaches the server. Observed in production 2026-06-14
+        // with two real signups: /auth/callback ran, but Vercel logs
+        // showed zero /api/user/signup-welcome traffic, and
+        // signup_welcome_sent_at stayed NULL on both rows. Backfilled
+        // manually via scripts/send-welcome-backfill.ts, then this keepalive
+        // fix landed so future signups don't lose the welcome to the same
+        // race. Per Fetch spec, keepalive requests get a 64KB body cap and
+        // continue to completion across navigation/unload.
+        //
         // Errors are swallowed: the welcome is non-critical UX polish; the
         // user is mid-redirect to /profile and shouldn't see anything go
         // wrong here. The route logs server-side for ops to follow up.
@@ -66,6 +78,7 @@ export default function AuthCallbackPage() {
               Authorization: `Bearer ${accessToken}`,
             },
             body: JSON.stringify({ locale }),
+            keepalive: true,
           }).catch((err) => {
             console.error('[auth/callback] signup-welcome fetch failed:', err);
           });

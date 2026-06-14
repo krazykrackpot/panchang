@@ -91,3 +91,7 @@ scripts/__pycache__/
 # Materialised SEO checkpoint plist + run log
 scripts/seo-checkpoint-cron-*.plist
 scripts/seo-checkpoint-cron.log
+
+# PII-bearing targets file for scripts/send-welcome-backfill.ts.
+# Never committed — Gemini PR #699 flagged hardcoded user emails as a privacy risk.
+scripts/welcome-backfill-targets.json

@@ -1,0 +1,51 @@
+name: precompute-cleanup
+
+# Manual-trigger workflow that enumerates and (optionally) deletes
+# orphaned engine-prefix Blobs left behind after an ENGINE_VERSION
+# bump. Not on a schedule — Blob storage is cheap (~$0.15/GB-month)
+# so this is a "run when noise piles up" tool, not a regular
+# cron job.
+#
+# Safety: the script only ever touches paths under
+# `precompute/v1/{retired-hash}/...`. Blobs at the current
+# ENGINE_PREFIX are always preserved. Unrecognised prefixes are
+# also skipped (never deleted) — a defence-in-depth against
+# accidentally wiping unrelated Blob content.
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: 'Apply deletions (false = dry run; true = delete)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+permissions:
+  contents: read
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: 'npm' }
+      - run: npm ci --no-audit --no-fund
+      - name: Cleanup orphan Blobs
+        env:
+          PRECOMPUTE_STORAGE: blob
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+          APPLY: ${{ github.event.inputs.apply || 'false' }}
+        run: |
+          if [ "$APPLY" = "true" ]; then
+            echo "Running with --apply (deletions will be applied)"
+            npx tsx scripts/precompute/cleanup-old-prefixes.ts --apply
+          else
+            echo "Running in dry-run mode (re-run with apply=true to delete)"
+            npx tsx scripts/precompute/cleanup-old-prefixes.ts
+          fi

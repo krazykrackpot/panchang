@@ -55,8 +55,11 @@ function parseUsageOutput(raw: string, scope: string): UsageSnapshot {
   // Each row shape: "  Service Name                                 $X.YYYY          $X.YYYY        $X.YYYY"
   // 4 columns: name, usage cost, effective cost, billed cost. We capture
   // the billed (last) column.
+  // Name uses [^$]+? rather than a tight allow-list so parenthesised
+  // names like "Serverless Function Execution (GB-hours)" match too.
+  // Gemini PR #702.
   const services: UsageSnapshot['services'] = [];
-  const lineRe = /^\s{2}([A-Za-z][A-Za-z0-9 \-_/]+?)\s+\$([\d.]+)\s+\$([\d.]+)\s+\$([\d.]+)\s*$/;
+  const lineRe = /^\s{2}([^$]+?)\s+\$([\d.]+)\s+\$([\d.]+)\s+\$([\d.]+)\s*$/;
   for (const line of raw.split('\n')) {
     const m = lineRe.exec(line);
     if (!m) continue;
@@ -120,7 +123,10 @@ function readCsv(): CsvRow[] {
       scope: cols[1],
       periodStart: cols[2],
       periodEnd: cols[3],
-      service: cols.slice(4, cols.length - 1).join(','),
+      // Strip surrounding quotes added by the writer for names with
+      // commas — without this the diff matcher misses the row.
+      // Gemini PR #702.
+      service: cols.slice(4, cols.length - 1).join(',').replace(/^"|"$/g, ''),
       billed: parseFloat(cols[cols.length - 1]),
     });
   }
@@ -162,6 +168,13 @@ function diffAgainstLastSnapshot(snapshot: UsageSnapshot): void {
 
 function main(): void {
   const scope = getArg('--scope') ?? DEFAULT_SCOPE;
+  // Defence in depth: --scope flows into execSync below as a shell
+  // argument. Vercel team slugs are alnum + hyphen + underscore so a
+  // strict allow-list closes the command-injection door without ever
+  // accepting a real-world team slug we'd care about. Gemini PR #702.
+  if (!/^[a-zA-Z0-9\-_]+$/.test(scope)) {
+    throw new Error(`[snapshot] invalid --scope value: ${JSON.stringify(scope)}`);
+  }
   const diffOnly = process.argv.includes('--diff');
 
   console.log(`[snapshot] querying vercel usage for scope ${scope} ...`);

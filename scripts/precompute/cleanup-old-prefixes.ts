@@ -63,11 +63,15 @@ async function main(): Promise<void> {
       scanned++;
       const rest = blob.pathname.slice(PRECOMPUTE_PREFIX.length);
       // Expect shape `{engineHash}/...`. If the next segment doesn't
-      // look like a 7-char hex slice, treat as unknown — never delete.
+      // look like a hex slice, treat as unknown — never delete.
       const slashIdx = rest.indexOf('/');
       const enginePrefix = slashIdx >= 0 ? rest.slice(0, slashIdx) : rest;
-      if (!byPrefix.has(enginePrefix)) byPrefix.set(enginePrefix, []);
-      byPrefix.get(enginePrefix)!.push({ url: blob.url, pathname: blob.pathname });
+      let prefixBlobs = byPrefix.get(enginePrefix);
+      if (!prefixBlobs) {
+        prefixBlobs = [];
+        byPrefix.set(enginePrefix, prefixBlobs);
+      }
+      prefixBlobs.push({ url: blob.url, pathname: blob.pathname });
     }
     cursor = result.cursor;
   } while (cursor);
@@ -80,20 +84,22 @@ async function main(): Promise<void> {
     const marker =
       prefix === ENGINE_PREFIX
         ? '← CURRENT (keep)'
-        : /^[0-9a-f]{7}$/.test(prefix)
+        : /^[0-9a-f]{7,12}$/.test(prefix)
         ? '(retired engine — candidate for deletion)'
         : '(unrecognised prefix — will NOT delete)';
     console.log(`  ${prefix.padEnd(20)} ${String(blobs.length).padStart(6)} Blobs  ${marker}`);
   }
 
-  // Collect deletion candidates: prefixes that match the 7-hex-char
-  // shape but aren't current. Anything else (oddly-shaped paths) is
-  // left alone to avoid touching content that doesn't fit the
-  // engine-hash convention.
+  // Collect deletion candidates: prefixes that match the engine-hash
+  // shape (7-12 hex chars — current ENGINE_PREFIX is the first 7 chars
+  // of ENGINE_VERSION, but the underlying hash is longer, so accepting
+  // a range absorbs any future widening) but aren't current. Anything
+  // else (oddly-shaped paths) is left alone to avoid touching content
+  // that doesn't fit the engine-hash convention.
   const candidatesForDeletion: BlobMeta[] = [];
   for (const [prefix, blobs] of byPrefix) {
     if (prefix === ENGINE_PREFIX) continue;
-    if (!/^[0-9a-f]{7}$/.test(prefix)) continue;
+    if (!/^[0-9a-f]{7,12}$/.test(prefix)) continue;
     candidatesForDeletion.push(...blobs);
   }
 

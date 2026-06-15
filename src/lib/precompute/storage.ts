@@ -284,7 +284,14 @@ export function getStorage(): PrecomputeStorage {
   if (_testOverride) return _testOverride;
   if (_cachedInstance) return _cachedInstance;
 
-  switch (process.env.PRECOMPUTE_STORAGE) {
+  // CLAUDE.md rule: always .trim() env vars in route handlers — Vercel
+  // values can carry trailing newlines/whitespace that break strict
+  // string comparison. The 2026-06-15 incident: PRECOMPUTE_STORAGE was
+  // stored as "blob\n" in production, never matched `case 'blob':`,
+  // threw on every read, and silently bypassed the entire precompute
+  // migration for 9 days. Trimming closes that door.
+  const storageKind = process.env.PRECOMPUTE_STORAGE?.trim();
+  switch (storageKind) {
     case 'local':
       _cachedInstance = new LocalFsStorage();
       break;
@@ -298,7 +305,9 @@ export function getStorage(): PrecomputeStorage {
       // Default to local on laptop, throw in production to prevent silent
       // dev-config bleed.
       if (process.env.VERCEL === '1') {
-        throw new Error('[storage] PRECOMPUTE_STORAGE not set in Vercel — refusing to default');
+        throw new Error(
+          `[storage] PRECOMPUTE_STORAGE not set in Vercel (resolved to ${JSON.stringify(storageKind)}) — refusing to default`,
+        );
       }
       _cachedInstance = new LocalFsStorage();
   }

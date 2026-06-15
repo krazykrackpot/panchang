@@ -36,8 +36,10 @@ interface GetPrecomputedOptions<T> {
 export async function getPrecomputed<T>(opts: GetPrecomputedOptions<T>): Promise<T> {
   const { key, schema, fallback } = opts;
 
-  // 1. Kill switch.
-  if (process.env.PRECOMPUTE_FETCH_ENABLED !== 'true') {
+  // 1. Kill switch. Trimmed because Vercel env values occasionally
+  // carry trailing newlines (CLAUDE.md rule + 2026-06-15 incident
+  // where the storage.ts switch was tripped by the same bug class).
+  if (process.env.PRECOMPUTE_FETCH_ENABLED?.trim() !== 'true') {
     return await fallback();
   }
 

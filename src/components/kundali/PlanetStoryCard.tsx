@@ -139,7 +139,10 @@ export default function PlanetStoryCard({ planetId, kundali, locale, onClose }: 
   return (
     <AnimatePresence>
       <>
-        {/* Backdrop — click to close */}
+        {/* Click-catcher — closes the card when the user clicks anywhere
+            outside it. Transparent so the chart underneath stays fully
+            visible (planet selection drives the drishti animation on the
+            chart, and the user needs to see that while reading the panel). */}
         <motion.div
           key="planet-card-backdrop"
           initial={{ opacity: 0 }}
@@ -147,7 +150,7 @@ export default function PlanetStoryCard({ planetId, kundali, locale, onClose }: 
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18 }}
           onClick={onClose}
-          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+          className="fixed inset-0 z-40"
           aria-hidden="true"
         />
 

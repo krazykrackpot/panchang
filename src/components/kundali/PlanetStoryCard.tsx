@@ -142,13 +142,10 @@ export default function PlanetStoryCard({ planetId, kundali, locale, onClose }: 
         {/* Click-catcher — closes the card when the user clicks anywhere
             outside it. Transparent so the chart underneath stays fully
             visible (planet selection drives the drishti animation on the
-            chart, and the user needs to see that while reading the panel). */}
-        <motion.div
-          key="planet-card-backdrop"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.18 }}
+            chart, and the user needs to see that while reading the panel).
+            Plain `<div>` instead of `motion.div`: opacity-fade animation
+            is a no-op on a transparent element. */}
+        <div
           onClick={onClose}
           className="fixed inset-0 z-40"
           aria-hidden="true"

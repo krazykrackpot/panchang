@@ -415,29 +415,38 @@ If MTD `cost_usd` > 0.8 × `WHATSAPP_MONTHLY_BUDGET_USD` (env var, default 50):
 
 ---
 
-## 14. Open decisions for user input
+## 14. Decisions (locked 2026-06-15)
 
-Before Phase 1 build starts, please confirm:
+### Decision #1 — Provider: **WhatsApp Cloud API (Meta direct)**
+Lowest per-message cost, no vendor lock-in. Accept the ~30% extra setup work in exchange.
 
-### Decision #1 — Provider
-- [ ] **(A) WhatsApp Cloud API (Meta direct)** — lowest cost, ~30% more setup work, recommended
-- [ ] (B) Twilio WhatsApp — 30% markup, slightly better DX
-- [ ] (C) AiSensy/Wati/Interakt aggregator — fastest, ₹999+/mo platform fee
+### Decision #2 — Monthly budget cap: **$25/mo**
+User explicitly flagged: "I DON'T WANT TO SPEND ANY UNNECESSARY MONEY YET." Implications:
+- Hard cap of $25/mo enforced in code (cron skips send + operator alert at 80% MTD = $20)
+- $25 ≈ 2,000 utility msgs/mo in India (~65/day). Covers ~65 active opted-in subscribers comfortably.
+- For pilot (25 beta users × 30 days = 750 msgs/mo) projected spend ≈ **$9/mo**, well under cap.
+- Cost transparency: every send logged with `cost_micros`; daily rollup visible to operator.
+- WABA setup + template approval = **free** ($0 to Meta).
+- One-time hardware cost (Indian SIM): see Decision #3.
 
-### Decision #2 — Monthly budget cap (first 60 days)
-- [ ] $50/mo — supports ~4,000 messages (~130/day) — recommended for pilot
-- [ ] $100/mo — supports ~8,000 messages
-- [ ] $200/mo — supports ~16,000 messages
-- [ ] Custom: _____
+### Decision #3 — Phone number: **dedicated Indian number**
+- One-time setup: ≈₹500 (~$6) for prepaid SIM
+- Recurring: ≈₹150/mo (~$2) for minimum recharge
+- Brand-separation worth the $2/mo. Total ongoing infra cost = ~$11/mo at pilot scale.
 
-### Decision #3 — Phone number for WhatsApp Business
-- [ ] Use your existing personal/work mobile (fastest, less ideal for brand separation)
-- [ ] Buy a dedicated Indian number (≈₹500 setup, segregated, more professional)
+### Decision #4 — Soft-launch: **first 25 users as closed beta**
+- Aditya hand-picks 25 high-engagement existing users from the 126-user base
+- 7-day monitoring window for opt-out rate, Meta delivery quality score, message read rate
+- Broadens to all signed-up users only after metrics hold
+- v1 templates: en + hi only (covers >60% of users); ta/te/bn/gu/kn/mai/mr land in Phase 5+
 
-### Decision #4 — Soft-launch cohort
-- [ ] Open immediately to all signed-up users (~126 today)
-- [ ] First 25 users in a closed beta (Aditya hand-picks), then broaden
-- [ ] Restrict to one locale initially (e.g. en + hi only, add ta/te/bn/etc in Phase 5+)
+### Cost discipline addendum
+
+Build cost monitoring **first** so we see real spend before scaling. Specifically:
+1. `cost_micros` written on every `whatsapp_send_log` row
+2. `/api/cron/whatsapp-cost-rollup` runs daily at 23:00 UTC, computes MTD spend
+3. If MTD ≥ $20 (80% of $25 cap), set `feature_flags.whatsapp_daily_sends = false` + email Aditya
+4. Operator dashboard (or simple SQL query) shows real-time spend vs cap
 
 ---
 

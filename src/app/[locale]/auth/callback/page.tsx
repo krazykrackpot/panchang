@@ -49,40 +49,19 @@ export default function AuthCallbackPage() {
         setUserName(user.user_metadata?.name || user.email?.split('@')[0] || '');
         setStatus('success');
 
-        // Fire-and-forget the immediate post-signup welcome email. The
-        // route is idempotent (guarded by user_profiles.signup_welcome_sent_at
-        // — only the first call per user actually sends) and claims drip
-        // Day 1 so tomorrow's onboarding-drip cron does not double-email.
+        // No welcome-email fetch fires here. The chart-dependent welcome at
+        // /api/user/profile (gated by welcome_email_sent_at) already covers
+        // every real signup — it fires the moment the user generates their
+        // first kundali. The previous /api/user/signup-welcome fire-and-
+        // forget path was dead code in practice: Google OAuth's redirectTo
+        // is set to `${baseUrl}${returnPath}` in src/stores/auth-store.ts,
+        // so OAuth users come back to the page they signed in from, not to
+        // this callback. Observed 2026-06-14 + 2026-06-15: 4 real signups,
+        // 0 hits to /api/user/signup-welcome in Vercel logs, all 4 received
+        // the chart welcome on schedule.
         //
-        // `keepalive: true` is critical here. Without it, the 2500ms
-        // redirect below tears down the page (modern browsers cancel
-        // in-flight non-keepalive fetches on page unload) before the
-        // request reaches the server. Observed in production 2026-06-14
-        // with two real signups: /auth/callback ran, but Vercel logs
-        // showed zero /api/user/signup-welcome traffic, and
-        // signup_welcome_sent_at stayed NULL on both rows. Backfilled
-        // manually via scripts/send-welcome-backfill.ts, then this keepalive
-        // fix landed so future signups don't lose the welcome to the same
-        // race. Per Fetch spec, keepalive requests get a 64KB body cap and
-        // continue to completion across navigation/unload.
-        //
-        // Errors are swallowed: the welcome is non-critical UX polish; the
-        // user is mid-redirect to /profile and shouldn't see anything go
-        // wrong here. The route logs server-side for ops to follow up.
-        const accessToken = data.session?.access_token;
-        if (accessToken) {
-          fetch('/api/user/signup-welcome', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${accessToken}`,
-            },
-            body: JSON.stringify({ locale }),
-            keepalive: true,
-          }).catch((err) => {
-            console.error('[auth/callback] signup-welcome fetch failed:', err);
-          });
-        }
+        // The 7-day onboarding drip cron (independent of this flow) still
+        // covers users who sign up but never generate a chart.
 
         // Redirect to profile after 2 seconds (tracked for cleanup)
         scheduleRedirect(`/${locale}/profile`, 2500);

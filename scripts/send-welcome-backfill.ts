@@ -1,14 +1,25 @@
 /* eslint-disable no-console */
 /**
- * Reusable backfill: send the immediate post-signup welcome email to any
- * user whose signup_welcome_sent_at is NULL. The /auth/callback fire-and-
- * forget POST to /api/user/signup-welcome can be cancelled by the 2.5s
- * redirect — root-caused 2026-06-14 (two real users hit it; the keepalive
- * fix in /auth/callback prevents recurrence after deploy).
+ * Recovery tool: send a Day-1 welcome email to a list of users.
  *
- * After sending, marks signup_welcome_sent_at=now(). Doesn't touch
- * onboarding_drip_day — if the cron already advanced it, tomorrow's run
- * naturally progresses to Day 2 with no double-send.
+ * WARNING — read before running. The PRIMARY welcome path is the chart-
+ * dependent welcome in /api/user/profile (gated by
+ * user_profiles.welcome_email_sent_at), which fires the moment a user
+ * generates their first kundali. That path is reliable. The 7-day
+ * onboarding-drip cron covers the long tail (users who sign up but never
+ * generate a chart).
+ *
+ * This script exists ONLY for genuine recovery cases — e.g. Resend outage
+ * on the day of signup, where welcome_email_sent_at is still NULL after
+ * the user clearly generated charts. ALWAYS check welcome_email_sent_at
+ * BEFORE running; if it's already set, this script will send a duplicate.
+ *
+ * Historical context: 2026-06-14/15 I (the engineer) misdiagnosed an
+ * unrelated NULL on signup_welcome_sent_at (a now-removed column from a
+ * deleted /api/user/signup-welcome route) as the welcome having failed.
+ * I ran this script and sent 4 users a duplicate welcome before catching
+ * the mistake. The dead signup-welcome route and its column gate were
+ * removed in the same PR. Don't repeat the mistake.
  *
  * Usage (one of):
  *
@@ -124,10 +135,11 @@ const TARGETS = loadTargets();
 
 async function main(): Promise<void> {
   for (const t of TARGETS) {
-    // Re-read profile to get display_name + locale (avoid sending with stale data)
+    // Re-read profile + check the PRIMARY chart welcome flag. If it's already
+    // set, this script will produce a duplicate — abort with a clear warning.
     const { data: profile, error: fetchErr } = await supabase
       .from('user_profiles')
-      .select('id, display_name, preferred_locale, signup_welcome_sent_at')
+      .select('id, display_name, preferred_locale, welcome_email_sent_at')
       .eq('id', t.id)
       .single();
 
@@ -136,8 +148,10 @@ async function main(): Promise<void> {
       continue;
     }
 
-    if (profile.signup_welcome_sent_at) {
-      console.log(`[backfill] ${t.email}: already sent at ${profile.signup_welcome_sent_at} — skipping`);
+    if (profile.welcome_email_sent_at) {
+      console.warn(`[backfill] ${t.email}: PRIMARY welcome already sent at ${profile.welcome_email_sent_at}`);
+      console.warn(`[backfill]   ${t.email}: skipping to avoid a duplicate. If you genuinely need a re-send,`);
+      console.warn(`[backfill]   ${t.email}: NULL out welcome_email_sent_at in user_profiles first.`);
       continue;
     }
 
@@ -159,12 +173,12 @@ async function main(): Promise<void> {
       continue;
     }
 
-    // Mark sent — but DON'T touch onboarding_drip_day. The cron already
-    // claimed Day 1 (drip_day=1). Leaving it lets tomorrow's cron progress
-    // to Day 2 naturally.
+    // Mark the PRIMARY welcome flag as sent so the chart-welcome path in
+    // /api/user/profile won't double-send when the user next generates a
+    // chart. Doesn't touch onboarding_drip_day — that's the cron's lane.
     const { error: claimErr } = await supabase
       .from('user_profiles')
-      .update({ signup_welcome_sent_at: new Date().toISOString() })
+      .update({ welcome_email_sent_at: new Date().toISOString() })
       .eq('id', t.id);
 
     if (claimErr) {

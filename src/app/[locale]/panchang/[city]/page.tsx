@@ -61,6 +61,18 @@ function getCityLocalDate(timezone: string) {
 export const revalidate = 21600;
 export const dynamicParams = true;
 
+// Per CLAUDE.md "static page budget" rule: dynamic-segment routes like
+// /panchang/[city] (~800 cities × 9 locales = 7,200 pages) MUST return
+// `[]` from generateStaticParams to opt into ISR. Without this, Next.js
+// treats the route as fully dynamic at runtime even with `revalidate`
+// set — every request hits the function, no CDN cache. Confirmed via
+// `next start` curl: route returned `no-cache, no-store` without this
+// export; returns `s-maxage` + cache HIT with it. /panchang/date/[date]
+// already does this; /panchang/[city] was missing it.
+export function generateStaticParams(): Array<{ locale: string; city: string }> {
+  return [];
+}
+
 // ──────────────────────────────────────────────────────────────
 // Metadata
 // ──────────────────────────────────────────────────────────────
@@ -115,7 +127,11 @@ export async function generateMetadata({
   const isDiaspora = city.timezone !== 'Asia/Kolkata';
   const tzShort = isDiaspora ? TZ_SHORT[city.timezone] : null;
 
-  // Date + tithi + nakshatra in title — always fresh because page is dynamic (no ISR).
+  // Date + tithi + nakshatra in title — staleness bounded by `revalidate=21600`
+  // (6h). Tithi changes every ~12h on average, so worst-case the title
+  // shows the *previous* tithi for ~6h after a transition. Acceptable
+  // tradeoff for CDN-cacheable SSR. Geo-personalized title for the root
+  // /panchang lives on its own page.tsx — it stays dynamic because per-user.
   // Per-locale templates (9-locale) so each locale gets a distinct,
   // grammatically-native title — Tamil/Telugu/etc. were previously
   // collapsing onto the EN title (mixed-language duplicate-content

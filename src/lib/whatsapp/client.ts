@@ -106,6 +106,11 @@ export async function sendTemplateMessage(
     },
   };
 
+  // Hard timeout so a hanging Meta call doesn't burn the Vercel function's
+  // full 300s execution budget (and bill us for idle time). 10s is generous
+  // for a single message POST; if it takes longer, something is wrong.
+  // Per Gemini PR #706 MED. AbortSignal.timeout requires Node 18+ / modern
+  // runtime, both of which we target.
   let res: Response;
   try {
     res = await fetch(url, {
@@ -115,14 +120,20 @@ export async function sendTemplateMessage(
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
+      signal: AbortSignal.timeout(10_000),
     });
   } catch (err) {
-    // Network-layer failure (DNS, TCP, TLS). Different from API-layer error.
+    // Network-layer failure (DNS, TCP, TLS) OR our 10s abort. Different
+    // from API-layer error (those go through res.ok below).
     const message = err instanceof Error ? err.message : String(err);
-    console.error('[whatsapp] network error sending template:', message);
+    const isTimeout = err instanceof DOMException && err.name === 'TimeoutError';
+    console.error(
+      `[whatsapp] ${isTimeout ? 'timeout' : 'network error'} sending template:`,
+      message,
+    );
     return {
       ok: false,
-      errorCode: 'NETWORK_ERROR',
+      errorCode: isTimeout ? 'TIMEOUT' : 'NETWORK_ERROR',
       errorMessage: message,
       costMicros: 0,
     };

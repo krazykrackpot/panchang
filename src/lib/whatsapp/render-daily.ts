@@ -120,14 +120,17 @@ export function renderDailyPanchang(input: DailyRenderInput): DailyRenderOutput 
   const tithiStr = formatElement(
     tl(panchang.tithi.name, lang),
     panchang.tithiTransition?.endTime,
+    lang,
   );
   const nakshatraStr = formatElement(
     tl(panchang.nakshatra.name, lang),
     panchang.nakshatraTransition?.endTime,
+    lang,
   );
   const yogaStr = formatElement(
     tl(panchang.yoga.name, lang),
     panchang.yogaTransition?.endTime,
+    lang,
   );
 
   // {{9}} — highlight slot. Priority order:
@@ -175,11 +178,31 @@ function formatDate(d: Date, lang: SupportedTemplateLang): string {
   }).format(d);
 }
 
-function formatElement(name: string, endTimeHHMM: string | undefined): string {
+// Per-locale formatter for "<element> (until <HH:MM>)".
+//
+// English uses a preposition (until <time>); most Indian languages use a
+// postposition that follows the time (तक / வரை / దాకా / ਤੱਕ etc.).
+// Hardcoding English "until" reads as broken grammar in non-en locales,
+// per Gemini PR #706 MED.
+const ELEMENT_FORMATTERS: Record<SupportedTemplateLang, (name: string, endTime: string) => string> = {
+  en:  (n, t) => `${n} (until ${t})`,
+  hi:  (n, t) => `${n} (${t} तक)`,
+  ta:  (n, t) => `${n} (${t} வரை)`,
+  te:  (n, t) => `${n} (${t} వరకు)`,
+  bn:  (n, t) => `${n} (${t} পর্যন্ত)`,
+  gu:  (n, t) => `${n} (${t} સુધી)`,
+  kn:  (n, t) => `${n} (${t} ವರೆಗೆ)`,
+  mai: (n, t) => `${n} (${t} धरि)`,
+  mr:  (n, t) => `${n} (${t} पर्यंत)`,
+};
+
+function formatElement(
+  name: string,
+  endTimeHHMM: string | undefined,
+  lang: SupportedTemplateLang,
+): string {
   if (!endTimeHHMM) return name;
-  // Use English "until" — Phase 3 will swap to a locale-aware connector if
-  // Meta accepts that level of dynamism (template body has the static text).
-  return `${name} (until ${endTimeHHMM})`;
+  return ELEMENT_FORMATTERS[lang](name, endTimeHHMM);
 }
 
 // Highlight slot. Real implementation will check festival-defs + muhurta engine;

@@ -167,6 +167,95 @@ CREATE POLICY wa_subs_self_insert ON user_whatsapp_subscriptions
   FOR INSERT WITH CHECK (auth.uid() = user_id);
 -- DELETE not exposed to users — opt-out is a soft delete via UPDATE
 
+-- ─────────────────────────────────────────────────────────────────────────
+-- Field-level guards (Gemini PR #706 security-critical + security-high)
+-- ─────────────────────────────────────────────────────────────────────────
+--
+-- Row-level security alone is not enough here. The verified_at column is
+-- the boolean gate between "filled out a form" and "owns this phone
+-- number"; a user with self-write access could set it directly via the
+-- Supabase JS client and skip the OTP loop. Similarly, phone_e164 must be
+-- immutable on an active row: otherwise a verified user could swap the
+-- number to an arbitrary one and continue receiving messages OR direct
+-- our cron to spam someone else's number.
+--
+-- This trigger runs as SECURITY DEFINER so it can read auth.role().
+-- service_role bypasses every check below — the OTP API route + cron
+-- + webhook all run as service_role and need full mutation rights.
+CREATE OR REPLACE FUNCTION wa_subs_field_guard()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+DECLARE
+  caller_role TEXT := current_setting('request.jwt.claim.role', true);
+BEGIN
+  -- Service role (server-side API routes) gets full access.
+  IF caller_role = 'service_role' OR caller_role IS NULL THEN
+    RETURN NEW;
+  END IF;
+
+  -- ─── INSERT path ─────────────────────────────────────────────────────
+  -- Users can create their own pending-verification row, but they cannot
+  -- mark it as already verified. They can populate the verification_*
+  -- fields only via the OTP API route (which runs as service_role).
+  IF TG_OP = 'INSERT' THEN
+    IF NEW.verified_at IS NOT NULL THEN
+      RAISE EXCEPTION 'wa_subs: users cannot set verified_at directly';
+    END IF;
+    IF NEW.verification_code_hash IS NOT NULL OR NEW.verification_expires_at IS NOT NULL THEN
+      RAISE EXCEPTION 'wa_subs: users cannot set verification fields directly; use the OTP API';
+    END IF;
+    RETURN NEW;
+  END IF;
+
+  -- ─── UPDATE path ─────────────────────────────────────────────────────
+  -- The only field a user is allowed to mutate post-insert is
+  -- opted_out_at (for self-opt-out) and opt_out_reason. Everything else
+  -- — phone_e164, locale, timezone, send_time_local, send_at_sunrise,
+  -- verified_at, verification_* — must go through the API.
+  --
+  -- This is strict by design: changing phone or send-time after
+  -- verification requires re-verification anyway, and the API can run
+  -- those flows as service_role.
+  IF TG_OP = 'UPDATE' THEN
+    IF NEW.phone_e164 IS DISTINCT FROM OLD.phone_e164 THEN
+      RAISE EXCEPTION 'wa_subs: phone_e164 is immutable; opt out and create a new subscription';
+    END IF;
+    IF NEW.verified_at IS DISTINCT FROM OLD.verified_at THEN
+      RAISE EXCEPTION 'wa_subs: users cannot change verified_at; use the OTP API';
+    END IF;
+    IF NEW.verification_code_hash IS DISTINCT FROM OLD.verification_code_hash
+       OR NEW.verification_expires_at IS DISTINCT FROM OLD.verification_expires_at THEN
+      RAISE EXCEPTION 'wa_subs: users cannot change verification fields; use the OTP API';
+    END IF;
+    IF NEW.user_id IS DISTINCT FROM OLD.user_id THEN
+      RAISE EXCEPTION 'wa_subs: user_id is immutable';
+    END IF;
+    IF NEW.opted_in_at IS DISTINCT FROM OLD.opted_in_at THEN
+      RAISE EXCEPTION 'wa_subs: opted_in_at is immutable';
+    END IF;
+    -- locale / timezone / send_time_local / send_at_sunrise: also blocked
+    -- on the client. To change these, the API runs an UPDATE as service_role
+    -- (which bypasses this trigger via the early return above).
+    IF NEW.locale IS DISTINCT FROM OLD.locale
+       OR NEW.timezone IS DISTINCT FROM OLD.timezone
+       OR NEW.send_time_local IS DISTINCT FROM OLD.send_time_local
+       OR NEW.send_at_sunrise IS DISTINCT FROM OLD.send_at_sunrise THEN
+      RAISE EXCEPTION 'wa_subs: locale/timezone/send-time changes must go through the API';
+    END IF;
+    RETURN NEW;
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER tr_wa_subs_field_guard
+  BEFORE INSERT OR UPDATE ON user_whatsapp_subscriptions
+  FOR EACH ROW EXECUTE FUNCTION wa_subs_field_guard();
+
 -- Send log: users can read their own send history (helpful for "show me last
 -- 7 days of panchang messages" UI later); writes are service-role only
 CREATE POLICY wa_log_self_read ON whatsapp_send_log

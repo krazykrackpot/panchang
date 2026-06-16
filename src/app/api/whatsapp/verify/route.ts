@@ -17,6 +17,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { verifyOtp } from '@/lib/whatsapp/otp';
+import {
+  nextScheduledSendUtc,
+  resolveDefaultLocation,
+  sendDailyForSubscription,
+} from '@/lib/whatsapp/send-daily';
+import type { Locale } from '@/lib/i18n/config';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -129,9 +135,78 @@ export async function POST(req: NextRequest) {
 
   attemptCounter.delete(sub.id);
 
+  // ─── Immediate welcome send if next regular send is >12h away ────────
+  // Rationale: predictable daily ritual beats marginal early-notification,
+  // EXCEPT for the very first message. A user who verifies at 11:30 and
+  // chose "6 AM" shouldn't wait 18.5h for proof that opt-in worked. If
+  // the gap is <12h they get their first message at the normal time.
+  //
+  // We re-query the full subscription row to get send_time_local + tz +
+  // locale + send_at_sunrise — fields we didn't select earlier.
+  let welcomeSent = false;
+  try {
+    const { data: full } = await supabase
+      .from('user_whatsapp_subscriptions')
+      .select('id, user_id, phone_e164, locale, timezone, send_time_local, send_at_sunrise')
+      .eq('id', sub.id)
+      .single();
+    if (full) {
+      const next = nextScheduledSendUtc({
+        timezone: full.timezone,
+        send_time_local: full.send_time_local,
+        send_at_sunrise: full.send_at_sunrise,
+      });
+      const hoursUntilNext = next
+        ? (next.getTime() - Date.now()) / (60 * 60 * 1000)
+        : 0;
+      if (hoursUntilNext > 12) {
+        // Pre-check budget — same cap the cron honours.
+        const monthlyBudgetUsd = parseFloat(
+          process.env.WHATSAPP_MONTHLY_BUDGET_USD?.trim() ?? '25',
+        );
+        const monthlyBudgetMicros = Math.round(monthlyBudgetUsd * 1_000_000);
+        const monthStart = new Date();
+        monthStart.setUTCDate(1);
+        monthStart.setUTCHours(0, 0, 0, 0);
+        const { data: costRow } = await supabase
+          .from('whatsapp_send_log')
+          .select('cost_micros.sum()')
+          .gte('sent_at', monthStart.toISOString())
+          .not('status', 'in', '(skipped_budget,skipped_paused)')
+          .single();
+        const mtdCostMicros = Number(
+          (costRow as { sum?: number | null } | null)?.sum ?? 0,
+        );
+
+        const loc = resolveDefaultLocation(full.locale as Locale);
+        const outcome = await sendDailyForSubscription({
+          supabase,
+          sub: {
+            id: full.id,
+            user_id: full.user_id,
+            phone_e164: full.phone_e164,
+            locale: full.locale,
+            timezone: full.timezone,
+          },
+          location: loc,
+          panchangDate: new Date(),
+          monthlyBudgetMicros,
+          mtdCostMicros,
+        });
+        welcomeSent = outcome.status === 'sent';
+      }
+    }
+  } catch (err) {
+    // Welcome-send failure must NOT fail the verify response — the user
+    // is verified successfully even if the welcome message couldn't go
+    // out. Log + continue.
+    console.error('[whatsapp/verify] welcome send failed (non-fatal):', err);
+  }
+
   return NextResponse.json({
     verified: true,
     subscription_id: sub.id,
     phone_e164: sub.phone_e164,
+    welcome_sent: welcomeSent,
   });
 }

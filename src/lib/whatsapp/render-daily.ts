@@ -23,6 +23,7 @@ import type { PanchangData } from '@/types/panchang';
 import type { Locale } from '@/lib/i18n/config';
 import { tl } from '@/lib/utils/trilingual';
 import type { SupportedTemplateLang } from '@/lib/whatsapp/templates';
+import type { FestivalEntry } from '@/lib/calendar/festival-generator';
 
 export interface DailyRenderInput {
   /** Calendar date the panchang is for, in the user's timezone. */
@@ -40,6 +41,14 @@ export interface DailyRenderInput {
   templateLang: SupportedTemplateLang;
   /** User's locale for the URL button (deep-links into the locale they read). */
   userLocale: Locale;
+  /**
+   * Festivals occurring on this calendar date. Pass the result of
+   * `generateFestivalCalendarV2(year, lat, lng, tz).filter(f => f.date === yyyymmdd)`.
+   * The cron caches this per (year, lat, lng, tz) bucket so 25 subscribers in
+   * the same city don't each re-generate the yearly festival table.
+   * Empty array if no festival today — that's the normal case for most days.
+   */
+  festivalsToday: FestivalEntry[];
 }
 
 export interface DailyRenderOutput {
@@ -134,10 +143,15 @@ export function renderDailyPanchang(input: DailyRenderInput): DailyRenderOutput 
   );
 
   // {{9}} — highlight slot. Priority order:
-  //   (a) Festival name (if today is a named festival) — Phase 3 wiring
-  //   (b) Abhijit muhurta window
+  //   (a) Festival name (if today is a named festival)
+  //   (b) Abhijit muhurta window (skipped on Wed per classical rule)
   //   (c) Rahu kaal window
-  const highlight = buildHighlightLine(panchang, lang);
+  const highlight = buildHighlightLine(
+    panchang,
+    lang,
+    input.festivalsToday,
+    input.userLocale,
+  );
 
   return {
     bodyParams: [
@@ -205,18 +219,75 @@ function formatElement(
   return ELEMENT_FORMATTERS[lang](name, endTimeHHMM);
 }
 
-// Highlight slot. Real implementation will check festival-defs + muhurta engine;
-// Phase 1 stubs to a per-locale string the test snapshot can lock onto. Full
-// wiring lands in Phase 3 with:
-//   1. generateFestivalCalendarV2(year, lat, lng, tz).find(f => f.date === today)
-//   2. panchang.abhijitMuhurta when (1) is null
-//   3. panchang.rahuKaal as last resort
+// Highlight slot priority (most important fact for today, single line):
+//   1. Named festival on this date (Diwali, Ekadashi, etc.)
+//   2. Abhijit muhurta window (most universal auspicious slot, ~48 min midday)
+//   3. Rahu kaal window (most universal inauspicious slot — useful to AVOID)
+//
+// Festival lookup is optional: the caller passes the full festival list for
+// the day so this function stays pure (no I/O). The cron does the lookup
+// once per cron-tick and caches per (year, lat, lng, tz) across all
+// subscribers in the same bucket.
 function buildHighlightLine(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _panchang: PanchangData,
+  panchang: PanchangData,
   lang: SupportedTemplateLang,
+  festivalsToday: FestivalEntry[],
+  userLocale: Locale,
 ): string {
-  const labels: Record<SupportedTemplateLang, string> = {
+  const FESTIVAL_PREFIX: Record<SupportedTemplateLang, string> = {
+    en: '🎉 Today: ',
+    hi: '🎉 आज: ',
+    ta: '🎉 இன்று: ',
+    te: '🎉 ఈరోజు: ',
+    bn: '🎉 আজ: ',
+    gu: '🎉 આજે: ',
+    kn: '🎉 ಇಂದು: ',
+    mai: '🎉 आइ: ',
+    mr: '🎉 आज: ',
+  };
+  const ABHIJIT_PREFIX: Record<SupportedTemplateLang, string> = {
+    en: '✨ Abhijit muhurta',
+    hi: '✨ अभिजित मुहूर्त',
+    ta: '✨ அபிஜித் முகூர்த்தம்',
+    te: '✨ అభిజిత్ ముహూర్తం',
+    bn: '✨ অভিজিৎ মুহূর্ত',
+    gu: '✨ અભિજિત મુહૂર્ત',
+    kn: '✨ ಅಭಿಜಿತ್ ಮುಹೂರ್ತ',
+    mai: '✨ अभिजित मुहूर्त',
+    mr: '✨ अभिजित मुहूर्त',
+  };
+  const RAHUKAAL_PREFIX: Record<SupportedTemplateLang, string> = {
+    en: '⚠️ Rahu kaal',
+    hi: '⚠️ राहु काल',
+    ta: '⚠️ ராகு காலம்',
+    te: '⚠️ రాహు కాలం',
+    bn: '⚠️ রাহু কাল',
+    gu: '⚠️ રાહુ કાળ',
+    kn: '⚠️ ರಾಹು ಕಾಲ',
+    mai: '⚠️ राहु काल',
+    mr: '⚠️ राहू काळ',
+  };
+
+  // (1) Festival — take the first major-or-regional entry, skipping ekadashi
+  //     duplicates that also appear as vrat entries.
+  const top = festivalsToday[0];
+  if (top) {
+    return FESTIVAL_PREFIX[lang] + tl(top.name, userLocale);
+  }
+
+  // (2) Abhijit muhurta — skipped on Wednesdays per classical rule
+  //     (panchang.abhijitMuhurta.available === false on Wed)
+  if (panchang.abhijitMuhurta?.available !== false && panchang.abhijitMuhurta?.start) {
+    return `${ABHIJIT_PREFIX[lang]} ${panchang.abhijitMuhurta.start}–${panchang.abhijitMuhurta.end}`;
+  }
+
+  // (3) Rahu kaal — always present
+  if (panchang.rahuKaal?.start) {
+    return `${RAHUKAAL_PREFIX[lang]} ${panchang.rahuKaal.start}–${panchang.rahuKaal.end}`;
+  }
+
+  // Fallback — should never hit, panchang.rahuKaal is always populated
+  const fallback: Record<SupportedTemplateLang, string> = {
     en: '✨ See full panchang for muhurta windows.',
     hi: '✨ मुहूर्त के लिए पूर्ण पंचांग देखें।',
     ta: '✨ முழு பஞ்சாங்கம் காண்க.',
@@ -227,5 +298,5 @@ function buildHighlightLine(
     mai: '✨ पूरा पंचांग देखू।',
     mr: '✨ संपूर्ण पंचांग पहा.',
   };
-  return labels[lang];
+  return fallback[lang];
 }

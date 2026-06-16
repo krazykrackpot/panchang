@@ -2,6 +2,7 @@
 
 import { track } from '@vercel/analytics';
 import { getUtmParams, getReferrerContext } from './utm';
+import { getSupabase } from './supabase/client';
 
 export function trackKundaliGenerated(params: { location: string; hasBirthTime: boolean }) {
   track('kundali_generated', params);
@@ -84,11 +85,11 @@ export function trackShareClicked(params: { platform: string; page: string }) {
  * (with UTM as custom props) and our Supabase utm_visits table.
  * No-ops silently if no UTM data exists (organic visit).
  */
-export function trackUtmEvent(
+export async function trackUtmEvent(
   event: string,
   metadata?: Record<string, unknown>,
   options?: { landingPage?: string }
-) {
+): Promise<void> {
   const utm = getUtmParams();
   const ref = getReferrerContext();
 
@@ -118,10 +119,28 @@ export function trackUtmEvent(
   const landingPage = options?.landingPage
     ?? (typeof window !== 'undefined' ? window.location.pathname : undefined);
 
+  // Fetch the supabase access token if the user is signed in so the server
+  // can stamp utm_visits.user_id. The route accepts anonymous events too;
+  // the header is optional. getSession() reads from local storage and is
+  // synchronous-cheap — no network call. If unavailable (cold boot, SSR-
+  // adjacent, store not yet hydrated) we just omit the header.
+  let accessToken: string | undefined;
+  try {
+    const sb = getSupabase();
+    if (sb) {
+      const { data } = await sb.auth.getSession();
+      accessToken = data.session?.access_token;
+    }
+  } catch {
+    // Don't let analytics block on auth — fall through anonymously.
+  }
+
   // Fire and forget
+  const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+  if (accessToken) headers.Authorization = `Bearer ${accessToken}`;
   fetch('/api/track-utm', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers,
     keepalive: true, // Ensure request completes even on page unload/navigation
     body: JSON.stringify({
       event,

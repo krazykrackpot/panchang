@@ -137,8 +137,13 @@ export async function POST(req: NextRequest) {
     const authHeader = req.headers.get('authorization');
     if (authHeader?.startsWith('Bearer ')) {
       try {
-        const { data: { user } } = await supabase.auth.getUser(authHeader.slice(7).trim());
-        if (user) userId = user.id;
+        // Gemini PR #709 MED: getUser() can resolve with data=null on
+        // certain network/auth-server failures — destructuring data.user
+        // would TypeError. Use safe optional chaining + capture the error
+        // for ops visibility.
+        const { data, error } = await supabase.auth.getUser(authHeader.slice(7).trim());
+        if (data?.user) userId = data.user.id;
+        if (error) console.warn('[track-utm] getUser returned error:', error.message);
       } catch (err) {
         // Invalid/expired token — fall through with userId=null. Don't
         // refuse the event; analytics shouldn't gate on auth strength.
@@ -171,19 +176,24 @@ export async function POST(req: NextRequest) {
     // window, so this captures the entire pre-signup browse trail and
     // ties it to the user that the session later became.
     //
-    // Done fire-and-forget so the response stays fast — the next event
-    // will retry the stitch if this one races/fails. Idempotent.
+    // Gemini PR #709 HIGH: must AWAIT in serverless. Fire-and-forget
+    // promises in Next.js Route Handlers on Vercel get aborted when the
+    // container freezes/terminates after sending the response. Indexing
+    // on (session_id, user_id) keeps this update O(matched-rows), not a
+    // table scan — see migration 075 in the same PR.
     if (userId) {
-      supabase
-        .from('utm_visits')
-        .update({ user_id: userId })
-        .eq('session_id', sessionId)
-        .is('user_id', null)
-        .then(({ error: stitchErr }) => {
-          if (stitchErr) {
-            console.warn('[track-utm] retro-stitch failed:', stitchErr.message);
-          }
-        });
+      try {
+        const { error: stitchErr } = await supabase
+          .from('utm_visits')
+          .update({ user_id: userId })
+          .eq('session_id', sessionId)
+          .is('user_id', null);
+        if (stitchErr) {
+          console.warn('[track-utm] retro-stitch failed:', stitchErr.message);
+        }
+      } catch (err) {
+        console.warn('[track-utm] retro-stitch threw:', err);
+      }
     }
 
     return new NextResponse(null, { status: 204 });

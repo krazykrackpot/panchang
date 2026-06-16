@@ -2,7 +2,6 @@
 
 import { track } from '@vercel/analytics';
 import { getUtmParams, getReferrerContext } from './utm';
-import { getSupabase } from './supabase/client';
 
 export function trackKundaliGenerated(params: { location: string; hasBirthTime: boolean }) {
   track('kundali_generated', params);
@@ -85,11 +84,11 @@ export function trackShareClicked(params: { platform: string; page: string }) {
  * (with UTM as custom props) and our Supabase utm_visits table.
  * No-ops silently if no UTM data exists (organic visit).
  */
-export async function trackUtmEvent(
+export function trackUtmEvent(
   event: string,
   metadata?: Record<string, unknown>,
   options?: { landingPage?: string }
-): Promise<void> {
+) {
   const utm = getUtmParams();
   const ref = getReferrerContext();
 
@@ -119,20 +118,28 @@ export async function trackUtmEvent(
   const landingPage = options?.landingPage
     ?? (typeof window !== 'undefined' ? window.location.pathname : undefined);
 
-  // Fetch the supabase access token if the user is signed in so the server
-  // can stamp utm_visits.user_id. The route accepts anonymous events too;
-  // the header is optional. getSession() reads from local storage and is
-  // synchronous-cheap — no network call. If unavailable (cold boot, SSR-
-  // adjacent, store not yet hydrated) we just omit the header.
+  // Read the supabase access token synchronously from localStorage if the
+  // user is signed in. The Supabase client persists sessions at storageKey
+  // 'dekho-panchang-auth' (set in src/lib/supabase/client.ts) per the
+  // app-wide auth convention in CLAUDE.md.
+  //
+  // Sync read is critical: trackUtmEvent fires during page unload / SPA
+  // navigation and relies on `keepalive: true` on the fetch. Awaiting
+  // sb.auth.getSession() — even though it's localStorage-backed in
+  // practice — introduces a microtask delay where the browser can tear
+  // the page down before fetch() is even scheduled. Gemini PR #709 HIGH.
   let accessToken: string | undefined;
   try {
-    const sb = getSupabase();
-    if (sb) {
-      const { data } = await sb.auth.getSession();
-      accessToken = data.session?.access_token;
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('dekho-panchang-auth');
+      if (stored) {
+        const session = JSON.parse(stored) as { currentSession?: { access_token?: string } };
+        accessToken = session?.currentSession?.access_token;
+      }
     }
   } catch {
-    // Don't let analytics block on auth — fall through anonymously.
+    // Storage disabled (private browsing some browsers), JSON corrupted,
+    // SSR adjacent — fall through anonymously.
   }
 
   // Fire and forget

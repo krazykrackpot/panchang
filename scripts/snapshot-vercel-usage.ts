@@ -187,7 +187,9 @@ function main(): void {
   console.log(`[snapshot] querying vercel usage for scope ${scope} ...`);
   let raw: string;
   try {
-    raw = execSync(`vercel usage --scope ${scope}`, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    // Vercel CLI writes the table to stdout but the `> Period: ...`
+    // header lines to stderr — redirect 2>&1 so the parser sees both.
+    raw = execSync(`vercel usage --scope ${scope} 2>&1`, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
   } catch (err) {
     throw new Error(
       `[snapshot] vercel usage failed. Verify CLI is installed and \`vercel whoami\` succeeds. ` +

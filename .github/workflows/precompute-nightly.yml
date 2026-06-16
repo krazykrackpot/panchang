@@ -19,10 +19,11 @@ name: precompute-nightly
 # CPU, not ours.
 # ─────────────────────────────────────────────────────────────────────
 #
-# Architecture (2026-06-14 rewrite): 9 precompute targets run as
-# PARALLEL jobs that all depend on a single setup job, plus a final
-# revalidate job that depends on all of them. Total wall-clock time
-# is bounded by the slowest single target (muhurta-month ~50 min)
+# Architecture (2026-06-14 rewrite, updated 2026-06-16): 10 precompute
+# targets run as PARALLEL jobs that all depend on a single setup job,
+# plus a final revalidate job that depends on all of them. Total
+# wall-clock time is bounded by the slowest single target (one of the
+# muhurta-month-2026 / muhurta-month-2027 pair, ~65 min worst-case)
 # instead of the sum of all targets (~3.3 hours previously).
 #
 # Background — why the rewrite:
@@ -303,27 +304,48 @@ jobs:
             --cities "${{ needs.setup.outputs.cities }}" \
             --skip-if-present
 
-  muhurta-month:
+  # muhurta-month split per-year so a single job's worst-case backfill
+  # stays under its own per-job timeout. 2026-06-15 run cancelled at
+  # 130 min because the combined 15,048-tuple cold backfill needed
+  # ~150-200 min. Each year alone is ~7,524 tuples → ~65-100 min in
+  # the worst case, comfortably under the 110-min ceiling.
+  # Steady-state with PR #697's exists-check + --skip-if-present:
+  # near-zero per cron run.
+  muhurta-month-2026:
     needs: setup
     runs-on: ubuntu-latest
-    timeout-minutes: 130
+    timeout-minutes: 110
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: '24', cache: 'npm' }
       - run: npm ci --no-audit --no-fund
-      - name: Precompute muhurta-month
+      - name: Precompute muhurta-month (2026)
         env:
           PRECOMPUTE_STORAGE: blob
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
         run: |
-          # 11 activities × 12 months × 57 cities × 2 years = 15,048 Blobs.
-          # Each scanDateRangeV2 ~300-500ms; worst-case full backfill
-          # ~80-120 min for both years. Steady-state with the
-          # exists-check optimization from PR #697 + skip-if-present:
-          # near-zero per cron run after initial backfill.
           npx tsx scripts/precompute/muhurta-month.ts \
-            --years "2026,2027" \
+            --years "2026" \
+            --cities "${{ needs.setup.outputs.cities }}" \
+            --skip-if-present
+
+  muhurta-month-2027:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: 'npm' }
+      - run: npm ci --no-audit --no-fund
+      - name: Precompute muhurta-month (2027)
+        env:
+          PRECOMPUTE_STORAGE: blob
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+        run: |
+          npx tsx scripts/precompute/muhurta-month.ts \
+            --years "2027" \
             --cities "${{ needs.setup.outputs.cities }}" \
             --skip-if-present
 
@@ -343,7 +365,8 @@ jobs:
       - daily-article
       - hindu-calendar
       - festivals-year
-      - muhurta-month
+      - muhurta-month-2026
+      - muhurta-month-2027
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -458,9 +481,17 @@ jobs:
       - daily-article
       - hindu-calendar
       - festivals-year
-      - muhurta-month
+      - muhurta-month-2026
+      - muhurta-month-2027
       - revalidate
-    if: failure()
+    # `if: failure()` doesn't fire reliably across a graph where the
+    # downstream revalidate job runs with `if: always()` and succeeds —
+    # the chain's terminal state ends up "ok" even when an upstream
+    # precompute job failed. `contains(needs.*.result, 'failure')`
+    # inspects the result of every needed job directly. The 2026-06-15
+    # cron's muhurta-month job failed but no issue was opened with
+    # the prior `if: failure()` trigger.
+    if: ${{ !cancelled() && contains(needs.*.result, 'failure') }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
@@ -488,7 +519,8 @@ jobs:
               `- daily-article: ${{ needs.daily-article.result }}`,
               `- hindu-calendar: ${{ needs.hindu-calendar.result }}`,
               `- festivals-year: ${{ needs.festivals-year.result }}`,
-              `- muhurta-month: ${{ needs.muhurta-month.result }}`,
+              `- muhurta-month-2026: ${{ needs.muhurta-month-2026.result }}`,
+              `- muhurta-month-2027: ${{ needs.muhurta-month-2027.result }}`,
               `- revalidate: ${{ needs.revalidate.result }}`,
               '',
               'Triage: page handlers fall back to live compute on missing Blobs, so the',

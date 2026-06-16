@@ -1,0 +1,19 @@
+snapshot_at_iso,scope,period_start,period_end,service,billed_cost_usd
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,Fluid Active CPU,53.1801
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,ISR Writes,50.5902
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,Fluid Provisioned Memory,11.6043
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,Fast Origin Transfer,9.9016
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,Pro,9.0323
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,Function Invocations,2.4000
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,Web Analytics Events,1.5665
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,Edge Requests - Additional CPU Duration,1.0684
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,ISR Reads,0.6893
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,Build CPU Minutes,0.5040
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,Blob Advanced Operations,0.2179
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,Blob Simple Operations,0.0441
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,Blob Storage Size,0.0019
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,Image Optimization Cache Reads,0.0015
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,Image Optimization Transformation,0.0010
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,Image Optimization Cache Writes,0.0002
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,Blob Data Transfer,0.0001
+2026-06-16T06:57:28.747Z,adis-projects-13833487,2026-06-01,2026-06-16,Total,140.8034

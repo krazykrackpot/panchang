@@ -65,7 +65,7 @@ Severity scale:
 | 40 | API routes had `catch {}` returning error JSON without logging → undebuggable in production | Apr 2026 (Lesson AA) | **High** | Universal rule: every catch logs with `console.error('[module] X failed:', err)` BEFORE returning the response. Banned-pattern grep should catch empty `catch {}` in pre-commit. |
 | 41 | Brihaspati abandoned-cart sessions sat undetected — no recovery flow existed | 2026-06-12 (PR #691) | **Medium** | New cron `brihaspati-abandoned-recovery` + dedup column `abandoned_recovery_sent_at`. Same claim-first/send-after pattern. |
 | 42 | Precompute nightly cron hit `/usr/bin/curl: Argument list too long` on 06-11/12/13 — the revalidate step's bash arg exceeded OS limit. The job exit code 126 was silent — no Slack/email/issue alert | 2026-06-11 → 2026-06-13 | **Critical** | PR #700's `notify-failure` job uses `actions/github-script` + default `GITHUB_TOKEN` to open an issue tagged `cron-failure`/`precompute` on any failure. 06-14 morning audit was the only reason we noticed. |
-| 43 | `notify-failure` job uses `if: failure()` which doesn't fire when downstream `revalidate` runs with `if: always()` and succeeds — the chain's terminal state is "ok" even when an upstream job failed | 2026-06-15 (outstanding) | **High** | Correct trigger: `if: ${{ contains(needs.*.result, 'failure') }}`. Fix pending. |
+| 43 | `notify-failure` job uses `if: failure()` which doesn't fire when downstream `revalidate` runs with `if: always()` and succeeds — the chain's terminal state is "ok" even when an upstream job failed | 2026-06-15 (outstanding) | **High** | Correct trigger: `if: contains(needs.*.result, 'failure')`. GitHub Actions evaluates the `if` field as an expression already, so the `${{ }}` wrapper is redundant. Fix pending. |
 | 44 | June ISR Writes line item went $6 → $44 in two weeks with no alert until I happened to check `vercel usage`. Same window: 9-day silent precompute bypass (#30) | 2026-06 (PR #702) | **Critical** | `scripts/snapshot-vercel-usage.ts` runs weekly, diffs per-line-item vs last snapshot, fails-loud on >50% week-over-week swings. `docs/vercel-cost-log.md` is the human-readable change-log per PR. |
 | **Bulk operations / find-replace** ||||
 | 45 | Bracket double-escape `bg-[#xxx]` in Tailwind regex broke 128 files | Various (Lesson H) | **High** | Tailwind v4 arbitrary classes are everywhere. Never sed/regex across them. Use ts-morph/jscodeshift, OR dry-run 2-3 files + `npx next build` gate. If you MUST regex: print match count + 5 samples + get user confirmation. |
@@ -106,7 +106,7 @@ Reading the above linearly is exhausting. The repeating shapes:
 
 | Process | Triggered by |
 |---|---|
-| Pre-commit: `tsc --noEmit` + banned-pattern scan + locale-key parity | Locale ternaries + duplicate constants + empty catches |
+| Pre-commit + pre-push: `tsc --noEmit`; pre-commit also: banned-pattern scan + locale-key parity + ISR-hydration audit (on touched files) | Locale ternaries + duplicate constants + empty catches + Lesson ZD |
 | Pre-commit: `audit-isr-hydration` baseline gate | Lesson ZD (80% pageview collapse) |
 | CI: `e2e/isr-hydration-crawl` runtime Playwright | Same |
 | `scripts/audit-stripe-webhooks.ts` | 3-day silent Stripe webhook failure |

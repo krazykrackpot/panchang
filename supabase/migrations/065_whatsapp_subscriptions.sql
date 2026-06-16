@@ -179,9 +179,21 @@ CREATE POLICY wa_subs_self_insert ON user_whatsapp_subscriptions
 -- number to an arbitrary one and continue receiving messages OR direct
 -- our cron to spam someone else's number.
 --
--- This trigger runs as SECURITY DEFINER so it can read auth.role().
--- service_role bypasses every check below — the OTP API route + cron
--- + webhook all run as service_role and need full mutation rights.
+-- This trigger runs as SECURITY DEFINER so it can read both the JWT-claim
+-- role (HTTP context via PostgREST) AND the actual Postgres current_user
+-- (non-HTTP contexts: psql, supabase_admin connections, background workers).
+--
+-- BYPASS POLICY (Gemini PR #706 round-2 SECURITY-HIGH):
+--   The previous version bypassed when `current_setting('request.jwt.claim.role')`
+--   returned 'service_role' OR NULL. NULL was the security hole — any
+--   non-HTTP connection (direct psql, background worker, internal trigger)
+--   would have the GUC unset and silently bypass every check.
+--
+--   New rule: bypass ONLY if BOTH (a) we're in an explicitly trusted
+--   Postgres role AND (b) the JWT claim is also service_role-or-unset.
+--   Trusted roles are the connections Supabase itself uses for migrations,
+--   replication, and service-role HTTP traffic. Any other current_user
+--   value (anon, authenticated, etc.) goes through the guards.
 CREATE OR REPLACE FUNCTION wa_subs_field_guard()
 RETURNS TRIGGER
 LANGUAGE plpgsql
@@ -189,10 +201,22 @@ SECURITY DEFINER
 SET search_path = public
 AS $$
 DECLARE
-  caller_role TEXT := current_setting('request.jwt.claim.role', true);
+  pg_role  TEXT := current_user;
+  jwt_role TEXT := current_setting('request.jwt.claim.role', true);
+  is_trusted BOOLEAN;
 BEGIN
-  -- Service role (server-side API routes) gets full access.
-  IF caller_role = 'service_role' OR caller_role IS NULL THEN
+  -- (a) Trusted Postgres roles: service_role (Supabase server-side),
+  --     postgres + supabase_admin (migration / DBA), supabase_storage_admin
+  --     (background workers). Anon + authenticated must NOT bypass.
+  -- (b) When called via PostgREST, jwt_role is set; anything OTHER than
+  --     'service_role' (e.g. 'authenticated' for a logged-in user) MUST
+  --     hit the guards regardless of pg_role.
+  is_trusted := (
+    pg_role IN ('service_role', 'postgres', 'supabase_admin', 'supabase_storage_admin')
+    AND (jwt_role IS NULL OR jwt_role = 'service_role')
+  );
+
+  IF is_trusted THEN
     RETURN NEW;
   END IF;
 
@@ -213,13 +237,18 @@ BEGIN
   -- ─── UPDATE path ─────────────────────────────────────────────────────
   -- The only field a user is allowed to mutate post-insert is
   -- opted_out_at (for self-opt-out) and opt_out_reason. Everything else
-  -- — phone_e164, locale, timezone, send_time_local, send_at_sunrise,
-  -- verified_at, verification_* — must go through the API.
+  -- — id, user_id, phone_e164, locale, timezone, send_time_local,
+  -- send_at_sunrise, verified_at, verification_*, opted_in_at,
+  -- opted_in_source — must go through the API as service_role.
   --
-  -- This is strict by design: changing phone or send-time after
-  -- verification requires re-verification anyway, and the API can run
-  -- those flows as service_role.
+  -- opted_in_source is the Meta-compliance audit trail proving where the
+  -- consent came from ('dashboard' / 'onboarding_step_4' / 'admin').
+  -- Allowing users to mutate it post-insert would invalidate the audit log.
+  -- (Gemini PR #706 round-2 SECURITY-HIGH)
   IF TG_OP = 'UPDATE' THEN
+    IF NEW.id IS DISTINCT FROM OLD.id THEN
+      RAISE EXCEPTION 'wa_subs: id is immutable';
+    END IF;
     IF NEW.phone_e164 IS DISTINCT FROM OLD.phone_e164 THEN
       RAISE EXCEPTION 'wa_subs: phone_e164 is immutable; opt out and create a new subscription';
     END IF;
@@ -235,6 +264,9 @@ BEGIN
     END IF;
     IF NEW.opted_in_at IS DISTINCT FROM OLD.opted_in_at THEN
       RAISE EXCEPTION 'wa_subs: opted_in_at is immutable';
+    END IF;
+    IF NEW.opted_in_source IS DISTINCT FROM OLD.opted_in_source THEN
+      RAISE EXCEPTION 'wa_subs: opted_in_source is immutable (audit-trail)';
     END IF;
     -- locale / timezone / send_time_local / send_at_sunrise: also blocked
     -- on the client. To change these, the API runs an UPDATE as service_role

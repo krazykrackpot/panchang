@@ -170,26 +170,43 @@ export function renderDailyPanchang(input: DailyRenderInput): DailyRenderOutput 
   };
 }
 
+// Best-effort BCP-47 mapping. Maithili falls back to Hindi script (Intl
+// doesn't ship the mai locale data). Hoisted to module scope so the lookup
+// is O(1) and the object isn't reallocated per call. (Gemini PR #706 round-2 MED)
+const INTL_LOCALES: Record<SupportedTemplateLang, string> = {
+  en: 'en-IN',
+  hi: 'hi-IN',
+  ta: 'ta-IN',
+  te: 'te-IN',
+  bn: 'bn-IN',
+  gu: 'gu-IN',
+  kn: 'kn-IN',
+  mai: 'hi-IN',
+  mr: 'mr-IN',
+};
+
+// Cached Intl.DateTimeFormat instances. Constructing one is expensive
+// (~50-200μs on warm V8); at 1000 subscribers × 10 calls each we'd burn
+// hundreds of milliseconds per cron tick on instance creation. The cache
+// is per-locale and lives for the lifetime of the function instance.
+const DATE_FORMATTERS: Partial<Record<SupportedTemplateLang, Intl.DateTimeFormat>> = {};
+
+function getDateFormatter(lang: SupportedTemplateLang): Intl.DateTimeFormat {
+  let fmt = DATE_FORMATTERS[lang];
+  if (!fmt) {
+    fmt = new Intl.DateTimeFormat(INTL_LOCALES[lang], {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+      timeZone: 'UTC', // we already shifted noon to the user's local day
+    });
+    DATE_FORMATTERS[lang] = fmt;
+  }
+  return fmt;
+}
+
 function formatDate(d: Date, lang: SupportedTemplateLang): string {
-  // Best-effort BCP-47 mapping. Falls back to Hindi script for Maithili
-  // (Intl doesn't ship the mai locale data).
-  const intlLocale: Record<SupportedTemplateLang, string> = {
-    en: 'en-IN',
-    hi: 'hi-IN',
-    ta: 'ta-IN',
-    te: 'te-IN',
-    bn: 'bn-IN',
-    gu: 'gu-IN',
-    kn: 'kn-IN',
-    mai: 'hi-IN',
-    mr: 'mr-IN',
-  };
-  return new Intl.DateTimeFormat(intlLocale[lang], {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-    timeZone: 'UTC', // we already shifted noon to the user's local day
-  }).format(d);
+  return getDateFormatter(lang).format(d);
 }
 
 // Per-locale formatter for "<element> (until <HH:MM>)".

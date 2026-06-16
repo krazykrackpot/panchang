@@ -233,7 +233,11 @@ export async function verifyWebhookSignature(
   const prefix = 'sha256=';
   if (!headerValue.startsWith(prefix)) return false;
 
-  const expected = headerValue.slice(prefix.length);
+  // Normalize to lowercase. Web Crypto's hex output is already lowercase,
+  // but some intermediate proxies / API clients / test tooling can ship
+  // the header with uppercase hex; a case-sensitive compare would reject
+  // a cryptographically-valid signature. (Gemini PR #706 round-2 MED)
+  const expected = headerValue.slice(prefix.length).toLowerCase();
 
   // Use Web Crypto API (works in both Node 18+ and Edge runtime)
   const enc = new TextEncoder();

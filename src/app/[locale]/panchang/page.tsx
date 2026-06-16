@@ -10,6 +10,7 @@
 
 import { setRequestLocale } from 'next-intl/server';
 import { headers } from 'next/headers';
+import type { Metadata } from 'next';
 import { Link } from '@/lib/i18n/navigation';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -24,6 +25,9 @@ import PanchangClient from './PanchangClient';
 import { pickPanchangLabel, formatPanchangLabel } from '@/lib/content/panchang-page-labels';
 import { tl } from '@/lib/utils/trilingual';
 import { TITHIS } from '@/lib/constants/tithis';
+import { getPageMetadata } from '@/lib/seo/metadata';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { UJJAIN_REFERENCE, getUjjainToday, formatUjjainDate } from '@/lib/constants/jyotish-reference';
 
 // Inline tithi-name lookups for the Why-Five-Elements links. The
 // inline link labels (Ekadashi / Purnima / Amavasya) read from the
@@ -40,6 +44,113 @@ const amavasyaLabel = (locale: string) => tithiNameByNumber(30, locale);
 // NO revalidate here  –  page reads request headers for geo-location.
 // ISR would cache one user's city and serve wrong panchang to others.
 // CPU protection via API-level caching (s-maxage=43200 on /api/panchang).
+
+// ---------------------------------------------------------------------------
+// Geo-personalized metadata — moved here from /panchang/layout.tsx on
+// 2026-06-16. Reading request headers in the layout was forcing every
+// descendant route (~20 routes including /panchang/[city], /tithi,
+// /yoga, /nakshatra, /rashi, …) into dynamic rendering, defeating their
+// own `revalidate` config. Page-level `headers()` only opts THIS leaf
+// route into dynamic; siblings remain ISR-cacheable.
+// ---------------------------------------------------------------------------
+
+// Per-Devanagari-locale phrasing for the dynamic panchang title +
+// description (Gemini #263 re-review HIGH). Hindi text was being
+// forced on Marathi + Maithili users, overriding their authored
+// PAGE_META translations. Falls back to Hindi when a specific locale
+// isn't keyed (e.g. sa).
+const DEV_PHRASE: Record<string, { todayPanchang: string; descPrefix: string; descSuffix: string }> = {
+  hi:  { todayPanchang: 'आज का पंचांग', descPrefix: 'पंचांग',         descSuffix: 'सटीक वैदिक गणना, निःशुल्क।' },
+  mr:  { todayPanchang: 'आजचे पंचांग',  descPrefix: 'पंचांग',         descSuffix: 'अचूक वैदिक गणना, मोफत.' },
+  mai: { todayPanchang: 'आजुक पञ्चाङ्ग', descPrefix: 'पञ्चाङ्ग',       descSuffix: 'सटीक वैदिक गणना, निःशुल्क.' },
+  sa:  { todayPanchang: 'अद्यपञ्चाङ्गम्', descPrefix: 'पञ्चाङ्गम्',     descSuffix: 'यथार्थवैदिकगणना निःशुल्का।' },
+};
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const base = getPageMetadata('/panchang', locale);
+
+  // SEO step 1 — extract city from Vercel geo headers when available so the
+  // title can read "Today's Panchang — Mumbai, May 27 — Tithi, Nakshatra"
+  // for real users. Crawlers / IPs without geo data get the Ujjain-based
+  // title that we've always shipped (no degradation).
+  let city: string | null = null;
+  try {
+    const h = await headers();
+    // Vercel exposes the resolved city via `x-vercel-ip-city` (URL-encoded).
+    const rawCity = h.get('x-vercel-ip-city');
+    if (rawCity) {
+      // Isolate decodeURIComponent in its own try (Gemini #239 re-review
+      // MED): a malformed `%XX` sequence throws URIError. Fall back to
+      // the raw header value so a single bad byte doesn't silently
+      // demote the user to the Ujjain default.
+      let decoded: string;
+      try {
+        decoded = decodeURIComponent(rawCity).trim();
+      } catch {
+        decoded = rawCity.trim();
+      }
+      // Guard against placeholder values some edges emit (e.g. literal "-")
+      if (decoded && decoded !== '-' && decoded.length <= 40) {
+        city = decoded;
+      }
+    }
+  } catch {
+    // Reading request headers can throw in static-render contexts; non-fatal.
+  }
+
+  // Compute today's panchang for Ujjain to inject live values into title.
+  // Ujjain → IST → no DST in India → offset is fixed at +5:30. We use
+  // `getUjjainToday()` (IANA-resolved via toLocaleDateString) rather
+  // than manual offset arithmetic — same answer for IST today, but
+  // less error-prone to read and survives if the reference zone ever
+  // changes (Gemini PR #710 MED, Lesson L). The `timezone` field on
+  // `computePanchang` is omitted — it's only used for per-JD DST
+  // resolution, which doesn't apply to IST.
+  try {
+    const { year, month, day } = getUjjainToday();
+
+    const p = computePanchang({
+      year, month, day,
+      lat: UJJAIN_REFERENCE.lat,
+      lng: UJJAIN_REFERENCE.lng,
+      tzOffset: UJJAIN_REFERENCE.tzOffsetHours,
+      locationName: UJJAIN_REFERENCE.name,
+    });
+    // Devanagari covers hi/sa/mr/mai (Gemini #239 re-review MED). For
+    // tithi/nakshatra names we use the Hindi value (already Devanagari)
+    // because Mr/Mai don't have their own Devanagari panchang-term
+    // translations and Hindi is universally readable to Devanagari users.
+    const isDev = isDevanagariLocale(locale);
+    // Intl uses 'hi-IN' for the date format on all Devanagari locales —
+    // Marathi/Maithili have no distinct CLDR digit set. `formatUjjainDate`
+    // routes through IST so the date label matches Ujjain wall-clock.
+    const dateStr = formatUjjainDate(new Date(), isDev ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric' });
+    const tithi = isDev ? p.tithi.name.hi : p.tithi.name.en;
+    const nak = isDev ? p.nakshatra.name.hi : p.nakshatra.name.en;
+
+    // Date is safe — page is dynamic (request-scoped), so always fresh.
+    const cityPrefix = city ? `${city}, ` : '';
+    // Per-locale title chrome (Gemini #263 HIGH). Marathi gets
+    // "आजचे पंचांग", Maithili "आजुक पञ्चाङ्ग" — not the Hindi
+    // "आज का पंचांग". Fall back to Hindi phrasing for any
+    // unmapped Devanagari locale so we never leak EN into a Devanagari
+    // title; English locales keep their dedicated template.
+    const dev = DEV_PHRASE[locale] ?? DEV_PHRASE.hi;
+    const title = isDev
+      ? `${dev.todayPanchang} — ${cityPrefix}${dateStr} — ${tithi}, ${nak}`
+      : `Today's Panchang — ${cityPrefix}${dateStr} — ${tithi}, ${nak}`;
+
+    const desc = isDev
+      ? `${dateStr} ${dev.descPrefix}: ${tithi}, ${nak}, राहु काल ${p.rahuKaal.start}–${p.rahuKaal.end}। सूर्योदय ${p.sunrise}। ${dev.descSuffix}`
+      : `Panchang today: ${tithi}, ${nak}. Rahu Kaal ${p.rahuKaal.start}–${p.rahuKaal.end}. Sunrise ${p.sunrise}. Accurate Vedic calculation, free.`;
+
+    return { ...base, title, description: desc };
+  } catch {
+    return base;
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Server-side panchang computation

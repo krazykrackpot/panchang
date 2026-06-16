@@ -268,10 +268,12 @@ import { buildYearlyTithiTable, lookupTithiByMonthAndNumber } from '@/lib/calend
 // Cache Chaturmas boundaries per year: { startDate, endDate } as 'YYYY-MM-DD'
 const chaturmasBoundaryCache = new Map<number, { start: string; end: string } | null>();
 
+import { UJJAIN_REFERENCE } from '@/lib/constants/jyotish-reference';
+
 // Ujjain reference coordinates for tithi table
-const UJJAIN_LAT = 23.1765;
-const UJJAIN_LNG = 75.7885;
-const UJJAIN_TZ = 'Asia/Kolkata';
+const UJJAIN_LAT = UJJAIN_REFERENCE.lat;
+const UJJAIN_LNG = UJJAIN_REFERENCE.lng;
+const UJJAIN_TZ = UJJAIN_REFERENCE.ianaZone;
 
 // Fallback: month-level approximation (Amanta masa indices: 0=Chaitra..11=Phalguna)
 const CHATURMAS_FULL_MONTHS = [4, 5, 6]; // Shravana, Bhadrapada, Ashwina

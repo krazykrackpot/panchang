@@ -1,4 +1,4 @@
-import { getLocale, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { MapPin, Globe, ChevronRight } from "lucide-react";
 import { Link } from "@/lib/i18n/navigation";
 import { type CityData } from "@/lib/constants/cities";
@@ -293,8 +293,18 @@ function InternationalCard({
 
 // ─── Page ────────────────────────────────────────────────────────────────────
 
-export default async function LocationsPage() {
-  const locale = await getLocale();
+// Reads `locale` from the URL segment (`/[locale]/panchang/locations`)
+// via params, not from `getLocale()`. The latter goes through the
+// next-intl request scope which Next.js classifies as a dynamic API —
+// it was forcing this route into per-request rendering despite the
+// `revalidate = 604800` declaration. Using params keeps the route in
+// the static ISR pool.
+export default async function LocationsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   setRequestLocale(locale);
 
   const headingFont = getHeadingFont(locale);

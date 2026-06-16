@@ -6,6 +6,7 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { NAKSHATRA_DETAILS } from '@/lib/constants/nakshatra-details';
 import type { LocaleText, PanchangData } from '@/types/panchang';
+import { UJJAIN_REFERENCE } from '@/lib/constants/jyotish-reference';
 
 /**
  * YouTube Shorts slide generator  –  TAROT-CARD STYLE 1080x1920 slides.
@@ -15,7 +16,7 @@ import type { LocaleText, PanchangData } from '@/types/panchang';
  * decorative star separators, radial glow effects, bold typography.
  */
 
-const UJJAIN = { lat: 23.1765, lng: 75.7885, tz: 'Asia/Kolkata' };
+const UJJAIN = { lat: UJJAIN_REFERENCE.lat, lng: UJJAIN_REFERENCE.lng, tz: UJJAIN_REFERENCE.ianaZone };
 const SIZE = { width: 1080, height: 1920 };
 
 // ── Theme palettes — rotate daily to avoid programmatic-content suppression ──

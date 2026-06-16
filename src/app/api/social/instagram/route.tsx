@@ -7,6 +7,7 @@ import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { NAKSHATRA_DETAILS } from '@/lib/constants/nakshatra-details';
 import { RASHIS } from '@/lib/constants/rashis';
 import type { LocaleText, PanchangData } from '@/types/panchang';
+import { UJJAIN_REFERENCE } from '@/lib/constants/jyotish-reference';
 
 /**
  * Instagram image generation API  –  produces 1080x1080 PNG images for social media.
@@ -22,9 +23,9 @@ import type { LocaleText, PanchangData } from '@/types/panchang';
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
-const UJJAIN_LAT = 23.1765;
-const UJJAIN_LNG = 75.7885;
-const UJJAIN_TZ = 'Asia/Kolkata';
+const UJJAIN_LAT = UJJAIN_REFERENCE.lat;
+const UJJAIN_LNG = UJJAIN_REFERENCE.lng;
+const UJJAIN_TZ = UJJAIN_REFERENCE.ianaZone;
 
 const SIZE_SQUARE = { width: 1080, height: 1080 };
 const SIZE_SHORTS = { width: 1080, height: 1920 };

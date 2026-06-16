@@ -33,12 +33,14 @@ import { pickByScript } from "@/lib/utils/locale-fonts";
 // ─── Valid years ────────────────────────────────────────────────
 const VALID_YEARS = [2026, 2027];
 
+import { UJJAIN_REFERENCE } from "@/lib/constants/jyotish-reference";
+
 // ─── Ujjain  –  canonical location for pan-Indian Hindu calendar ──
 // Ujjain (ancient Ujjayini) is the traditional prime meridian of Hindu astronomy.
 // Within ±30 min of any Indian city for tithi boundaries.
-const UJJAIN_LAT = 23.1765;
-const UJJAIN_LNG = 75.7885;
-const UJJAIN_TZ = "Asia/Kolkata";
+const UJJAIN_LAT = UJJAIN_REFERENCE.lat;
+const UJJAIN_LNG = UJJAIN_REFERENCE.lng;
+const UJJAIN_TZ = UJJAIN_REFERENCE.ianaZone;
 
 // ─── Month names ────────────────────────────────────────────────
 const MONTH_NAMES_EN = [

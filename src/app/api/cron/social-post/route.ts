@@ -1,6 +1,7 @@
 import crypto from 'crypto';
 import type { LocaleText, PanchangData } from '@/types/panchang';
 import { NextResponse } from 'next/server';
+import { UJJAIN_REFERENCE } from '@/lib/constants/jyotish-reference';
 import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { BASE_URL } from '@/lib/seo/base-url';
 import { getServerSupabase } from '@/lib/supabase/server';
@@ -32,9 +33,9 @@ export const maxDuration = 30; // Cron job — email/notification/sync tasks
  */
 
 // Ujjain  –  the traditional prime meridian of Hindu astronomy (Surya Siddhanta)
-const UJJAIN_LAT = 23.1765;
-const UJJAIN_LNG = 75.7885;
-const UJJAIN_TZ = 'Asia/Kolkata';
+const UJJAIN_LAT = UJJAIN_REFERENCE.lat;
+const UJJAIN_LNG = UJJAIN_REFERENCE.lng;
+const UJJAIN_TZ = UJJAIN_REFERENCE.ianaZone;
 
 export async function GET(request: Request) {
   const authError = verifyCronAuth(request);

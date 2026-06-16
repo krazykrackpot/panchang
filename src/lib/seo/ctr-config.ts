@@ -333,10 +333,12 @@ import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
+import { UJJAIN_REFERENCE } from '@/lib/constants/jyotish-reference';
+
 // Ujjain — reference city for India-wide SEO metadata
-const SEO_REF_LAT = 23.1765;
-const SEO_REF_LNG = 75.7885;
-const SEO_REF_TZ = 'Asia/Kolkata';
+const SEO_REF_LAT = UJJAIN_REFERENCE.lat;
+const SEO_REF_LNG = UJJAIN_REFERENCE.lng;
+const SEO_REF_TZ = UJJAIN_REFERENCE.ianaZone;
 
 /**
  * BCP 47 locale tags for Intl.DateTimeFormat per UI locale.

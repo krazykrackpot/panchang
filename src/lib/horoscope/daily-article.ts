@@ -8,6 +8,7 @@ import type { LocaleText } from '@/types/panchang';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { RASHIS } from '@/lib/constants/rashis';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { UJJAIN_REFERENCE } from '@/lib/constants/jyotish-reference';
 
 const RASHI_THEMES: Record<number, LocaleText> = {
   1:  { en: 'energy and initiative', hi: 'ऊर्जा और पहल', sa: 'ऊर्जा और पहल', mai: 'ऊर्जा और पहल', mr: 'ऊर्जा और पहल', ta: 'ஆற்றல் மற்றும் முன்முயற்சி', te: 'శక్తి మరియు చొరవ', bn: 'শক্তি এবং উদ্যোগ', kn: 'ಶಕ್ತಿ ಮತ್ತು ಉಪಕ್ರಮ', gu: 'ઊર્જા અને પહેલ' },
@@ -40,8 +41,8 @@ export interface ArticleCityConfig {
 // Ujjain — the traditional Hindu prime meridian (Surya Siddhanta), used as reference
 // when no city-specific context is available. NOT Delhi (CLAUDE.md: no Delhi assumption).
 const UJJAIN_DEFAULT: ArticleCityConfig = {
-  name: 'Ujjain', nameHi: 'उज्जैन',
-  lat: 23.1765, lng: 75.7885, timezone: 'Asia/Kolkata',
+  name: UJJAIN_REFERENCE.name, nameHi: 'उज्जैन',
+  lat: UJJAIN_REFERENCE.lat, lng: UJJAIN_REFERENCE.lng, timezone: UJJAIN_REFERENCE.ianaZone,
 };
 
 interface DailyArticle {

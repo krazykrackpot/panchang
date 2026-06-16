@@ -118,10 +118,36 @@ export function trackUtmEvent(
   const landingPage = options?.landingPage
     ?? (typeof window !== 'undefined' ? window.location.pathname : undefined);
 
+  // Read the supabase access token synchronously from localStorage if the
+  // user is signed in. The Supabase client persists sessions at storageKey
+  // 'dekho-panchang-auth' (set in src/lib/supabase/client.ts) per the
+  // app-wide auth convention in CLAUDE.md.
+  //
+  // Sync read is critical: trackUtmEvent fires during page unload / SPA
+  // navigation and relies on `keepalive: true` on the fetch. Awaiting
+  // sb.auth.getSession() — even though it's localStorage-backed in
+  // practice — introduces a microtask delay where the browser can tear
+  // the page down before fetch() is even scheduled. Gemini PR #709 HIGH.
+  let accessToken: string | undefined;
+  try {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('dekho-panchang-auth');
+      if (stored) {
+        const session = JSON.parse(stored) as { currentSession?: { access_token?: string } };
+        accessToken = session?.currentSession?.access_token;
+      }
+    }
+  } catch {
+    // Storage disabled (private browsing some browsers), JSON corrupted,
+    // SSR adjacent — fall through anonymously.
+  }
+
   // Fire and forget
+  const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+  if (accessToken) headers.Authorization = `Bearer ${accessToken}`;
   fetch('/api/track-utm', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers,
     keepalive: true, // Ensure request completes even on page unload/navigation
     body: JSON.stringify({
       event,

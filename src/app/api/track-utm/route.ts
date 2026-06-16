@@ -125,8 +125,35 @@ export async function POST(req: NextRequest) {
       return new NextResponse(null, { status: 500 });
     }
 
+    // Optional auth — if the client sent a Bearer token, resolve it to a
+    // user_id so post-signup tracking events get stitched to the right user.
+    // Anonymous (pre-signup) visits are still accepted with user_id=null.
+    //
+    // Without this, every utm_visits row had user_id=null forever — even
+    // post-signup events from authenticated users — making source-of-signup
+    // attribution unmappable. The /api/user/signup-welcome → keepalive saga
+    // (2026-06-14/15) made this lacuna visible.
+    let userId: string | null = null;
+    const authHeader = req.headers.get('authorization');
+    if (authHeader?.startsWith('Bearer ')) {
+      try {
+        // Gemini PR #709 MED: getUser() can resolve with data=null on
+        // certain network/auth-server failures — destructuring data.user
+        // would TypeError. Use safe optional chaining + capture the error
+        // for ops visibility.
+        const { data, error } = await supabase.auth.getUser(authHeader.slice(7).trim());
+        if (data?.user) userId = data.user.id;
+        if (error) console.warn('[track-utm] getUser returned error:', error.message);
+      } catch (err) {
+        // Invalid/expired token — fall through with userId=null. Don't
+        // refuse the event; analytics shouldn't gate on auth strength.
+        console.warn('[track-utm] getUser threw:', err);
+      }
+    }
+
     const { error } = await supabase.from('utm_visits').insert({
       session_id: sessionId,
+      user_id: userId,
       utm_source: utmSource || null,
       utm_medium: utmMedium || null,
       utm_campaign: utmCampaign || null,
@@ -141,6 +168,32 @@ export async function POST(req: NextRequest) {
     if (error) {
       console.error('[track-utm] Supabase insert failed:', error);
       return new NextResponse(null, { status: 500 });
+    }
+
+    // Retro-stitch: if we know the user_id NOW, backfill all earlier
+    // rows for this same session_id whose user_id is still null. The
+    // browser keeps the session_id constant across the same tab/cookie
+    // window, so this captures the entire pre-signup browse trail and
+    // ties it to the user that the session later became.
+    //
+    // Gemini PR #709 HIGH: must AWAIT in serverless. Fire-and-forget
+    // promises in Next.js Route Handlers on Vercel get aborted when the
+    // container freezes/terminates after sending the response. Indexing
+    // on (session_id, user_id) keeps this update O(matched-rows), not a
+    // table scan — see migration 075 in the same PR.
+    if (userId) {
+      try {
+        const { error: stitchErr } = await supabase
+          .from('utm_visits')
+          .update({ user_id: userId })
+          .eq('session_id', sessionId)
+          .is('user_id', null);
+        if (stitchErr) {
+          console.warn('[track-utm] retro-stitch failed:', stitchErr.message);
+        }
+      } catch (err) {
+        console.warn('[track-utm] retro-stitch threw:', err);
+      }
     }
 
     return new NextResponse(null, { status: 204 });

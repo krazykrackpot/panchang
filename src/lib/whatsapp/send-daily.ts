@@ -118,14 +118,23 @@ export async function sendDailyForSubscription(
   }
 
   // ─── Compute panchang + render template body ─────────────────────────
+  //
+  // CRITICAL (Gemini PR #706 round-3): derive year/month/day from `dateYmd`,
+  // which is the user's LOCAL date. Using panchangDate.getUTC*() would
+  // shift the date by up to a full day for users in non-UTC timezones —
+  // e.g. an IST subscriber at 04:30 IST sees UTC date = yesterday → we'd
+  // compute yesterday's panchang for them. dateYmd is built via
+  // Intl.DateTimeFormat with the user's tz, so it's correct.
+  const [yStr, mStr, dStr] = dateYmd.split('-');
+  const localYear = parseInt(yStr, 10);
+  const localMonth = parseInt(mStr, 10);
+  const localDay = parseInt(dStr, 10);
+
   const tzOffsetHours = getUTCOffsetForDate(
-    panchangDate.getUTCFullYear(),
-    panchangDate.getUTCMonth() + 1,
-    panchangDate.getUTCDate(),
-    sub.timezone,
+    localYear, localMonth, localDay, sub.timezone,
   ) / 60;
   const festivalsList = generateFestivalCalendarV2(
-    panchangDate.getUTCFullYear(),
+    localYear,
     location.lat,
     location.lng,
     sub.timezone,
@@ -133,9 +142,9 @@ export async function sendDailyForSubscription(
   const festivalsToday = festivalsList.filter((f) => f.date === dateYmd);
 
   const rendered = renderDailyPanchang({
-    year: panchangDate.getUTCFullYear(),
-    month: panchangDate.getUTCMonth() + 1,
-    day: panchangDate.getUTCDate(),
+    year: localYear,
+    month: localMonth,
+    day: localDay,
     lat: location.lat,
     lng: location.lng,
     tzOffset: tzOffsetHours,

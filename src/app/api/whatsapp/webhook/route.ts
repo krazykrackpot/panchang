@@ -137,10 +137,36 @@ export async function POST(req: NextRequest) {
 const STOP_KEYWORDS = ['stop', 'unsubscribe', 'cancel', 'quit', 'end', 'opt out', 'optout', 'रोको', 'বন্ধ', 'நிறுத்து'];
 const HELP_KEYWORDS = ['help', 'info', 'मदद', 'সাহায্য', 'உதவி'];
 
-function classifyInbound(text: string): 'stop' | 'help' | 'other' {
-  const lower = text.toLowerCase();
-  if (STOP_KEYWORDS.some((k) => lower === k || lower.startsWith(k + ' '))) return 'stop';
-  if (HELP_KEYWORDS.some((k) => lower === k || lower.startsWith(k + ' '))) return 'help';
+// Strip ASCII punctuation that commonly trails inbound replies
+// ("STOP!", "stop.", "help?"). Keeps internal whitespace so
+// "opt out" still matches its multi-word form.
+const PUNCT_RE = /[.,/#!$%^&*;:{}=\-_`~()?'"]/g;
+
+// Build per-keyword case-insensitive word-boundary patterns once.
+// `\b` works for ASCII; the Devanagari/Bangla/Tamil tokens are matched
+// via exact-equality first (their script chars don't satisfy ASCII \b
+// boundary semantics in JS regex).
+export function classifyInbound(text: string): 'stop' | 'help' | 'other' {
+  const clean = text.trim().toLowerCase().replace(PUNCT_RE, '').replace(/\s+/g, ' ').trim();
+  if (!clean) return 'other';
+
+  // Exact match — handles single-word + multi-word keywords cleanly.
+  // Use this for both ASCII and non-ASCII (Devanagari etc.) tokens.
+  for (const k of STOP_KEYWORDS) if (clean === k) return 'stop';
+  for (const k of HELP_KEYWORDS) if (clean === k) return 'help';
+
+  // Word-boundary fallback for ASCII tokens — matches "stop please",
+  // "please stop", "i want to unsubscribe" without false-positive
+  // matches on substrings like "stopwatch" or "helpful".
+  for (const k of STOP_KEYWORDS) {
+    if (!/^[a-z ]+$/.test(k)) continue; // non-ASCII skipped (no \b in scripts)
+    if (new RegExp(`\\b${k.replace(/ /g, '\\s+')}\\b`).test(clean)) return 'stop';
+  }
+  for (const k of HELP_KEYWORDS) {
+    if (!/^[a-z ]+$/.test(k)) continue;
+    if (new RegExp(`\\b${k.replace(/ /g, '\\s+')}\\b`).test(clean)) return 'help';
+  }
+
   return 'other';
 }
 

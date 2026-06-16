@@ -21,6 +21,11 @@ CREATE TABLE user_whatsapp_subscriptions (
   -- Verification (6-digit OTP, stored hashed)
   verification_code_hash  TEXT,
   verification_expires_at TIMESTAMPTZ,
+  -- Brute-force attempt counter — persisted because serverless containers
+  -- are ephemeral and an in-memory Map can be bypassed by routing to
+  -- a fresh container. Reset to 0 when a fresh OTP is issued via /optin.
+  -- (Gemini PR #706 round-3 security-medium)
+  verification_attempts   INT NOT NULL DEFAULT 0,
   verified_at             TIMESTAMPTZ,
 
   -- Lifecycle
@@ -231,6 +236,9 @@ BEGIN
     IF NEW.verification_code_hash IS NOT NULL OR NEW.verification_expires_at IS NOT NULL THEN
       RAISE EXCEPTION 'wa_subs: users cannot set verification fields directly; use the OTP API';
     END IF;
+    IF NEW.verification_attempts IS DISTINCT FROM 0 THEN
+      RAISE EXCEPTION 'wa_subs: verification_attempts must start at 0';
+    END IF;
     RETURN NEW;
   END IF;
 
@@ -256,7 +264,8 @@ BEGIN
       RAISE EXCEPTION 'wa_subs: users cannot change verified_at; use the OTP API';
     END IF;
     IF NEW.verification_code_hash IS DISTINCT FROM OLD.verification_code_hash
-       OR NEW.verification_expires_at IS DISTINCT FROM OLD.verification_expires_at THEN
+       OR NEW.verification_expires_at IS DISTINCT FROM OLD.verification_expires_at
+       OR NEW.verification_attempts IS DISTINCT FROM OLD.verification_attempts THEN
       RAISE EXCEPTION 'wa_subs: users cannot change verification fields; use the OTP API';
     END IF;
     IF NEW.user_id IS DISTINCT FROM OLD.user_id THEN

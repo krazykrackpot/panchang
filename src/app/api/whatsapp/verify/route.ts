@@ -27,10 +27,12 @@ import type { Locale } from '@/lib/i18n/config';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-// Cap brute-force attempts at 5 per pending subscription before we wipe the
-// hash and force a new /optin request. Stored in-memory per-pid for now;
-// production scale would need Redis. At pilot (25 users) in-memory is fine.
-const attemptCounter = new Map<string, number>();
+// Cap brute-force attempts at 5 per pending subscription. Stored in the
+// DB column user_whatsapp_subscriptions.verification_attempts because
+// in-memory state is unreliable in serverless: concurrent requests can be
+// routed to different containers (bypassing the cap), and any container
+// can be recycled at any time (resetting the counter).
+// (Gemini PR #706 round-3 security-medium)
 const MAX_ATTEMPTS = 5;
 
 export async function POST(req: NextRequest) {
@@ -58,10 +60,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'code must be a 6-digit string' }, { status: 400 });
   }
 
-  // Fetch the user's pending subscription
+  // Fetch the user's pending subscription. verification_attempts is the
+  // DB-persisted brute-force counter (replaces the old in-memory Map per
+  // Gemini PR #706 round-3 security-medium).
   const { data: sub, error: subErr } = await supabase
     .from('user_whatsapp_subscriptions')
-    .select('id, phone_e164, verification_code_hash, verification_expires_at, verified_at')
+    .select('id, phone_e164, verification_code_hash, verification_expires_at, verification_attempts, verified_at')
     .eq('user_id', user.id)
     .is('opted_out_at', null)
     .maybeSingle();
@@ -81,28 +85,43 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'No pending code. Please request a new one.' }, { status: 404 });
   }
   if (new Date(sub.verification_expires_at).getTime() < Date.now()) {
-    // Clear stale hash so a fresh /optin works cleanly
+    // Clear stale hash + reset attempts so a fresh /optin works cleanly
     await supabase
       .from('user_whatsapp_subscriptions')
-      .update({ verification_code_hash: null, verification_expires_at: null })
+      .update({
+        verification_code_hash: null,
+        verification_expires_at: null,
+        verification_attempts: 0,
+      })
       .eq('id', sub.id);
     return NextResponse.json({ error: 'Code expired. Please request a new one.' }, { status: 410 });
   }
 
-  // Attempt cap
-  const attempts = (attemptCounter.get(sub.id) ?? 0) + 1;
+  // Attempt cap — DB-backed. The read-then-write race window is tiny
+  // (~10ms) and bounded by the 5-attempt cap; a determined attacker can
+  // squeeze in maybe 1-2 extra attempts before the cap kicks in. For
+  // pilot scale this is acceptable; if abused we'd swap to a Postgres
+  // function with row-level locking (SELECT ... FOR UPDATE).
+  const attempts = (sub.verification_attempts ?? 0) + 1;
   if (attempts > MAX_ATTEMPTS) {
     await supabase
       .from('user_whatsapp_subscriptions')
-      .update({ verification_code_hash: null, verification_expires_at: null })
+      .update({
+        verification_code_hash: null,
+        verification_expires_at: null,
+        verification_attempts: 0,
+      })
       .eq('id', sub.id);
-    attemptCounter.delete(sub.id);
     return NextResponse.json(
       { error: 'Too many attempts. Please request a new code.' },
       { status: 422 },
     );
   }
-  attemptCounter.set(sub.id, attempts);
+  // Increment now so subsequent racing requests see the higher count.
+  await supabase
+    .from('user_whatsapp_subscriptions')
+    .update({ verification_attempts: attempts })
+    .eq('id', sub.id);
 
   // Constant-time verify
   let matches = false;
@@ -119,21 +138,20 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Success — flip verified_at and wipe the hash
+  // Success — flip verified_at, wipe the hash + reset attempts
   const { error: updateErr } = await supabase
     .from('user_whatsapp_subscriptions')
     .update({
       verified_at: new Date().toISOString(),
       verification_code_hash: null,
       verification_expires_at: null,
+      verification_attempts: 0,
     })
     .eq('id', sub.id);
   if (updateErr) {
     console.error('[whatsapp/verify] verified_at update failed:', updateErr);
     return NextResponse.json({ error: 'Internal error' }, { status: 500 });
   }
-
-  attemptCounter.delete(sub.id);
 
   // ─── Immediate welcome send if next regular send is >12h away ────────
   // Rationale: predictable daily ritual beats marginal early-notification,

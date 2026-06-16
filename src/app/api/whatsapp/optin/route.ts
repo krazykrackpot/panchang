@@ -152,6 +152,7 @@ export async function POST(req: NextRequest) {
         send_at_sunrise: input.send_at_sunrise,
         verification_code_hash: codeHash,
         verification_expires_at: expiresAt.toISOString(),
+        verification_attempts: 0,
         verified_at: null,
         opted_in_at: new Date().toISOString(),
         opted_in_source: 'dashboard',

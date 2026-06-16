@@ -6,6 +6,7 @@ import { generateEventLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { buildHreflangMap } from '@/lib/seo/hreflang';
+import { UJJAIN_REFERENCE } from '@/lib/constants/jyotish-reference';
 
 // OpenGraph BCP 47 codes (underscore-joined) and Schema.org inLanguage
 // codes for the 9 visible locales. `sa` is retired but kept here to
@@ -33,8 +34,7 @@ function getNextFestivalDate(slug: string): { date: string; year: number; pujaMu
     const currentYear = now.getFullYear();
     // Check current year first, then next 3 years
     for (const year of [currentYear, currentYear + 1, currentYear + 2, currentYear + 3]) {
-      // Use Ujjain coordinates (traditional Indian prime meridian)
-      const festivals = generateFestivalCalendarV2(year, 23.1765, 75.7885, 'Asia/Kolkata');
+      const festivals = generateFestivalCalendarV2(year, UJJAIN_REFERENCE.lat, UJJAIN_REFERENCE.lng, UJJAIN_REFERENCE.ianaZone);
       const match = festivals.find(f => f.slug === slug);
       if (match && (year > currentYear || match.date >= now.toISOString().slice(0, 10))) {
         return { date: match.date, year, pujaMuhurat: match.pujaMuhurat };

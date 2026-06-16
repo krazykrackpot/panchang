@@ -56,9 +56,11 @@ import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 // canonical Jyotish anchor — should have been the default from the start.
 // The underlying engine bug in sunriseJdForDate is tracked separately;
 // fixing it doesn't ride this PR.)
-const UJJAIN_LAT = 23.1765;
-const UJJAIN_LNG = 75.7885;
-const IST = 'Asia/Kolkata';
+import { UJJAIN_REFERENCE } from '@/lib/constants/jyotish-reference';
+
+const UJJAIN_LAT = UJJAIN_REFERENCE.lat;
+const UJJAIN_LNG = UJJAIN_REFERENCE.lng;
+const IST = UJJAIN_REFERENCE.ianaZone;
 
 // Module-load memo so each year only runs the engine once.
 const _enginePerYear = new Map<number, ReturnType<typeof generateFestivalCalendarV2>>();

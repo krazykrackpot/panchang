@@ -6,17 +6,11 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateFAQLD } from '@/lib/seo/faq-data';
 import { pickCalendarLabel as L, calendarMonthShort } from '@/lib/content/calendar-labels';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { UJJAIN_REFERENCE } from '@/lib/constants/jyotish-reference';
 
 export const revalidate = 86400;
 
 import { BASE_URL } from '@/lib/seo/base-url';
-
-// Ujjain reference location for the SSR "upcoming festivals" overview.
-// Picked because it's the canonical 0° UT reference in many panchang
-// traditions; the date list is approximate-to-Ujjain. The interactive
-// client below computes location-accurate dates for the user's actual
-// city. Audit 2026-05-25 §D2 (SSR fallback for Googlebot).
-const UJJAIN = { lat: 23.1765, lng: 75.7885, tz: 'Asia/Kolkata' };
 
 interface SSRFestivalRow {
   name: string;
@@ -33,11 +27,11 @@ function buildSsrFestivalList(locale: string): SSRFestivalRow[] {
   const todayISO = new Date().toISOString().slice(0, 10);
   // Generate this year's calendar then fall through to next year if we're
   // late in the year and only have a few entries left.
-  let entries = generateFestivalCalendarV2(year, UJJAIN.lat, UJJAIN.lng, UJJAIN.tz)
+  let entries = generateFestivalCalendarV2(year, UJJAIN_REFERENCE.lat, UJJAIN_REFERENCE.lng, UJJAIN_REFERENCE.ianaZone)
     .filter(e => e.type === 'major' && e.date >= todayISO);
   if (entries.length < 12) {
     entries = entries.concat(
-      generateFestivalCalendarV2(year + 1, UJJAIN.lat, UJJAIN.lng, UJJAIN.tz)
+      generateFestivalCalendarV2(year + 1, UJJAIN_REFERENCE.lat, UJJAIN_REFERENCE.lng, UJJAIN_REFERENCE.ianaZone)
         .filter(e => e.type === 'major'),
     );
   }

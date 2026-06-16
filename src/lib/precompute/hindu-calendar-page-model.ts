@@ -13,12 +13,13 @@ import {
   HinduCalendarPageModel,
   type HinduCalendarPageModel as HinduCalendarPageModelT,
 } from './schema/hindu-calendar';
+import { UJJAIN_REFERENCE } from '@/lib/constants/jyotish-reference';
 
 /** Ujjain — Mahakaleshwar Jyotirlinga, the page's canonical anchor
  *  for festival computation. Constants mirror page.tsx. */
-const UJJAIN_LAT = 23.1765;
-const UJJAIN_LNG = 75.7885;
-const UJJAIN_TZ = 'Asia/Kolkata';
+const UJJAIN_LAT = UJJAIN_REFERENCE.lat;
+const UJJAIN_LNG = UJJAIN_REFERENCE.lng;
+const UJJAIN_TZ = UJJAIN_REFERENCE.ianaZone;
 
 interface Args {
   year: number;

@@ -6,6 +6,14 @@ import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
+// Pre-render all 12 rashis at build time. Page is a client component so
+// the static params live on this layout. 12 entries × 9 locales = 108
+// pages — tiny fraction of the static-page budget. Without this, Next.js
+// treated every request to /panchang/rashi/:slug as dynamic on demand.
+export function generateStaticParams(): Array<{ id: string }> {
+  return RASHIS.map((r) => ({ id: r.slug }));
+}
+
 export async function generateMetadata({
   params,
 }: {

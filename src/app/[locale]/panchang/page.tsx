@@ -27,7 +27,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { TITHIS } from '@/lib/constants/tithis';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-import { UJJAIN_REFERENCE } from '@/lib/constants/jyotish-reference';
+import { UJJAIN_REFERENCE, getUjjainToday, formatUjjainDate } from '@/lib/constants/jyotish-reference';
 
 // Inline tithi-name lookups for the Why-Five-Elements links. The
 // inline link labels (Ekadashi / Purnima / Amavasya) read from the
@@ -101,25 +101,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   }
 
   // Compute today's panchang for Ujjain to inject live values into title.
-  // Ujjain → IST → no DST in India → offset is fixed at +5:30, so we can
-  // use UJJAIN_REFERENCE.tzOffsetHours directly without going through
-  // getUTCOffsetForDate (the per-date DST resolver). `timezone` field on
-  // computePanchang is also omitted — it's only used for per-JD DST
+  // Ujjain → IST → no DST in India → offset is fixed at +5:30. We use
+  // `getUjjainToday()` (IANA-resolved via toLocaleDateString) rather
+  // than manual offset arithmetic — same answer for IST today, but
+  // less error-prone to read and survives if the reference zone ever
+  // changes (Gemini PR #710 MED, Lesson L). The `timezone` field on
+  // `computePanchang` is omitted — it's only used for per-JD DST
   // resolution, which doesn't apply to IST.
   try {
-    const tzOffset = UJJAIN_REFERENCE.tzOffsetHours;
-    const now = new Date();
-    const istMs = now.getTime() + tzOffset * 3600 * 1000;
-    const istDate = new Date(istMs);
-    const year = istDate.getUTCFullYear();
-    const month = istDate.getUTCMonth() + 1;
-    const day = istDate.getUTCDate();
+    const { year, month, day } = getUjjainToday();
 
     const p = computePanchang({
       year, month, day,
       lat: UJJAIN_REFERENCE.lat,
       lng: UJJAIN_REFERENCE.lng,
-      tzOffset,
+      tzOffset: UJJAIN_REFERENCE.tzOffsetHours,
       locationName: UJJAIN_REFERENCE.name,
     });
     // Devanagari covers hi/sa/mr/mai (Gemini #239 re-review MED). For
@@ -128,8 +124,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     // translations and Hindi is universally readable to Devanagari users.
     const isDev = isDevanagariLocale(locale);
     // Intl uses 'hi-IN' for the date format on all Devanagari locales —
-    // Marathi/Maithili have no distinct CLDR digit set.
-    const dateStr = istDate.toLocaleDateString(isDev ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+    // Marathi/Maithili have no distinct CLDR digit set. `formatUjjainDate`
+    // routes through IST so the date label matches Ujjain wall-clock.
+    const dateStr = formatUjjainDate(new Date(), isDev ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric' });
     const tithi = isDev ? p.tithi.name.hi : p.tithi.name.en;
     const nak = isDev ? p.nakshatra.name.hi : p.nakshatra.name.en;
 

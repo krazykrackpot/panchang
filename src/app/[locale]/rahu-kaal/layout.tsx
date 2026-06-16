@@ -8,10 +8,12 @@ import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data'
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { pickByScript } from "@/lib/utils/locale-fonts";
 
+import { UJJAIN_REFERENCE } from '@/lib/constants/jyotish-reference';
+
 // Ujjain — reference city for India-wide Rahu Kaal
-const REF_LAT = 23.1765;
-const REF_LNG = 75.7885;
-const REF_TZ = 'Asia/Kolkata';
+const REF_LAT = UJJAIN_REFERENCE.lat;
+const REF_LNG = UJJAIN_REFERENCE.lng;
+const REF_TZ = UJJAIN_REFERENCE.ianaZone;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;

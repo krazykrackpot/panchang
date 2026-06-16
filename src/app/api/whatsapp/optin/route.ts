@@ -33,6 +33,7 @@ import { validateOptin } from '@/lib/whatsapp/validation';
 import { generateOtp, hashOtp, otpExpiresAt, OTP_VALIDITY_MINUTES } from '@/lib/whatsapp/otp';
 import { sendTemplateMessage } from '@/lib/whatsapp/client';
 import { TEMPLATES } from '@/lib/whatsapp/templates';
+import { isWhatsAppBetaUser } from '@/lib/whatsapp/beta-gate';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -56,6 +57,16 @@ export async function POST(req: NextRequest) {
   const { data: { user }, error: authError } = await supabase.auth.getUser(token);
   if (authError || !user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  // ─── Phase 5: closed-beta gate ────────────────────────────────────────
+  // Only users in WHATSAPP_BETA_USER_IDS (or "*") can opt in. Fail-closed
+  // by default — if env is unset, nobody gets through.
+  if (!isWhatsAppBetaUser(user.id)) {
+    return NextResponse.json(
+      { error: 'WhatsApp daily panchang is in closed beta. Get in touch if you want early access.' },
+      { status: 403 },
+    );
   }
 
   // ─── Validate body ────────────────────────────────────────────────────

@@ -29,6 +29,7 @@ import {
   resolveDefaultLocation,
   type Subscription,
 } from '@/lib/whatsapp/send-daily';
+import { getMonthlyBudgetUsd, getMonthlyBudgetMicros } from '@/lib/whatsapp/cost-rollup';
 import type { Locale } from '@/lib/i18n/config';
 
 export const runtime = 'nodejs';
@@ -56,10 +57,9 @@ async function handle(req: NextRequest) {
   }
 
   // ─── Budget pre-check (once per tick) ─────────────────────────────────
-  const monthlyBudgetUsd = parseFloat(
-    process.env.WHATSAPP_MONTHLY_BUDGET_USD?.trim() ?? '25',
-  );
-  const monthlyBudgetMicros = Math.round(monthlyBudgetUsd * 1_000_000);
+  // Shared parser handles NaN / negative / missing env safely.
+  const monthlyBudgetUsd = getMonthlyBudgetUsd();
+  const monthlyBudgetMicros = getMonthlyBudgetMicros();
 
   const monthStart = new Date();
   monthStart.setUTCDate(1);

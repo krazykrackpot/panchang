@@ -23,6 +23,7 @@ import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { snapshotMtdCost, summarizeCost } from '@/lib/whatsapp/cost-rollup';
 import { sendEmail } from '@/lib/email/resend-client';
+import { todayInIst } from '@/lib/seo/regional-faq-dates';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -59,7 +60,11 @@ async function handle(req: NextRequest) {
 
   let alertSent = false;
   if (snap.alertLevel !== 'none' && operatorEmail) {
-    const todayKey = `wa-budget-${snap.alertLevel}-${new Date().toISOString().slice(0, 10)}`;
+    // Dedup key uses IST date so the 23:00 UTC cron tick (which lands at
+    // 04:30 IST — between 00:00 and 05:30) keys to the same IST day as
+    // an alert sent earlier the same IST evening. UTC date-slice would
+    // off-by-one for IST pre-dawn ticks. (Gemini PR #706 round-4 HIGH)
+    const todayKey = `wa-budget-${snap.alertLevel}-${todayInIst()}`;
     const { data: existing } = await supabase
       .from('whatsapp_inbound_log')
       .select('id')

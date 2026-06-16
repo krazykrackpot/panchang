@@ -156,12 +156,20 @@ When ready:
 Once you have all the values from Steps 3, 4, 5:
 
 ```bash
-vercel env add WHATSAPP_PHONE_NUMBER_ID production  # from Step 5
-vercel env add WHATSAPP_ACCESS_TOKEN production     # from Step 4
-vercel env add META_APP_SECRET production           # from Step 3
+vercel env add WHATSAPP_PHONE_NUMBER_ID production       # from Step 5
+vercel env add WHATSAPP_ACCESS_TOKEN production          # from Step 4
+vercel env add META_APP_SECRET production                # from Step 3
 vercel env add WHATSAPP_WEBHOOK_VERIFY_TOKEN production  # generate: openssl rand -hex 32
-vercel env add WHATSAPP_BUSINESS_ACCOUNT_ID production  # from API Setup page
+vercel env add WHATSAPP_BUSINESS_ACCOUNT_ID production   # from API Setup page
 vercel env add WHATSAPP_MONTHLY_BUDGET_USD production    # set to "25"
+vercel env add OTP_HMAC_SECRET production                # generate: openssl rand -hex 32
+                                                          # used to hash OTPs at-rest;
+                                                          # opt-in flow fails at runtime if missing
+vercel env add WHATSAPP_BETA_USER_IDS production         # Phase 5 beta gate.
+                                                          # Comma-separated UUIDs of allowed users,
+                                                          # OR "*" for all, OR unset to fully close.
+                                                          # Run scripts/whatsapp-pick-beta-cohort.ts
+                                                          # to generate the initial list.
 ```
 
 Mirror these to `preview` and `development` if you want preview-branch test sending too.

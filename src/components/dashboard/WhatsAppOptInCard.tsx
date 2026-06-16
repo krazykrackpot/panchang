@@ -80,16 +80,37 @@ export default function WhatsAppOptInCard({ locale }: { locale: Locale }) {
       setState('loading');
       return;
     }
-    try {
-      if (localStorage.getItem(DISMISS_KEY)) {
-        // Still load state — a previously-dismissed user who's now active
-        // should see their active card (so they can manage / opt out)
-        refreshState().then(() => setVisible(true));
-        return;
+    // Phase 5 closed-beta gate. Check eligibility before doing anything;
+    // non-beta users see nothing at all (no card, no banner, no error).
+    // Defense-in-depth — /api/whatsapp/optin also enforces server-side.
+    (async () => {
+      try {
+        const supabase = getSupabase();
+        const { data: { session } } = (await supabase?.auth.getSession()) ?? { data: { session: null } };
+        if (!session) return;
+        const res = await fetch('/api/whatsapp/eligibility', {
+          headers: { Authorization: `Bearer ${session.access_token}` },
+        });
+        const j = await res.json().catch(() => ({ eligible: false }));
+        if (!j.eligible) return; // Stays invisible
+
+        try {
+          if (localStorage.getItem(DISMISS_KEY)) {
+            // Previously dismissed: still load to show active state if
+            // they DID subscribe before dismissing (so they can manage)
+            await refreshState();
+            setVisible(true);
+            return;
+          }
+        } catch { /* localStorage blocked; fall through */ }
+
+        setVisible(true);
+        await refreshState();
+      } catch (err) {
+        console.error('[WhatsAppOptInCard] eligibility check failed:', err);
+        // Fail closed: don't show the card on transient errors
       }
-    } catch { /* localStorage blocked; fall through */ }
-    setVisible(true);
-    refreshState();
+    })();
   }, [initialized, user, refreshState]);
 
   if (!visible || state === 'loading') return null;

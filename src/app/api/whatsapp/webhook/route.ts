@@ -79,50 +79,62 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Not configured' }, { status: 503 });
   }
 
-  for (const entry of payload.entry ?? []) {
-    for (const change of entry.changes ?? []) {
-      if (change.field !== 'messages') continue;
+  // Defensive: Meta payloads should always include payload.entry as an
+  // array of changes, but a malformed payload (or one we don't recognise)
+  // shouldn't crash the function with a TypeError. Each array hop guarded
+  // by Array.isArray. (Gemini PR #706 round-4 MED)
+  if (!Array.isArray(payload.entry)) return OK_200;
+
+  for (const entry of payload.entry) {
+    if (!entry || !Array.isArray(entry.changes)) continue;
+    for (const change of entry.changes) {
+      if (!change || change.field !== 'messages') continue;
       const value = change.value;
       if (!value) continue;
 
       // ─── Inbound messages (STOP / HELP / other replies) ─────────────────
-      for (const msg of value.messages ?? []) {
-        if (msg.type !== 'text' || !msg.text?.body) continue;
-        const from = msg.from; // E.164 without leading + per Meta
-        const phoneE164 = from.startsWith('+') ? from : `+${from}`;
-        const text = msg.text.body.trim();
-        const classification = classifyInbound(text);
+      if (Array.isArray(value.messages)) {
+        for (const msg of value.messages) {
+          if (!msg || msg.type !== 'text' || !msg.text?.body) continue;
+          const from = msg.from;
+          if (typeof from !== 'string' || !from) continue;
+          const phoneE164 = from.startsWith('+') ? from : `+${from}`;
+          const text = msg.text.body.trim();
+          const classification = classifyInbound(text);
 
-        // Log the inbound (200-char truncation in DB trigger)
-        await supabase.from('whatsapp_inbound_log').insert({
-          phone_e164: phoneE164,
-          message_body: text,
-          classification,
-        }).then(({ error }) => {
-          if (error) console.error('[whatsapp/webhook] inbound insert failed:', error);
-        });
+          // Log the inbound (200-char truncation in DB trigger)
+          await supabase.from('whatsapp_inbound_log').insert({
+            phone_e164: phoneE164,
+            message_body: text,
+            classification,
+          }).then(({ error }) => {
+            if (error) console.error('[whatsapp/webhook] inbound insert failed:', error);
+          });
 
-        if (classification === 'stop') {
-          const { error } = await supabase
-            .from('user_whatsapp_subscriptions')
-            .update({
-              opted_out_at: new Date().toISOString(),
-              opt_out_reason: 'user_reply_stop',
-            })
-            .eq('phone_e164', phoneE164)
-            .is('opted_out_at', null);
-          if (error) console.error('[whatsapp/webhook] STOP opt-out failed:', error);
+          if (classification === 'stop') {
+            const { error } = await supabase
+              .from('user_whatsapp_subscriptions')
+              .update({
+                opted_out_at: new Date().toISOString(),
+                opt_out_reason: 'user_reply_stop',
+              })
+              .eq('phone_e164', phoneE164)
+              .is('opted_out_at', null);
+            if (error) console.error('[whatsapp/webhook] STOP opt-out failed:', error);
+          }
         }
       }
 
       // ─── Delivery + read receipts ───────────────────────────────────────
-      for (const st of value.statuses ?? []) {
-        if (!st.id || !st.status) continue;
-        const { error } = await supabase
-          .from('whatsapp_send_log')
-          .update({ status: mapMetaStatus(st.status) })
-          .eq('whatsapp_message_id', st.id);
-        if (error) console.error('[whatsapp/webhook] status update failed:', error);
+      if (Array.isArray(value.statuses)) {
+        for (const st of value.statuses) {
+          if (!st || !st.id || !st.status) continue;
+          const { error } = await supabase
+            .from('whatsapp_send_log')
+            .update({ status: mapMetaStatus(st.status) })
+            .eq('whatsapp_message_id', st.id);
+          if (error) console.error('[whatsapp/webhook] status update failed:', error);
+        }
       }
     }
   }

@@ -8,6 +8,28 @@
 
 import type { SupabaseClient } from '@supabase/supabase-js';
 
+// Default monthly budget if env var is unset or malformed. Locked at $25
+// per the spec §14 user decision.
+const DEFAULT_MONTHLY_BUDGET_USD = 25;
+
+/**
+ * Parse WHATSAPP_MONTHLY_BUDGET_USD env safely. NaN/missing/empty all fall
+ * back to DEFAULT_MONTHLY_BUDGET_USD. Negative values also fall back —
+ * "fail safe" by keeping the cap at the documented default if an operator
+ * fat-fingers the env var. (Gemini PR #706 round-4 MED)
+ */
+export function getMonthlyBudgetUsd(): number {
+  const raw = process.env.WHATSAPP_MONTHLY_BUDGET_USD?.trim();
+  if (!raw) return DEFAULT_MONTHLY_BUDGET_USD;
+  const parsed = parseFloat(raw);
+  if (!isFinite(parsed) || parsed < 0) return DEFAULT_MONTHLY_BUDGET_USD;
+  return parsed;
+}
+
+export function getMonthlyBudgetMicros(): number {
+  return Math.round(getMonthlyBudgetUsd() * 1_000_000);
+}
+
 export interface CostSnapshot {
   /** Month-to-date cost in USD. */
   mtdUsd: number;
@@ -26,9 +48,7 @@ export interface CostSnapshot {
 export async function snapshotMtdCost(
   supabase: SupabaseClient,
 ): Promise<CostSnapshot> {
-  const budgetUsd = parseFloat(
-    process.env.WHATSAPP_MONTHLY_BUDGET_USD?.trim() ?? '25',
-  );
+  const budgetUsd = getMonthlyBudgetUsd();
 
   const monthStart = new Date();
   monthStart.setUTCDate(1);

@@ -1076,6 +1076,23 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             const karanaPassed = tp(panchang.karanaTransition);
             const activeKarana = karanaPassed && panchang.karanaTransition ? KARANAS[panchang.karanaTransition.nextNumber - 1] : panchang.karana;
 
+            // Active tithi + nakshatra — mirror the activeYoga/activeKarana
+            // pattern so the "What does this mean?" InsightBlock below shows
+            // the CURRENT element, not the one that was active at sunrise.
+            // 2026-06-17 user-reported: Punarvasu had expired but its
+            // insight kept showing all day. Same bug class for tithi
+            // (incl. shukla→krishna paksha rollover at tithi 15→16) and yoga.
+            //
+            // Tithi number from the engine is 1-30 over the full lunar cycle.
+            // TITHIS[index].paksha and TITHIS[index].number give the correct
+            // 1-15 + paksha pair that getTithiInsight expects.
+            // Defensive `&&` chain (Gemini PR #713 MED) falls back to the
+            // sunrise element when nextNumber is out of range or the array
+            // lookup returns undefined — keeps the InsightBlock rendering
+            // something rather than crashing on a malformed transition.
+            const activeNakshatra = (nakPassed && nakTr && NAKSHATRAS[nakTr.nextNumber - 1]) || panchang.nakshatra;
+            const activeTithi = (tithiPassed && tithiTr && TITHIS[tithiTr.nextNumber - 1]) || panchang.tithi;
+
             const upto = msg('upto', locale);
             const onwards = msg('onwards', locale);
 
@@ -1172,8 +1189,12 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                       : msg('krishna', locale)
                     }{'  –  '}{msg('deity', locale)}{' '}{tl(panchang.tithi.deity)}
                   </div>
-                  {/* Tithi insight */}
-                  <InsightBlock insight={getTithiInsight(panchang.tithi.number, panchang.tithi.paksha as 'shukla' | 'krishna')} />
+                  {/* Tithi insight — uses activeTithi (post-transition aware)
+                      so the "What does this mean?" content reflects the
+                      currently-active tithi, not the one at sunrise. The
+                      `(activeTithi.number - 1) % 15 + 1` reduces a 1-30 number
+                      back into a 1-15 within-paksha index for getTithiInsight. */}
+                  <InsightBlock insight={getTithiInsight(((activeTithi.number - 1) % 15) + 1, activeTithi.paksha)} />
                   {/* Masa / Paksha  –  both systems */}
                   <div className="mt-3 pt-3 border-t border-gold-primary/10 grid grid-cols-2 gap-2 text-xs">
                     <div>
@@ -1293,8 +1314,10 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
                     {msg('nature', locale)}{' '}{tl(panchang.nakshatra.nature)}{'  –  '}{msg('ruler', locale)}{' '}{tl(panchang.nakshatra.rulerName)}
                   </div>
-                  {/* Nakshatra insight */}
-                  <InsightBlock insight={getNakshatraInsight(panchang.nakshatra.id)} />
+                  {/* Nakshatra insight — uses activeNakshatra (post-transition
+                      aware) so the "What does this mean?" content reflects
+                      the currently-active nakshatra, not the one at sunrise. */}
+                  <InsightBlock insight={getNakshatraInsight(activeNakshatra.id)} />
                   {/* Nakshatra deep details — expandable, details lazy-loaded
                       on first expand (Audit §D3). All 27 nakshatras have a
                       detail, so the toggle button is always shown. */}
@@ -1384,8 +1407,10 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                         : msg('yogaNeutral', locale)
                     }
                   </div>
-                  {/* Yoga insight */}
-                  <InsightBlock insight={getYogaInsight(panchang.yoga.number)} />
+                  {/* Yoga insight — uses activeYoga (post-transition aware)
+                      so the "What does this mean?" content reflects the
+                      currently-active yoga, not the one at sunrise. */}
+                  <InsightBlock insight={getYogaInsight(activeYoga.number)} />
                 </motion.div>
 
                 {/* ── KARANA CARD ── */}

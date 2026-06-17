@@ -39,6 +39,18 @@ import { locales, visibleLocales } from '@/lib/i18n/config';
  */
 const sitemapLocales: ReadonlyArray<typeof locales[number]> = visibleLocales;
 
+/**
+ * Forward window for the 3 static date-keyed surfaces (choghadiya,
+ * panchang/date, gauri-panchang). Matches the precompute window so every
+ * advertised URL is already Blob-backed when Googlebot arrives. Adjust
+ * here only; the 3 loops below read this constant.
+ *
+ * Horoscope uses a DIFFERENT window (7 days) per Audit §D6 — daily-churn
+ * URL patterns are treated as ephemeral by Google. Don't reuse this
+ * constant for the horoscope loop without re-validating that finding.
+ */
+const SITEMAP_FORWARD_WINDOW_DAYS = 60;
+
 // All routes in the app
 const routes = [
   '',
@@ -680,7 +692,7 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
   // module-level timestamp prevents midnight-race between sitemap
   // sections.
   const choghadiyaDateBase = _utcMidnight;
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < SITEMAP_FORWARD_WINDOW_DAYS; i++) {
     const d = new Date(choghadiyaDateBase);
     d.setUTCDate(d.getUTCDate() + i);
     const dateStr = d.toISOString().slice(0, 10);
@@ -711,7 +723,7 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
   // Same BUILD_NOW reuse as horoscope + choghadiya — all three
   // date-base computations share one frozen reference timestamp.
   const panchangDateBase = _utcMidnight;
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < SITEMAP_FORWARD_WINDOW_DAYS; i++) {
     const d = new Date(panchangDateBase);
     d.setUTCDate(d.getUTCDate() + i); // Lesson L: UTC arithmetic so DST doesn't drift
     const dateStr = d.toISOString().slice(0, 10);
@@ -765,7 +777,7 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
   // date-based blocks. Cycle-3 caught that this block was missed in
   // the first hotfix pass.
   const gauriDateBase = _utcMidnight;
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < SITEMAP_FORWARD_WINDOW_DAYS; i++) {
     const d = new Date(gauriDateBase);
     d.setUTCDate(d.getUTCDate() + i);
     const dateStr = d.toISOString().slice(0, 10);

@@ -58,35 +58,20 @@ const AI_ALLOW = [
   '/*/caesarean-muhurta',
   '/*/about',
   '/*/vs/',
-  '/*/learn/contributions',
-  '/*/learn/lagna',
-  '/*/learn/grahas',
-  '/*/learn/rashis',
-  '/*/learn/nakshatras',
-  '/*/learn/tithis',
-  '/*/learn/yogas',
-  '/*/learn/karanas',
-  '/*/learn/muhurtas',
-  '/*/learn/kundali',
-  '/*/learn/dashas',
-  '/*/learn/doshas',
-  '/*/learn/matching',
-  '/*/learn/gochar',
-  '/*/learn/sade-sati',
-  '/*/learn/ashtakavarga',
-  '/*/learn/shadbala',
-  '/*/learn/jaimini',
-  '/*/learn/vargas',
-  '/*/learn/avasthas',
-  '/*/learn/argala',
-  '/*/learn/chandra-darshan',
-  '/*/learn/panchak',
-  '/*/learn/holashtak',
-  '/*/learn/planet-in-house',
-  '/*/learn/transits',
+  // /learn/* — opened wholesale 2026-06-17. ChatGPT alone drives ~400+
+  // visits/week to a curated subset; surfacing the other ~120 standalone
+  // learn pages (lagna, grahas, rashis, nakshatras, tithis, yogas,
+  // karanas, muhurtas, dashas, doshas, ashtakavarga, shadbala, jaimini,
+  // vargas, avasthas, argala, chandra-darshan, panchak, holashtak,
+  // planet-in-house, transits, plus deep-dives like vivah-muhurta,
+  // tripushkar-yoga, varshaphal, vedanga, the dozen rashi-specific
+  // primers, etc.) gives AI assistants a much richer recommendation
+  // corpus. /learn/modules/* stays Disallowed per the original design —
+  // structured curriculum protected.
+  '/*/learn',
 ];
 
-/** Cohere gets a tighter list — drop the more niche learn pages. */
+/** Cohere — same broad learn access as the rest. */
 const COHERE_ALLOW = [
   '/*/panchang',
   '/*/kundali',
@@ -96,23 +81,7 @@ const COHERE_ALLOW = [
   '/*/caesarean-muhurta',
   '/*/about',
   '/*/vs/',
-  '/*/learn/contributions',
-  '/*/learn/lagna',
-  '/*/learn/grahas',
-  '/*/learn/rashis',
-  '/*/learn/nakshatras',
-  '/*/learn/tithis',
-  '/*/learn/yogas',
-  '/*/learn/karanas',
-  '/*/learn/muhurtas',
-  '/*/learn/kundali',
-  '/*/learn/dashas',
-  '/*/learn/doshas',
-  '/*/learn/matching',
-  '/*/learn/gochar',
-  '/*/learn/sade-sati',
-  '/*/learn/planet-in-house',
-  '/*/learn/transits',
+  '/*/learn',
 ];
 
 /** Paths blocked for AI crawlers (private dashboards, curriculum, internals). */
@@ -133,12 +102,25 @@ const COMMON_DISALLOW = [
 ];
 
 const AI_CRAWLERS_FULL = [
-  'GPTBot',
-  'ChatGPT-User',
-  'Claude-Web',
+  // OpenAI
+  'GPTBot',         // training corpus
+  'ChatGPT-User',   // live in-chat browsing
+  'OAI-SearchBot',  // chatgpt.com web search index
+  // Anthropic — ClaudeBot is the current name; anthropic-ai + Claude-Web
+  // are legacy/alternate identifiers historically used by Claude clients.
+  'ClaudeBot',
   'anthropic-ai',
+  'Claude-Web',
+  // Google — Gemini training + Search Generative Experience
   'Google-Extended',
+  // Perplexity — site retrieval at query time
   'PerplexityBot',
+  // Apple Intelligence
+  'Applebot-Extended',
+  // Amazon (Alexa, Bedrock, Q)
+  'Amazonbot',
+  // Meta (Meta AI, llama-related)
+  'Meta-ExternalAgent',
 ];
 
 function block(userAgent: string, allow: string[], disallow: string[]): string {

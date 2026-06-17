@@ -1086,8 +1086,12 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             // Tithi number from the engine is 1-30 over the full lunar cycle.
             // TITHIS[index].paksha and TITHIS[index].number give the correct
             // 1-15 + paksha pair that getTithiInsight expects.
-            const activeNakshatra = nakPassed && nakTr ? NAKSHATRAS[nakTr.nextNumber - 1] : panchang.nakshatra;
-            const activeTithi = tithiPassed && tithiTr ? TITHIS[tithiTr.nextNumber - 1] : panchang.tithi;
+            // Defensive `&&` chain (Gemini PR #713 MED) falls back to the
+            // sunrise element when nextNumber is out of range or the array
+            // lookup returns undefined — keeps the InsightBlock rendering
+            // something rather than crashing on a malformed transition.
+            const activeNakshatra = (nakPassed && nakTr && NAKSHATRAS[nakTr.nextNumber - 1]) || panchang.nakshatra;
+            const activeTithi = (tithiPassed && tithiTr && TITHIS[tithiTr.nextNumber - 1]) || panchang.tithi;
 
             const upto = msg('upto', locale);
             const onwards = msg('onwards', locale);

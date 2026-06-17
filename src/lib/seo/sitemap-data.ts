@@ -39,6 +39,18 @@ import { locales, visibleLocales } from '@/lib/i18n/config';
  */
 const sitemapLocales: ReadonlyArray<typeof locales[number]> = visibleLocales;
 
+/**
+ * Forward window for the 3 static date-keyed surfaces (choghadiya,
+ * panchang/date, gauri-panchang). Matches the precompute window so every
+ * advertised URL is already Blob-backed when Googlebot arrives. Adjust
+ * here only; the 3 loops below read this constant.
+ *
+ * Horoscope uses a DIFFERENT window (7 days) per Audit §D6 — daily-churn
+ * URL patterns are treated as ephemeral by Google. Don't reuse this
+ * constant for the horoscope loop without re-validating that finding.
+ */
+const SITEMAP_FORWARD_WINDOW_DAYS = 60;
+
 // All routes in the app
 const routes = [
   '',
@@ -628,6 +640,12 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
   // a midnight-build race where the horoscope block could see the
   // next day while choghadiya/panchang saw the previous day.
   // Gemini PR #329 cycle-2 MEDIUM.
+  //
+  // Horoscope stays at 7 days DELIBERATELY (per Audit §D6 comment
+  // above) — choghadiya/panchang/gauri-panchang restored to 60 days in
+  // 2026-06-17 PR, but horoscope's daily-churn pattern means Google
+  // still treats back-of-window dates as ephemeral. Don't bump this
+  // one without re-validating against the §D6 finding.
   const horoscopeDateBase = _utcMidnight;
   for (let i = 0; i < 7; i++) {
     const d = new Date(horoscopeDateBase);
@@ -648,11 +666,25 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
     }
   }
 
-  // Choghadiya date pages (next 60 days) — captures "choghadiya tomorrow", "choghadiya [date]"
-  // queries. Extended from 30 → 60 days to give Google two indexing-latency windows of headroom:
-  // a page published 30 days before its date is comfortably crawled / indexed / cached before the
-  // date-specific query spike. May 21 Maithili spike (445 clicks @ 7.2% CTR on
-  // /mai/choghadiya/2026-05-21) proved the pattern works — wider forward window captures more.
+  // Choghadiya date pages (next 60 days) — captures "choghadiya tomorrow",
+  // "choghadiya [date]" queries. 60 days gives Google two indexing-latency
+  // windows of headroom: a page published 30 days before its date is
+  // comfortably crawled / indexed / cached before the date-specific query
+  // spike. May 21 Maithili spike (445 clicks @ 7.2% CTR on
+  // /mai/choghadiya/2026-05-21) proved the pattern works.
+  //
+  // 2026-06-09 (PR #625) emergency-hotfixed this to 7 days alongside the
+  // metadata-route → route-handler swap; the rollback was incidental, not a
+  // cost decision. The 60-day window has zero meaningful Vercel cost impact
+  // because every date in the window is already a precomputed Vercel Blob
+  // (per scripts/precompute-daily-cron.ts default `--window-days 60`):
+  //   - No ISR Writes (Blob-backed surface, not ISR)
+  //   - Per-request Fluid CPU unchanged
+  //   - sitemap.xml gzip footprint stays well under 1 MB
+  // Restored 2026-06-17 after the May choghadiya date queries decayed to
+  // zero (date-page natural decay, not a quality penalty — see PR #714
+  // analysis) so June 18+ pages need the same 30-day-ahead head start
+  // those May pages had.
   // Gemini #266 leftover MED — same drift fix applied to panchang base
   // last time. Construct from UTC components so a build at 18:00 local
   // doesn't bake yesterday's date list compared to a build at 04:00 local.
@@ -660,7 +692,7 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
   // module-level timestamp prevents midnight-race between sitemap
   // sections.
   const choghadiyaDateBase = _utcMidnight;
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < SITEMAP_FORWARD_WINDOW_DAYS; i++) {
     const d = new Date(choghadiyaDateBase);
     d.setUTCDate(d.getUTCDate() + i);
     const dateStr = d.toISOString().slice(0, 10);
@@ -673,9 +705,13 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
 
   // Panchang date pages (next 60 days) — SEO step 2. Captures
   // "aaj ka panchang", "1 june 2026 panchang", "panchang [date]"
-  // queries that currently lose to Drik/Prokerala at position 68.
-  // Lives under /panchang/date/[date] to avoid the /panchang/[city]
-  // sibling-route conflict (see page.tsx docstring).
+  // queries. Lives under /panchang/date/[date] to avoid the
+  // /panchang/[city] sibling-route conflict (see page.tsx docstring).
+  //
+  // See choghadiya block above for the cost-and-window rationale —
+  // /panchang/date/* shares the same precompute pipeline and the same
+  // 2026-06-09 incidental rollback to 7 days, restored to 60 here so
+  // the SEO indexing-latency window matches the precompute window.
   //
   // Gemini #240 MED + re-review MED: normalise base to UTC midnight
   // from UTC date components so the sitemap is deterministic regardless
@@ -687,7 +723,7 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
   // Same BUILD_NOW reuse as horoscope + choghadiya — all three
   // date-base computations share one frozen reference timestamp.
   const panchangDateBase = _utcMidnight;
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < SITEMAP_FORWARD_WINDOW_DAYS; i++) {
     const d = new Date(panchangDateBase);
     d.setUTCDate(d.getUTCDate() + i); // Lesson L: UTC arithmetic so DST doesn't drift
     const dateStr = d.toISOString().slice(0, 10);
@@ -733,13 +769,15 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
   // Gauri Panchang date pages — mirror of the Choghadiya forward window
   // for the South-Indian "gowri panchangam <date>" / "கௌரி பஞ்சாங்கம் <date>"
   // query pattern. Same 60-day forward horizon so crawl/index timing
-  // lines up before the date-specific query spike.
+  // lines up before the date-specific query spike. Restored from the
+  // 2026-06-09 incidental 7-day rollback for the same reasons as the
+  // choghadiya block above.
   // Gemini #266 leftover MED — same UTC-base treatment as choghadiya above.
   // Same BUILD_NOW + per-URL lastModified pattern as the other three
   // date-based blocks. Cycle-3 caught that this block was missed in
   // the first hotfix pass.
   const gauriDateBase = _utcMidnight;
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < SITEMAP_FORWARD_WINDOW_DAYS; i++) {
     const d = new Date(gauriDateBase);
     d.setUTCDate(d.getUTCDate() + i);
     const dateStr = d.toISOString().slice(0, 10);

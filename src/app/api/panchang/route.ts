@@ -39,6 +39,14 @@ export async function GET(request: Request) {
   }
 
   const { searchParams } = new URL(request.url);
+  // Whether the caller provided an explicit date. Responses that default
+  // to today MUST NOT be cached for 24h — the CDN would serve yesterday's
+  // panchang after midnight (Gemini PR #714 HIGH). Date-explicit requests
+  // are deterministic and safe to cache long-term.
+  // Use get() not has() — has() returns true for empty params (?day=).
+  // get() returns null for missing and "" for empty; both are falsy. Gemini PR #714 HIGH.
+  const hasExplicitDate =
+    !!searchParams.get('year') && !!searchParams.get('month') && !!searchParams.get('day');
   const now = new Date();
 
   // Parse and validate with Zod
@@ -86,7 +94,14 @@ export async function GET(request: Request) {
         return NextResponse.json(body, {
           headers: {
             'X-RateLimit-Remaining': remaining.toString(),
-            'Cache-Control': 'public, s-maxage=43200, stale-while-revalidate=43200',
+            // Precompute path: Blob is refreshed nightly. Cache for 24h when
+            // the caller provided an explicit date (deterministic, safe).
+            // If date is omitted (defaults to today) do NOT cache long-term —
+            // the CDN would serve yesterday's panchang after midnight.
+            // Gemini PR #714 HIGH.
+            'Cache-Control': hasExplicitDate
+              ? 'public, s-maxage=86400'
+              : 'public, s-maxage=600, stale-while-revalidate=60',
             'X-Panchang-Source': 'precompute',
           },
         });
@@ -169,7 +184,16 @@ export async function GET(request: Request) {
       ...(tithiTableData ? { tithiTable: tithiTableData } : {}),
       ...(festivals ? { festivals } : {}),
     }, {
-      headers: { 'X-RateLimit-Remaining': remaining.toString(), 'Cache-Control': 'public, s-maxage=43200, stale-while-revalidate=43200' },
+      headers: {
+        'X-RateLimit-Remaining': remaining.toString(),
+        // Live compute path: respect hasExplicitDate same as precompute path.
+        // Without explicit date, response defaults to "today" and MUST NOT
+        // be cached for 12h — it would cross midnight and serve yesterday's
+        // panchang. Gemini PR #714 HIGH.
+        'Cache-Control': hasExplicitDate
+          ? 'public, s-maxage=43200, stale-while-revalidate=43200'
+          : 'public, s-maxage=600, stale-while-revalidate=60',
+      },
     });
   } catch (err) {
     console.error('[API/panchang] Computation error:', err);

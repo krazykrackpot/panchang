@@ -15,10 +15,6 @@
       "schedule": "0 9 * * *"
     },
     {
-      "path": "/api/cron/vrat-reminder",
-      "schedule": "*/5 * * * *"
-    },
-    {
       "path": "/api/cron/index-urls",
       "schedule": "5 0 * * *"
     },

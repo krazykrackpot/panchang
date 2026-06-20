@@ -58,17 +58,17 @@ function getCityLocalDate(timezone: string) {
 // CityPanchangClient component (rendered in the page body) fetches from
 // /api/panchang on hydration, overriding the cached SSR values immediately.
 // Audit 2026-05-25 §E (perf-cwv-remediation).
-export const revalidate = 21600;
+// revalidate = false: data comes from a precomputed Blob written by the
+// nightly cron (scripts/precompute/panchang-city.ts). The cron POSTs to
+// /api/precompute/revalidate which calls revalidatePath on this route
+// family after every write. Time-based ISR expiry is therefore redundant
+// — and each expiry generates an ISR Write when the next user hits a
+// stale page. Blob-driven invalidation only (cron → revalidatePath).
+export const revalidate = false;
 export const dynamicParams = true;
 
-// Per CLAUDE.md "static page budget" rule: dynamic-segment routes like
-// /panchang/[city] (~800 cities × 9 locales = 7,200 pages) MUST return
-// `[]` from generateStaticParams to opt into ISR. Without this, Next.js
-// treats the route as fully dynamic at runtime even with `revalidate`
-// set — every request hits the function, no CDN cache. Confirmed via
-// `next start` curl: route returned `no-cache, no-store` without this
-// export; returns `s-maxage` + cache HIT with it. /panchang/date/[date]
-// already does this; /panchang/[city] was missing it.
+// Per CLAUDE.md "static page budget" rule: dynamic-segment routes MUST
+// return `[]` from generateStaticParams to opt into ISR/static serving.
 export function generateStaticParams(): Array<{ locale: string; city: string }> {
   return [];
 }

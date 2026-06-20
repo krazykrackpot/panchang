@@ -13,7 +13,11 @@ import Link from "next/link";
 import { isDevanagariLocale } from "@/lib/utils/locale-fonts";
 import { safeJsonLd } from "@/lib/seo/safe-jsonld";
 
-export const revalidate = 86400; // 24 hours  –  daily page for a past date is permanent
+// revalidate = false: data comes from the daily-article precomputed Blob
+// (scripts/precompute/daily-article.ts). The nightly cron calls
+// revalidatePath on this family after each write — no time-based
+// expiry needed, eliminates ISR Write churn on stale-page visits.
+export const revalidate = false;
 
 const HOROSCOPE_LABELS: Record<string, Record<string, string>> = {
   en: {

@@ -180,34 +180,43 @@ export async function GET(request: Request, ctx: RouteParams) {
 
       // Parana timed VEVENT — only if the user opted in. Gemini PR #714.
       if (pref.remind_parana && occ.paranaDate && occ.paranaStartLocal && occ.paranaEndLocal) {
-        const startUtcMs = localTimeToUtcMs(occ.paranaDate, occ.paranaStartLocal, location.tz);
-        const endUtcMs   = localTimeToUtcMs(occ.paranaDate, occ.paranaEndLocal,   location.tz);
-        if (startUtcMs != null && endUtcMs != null) {
-          const toIcalUtc = (ms: number) =>
-            new Date(ms).toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
-          events.push({
-            uid: `vrat-${pref.vrat_type}-${occ.fastDate}-parana@dekhopanchang.com`,
-            dtstart: toIcalUtc(startUtcMs),
-            dtend:   toIcalUtc(endUtcMs),
-            summary: `${summary} — Parana`,
-            description: [
-              `Break fast between ${occ.paranaStartLocal} and ${occ.paranaEndLocal}.`,
-              occ.paranaNote ?? '',
-            ].filter(Boolean).join('\n'),
-            categories: ['Vrat', 'Parana', occ.vrat.category],
-            url: event.url,
-            alarm: {
-              trigger: `-PT${reminderOffsetMin}M`,
-              description: `${summary} Parana in ${reminderOffsetMin} min`,
-            },
-          });
+        try {
+          const startUtcMs = localTimeToUtcMs(occ.paranaDate, occ.paranaStartLocal, location.tz);
+          const endUtcMs   = localTimeToUtcMs(occ.paranaDate, occ.paranaEndLocal,   location.tz);
+          if (startUtcMs != null && endUtcMs != null) {
+            const toIcalUtc = (ms: number) =>
+              new Date(ms).toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
+            events.push({
+              uid: `vrat-${pref.vrat_type}-${occ.fastDate}-parana@dekhopanchang.com`,
+              dtstart: toIcalUtc(startUtcMs),
+              dtend:   toIcalUtc(endUtcMs),
+              summary: `${summary} — Parana`,
+              description: [
+                `Break fast between ${occ.paranaStartLocal} and ${occ.paranaEndLocal}.`,
+                occ.paranaNote ?? '',
+              ].filter(Boolean).join('\n'),
+              categories: ['Vrat', 'Parana', occ.vrat.category],
+              url: event.url,
+              alarm: {
+                trigger: `-PT${reminderOffsetMin}M`,
+                description: `${summary} Parana in ${reminderOffsetMin} min`,
+              },
+            });
+          }
+        } catch (err) {
+          // Invalid timezone in profile — skip this parana event rather
+          // than crashing the entire feed. Gemini PR #714 MED.
+          console.error('[vrat-feed] parana local-time conversion failed:', err);
         }
       }
     }
   }
 
-  // Sort by date for consumer friendliness.
-  events.sort((a, b) => a.dtstart.localeCompare(b.dtstart));
+  // Sort chronologically. Strip hyphens before comparing so that all-day
+  // dates (YYYY-MM-DD) and timed UTC events (YYYYMMDDTHHmmssZ) sort
+  // correctly — '-' (ASCII 45) sorts before '0' (ASCII 48), which would
+  // place all all-day events before all timed events. Gemini PR #714 HIGH.
+  events.sort((a, b) => a.dtstart.replace(/-/g, '').localeCompare(b.dtstart.replace(/-/g, '')));
 
   // Dedup by UID — defensive in case the generator emits duplicates.
   const seen = new Set<string>();

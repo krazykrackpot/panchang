@@ -108,6 +108,9 @@ export async function getFestivalForCity(args: {
     },
   });
 
+  // Guard: schema validation inside getPrecomputed can return null if the
+  // fallback's return value fails the Zod parse. Gemini PR #716 MED.
+  if (!ujjainModel) return null;
   const ujjainEntry = asFestivalEntries(ujjainModel.festivals).find(f => f.slug === slug);
   if (!ujjainEntry) return null;
 

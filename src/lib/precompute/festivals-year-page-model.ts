@@ -66,12 +66,12 @@ export function asFestivalEntries(festivals: Record<string, unknown>[]): Festiva
  * (c) the puja muhurat times ARE city-specific (computed fresh).
  */
 
-// Module-level cache: Ujjain's festival calendar for a given year is static.
-// Warm serverless containers reuse this across concurrent city-variant requests
-// instead of re-reading the Blob each time. Keyed by year (2026, 2027, etc.).
-// Cache is bounded: at most 3 entries (years we generate festival pages for).
-// Gemini PR #716 HIGH.
-const _ujjainModelCache = new Map<number, FestivalsYearPageModelT>();
+// Module-level Promise cache: stores the in-flight or resolved Blob read for
+// Ujjain's festival calendar per year. Caching the Promise (not the resolved
+// value) means concurrent requests that all see a cache miss still share ONE
+// Blob read — no duplicate fetches. Gemini PR #716 HIGH.
+// Bounded: at most 3 entries (years we generate festival pages for).
+const _ujjainModelCache = new Map<number, Promise<FestivalsYearPageModelT | undefined>>();
 
 export async function getFestivalForCity(args: {
   year: number;
@@ -93,9 +93,12 @@ export async function getFestivalForCity(args: {
 
   // Slow path: city not precomputed. Use Ujjain Blob (always available) for
   // festival date + tithi, then compute city-specific puja muhurat only.
-  let ujjainModel = _ujjainModelCache.get(year);
-  if (!ujjainModel) {
-    ujjainModel = await getPrecomputed({
+  // Cache the Promise so concurrent requests share one Blob read — not the
+  // resolved value, to avoid duplicate fetches on simultaneous cache misses.
+  // Gemini PR #716 HIGH.
+  let ujjainPromise = _ujjainModelCache.get(year);
+  if (!ujjainPromise) {
+    ujjainPromise = getPrecomputed({
       key: festivalsYearKey(year, 'ujjain'),
       schema: FestivalsYearPageModel,
       fallback: async () => {
@@ -116,10 +119,12 @@ export async function getFestivalForCity(args: {
           festivals: festivals as unknown as Record<string, unknown>[],
         };
       },
-    }) ?? undefined;
-    // Only cache on success — don't persist null so the next request retries.
-    if (ujjainModel) _ujjainModelCache.set(year, ujjainModel);
+    }).then(m => m ?? undefined);
+    // Store the Promise immediately so concurrent requests reuse it.
+    // On rejection the Promise stays cached — callers handle undefined.
+    _ujjainModelCache.set(year, ujjainPromise);
   }
+  const ujjainModel = await ujjainPromise;
 
   // Guard: schema validation inside getPrecomputed can return null if the
   // fallback's return value fails the Zod parse. Gemini PR #716 MED.

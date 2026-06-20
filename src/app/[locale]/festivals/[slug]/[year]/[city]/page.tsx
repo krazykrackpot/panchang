@@ -179,8 +179,10 @@ export default async function FestivalCityPage({
   // fast path ~100ms). For other cities, falls back to Ujjain Blob + city-specific
   // puja muhurat — avoids generateFestivalCalendarV2 (833MB, 7s) on Blob miss.
   const festivalEntry = await getFestivalForCity({ year, city: cityData, slug });
-  // Free memory — tithi table may be populated during Ujjain fallback
-  clearTithiTableCache();
+  // Note: clearTithiTableCache() intentionally removed. getFestivalForCity no
+  // longer calls generateFestivalCalendarV2 (which populated the tithi table).
+  // Clearing the shared, bounded 64-entry cache on every render would thrash
+  // other concurrent requests (/panchang, /kundali etc.). Gemini PR #716 MED.
 
   if (!festivalEntry) {
     // Festival doesn't occur in this year (rare — e.g., adhika masa shifts)

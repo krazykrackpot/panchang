@@ -236,7 +236,9 @@ export default async function FestivalCanonicalPage({
   // Blob (fast, ~100ms) instead of generateFestivalCalendarV2 (90ms/833MB
   // × 6 = the 14s P75 observed in Vercel observability). All 6 TABLE_CITY_SLUGS
   // are in the 59-city precomputed set so Blob hits are expected.
-  const cityEntries = await Promise.all(
+  // Promise.allSettled so a single Blob read failure (network blip, storage
+  // downtime) degrades to fewer table rows rather than a 500. Gemini PR #717 MED.
+  const citySettled = await Promise.allSettled(
     TABLE_CITY_SLUGS.map(async (citySlug) => {
       const cityData = getCityBySlug(citySlug);
       if (!cityData) return null;
@@ -244,6 +246,14 @@ export default async function FestivalCanonicalPage({
       return entry ? { citySlug, cityData, entry } : null;
     })
   );
+
+  const cityEntries = citySettled.map((r) => {
+    if (r.status === 'rejected') {
+      console.error('[festivals/year] city lookup failed:', r.reason);
+      return null;
+    }
+    return r.value;
+  });
 
   for (const result of cityEntries) {
     if (!result) continue;

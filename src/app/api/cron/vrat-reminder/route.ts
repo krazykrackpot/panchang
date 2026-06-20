@@ -1,5 +1,12 @@
 /**
- * Vrat reminder cron — every 5 minutes.
+ * Vrat reminder cron — every 30 minutes.
+ *
+ * Cadence rationale: users can set a parana reminder at 15/30/60 min
+ * before the parana window opens. At 30-min cadence the worst-case
+ * delay is 29 min, so the 15-min offset users may receive their
+ * reminder up to 14 min after parana opens — acceptable. Every-5-min
+ * was overkill: the cron already short-circuits on most runs via the
+ * `next_reminder_due_at` DB predicate (288 → 48 invocations/day).
  *
  * Two reminder streams per (user, vrat) pair:
  *   1. Day-before — sent 18–30h before the fast starts (user's local
@@ -110,8 +117,10 @@ export async function GET(req: NextRequest) {
   //   - IS NULL: unmigrated row (backfill not yet run). Process once via
   //     the legacy path, then populate next_reminder_due_at. After backfill
   //     completes, IS NULL should never appear again naturally.
-  //   - <= NOW() + INTERVAL '10 minutes': concrete due-soon timestamp.
-  //     10-min grace = 1 cron cycle buffer for clock skew / cron lag.
+  //   - <= NOW() + INTERVAL '35 minutes': concrete due-soon timestamp.
+  //     35-min grace = 1 cron cycle (30 min) + 5 min buffer for clock
+  //     skew and GH Actions cron drift. At 30-min cadence, any reminder
+  //     due within the next 35 min will be caught by this run or the next.
   //   - 'infinity'::timestamptz rows are EXCLUDED: infinity is never <=
   //     any finite timestamp, so completed rows never trigger expensive work.
   //
@@ -121,7 +130,7 @@ export async function GET(req: NextRequest) {
     .select('user_id')
     .eq('enabled', true)
     .eq('email_reminders', true)
-    .or('next_reminder_due_at.is.null,next_reminder_due_at.lte.' + new Date(now.getTime() + 10 * 60_000).toISOString())
+    .or('next_reminder_due_at.is.null,next_reminder_due_at.lte.' + new Date(now.getTime() + 35 * 60_000).toISOString())
     .limit(1);
 
   if (earlyErr) {

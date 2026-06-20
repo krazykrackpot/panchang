@@ -86,7 +86,12 @@ export async function GET(request: Request) {
         return NextResponse.json(body, {
           headers: {
             'X-RateLimit-Remaining': remaining.toString(),
-            'Cache-Control': 'public, s-maxage=43200, stale-while-revalidate=43200',
+            // Precompute path: Blob is refreshed nightly by the precompute
+            // cron. Cache the CDN response for 24h — no stale-while-revalidate
+            // needed because the Blob itself (not this route) is the freshness
+            // source. Dropping SWR eliminates the ISR Write each SWR
+            // background regeneration triggers (~772k writes/day observed).
+            'Cache-Control': 'public, s-maxage=86400',
             'X-Panchang-Source': 'precompute',
           },
         });

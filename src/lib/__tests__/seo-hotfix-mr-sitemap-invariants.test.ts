@@ -198,16 +198,20 @@ describe('SEO hotfix 2026-06-01 — exhaustive locale dispatch + sitemap freshne
       expect(src).toMatch(/opts\.lastModified\s*>\s*_nowRef\s*\?\s*_nowRef\s*:\s*opts\.lastModified/);
     });
 
-    it('date-rolling windows are 7 days, not the pre-recovery 60 — 2026-06-01 cut', () => {
+    it('date-rolling windows: horoscope=7days, date-keyed pages=60days — PR #712', () => {
       // 2026-06-01 recovery cut /choghadiya, /panchang/date, /gauri-panchang
-      // from 60 days to 7. The Marathi grammar fix was a side-quest; the
-      // real demotion driver was scaled date-templated content. Keep the
-      // window tight until Google reclassifies the property.
-      const sixtyDayLoops = src.match(/for\s*\(\s*let\s+i\s*=\s*0;\s*i\s*<=?\s*60;/g);
-      expect(sixtyDayLoops?.length ?? 0).toBe(0);
-      // Four windowed blocks (horoscope + 3 cut blocks) all use < 7.
+      // from 60 days to 7. PR #712 (2026-06-17) restored the 60-day window
+      // for those 3 surfaces — pages are already precomputed for 60 days, the
+      // 7-day cap was an accidental artifact of the emergency hotfix (#625).
+      // Horoscope stays at 7 days deliberately (Audit §D6: daily-churn URLs).
+      // 1 horoscope block uses < 7.
       const sevenDayLoops = src.match(/for\s*\(\s*let\s+i\s*=\s*0;\s*i\s*<\s*7;/g);
-      expect(sevenDayLoops?.length ?? 0).toBe(4);
+      expect(sevenDayLoops?.length ?? 0).toBe(1);
+      // 3 date-keyed blocks use SITEMAP_FORWARD_WINDOW_DAYS (60 at the constant).
+      // Match the constant name rather than the literal, since PR #712 moved
+      // the value into a named constant to avoid magic numbers.
+      const windowDayLoops = src.match(/for\s*\(\s*let\s+i\s*=\s*0;\s*i\s*<\s*SITEMAP_FORWARD_WINDOW_DAYS;/g);
+      expect(windowDayLoops?.length ?? 0).toBe(3);
     });
   });
 

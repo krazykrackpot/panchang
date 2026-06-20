@@ -51,7 +51,11 @@ import LearnConceptsBlock from '@/components/seo/LearnConceptsBlock';
 import TodaySignificanceSection from '@/components/date-content/TodaySignificanceSection';
 import type { Metadata } from 'next';
 
-export const revalidate = 86400; // 24h ISR
+// revalidate = false: data comes from a precomputed Blob written by the
+// nightly cron. The cron POSTs revalidatePath on this route family after
+// every write — time-based ISR expiry is redundant and generates ISR
+// Writes on every user visit to a stale page. Blob-driven only.
+export const revalidate = false;
 export const dynamicParams = true;
 
 import { BASE_URL } from '@/lib/seo/base-url';

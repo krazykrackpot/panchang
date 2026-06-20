@@ -475,7 +475,7 @@ function computeSimpleParana(date: string, lat: number, lon: number, timezone: s
 
 // ─── Puja Muhurat Calculation ───
 
-function computePujaMuhurat(
+export function computePujaMuhurat(
   slug: string,
   date: string,
   lat: number,

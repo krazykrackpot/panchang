@@ -204,9 +204,10 @@ export function recomputeNextReminderDueAt(
         // Reminder fires paranaOffsetMin before the parana window opens.
         const paranaReminderMs = paranaStartMs - userCtx.paranaOffsetMin * 60_000;
         // Upper bound of the ±2.5-min send window — still actionable until here.
-        // Candidate window: actionable from 35 min before the ideal send
-        // time up to the exact moment. Widened from +2.5 → +35 min to
-        // survive the 30-min cron cadence. Gemini PR #714 CRITICAL fix.
+        // paranaEndMs marks the UPPER bound of the candidate window.
+        // The cron fires the reminder if now is in [paranaReminderMs, paranaEndMs).
+        // Widened from +2.5 → +35 min so a 30-min cron (up to 35 min late
+        // due to drift) still catches the reminder. Gemini PR #714 CRITICAL fix.
         const paranaEndMs = paranaReminderMs + 35 * 60_000;
         if (nowMs < paranaEndMs) {
           candidates.push(Math.max(paranaReminderMs, nowMs));

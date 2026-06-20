@@ -138,7 +138,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'DB error' }, { status: 500 });
   }
   if (!earlyCheck || earlyCheck.length === 0) {
-    // No reminder due within the next 10 minutes. Skip all expensive work.
+    // No reminder due within the next 35 minutes. Skip all expensive work.
     return NextResponse.json({ success: true, checked: 0, sent: 0, mode: 'early-exit' });
   }
 
@@ -337,12 +337,15 @@ export async function GET(req: NextRequest) {
             if (paranaStartMs != null) {
               const minutesAway = (paranaStartMs - nowMs) / 60_000;
               const offset = user.paranaOffsetMin;
-              // Window: send if we are between (offset + 35 min early) and
-              // exactly at the offset. The 35-min backstop = 1 cron cycle
-              // (30 min) + 5 min drift buffer. Without this widening, a
-              // 30-min cron almost always misses the old ±2.5-min window,
-              // leaving anySent=false → next_reminder_due_at never advances
-              // → infinite per-cycle DB load. Gemini PR #714 CRITICAL.
+              // minutesAway = minutes until parana starts.
+              // Send if: minutesAway is between (offset) and (offset - 35).
+              // In plain English: fire from exactly at the ideal send time
+              // (offset min before parana) down to 35 min LATE (offset-35
+              // min before parana = parana already started by 35-offset min).
+              // This 35-min tolerance = 1 cron cycle (30 min) + 5 min drift.
+              // Without it, a 30-min cron almost always misses the old
+              // ±2.5-min window → anySent=false → next_reminder_due_at
+              // never advances → infinite per-cycle DB load. Gemini PR #714 CRITICAL.
               if (minutesAway >= offset - 35 && minutesAway <= offset) {
                 const result = await sendParana(supabase, pref, user, vrat, occ);
                 if (result === 'sent') {

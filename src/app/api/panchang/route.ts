@@ -182,7 +182,16 @@ export async function GET(request: Request) {
       ...(tithiTableData ? { tithiTable: tithiTableData } : {}),
       ...(festivals ? { festivals } : {}),
     }, {
-      headers: { 'X-RateLimit-Remaining': remaining.toString(), 'Cache-Control': 'public, s-maxage=43200, stale-while-revalidate=43200' },
+      headers: {
+        'X-RateLimit-Remaining': remaining.toString(),
+        // Live compute path: respect hasExplicitDate same as precompute path.
+        // Without explicit date, response defaults to "today" and MUST NOT
+        // be cached for 12h — it would cross midnight and serve yesterday's
+        // panchang. Gemini PR #714 HIGH.
+        'Cache-Control': hasExplicitDate
+          ? 'public, s-maxage=43200, stale-while-revalidate=43200'
+          : 'public, s-maxage=600, stale-while-revalidate=60',
+      },
     });
   } catch (err) {
     console.error('[API/panchang] Computation error:', err);

@@ -98,17 +98,21 @@ export async function GET(request: Request) {
     // largest CPU cost in this cron. Moon sign changes by at most 1-2
     // nakshatras per day — acceptable for an email rashifal. Snapshots
     // refresh on the user's next kundali page visit via normal ISR path.
-    const snapshotMap = new Map<string, { moonSign: number; moonNakshatra: number }>();
+    const snapshotMap = new Map<string, { moonSign: number; moonNakshatra?: number }>();
     if (snapshots) {
       for (const s of snapshots) {
-        // Validate moon_sign (1-12) and moon_nakshatra (1-27) before use.
-        // Skips null/undefined and out-of-range values defensively —
-        // corrupted snapshots would otherwise crash generateDailyHoroscope.
+        // moon_sign (1-12) is required — without it we can't generate a
+        // sign-based horoscope at all.
+        // moon_nakshatra (1-27) is optional — generateDailyHoroscope accepts
+        // it as an optional refinement. If invalid, send a less-personalised
+        // sign-only horoscope rather than skip the email entirely.
         const moonSign = s.moon_sign as unknown;
         const moonNak = s.moon_nakshatra as unknown;
         if (typeof moonSign !== 'number' || !Number.isInteger(moonSign) || moonSign < 1 || moonSign > 12) continue;
-        if (typeof moonNak !== 'number' || !Number.isInteger(moonNak) || moonNak < 1 || moonNak > 27) continue;
-        snapshotMap.set(s.user_id, { moonSign, moonNakshatra: moonNak });
+        const validMoonNak = (typeof moonNak === 'number' && Number.isInteger(moonNak) && moonNak >= 1 && moonNak <= 27)
+          ? moonNak
+          : undefined;
+        snapshotMap.set(s.user_id, { moonSign, moonNakshatra: validMoonNak });
       }
     }
 

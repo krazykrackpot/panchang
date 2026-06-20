@@ -2,8 +2,8 @@ import { setRequestLocale } from 'next-intl/server';
 import { getCityBySlug } from '@/lib/constants/cities';
 import { ALL_FESTIVAL_DEFS, FESTIVAL_VALID_YEARS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details-with-overlay';
-import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
-import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
+import { type FestivalEntry } from '@/lib/calendar/festival-generator';
+import { getFestivalForCity } from '@/lib/precompute/festivals-year-page-model';
 import { formatMinutesHHMM } from '@/lib/astronomy/sunrise';
 // Audit P5d #22: canonical Swiss+Meeus sunrise pipeline.
 import { getSunriseSunsetLocalMinutes } from '@/lib/ephem/sunrise-sunset-local';
@@ -232,15 +232,32 @@ export default async function FestivalCanonicalPage({
 
   // ── Compute data for each table city ──
   const cityRows: CityRow[] = [];
-  for (const citySlug of TABLE_CITY_SLUGS) {
-    const cityData = getCityBySlug(citySlug);
-    if (!cityData) continue;
+  // Run all 6 city lookups in parallel — each reads from the precomputed
+  // Blob (fast, ~100ms) instead of generateFestivalCalendarV2 (90ms/833MB
+  // × 6 = the 14s P75 observed in Vercel observability). All 6 TABLE_CITY_SLUGS
+  // are in the 59-city precomputed set so Blob hits are expected.
+  // Promise.allSettled so a single Blob read failure (network blip, storage
+  // downtime) degrades to fewer table rows rather than a 500. Gemini PR #717 MED.
+  const citySettled = await Promise.allSettled(
+    TABLE_CITY_SLUGS.map(async (citySlug) => {
+      const cityData = getCityBySlug(citySlug);
+      if (!cityData) return null;
+      const entry = await getFestivalForCity({ year, city: cityData, slug });
+      return entry ? { citySlug, cityData, entry } : null;
+    })
+  );
 
-    const festivals = generateFestivalCalendarV2(year, cityData.lat, cityData.lng, cityData.timezone);
-    clearTithiTableCache(); // Free memory — tithi table is large
+  const cityEntries = citySettled.map((r) => {
+    if (r.status === 'rejected') {
+      console.error('[festivals/year] city lookup failed:', r.reason);
+      return null;
+    }
+    return r.value;
+  });
 
-    const entry = festivals.find(f => f.slug === slug);
-    if (!entry) continue;
+  for (const result of cityEntries) {
+    if (!result) continue;
+    const { citySlug, cityData, entry } = result;
 
     const [fy, fm, fd] = entry.date.split('-').map(Number);
     const tzOffset = getUTCOffsetForDate(fy, fm, fd, cityData.timezone);

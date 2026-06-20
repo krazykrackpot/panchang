@@ -119,9 +119,14 @@ export async function getFestivalForCity(args: {
           festivals: festivals as unknown as Record<string, unknown>[],
         };
       },
-    }).then(m => m ?? undefined);
-    // Store the Promise immediately so concurrent requests reuse it.
-    // On rejection the Promise stays cached — callers handle undefined.
+    }).then(m => m ?? undefined)
+      .catch((err: unknown) => {
+        // Evict on rejection so the next request retries instead of
+        // awaiting a permanently-poisoned Promise. Gemini PR #716 HIGH.
+        _ujjainModelCache.delete(year);
+        throw err;
+      });
+    // Store immediately so concurrent requests share this in-flight fetch.
     _ujjainModelCache.set(year, ujjainPromise);
   }
   const ujjainModel = await ujjainPromise;

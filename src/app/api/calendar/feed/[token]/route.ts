@@ -104,7 +104,7 @@ export async function GET(request: Request, ctx: RouteParams) {
   // Fetch the user's subscribed vrats with their reminder prefs.
   const { data: prefs, error: prefsError } = await supabase
     .from('user_vrat_preferences')
-    .select('vrat_type, start_date, end_date, remind_day_before')
+    .select('vrat_type, start_date, end_date, remind_day_before, remind_parana')
     .eq('user_id', profile.id)
     .eq('enabled', true);
 
@@ -168,20 +168,18 @@ export async function GET(request: Request, ctx: RouteParams) {
           : `https://dekhopanchang.com/${locale}/dashboard/vrats`,
       };
 
-      // Day-before alarm: fires 24h before the fast day so users can
-      // prepare. Parana reminders are a separate timed VEVENT below —
-      // the vrat-reminder cron is disabled; calendar app handles all alerts.
-      event.alarm = {
-        trigger: `-PT${24 * 60}M`, // 24h before the fast day
-        description: `Tomorrow: ${summary}`,
-      };
+      // Day-before alarm — only if the user opted in. Gemini PR #714.
+      if (pref.remind_day_before) {
+        event.alarm = {
+          trigger: `-PT${24 * 60}M`,
+          description: `Tomorrow: ${summary}`,
+        };
+      }
 
       events.push(event);
 
-      // Parana timed VEVENT — separate calendar block with its own alarm.
-      // The user's calendar app fires the notification at the right time
-      // using native device notifications; no cron required.
-      if (occ.paranaDate && occ.paranaStartLocal && occ.paranaEndLocal) {
+      // Parana timed VEVENT — only if the user opted in. Gemini PR #714.
+      if (pref.remind_parana && occ.paranaDate && occ.paranaStartLocal && occ.paranaEndLocal) {
         const startUtcMs = localTimeToUtcMs(occ.paranaDate, occ.paranaStartLocal, location.tz);
         const endUtcMs   = localTimeToUtcMs(occ.paranaDate, occ.paranaEndLocal,   location.tz);
         if (startUtcMs != null && endUtcMs != null) {

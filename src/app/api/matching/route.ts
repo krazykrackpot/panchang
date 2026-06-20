@@ -45,13 +45,13 @@ export async function POST(request: Request) {
         { moonNakshatra: girl.moonNakshatra, moonRashi: girl.moonRashi },
       );
       // POST responses are never cached by CDN regardless of Cache-Control.
-      // Header omitted intentionally. Gemini PR #715 HIGH.
+      // Header omitted intentionally.
       return NextResponse.json(result);
     }
 
     const result = computeAshtaKuta(boy, girl);
     // POST responses are never cached by CDN regardless of Cache-Control.
-    // Header omitted intentionally. Gemini PR #715 HIGH.
+    // Header omitted intentionally.
     return NextResponse.json(result);
   } catch (err) {
     console.error('[matching] computation error:', err);

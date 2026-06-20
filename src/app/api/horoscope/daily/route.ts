@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
+import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 
 const querySchema = z.object({
   moonSign: z.coerce.number().int().min(1).max(12),
@@ -27,10 +28,10 @@ export async function GET(request: Request) {
     const { moonSign, nakshatra, date } = parsed.data;
     const hasExplicitDate = !!date;
 
-    // Default to today in IST. new Date() on Vercel (UTC) would return the
-    // previous day for Indian users between midnight and 05:30 IST.
-    // Gemini PR #715 HIGH.
-    const today = date || new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
+    // Default to today in IST. Vercel runs UTC — without the IANA-aware
+    // helper, an Indian user between midnight and 05:30 IST would receive
+    // the previous calendar day's horoscope.
+    const today = date || todayInTimezone('Asia/Kolkata');
 
     const horoscope = generateDailyHoroscope({
       moonSign,

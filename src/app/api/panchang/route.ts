@@ -43,8 +43,10 @@ export async function GET(request: Request) {
   // to today MUST NOT be cached for 24h — the CDN would serve yesterday's
   // panchang after midnight (Gemini PR #714 HIGH). Date-explicit requests
   // are deterministic and safe to cache long-term.
+  // Use get() not has() — has() returns true for empty params (?day=).
+  // get() returns null for missing and "" for empty; both are falsy. Gemini PR #714 HIGH.
   const hasExplicitDate =
-    searchParams.has('year') && searchParams.has('month') && searchParams.has('day');
+    !!searchParams.get('year') && !!searchParams.get('month') && !!searchParams.get('day');
   const now = new Date();
 
   // Parse and validate with Zod

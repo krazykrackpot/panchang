@@ -29,6 +29,7 @@ import {
   type VratTradition,
 } from '@/lib/vrat/generator';
 import { tl } from '@/lib/utils/trilingual';
+import { localTimeToUtcMs } from '@/lib/utils/timezone';
 
 interface RouteParams { params: Promise<{ token: string }> }
 
@@ -167,18 +168,43 @@ export async function GET(request: Request, ctx: RouteParams) {
           : `https://dekhopanchang.com/${locale}/dashboard/vrats`,
       };
 
-      // Day-before alarm by default. If the user opted in to parana
-      // reminders, the cron sends those — calendar app alarm doesn't
-      // double for it (Gemini #225: parana time depends on local
-      // sunrise which the calendar app doesn't know).
-      if (pref.remind_day_before) {
-        event.alarm = {
-          trigger: `-PT${reminderOffsetMin + 24 * 60}M`, // day before + offset
-          description: `Tomorrow: ${summary}`,
-        };
-      }
+      // Day-before alarm: fires 24h before the fast day so users can
+      // prepare. Parana reminders are a separate timed VEVENT below —
+      // the vrat-reminder cron is disabled; calendar app handles all alerts.
+      event.alarm = {
+        trigger: `-PT${24 * 60}M`, // 24h before the fast day
+        description: `Tomorrow: ${summary}`,
+      };
 
       events.push(event);
+
+      // Parana timed VEVENT — separate calendar block with its own alarm.
+      // The user's calendar app fires the notification at the right time
+      // using native device notifications; no cron required.
+      if (occ.paranaDate && occ.paranaStartLocal && occ.paranaEndLocal) {
+        const startUtcMs = localTimeToUtcMs(occ.paranaDate, occ.paranaStartLocal, location.tz);
+        const endUtcMs   = localTimeToUtcMs(occ.paranaDate, occ.paranaEndLocal,   location.tz);
+        if (startUtcMs != null && endUtcMs != null) {
+          const toIcalUtc = (ms: number) =>
+            new Date(ms).toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
+          events.push({
+            uid: `vrat-${pref.vrat_type}-${occ.fastDate}-parana@dekhopanchang.com`,
+            dtstart: toIcalUtc(startUtcMs),
+            dtend:   toIcalUtc(endUtcMs),
+            summary: `${summary} — Parana`,
+            description: [
+              `Break fast between ${occ.paranaStartLocal} and ${occ.paranaEndLocal}.`,
+              occ.paranaNote ?? '',
+            ].filter(Boolean).join('\n'),
+            categories: ['Vrat', 'Parana', occ.vrat.category],
+            url: event.url,
+            alarm: {
+              trigger: `-PT${reminderOffsetMin}M`,
+              description: `${summary} Parana in ${reminderOffsetMin} min`,
+            },
+          });
+        }
+      }
     }
   }
 

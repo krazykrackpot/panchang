@@ -101,11 +101,14 @@ export async function GET(request: Request) {
     const snapshotMap = new Map<string, { moonSign: number; moonNakshatra: number }>();
     if (snapshots) {
       for (const s of snapshots) {
-        // Guard: moon_sign / moon_nakshatra may be null if the snapshot
-        // hasn't been computed yet for this user. Skip to avoid passing
-        // null to generateDailyHoroscope which expects 1-12 / 1-27.
-        if (s.moon_sign == null || s.moon_nakshatra == null) continue;
-        snapshotMap.set(s.user_id, { moonSign: s.moon_sign as number, moonNakshatra: s.moon_nakshatra as number });
+        // Validate moon_sign (1-12) and moon_nakshatra (1-27) before use.
+        // Skips null/undefined and out-of-range values defensively —
+        // corrupted snapshots would otherwise crash generateDailyHoroscope.
+        const moonSign = s.moon_sign as unknown;
+        const moonNak = s.moon_nakshatra as unknown;
+        if (typeof moonSign !== 'number' || !Number.isInteger(moonSign) || moonSign < 1 || moonSign > 12) continue;
+        if (typeof moonNak !== 'number' || !Number.isInteger(moonNak) || moonNak < 1 || moonNak > 27) continue;
+        snapshotMap.set(s.user_id, { moonSign, moonNakshatra: moonNak });
       }
     }
 

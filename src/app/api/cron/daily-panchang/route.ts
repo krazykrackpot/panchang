@@ -1,7 +1,12 @@
 import type { LocaleText } from '@/types/panchang';
 import { NextResponse } from 'next/server';
 import { verifyCronAuth } from '@/lib/api/cron-auth';
-import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
+// isSnapshotStale / recomputeSnapshotDirect intentionally NOT imported.
+// The email cron only needs moon_sign + moon_nakshatra for rashifal.
+// Those change by at most 1 nakshatra per day; serving a slightly stale
+// value is acceptable for an email vs the cost of recomputeSnapshotDirect
+// (full kundali engine run × every subscriber). Snapshots refresh on
+// the user's next kundali page visit via the normal ISR/precompute path.
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { generateDailyPanchangEmail } from '@/lib/email/templates/daily-panchang';
 import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
@@ -88,14 +93,14 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: 'Failed to fetch snapshots' }, { status: 500 });
     }
 
+    // Use the stored moon_sign/moon_nakshatra as-is. Skipping staleness
+    // recomputation: the full kundali engine run per subscriber was the
+    // largest CPU cost in this cron. Moon sign changes by at most 1-2
+    // nakshatras per day — acceptable for an email rashifal. Snapshots
+    // refresh on the user's next kundali page visit via normal ISR path.
     const snapshotMap = new Map<string, { moonSign: number; moonNakshatra: number }>();
     if (snapshots) {
       for (const s of snapshots) {
-        if (isSnapshotStale(s)) {
-          const fresh = await recomputeSnapshotDirect(supabase, s.user_id);
-          if (!fresh) { console.error(`[cron/daily-panchang] Could not recompute for ${s.user_id}`); continue; }
-          Object.assign(s, fresh);
-        }
         snapshotMap.set(s.user_id, { moonSign: s.moon_sign, moonNakshatra: s.moon_nakshatra });
       }
     }

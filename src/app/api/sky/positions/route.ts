@@ -38,7 +38,9 @@ export async function GET(request: NextRequest) {
       {
         headers: {
           // Cache at CDN edge for 60s  –  matches client auto-refresh interval
-          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
+          // Live positions refresh every 60s. No SWR — background regen of
+// real-time data adds CPU cost with no freshness benefit.
+'Cache-Control': 'public, s-maxage=60',
         },
       }
     );

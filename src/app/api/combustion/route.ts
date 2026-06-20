@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
     const year = parseInt(req.nextUrl.searchParams.get('year') || String(new Date().getFullYear()));
     const events = generateCombustionCalendar(year);
     return NextResponse.json({ year, events }, {
-      headers: { 'Cache-Control': 'public, s-maxage=604800, stale-while-revalidate=86400' },
+      headers: { 'Cache-Control': 'public, s-maxage=604800' },
     });
   } catch (err) {
     console.error('[combustion] error:', err);

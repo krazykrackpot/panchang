@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
     const year = parseInt(req.nextUrl.searchParams.get('year') || String(new Date().getFullYear()));
     const periods = generateRetrogradeCalendar(year);
     return NextResponse.json({ year, periods }, {
-      headers: { 'Cache-Control': 'public, s-maxage=604800, stale-while-revalidate=86400' },
+      headers: { 'Cache-Control': 'public, s-maxage=604800' },
     });
   } catch (err) {
     console.error('[retrograde] error:', err);

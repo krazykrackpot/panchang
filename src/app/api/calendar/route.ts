@@ -40,7 +40,7 @@ export async function GET(request: Request) {
   try {
     const festivals = generateFestivalCalendarV2(year, lat, lon, timezoneParam);
     return NextResponse.json({ year, festivals }, {
-      headers: { 'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=43200' },
+      headers: { 'Cache-Control': 'public, s-maxage=86400' },
     });
   } catch (err) {
     // Generic error to the client — `String(err)` leaks the stack trace

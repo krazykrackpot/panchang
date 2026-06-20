@@ -25,6 +25,7 @@ export async function GET(request: Request) {
     }
 
     const { moonSign, nakshatra, date } = parsed.data;
+    const hasExplicitDate = !!date;
 
     // Default to today's date
     const now = new Date();
@@ -38,7 +39,14 @@ export async function GET(request: Request) {
 
     return NextResponse.json(horoscope, {
       headers: {
-        'Cache-Control': 'public, s-maxage=1800, stale-while-revalidate=3600',
+        // Explicit date: content is deterministic — cache for the full day.
+        // No date (defaults to today): short cache to avoid serving
+        // yesterday's horoscope after midnight. No SWR on either path —
+        // background regeneration generates ISR Write + CPU cost for no
+        // freshness benefit (data is deterministic per (sign, date) tuple).
+        'Cache-Control': hasExplicitDate
+          ? 'public, s-maxage=86400'
+          : 'public, s-maxage=600',
       },
     });
   } catch (err) {

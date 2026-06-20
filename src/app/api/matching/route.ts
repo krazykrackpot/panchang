@@ -44,15 +44,15 @@ export async function POST(request: Request) {
         { moonNakshatra: boy.moonNakshatra, moonRashi: boy.moonRashi },
         { moonNakshatra: girl.moonNakshatra, moonRashi: girl.moonRashi },
       );
-      return NextResponse.json(result, {
-        headers: { 'Cache-Control': 'public, s-maxage=86400' },
-      });
+      // POST responses are never cached by CDN regardless of Cache-Control.
+      // Header omitted intentionally. Gemini PR #715 HIGH.
+      return NextResponse.json(result);
     }
 
     const result = computeAshtaKuta(boy, girl);
-    return NextResponse.json(result, {
-      headers: { 'Cache-Control': 'public, s-maxage=86400' },
-    });
+    // POST responses are never cached by CDN regardless of Cache-Control.
+    // Header omitted intentionally. Gemini PR #715 HIGH.
+    return NextResponse.json(result);
   } catch (err) {
     console.error('[matching] computation error:', err);
     return NextResponse.json(

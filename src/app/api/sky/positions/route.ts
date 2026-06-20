@@ -37,10 +37,10 @@ export async function GET(request: NextRequest) {
       },
       {
         headers: {
-          // Cache at CDN edge for 60s  –  matches client auto-refresh interval
-          // Live positions refresh every 60s. No SWR — background regen of
-// real-time data adds CPU cost with no freshness benefit.
-'Cache-Control': 'public, s-maxage=60',
+          // Historical/future date: result is deterministic — cache 30 days.
+          // Live (no date param): 60s to match the client auto-refresh interval.
+          // No SWR on either path. Gemini PR #715 MED.
+          'Cache-Control': dateParam ? 'public, s-maxage=2592000' : 'public, s-maxage=60',
         },
       }
     );

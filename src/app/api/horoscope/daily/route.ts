@@ -27,9 +27,10 @@ export async function GET(request: Request) {
     const { moonSign, nakshatra, date } = parsed.data;
     const hasExplicitDate = !!date;
 
-    // Default to today's date
-    const now = new Date();
-    const today = date || `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    // Default to today in IST. new Date() on Vercel (UTC) would return the
+    // previous day for Indian users between midnight and 05:30 IST.
+    // Gemini PR #715 HIGH.
+    const today = date || new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
 
     const horoscope = generateDailyHoroscope({
       moonSign,

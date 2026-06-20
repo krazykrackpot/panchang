@@ -24,6 +24,24 @@ export async function GET(request: NextRequest) {
 
   try {
     const dateParam = request.nextUrl.searchParams.get('date');
+
+    // Strict ISO 8601 datetime validation. new Date() accepts loose strings
+    // like "12:00" or "January 1" that resolve relative to NOW — which would
+    // poison the long cache (same cache key, different result over time).
+    // The timezone offset (Z or ±HH:MM) is MANDATORY when a time component
+    // is present: new Date("2023-10-27T15:30") without offset resolves to
+    // server-local time, also non-deterministic across server timezones.
+    // Accepted: YYYY-MM-DD  OR  YYYY-MM-DDTHH:MM[:SS(.sss)?](Z|±HH:MM).
+    const ISO_DATE = /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:?\d{2}))?$/;
+    const isFullyQualifiedDate = dateParam !== null && ISO_DATE.test(dateParam);
+
+    if (dateParam !== null && !isFullyQualifiedDate) {
+      return NextResponse.json(
+        { error: 'Invalid date format. Use YYYY-MM-DD or ISO 8601.' },
+        { status: 400 },
+      );
+    }
+
     const now = dateParam ? new Date(dateParam) : new Date();
     if (isNaN(now.getTime())) {
       return NextResponse.json({ error: 'Invalid date format' }, { status: 400 });
@@ -37,8 +55,10 @@ export async function GET(request: NextRequest) {
       },
       {
         headers: {
-          // Cache at CDN edge for 60s  –  matches client auto-refresh interval
-          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
+          // Fully-qualified historical/future date: result is deterministic — cache 30 days.
+          // Live (no date param): 60s to match the client auto-refresh interval.
+          // No SWR on either path.
+          'Cache-Control': isFullyQualifiedDate ? 'public, s-maxage=2592000' : 'public, s-maxage=60',
         },
       }
     );

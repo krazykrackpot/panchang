@@ -1800,7 +1800,7 @@ export async function GET(
           <div style={{ position: 'absolute', bottom: 20, fontSize: 12, color: '#8a847880', display: 'flex' }}>dekhopanchang.com</div>
         </div>
       ),
-      { width, height, headers: { 'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=43200' } }
+      { width, height, headers: { 'Cache-Control': 'public, s-maxage=86400' } }
     );
   }
 

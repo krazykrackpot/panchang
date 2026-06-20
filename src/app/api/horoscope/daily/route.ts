@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
+import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 
 const querySchema = z.object({
   moonSign: z.coerce.number().int().min(1).max(12),
@@ -25,10 +26,12 @@ export async function GET(request: Request) {
     }
 
     const { moonSign, nakshatra, date } = parsed.data;
+    const hasExplicitDate = !!date;
 
-    // Default to today's date
-    const now = new Date();
-    const today = date || `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    // Default to today in IST. Vercel runs UTC — without the IANA-aware
+    // helper, an Indian user between midnight and 05:30 IST would receive
+    // the previous calendar day's horoscope.
+    const today = date || todayInTimezone('Asia/Kolkata');
 
     const horoscope = generateDailyHoroscope({
       moonSign,
@@ -38,7 +41,14 @@ export async function GET(request: Request) {
 
     return NextResponse.json(horoscope, {
       headers: {
-        'Cache-Control': 'public, s-maxage=1800, stale-while-revalidate=3600',
+        // Explicit date: content is deterministic — cache for the full day.
+        // No date (defaults to today): short cache to avoid serving
+        // yesterday's horoscope after midnight. No SWR on either path —
+        // background regeneration generates ISR Write + CPU cost for no
+        // freshness benefit (data is deterministic per (sign, date) tuple).
+        'Cache-Control': hasExplicitDate
+          ? 'public, s-maxage=86400'
+          : 'public, s-maxage=600',
       },
     });
   } catch (err) {

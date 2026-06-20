@@ -30,6 +30,7 @@ Disallow: /*/settings/
 Disallow: /*/profile/
 Disallow: /*/dashboard/
 Disallow: /*/embed/
+Disallow: /*/festivals/*/*/*
 
 # Sitemap location
 Sitemap: https://dekhopanchang.com/sitemap.xml
@@ -108,6 +109,7 @@ Allow: /*/lunar-calendar
 Allow: /*/annual-forecast
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
+Disallow: /*/festivals/*/*/*
 
 User-agent: ChatGPT-User
 Allow: /*/panchang
@@ -175,6 +177,7 @@ Allow: /*/lunar-calendar
 Allow: /*/annual-forecast
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
+Disallow: /*/festivals/*/*/*
 
 User-agent: Claude-Web
 Allow: /*/panchang
@@ -242,6 +245,7 @@ Allow: /*/lunar-calendar
 Allow: /*/annual-forecast
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
+Disallow: /*/festivals/*/*/*
 
 User-agent: anthropic-ai
 Allow: /*/panchang
@@ -309,6 +313,7 @@ Allow: /*/lunar-calendar
 Allow: /*/annual-forecast
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
+Disallow: /*/festivals/*/*/*
 
 User-agent: Google-Extended
 Allow: /*/panchang
@@ -376,6 +381,7 @@ Allow: /*/lunar-calendar
 Allow: /*/annual-forecast
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
+Disallow: /*/festivals/*/*/*
 
 User-agent: PerplexityBot
 Allow: /*/panchang
@@ -443,6 +449,7 @@ Allow: /*/lunar-calendar
 Allow: /*/annual-forecast
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
+Disallow: /*/festivals/*/*/*
 
 User-agent: cohere-ai
 Allow: /*/panchang
@@ -495,6 +502,7 @@ Allow: /*/lunar-calendar
 Allow: /*/annual-forecast
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
+Disallow: /*/festivals/*/*/*
 
 # ─── Hard Blocks ───
 

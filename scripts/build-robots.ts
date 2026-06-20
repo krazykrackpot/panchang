@@ -119,6 +119,8 @@ const COHERE_ALLOW = [
 const AI_DISALLOW = [
   '/*/learn/modules/',
   '/*/learn/dashboard/',
+  // Festival city variants are noindex + too expensive to render for crawlers.
+  '/*/festivals/*/*/*',
 ];
 
 /** Paths every crawler is blocked from. */
@@ -130,6 +132,13 @@ const COMMON_DISALLOW = [
   '/*/profile/',
   '/*/dashboard/',
   '/*/embed/',
+  // Festival × city variant pages (/locale/festivals/slug/year/city/).
+  // These pages are noindex in metadata but `Allow: /*/festivals` above
+  // was letting crawlers reach every city variant (54K invocations/day,
+  // 7s P75 compute per request = #1 CPU cost driver). The year-level
+  // page (/locale/festivals/slug/year/) stays allowed; only the 5th
+  // path segment (city) is blocked.
+  '/*/festivals/*/*/*',
 ];
 
 const AI_CRAWLERS_FULL = [

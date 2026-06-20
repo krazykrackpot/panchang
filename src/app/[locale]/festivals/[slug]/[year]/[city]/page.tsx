@@ -5,8 +5,7 @@ import { MAJOR_FESTIVALS, type MuhurtaRule } from '@/lib/calendar/festival-defs'
 import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details-with-overlay';
 import { type FestivalEntry } from '@/lib/calendar/festival-generator';
 import {
-  getFestivalsYearPageModel,
-  asFestivalEntries,
+  getFestivalForCity,
 } from '@/lib/precompute/festivals-year-page-model';
 import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
 import { formatMinutesHHMM } from '@/lib/astronomy/sunrise';
@@ -176,19 +175,15 @@ export default async function FestivalCityPage({
   const detail = FESTIVAL_DETAILS[slug];
   if (!detail) notFound();
 
-  // Read precomputed festival list (Blob → live-compute fallback).
-  // The fallback hits the same generateFestivalCalendarV2(year, city)
-  // call this PR replaced, so live and Blob paths are byte-equivalent
-  // (modulo _computedAt).
-  const festivalsModel = await getFestivalsYearPageModel({ year, city: cityData });
-  const festivals = asFestivalEntries(festivalsModel.festivals);
-  // Free memory  –  tithi table is large
+  // Read festival entry for this city. Uses Blob for precomputed cities (59 cities,
+  // fast path ~100ms). For other cities, falls back to Ujjain Blob + city-specific
+  // puja muhurat — avoids generateFestivalCalendarV2 (833MB, 7s) on Blob miss.
+  const festivalEntry = await getFestivalForCity({ year, city: cityData, slug });
+  // Free memory — tithi table may be populated during Ujjain fallback
   clearTithiTableCache();
 
-  // Find the matching festival entry
-  const festivalEntry = festivals.find(f => f.slug === slug);
   if (!festivalEntry) {
-    // Festival doesn't occur in this year (rare  –  e.g., adhika masa shifts)
+    // Festival doesn't occur in this year (rare — e.g., adhika masa shifts)
     notFound();
   }
 

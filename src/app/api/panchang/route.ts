@@ -39,6 +39,12 @@ export async function GET(request: Request) {
   }
 
   const { searchParams } = new URL(request.url);
+  // Whether the caller provided an explicit date. Responses that default
+  // to today MUST NOT be cached for 24h — the CDN would serve yesterday's
+  // panchang after midnight (Gemini PR #714 HIGH). Date-explicit requests
+  // are deterministic and safe to cache long-term.
+  const hasExplicitDate =
+    searchParams.has('year') && searchParams.has('month') && searchParams.has('day');
   const now = new Date();
 
   // Parse and validate with Zod
@@ -86,12 +92,14 @@ export async function GET(request: Request) {
         return NextResponse.json(body, {
           headers: {
             'X-RateLimit-Remaining': remaining.toString(),
-            // Precompute path: Blob is refreshed nightly by the precompute
-            // cron. Cache the CDN response for 24h — no stale-while-revalidate
-            // needed because the Blob itself (not this route) is the freshness
-            // source. Dropping SWR eliminates the ISR Write each SWR
-            // background regeneration triggers (~772k writes/day observed).
-            'Cache-Control': 'public, s-maxage=86400',
+            // Precompute path: Blob is refreshed nightly. Cache for 24h when
+            // the caller provided an explicit date (deterministic, safe).
+            // If date is omitted (defaults to today) do NOT cache long-term —
+            // the CDN would serve yesterday's panchang after midnight.
+            // Gemini PR #714 HIGH.
+            'Cache-Control': hasExplicitDate
+              ? 'public, s-maxage=86400'
+              : 'public, s-maxage=600, stale-while-revalidate=60',
             'X-Panchang-Source': 'precompute',
           },
         });

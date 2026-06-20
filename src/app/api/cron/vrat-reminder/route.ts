@@ -337,7 +337,13 @@ export async function GET(req: NextRequest) {
             if (paranaStartMs != null) {
               const minutesAway = (paranaStartMs - nowMs) / 60_000;
               const offset = user.paranaOffsetMin;
-              if (minutesAway >= offset - 2.5 && minutesAway <= offset + 2.5) {
+              // Window: send if we are between (offset + 35 min early) and
+              // exactly at the offset. The 35-min backstop = 1 cron cycle
+              // (30 min) + 5 min drift buffer. Without this widening, a
+              // 30-min cron almost always misses the old ±2.5-min window,
+              // leaving anySent=false → next_reminder_due_at never advances
+              // → infinite per-cycle DB load. Gemini PR #714 CRITICAL.
+              if (minutesAway >= offset - 35 && minutesAway <= offset) {
                 const result = await sendParana(supabase, pref, user, vrat, occ);
                 if (result === 'sent') {
                   sent++;

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isStrictYmd, isValidYear } from '@/lib/seo/date-validation';
+import { FESTIVAL_VALID_YEARS } from '@/lib/calendar/festival-defs';
 import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { resolveCanonicalYogaSlug } from '@/lib/yogas/canonical-slugs';
 import {
@@ -664,11 +665,14 @@ export default function proxy(request: NextRequest) {
     // Validate all 4 segments before redirecting. Garbage paths (typos,
     // scraper noise on any segment) fall through to Next's 404 handler
     // instead of getting a 308 that points at a 404 target.
-    // Gemini PR #719 r2/r3 MED.
+    // Year validation uses FESTIVAL_VALID_YEARS (the actual range the
+    // year page supports), not the broader isValidYear() helper —
+    // /festivals/diwali/2025 doesn't exist so the redirect would land
+    // on a 404. Gemini PR #719 r2/r3/r5 MED.
     if (
       LOCALES.includes(fcLocale as (typeof LOCALES)[number]) &&
       CANONICAL_FESTIVAL_SLUGS.has(fcSlug) &&
-      isValidYear(fcYear) &&
+      (FESTIVAL_VALID_YEARS as readonly number[]).includes(parseInt(fcYear, 10)) &&
       CANONICAL_CITY_SLUGS.has(fcCity)
     ) {
       // Clone nextUrl to preserve query parameters (UTM codes, search

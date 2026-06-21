@@ -61,7 +61,10 @@ export function rehydrateFestivalDescriptions(festivals: FestivalEntry[]): void 
     if (!f.slug) continue;
     const significance = FESTIVAL_DETAILS[f.slug]?.significance;
     if (significance) {
-      f.description = significance;
+      // Shallow-copy to avoid sharing the global FESTIVAL_DETAILS reference —
+      // downstream consumers (rendering, translation, iCal export) could
+      // otherwise mutate the constant. Gemini PR #718 MED.
+      f.description = { ...significance };
     }
   }
 }

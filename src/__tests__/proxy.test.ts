@@ -303,7 +303,10 @@ describe('soft-404 fix — year-keyed routes pass through valid years', () => {
     { url: 'https://dekhopanchang.com/en/vivah-muhurat/2026' },
     { url: 'https://dekhopanchang.com/en/calendar/regional/bengali/2026' },
     { url: 'https://dekhopanchang.com/en/festivals/diwali/2026' },
-    { url: 'https://dekhopanchang.com/en/festivals/diwali/2026/delhi' },
+    // Note: /festivals/diwali/2026/delhi is NOT in this set anymore —
+    // PR #719 added a 308 redirect from city variants to the year page,
+    // so the proxy intentionally returns 308 (not 200/204) for that URL.
+    // Tested separately in the city-variant 308 redirect block below.
     // Muhurta deep URLs — all combinations pass through the proxy.
     // Named month (canonical form per shared.ts MONTH_MAP):
     { url: 'https://dekhopanchang.com/en/muhurta/marriage/2026/june/delhi' },
@@ -320,6 +323,44 @@ describe('soft-404 fix — year-keyed routes pass through valid years', () => {
     const res = proxy(makeRequest(url));
     expect(res.status).not.toBe(404);
     expect([200, 204]).toContain(res.status);
+  });
+});
+
+describe('PR #719 — festival/[slug]/[year]/[city] 308 redirect', () => {
+  it.each([
+    { url: 'https://dekhopanchang.com/en/festivals/diwali/2026/delhi' },
+    { url: 'https://dekhopanchang.com/hi/festivals/holi/2027/mumbai' },
+    { url: 'https://dekhopanchang.com/en/festivals/janmashtami/2028/bangalore' },
+  ])('redirects 308 to year page: $url', ({ url }) => {
+    const res = proxy(makeRequest(url));
+    expect(res.status).toBe(308);
+    const location = res.headers.get('location');
+    expect(location).toBeTruthy();
+    // Location strips the city segment, keeps locale + slug + year
+    // City slug character class matches CANONICAL_CITY_SLUGS shape
+    // ([a-z0-9-]+) — `new-york` etc. must be stripped too.
+    const expectedPath = url.replace(/\/[a-z0-9-]+$/, '').replace('https://dekhopanchang.com', '');
+    expect(location).toContain(expectedPath);
+  });
+
+  it.each([
+    // Out-of-range year (2025 not in FESTIVAL_VALID_YEARS [2026-2030]) — falls through.
+    { url: 'https://dekhopanchang.com/en/festivals/diwali/2025/delhi' },
+    // Non-canonical festival slug — falls through.
+    { url: 'https://dekhopanchang.com/en/festivals/not-a-festival/2026/delhi' },
+    // Non-canonical city slug — falls through.
+    { url: 'https://dekhopanchang.com/en/festivals/diwali/2026/not-a-city' },
+  ])('falls through (no 308) for garbage: $url', ({ url }) => {
+    const res = proxy(makeRequest(url));
+    expect(res.status).not.toBe(308);
+  });
+
+  it('preserves query params across the redirect', () => {
+    const res = proxy(makeRequest('https://dekhopanchang.com/en/festivals/diwali/2026/delhi?utm_source=test&utm_campaign=verify'));
+    expect(res.status).toBe(308);
+    const location = res.headers.get('location') ?? '';
+    expect(location).toContain('utm_source=test');
+    expect(location).toContain('utm_campaign=verify');
   });
 });
 

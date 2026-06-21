@@ -27,21 +27,9 @@ import { getSmartaVaishnavNote } from '@/lib/calendar/smarta-vaishnava-notes';
 
 import { BASE_URL } from '@/lib/seo/base-url';
 
-// Top 20 festival slugs for static generation
-const TOP_FESTIVAL_SLUGS = [
-  'diwali', 'janmashtami', 'maha-shivaratri', 'ram-navami', 'ganesh-chaturthi',
-  'dussehra', 'holi', 'raksha-bandhan', 'dhanteras', 'narak-chaturdashi',
-  'govardhan-puja', 'bhai-dooj', 'hanuman-jayanti', 'akshaya-tritiya',
-  'guru-purnima', 'vasant-panchami', 'holika-dahan', 'hartalika-teej',
-  'chhath-puja', 'makar-sankranti',
-];
-
-// Top 15 cities for static generation
-const TOP_CITY_SLUGS = [
-  'delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad',
-  'pune', 'ahmedabad', 'jaipur', 'lucknow', 'varanasi', 'patna',
-  'bhopal', 'chandigarh', 'new-york',
-];
+// TOP_FESTIVAL_SLUGS and TOP_CITY_SLUGS were used to seed static
+// generation. Removed because generateStaticParams now returns []
+// (see comment on generateStaticParams below).
 
 const VALID_YEARS = [2025, 2026, 2027, 2028, 2029];
 
@@ -136,20 +124,22 @@ function formatTimeHHMM(date: Date): string {
 export const revalidate = 604800; // 7 days in seconds
 
 /**
- * Pre-render only a small seed set at build time  –  top 5 festivals × top 5 cities × 2026.
- * All other combinations are generated on-demand via ISR (Next.js dynamic rendering).
- * This keeps build time under control while seeding the most-searched pages.
+ * Returns `[]` so NO city-variant URLs are pre-rendered at build time.
+ *
+ * Critical: Vercel's middleware/proxy.ts does NOT run for statically
+ * prerendered pages — they're served directly from `_next/static`,
+ * bypassing the 308 redirect added in PR #719 (proxy.ts:661).
+ *
+ * The 25 URLs we used to seed (5 festivals × 5 cities × 2026) were
+ * being served as static 200 responses, completely ignoring the 308
+ * intercept. With empty params, every request hits the proxy and gets
+ * redirected to the year page (the canonical surface).
+ *
+ * The page body remains as a safety net should the proxy regex ever
+ * fail to match — it'll still render correctly with noindex metadata.
  */
 export function generateStaticParams() {
-  const seedFestivals = TOP_FESTIVAL_SLUGS.slice(0, 5); // diwali, janmashtami, maha-shivaratri, ram-navami, ganesh-chaturthi
-  const seedCities = TOP_CITY_SLUGS.slice(0, 5);        // delhi, mumbai, bangalore, chennai, kolkata
-  const params: { slug: string; year: string; city: string }[] = [];
-  for (const slug of seedFestivals) {
-    for (const city of seedCities) {
-      params.push({ slug, year: '2026', city });
-    }
-  }
-  return params;
+  return [];
 }
 
 export default async function FestivalCityPage({

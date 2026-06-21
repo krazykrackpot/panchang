@@ -19,6 +19,7 @@ import { setPrecomputed, type SetPrecomputedResult } from '@/lib/precompute/writ
 import { festivalsYearKey } from '@/lib/precompute/keys';
 import { FestivalsYearPageModel } from '@/lib/precompute/schema/festivals-year';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
+import { trimDescriptionsForBlob } from '@/lib/calendar/festival-blob-helpers';
 import { CITIES } from '@/lib/constants/cities';
 
 interface RunArgs {
@@ -54,12 +55,16 @@ export async function precomputeFestivalsYear(args: RunArgs): Promise<SetPrecomp
 
       try {
         const festivals = generateFestivalCalendarV2(year, city.lat, city.lng, city.timezone);
+        // Trim description for festivals with FESTIVAL_DETAILS coverage —
+        // ~32% Blob size reduction (~210 KB / 666 KB). Reader rehydrates
+        // from FESTIVAL_DETAILS at parse time. See festival-blob-helpers.ts.
+        const trimmed = trimDescriptionsForBlob(festivals);
         const data = {
           _v: 1 as const,
           _computedAt: new Date().toISOString(),
           year,
           city: city.slug,
-          festivals: festivals as unknown as Record<string, unknown>[],
+          festivals: trimmed as unknown as Record<string, unknown>[],
         };
 
         const result = await setPrecomputed({

@@ -7,6 +7,7 @@
  */
 
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
+import { rehydrateFestivalDescriptions } from '@/lib/calendar/festival-blob-helpers';
 import { getPrecomputed } from './reader';
 import { hinduCalendarKey } from './keys';
 import {
@@ -43,10 +44,13 @@ export async function getHinduCalendarPageModel(args: Args): Promise<HinduCalend
   });
 }
 
-/** Casts the opaque inner festivals back to the canonical type for
- *  callers that want type-safe field access. The Blob always carries
- *  the engine's FestivalEntry shape; opaque storage was a Zod
- *  maintainability choice, not a data model change. */
+/** Casts the opaque inner festivals back to the canonical type AND
+ *  rehydrates `description` from FESTIVAL_DETAILS — the precompute writer
+ *  strips it to save ~32% Blob size (see festival-blob-helpers.ts).
+ *  Opaque storage on the schema is a Zod maintainability choice, not a
+ *  data model change. */
 export function asFestivalEntries(festivals: Record<string, unknown>[]): FestivalEntry[] {
-  return festivals as unknown as FestivalEntry[];
+  const typed = festivals as unknown as FestivalEntry[];
+  rehydrateFestivalDescriptions(typed);
+  return typed;
 }

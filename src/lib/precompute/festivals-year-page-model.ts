@@ -7,6 +7,7 @@
  */
 
 import { generateFestivalCalendarV2, computePujaMuhurat, type FestivalEntry } from '@/lib/calendar/festival-generator';
+import { rehydrateFestivalDescriptions } from '@/lib/calendar/festival-blob-helpers';
 import type { CityData } from '@/lib/constants/cities';
 import { UJJAIN_REFERENCE } from '@/lib/constants/jyotish-reference';
 import { getPrecomputed } from './reader';
@@ -40,10 +41,13 @@ export async function getFestivalsYearPageModel(args: Args): Promise<FestivalsYe
   });
 }
 
-/** Cast the opaque inner festivals back to the canonical type for
- *  type-safe field access by the page. */
+/** Cast the opaque inner festivals back to the canonical type AND
+ *  rehydrate `description` from FESTIVAL_DETAILS — the precompute writer
+ *  strips it to save ~32% Blob size (see festival-blob-helpers.ts). */
 export function asFestivalEntries(festivals: Record<string, unknown>[]): FestivalEntry[] {
-  return festivals as unknown as FestivalEntry[];
+  const typed = festivals as unknown as FestivalEntry[];
+  rehydrateFestivalDescriptions(typed);
+  return typed;
 }
 
 /**
@@ -142,8 +146,15 @@ export async function getFestivalForCity(args: {
   // and runs in ~5ms using sunrise/sunset at the city — no full year calendar.
   const cityMuhurat = computePujaMuhurat(slug, ujjainEntry.date, city.lat, city.lng, city.timezone);
 
-  return {
+  // ujjainEntry sits in the module-level `_ujjainModelCache` — spreading it
+  // copies the inner `description` object by REFERENCE, so without an
+  // explicit shallow-copy any downstream consumer that mutates
+  // `result.description` would also mutate the cached entry that the next
+  // request reads. Defensive copy keeps cache integrity. Gemini PR #718 HIGH.
+  const result: FestivalEntry = {
     ...ujjainEntry,
+    description: ujjainEntry.description ? { ...ujjainEntry.description } : { en: '', hi: '' },
     pujaMuhurat: cityMuhurat,
   };
+  return result;
 }

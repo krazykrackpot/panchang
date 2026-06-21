@@ -18,6 +18,7 @@ import { setPrecomputed, type SetPrecomputedResult } from '@/lib/precompute/writ
 import { hinduCalendarKey } from '@/lib/precompute/keys';
 import { HinduCalendarPageModel } from '@/lib/precompute/schema/hindu-calendar';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
+import { trimDescriptionsForBlob } from '@/lib/calendar/festival-blob-helpers';
 
 const UJJAIN_LAT = 23.1765;
 const UJJAIN_LNG = 75.7885;
@@ -38,11 +39,13 @@ export async function precomputeHinduCalendar(args: RunArgs): Promise<SetPrecomp
 
     try {
       const festivals = generateFestivalCalendarV2(year, UJJAIN_LAT, UJJAIN_LNG, UJJAIN_TZ);
+      // See festival-blob-helpers.ts: ~32% Blob size reduction.
+      const trimmed = trimDescriptionsForBlob(festivals);
       const data = {
         _v: 1 as const,
         _computedAt: new Date().toISOString(),
         year,
-        festivals: festivals as unknown as Record<string, unknown>[],
+        festivals: trimmed as unknown as Record<string, unknown>[],
       };
 
       const result = await setPrecomputed({

@@ -337,7 +337,9 @@ describe('PR #719 — festival/[slug]/[year]/[city] 308 redirect', () => {
     const location = res.headers.get('location');
     expect(location).toBeTruthy();
     // Location strips the city segment, keeps locale + slug + year
-    const expectedPath = url.replace(/\/[a-z]+$/, '').replace('https://dekhopanchang.com', '');
+    // City slug character class matches CANONICAL_CITY_SLUGS shape
+    // ([a-z0-9-]+) — `new-york` etc. must be stripped too.
+    const expectedPath = url.replace(/\/[a-z0-9-]+$/, '').replace('https://dekhopanchang.com', '');
     expect(location).toContain(expectedPath);
   });
 

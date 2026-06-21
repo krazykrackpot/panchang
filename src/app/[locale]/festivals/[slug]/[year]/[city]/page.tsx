@@ -1,7 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import { CITIES } from '@/lib/constants/cities';
 import { getCityBySlugExtended, getNearbyCities } from '@/lib/constants/cities-extended';
-import { MAJOR_FESTIVALS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
+import { MAJOR_FESTIVALS, FESTIVAL_VALID_YEARS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details-with-overlay';
 import { type FestivalEntry } from '@/lib/calendar/festival-generator';
 import {
@@ -31,7 +31,10 @@ import { BASE_URL } from '@/lib/seo/base-url';
 // generation. Removed because generateStaticParams now returns []
 // (see comment on generateStaticParams below).
 
-const VALID_YEARS = [2025, 2026, 2027, 2028, 2029];
+// Reuse the canonical source so this page's year nav stays in sync
+// with FESTIVAL_VALID_YEARS — preventing dead links to years the
+// festival year page doesn't actually serve.
+const VALID_YEARS = FESTIVAL_VALID_YEARS;
 
 /** Human-readable names for Kala-Vyapti rules */
 const RULE_LABELS: Record<MuhurtaRule, { en: string; hi: string }> = {
@@ -800,7 +803,7 @@ export default async function FestivalCityPage({
             }, locale)}
           </h2>
           <div className="flex flex-wrap justify-center gap-3">
-            {yearLinks.map(y => (
+            {yearLinks.map((y: number) => (
               <Link
                 key={y}
                 href={`/${locale}/festivals/${slug}/${y}/${citySlug}`}

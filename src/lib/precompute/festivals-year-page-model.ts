@@ -146,13 +146,15 @@ export async function getFestivalForCity(args: {
   // and runs in ~5ms using sunrise/sunset at the city — no full year calendar.
   const cityMuhurat = computePujaMuhurat(slug, ujjainEntry.date, city.lat, city.lng, city.timezone);
 
+  // ujjainEntry sits in the module-level `_ujjainModelCache` — spreading it
+  // copies the inner `description` object by REFERENCE, so without an
+  // explicit shallow-copy any downstream consumer that mutates
+  // `result.description` would also mutate the cached entry that the next
+  // request reads. Defensive copy keeps cache integrity. Gemini PR #718 HIGH.
   const result: FestivalEntry = {
     ...ujjainEntry,
+    description: ujjainEntry.description ? { ...ujjainEntry.description } : { en: '', hi: '' },
     pujaMuhurat: cityMuhurat,
   };
-  // Rehydrate the single returned entry — asFestivalEntries above rehydrates
-  // the full array, but `result` is constructed from a spread, so ensure it
-  // also has description populated.
-  rehydrateFestivalDescriptions([result]);
   return result;
 }

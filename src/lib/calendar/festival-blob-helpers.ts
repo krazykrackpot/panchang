@@ -58,13 +58,14 @@ export function rehydrateFestivalDescriptions(festivals: FestivalEntry[]): void 
   for (const f of festivals) {
     // Skip if description is already populated (live-compute or old Blob).
     if (f.description && (f.description.en || f.description.hi)) continue;
-    if (!f.slug) continue;
-    const significance = FESTIVAL_DETAILS[f.slug]?.significance;
-    if (significance) {
-      // Shallow-copy to avoid sharing the global FESTIVAL_DETAILS reference —
-      // downstream consumers (rendering, translation, iCal export) could
-      // otherwise mutate the constant. Gemini PR #718 MED.
-      f.description = { ...significance };
-    }
+    const significance = f.slug ? FESTIVAL_DETAILS[f.slug]?.significance : undefined;
+    // Always assign — preserves the FestivalEntry type contract that
+    // `description: LocaleText` is non-optional. Shallow-copy when we have
+    // data (so downstream consumers can't mutate the global FESTIVAL_DETAILS
+    // constant). Fall back to empty LocaleText if the slug was stripped at
+    // write time but FESTIVAL_DETAILS coverage has since been removed/renamed
+    // (rolling deploy, refactor). This avoids `Cannot read 'en' of undefined`
+    // crashes in downstream rendering/translation/iCal code. Gemini PR #718.
+    f.description = significance ? { ...significance } : { en: '', hi: '' };
   }
 }

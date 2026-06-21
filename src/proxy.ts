@@ -661,9 +661,20 @@ export default function proxy(request: NextRequest) {
   const festivalCityMatch = pathname.match(/^\/([a-z]{2,3})\/festivals\/([a-z0-9-]+)\/(\d{4})\/([a-z0-9-]+)\/?$/);
   if (festivalCityMatch) {
     const [, fcLocale, fcSlug, fcYear] = festivalCityMatch;
-    if (LOCALES.includes(fcLocale as (typeof LOCALES)[number])) {
-      const yearUrl = new URL(`/${fcLocale}/festivals/${fcSlug}/${fcYear}`, request.url);
-      return NextResponse.redirect(yearUrl, 308);
+    // Validate locale, festival slug, and year before redirecting.
+    // Garbage paths (typos, scraper noise) fall through to Next's 404
+    // handler instead of getting a 308 that points at a 404 target.
+    // Gemini PR #719 r2 MED.
+    if (
+      LOCALES.includes(fcLocale as (typeof LOCALES)[number]) &&
+      CANONICAL_FESTIVAL_SLUGS.has(fcSlug) &&
+      isValidYear(fcYear)
+    ) {
+      // Clone nextUrl to preserve query parameters (UTM codes, search
+      // params) across the redirect. Gemini PR #719 r2 MED.
+      const url = request.nextUrl.clone();
+      url.pathname = `/${fcLocale}/festivals/${fcSlug}/${fcYear}`;
+      return NextResponse.redirect(url, 308);
     }
   }
 

@@ -49,12 +49,26 @@ export function trimDescriptionsForBlob(festivals: FestivalEntry[]): FestivalEnt
 }
 
 /**
+ * Tracks arrays that have been through rehydrate. The festivals-year-page-
+ * model caches Ujjain Blobs in a module-level Promise cache, so the SAME
+ * array reference is returned across many requests in the same warm
+ * container. Without this guard, every cached request would re-walk the
+ * 358-entry array and re-allocate fresh LocaleText objects for the entries
+ * that fall back to `{ en: '', hi: '' }` (whose empty strings make the
+ * "has content" check evaluate false, causing infinite re-rehydration on
+ * cache reuse). WeakSet auto-evicts when the array is GC'd. Gemini PR #718 r3 HIGH.
+ */
+const _rehydratedArrays = new WeakSet<FestivalEntry[]>();
+
+/**
  * Rehydrate `description` in place for any entry where it's missing/empty
  * and the slug has FESTIVAL_DETAILS coverage. Mutates input.
  *
- * Safe to call on entries that already have description (no-op for those).
+ * Safe to call repeatedly on the same array — the second call is O(1).
  */
 export function rehydrateFestivalDescriptions(festivals: FestivalEntry[]): void {
+  if (_rehydratedArrays.has(festivals)) return;
+  _rehydratedArrays.add(festivals);
   for (const f of festivals) {
     // Skip if description is already populated (live-compute or old Blob).
     if (f.description && (f.description.en || f.description.hi)) continue;

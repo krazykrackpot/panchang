@@ -640,6 +640,33 @@ export default function proxy(request: NextRequest) {
   // Regex pinned to the exact /(locale)/panchang/(slug) shape to avoid
   // colliding with /panchang/date/<date>, /panchang/rashi/<rashi>, etc.
   // — those use reserved sub-route names handled below.
+  // /[locale]/festivals/[slug]/[year]/[city] → 308 to /[locale]/festivals/[slug]/[year]
+  //
+  // The city-variant page is `noindex` + has canonical pointing to the year
+  // page + isn't in the sitemap — Google was never sent there. But bots
+  // (crawlers + scrapers) were still hitting it at 19-21K req/day with P75
+  // 3 seconds CPU per request (16h CPU/day, 970 MB/day egress). At noindex
+  // there's no SEO reason to render: 308 collapses the route to a 1ms edge
+  // redirect, freeing function CPU entirely.
+  //
+  // The year page already shows a 6-city muhurat table (Delhi/Mumbai/
+  // Bangalore/Chennai/Kolkata/Pune) — that's the better landing surface
+  // for any real human visit.
+  //
+  // 308 (Permanent Redirect, method-preserving) is the SEO-correct choice
+  // for a noindex + non-canonical surface per Google's guidelines: external
+  // backlinks consolidate into the year page, crawl budget reclaimed.
+  // Pinned regex avoids colliding with /festivals/[slug] (bare) and
+  // /festivals/[slug]/[year] (year-only, length 4).
+  const festivalCityMatch = pathname.match(/^\/([a-z]{2,3})\/festivals\/([a-z0-9-]+)\/(\d{4})\/([a-z0-9-]+)\/?$/);
+  if (festivalCityMatch) {
+    const [, fcLocale, fcSlug, fcYear /* unused */] = festivalCityMatch;
+    if (LOCALES.includes(fcLocale as (typeof LOCALES)[number])) {
+      const yearUrl = new URL(`/${fcLocale}/festivals/${fcSlug}/${fcYear}`, request.url);
+      return NextResponse.redirect(yearUrl, { status: 308 });
+    }
+  }
+
   const cityRouteMatch = pathname.match(/^\/([a-z]{2,3})\/panchang\/([a-z0-9-]+)\/?$/);
   if (cityRouteMatch) {
     const [, cityLocale, citySlug] = cityRouteMatch;

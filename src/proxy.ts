@@ -660,10 +660,10 @@ export default function proxy(request: NextRequest) {
   // /festivals/[slug]/[year] (year-only, length 4).
   const festivalCityMatch = pathname.match(/^\/([a-z]{2,3})\/festivals\/([a-z0-9-]+)\/(\d{4})\/([a-z0-9-]+)\/?$/);
   if (festivalCityMatch) {
-    const [, fcLocale, fcSlug, fcYear /* unused */] = festivalCityMatch;
+    const [, fcLocale, fcSlug, fcYear] = festivalCityMatch;
     if (LOCALES.includes(fcLocale as (typeof LOCALES)[number])) {
       const yearUrl = new URL(`/${fcLocale}/festivals/${fcSlug}/${fcYear}`, request.url);
-      return NextResponse.redirect(yearUrl, { status: 308 });
+      return NextResponse.redirect(yearUrl, 308);
     }
   }
 

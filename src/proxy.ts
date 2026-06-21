@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isStrictYmd, isValidYear } from '@/lib/seo/date-validation';
+import { FESTIVAL_VALID_YEARS } from '@/lib/calendar/festival-defs';
 import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { resolveCanonicalYogaSlug } from '@/lib/yogas/canonical-slugs';
 import {
@@ -640,6 +641,48 @@ export default function proxy(request: NextRequest) {
   // Regex pinned to the exact /(locale)/panchang/(slug) shape to avoid
   // colliding with /panchang/date/<date>, /panchang/rashi/<rashi>, etc.
   // — those use reserved sub-route names handled below.
+  // /[locale]/festivals/[slug]/[year]/[city] → 308 to /[locale]/festivals/[slug]/[year]
+  //
+  // The city-variant page is `noindex` + has canonical pointing to the year
+  // page + isn't in the sitemap — Google was never sent there. But bots
+  // (crawlers + scrapers) were still hitting it at 19-21K req/day with P75
+  // 3 seconds CPU per request (16h CPU/day, 970 MB/day egress). At noindex
+  // there's no SEO reason to render: 308 collapses the route to a 1ms edge
+  // redirect, freeing function CPU entirely.
+  //
+  // The year page already shows a 6-city muhurat table (Delhi/Mumbai/
+  // Bangalore/Chennai/Kolkata/Pune) — that's the better landing surface
+  // for any real human visit.
+  //
+  // 308 (Permanent Redirect, method-preserving) is the SEO-correct choice
+  // for a noindex + non-canonical surface per Google's guidelines: external
+  // backlinks consolidate into the year page, crawl budget reclaimed.
+  // Pinned regex avoids colliding with /festivals/[slug] (bare) and
+  // /festivals/[slug]/[year] (year-only, length 4).
+  const festivalCityMatch = pathname.match(/^\/([a-z]{2,3})\/festivals\/([a-z0-9-]+)\/(\d{4})\/([a-z0-9-]+)\/?$/);
+  if (festivalCityMatch) {
+    const [, fcLocale, fcSlug, fcYear, fcCity] = festivalCityMatch;
+    // Validate all 4 segments before redirecting. Garbage paths (typos,
+    // scraper noise on any segment) fall through to Next's 404 handler
+    // instead of getting a 308 that points at a 404 target.
+    // Year validation uses FESTIVAL_VALID_YEARS (the actual range the
+    // year page supports), not the broader isValidYear() helper —
+    // /festivals/diwali/2025 doesn't exist so the redirect would land
+    // on a 404. Gemini PR #719 r2/r3/r5 MED.
+    if (
+      LOCALES.includes(fcLocale as (typeof LOCALES)[number]) &&
+      CANONICAL_FESTIVAL_SLUGS.has(fcSlug) &&
+      (FESTIVAL_VALID_YEARS as readonly number[]).includes(parseInt(fcYear, 10)) &&
+      CANONICAL_CITY_SLUGS.has(fcCity)
+    ) {
+      // Clone nextUrl to preserve query parameters (UTM codes, search
+      // params) across the redirect. Gemini PR #719 r2 MED.
+      const url = request.nextUrl.clone();
+      url.pathname = `/${fcLocale}/festivals/${fcSlug}/${fcYear}`;
+      return NextResponse.redirect(url, 308);
+    }
+  }
+
   const cityRouteMatch = pathname.match(/^\/([a-z]{2,3})\/panchang\/([a-z0-9-]+)\/?$/);
   if (cityRouteMatch) {
     const [, cityLocale, citySlug] = cityRouteMatch;

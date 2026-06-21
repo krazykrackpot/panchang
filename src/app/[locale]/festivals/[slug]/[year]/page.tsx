@@ -785,14 +785,15 @@ export default async function FestivalCanonicalPage({
                 {cityRows.map((row) => (
                   <tr key={row.slug} className="hover:bg-gold-primary/5 transition-colors">
                     <td className="px-4 py-3">
-                      <Link
-                        href={`/${locale}/festivals/${slug}/${year}/${row.slug}`}
-                        className="text-gold-light font-medium hover:text-gold-primary transition-colors"
+                      {/* City names are no longer linked — the per-city
+                          variant pages were retired (308 → year page).
+                          This year page IS the canonical surface. */}
+                      <span
+                        className="text-gold-light font-medium"
                         style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
-                        rel="nofollow"
                       >
                         {row.nameLocale}
-                      </Link>
+                      </span>
                     </td>
                     <td className="px-4 py-3 text-text-secondary">{fmt12h(row.sunrise)}</td>
                     <td className="px-4 py-3 text-text-secondary">{fmt12h(row.sunset)}</td>
@@ -810,12 +811,6 @@ export default async function FestivalCanonicalPage({
             </table>
           </div>
 
-          <p className="text-text-secondary/60 text-xs text-center">
-            {tl({
-              en: 'Click any city for detailed local timings, puja vidhi & samagri list',
-              hi: 'विस्तृत स्थानीय समय, पूजा विधि व सामग्री सूची के लिए किसी भी शहर पर क्लिक करें',
-            }, locale)}
-          </p>
         </div>
 
         {/* ── Personalized 12-rashi accordion (spec §4A — section slot #3) ── */}

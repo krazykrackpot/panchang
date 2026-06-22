@@ -307,14 +307,16 @@ describe('soft-404 fix — year-keyed routes pass through valid years', () => {
     // PR #719 added a 308 redirect from city variants to the year page,
     // so the proxy intentionally returns 308 (not 200/204) for that URL.
     // Tested separately in the city-variant 308 redirect block below.
-    // Muhurta deep URLs — all combinations pass through the proxy.
-    // Named month (canonical form per shared.ts MONTH_MAP):
+    // Muhurta deep URLs with VALID canonical params (e.g. griha-pravesh/2027/march/bhiwani)
+    // now 308-redirect to /muhurta/[type] per the comprehensive sweep below.
+    // The cases here are intentionally INVALID per the proxy's canonical
+    // sets (so they fall through to the page handler's notFound under the
+    // [city] layout's noindex + canonical — SEO blast contained).
+    //
+    // `marriage` is not a canonical type slug (wedding is).
+    // Numeric month, garbage year all also fall through.
     { url: 'https://dekhopanchang.com/en/muhurta/marriage/2026/june/delhi' },
-    { url: 'https://dekhopanchang.com/mai/muhurta/griha-pravesh/2027/march/bhiwani' },
-    // Numeric month (passes proxy but page-level notFound — still not a 404 at edge):
     { url: 'https://dekhopanchang.com/en/muhurta/marriage/2026/6/delhi' },
-    // Garbage inputs also pass through — page handler issues notFound under
-    // the [city] layout's noindex + canonical, so SEO blast is contained:
     { url: 'https://dekhopanchang.com/en/muhurta/marriage/today/6/delhi' },
     { url: 'https://dekhopanchang.com/en/muhurta/marriage/2026/13/delhi' },
   ];
@@ -357,6 +359,45 @@ describe('PR #719 — festival/[slug]/[year]/[city] 308 redirect', () => {
 
   it('preserves query params across the redirect', () => {
     const res = proxy(makeRequest('https://dekhopanchang.com/en/festivals/diwali/2026/delhi?utm_source=test&utm_campaign=verify'));
+    expect(res.status).toBe(308);
+    const location = res.headers.get('location') ?? '';
+    expect(location).toContain('utm_source=test');
+    expect(location).toContain('utm_campaign=verify');
+  });
+});
+
+describe('Comprehensive 308 sweep — muhurta/[type]/[year]/[month]/[city]', () => {
+  // /[locale]/muhurta/[type]/[year]/[month]/[city] → /[locale]/muhurta/[type]
+  // wedding is the canonical type slug (NOT marriage — see muhurta-types.ts).
+  it.each([
+    { url: 'https://dekhopanchang.com/en/muhurta/wedding/2026/june/delhi' },
+    { url: 'https://dekhopanchang.com/hi/muhurta/griha-pravesh/2027/march/mumbai' },
+    { url: 'https://dekhopanchang.com/en/muhurta/upanayana/2028/october/bangalore' },
+  ])('redirects 308: $url', ({ url }) => {
+    const res = proxy(makeRequest(url));
+    expect(res.status).toBe(308);
+    const location = res.headers.get('location') ?? '';
+    // Location header may be a full URL (with host) — match by trailing path.
+    expect(location).toMatch(/\/[a-z]{2,3}\/muhurta\/[a-z0-9-]+$/);
+  });
+
+  it.each([
+    // Unknown muhurta type — falls through to page-level notFound.
+    { url: 'https://dekhopanchang.com/en/muhurta/not-a-type/2026/june/delhi' },
+    // Numeric month (not january..december) — falls through.
+    { url: 'https://dekhopanchang.com/en/muhurta/wedding/2026/13/delhi' },
+    { url: 'https://dekhopanchang.com/en/muhurta/wedding/2026/6/delhi' },
+    // Garbage year — falls through.
+    { url: 'https://dekhopanchang.com/en/muhurta/wedding/today/june/delhi' },
+    // Garbage city — falls through.
+    { url: 'https://dekhopanchang.com/en/muhurta/wedding/2026/june/not-a-real-city' },
+  ])('falls through (no 308) for garbage: $url', ({ url }) => {
+    const res = proxy(makeRequest(url));
+    expect(res.status).not.toBe(308);
+  });
+
+  it('preserves query params across the redirect', () => {
+    const res = proxy(makeRequest('https://dekhopanchang.com/en/muhurta/wedding/2026/june/delhi?utm_source=test&utm_campaign=verify'));
     expect(res.status).toBe(308);
     const location = res.headers.get('location') ?? '';
     expect(location).toContain('utm_source=test');

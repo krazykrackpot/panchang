@@ -1,6 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isStrictYmd, isValidYear } from '@/lib/seo/date-validation';
 import { FESTIVAL_VALID_YEARS } from '@/lib/calendar/festival-defs';
+import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types-with-overlay';
+
+/** Canonical muhurta type slugs (precomputed at module load).
+ *  Used by the /muhurta/[type]/[year]/[month]/[city] 308 redirect. */
+const CANONICAL_MUHURTA_TYPE_SLUGS: ReadonlySet<string> = new Set(getMuhurtaTypeSlugs());
+
+/** Canonical month slugs used by /muhurta/[type]/[year]/[month]/[city].
+ *  Mirrors src/app/[locale]/muhurta/[type]/[year]/[month]/[city]/shared.ts. */
+const CANONICAL_MONTH_SLUGS: ReadonlySet<string> = new Set([
+  'january', 'february', 'march', 'april', 'may', 'june',
+  'july', 'august', 'september', 'october', 'november', 'december',
+]);
 import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { resolveCanonicalYogaSlug } from '@/lib/yogas/canonical-slugs';
 import {
@@ -679,6 +691,31 @@ export default function proxy(request: NextRequest) {
       // params) across the redirect. Gemini PR #719 r2 MED.
       const url = request.nextUrl.clone();
       url.pathname = `/${fcLocale}/festivals/${fcSlug}/${fcYear}`;
+      return NextResponse.redirect(url, 308);
+    }
+  }
+
+  // /[locale]/muhurta/[type]/[year]/[month]/[city] → 308 to /[locale]/muhurta/[type]
+  //
+  // The deep muhurta route is noindex + not in sitemap (only the
+  // /muhurta/[type] landings are sitemap-eligible). 29K bot hits/day at
+  // ~250ms each = 2h CPU/day, growing with every bot revalidation wave.
+  // Pattern mirrors the festival/city 308 above: validate all 5 segments
+  // against canonical sets so garbage paths fall through to the page-level
+  // notFound() (under the layout's noindex + canonical, SEO blast
+  // contained) instead of redirecting to a 404 target.
+  const muhurtaCityMatch = pathname.match(/^\/([a-z]{2,3})\/muhurta\/([a-z0-9-]+)\/(\d{4})\/([a-z]+)\/([a-z0-9-]+)\/?$/);
+  if (muhurtaCityMatch) {
+    const [, mLocale, mType, mYear, mMonth, mCity] = muhurtaCityMatch;
+    if (
+      LOCALES.includes(mLocale as (typeof LOCALES)[number]) &&
+      CANONICAL_MUHURTA_TYPE_SLUGS.has(mType) &&
+      isValidYear(mYear) &&
+      CANONICAL_MONTH_SLUGS.has(mMonth) &&
+      CANONICAL_CITY_SLUGS.has(mCity)
+    ) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/${mLocale}/muhurta/${mType}`;
       return NextResponse.redirect(url, 308);
     }
   }

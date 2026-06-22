@@ -2,17 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { isStrictYmd, isValidYear } from '@/lib/seo/date-validation';
 import { FESTIVAL_VALID_YEARS } from '@/lib/calendar/festival-defs';
 import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types-with-overlay';
-
-/** Canonical muhurta type slugs (precomputed at module load).
- *  Used by the /muhurta/[type]/[year]/[month]/[city] 308 redirect. */
-const CANONICAL_MUHURTA_TYPE_SLUGS: ReadonlySet<string> = new Set(getMuhurtaTypeSlugs());
-
-/** Canonical month slugs used by /muhurta/[type]/[year]/[month]/[city].
- *  Mirrors src/app/[locale]/muhurta/[type]/[year]/[month]/[city]/shared.ts. */
-const CANONICAL_MONTH_SLUGS: ReadonlySet<string> = new Set([
-  'january', 'february', 'march', 'april', 'may', 'june',
-  'july', 'august', 'september', 'october', 'november', 'december',
-]);
 import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { resolveCanonicalYogaSlug } from '@/lib/yogas/canonical-slugs';
 import {
@@ -26,6 +15,17 @@ import {
   isSeoIndexableCity,
   wasLegacyIndexableSlug,
 } from '@/lib/constants/cities-extended';
+
+/** Canonical muhurta type slugs (precomputed at module load).
+ *  Used by the /muhurta/[type]/[year]/[month]/[city] 308 redirect. */
+const CANONICAL_MUHURTA_TYPE_SLUGS: ReadonlySet<string> = new Set(getMuhurtaTypeSlugs());
+
+/** Canonical month slugs used by /muhurta/[type]/[year]/[month]/[city].
+ *  Mirrors src/app/[locale]/muhurta/[type]/[year]/[month]/[city]/shared.ts. */
+const CANONICAL_MONTH_SLUGS: ReadonlySet<string> = new Set([
+  'january', 'february', 'march', 'april', 'may', 'june',
+  'july', 'august', 'september', 'october', 'november', 'december',
+]);
 
 /**
  * Static sub-route names under /panchang/* that are NOT cities.

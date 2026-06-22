@@ -19,6 +19,9 @@ import type { KundaliData } from '@/types/kundali';
 import type { Locale, LocaleText } from '@/types/panchang';
 
 const AIReadingButton = dynamic(() => import('@/components/kundali/AIReadingButton'), { ssr: false });
+const TippanniPaywall = dynamic(() => import('@/components/kundali/TippanniPaywall'), { ssr: false });
+
+import { useKundaliEntitlement } from '@/lib/kundali/useKundaliEntitlement';
 
 function YearPredictionsSection({ tip, locale, isDevanagari, headingFont, tTip }: {
   tip: TippanniContent; locale: Locale; isDevanagari: boolean;
@@ -268,6 +271,20 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
   const [expandedAntar, setExpandedAntar] = useState<number | null>(null);
   const [expandedPratyantar, setExpandedPratyantar] = useState<string | null>(null);
   const [selectedMahaTimeline, setSelectedMahaTimeline] = useState<number | null>(null);
+
+  // ── Paywall gate ─────────────────────────────────────────────────────
+  // Free preview = lifeStage headline (above). Everything else (Year
+  // Predictions, Personality, planets, yogas, doshas, life areas, dasha
+  // insights, strength, remedies) is paid — gated by an unlock credit
+  // tied to this kundali's fingerprint. See useKundaliEntitlement +
+  // /api/kundali/unlock for the flow.
+  const birthForFingerprint = useMemo(() => ({
+    date: kundali.birthData.date,
+    time: kundali.birthData.time,
+    lat: kundali.birthData.lat,
+    lng: kundali.birthData.lng,
+  }), [kundali.birthData.date, kundali.birthData.time, kundali.birthData.lat, kundali.birthData.lng]);
+  const entitlement = useKundaliEntitlement(birthForFingerprint);
 
   // Client-side base tippanni (renders immediately, memoized)
   const baseTip = useMemo(() => generateTippanni(kundali, locale), [kundali, locale]);
@@ -614,6 +631,27 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
         </div>
       )}
 
+      {/* ═══ PAYWALL GATE ═══ Free preview ends at lifeStage above. The
+          full tippanni (Year Predictions through Remedies) is paid —
+          unlocked by spending 1 credit tied to this chart's fingerprint.
+          Re-renders without re-charging once entitled. */}
+      {!entitlement.loading && !entitlement.entitled && entitlement.fingerprint && (
+        <TippanniPaywall
+          birth={birthForFingerprint}
+          displayName={kundali.birthData.name || null}
+          signedIn={entitlement.signedIn}
+          creditsRemaining={entitlement.creditsRemaining}
+          locale={String(locale)}
+          onUnlocked={entitlement.refresh}
+        />
+      )}
+      {entitlement.loading && (
+        <div className="text-center text-text-secondary text-sm py-8 animate-pulse">
+          Checking access…
+        </div>
+      )}
+
+      {entitlement.entitled && (<>
       <SectionDivider />
       {/* ===== YEAR PREDICTIONS (at top  –  most immediately relevant) ===== */}
       <YearPredictionsSection tip={tip} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tTip={tTip} />
@@ -1610,6 +1648,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
           </div>
         </>
       )}
+      </>)}{/* /entitlement.entitled */}
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isStrictYmd, isValidYear } from '@/lib/seo/date-validation';
 import { FESTIVAL_VALID_YEARS } from '@/lib/calendar/festival-defs';
-import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types-with-overlay';
 import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { resolveCanonicalYogaSlug } from '@/lib/yogas/canonical-slugs';
+import { ACTIVITY_SLUGS } from '@/app/[locale]/muhurta/[type]/[year]/[month]/[city]/shared';
 import {
   CANONICAL_RASHI_SLUGS,
   CANONICAL_FESTIVAL_SLUGS,
@@ -16,9 +16,14 @@ import {
   wasLegacyIndexableSlug,
 } from '@/lib/constants/cities-extended';
 
-/** Canonical muhurta type slugs (precomputed at module load).
- *  Used by the /muhurta/[type]/[year]/[month]/[city] 308 redirect. */
-const CANONICAL_MUHURTA_TYPE_SLUGS: ReadonlySet<string> = new Set(getMuhurtaTypeSlugs());
+/** Canonical muhurta type slugs accepted by the deep route
+ *  /muhurta/[type]/[year]/[month]/[city]. Sourced from the page's own
+ *  ACTIVITY_SLUGS so the proxy stays in lockstep with what the page
+ *  actually renders (marriage, business, property, vehicle, etc. — not
+ *  the hub's canonical wedding/business-start/property-purchase slugs).
+ *  Mismatch was the bug Gemini caught on PR #722: marriage is the
+ *  heaviest bot-traffic slug and was falling through to SSR. */
+const CANONICAL_MUHURTA_TYPE_SLUGS: ReadonlySet<string> = new Set(Object.keys(ACTIVITY_SLUGS));
 
 /** Canonical month slugs used by /muhurta/[type]/[year]/[month]/[city].
  *  Mirrors src/app/[locale]/muhurta/[type]/[year]/[month]/[city]/shared.ts. */
@@ -704,14 +709,18 @@ export default function proxy(request: NextRequest) {
   // against canonical sets so garbage paths fall through to the page-level
   // notFound() (under the layout's noindex + canonical, SEO blast
   // contained) instead of redirecting to a 404 target.
-  const muhurtaCityMatch = pathname.match(/^\/([a-z]{2,3})\/muhurta\/([a-z0-9-]+)\/(\d{4})\/([a-z]+)\/([a-z0-9-]+)\/?$/);
+  // Month segment is matched case-insensitively because the page-level
+  // layout calls monthStr.toLowerCase() before lookup — `/muhurta/.../June/...`
+  // and `/muhurta/.../june/...` both render the same page, so both must
+  // 308 (else bots can bypass the redirect by capitalising).
+  const muhurtaCityMatch = pathname.match(/^\/([a-z]{2,3})\/muhurta\/([a-z0-9-]+)\/(\d{4})\/([A-Za-z]+)\/([a-z0-9-]+)\/?$/);
   if (muhurtaCityMatch) {
     const [, mLocale, mType, mYear, mMonth, mCity] = muhurtaCityMatch;
     if (
       LOCALES.includes(mLocale as (typeof LOCALES)[number]) &&
       CANONICAL_MUHURTA_TYPE_SLUGS.has(mType) &&
       isValidYear(mYear) &&
-      CANONICAL_MONTH_SLUGS.has(mMonth) &&
+      CANONICAL_MONTH_SLUGS.has(mMonth.toLowerCase()) &&
       CANONICAL_CITY_SLUGS.has(mCity)
     ) {
       const url = request.nextUrl.clone();

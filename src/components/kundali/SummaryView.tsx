@@ -41,7 +41,9 @@ const PersonalMonthCalendar = dynamic(() => import('./PersonalMonthCalendar'), {
 const ChartNorth = dynamic(() => import('./ChartNorth'), { ssr: false });
 const ChartSouth = dynamic(() => import('./ChartSouth'), { ssr: false });
 const PlanetStoryCard = dynamic(() => import('./PlanetStoryCard'), { ssr: false });
+const TippanniPaywall = dynamic(() => import('./TippanniPaywall'), { ssr: false });
 import DignityLegend from './DignityLegend';
+import { useKundaliEntitlement } from '@/lib/kundali/useKundaliEntitlement';
 
 // ── Collapsible section wrapper using native <details> ──
 function CollapsibleSection({ title, defaultOpen = true, children, headingFont }: {
@@ -153,6 +155,21 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
   const [showAllDoshas, setShowAllDoshas] = useState(false);
   const [showPlanetDetails, setShowPlanetDetails] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  // ── Paywall gate ─────────────────────────────────────────────────────
+  // Free preview = chart visual + life-stage + key dates + personality.
+  // Everything below the personality section (strengths, yogas, doshas,
+  // life domains, personal month, dasha + year predictions, remedies,
+  // takeaways) is paid — gated by an unlock credit tied to this chart's
+  // fingerprint. Grandfathered users (existing birth data pre-paywall)
+  // and credit holders never see the gate.
+  const birthForFingerprint = useMemo(() => kundali?.birthData ? {
+    date: kundali.birthData.date,
+    time: kundali.birthData.time,
+    lat: kundali.birthData.lat,
+    lng: kundali.birthData.lng,
+  } : null, [kundali?.birthData?.date, kundali?.birthData?.time, kundali?.birthData?.lat, kundali?.birthData?.lng]);
+  const entitlement = useKundaliEntitlement(birthForFingerprint);
   // Drishti overlay selection — local to SummaryView so the Simple-mode
   // landing chart gets the same click-to-aspect interaction as the
   // Expert-mode "Advanced Technical Chart Analysis" tab.
@@ -464,6 +481,29 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
 
       <GoldDivider />
 
+      {/* ═══ PAYWALL GATE ═══ Free preview ends with the personality section
+          above. The full reading (strengths → yogas → doshas → life
+          domains → personal month → dasha + year predictions → remedies →
+          takeaways) is paid — unlocked by spending 1 credit tied to this
+          chart's fingerprint. Grandfathered users (existing birth data
+          pre-paywall) and credit-holders pass through automatically. */}
+      {birthForFingerprint && !entitlement.loading && !entitlement.entitled && entitlement.fingerprint && (
+        <TippanniPaywall
+          birth={birthForFingerprint}
+          displayName={kundali?.birthData?.name || null}
+          signedIn={entitlement.signedIn}
+          creditsRemaining={entitlement.creditsRemaining}
+          locale={String(locale)}
+          onUnlocked={entitlement.refresh}
+        />
+      )}
+      {birthForFingerprint && entitlement.loading && (
+        <div className="text-center text-text-secondary text-sm py-8 animate-pulse">
+          {isHi ? 'पहुँच जाँच रहे हैं…' : 'Checking access…'}
+        </div>
+      )}
+
+      {(!birthForFingerprint || entitlement.entitled) && (<>
       {/* ═══ SECTION 3: Planetary Strengths (lighter/subtle  –  Improvement #10) ═══ */}
       <section className="rounded-2xl bg-gradient-to-br from-[#1a1040]/20 via-[#0a0e27]/40 to-[#0a0e27] border border-white/5 p-5 sm:p-6">
         <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
@@ -826,6 +866,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           </button>
         </div>
       )}
+      </>)}{/* /paywall gate */}
     </div>
   );
 }

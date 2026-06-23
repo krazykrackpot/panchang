@@ -163,12 +163,11 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
   // takeaways) is paid — gated by an unlock credit tied to this chart's
   // fingerprint. Grandfathered users (existing birth data pre-paywall)
   // and credit holders never see the gate.
-  const birthForFingerprint = useMemo(() => kundali?.birthData ? {
-    date: kundali.birthData.date,
-    time: kundali.birthData.time,
-    lat: kundali.birthData.lat,
-    lng: kundali.birthData.lng,
-  } : null, [kundali?.birthData?.date, kundali?.birthData?.time, kundali?.birthData?.lat, kundali?.birthData?.lng]);
+  const birthForFingerprint = useMemo(() => {
+    const bd = kundali?.birthData;
+    if (!bd?.date || !bd?.time || typeof bd.lat !== 'number' || typeof bd.lng !== 'number') return null;
+    return { date: bd.date, time: bd.time, lat: bd.lat, lng: bd.lng };
+  }, [kundali?.birthData?.date, kundali?.birthData?.time, kundali?.birthData?.lat, kundali?.birthData?.lng]);
   const entitlement = useKundaliEntitlement(birthForFingerprint);
   // Drishti overlay selection — local to SummaryView so the Simple-mode
   // landing chart gets the same click-to-aspect interaction as the

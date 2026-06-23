@@ -20,7 +20,7 @@
  * charges.
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Lock, Sparkles } from 'lucide-react';
 import { authedFetch } from '@/lib/api/authed-fetch';
@@ -57,7 +57,13 @@ export default function TippanniPaywall({
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [currency, setCurrency] = useState<'INR' | 'USD'>(defaultCurrency());
+  // Default to INR for SSR + initial hydration (deterministic), then
+  // switch to the browser-derived currency in an effect. Reading
+  // navigator.language at initial-state time creates a server/client
+  // mismatch (server has no navigator → 'INR'; US browser → 'USD'),
+  // breaking hydration per CLAUDE.md lesson ZD.
+  const [currency, setCurrency] = useState<'INR' | 'USD'>('INR');
+  useEffect(() => { setCurrency(defaultCurrency()); }, []);
 
   async function buyCredits(sku: 'single' | 'family') {
     setBusy(true);

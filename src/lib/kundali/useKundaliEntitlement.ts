@@ -53,13 +53,20 @@ async function clientFingerprint(b: BirthParamsClient): Promise<string | null> {
   ) {
     return null;
   }
+  // Strip seconds from HH:MM:SS — Postgres `time` columns return them in
+  // JSON payloads, but the server-side normaliseTime in fingerprint.ts
+  // produces HH:MM, so the client hash must too or grandfathered users
+  // would see a paywall on their own chart.
+  const timeMatch = /^(\d{2}):(\d{2})/.exec(b.time);
+  if (!timeMatch) return null;
+  const timeNorm = `${timeMatch[1]}:${timeMatch[2]}`;
   const lat = b.lat.toFixed(4);
   const lng = b.lng.toFixed(4);
-  const payload = `${b.date}|${b.time}|${lat}|${lng}`;
+  const payload = `${b.date}|${timeNorm}|${lat}|${lng}`;
   const buf = new TextEncoder().encode(payload);
   const hash = await crypto.subtle.digest('SHA-256', buf);
   return Array.from(new Uint8Array(hash))
-    .map((b) => b.toString(16).padStart(2, '0'))
+    .map((byte) => byte.toString(16).padStart(2, '0'))
     .join('');
 }
 

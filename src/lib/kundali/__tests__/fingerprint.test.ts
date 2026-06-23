@@ -55,6 +55,19 @@ describe('computeKundaliFingerprint', () => {
     expect(fp).toMatch(/^[0-9a-f]+$/);
   });
 
+  it('strips seconds from HH:MM:SS so DB-time-column reads match form-input reads', () => {
+    // Postgres `time` columns return HH:MM:SS in JSON payloads. The
+    // grandfather script reads from user_profiles.time_of_birth (a
+    // `time` column) — its fingerprints must match the /api/kundali/unlock
+    // fingerprints computed from the form's HH:MM input, otherwise
+    // grandfathered users see a paywall on their own chart.
+    const a = computeKundaliFingerprint({ date: '1990-08-15', time: '10:30', lat: 28.6139, lng: 77.2090 });
+    const b = computeKundaliFingerprint({ date: '1990-08-15', time: '10:30:00', lat: 28.6139, lng: 77.2090 });
+    const c = computeKundaliFingerprint({ date: '1990-08-15', time: '10:30:59', lat: 28.6139, lng: 77.2090 });
+    expect(a).toBe(b);
+    expect(a).toBe(c);
+  });
+
   it('survives lat/lng float-precision artefacts (toFixed bug check)', () => {
     // 28.6139 stored as JS number can round-trip to 28.61389999999...
     // The fingerprint code uses toFixed(4) to normalise. Verify the

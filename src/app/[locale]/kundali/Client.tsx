@@ -770,12 +770,11 @@ export default function KundaliClient() {
   // ── Paywall entitlement ──
   // Same hook the Detailed view (SummaryView) uses. Drives the Expert-mode
   // gate at the top of the technical block. Simple mode stays free.
-  const birthForFingerprint = useMemo(() => kundali?.birthData ? {
-    date: kundali.birthData.date,
-    time: kundali.birthData.time,
-    lat: kundali.birthData.lat,
-    lng: kundali.birthData.lng,
-  } : null, [kundali?.birthData?.date, kundali?.birthData?.time, kundali?.birthData?.lat, kundali?.birthData?.lng]);
+  const birthForFingerprint = useMemo(() => {
+    const bd = kundali?.birthData;
+    if (!bd?.date || !bd?.time || typeof bd.lat !== 'number' || typeof bd.lng !== 'number') return null;
+    return { date: bd.date, time: bd.time, lat: bd.lat, lng: bd.lng };
+  }, [kundali?.birthData?.date, kundali?.birthData?.time, kundali?.birthData?.lat, kundali?.birthData?.lng]);
   const entitlement = useKundaliEntitlement(birthForFingerprint);
 
   // Trajectory hook  –  syncs domain scores to the server and computes trends

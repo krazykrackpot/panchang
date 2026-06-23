@@ -45,9 +45,16 @@ function normaliseDate(d: string): string {
   return d;
 }
 
-/** HH:MM with light validation (24h, 00–23 / 00–59). Throws on malformed input. */
+/**
+ * Normalise birth time to HH:MM. Accepts HH:MM or HH:MM:SS (Postgres
+ * `time` columns return seconds in JSON payloads, and the grandfather
+ * script reads from user_profiles where time_of_birth is stored that
+ * way). Anything beyond HH:MM (seconds, milliseconds) is stripped so
+ * the fingerprint matches whether the caller is the unlock route, the
+ * client hook, or the grandfather script.
+ */
 function normaliseTime(t: string): string {
-  const m = /^(\d{2}):(\d{2})$/.exec(t);
+  const m = /^(\d{2}):(\d{2})/.exec(t);
   if (!m) {
     throw new Error(`fingerprint: birth time "${t}" is not HH:MM`);
   }
@@ -56,7 +63,7 @@ function normaliseTime(t: string): string {
   if (h < 0 || h > 23 || mm < 0 || mm > 59) {
     throw new Error(`fingerprint: birth time "${t}" out of range`);
   }
-  return t;
+  return `${m[1]}:${m[2]}`;
 }
 
 /**

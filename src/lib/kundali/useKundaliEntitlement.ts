@@ -42,7 +42,17 @@ interface EntitlementState {
 }
 
 /** Mirror of src/lib/kundali/fingerprint.ts (SHA-256 of normalised params). */
-async function clientFingerprint(b: BirthParamsClient): Promise<string> {
+async function clientFingerprint(b: BirthParamsClient): Promise<string | null> {
+  // Defensive: caller (form-state, restored cache, partial hydration)
+  // can hand us NaN / undefined coords. Returning null lets the hook
+  // skip the fetch instead of POSTing a malformed fingerprint.
+  if (
+    typeof b.lat !== 'number' || !Number.isFinite(b.lat) ||
+    typeof b.lng !== 'number' || !Number.isFinite(b.lng) ||
+    typeof b.date !== 'string' || typeof b.time !== 'string'
+  ) {
+    return null;
+  }
   const lat = b.lat.toFixed(4);
   const lng = b.lng.toFixed(4);
   const payload = `${b.date}|${b.time}|${lat}|${lng}`;

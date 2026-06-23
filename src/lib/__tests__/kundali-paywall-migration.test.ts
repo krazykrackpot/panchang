@@ -102,6 +102,29 @@ describe('Migration 066 — kundali paywall tables', () => {
   });
 });
 
+describe('Migration 068 — spend_chart_credit returns balance on all branches', () => {
+  const src = read('supabase/migrations/068_spend_chart_credit_return_balance.sql');
+
+  it('is SECURITY DEFINER + search_path pinned', () => {
+    expect(src).toMatch(/SECURITY DEFINER/);
+    expect(src).toMatch(/SET search_path = public/);
+  });
+
+  it("'unlocked' branch returns credits_remaining (from UPDATE RETURNING)", () => {
+    expect(src).toMatch(/RETURNING credits_remaining INTO v_balance/);
+    expect(src).toMatch(/'status', 'unlocked'[\s\S]{0,200}'credits_remaining', v_balance/);
+  });
+
+  it("'already_unlocked' branch returns credits_remaining (fresh SELECT)", () => {
+    expect(src).toMatch(/'status', 'already_unlocked'[\s\S]{0,300}'credits_remaining', COALESCE\(v_balance, 0\)/);
+  });
+
+  it('REVOKEs from PUBLIC and grants only to service_role', () => {
+    expect(src).toMatch(/REVOKE ALL ON FUNCTION public\.spend_chart_credit\(uuid, text, text, text\) FROM PUBLIC/);
+    expect(src).toMatch(/GRANT EXECUTE ON FUNCTION public\.spend_chart_credit\(uuid, text, text, text\) TO service_role/);
+  });
+});
+
 describe('Migration 067 — grant_chart_credits RPC', () => {
   const src = read('supabase/migrations/067_grant_chart_credits_rpc.sql');
 

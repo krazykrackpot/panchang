@@ -54,9 +54,12 @@ describe('/api/kundali/checkout', () => {
     expect(src).toMatch(/checkRateLimit\(ip/);
   });
 
-  it('short-circuits duplicate-clicks within 5 minutes', () => {
-    expect(src).toMatch(/like\('tier', 'kundali_%'\)/);
+  it('short-circuits duplicate-clicks within 60 seconds, scoped to the requested SKU', () => {
+    // Narrow scope: same SKU only (not all kundali_*), short window (not 5 min)
+    // so a cancelled-then-retry flow isn't blocked.
+    expect(src).toMatch(/\.eq\('tier', `kundali_\$\{sku\}`\)/);
     expect(src).toMatch(/\.is\('completed_at', null\)/);
+    expect(src).toMatch(/60 \* 1000/);
   });
 });
 
@@ -137,9 +140,26 @@ describe('/api/kundali/unlock', () => {
     expect(src).toMatch(/creditsRemaining/);
   });
 
-  it('validates lat/lng are finite numbers', () => {
+  it('validates lat/lng are finite numbers AND in physical ranges', () => {
+    // Gemini #721: lat must be in [-90, 90], lng in [-180, 180].
+    // Otherwise a malformed client sends a credit-spending request that
+    // unlocks an ungeneratable chart.
     expect(src).toMatch(/Number\.isFinite\(lat\)/);
     expect(src).toMatch(/Number\.isFinite\(lng\)/);
+    expect(src).toMatch(/lat < -90 \|\| lat > 90/);
+    expect(src).toMatch(/lng < -180 \|\| lng > 180/);
+  });
+
+  it('reads creditsRemaining from the RPC return value (no extra SELECT)', () => {
+    // Gemini #721: migration 068 makes spend_chart_credit return
+    // credits_remaining on all branches. The route must consume that
+    // directly rather than firing a separate chart_credits SELECT.
+    expect(src).toMatch(/result\.credits_remaining/);
+    expect(src).not.toMatch(/from\('chart_credits'\)/);
+  });
+
+  it('handles a null/non-object RPC result defensively', () => {
+    expect(src).toMatch(/!data \|\| typeof data !== 'object'/);
   });
 });
 
@@ -158,6 +178,14 @@ describe('/api/kundali/credits', () => {
 
   it('validates the ?fingerprint param against the SHA-256 hex shape', () => {
     expect(src).toMatch(/\/\^\[0-9a-f\]\{64\}\$\//);
+  });
+
+  it('?fingerprint check queries the DB directly (NOT the truncated entitlements list)', () => {
+    // Gemini #721: filtering the limit(50) entitlements list would falsely
+    // report "not entitled" for any chart unlocked beyond the most recent 50.
+    // The fingerprint check must hit chart_entitlements with .eq()/.maybeSingle().
+    expect(src).toMatch(/queryFingerprint[\s\S]{0,400}from\('chart_entitlements'\)[\s\S]{0,200}\.eq\('kundali_fingerprint', queryFingerprint\)/);
+    expect(src).toMatch(/queryFingerprint[\s\S]{0,500}\.maybeSingle\(\)/);
   });
 
   it('logs DB errors with [kundali/credits] prefix (lesson AA)', () => {

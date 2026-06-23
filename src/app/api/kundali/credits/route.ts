@@ -57,10 +57,20 @@ export async function GET(req: Request) {
     .limit(50);
   if (entitlementsErr) console.error('[kundali/credits] chart_entitlements read failed:', entitlementsErr.message);
 
-  // Optional per-fingerprint check.
+  // Optional per-fingerprint check. Query the DB directly (rather than
+  // filtering the top-50 list above) so a user who unlocked >50 charts
+  // still gets the correct answer for an older chart — otherwise the
+  // paywall would re-appear for entitlements that fell off the list.
   let entitled = false;
   if (queryFingerprint && /^[0-9a-f]{64}$/.test(queryFingerprint)) {
-    entitled = entitlements?.some((e) => e.kundali_fingerprint === queryFingerprint) ?? false;
+    const { data: entRow, error: entRowErr } = await supabase
+      .from('chart_entitlements')
+      .select('id')
+      .eq('user_id', user.id)
+      .eq('kundali_fingerprint', queryFingerprint)
+      .maybeSingle();
+    if (entRowErr) console.error('[kundali/credits] fingerprint lookup failed:', entRowErr.message);
+    entitled = !!entRow;
   }
 
   return NextResponse.json({

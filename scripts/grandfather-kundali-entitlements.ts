@@ -100,6 +100,10 @@ async function collectFromSavedCharts(): Promise<Row[]> {
   if (error) throw new Error(`saved_charts read failed: ${error.message}`);
   const rows: Row[] = [];
   for (const r of data ?? []) {
+    if (!r.user_id) {
+      console.warn('[grandfather] skip saved_chart with null user_id');
+      continue;
+    }
     const bd = r.birth_data as { date?: string; time?: string; lat?: number; lng?: number } | null;
     if (!bd?.date || !bd?.time || bd.lat == null || bd.lng == null) {
       console.warn(`[grandfather] skip saved_chart for user ${r.user_id} — missing birth_data fields`);
@@ -136,6 +140,7 @@ async function collectFromPanditClients(): Promise<Row[]> {
   }
   const rows: Row[] = [];
   for (const r of data ?? []) {
+    if (!r.pandit_user_id) continue;
     const bd = r.birth_data as { date?: string; time?: string; lat?: number; lng?: number } | null;
     if (!bd?.date || !bd?.time || bd.lat == null || bd.lng == null) continue;
     const fp = fingerprint(bd.date, bd.time, Number(bd.lat), Number(bd.lng));

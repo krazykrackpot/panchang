@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
     .eq('stripe_session_id', session.id)
     .single();
 
-  if (pendingErr) {
+  if (pendingErr || !pending) {
     // No binding row → session not created by our /api/kundali/checkout.
     // Could be a metadata-spoofed attack or a manual Stripe dashboard
     // session. Refuse to credit; return 200 so Stripe stops retrying.

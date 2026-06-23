@@ -101,21 +101,25 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Payment not configured' }, { status: 503 });
   }
 
-  // Short-circuit duplicate-click protection — if the same user opened
-  // a kundali checkout within the last 5 minutes that hasn't completed,
-  // refuse a new session. The previous one is still valid.
-  const fiveMinAgo = new Date(Date.now() - 5 * 60 * 1000).toISOString();
+  // Short-circuit duplicate-click protection — narrow scope to (a) the
+  // SAME SKU (so a user switching from 'single' to 'family' isn't
+  // blocked) and (b) a SHORT window (60s) so a user who cancelled on
+  // Stripe and immediately wants to retry isn't blocked for 5 min.
+  // Stripe is the actual idempotency authority — it won't double-charge
+  // an abandoned session, so the guard here is purely UX (debounce
+  // accidental double-clicks of the same Buy button).
+  const sixtySecAgo = new Date(Date.now() - 60 * 1000).toISOString();
   const { data: recent } = await supabase
     .from('pending_checkouts')
     .select('stripe_session_id')
     .eq('user_id', user.id)
-    .like('tier', 'kundali_%')
+    .eq('tier', `kundali_${sku}`)
     .is('completed_at', null)
-    .gt('created_at', fiveMinAgo)
+    .gt('created_at', sixtySecAgo)
     .limit(1);
   if (recent && recent.length > 0) {
     return NextResponse.json(
-      { error: 'You already have a pending kundali checkout. Finish it first or wait a few minutes.' },
+      { error: 'A checkout was just started for this package. Please wait a moment before retrying.' },
       { status: 429 },
     );
   }

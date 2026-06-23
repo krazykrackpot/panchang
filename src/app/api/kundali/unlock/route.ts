@@ -49,10 +49,10 @@ export async function POST(req: Request) {
   if (
     typeof date !== 'string' ||
     typeof time !== 'string' ||
-    typeof lat !== 'number' || !Number.isFinite(lat) ||
-    typeof lng !== 'number' || !Number.isFinite(lng)
+    typeof lat !== 'number' || !Number.isFinite(lat) || lat < -90 || lat > 90 ||
+    typeof lng !== 'number' || !Number.isFinite(lng) || lng < -180 || lng > 180
   ) {
-    return NextResponse.json({ error: 'Missing or invalid birth params (date, time, lat, lng)' }, { status: 400 });
+    return NextResponse.json({ error: 'Missing or invalid birth params (date, time, lat in [-90,90], lng in [-180,180])' }, { status: 400 });
   }
 
   // Compute the fingerprint — throws on malformed date/time.
@@ -94,19 +94,20 @@ export async function POST(req: Request) {
     console.error('[kundali/unlock] spend_chart_credit failed:', error.message);
     return NextResponse.json({ error: 'DB error' }, { status: 500 });
   }
+  if (!data || typeof data !== 'object') {
+    console.error('[kundali/unlock] spend_chart_credit returned null/non-object data');
+    return NextResponse.json({ error: 'DB error' }, { status: 500 });
+  }
 
   // RPC returns { status, entitlement_id? | credits_remaining? }.
+  // It already gives us credits_remaining on every branch — no need to
+  // do a second SELECT round-trip on chart_credits.
   const result = data as { status: string; entitlement_id?: string; credits_remaining?: number };
-  const balance = await supabase
-    .from('chart_credits')
-    .select('credits_remaining')
-    .eq('user_id', user.id)
-    .maybeSingle();
 
   return NextResponse.json({
     status: result.status,
     entitlementId: result.entitlement_id ?? null,
-    creditsRemaining: balance.data?.credits_remaining ?? 0,
+    creditsRemaining: result.credits_remaining ?? 0,
     fingerprint,
   });
 }

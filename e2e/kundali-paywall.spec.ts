@@ -268,16 +268,17 @@ test.describe('Kundali paywall — checkout input validation', () => {
     expect(res.status()).toBe(400);
   });
 
-  test('returns 503 (env not configured) when Stripe price ids are absent — acceptable in CI without setup', async ({ request }) => {
+  test('handles a valid request without crashing (200 / 502 / 503 all acceptable)', async ({ request }) => {
     // If the operator has run scripts/stripe-setup-kundali-products.ts and
-    // baked the price ids into .env.local, this returns 200 with a Stripe
-    // checkout URL. If not, we get 503 with the setup-script hint. Either
-    // is fine for the validation layer — we just want to confirm no
-    // 500-class crash from the route.
+    // baked the price ids into .env.local + Vercel, this returns 200 with
+    // a Stripe checkout URL. Without env: 503 with a setup-script hint.
+    // If Stripe itself rejects (e.g. test-mode key but live price ids):
+    // 502 from the route's Stripe-error branch. None of these are 500 /
+    // unhandled crashes — that's what the validation layer guarantees.
     const res = await request.post('/api/kundali/checkout', {
       headers: { Authorization: `Bearer ${accessToken}` },
       data: { sku: 'single', currency: 'INR', locale: 'en' },
     });
-    expect([200, 503]).toContain(res.status());
+    expect([200, 502, 503]).toContain(res.status());
   });
 });

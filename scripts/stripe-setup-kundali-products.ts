@@ -80,14 +80,25 @@ const PRODUCTS: ProductSpec[] = [
 ];
 
 async function findOrCreateProduct(spec: ProductSpec): Promise<Stripe.Product> {
-  // Search by metadata.kundali_sku so re-runs don't duplicate.
-  const existing = await stripe.products.search({
-    query: `metadata['kundali_sku']:'${spec.sku}' AND active:'true'`,
-    limit: 5,
-  });
-  if (existing.data.length > 0) {
-    console.log(`[setup] reuse product: ${spec.sku} → ${existing.data[0].id}`);
-    return existing.data[0];
+  // List + filter by metadata.kundali_sku (strongly consistent). Avoid
+  // stripe.products.search — that uses an eventually-consistent index
+  // and may not find a newly-created product on an immediate re-run,
+  // which would silently create a duplicate. There are only a handful
+  // of products per account so the in-memory scan is fine.
+  let cursor: string | undefined;
+  for (;;) {
+    const page = await stripe.products.list({
+      active: true,
+      limit: 100,
+      ...(cursor ? { starting_after: cursor } : {}),
+    });
+    const hit = page.data.find((p) => p.metadata?.kundali_sku === spec.sku);
+    if (hit) {
+      console.log(`[setup] reuse product: ${spec.sku} → ${hit.id}`);
+      return hit;
+    }
+    if (!page.has_more) break;
+    cursor = page.data[page.data.length - 1].id;
   }
   if (DRY) {
     console.log(`[setup] DRY would create product: ${spec.name}`);

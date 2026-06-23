@@ -3,6 +3,7 @@ import { isStrictYmd, isValidYear } from '@/lib/seo/date-validation';
 import { FESTIVAL_VALID_YEARS } from '@/lib/calendar/festival-defs';
 import { todayInTimezone } from '@/lib/utils/now-in-timezone';
 import { resolveCanonicalYogaSlug } from '@/lib/yogas/canonical-slugs';
+import { ACTIVITY_SLUGS } from '@/app/[locale]/muhurta/[type]/[year]/[month]/[city]/shared';
 import {
   CANONICAL_RASHI_SLUGS,
   CANONICAL_FESTIVAL_SLUGS,
@@ -14,6 +15,22 @@ import {
   isSeoIndexableCity,
   wasLegacyIndexableSlug,
 } from '@/lib/constants/cities-extended';
+
+/** Canonical muhurta type slugs accepted by the deep route
+ *  /muhurta/[type]/[year]/[month]/[city]. Sourced from the page's own
+ *  ACTIVITY_SLUGS so the proxy stays in lockstep with what the page
+ *  actually renders (marriage, business, property, vehicle, etc. — not
+ *  the hub's canonical wedding/business-start/property-purchase slugs).
+ *  Mismatch was the bug Gemini caught on PR #722: marriage is the
+ *  heaviest bot-traffic slug and was falling through to SSR. */
+const CANONICAL_MUHURTA_TYPE_SLUGS: ReadonlySet<string> = new Set(Object.keys(ACTIVITY_SLUGS));
+
+/** Canonical month slugs used by /muhurta/[type]/[year]/[month]/[city].
+ *  Mirrors src/app/[locale]/muhurta/[type]/[year]/[month]/[city]/shared.ts. */
+const CANONICAL_MONTH_SLUGS: ReadonlySet<string> = new Set([
+  'january', 'february', 'march', 'april', 'may', 'june',
+  'july', 'august', 'september', 'october', 'november', 'december',
+]);
 
 /**
  * Static sub-route names under /panchang/* that are NOT cities.
@@ -679,6 +696,35 @@ export default function proxy(request: NextRequest) {
       // params) across the redirect. Gemini PR #719 r2 MED.
       const url = request.nextUrl.clone();
       url.pathname = `/${fcLocale}/festivals/${fcSlug}/${fcYear}`;
+      return NextResponse.redirect(url, 308);
+    }
+  }
+
+  // /[locale]/muhurta/[type]/[year]/[month]/[city] → 308 to /[locale]/muhurta/[type]
+  //
+  // The deep muhurta route is noindex + not in sitemap (only the
+  // /muhurta/[type] landings are sitemap-eligible). 29K bot hits/day at
+  // ~250ms each = 2h CPU/day, growing with every bot revalidation wave.
+  // Pattern mirrors the festival/city 308 above: validate all 5 segments
+  // against canonical sets so garbage paths fall through to the page-level
+  // notFound() (under the layout's noindex + canonical, SEO blast
+  // contained) instead of redirecting to a 404 target.
+  // Month segment is matched case-insensitively because the page-level
+  // layout calls monthStr.toLowerCase() before lookup — `/muhurta/.../June/...`
+  // and `/muhurta/.../june/...` both render the same page, so both must
+  // 308 (else bots can bypass the redirect by capitalising).
+  const muhurtaCityMatch = pathname.match(/^\/([a-z]{2,3})\/muhurta\/([a-z0-9-]+)\/(\d{4})\/([A-Za-z]+)\/([a-z0-9-]+)\/?$/);
+  if (muhurtaCityMatch) {
+    const [, mLocale, mType, mYear, mMonth, mCity] = muhurtaCityMatch;
+    if (
+      LOCALES.includes(mLocale as (typeof LOCALES)[number]) &&
+      CANONICAL_MUHURTA_TYPE_SLUGS.has(mType) &&
+      isValidYear(mYear) &&
+      CANONICAL_MONTH_SLUGS.has(mMonth.toLowerCase()) &&
+      CANONICAL_CITY_SLUGS.has(mCity)
+    ) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/${mLocale}/muhurta/${mType}`;
       return NextResponse.redirect(url, 308);
     }
   }

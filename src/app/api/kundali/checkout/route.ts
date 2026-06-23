@@ -109,7 +109,7 @@ export async function POST(req: Request) {
   // an abandoned session, so the guard here is purely UX (debounce
   // accidental double-clicks of the same Buy button).
   const sixtySecAgo = new Date(Date.now() - 60 * 1000).toISOString();
-  const { data: recent } = await supabase
+  const { data: recent, error: recentErr } = await supabase
     .from('pending_checkouts')
     .select('stripe_session_id')
     .eq('user_id', user.id)
@@ -117,6 +117,11 @@ export async function POST(req: Request) {
     .is('completed_at', null)
     .gt('created_at', sixtySecAgo)
     .limit(1);
+  if (recentErr) {
+    console.error('[kundali/checkout] duplicate-guard read failed:', recentErr.message);
+    // Silent guard failure is preferable to blocking the checkout — Stripe's
+    // own session-creation handles the rare double-click edge case.
+  }
   if (recent && recent.length > 0) {
     return NextResponse.json(
       { error: 'A checkout was just started for this package. Please wait a moment before retrying.' },

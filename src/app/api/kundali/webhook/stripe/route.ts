@@ -146,12 +146,17 @@ export async function POST(req: NextRequest) {
   }
 
   // Stamp the binding row completed (best-effort; idempotency already
-  // covered by the UNIQUE on chart_credit_purchases).
+  // covered by the UNIQUE on chart_credit_purchases). Log any error so
+  // a stuck "pending" row that would re-bind a future Stripe retry
+  // doesn't slip past us silently (lesson A: never swallow errors).
   if (!pending.completed_at) {
-    await supabase
+    const { error: updateErr } = await supabase
       .from('pending_checkouts')
       .update({ completed_at: new Date().toISOString() })
       .eq('stripe_session_id', session.id);
+    if (updateErr) {
+      console.error('[kundali/webhook/stripe] pending_checkouts stamp failed:', updateErr.message, { sessionId: session.id });
+    }
   }
 
   return NextResponse.json({ received: true, result });

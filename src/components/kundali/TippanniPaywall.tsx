@@ -21,7 +21,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/lib/i18n/navigation';
 import { Lock, Sparkles } from 'lucide-react';
 import { authedFetch } from '@/lib/api/authed-fetch';
 import { useAuthStore } from '@/stores/auth-store';
@@ -135,7 +135,7 @@ export default function TippanniPaywall({
           The full tippanni — Year Predictions, all yogas, doshas, life areas, dasha insights, strength, and remedies — needs a free account to save your chart and an unlock to view.
         </p>
         <button
-          onClick={() => router.push(`/${locale}?signin=1`)}
+          onClick={() => router.push('/?signin=1')}
           className="px-6 py-3 rounded-xl bg-gold-primary text-bg-primary font-semibold hover:bg-gold-light transition-colors"
         >
           Sign in / Create account

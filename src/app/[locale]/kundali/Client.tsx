@@ -54,6 +54,7 @@ import type { SadeSatiAnalysis, NakshatraTransitEntry } from '@/lib/kundali/sade
 import type { PersonalReading, DomainType } from '@/lib/kundali/domain-synthesis/types';
 import type { HealthDiagnosis } from '@/lib/kundali/health-diagnosis/types';
 import { synthesizeReading } from '@/lib/kundali/domain-synthesis/synthesizer';
+import { useKundaliEntitlement } from '@/lib/kundali/useKundaliEntitlement';
 import { getSavedQuestionChoice, clearQuestionChoice } from '@/components/kundali/QuestionEntry';
 import { computeKeyDates, type KeyDate } from '@/lib/kundali/domain-synthesis/key-dates';
 import { KeyDatesSection } from '@/components/kundali/SummaryCurrentPeriod';
@@ -92,6 +93,7 @@ const NadiAmshaTab = dynamic(() => import('@/components/kundali/NadiAmshaTab'), 
 const VargasTab = dynamic(() => import('@/components/kundali/VargasTab'), { ssr: false });
 const AshtakavargaTab = dynamic(() => import('@/components/kundali/AshtakavargaTab'), { ssr: false });
 const TippanniTab = dynamic(() => import('@/components/kundali/TippanniTab'), { ssr: false });
+const TippanniPaywall = dynamic(() => import('@/components/kundali/TippanniPaywall'), { ssr: false });
 const VargaAnalysisTab = dynamic(() => import('@/components/kundali/VargaAnalysisTab'), { ssr: false });
 const GrahaTab = dynamic(() => import('@/components/kundali/GrahaTab'), { ssr: false });
 const DashaTimeline = dynamic(() => import('@/components/kundali/DashaTimeline'), { ssr: false });
@@ -764,6 +766,16 @@ export default function KundaliClient() {
 
   // AI Reading hook  –  manages comprehensive single-call AI readings with Supabase caching
   const aiReadingHook = useAIReading();
+
+  // ── Paywall entitlement ──
+  // Same hook the Detailed view (SummaryView) uses. Drives the Expert-mode
+  // gate at the top of the technical block. Simple mode stays free.
+  const birthForFingerprint = useMemo(() => {
+    const bd = kundali?.birthData;
+    if (!bd?.date || !bd?.time || typeof bd.lat !== 'number' || typeof bd.lng !== 'number') return null;
+    return { date: bd.date, time: bd.time, lat: bd.lat, lng: bd.lng };
+  }, [kundali?.birthData?.date, kundali?.birthData?.time, kundali?.birthData?.lat, kundali?.birthData?.lng]);
+  const entitlement = useKundaliEntitlement(birthForFingerprint);
 
   // Trajectory hook  –  syncs domain scores to the server and computes trends
   const trajectoryHook = useTrajectory();
@@ -2124,6 +2136,28 @@ export default function KundaliClient() {
                 {locale === 'en' || String(locale) === 'ta' ? 'Back to Life Summary' : 'जीवन सारांश पर वापस'}
               </button>
             )}
+
+            {/* ═══ EXPERT-MODE PAYWALL GATE ═══
+                All Expert-mode technical tabs (Vargas / D9+, Yogas, Doshas,
+                Shadbala, Bhavabala, Ashtakavarga, KP, …) are paid. The
+                same fingerprint that unlocks Detailed view unlocks Expert
+                automatically — one credit per chart, not per surface. */}
+            {birthForFingerprint && !entitlement.loading && !entitlement.entitled && entitlement.fingerprint && (
+              <TippanniPaywall
+                birth={birthForFingerprint}
+                displayName={kundali?.birthData?.name || null}
+                signedIn={entitlement.signedIn}
+                creditsRemaining={entitlement.creditsRemaining}
+                locale={String(locale)}
+                onUnlocked={entitlement.refresh}
+              />
+            )}
+            {birthForFingerprint && entitlement.loading && (
+              <div className="text-center text-text-secondary text-sm py-8 animate-pulse">
+                {locale === 'en' || isTamil ? 'Checking access…' : 'पहुँच जाँच रहे हैं…'}
+              </div>
+            )}
+            {(!birthForFingerprint || entitlement.entitled) && (<>
 
           {/* Beginner / Expert mode toggle */}
           <div className="flex items-center justify-center gap-2 mb-6">
@@ -4481,6 +4515,8 @@ export default function KundaliClient() {
           )}
 
           </div>{/* end eli5Mode hide wrapper */}
+
+          </>)}{/* end expert-mode paywall gate */}
 
           </>
           )}

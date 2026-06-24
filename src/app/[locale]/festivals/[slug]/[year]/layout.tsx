@@ -3,8 +3,7 @@ import type { Metadata } from 'next';
 import { CITIES, getCityBySlug } from '@/lib/constants/cities';
 import { MAJOR_FESTIVALS } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details-with-overlay';
-import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
-import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
+import { getFestivalForCity } from '@/lib/precompute/festivals-year-page-model';
 import { tl } from '@/lib/utils/trilingual';
 import { locales } from '@/lib/i18n/config';
 import { isStale } from '@/lib/seo/staleness';
@@ -61,7 +60,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const festivalNameHi = tl(detail.name, 'hi');
   const festivalNameLocale = tl(detail.name, locale);
 
-  // Use Delhi as reference city for computing the national date
+  // Use Delhi as reference city for the national headline date.
+  //
+  // PERF (2026-06-24): metadata used to call generateFestivalCalendarV2 live
+  // here on every render — the same ~90ms/833MB pass the page comment warns
+  // about. With 1.7K ISR refreshes/day that was ~2-3h CPU/day on this single
+  // route (Vercel observability). Switching to getFestivalForCity reuses the
+  // exact precompute the page body uses (keyed by year x Delhi). The
+  // fallback inside getPrecomputed handles cold-blob misses by calling
+  // generateFestivalCalendarV2 there. clearTithiTableCache() is no longer
+  // needed because we are not invoking the festival generator here at all.
   const delhiCity = getCityBySlug('delhi');
   let festivalDate = '';
   let pujaMuhuratStr: string | null = null;
@@ -69,9 +77,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
     const yearNum = parseInt(year, 10);
     if (!isNaN(yearNum) && yearNum >= 2025 && yearNum <= 2029 && delhiCity) {
-      const festivals = generateFestivalCalendarV2(yearNum, delhiCity.lat, delhiCity.lng, delhiCity.timezone);
-      clearTithiTableCache();
-      const entry = festivals.find(f => f.slug === slug);
+      const entry = await getFestivalForCity({ year: yearNum, city: delhiCity, slug });
       if (entry) {
         festivalDate = entry.date;
         if (entry.pujaMuhurat) {
@@ -79,9 +85,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         }
       }
     }
-  } catch {
-    // If computation fails, fall back to generic title — don't block metadata
-    console.error(`[festival-canonical-meta] Failed to compute date for ${slug}/${year}`);
+  } catch (err) {
+    // If precompute read AND its fallback both fail, fall back to a generic
+    // title — don't block metadata. Logged so the failure is visible.
+    console.error(`[festival-canonical-meta] Failed to resolve date for ${slug}/${year}:`, err);
   }
 
   // Build title using ctr-config formulas (no "| Dekho Panchang" — root layout template handles it)

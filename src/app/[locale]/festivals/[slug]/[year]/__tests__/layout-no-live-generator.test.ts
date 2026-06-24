@@ -34,18 +34,26 @@ describe('festivals/[slug]/[year] layout — no live festival generator in metad
   // gone, so a call-site/textual check would false-positive on the comment.
   // A re-introduced live call is impossible without first re-importing.
   //
-  // Uses `[^;]*` (not `.*`) so multiline imports like
-  //   import {
-  //     generateFestivalCalendarV2,
-  //   } from '...';
-  // are also caught — `.` does not match newlines without the /s flag, but
-  // a character class explicitly does (Gemini PR #724 round 1 MED).
+  // Regex design:
+  //   - `^[ \t]*import\s+` — anchored to the start of a line (allowing
+  //     leading whitespace, so indented imports inside conditional blocks
+  //     would still match). Prevents a hypothetical comment like
+  //     "// import generateFestivalCalendarV2 was removed" from
+  //     false-positiving the guard (Gemini PR #724 round 2 MED).
+  //   - `[^;]*\bSYMBOL\b` — matches across newlines up to the terminating
+  //     semicolon, so multiline imports like
+  //       import {
+  //         generateFestivalCalendarV2,
+  //       } from '...';
+  //     are also caught (Gemini PR #724 round 1 MED). A character class
+  //     `[^;]` matches newlines, unlike `.` which doesn't without /s.
+  //   - `/m` — makes `^` match each line start, not just file start.
   it('does NOT import generateFestivalCalendarV2', () => {
-    expect(source).not.toMatch(/import\s+[^;]*\bgenerateFestivalCalendarV2\b/);
+    expect(source).not.toMatch(/^[ \t]*import\s+[^;]*\bgenerateFestivalCalendarV2\b/m);
   });
 
   it('does NOT import clearTithiTableCache (no longer needed without the live call)', () => {
-    expect(source).not.toMatch(/import\s+[^;]*\bclearTithiTableCache\b/);
+    expect(source).not.toMatch(/^[ \t]*import\s+[^;]*\bclearTithiTableCache\b/m);
   });
 
   it('DOES import getFestivalForCity from the precompute reader', () => {

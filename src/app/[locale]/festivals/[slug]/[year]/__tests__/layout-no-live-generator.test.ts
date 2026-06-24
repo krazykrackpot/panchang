@@ -33,12 +33,19 @@ describe('festivals/[slug]/[year] layout — no live festival generator in metad
   // intentionally references these symbols by name to explain WHY they're
   // gone, so a call-site/textual check would false-positive on the comment.
   // A re-introduced live call is impossible without first re-importing.
+  //
+  // Uses `[^;]*` (not `.*`) so multiline imports like
+  //   import {
+  //     generateFestivalCalendarV2,
+  //   } from '...';
+  // are also caught — `.` does not match newlines without the /s flag, but
+  // a character class explicitly does (Gemini PR #724 round 1 MED).
   it('does NOT import generateFestivalCalendarV2', () => {
-    expect(source).not.toMatch(/^import\b.*\bgenerateFestivalCalendarV2\b/m);
+    expect(source).not.toMatch(/import\s+[^;]*\bgenerateFestivalCalendarV2\b/);
   });
 
   it('does NOT import clearTithiTableCache (no longer needed without the live call)', () => {
-    expect(source).not.toMatch(/^import\b.*\bclearTithiTableCache\b/m);
+    expect(source).not.toMatch(/import\s+[^;]*\bclearTithiTableCache\b/);
   });
 
   it('DOES import getFestivalForCity from the precompute reader', () => {

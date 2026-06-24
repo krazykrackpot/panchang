@@ -10,7 +10,7 @@ import { SAMVATSARA_NAMES } from '@/lib/ephem/astronomical';
 import type { Locale } from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { SamvatsaraIcon } from '@/components/icons/PanchangIcons';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { isDevanagariLocale, getHeadingFont } from '@/lib/utils/locale-fonts';
 import AuthorByline from '@/components/ui/AuthorByline';
 
 const yugaColors = ['#4ade80', '#fbbf24', '#f97316', '#60a5fa', '#a78bfa'];
@@ -29,6 +29,11 @@ function AnimatedSamvatsaraWheel({
 }) {
   const CX = 290;
   const CY = 290;
+  // Script-aware font for SVG <text> elements — Devanagari/Tamil/Telugu/
+  // Bengali etc. all have their own heading family. Hardcoding
+  // var(--font-heading) renders Latin for those locales.
+  const localeHeadingFont = getHeadingFont(locale);
+  const localeHeadingFamily = (localeHeadingFont.fontFamily as string | undefined) ?? 'var(--font-heading)';
 
   /* ---------- helpers ---------- */
   function describeArc(
@@ -157,7 +162,6 @@ function AnimatedSamvatsaraWheel({
               fill={isSelected ? '#fbbf24' : yugaColors[yugaIndex]}
               fontSize={isSelected ? '18' : isMilestone ? '14' : '11'}
               fontWeight={isSelected || isMilestone ? 'bold' : 'normal'}
-              opacity={isSelected ? 1 : isMilestone ? 1 : 0.85}
               textAnchor="middle"
               dominantBaseline="middle"
               initial={{ opacity: 0, scale: 0 }}
@@ -206,7 +210,7 @@ function AnimatedSamvatsaraWheel({
         fontSize="36"
         fontWeight="bold"
         textAnchor="middle"
-        fontFamily="var(--font-heading)"
+        fontFamily={localeHeadingFamily}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.6 }}
@@ -218,7 +222,6 @@ function AnimatedSamvatsaraWheel({
         fill="#d4a853"
         fontSize="9"
         textAnchor="middle"
-        opacity="0.7"
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.7 }}
         transition={{ duration: 0.8, delay: 1.7 }}
@@ -230,7 +233,7 @@ function AnimatedSamvatsaraWheel({
         fill="#d4a853"
         fontSize="12"
         textAnchor="middle"
-        fontFamily="var(--font-heading)"
+        fontFamily={localeHeadingFamily}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.8 }}
@@ -350,26 +353,36 @@ export default function SamvatsaraPage() {
             "60 dots in a circle" but a visual proof of the Jupiter-Saturn
             super-cycle. Two-line block: instruction + the WHY. */}
         <div className="mb-4 rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] px-4 py-3">
+          {/* Why-60 + click-instruction strings — tl() handles all 10 locales;
+              en: must hold real English so any locale without a translation
+              falls back to English (per CLAUDE.md lesson J), not Sanskrit. */}
           <p className="text-gold-light text-sm font-medium mb-1">
-            {locale === 'en'
-              ? 'Why 60? — Jupiter orbits the Sun every ~12 years; Saturn every ~30. After exactly 60 years both planets return close to their starting positions, completing the great Jupiter–Saturn super-cycle. Every year in this cycle has its own name and character.'
-              : tl({
-                  en: 'Why 60? — Jupiter orbits the Sun every ~12 years; Saturn every ~30. After exactly 60 years both planets return close to their starting positions, completing the great Jupiter–Saturn super-cycle.',
-                  hi: '60 क्यों? — बृहस्पति सूर्य की परिक्रमा ~12 वर्ष में करता है; शनि ~30 वर्ष में। ठीक 60 वर्ष बाद दोनों ग्रह अपनी आरम्भिक स्थिति के निकट लौटते हैं, और बृहस्पति-शनि का महाचक्र पूर्ण होता है। इस चक्र के हर वर्ष का अपना नाम और स्वभाव है।',
-                  sa: 'किमर्थं षष्टिः? — बृहस्पतिः सूर्यपरिक्रमायां प्रायः 12 वर्षाणि गृह्णाति; शनिः ~30 वर्षाणि। षष्टिवर्षानन्तरं उभौ ग्रहौ आरम्भस्थानसमीपं प्रत्यागच्छतः, बृहस्पति-शनिमहाचक्रं पूर्णं भवति।',
-                  ta: 'ஏன் 60? — குரு சூரியனை ~12 ஆண்டுகளில் சுற்றுகிறான்; சனி ~30 ஆண்டுகளில். சரியாக 60 ஆண்டுகளுக்குப் பிறகு இரண்டு கிரகங்களும் தங்கள் தொடக்க நிலைக்கு அருகில் திரும்புகின்றன, குரு-சனி பெருஞ்சுழற்சியை முடிக்கின்றன।',
-                  te: '60 ఎందుకు? — గురు సూర్యుని ~12 సంవత్సరాలకు ఒకసారి, శని ~30 సంవత్సరాలకు ఒకసారి పరిభ్రమిస్తారు. ఖచ్చితంగా 60 సంవత్సరాల తర్వాత ఇద్దరూ తమ ప్రారంభ స్థానాలకు దగ్గరగా తిరిగి వస్తారు, గురు-శని మహాచక్రాన్ని పూర్తి చేస్తారు।',
-                  bn: '60 কেন? — বৃহস্পতি ~12 বছরে সূর্যকে প্রদক্ষিণ করে; শনি ~30 বছরে। ঠিক 60 বছর পর উভয় গ্রহই তাদের সূচনা অবস্থানের কাছাকাছি ফিরে আসে, বৃহস্পতি-শনি মহাচক্র সম্পূর্ণ হয়।',
-                  kn: 'ಏಕೆ 60? — ಗುರು ಸೂರ್ಯನನ್ನು ~12 ವರ್ಷಗಳಿಗೊಮ್ಮೆ ಸುತ್ತುತ್ತಾನೆ; ಶನಿ ~30 ವರ್ಷಗಳಿಗೊಮ್ಮೆ. ನಿಖರವಾಗಿ 60 ವರ್ಷಗಳ ನಂತರ ಎರಡೂ ಗ್ರಹಗಳು ತಮ್ಮ ಪ್ರಾರಂಭದ ಸ್ಥಾನಗಳಿಗೆ ಹತ್ತಿರ ಮರಳುತ್ತವೆ, ಗುರು-ಶನಿ ಮಹಾಚಕ್ರವನ್ನು ಪೂರ್ಣಗೊಳಿಸುತ್ತವೆ।',
-                  gu: 'કેમ 60? — ગુરુ સૂર્યની પરિક્રમા ~12 વર્ષમાં કરે છે; શની ~30 વર્ષમાં. બરાબર 60 વર્ષ પછી બંને ગ્રહો તેમની પ્રારંભિક સ્થિતિની નજીક પાછા ફરે છે, ગુરુ-શની મહાચક્ર પૂર્ણ થાય છે.',
-                  mai: '60 किएक? — बृहस्पति सूर्यक परिक्रमा ~12 वर्षमे करैत अछि; शनि ~30 वर्षमे। ठीक 60 वर्ष बाद दुनू ग्रह अपन आरम्भिक स्थानके नजदीक घुरि अबैत अछि, बृहस्पति-शनिक महाचक्र पूर्ण भ जाइत अछि।',
-                  mr: '60 का? — गुरू सूर्याची प्रदक्षिणा ~12 वर्षांत करतो; शनी ~30 वर्षांत. नक्की 60 वर्षांनंतर दोन्ही ग्रह त्यांच्या आरंभिक स्थानाजवळ परत येतात, गुरू-शनी महाचक्र पूर्ण होते.',
-                }, locale)}
+            {tl({
+              en: 'Why 60? — Jupiter orbits the Sun every ~12 years; Saturn every ~30. After exactly 60 years both planets return close to their starting positions, completing the great Jupiter–Saturn super-cycle. Every year in this cycle has its own name and character.',
+              hi: '60 क्यों? — बृहस्पति सूर्य की परिक्रमा ~12 वर्ष में करता है; शनि ~30 वर्ष में। ठीक 60 वर्ष बाद दोनों ग्रह अपनी आरम्भिक स्थिति के निकट लौटते हैं, और बृहस्पति-शनि का महाचक्र पूर्ण होता है। इस चक्र के हर वर्ष का अपना नाम और स्वभाव है।',
+              sa: 'किमर्थं षष्टिः? — बृहस्पतिः सूर्यपरिक्रमायां प्रायः 12 वर्षाणि गृह्णाति; शनिः ~30 वर्षाणि। षष्टिवर्षानन्तरं उभौ ग्रहौ आरम्भस्थानसमीपं प्रत्यागच्छतः, बृहस्पति-शनिमहाचक्रं पूर्णं भवति।',
+              ta: 'ஏன் 60? — குரு சூரியனை ~12 ஆண்டுகளில் சுற்றுகிறான்; சனி ~30 ஆண்டுகளில். சரியாக 60 ஆண்டுகளுக்குப் பிறகு இரண்டு கிரகங்களும் தங்கள் தொடக்க நிலைக்கு அருகில் திரும்புகின்றன, குரு-சனி பெருஞ்சுழற்சியை முடிக்கின்றன।',
+              te: '60 ఎందుకు? — గురు సూర్యుని ~12 సంవత్సరాలకు ఒకసారి, శని ~30 సంవత్సరాలకు ఒకసారి పరిభ్రమిస్తారు. ఖచ్చితంగా 60 సంవత్సరాల తర్వాత ఇద్దరూ తమ ప్రారంభ స్థానాలకు దగ్గరగా తిరిగి వస్తారు, గురు-శని మహాచక్రాన్ని పూర్తి చేస్తారు।',
+              bn: '60 কেন? — বৃহস্পতি ~12 বছরে সূর্যকে প্রদক্ষিণ করে; শনি ~30 বছরে। ঠিক 60 বছর পর উভয় গ্রহই তাদের সূচনা অবস্থানের কাছাকাছি ফিরে আসে, বৃহস্পতি-শনি মহাচক্র সম্পূর্ণ হয়।',
+              kn: 'ಏಕೆ 60? — ಗುರು ಸೂರ್ಯನನ್ನು ~12 ವರ್ಷಗಳಿಗೊಮ್ಮೆ ಸುತ್ತುತ್ತಾನೆ; ಶನಿ ~30 ವರ್ಷಗಳಿಗೊಮ್ಮೆ. ನಿಖರವಾಗಿ 60 ವರ್ಷಗಳ ನಂತರ ಎರಡೂ ಗ್ರಹಗಳು ತಮ್ಮ ಪ್ರಾರಂಭದ ಸ್ಥಾನಗಳಿಗೆ ಹತ್ತಿರ ಮರಳುತ್ತವೆ, ಗುರು-ಶನಿ ಮಹಾಚಕ್ರವನ್ನು ಪೂರ್ಣಗೊಳಿಸುತ್ತವೆ।',
+              gu: 'કેમ 60? — ગુરુ સૂર્યની પરિક્રમા ~12 વર્ષમાં કરે છે; શની ~30 વર્ષમાં. બરાબર 60 વર્ષ પછી બંને ગ્રહો તેમની પ્રારંભિક સ્થિતિની નજીક પાછા ફરે છે, ગુરુ-શની મહાચક્ર પૂર્ણ થાય છે.',
+              mai: '60 किएक? — बृहस्पति सूर्यक परिक्रमा ~12 वर्षमे करैत अछि; शनि ~30 वर्षमे। ठीक 60 वर्ष बाद दुनू ग्रह अपन आरम्भिक स्थानके नजदीक घुरि अबैत अछि, बृहस्पति-शनिक महाचक्र पूर्ण भ जाइत अछि।',
+              mr: '60 का? — गुरू सूर्याची प्रदक्षिणा ~12 वर्षांत करतो; शनी ~30 वर्षांत. नक्की 60 वर्षांनंतर दोन्ही ग्रह त्यांच्या आरंभिक स्थानाजवळ परत येतात, गुरू-शनी महाचक्र पूर्ण होते.',
+            }, locale)}
           </p>
           <p className="text-text-secondary text-xs">
-            {locale === 'en'
-              ? 'Click any year marker on the wheel to see its Samvatsara name and meaning.'
-              : tl({ en: 'नाम द्रष्टुं चक्रे कस्मिन् अपि वर्षे क्लिक्यताम्।', hi: 'नाम देखने के लिए चक्र में किसी भी वर्ष पर क्लिक करें।', sa: 'नाम द्रष्टुं चक्रे कस्मिन् अपि वर्षे क्लिक्यताम्।', ta: 'பெயரைக் காண சுழற்சியில் எந்த வருடத்திலும் கிளிக் செய்யவும்.', te: 'పేరు చూడడానికి చక్రంలో ఏ సంవత్సరంపైనైనా క్లిక్ చేయండి.', bn: 'নাম দেখতে চক্রে যেকোনো বছরে ক্লিক করুন।', kn: 'ಹೆಸರು ನೋಡಲು ಚಕ್ರದಲ್ಲಿ ಯಾವುದೇ ವರ್ಷದ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ.', gu: 'નામ જોવા ચક્રમાં કોઈ પણ વર્ષ પર ક્લિક કરો.', mai: 'नाम देखबाक लेल चक्रमे कोनो वर्षपर क्लिक करू।', mr: 'नाव पाहण्यासाठी चक्रातील कोणत्याही वर्षावर क्लिक करा.' }, locale)}
+            {tl({
+              en: 'Click any year marker on the wheel to see its Samvatsara name and meaning.',
+              hi: 'नाम देखने के लिए चक्र में किसी भी वर्ष पर क्लिक करें।',
+              sa: 'नाम द्रष्टुं चक्रे कस्मिन् अपि वर्षे क्लिक्यताम्।',
+              ta: 'பெயரைக் காண சுழற்சியில் எந்த வருடத்திலும் கிளிக் செய்யவும்.',
+              te: 'పేరు చూడడానికి చక్రంలో ఏ సంవత్సరంపైనైనా క్లిక్ చేయండి.',
+              bn: 'নাম দেখতে চক্রে যেকোনো বছরে ক্লিক করুন।',
+              kn: 'ಹೆಸರು ನೋಡಲು ಚಕ್ರದಲ್ಲಿ ಯಾವುದೇ ವರ್ಷದ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ.',
+              gu: 'નામ જોવા ચક્રમાં કોઈ પણ વર્ષ પર ક્લિક કરો.',
+              mai: 'नाम देखबाक लेल चक्रमे कोनो वर्षपर क्लिक करू।',
+              mr: 'नाव पाहण्यासाठी चक्रातील कोणत्याही वर्षावर क्लिक करा.',
+            }, locale)}
           </p>
         </div>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex flex-col items-center gap-6">

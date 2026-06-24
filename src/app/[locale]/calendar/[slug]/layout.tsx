@@ -7,6 +7,8 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { getFestivalForCity } from '@/lib/precompute/festivals-year-page-model';
 import { getCityBySlug } from '@/lib/constants/cities';
 import { buildHreflangMap } from '@/lib/seo/hreflang';
+import { todayInTimezone } from '@/lib/utils/now-in-timezone';
+import { UJJAIN_REFERENCE } from '@/lib/constants/jyotish-reference';
 
 // OpenGraph BCP 47 codes (underscore-joined) and Schema.org inLanguage
 // codes for the 9 visible locales. `sa` is retired but kept here to
@@ -44,9 +46,16 @@ async function getNextFestivalDate(slug: string): Promise<{ date: string; year: 
   const ujjain = getCityBySlug('ujjain');
   if (!ujjain) return null;
   try {
-    const now = new Date();
-    const currentYear = now.getFullYear();
-    const todayStr = now.toISOString().slice(0, 10);
+    // Resolve "today" in the canonical Jyotish reference timezone (Ujjain /
+    // IST). This is NOT a "user is in India" assumption — festival dates are
+    // defined by Indian astronomical observation, and the comparison below
+    // ("is this festival upcoming?") must use that same canonical frame.
+    //
+    // Previously this used `new Date().toISOString().slice(0, 10)` which
+    // returns the UTC date — wrong every IST day between 00:00 and 05:30 IST
+    // (UTC was still the previous calendar day). Gemini PR #725 round 1 HIGH.
+    const todayStr = todayInTimezone(UJJAIN_REFERENCE.ianaZone);
+    const currentYear = Number(todayStr.slice(0, 4));
     // Check current year first, then next 3 years. The Ujjain Blob is
     // shared module-level cached inside getFestivalForCity, so repeated
     // year lookups within a single request are cheap.

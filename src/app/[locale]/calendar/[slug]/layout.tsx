@@ -4,9 +4,9 @@ import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details-with-overlay'
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { generateEventLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
-import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
+import { getFestivalForCity } from '@/lib/precompute/festivals-year-page-model';
+import { getCityBySlug } from '@/lib/constants/cities';
 import { buildHreflangMap } from '@/lib/seo/hreflang';
-import { UJJAIN_REFERENCE } from '@/lib/constants/jyotish-reference';
 
 // OpenGraph BCP 47 codes (underscore-joined) and Schema.org inLanguage
 // codes for the 9 visible locales. `sa` is retired but kept here to
@@ -27,22 +27,40 @@ export function generateStaticParams() {
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
-/** Find the next occurrence date + muhurta for a festival (current year or next) */
-function getNextFestivalDate(slug: string): { date: string; year: number; pujaMuhurat?: { start: string; end: string; name: string } } | null {
+/** Find the next occurrence date + muhurta for a festival (current year or next).
+ *
+ *  PERF (2026-06-24, sibling of PR #724):
+ *  Previously this looped generateFestivalCalendarV2 up to 4 times — once per
+ *  candidate year — running the full ~90ms/833MB live festival pass each time.
+ *  Inside generateMetadata, on every ISR refresh, that was the dominant CPU
+ *  cost of /calendar/[slug] (~108 invocations/day, 1m CPU/day per obs).
+ *
+ *  Switched to getFestivalForCity (Ujjain) which hits the precompute Blob the
+ *  /festivals/[slug]/[year] pages already use. Ujjain is the canonical Jyotish
+ *  reference, always in the 59-city precomputed set, and the reader's own
+ *  fallback handles cold blob misses by calling generateFestivalCalendarV2
+ *  there — so semantics are preserved without holding the live import here. */
+async function getNextFestivalDate(slug: string): Promise<{ date: string; year: number; pujaMuhurat?: { start: string; end: string; name: string } } | null> {
+  const ujjain = getCityBySlug('ujjain');
+  if (!ujjain) return null;
   try {
     const now = new Date();
     const currentYear = now.getFullYear();
-    // Check current year first, then next 3 years
+    const todayStr = now.toISOString().slice(0, 10);
+    // Check current year first, then next 3 years. The Ujjain Blob is
+    // shared module-level cached inside getFestivalForCity, so repeated
+    // year lookups within a single request are cheap.
     for (const year of [currentYear, currentYear + 1, currentYear + 2, currentYear + 3]) {
-      const festivals = generateFestivalCalendarV2(year, UJJAIN_REFERENCE.lat, UJJAIN_REFERENCE.lng, UJJAIN_REFERENCE.ianaZone);
-      const match = festivals.find(f => f.slug === slug);
-      if (match && (year > currentYear || match.date >= now.toISOString().slice(0, 10))) {
+      const match = await getFestivalForCity({ year, city: ujjain, slug });
+      if (match && (year > currentYear || match.date >= todayStr)) {
         return { date: match.date, year, pujaMuhurat: match.pujaMuhurat };
       }
     }
-  } catch {
-    // Festival computation may fail for some slugs  –  log and continue
-    console.error(`[calendar-slug-meta] Failed to compute date for ${slug}`);
+  } catch (err) {
+    // Precompute read AND its fallback both failed — log and continue with
+    // the generic title path. Was a bare `catch {}` before this PR; now
+    // surfaces err per the universal "never silently swallow" rule.
+    console.error(`[calendar-slug-meta] Failed to compute date for ${slug}:`, err);
   }
   return null;
 }
@@ -83,7 +101,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const nameEn = festival.name.en;
 
   // Compute the actual date for the title
-  const nextDate = getNextFestivalDate(slug);
+  const nextDate = await getNextFestivalDate(slug);
   const yearStr = nextDate ? String(nextDate.year) : '';
 
   // Title under 60 chars: "Diwali 2026  –  Oct 20 | Puja Time & Significance"

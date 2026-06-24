@@ -138,11 +138,26 @@ function AnimatedSamvatsaraWheel({
         // ring scans cleanly without losing per-year resolution.
         const isMilestone = (i + 1) % 5 === 0;
 
+        // Localised name for the aria-label so screen-reader users hear
+        // "Prabhava, year 1" rather than a bare number.
+        const samvatsaraName = tl(s, locale);
+        const ariaLabel = `${samvatsaraName} — year ${i + 1} of 60`;
+
         return (
           <g
             key={`marker-${i}`}
             onClick={() => onSelect(i)}
-            style={{ cursor: 'pointer' }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onSelect(i);
+              }
+            }}
+            tabIndex={0}
+            role="button"
+            aria-label={ariaLabel}
+            aria-pressed={isSelected}
+            style={{ cursor: 'pointer', outline: 'none' }}
           >
             {/* Larger invisible hit target — taps on phones must land. */}
             <circle cx={textX} cy={textY} r="14" fill="transparent" />
@@ -222,6 +237,7 @@ function AnimatedSamvatsaraWheel({
         fill="#d4a853"
         fontSize="9"
         textAnchor="middle"
+        fontFamily={localeHeadingFamily}
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.7 }}
         transition={{ duration: 0.8, delay: 1.7 }}
@@ -245,6 +261,7 @@ function AnimatedSamvatsaraWheel({
         fill="#8a6d2b"
         fontSize="10"
         textAnchor="middle"
+        fontFamily={localeHeadingFamily}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 2.0 }}

@@ -22,7 +22,7 @@ import dynamic from 'next/dynamic';
 import { useRef, useState } from 'react';
 import { Download, FileImage, Loader2, Printer } from 'lucide-react';
 import type { KundaliData } from '@/types/kundali';
-import type { Locale, LocaleText } from '@/types/panchang';
+import type { LocaleText } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import {
@@ -86,10 +86,67 @@ export default function KundaliSnapshot({ kundali, locale }: Props) {
   const [exportBusy, setExportBusy] = useState<'pdf' | 'jpeg' | null>(null);
 
   async function handleExportPDF() {
+    if (!cardRef.current) return;
     setExportBusy('pdf');
     try {
-      const { exportKundaliPDF } = await import('@/lib/export/pdf-kundali');
-      exportKundaliPDF(kundali, locale as Locale);
+      // Capture the SAME DOM the JPEG export captures — the PDF and JPEG
+      // are now visually identical because they both screenshot the
+      // rendered card. The previous programmatic jsPDF renderer
+      // (exportKundaliPDF) drifted from the live UI (wrong house
+      // positions, missing D9, etc.) because it re-implemented the
+      // layout from scratch. Single source of truth wins.
+      const [{ toCanvas }, jspdfModule] = await Promise.all([
+        import('html-to-image'),
+        import('jspdf'),
+      ]);
+      const { jsPDF } = jspdfModule;
+      const canvas = await toCanvas(cardRef.current, {
+        pixelRatio: 2,
+        cacheBust: true,
+        includeQueryParams: true,
+        backgroundColor: '#0a0e27',
+      });
+
+      // A4 portrait dimensions in mm.
+      const pageW = 210;
+      const pageH = 297;
+      const marginX = 8;
+      const marginY = 8;
+      const contentW = pageW - marginX * 2;
+      const contentH = pageH - marginY * 2;
+      // Scale: contentW (mm) corresponds to canvas.width (px).
+      const pxPerMm = canvas.width / contentW;
+      // Per-page slice height in canvas pixels.
+      const sliceHeightPx = Math.floor(contentH * pxPerMm);
+
+      const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+      const safeName = (kundali.birthData.name || 'kundali').replace(/[^\w\-]+/g, '_').slice(0, 40);
+      pdf.setProperties({
+        title: `${safeName} — Kundali Report`,
+        author: 'Dekho Panchang',
+        subject: 'Vedic kundali snapshot',
+        creator: 'dekhopanchang.com',
+      });
+
+      // Slice the tall canvas into page-height chunks.
+      const totalPages = Math.ceil(canvas.height / sliceHeightPx);
+      for (let pageIdx = 0; pageIdx < totalPages; pageIdx++) {
+        if (pageIdx > 0) pdf.addPage();
+        const srcY = pageIdx * sliceHeightPx;
+        const srcH = Math.min(sliceHeightPx, canvas.height - srcY);
+        // Render the slice into a temp canvas, then encode → addImage.
+        const slice = document.createElement('canvas');
+        slice.width = canvas.width;
+        slice.height = srcH;
+        const ctx = slice.getContext('2d');
+        if (!ctx) throw new Error('canvas 2d context unavailable');
+        ctx.drawImage(canvas, 0, srcY, canvas.width, srcH, 0, 0, canvas.width, srcH);
+        const sliceHeightMm = srcH / pxPerMm;
+        const jpegDataUrl = slice.toDataURL('image/jpeg', 0.92);
+        pdf.addImage(jpegDataUrl, 'JPEG', marginX, marginY, contentW, sliceHeightMm);
+      }
+
+      pdf.save(`kundali-${safeName}-${kundali.birthData.date}.pdf`);
     } catch (err) {
       console.error('[KundaliSnapshot] PDF export failed:', err);
       alert(L('PDF export failed — please retry.', 'PDF एक्सपोर्ट विफल — पुनः प्रयास करें।'));

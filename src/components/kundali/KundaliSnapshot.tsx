@@ -111,12 +111,14 @@ export default function KundaliSnapshot({ kundali, locale }: Props) {
   const moonNakPada = moon?.pada ?? 0;
   const moonNakLord = moonNak?.id ? (NAKSHATRAS[moonNak.id - 1]?.ruler ?? '—') : '—';
 
-  // Day of week (Sunday = 0; Sanskrit names below)
-  const weekdayJD = jdBirth + 0.5; // shift so that integer floor = 0..6 with 0 = Monday in Meeus → adjust
-  const weekday = (Math.floor(jdBirth + 1.5) % 7); // 0=Sun, 1=Mon, ..., 6=Sat (matches Date.getUTCDay)
+  // Day of week (Sunday = 0). Compute from the LOCAL birth date,
+  // not from jdBirth (which is UTC). For e.g. an India birth at
+  // 02:00 IST on 15-Aug, jdBirth is 14-Aug UTC and would yield the
+  // wrong weekday. Date.UTC(...) + getUTCDay() reads the local
+  // calendar day without server-tz contamination (lesson L).
+  const weekday = new Date(Date.UTC(bY, bM - 1, bD)).getUTCDay();
   const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const dayName = dayNames[weekday] ?? '—';
-  void weekdayJD; // silence unused-var
 
   // ASC longitude DMS
   const ascSignName = SIGN_ABBR[(kundali.ascendant.sign - 1)] ?? '—';
@@ -133,9 +135,10 @@ export default function KundaliSnapshot({ kundali, locale }: Props) {
     retro: p.isRetrograde,
   }));
 
-  // ─── Ashtakavarga ───
+  // ─── Ashtakavarga (7 contributors — Rahu/Ketu excluded by classical rule) ───
+  // Pull from the same locale-aware PLANET_ABBR (indices 0..6 = Sun..Saturn).
   const av = kundali.ashtakavarga;
-  const bpiPlanetLabels = ['Sun', 'Mon', 'Mar', 'Mer', 'Jup', 'Ven', 'Sat']; // 7 contributors (Rahu/Ketu excluded by classical rule)
+  const bpiPlanetLabels = PLANET_ABBR.slice(0, 7);
 
   // ─── Chalit (bhav chalit) cusps ───
   const chalitRows = kundali.houses.map((h) => ({
@@ -194,7 +197,7 @@ export default function KundaliSnapshot({ kundali, locale }: Props) {
         <DataPair label={L('Star (Nakshatra)', 'नक्षत्र')} value={`${moonNakName}-${moonNakPada}`} />
         <DataPair label={L('Star Lord', 'नक्षत्र स्वामी')} value={moonNakLord} />
         <DataPair label={L('Rashi (Moon)', 'राशि (चंद्र)')} value={rasiName} />
-        <DataPair label={L('Rashi Lord', 'राशि स्वामी')} value={PLANET_ABBR_EN[rasiLordId] ?? '—'} />
+        <DataPair label={L('Rashi Lord', 'राशि स्वामी')} value={PLANET_ABBR[rasiLordId] ?? '—'} />
         <DataPair label={L('Ascendant', 'लग्न')} value={`${ascSignName} ${ascDMS}`} className="col-span-2" />
       </div>
 
@@ -367,11 +370,15 @@ function DashaCell({
   maha: KundaliData['dashas'][number];
   locale: string;
 }) {
-  // Strip the day from "YYYY-MM-DD" — pandits usually want month/year resolution
+  // Format "YYYY-MM-DD[Thh:mm:ssZ]" → "DD/MM/YY" via string split. Avoids
+  // `new Date(iso)` (CLAUDE.md lesson L — browser parser quirks + tz drift
+  // when iso lacks a Z suffix, which engine output sometimes does).
   const compactDate = (iso: string) => {
-    const d = new Date(iso);
-    if (Number.isNaN(d.getTime())) return iso;
-    return `${String(d.getUTCDate()).padStart(2, '0')}/${String(d.getUTCMonth() + 1).padStart(2, '0')}/${d.getUTCFullYear() % 100}`;
+    const datePart = iso.split('T')[0];
+    const parts = datePart.split('-');
+    if (parts.length !== 3) return iso;
+    const [yyyy, mm, dd] = parts;
+    return `${dd}/${mm}/${yyyy.slice(-2)}`;
   };
 
   const planetLabel = tl(maha.planetName, locale) || maha.planet;

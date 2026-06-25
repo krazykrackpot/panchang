@@ -51,11 +51,16 @@ const NITYA_YOGAS = [
 ];
 
 // 12 sign abbreviations (compact, fit the chart cells)
-const SIGN_ABBR = ['Ari', 'Tau', 'Gem', 'Can', 'Leo', 'Vir', 'Lib', 'Sco', 'Sag', 'Cap', 'Aqu', 'Pis'];
+const SIGN_ABBR_EN = ['Ari', 'Tau', 'Gem', 'Can', 'Leo', 'Vir', 'Lib', 'Sco', 'Sag', 'Cap', 'Aqu', 'Pis'];
+const SIGN_ABBR_HI = ['मेष', 'वृष', 'मिथुन', 'कर्क', 'सिंह', 'कन्या', 'तुला', 'वृश्चिक', 'धनु', 'मकर', 'कुम्भ', 'मीन'];
 
 // 9-planet abbreviations matching the engine's planet.id (0..8)
 const PLANET_ABBR_EN = ['Sun', 'Moon', 'Mar', 'Mer', 'Jup', 'Ven', 'Sat', 'Rah', 'Ket'];
 const PLANET_ABBR_HI = ['सूर्य', 'चंद्र', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि', 'राहु', 'केतु'];
+
+// Weekday names (0 = Sunday matches Date.getUTCDay).
+const WEEKDAY_NAMES_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const WEEKDAY_NAMES_HI = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
 
 /** Sidereal longitude → "DD°MM'SS\"" string (used for ASC and the planet-table fallback). */
 function longToDMS(deg: number): string {
@@ -75,6 +80,8 @@ export default function KundaliSnapshot({ kundali, locale }: Props) {
   const isHi = isDevanagariLocale(locale);
   const L = (en: string, hi: string) => (isHi ? hi : en);
   const PLANET_ABBR = isHi ? PLANET_ABBR_HI : PLANET_ABBR_EN;
+  const SIGN_ABBR = isHi ? SIGN_ABBR_HI : SIGN_ABBR_EN;
+  const WEEKDAY_NAMES = isHi ? WEEKDAY_NAMES_HI : WEEKDAY_NAMES_EN;
 
   // Export state — exposed via the toolbar buttons in the header strip.
   // PDF reuses the same multi-page exportKundaliPDF helper Patrika uses,
@@ -120,7 +127,10 @@ export default function KundaliSnapshot({ kundali, locale }: Props) {
       const sliceHeightPx = Math.floor(contentH * pxPerMm);
 
       const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-      const safeName = (kundali.birthData.name || 'kundali').replace(/[^\w\-]+/g, '_').slice(0, 40);
+      // Only strip characters that are actually invalid in filenames on
+      // major OSes. Preserve Hindi/Bengali/Tamil/etc. native-script
+      // names — `[^\w\-]+` would have replaced "राहुल" with "_____".
+      const safeName = (kundali.birthData.name || 'kundali').replace(/[\s<>:"/\\|?*\x00-\x1f]+/g, '_').slice(0, 40) || 'kundali';
       pdf.setProperties({
         title: `${safeName} — Kundali Report`,
         author: 'Dekho Panchang',
@@ -171,7 +181,10 @@ export default function KundaliSnapshot({ kundali, locale }: Props) {
         quality: 0.95,
       });
       // Trigger a download as 'kundali-<name>-<date>.jpg'
-      const safeName = (kundali.birthData.name || 'kundali').replace(/[^\w\-]+/g, '_').slice(0, 40);
+      // Only strip characters that are actually invalid in filenames on
+      // major OSes. Preserve Hindi/Bengali/Tamil/etc. native-script
+      // names — `[^\w\-]+` would have replaced "राहुल" with "_____".
+      const safeName = (kundali.birthData.name || 'kundali').replace(/[\s<>:"/\\|?*\x00-\x1f]+/g, '_').slice(0, 40) || 'kundali';
       const fname = `kundali-${safeName}-${kundali.birthData.date}.jpg`;
       const a = document.createElement('a');
       a.href = dataUrl;
@@ -231,8 +244,7 @@ export default function KundaliSnapshot({ kundali, locale }: Props) {
   // wrong weekday. Date.UTC(...) + getUTCDay() reads the local
   // calendar day without server-tz contamination (lesson L).
   const weekday = new Date(Date.UTC(bY, bM - 1, bD)).getUTCDay();
-  const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const dayName = dayNames[weekday] ?? '—';
+  const dayName = WEEKDAY_NAMES[weekday] ?? '—';
 
   // ASC longitude DMS
   const ascSignName = SIGN_ABBR[(kundali.ascendant.sign - 1)] ?? '—';

@@ -19,7 +19,10 @@
  */
 
 import dynamic from 'next/dynamic';
+import { useRef, useState } from 'react';
+import { Download, FileImage, Loader2, Printer } from 'lucide-react';
 import type { KundaliData } from '@/types/kundali';
+import type { Locale } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import {
@@ -72,6 +75,60 @@ export default function KundaliSnapshot({ kundali, locale }: Props) {
   const isHi = isDevanagariLocale(locale);
   const L = (en: string, hi: string) => (isHi ? hi : en);
   const PLANET_ABBR = isHi ? PLANET_ABBR_HI : PLANET_ABBR_EN;
+
+  // Export state — exposed via the toolbar buttons in the header strip.
+  // PDF reuses the same multi-page exportKundaliPDF helper Patrika uses,
+  // so fidelity is identical (cover / planet positions / houses / yogas
+  // / shadbala / dasha / ashtakavarga, all branded). JPEG is an
+  // html-to-image snapshot of the card element — useful for sharing
+  // via WhatsApp/Telegram where PDF attachments are awkward.
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const [exportBusy, setExportBusy] = useState<'pdf' | 'jpeg' | null>(null);
+
+  async function handleExportPDF() {
+    setExportBusy('pdf');
+    try {
+      const { exportKundaliPDF } = await import('@/lib/export/pdf-kundali');
+      exportKundaliPDF(kundali, locale as Locale);
+    } catch (err) {
+      console.error('[KundaliSnapshot] PDF export failed:', err);
+      alert(L('PDF export failed — please retry.', 'PDF एक्सपोर्ट विफल — पुनः प्रयास करें।'));
+    } finally {
+      setExportBusy(null);
+    }
+  }
+
+  async function handleExportJPEG() {
+    if (!cardRef.current) return;
+    setExportBusy('jpeg');
+    try {
+      const { toJpeg } = await import('html-to-image');
+      const dataUrl = await toJpeg(cardRef.current, {
+        // Higher pixelRatio → sharper on retina displays + WhatsApp's
+        // re-encoding pass survives better.
+        pixelRatio: 2,
+        backgroundColor: '#0a0e27',
+        // Some chart cells reference /_next/image — without query params
+        // the html-to-image cache collapses all images to one key.
+        includeQueryParams: true,
+        quality: 0.95,
+      });
+      // Trigger a download as 'kundali-<name>-<date>.jpg'
+      const safeName = (kundali.birthData.name || 'kundali').replace(/[^\w\-]+/g, '_').slice(0, 40);
+      const fname = `kundali-${safeName}-${kundali.birthData.date}.jpg`;
+      const a = document.createElement('a');
+      a.href = dataUrl;
+      a.download = fname;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch (err) {
+      console.error('[KundaliSnapshot] JPEG export failed:', err);
+      alert(L('Image export failed — please retry.', 'इमेज एक्सपोर्ट विफल — पुनः प्रयास करें।'));
+    } finally {
+      setExportBusy(null);
+    }
+  }
 
   const bd = kundali.birthData;
 
@@ -155,9 +212,9 @@ export default function KundaliSnapshot({ kundali, locale }: Props) {
     'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 sm:p-5';
 
   return (
-    <section className={cardCls + ' my-8'}>
+    <section ref={cardRef} className={cardCls + ' my-8'}>
       {/* ─── Section title strip ─── */}
-      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-4 pb-3 border-b border-gold-primary/20">
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4 pb-3 border-b border-gold-primary/20">
         <div>
           <h2 className="text-gold-light text-lg sm:text-xl font-bold">
             {L('Info to share with your pandit / jyotish', 'पंडित / ज्योतिषी के साथ साझा करने योग्य जानकारी')}
@@ -169,13 +226,40 @@ export default function KundaliSnapshot({ kundali, locale }: Props) {
             )}
           </p>
         </div>
-        <button
-          type="button"
-          onClick={() => typeof window !== 'undefined' && window.print()}
-          className="self-start sm:self-end inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 text-xs transition-colors"
-        >
-          {L('Print / Save as PDF', 'प्रिंट / PDF के रूप में सहेजें')}
-        </button>
+        {/* Export toolbar — PDF (multi-page branded; same fidelity as
+            the Patrika tab), JPEG (single-shot image for WhatsApp), and
+            Print (browser dialog with a black-on-white @media print). */}
+        <div className="flex flex-wrap gap-2 shrink-0">
+          <button
+            type="button"
+            onClick={handleExportPDF}
+            disabled={!!exportBusy}
+            data-html2canvas-ignore="true"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gold-primary/40 bg-gold-primary/10 text-gold-light hover:bg-gold-primary/20 text-xs transition-colors disabled:opacity-50"
+          >
+            {exportBusy === 'pdf' ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Download className="w-3.5 h-3.5" />}
+            {L('PDF', 'PDF')}
+          </button>
+          <button
+            type="button"
+            onClick={handleExportJPEG}
+            disabled={!!exportBusy}
+            data-html2canvas-ignore="true"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gold-primary/40 bg-gold-primary/10 text-gold-light hover:bg-gold-primary/20 text-xs transition-colors disabled:opacity-50"
+          >
+            {exportBusy === 'jpeg' ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <FileImage className="w-3.5 h-3.5" />}
+            {L('JPEG', 'JPEG')}
+          </button>
+          <button
+            type="button"
+            onClick={() => typeof window !== 'undefined' && window.print()}
+            data-html2canvas-ignore="true"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 text-xs transition-colors"
+          >
+            <Printer className="w-3.5 h-3.5" />
+            {L('Print', 'प्रिंट')}
+          </button>
+        </div>
       </div>
 
       {/* ─── Header strip: birth + panchang grid ─── */}

@@ -348,26 +348,63 @@ function drawNorthChart(
   // Standard mapping: housePositions[i] is for house (arrangement[i])
   const houseOrder = [1, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
 
-  const abbr = GRAHA_ABBREVIATIONS;
+  // 3-letter abbreviations so "Mon" and "Mar" don't collapse to "Mo" / "Ma"
+  // — at fontSize 5–6, the 2-letter pair was nearly indistinguishable in
+  // print, leading to confused readings on the cover page.
+  const abbrUnambiguous: Record<number, string> = {
+    0: 'Sun', 1: 'Mon', 2: 'Mar', 3: 'Mer', 4: 'Jup', 5: 'Ven', 6: 'Sat', 7: 'Rah', 8: 'Ket',
+  };
 
-  doc.setFontSize(5);
-  setText(doc, WHITE);
+  // Font sizes scale with chart size so the same renderer works at
+  // 60mm (multi-chart pages) up to 100mm (single cover chart).
+  const planetFontSize = Math.max(6, Math.min(8.5, size / 12));
+  const houseNumFontSize = Math.max(7, Math.min(9.5, size / 11));
 
+  // Render order matters: house numbers first (background layer in muted
+  // gold), then planets on top (white text). This mirrors the in-app
+  // ChartNorth which renders the house number as a subtle anchor and
+  // the planets as the focus — without the house number every reader
+  // has to count diamonds to identify the bhava.
   houseOrder.forEach((houseNum, posIdx) => {
-    // chartData.houses is 0-indexed (houses[0] = house 1 planets)
-    const planetsInHouse = chartData.houses[houseNum - 1] || [];
-    if (planetsInHouse.length === 0) return;
-
-    const labels = planetsInHouse.map(pid => abbr[pid] || `P${pid}`);
-    const text = labels.join(' ');
     const [px, py] = housePositions[posIdx];
-    doc.text(truncateToWidth(doc, text, q * 1.5), px, py, { align: 'center' });
+    const planetsInHouse = chartData.houses[houseNum - 1] || [];
+
+    // House number — always shown, lighter colour so it doesn't compete
+    // with planet labels. Placed at the top of the cell when planets are
+    // present (planets render at center), or centered when the cell is
+    // empty.
+    const numOffsetY = planetsInHouse.length > 0 ? -q * 0.5 : 0;
+    doc.setFontSize(houseNumFontSize);
+    setText(doc, GOLD_DARK);
+    doc.text(String(houseNum), px, py + numOffsetY, { align: 'center' });
   });
 
-  // "Asc" label in house 1
-  doc.setFontSize(4.5);
+  // Planet labels — second pass, on top.
+  doc.setFontSize(planetFontSize);
+  setText(doc, WHITE);
+  houseOrder.forEach((houseNum, posIdx) => {
+    const planetsInHouse = chartData.houses[houseNum - 1] || [];
+    if (planetsInHouse.length === 0) return;
+    const [px, py] = housePositions[posIdx];
+    const labels = planetsInHouse.map(pid => abbrUnambiguous[pid] || `P${pid}`);
+
+    if (labels.length <= 2) {
+      const text = labels.join(' ');
+      doc.text(truncateToWidth(doc, text, q * 1.7), px, py, { align: 'center' });
+    } else {
+      // Stack on 2 lines so 3-4 planet conjunctions don't truncate.
+      const split = Math.ceil(labels.length / 2);
+      const line1 = labels.slice(0, split).join(' ');
+      const line2 = labels.slice(split).join(' ');
+      doc.text(truncateToWidth(doc, line1, q * 1.7), px, py - planetFontSize * 0.2, { align: 'center' });
+      doc.text(truncateToWidth(doc, line2, q * 1.7), px, py + planetFontSize * 0.32, { align: 'center' });
+    }
+  });
+
+  // "Asc" label in house 1 — small overlay above the house number.
+  doc.setFontSize(Math.max(5, planetFontSize - 1.5));
   setText(doc, GOLD_LIGHT);
-  doc.text('Asc', cx, y + q * 0.4, { align: 'center' });
+  doc.text('Asc', cx, y + q * 0.32, { align: 'center' });
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -440,20 +477,29 @@ function renderCoverPage(doc: jsPDF, kundali: KundaliData, locale: Locale) {
   doc.text(`Ayanamsha: ${bd.ayanamsha} (${kundali.ayanamshaValue.toFixed(4)}°)`, PAGE_W / 2, y, { align: 'center' });
   y += 14;
 
-  // ─── North Indian Chart ───────────────────────────────────────────
-  const chartSize = 100;
-  const chartX = (PAGE_W - chartSize) / 2;
+  // ─── Lagna (D1) + Navamasa (D9) side-by-side ───────────────────────
+  // Two North-Indian diamond charts on the cover — same layout as the
+  // pandit printout the user shared. Sized to fit on PAGE_W=210mm with
+  // a margin pair + a small inter-chart gap.
+  const gap = 6;
+  const charts2Size = Math.floor((CONTENT_W - gap) / 2); // ~89mm each at A4
+  const leftX = MARGIN;
+  const rightX = MARGIN + charts2Size + gap;
   const chartY = y;
 
-  drawCard(doc, chartX - 6, chartY - 6, chartSize + 12, chartSize + 12, { fill: NAVY_CARD, border: GOLD_DARK, radius: 3 });
-  drawNorthChart(doc, kundali.chart, chartX, chartY, chartSize);
+  drawCard(doc, leftX - 4, chartY - 4, charts2Size + 8, charts2Size + 8, { fill: NAVY_CARD, border: GOLD_DARK, radius: 3 });
+  drawNorthChart(doc, kundali.chart, leftX, chartY, charts2Size);
 
-  y = chartY + chartSize + 18;
+  drawCard(doc, rightX - 4, chartY - 4, charts2Size + 8, charts2Size + 8, { fill: NAVY_CARD, border: GOLD_DARK, radius: 3 });
+  drawNorthChart(doc, kundali.navamshaChart, rightX, chartY, charts2Size);
 
-  // Chart label
+  y = chartY + charts2Size + 14;
+
+  // Chart labels under each chart
   doc.setFontSize(8);
   setText(doc, MUTED);
-  doc.text('Rashi Chart (D1)', PAGE_W / 2, y, { align: 'center' });
+  doc.text('Lagna Chart (D1)', leftX + charts2Size / 2, y, { align: 'center' });
+  doc.text('Navamasa Chart (D9)', rightX + charts2Size / 2, y, { align: 'center' });
 
   // Generation date at bottom
   doc.setFontSize(7);
@@ -988,7 +1034,21 @@ function renderDivisionalAndJaimini(doc: jsPDF, kundali: KundaliData, locale: Lo
 
   if (kundali.divisionalCharts && Object.keys(kundali.divisionalCharts).length > 0) {
     const abbr = GRAHA_ABBREVIATIONS;
-    const entries = Object.entries(kundali.divisionalCharts);
+    // D9 (Navamsha) lives at the top level of KundaliData (not in
+    // divisionalCharts), so injecting it here so the overview lists it
+    // alongside D2/D3/.../D60. Without this it was silently absent
+    // from the printout, which was the user's most-requested chart.
+    const entries: [string, { houses: number[][]; ascendantSign: number; label: { en: string; hi?: string; sa?: string } }][] = [];
+    if (kundali.navamshaChart) {
+      entries.push(['d9', {
+        houses: kundali.navamshaChart.houses,
+        ascendantSign: kundali.navamshaChart.ascendantSign,
+        label: { en: 'D9 Navamsha', hi: 'D9 नवांश' },
+      }]);
+    }
+    for (const [k, v] of Object.entries(kundali.divisionalCharts)) {
+      entries.push([k, v]);
+    }
 
     for (const [key, chart] of entries) {
       y = ensureSpace(doc, y, 16);

@@ -22,7 +22,7 @@ import dynamic from 'next/dynamic';
 import { useRef, useState } from 'react';
 import { Download, FileImage, Loader2, Printer } from 'lucide-react';
 import type { KundaliData } from '@/types/kundali';
-import type { Locale } from '@/types/panchang';
+import type { Locale, LocaleText } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import {
@@ -407,6 +407,12 @@ export default function KundaliSnapshot({ kundali, locale }: Props) {
         ))}
       </div>
 
+      {/* ─── Key Doshas — Manglik / Kaal Sarp / Ganda Mula / Sade Sati.
+              Merged in from the prior PatrikaTab so this single card is
+              now the canonical pandit data view (one element, used in
+              both Simple-mode and Expert-mode patrika tab). ─── */}
+      <KeyDoshasSection kundali={kundali} locale={locale} isHi={isHi} />
+
       {/* ─── Footer hint ─── */}
       <p className="text-text-secondary text-[10px] mt-5 text-center">
         {L(
@@ -488,5 +494,143 @@ function DashaCell({
         ))}
       </div>
     </div>
+  );
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// KeyDoshasSection — Manglik / Kaal Sarp / Ganda Mula / Sade Sati.
+// Merged in from the prior PatrikaTab so the snapshot card is the
+// single canonical pandit data view (used in Simple mode + Expert mode
+// patrika tab). Detection rules match PatrikaTab's classical logic
+// 1:1; copying the data structure rather than importing keeps the
+// snapshot self-contained.
+// ──────────────────────────────────────────────────────────────────────
+function KeyDoshasSection({
+  kundali,
+  locale,
+  isHi,
+}: {
+  kundali: KundaliData;
+  locale: string;
+  isHi: boolean;
+}) {
+  const L = (en: string, hi: string) => (isHi ? hi : en);
+
+  const doshas: { key: string; name: LocaleText; present: boolean; detail: LocaleText }[] = [];
+
+  // ── Manglik: Mars in house 1, 2, 4, 7, 8, or 12 (with classical cancellations) ──
+  const mars = kundali.planets.find((p) => p.planet.id === 2);
+  const jupiter = kundali.planets.find((p) => p.planet.id === 4);
+  const venus = kundali.planets.find((p) => p.planet.id === 5);
+  const saturn = kundali.planets.find((p) => p.planet.id === 6);
+  const isManglik = mars ? [1, 2, 4, 7, 8, 12].includes(mars.house) : false;
+  const cancellations: string[] = [];
+  if (isManglik && mars) {
+    if (jupiter && jupiter.house === 7) cancellations.push('Jupiter occupies 7th');
+    if (venus && venus.house === 1) cancellations.push('Venus in 1st');
+    if (mars.sign === 1 || mars.sign === 4 || mars.sign === 8) cancellations.push('Mars in own/exalted sign');
+    if (saturn && saturn.house === mars.house) cancellations.push('Saturn conjunct Mars');
+  }
+  const isManglikCancelled = cancellations.length > 0;
+  const severity = mars ? ([7, 8].includes(mars.house) ? 'severe' : [1, 4].includes(mars.house) ? 'moderate' : 'mild') : 'none';
+  doshas.push({
+    key: 'manglik',
+    name: { en: 'Manglik Dosha', hi: 'मांगलिक दोष' },
+    present: isManglik && !isManglikCancelled,
+    detail: {
+      en: !isManglik
+        ? 'Mars not in 1/2/4/7/8/12 — no Manglik Dosha.'
+        : isManglikCancelled
+          ? `Mars in House ${mars!.house} (${severity}). Cancelled: ${cancellations.join('; ')}.`
+          : `Mars in House ${mars!.house} (${severity}).`,
+      hi: !isManglik
+        ? 'मंगल 1/2/4/7/8/12 में नहीं — मांगलिक दोष नहीं।'
+        : isManglikCancelled
+          ? `मंगल भाव ${mars!.house} में (${severity === 'severe' ? 'गम्भीर' : severity === 'moderate' ? 'मध्यम' : 'हल्का'})। रद्द: ${cancellations.join('; ')}।`
+          : `मंगल भाव ${mars!.house} में (${severity === 'severe' ? 'गम्भीर' : severity === 'moderate' ? 'मध्यम' : 'हल्का'})।`,
+    },
+  });
+
+  // ── Kaal Sarp: all 7 non-nodal planets hemmed between Rahu-Ketu ──
+  const rahu = kundali.planets.find((p) => p.planet.id === 7);
+  const ketu = kundali.planets.find((p) => p.planet.id === 8);
+  let isKaalSarp = false;
+  if (rahu && ketu) {
+    const rahuLon = rahu.longitude;
+    const ketuLon = ketu.longitude;
+    const others = kundali.planets.filter((p) => p.planet.id !== 7 && p.planet.id !== 8);
+    const allOnOneSide = others.every((p) => (rahuLon < ketuLon ? p.longitude >= rahuLon && p.longitude <= ketuLon : p.longitude >= rahuLon || p.longitude <= ketuLon));
+    const allOnOtherSide = others.every((p) => (ketuLon < rahuLon ? p.longitude >= ketuLon && p.longitude <= rahuLon : p.longitude >= ketuLon || p.longitude <= rahuLon));
+    isKaalSarp = allOnOneSide || allOnOtherSide;
+  }
+  doshas.push({
+    key: 'kaalsarp',
+    name: { en: 'Kaal Sarp Dosha', hi: 'काल सर्प दोष' },
+    present: isKaalSarp,
+    detail: isKaalSarp
+      ? { en: 'All planets hemmed between Rahu–Ketu axis.', hi: 'सभी ग्रह राहु–केतु अक्ष के बीच।' }
+      : { en: 'Not present.', hi: 'उपस्थित नहीं।' },
+  });
+
+  // ── Ganda Mula: Moon in junctional nakshatra (1/9/10/18/19/27) ──
+  const moonP = kundali.planets.find((p) => p.planet.id === 1);
+  const gandaIds = [1, 9, 10, 18, 19, 27];
+  const isGanda = moonP ? gandaIds.includes(moonP.nakshatra.id) : false;
+  const moonNakName = moonP?.nakshatra?.name
+    ? typeof moonP.nakshatra.name === 'string'
+      ? moonP.nakshatra.name
+      : tl(moonP.nakshatra.name as LocaleText, locale)
+    : '—';
+  doshas.push({
+    key: 'gandamula',
+    name: { en: 'Ganda Mula', hi: 'गण्ड मूल' },
+    present: isGanda,
+    detail: isGanda
+      ? { en: `Moon in ${moonNakName}.`, hi: `चन्द्र ${moonNakName} में।` }
+      : { en: 'Moon not in a junctional nakshatra.', hi: 'चन्द्र गण्ड मूल नक्षत्र में नहीं।' },
+  });
+
+  // ── Sade Sati: from engine ──
+  const sadeSatiActive = !!kundali.sadeSati?.isActive;
+  const sadeSatiPhase = kundali.sadeSati?.currentPhase;
+  doshas.push({
+    key: 'sadesati',
+    name: { en: 'Sade Sati', hi: 'साढ़े साती' },
+    present: sadeSatiActive,
+    detail: sadeSatiActive
+      ? { en: `Currently active${sadeSatiPhase ? ` — ${sadeSatiPhase}` : ''}.`, hi: `वर्तमान में सक्रिय${sadeSatiPhase ? ` — ${sadeSatiPhase}` : ''}।` }
+      : { en: 'Not currently active.', hi: 'वर्तमान में सक्रिय नहीं।' },
+  });
+
+  const present = doshas.filter((d) => d.present);
+
+  return (
+    <>
+      <h3 className="text-gold-light text-sm font-semibold mt-6 mb-2">
+        {L('Key Doshas', 'मुख्य दोष')}
+      </h3>
+      {present.length === 0 ? (
+        <p className="text-emerald-400/80 text-xs">
+          {L('None of the four classical doshas (Manglik / Kaal Sarp / Ganda Mula / Sade Sati) are currently active.',
+             'चार मुख्य दोष (मांगलिक / काल सर्प / गण्ड मूल / साढ़े साती) में से कोई वर्तमान में सक्रिय नहीं।')}
+        </p>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+          {present.map((d) => (
+            <div key={d.key} className="rounded-lg border border-red-500/25 bg-red-500/5 p-2">
+              <div className="flex items-baseline gap-2 mb-0.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0" />
+                <span className="text-gold-light font-semibold">{tl(d.name, locale)}</span>
+              </div>
+              <p className="text-text-secondary/80 ml-3.5 leading-snug">{tl(d.detail, locale)}</p>
+            </div>
+          ))}
+        </div>
+      )}
+      <p className="text-text-secondary/60 text-[10px] mt-2 italic">
+        {L('Showing only the four most-asked-about doshas. A full pandit reading covers additional yoga/dosha layers.',
+           'केवल चार सबसे अधिक पूछे जाने वाले दोष दिखाए गए हैं। पूर्ण पंडित विश्लेषण में अतिरिक्त योग/दोष परतें होती हैं।')}
+      </p>
+    </>
   );
 }

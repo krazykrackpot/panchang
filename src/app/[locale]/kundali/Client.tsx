@@ -87,7 +87,7 @@ const ShareableKundaliCard = dynamic(() => import('@/components/kundali/Shareabl
 const ShareBirthPosterButton = dynamic(() => import('@/components/shareable/ShareBirthPosterButton'), { ssr: false });
 const TransitRadar = dynamic(() => import('@/components/kundali/TransitRadar'), { ssr: false });
 const LifeTimeline = dynamic(() => import('@/components/kundali/LifeTimeline'), { ssr: false });
-const PatrikaTab = dynamic(() => import('@/components/kundali/PatrikaTab'), { ssr: false });
+const KundaliSnapshot = dynamic(() => import('@/components/kundali/KundaliSnapshot'), { ssr: false });
 const RemediesTab = dynamic(() => import('@/components/kundali/RemediesTab'), { ssr: false });
 const SudarshanaTab = dynamic(() => import('@/components/kundali/SudarshanaTab'), { ssr: false });
 const NadiAmshaTab = dynamic(() => import('@/components/kundali/NadiAmshaTab'), { ssr: false });
@@ -4543,8 +4543,11 @@ export default function KundaliClient() {
                   </div>
                 </div>
               </div>
+              {/* Same KundaliSnapshot card the Simple mode shows — one
+                  canonical pandit data view, used in both surfaces.
+                  Per user (2026-06-25): "no need for 2 separate items". */}
               <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
-                <PatrikaTab kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tip={tip} chartStyle={chartStyle} retrogradeIds={retrogradeIds} combustIds={combustIds} />
+                <KundaliSnapshot kundali={kundali} locale={locale} />
               </Suspense>
               <div className="text-center">
                 <a href={`/${locale}/learn/patrika`} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-sm font-medium hover:bg-amber-500/20 transition-colors">

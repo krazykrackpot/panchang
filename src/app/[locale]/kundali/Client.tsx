@@ -1634,17 +1634,17 @@ export default function KundaliClient() {
         // ═══ REGISTRATION WALL ═══
         // Block chart generation for anonymous visitors. Saves a paywall
         // surprise downstream + every chart now belongs to a registered
-        // user we can email / retarget.
+        // user we can email / retarget. Both flows surfaced equally so
+        // returning users don't think they have to sign up again.
         <div className="rounded-2xl border border-gold-primary/30 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-8 sm:p-10 text-center max-w-2xl mx-auto">
-          <h2 className="text-xl sm:text-2xl text-gold-light font-bold mb-3" style={headingFont}>
-            {locale === 'en' || isTamil
-              ? 'Create a free account to generate your birth chart'
-              : 'जन्म कुंडली बनाने के लिए मुफ्त खाता बनाएँ'}
+          <h2 className="text-xl sm:text-2xl text-gold-light font-bold mb-1" style={headingFont}>
+            {t('regWallTitle')}
           </h2>
+          <p className="text-gold-dark text-sm font-medium mb-3">
+            {t('regWallSubtitle')}
+          </p>
           <p className="text-text-secondary text-sm leading-relaxed max-w-md mx-auto mb-6">
-            {locale === 'en' || isTamil
-              ? 'Your chart is saved to your account so you can revisit it anytime, share it with a pandit, and unlock the personalised reading whenever you\'re ready. No spam, no card needed up front.'
-              : 'आपकी कुंडली आपके खाते में सहेजी जाती है ताकि आप कभी भी देख सकें, पंडित से साझा कर सकें, और जब चाहें व्यक्तिगत व्याख्या अनलॉक कर सकें। कोई स्पैम नहीं, अग्रिम कार्ड की आवश्यकता नहीं।'}
+            {t('regWallBody')}
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <button
@@ -1652,20 +1652,18 @@ export default function KundaliClient() {
               onClick={() => router.push('/?signin=1&intent=generate&signup=1')}
               className="px-6 py-3 rounded-xl bg-gold-primary text-bg-primary font-semibold hover:bg-gold-light transition-colors"
             >
-              {locale === 'en' || isTamil ? 'Create free account' : 'मुफ्त खाता बनाएँ'}
+              {t('regWallCreateAccount')}
             </button>
             <button
               type="button"
               onClick={() => router.push('/?signin=1&intent=generate')}
               className="px-6 py-3 rounded-xl border border-gold-primary/40 text-gold-light hover:bg-gold-primary/10 transition-colors"
             >
-              {locale === 'en' || isTamil ? 'Sign in' : 'साइन इन'}
+              {t('regWallSignIn')}
             </button>
           </div>
           <p className="text-text-secondary/60 text-xs mt-5">
-            {locale === 'en' || isTamil
-              ? 'Free forever for chart generation + basic positions. The personalised tippanni is ₹299 / $4.99 one-time when you\'re ready.'
-              : 'चार्ट जनरेशन + बुनियादी स्थिति हमेशा मुफ्त। व्यक्तिगत व्याख्या ₹299 / $4.99 एक-बार जब आप तैयार हों।'}
+            {t('regWallPriceNote')}
           </p>
         </div>
       )}

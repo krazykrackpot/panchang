@@ -24,6 +24,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { useRouter } from '@/lib/i18n/navigation';
 import { Lock, Sparkles } from 'lucide-react';
 import { authedFetch } from '@/lib/api/authed-fetch';
@@ -58,6 +59,7 @@ export default function TippanniPaywall({
   birth, displayName, signedIn, creditsRemaining, locale, onUnlocked,
 }: Props) {
   const router = useRouter();
+  const tTip = useTranslations('tippanni');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   // Default to INR for SSR + initial hydration (deterministic), then
@@ -176,7 +178,7 @@ export default function TippanniPaywall({
         </p>
         {!signedIn && (
           <p className="text-gold-primary/80 text-xs mt-3">
-            You&apos;ll create a free account at checkout — needed to save your unlocked chart.
+            {tTip('paywallSigninCheckoutHint')}
           </p>
         )}
       </div>

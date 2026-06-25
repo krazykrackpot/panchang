@@ -210,9 +210,17 @@ export default function KundaliSnapshot({ kundali, locale }: Props) {
   // Card style (matches the project convention; do NOT use bg-bg-secondary for new cards)
   const cardCls =
     'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 sm:p-5';
+  // Print modifiers — Tailwind's `print:` variants, applied globally
+  // via the `[&_*]:print:...` arbitrary descendant selector so the
+  // gold/text-secondary children flip to black on white too. Without
+  // the descendant selector, child class colours (text-gold-light,
+  // etc.) outrank the parent `print:text-black` and stay illegible.
+  const printOverrides =
+    'print:!bg-none print:!bg-white print:!text-black print:!border print:!border-gray-300 ' +
+    '[&_*]:print:!bg-transparent [&_*]:print:!text-black [&_*]:print:!border-gray-300';
 
   return (
-    <section ref={cardRef} className={cardCls + ' my-8'}>
+    <section ref={cardRef} className={`${cardCls} my-8 ${printOverrides}`}>
       {/* ─── Section title strip ─── */}
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4 pb-3 border-b border-gold-primary/20">
         <div>
@@ -406,13 +414,6 @@ export default function KundaliSnapshot({ kundali, locale }: Props) {
           'इंजन: मीस 1998 (सौर/चंद्र), दृक् पंचांग। अयनांश सायन स्थितियों पर लागू। समय जन्म स्थान का स्थानीय है।',
         )}
       </p>
-
-      {/* Print stylesheet — force black-on-white when printing the snapshot. */}
-      <style jsx>{`
-        @media print {
-          section { background: white !important; color: black !important; border: 1px solid #ccc; }
-        }
-      `}</style>
     </section>
   );
 }
@@ -458,6 +459,7 @@ function DashaCell({
   // `new Date(iso)` (CLAUDE.md lesson L — browser parser quirks + tz drift
   // when iso lacks a Z suffix, which engine output sometimes does).
   const compactDate = (iso: string) => {
+    if (!iso) return '—';
     const datePart = iso.split('T')[0];
     const parts = datePart.split('-');
     if (parts.length !== 3) return iso;

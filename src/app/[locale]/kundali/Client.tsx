@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef, Suspense } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
+import { useRouter as useLocalisedRouter } from '@/lib/i18n/navigation';
 import { tl } from '@/lib/utils/trilingual';
 import { pickKundaliLabel as KL } from '@/lib/content/kundali-page-labels';
 import { normalizeBirthTime } from '@/lib/utils/birth-data';
@@ -86,7 +87,7 @@ const ShareableKundaliCard = dynamic(() => import('@/components/kundali/Shareabl
 const ShareBirthPosterButton = dynamic(() => import('@/components/shareable/ShareBirthPosterButton'), { ssr: false });
 const TransitRadar = dynamic(() => import('@/components/kundali/TransitRadar'), { ssr: false });
 const LifeTimeline = dynamic(() => import('@/components/kundali/LifeTimeline'), { ssr: false });
-const PatrikaTab = dynamic(() => import('@/components/kundali/PatrikaTab'), { ssr: false });
+const KundaliSnapshot = dynamic(() => import('@/components/kundali/KundaliSnapshot'), { ssr: false });
 const RemediesTab = dynamic(() => import('@/components/kundali/RemediesTab'), { ssr: false });
 const SudarshanaTab = dynamic(() => import('@/components/kundali/SudarshanaTab'), { ssr: false });
 const NadiAmshaTab = dynamic(() => import('@/components/kundali/NadiAmshaTab'), { ssr: false });
@@ -458,6 +459,7 @@ export default function KundaliClient() {
   const [showPoster, setShowPoster] = useState(false);
   const [savedCharts, setSavedCharts] = useState<Array<{ id: string; label: string; birth_data: { name?: string; date: string; time: string; place: string; lat: number; lng: number; timezone?: string; relationship?: string } }>>([]);
   const user = useAuthStore(s => s.user);
+  const router = useLocalisedRouter();
 
   // On mount: read localStorage, then optionally override from profile.
   //
@@ -1628,7 +1630,45 @@ export default function KundaliClient() {
         </div>
       )}
 
-      {(!kundali || editing) && (
+      {(!kundali || editing) && !user && (
+        // ═══ REGISTRATION WALL ═══
+        // Block chart generation for anonymous visitors. Saves a paywall
+        // surprise downstream + every chart now belongs to a registered
+        // user we can email / retarget. Both flows surfaced equally so
+        // returning users don't think they have to sign up again.
+        <div className="rounded-2xl border border-gold-primary/30 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-8 sm:p-10 text-center max-w-2xl mx-auto">
+          <h2 className="text-xl sm:text-2xl text-gold-light font-bold mb-1" style={headingFont}>
+            {t('regWallTitle')}
+          </h2>
+          <p className="text-gold-dark text-sm font-medium mb-3">
+            {t('regWallSubtitle')}
+          </p>
+          <p className="text-text-secondary text-sm leading-relaxed max-w-md mx-auto mb-6">
+            {t('regWallBody')}
+          </p>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <button
+              type="button"
+              onClick={() => router.push('/?signin=1&intent=generate&signup=1')}
+              className="px-6 py-3 rounded-xl bg-gold-primary text-bg-primary font-semibold hover:bg-gold-light transition-colors"
+            >
+              {t('regWallCreateAccount')}
+            </button>
+            <button
+              type="button"
+              onClick={() => router.push('/?signin=1&intent=generate')}
+              className="px-6 py-3 rounded-xl border border-gold-primary/40 text-gold-light hover:bg-gold-primary/10 transition-colors"
+            >
+              {t('regWallSignIn')}
+            </button>
+          </div>
+          <p className="text-text-secondary/60 text-xs mt-5">
+            {t('regWallPriceNote')}
+          </p>
+        </div>
+      )}
+
+      {(!kundali || editing) && user && (
         <BirthForm
           onSubmit={(data, style) => {
             setEditing(false);
@@ -4503,8 +4543,11 @@ export default function KundaliClient() {
                   </div>
                 </div>
               </div>
+              {/* Same KundaliSnapshot card the Simple mode shows — one
+                  canonical pandit data view, used in both surfaces.
+                  Per user (2026-06-25): "no need for 2 separate items". */}
               <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
-                <PatrikaTab kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tip={tip} chartStyle={chartStyle} retrogradeIds={retrogradeIds} combustIds={combustIds} />
+                <KundaliSnapshot kundali={kundali} locale={locale} />
               </Suspense>
               <div className="text-center">
                 <a href={`/${locale}/learn/patrika`} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-sm font-medium hover:bg-amber-500/20 transition-colors">

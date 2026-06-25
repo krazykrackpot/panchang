@@ -176,7 +176,13 @@
     "selectChart": "Select Chart",
     "totalBindu": "Total Bindu",
     "saveErrorTitle": "Could not save chart",
-    "dismiss": "Dismiss"
+    "dismiss": "Dismiss",
+    "regWallTitle": "Sign in or create a free account",
+    "regWallSubtitle": "to generate your birth chart",
+    "regWallBody": "Your chart is saved to your account so you can revisit it anytime, share it with a pandit, and unlock the personalised reading whenever you're ready. No spam, no card needed up front.",
+    "regWallCreateAccount": "Create free account",
+    "regWallSignIn": "I already have an account — sign in",
+    "regWallPriceNote": "Free forever for chart generation + basic positions. The personalised tippanni is ₹299 / $4.99 one-time when you're ready."
   },
   "transits": {
     "title": "Planet Transit Calendar",
@@ -239,7 +245,8 @@
     "rahuKetuTransit": "Rahu-Ketu Transit",
     "dashaChange": "Dasha Transition",
     "showRemedies": "Show Remedies",
-    "hideRemedies": "Hide Remedies"
+    "hideRemedies": "Hide Remedies",
+    "paywallSigninCheckoutHint": "You'll create a free account at checkout — needed to save your unlocked chart."
   },
   "about": {
     "title": "About Dekho Panchang",

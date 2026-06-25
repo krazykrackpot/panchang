@@ -16,6 +16,7 @@ import SimpleTimeline from './simple/SimpleTimeline';
 import StrengthsList from './simple/StrengthsList';
 import GrowthAreas from './simple/GrowthAreas';
 import ViewModeToggle, { type KundaliViewMode } from './simple/ViewModeToggle';
+import KundaliSnapshot from './KundaliSnapshot';
 import type { HealthDiagnosis } from '@/lib/kundali/health-diagnosis/types';
 
 // ---------------------------------------------------------------------------
@@ -188,6 +189,41 @@ export default function KundaliSimple({ kundali, blueprint, personalReading, loc
       {/* ─── Areas for Growth ─── */}
       <SectionHeader title={L(locale, 'Areas for Growth', 'विकास के क्षेत्र')} />
       <GrowthAreas evaluatedYogas={kundali.evaluatedYogas} locale={locale} />
+
+      {/* ─── Pandit / Jyotish snapshot — dense one-page data card.
+              Lives in Simple (free) so any user can share the canonical
+              numerical surfaces (panchang-at-birth, D1+D9, planetary
+              positions, dashas, ashtakavarga, chalit) with an astrologer
+              without having to unlock the paid interpretation layer. ─── */}
+      <SectionHeader title={L(locale, 'For Your Pandit / Jyotish', 'अपने पंडित / ज्योतिषी के लिए')} />
+      <KundaliSnapshot kundali={kundali} locale={locale} />
+
+      {/* ─── Soft upgrade prompt — pitched at users who just read the
+              full Simple surface and might be ready to go deeper.
+              The Footer Actions card (below) carries the secondary
+              Detailed / Expert switches; this one is purpose-built
+              copy for "you've seen the snapshot — want it interpreted?" ─── */}
+      <div className="rounded-2xl border border-gold-primary/30 bg-gradient-to-br from-gold-primary/10 via-[#2d1b69]/30 to-[#0a0e27] p-6 mt-8 text-center">
+        <p className="text-gold-light text-sm font-semibold mb-1">
+          {L(locale,
+            'Want the interpretation, not just the data?',
+            'सिर्फ डेटा नहीं — व्याख्या भी चाहिए?')}
+        </p>
+        <p className="text-text-secondary text-xs mb-4">
+          {L(locale,
+            'Unlock the personalised Detailed reading: yogas explained in plain language, life-domain deep-dives, year predictions, dasha guidance and remedies. ₹299 / $4.99 per chart, one-time, never expires.',
+            'व्यक्तिगत विस्तृत व्याख्या अनलॉक करें: सरल भाषा में योग, जीवन क्षेत्र विश्लेषण, वर्ष भविष्यवाणी, दशा मार्गदर्शन और उपाय। ₹299 / $4.99 प्रति कुंडली, एक बार, कभी समाप्त नहीं।')}
+        </p>
+        <button
+          type="button"
+          onClick={() => onSwitchMode('detailed')}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary/20 border border-gold-primary/50 text-gold-light hover:bg-gold-primary/30 transition-all text-sm font-semibold"
+        >
+          {L(locale,
+            'Unlock Detailed reading →',
+            'विस्तृत व्याख्या अनलॉक करें →')}
+        </button>
+      </div>
 
       {/* ─── Footer Actions ─── */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 mt-8">

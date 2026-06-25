@@ -4,15 +4,18 @@
  * TippanniPaywall — shown in place of the paid tippanni sections when
  * the user hasn't unlocked the current chart.
  *
- * Three rendering modes (driven by state from useKundaliEntitlement):
+ * Two rendering modes (driven by state from useKundaliEntitlement):
  *
- *   1. Not signed in        → "Sign in to unlock" CTA
- *   2. Signed in, 0 credits → Two pricing cards (Single ₹299 / Family ₹999)
- *                             that POST /api/kundali/checkout and redirect
- *                             to Stripe
- *   3. Signed in, credits>0 → "You have N credits — unlock this chart"
- *                             button that POSTs /api/kundali/unlock and
- *                             calls onUnlocked() to refresh the parent
+ *   1. Not entitled  → Pricing cards (Single ₹299 / Family ₹999). For
+ *                      anonymous visitors the buy button routes to
+ *                      /?signin=1&intent=buy_<sku>; for signed-in users
+ *                      with 0 credits it POSTs /api/kundali/checkout
+ *                      and redirects to Stripe. Showing the price tag
+ *                      to cold visitors is the single biggest conversion
+ *                      lever — they decide on price, not on signup.
+ *   2. Signed in,    → "You have N credits — unlock this chart" button
+ *      credits > 0     that POSTs /api/kundali/unlock and calls
+ *                      onUnlocked() to refresh the parent.
  *
  * The unlock POST sends the birth params; the server computes the
  * fingerprint and either consumes 1 credit or returns the existing
@@ -21,6 +24,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { useRouter } from '@/lib/i18n/navigation';
 import { Lock, Sparkles } from 'lucide-react';
 import { authedFetch } from '@/lib/api/authed-fetch';
@@ -55,6 +59,7 @@ export default function TippanniPaywall({
   birth, displayName, signedIn, creditsRemaining, locale, onUnlocked,
 }: Props) {
   const router = useRouter();
+  const tTip = useTranslations('tippanni');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   // Default to INR for SSR + initial hydration (deterministic), then
@@ -66,6 +71,14 @@ export default function TippanniPaywall({
   useEffect(() => { setCurrency(defaultCurrency()); }, []);
 
   async function buyCredits(sku: 'single' | 'family') {
+    // Anonymous users: route to sign-in with intent — once they're back
+    // authenticated, the paywall re-renders entitled or with the buy
+    // cards still showing. We don't try to POST without auth (the
+    // checkout route 401s and Stripe needs the user_id to bind anyway).
+    if (!signedIn) {
+      router.push(`/?signin=1&intent=buy_${sku}`);
+      return;
+    }
     setBusy(true);
     setError(null);
     try {
@@ -125,25 +138,6 @@ export default function TippanniPaywall({
     }
   }
 
-  // ── Mode 1: not signed in ───────────────────────────────────────────
-  if (!signedIn) {
-    return (
-      <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/30 p-8 text-center">
-        <Lock className="w-10 h-10 mx-auto mb-4 text-gold-primary" />
-        <h3 className="text-xl text-gold-light font-semibold mb-2">Sign in to unlock your tippanni</h3>
-        <p className="text-text-secondary text-sm mb-6 max-w-md mx-auto leading-relaxed">
-          The full tippanni — Year Predictions, all yogas, doshas, life areas, dasha insights, strength, and remedies — needs a free account to save your chart and an unlock to view.
-        </p>
-        <button
-          onClick={() => router.push('/?signin=1')}
-          className="px-6 py-3 rounded-xl bg-gold-primary text-bg-primary font-semibold hover:bg-gold-light transition-colors"
-        >
-          Sign in / Create account
-        </button>
-      </div>
-    );
-  }
-
   // ── Mode 3: has credits, can unlock immediately ─────────────────────
   if (creditsRemaining > 0) {
     return (
@@ -167,7 +161,10 @@ export default function TippanniPaywall({
     );
   }
 
-  // ── Mode 2: signed in, 0 credits — show pricing cards ───────────────
+  // ── Mode 2: pricing cards. Shown to BOTH anonymous (CTA = "Sign in
+  // to pay") and signed-in-with-0-credits (CTA = price → Stripe).
+  // Putting the price in front of cold visitors is the single biggest
+  // conversion lever — they decide on the price tag, not the sign-up.
   const price = PRICE_LABEL[currency];
 
   return (
@@ -179,6 +176,11 @@ export default function TippanniPaywall({
           Year Predictions, all 11 yogas, 3 doshas, Life Areas, Dasha Insights, Strength,
           and personalised Remedies — plus all divisional charts (D9–D60) and PDF download.
         </p>
+        {!signedIn && (
+          <p className="text-gold-primary/80 text-xs mt-3">
+            {tTip('paywallSigninCheckoutHint')}
+          </p>
+        )}
       </div>
 
       {/* Currency toggle */}

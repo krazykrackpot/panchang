@@ -11,6 +11,16 @@ const VALID_EVENTS = [
   'checkout_completed',
   'tool_used',
   'page_engagement',
+  // Paywall funnel (2026-06-26) — let us read chart→detailed→paywall→checkout
+  // for each signed-in user. Without these we couldn't tell whether 0
+  // purchases meant "snapshot is too generous" or "soft-prompt missed".
+  'kundali_view_mode_switched',  // viewMode: simple|detailed|expert
+  'paywall_impression',           // paywall card rendered to user
+  'paywall_buy_clicked',          // Buy Single / Buy Family click
+  'paywall_unlock_clicked',       // "Unlock this chart" credit-spend click
+  'paywall_signin_required',      // anon user clicked Buy → routed to signin
+  'snapshot_pdf_clicked',         // snapshot export buttons
+  'snapshot_jpeg_clicked',
 ] as const;
 
 // Module-level Supabase client — reused across invocations within the same

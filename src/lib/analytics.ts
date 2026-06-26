@@ -128,13 +128,26 @@ export function trackUtmEvent(
   // sb.auth.getSession() — even though it's localStorage-backed in
   // practice — introduces a microtask delay where the browser can tear
   // the page down before fetch() is even scheduled. Gemini PR #709 HIGH.
+  //
+  // Bug fix 2026-06-26: Supabase v2 stores access_token at the TOP LEVEL
+  // of the JSON value ({ access_token, refresh_token, user, ... }), NOT
+  // nested under currentSession. The previous read of
+  // session?.currentSession?.access_token always returned undefined, so
+  // every signed-in event was logged anonymously — utm_visits.user_id
+  // was 0 across the board. Verified with a real signin against the
+  // live anon client + custom storage spy.
   let accessToken: string | undefined;
   try {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('dekho-panchang-auth');
       if (stored) {
-        const session = JSON.parse(stored) as { currentSession?: { access_token?: string } };
-        accessToken = session?.currentSession?.access_token;
+        const session = JSON.parse(stored) as {
+          access_token?: string;
+          // Tolerate the legacy v1 shape too in case any persisted session
+          // still lingers in someone's localStorage.
+          currentSession?: { access_token?: string };
+        };
+        accessToken = session?.access_token ?? session?.currentSession?.access_token;
       }
     }
   } catch {

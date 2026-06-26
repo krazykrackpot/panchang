@@ -23,6 +23,7 @@ import { useRef, useState } from 'react';
 import { Download, FileImage, Loader2, Printer } from 'lucide-react';
 import type { KundaliData } from '@/types/kundali';
 import type { LocaleText } from '@/types/panchang';
+import { trackUtmEvent } from '@/lib/analytics';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import {
@@ -94,6 +95,10 @@ export default function KundaliSnapshot({ kundali, locale }: Props) {
 
   async function handleExportPDF() {
     if (!cardRef.current) return;
+    // Telemetry: snapshot exported as PDF. Measures whether the "share
+    // with pandit" use-case is actually being exercised (high export
+    // rate but low unlock rate = users want the data, not the reading).
+    trackUtmEvent('snapshot_pdf_clicked', { locale });
     setExportBusy('pdf');
     try {
       // Capture the SAME DOM the JPEG export captures — the PDF and JPEG
@@ -167,6 +172,7 @@ export default function KundaliSnapshot({ kundali, locale }: Props) {
 
   async function handleExportJPEG() {
     if (!cardRef.current) return;
+    trackUtmEvent('snapshot_jpeg_clicked', { locale });
     setExportBusy('jpeg');
     try {
       const { toJpeg } = await import('html-to-image');

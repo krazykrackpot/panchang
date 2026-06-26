@@ -29,6 +29,7 @@ import { useRouter } from '@/lib/i18n/navigation';
 import { Lock, Sparkles } from 'lucide-react';
 import { authedFetch } from '@/lib/api/authed-fetch';
 import { useAuthStore } from '@/stores/auth-store';
+import { trackUtmEvent } from '@/lib/analytics';
 import type { BirthParamsClient } from '@/lib/kundali/useKundaliEntitlement';
 
 interface Props {
@@ -70,12 +71,24 @@ export default function TippanniPaywall({
   const [currency, setCurrency] = useState<'INR' | 'USD'>('INR');
   useEffect(() => { setCurrency(defaultCurrency()); }, []);
 
+  // Telemetry: the paywall was rendered to a real user (impression).
+  // Fires once per mount — useEffect with empty deps. signedIn + credits
+  // included so we can split impressions by funnel stage downstream.
+  useEffect(() => {
+    trackUtmEvent('paywall_impression', { signedIn, creditsRemaining });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   async function buyCredits(sku: 'single' | 'family') {
+    // Telemetry: which buy card the user clicked. Currency captured
+    // so we can see whether INR vs USD users click at different rates.
+    trackUtmEvent('paywall_buy_clicked', { sku, currency, signedIn });
     // Anonymous users: route to sign-in with intent — once they're back
     // authenticated, the paywall re-renders entitled or with the buy
     // cards still showing. We don't try to POST without auth (the
     // checkout route 401s and Stripe needs the user_id to bind anyway).
     if (!signedIn) {
+      trackUtmEvent('paywall_signin_required', { sku, currency });
       router.push(`/?signin=1&intent=buy_${sku}`);
       return;
     }
@@ -108,6 +121,9 @@ export default function TippanniPaywall({
   }
 
   async function unlockChart() {
+    // Telemetry: existing-credits unlock path. Different funnel surface
+    // from buy — measures repeat purchasers using their family-pack credits.
+    trackUtmEvent('paywall_unlock_clicked', { creditsRemaining });
     setBusy(true);
     setError(null);
     try {

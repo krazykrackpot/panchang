@@ -818,6 +818,10 @@ export default function KundaliClient() {
     if (m === 'expert') setView('technical');
     else if (m === 'detailed') setView('summary');
     setViewMode(m);
+    // Telemetry: viewer switched between Simple / Detailed / Expert. Lets us
+    // measure "of chart-generators, what % opened Detailed/Expert"
+    // (i.e. who actually had a chance to see the paywall).
+    trackUtmEvent('kundali_view_mode_switched', { mode: m });
   }, []);
 
   /** Shared synthesis helper — computes personalReading, keyDates, vedicProfile from kundali data.

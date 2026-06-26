@@ -179,10 +179,17 @@ function build(): string {
   // Cohere — narrower list.
   sections.push(block('cohere-ai', [...COHERE_ALLOW, ...COMMON_ALLOW], AI_DISALLOW));
 
-  // Hard blocks — non-cooperative bots.
+  // Hard blocks — non-cooperative bots + zero-traffic crawlers.
+  // Baiduspider/YandexBot: heavy crawl volume (~12-14k req/period each
+  // per Vercel analytics 2026-06-26), zero meaningful traffic — neither
+  // engine drives users to a global EN/Hindi/Tamil Vedic-astrology site.
+  // Both honour robots.txt; if either keeps hammering we'll add a Vercel
+  // firewall rule.
   sections.push('# ─── Hard Blocks ───');
   sections.push(`User-agent: CCBot\nDisallow: /`);
   sections.push(`User-agent: Bytespider\nDisallow: /`);
+  sections.push(`User-agent: Baiduspider\nDisallow: /`);
+  sections.push(`User-agent: YandexBot\nDisallow: /`);
 
   return sections.join('\n\n') + '\n';
 }

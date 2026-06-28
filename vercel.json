@@ -41,10 +41,6 @@
     {
       "path": "/api/cron/brihaspati-abandoned-recovery",
       "schedule": "0 11 * * *"
-    },
-    {
-      "path": "/api/cron/purge-orphan-accounts",
-      "schedule": "45 3 1 * *"
     }
   ]
 }

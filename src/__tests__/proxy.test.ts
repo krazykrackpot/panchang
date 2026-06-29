@@ -556,3 +556,47 @@ describe('soft-404 fix — adjacent surfaces unaffected', () => {
     expect(res.status).not.toBe(404);
   });
 });
+
+describe('proxy — freeloader bot UA block (cost reduction)', () => {
+  // The four UAs we block by name + their sub-variants.
+  const BLOCKED = [
+    { ua: 'Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)', label: 'Baiduspider' },
+    { ua: 'Baiduspider-image+(+http://www.baidu.com/search/spider.htm)', label: 'Baiduspider-image (sub-variant)' },
+    { ua: 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)', label: 'YandexBot' },
+    { ua: 'Mozilla/5.0 (compatible; YandexImages/3.0; +http://yandex.com/bots)', label: 'YandexImages (sub-variant)' },
+    { ua: 'Mozilla/5.0 (compatible; Bytespider; spider-feedback@bytedance.com)', label: 'Bytespider' },
+    { ua: 'CCBot/2.0 (https://commoncrawl.org/faq/)', label: 'CCBot' },
+  ];
+
+  it.each(BLOCKED)('returns HTTP 403 for $label', ({ ua }) => {
+    const res = proxy(makeRequest('https://dekhopanchang.com/en/panchang', { 'user-agent': ua }));
+    expect(res.status).toBe(403);
+  });
+
+  it('attaches Cache-Control to the 403 so Vercel edge caches the block', () => {
+    const res = proxy(makeRequest('https://dekhopanchang.com/en/panchang', {
+      'user-agent': 'Baiduspider/2.0',
+    }));
+    expect(res.status).toBe(403);
+    expect(res.headers.get('cache-control')).toMatch(/s-maxage=\d+/);
+  });
+
+  // Sanity: real search engines + legitimate AI crawlers + humans pass through.
+  const ALLOWED = [
+    { ua: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', label: 'Googlebot' },
+    { ua: 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', label: 'Bingbot' },
+    { ua: 'Mozilla/5.0 (compatible; DuckDuckBot/1.1; +https://duckduckgo.com/duckduckbot)', label: 'DuckDuckBot' },
+    { ua: 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)', label: 'GPTBot' },
+    { ua: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', label: 'Human Chrome' },
+  ];
+
+  it.each(ALLOWED)('does NOT block $label', ({ ua }) => {
+    const res = proxy(makeRequest('https://dekhopanchang.com/en/panchang', { 'user-agent': ua }));
+    expect(res.status).not.toBe(403);
+  });
+
+  it('does NOT block requests with no User-Agent (preserves API/curl access)', () => {
+    const res = proxy(makeRequest('https://dekhopanchang.com/en/panchang'));
+    expect(res.status).not.toBe(403);
+  });
+});

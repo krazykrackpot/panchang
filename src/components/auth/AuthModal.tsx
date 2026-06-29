@@ -274,10 +274,17 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   // emails landed in Gmail spam/promotions and got missed). Login mode keeps
   // it visible because existing email users still need to log in. Forgot
   // requires email by definition.
+  //
+  // React-idiomatic mode→state sync: track previous mode and reset
+  // `showEmailForm` during render when mode changes. Avoids the useEffect
+  // anti-pattern (extra render + visible flash) and stays correct under
+  // strict-mode double-invocation. Per Gemini PR #730 HIGH.
   const [showEmailForm, setShowEmailForm] = useState(true);
-  useEffect(() => {
+  const [prevMode, setPrevMode] = useState(mode);
+  if (mode !== prevMode) {
+    setPrevMode(mode);
     setShowEmailForm(mode !== 'signup');
-  }, [mode]);
+  }
 
   useEffect(() => {
     portalRef.current = document.body;

@@ -696,7 +696,14 @@ export default function proxy(request: NextRequest) {
       // params) across the redirect. Gemini PR #719 r2 MED.
       const url = request.nextUrl.clone();
       url.pathname = `/${fcLocale}/festivals/${fcSlug}/${fcYear}`;
-      return NextResponse.redirect(url, 308);
+      const response = NextResponse.redirect(url, 308);
+      // Edge-cache the 308 for 24h. Without this, every bot hit was
+      // re-invoking the proxy function — 11K function invocations/day
+      // for a deterministic redirect. The destination is path-only
+      // (no header/cookie variance) so cache safety is trivial. If we
+      // ever need to undo the redirect, edge cache evicts within 24h.
+      response.headers.set('Cache-Control', 'public, s-maxage=86400, max-age=86400');
+      return response;
     }
   }
 
@@ -725,7 +732,12 @@ export default function proxy(request: NextRequest) {
     ) {
       const url = request.nextUrl.clone();
       url.pathname = `/${mLocale}/muhurta/${mType}`;
-      return NextResponse.redirect(url, 308);
+      const response = NextResponse.redirect(url, 308);
+      // Edge-cache the 308 for 24h — same rationale as the festival/city
+      // 308 above. Without this, every bot hit re-invokes the proxy
+      // function for a deterministic redirect.
+      response.headers.set('Cache-Control', 'public, s-maxage=86400, max-age=86400');
+      return response;
     }
   }
 

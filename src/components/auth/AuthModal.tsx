@@ -29,6 +29,7 @@ interface AuthCopy {
   resetPassword: string;
   continueWithGoogle: string;
   or: string;
+  useEmailInstead: string;
   forgotInstructions: string;
   name: string;
   email: string;
@@ -55,6 +56,7 @@ const COPY: Record<Locale, AuthCopy> = {
     resetPassword: 'Reset Password',
     continueWithGoogle: 'Continue with Google',
     or: 'or',
+    useEmailInstead: 'Use email instead',
     forgotInstructions: "Enter your email and we'll send you a link to reset your password.",
     name: 'Name',
     email: 'Email',
@@ -79,6 +81,7 @@ const COPY: Record<Locale, AuthCopy> = {
     resetPassword: 'पासवर्ड रीसेट',
     continueWithGoogle: 'Google के साथ जारी रखें',
     or: 'या',
+    useEmailInstead: 'ईमेल का उपयोग करें',
     forgotInstructions: 'अपना ईमेल दर्ज करें और हम आपको पासवर्ड रीसेट लिंक भेजेंगे।',
     name: 'नाम',
     email: 'ईमेल',
@@ -103,6 +106,7 @@ const COPY: Record<Locale, AuthCopy> = {
     resetPassword: 'கடவுச்சொல் மீட்டமை',
     continueWithGoogle: 'Google உடன் தொடரவும்',
     or: 'அல்லது',
+    useEmailInstead: 'மின்னஞ்சல் பயன்படுத்தவும்',
     forgotInstructions: 'உங்கள் மின்னஞ்சலை உள்ளிடவும், நாங்கள் கடவுச்சொல் மீட்டமைப்பு இணைப்பை அனுப்புவோம்.',
     name: 'பெயர்',
     email: 'மின்னஞ்சல்',
@@ -127,6 +131,7 @@ const COPY: Record<Locale, AuthCopy> = {
     resetPassword: 'పాస్‌వర్డ్ రీసెట్',
     continueWithGoogle: 'Googleతో కొనసాగించండి',
     or: 'లేదా',
+    useEmailInstead: 'ఇమెయిల్ ఉపయోగించండి',
     forgotInstructions: 'మీ ఇమెయిల్‌ను నమోదు చేయండి, మేము పాస్‌వర్డ్ రీసెట్ లింక్ పంపుతాము.',
     name: 'పేరు',
     email: 'ఇమెయిల్',
@@ -151,6 +156,7 @@ const COPY: Record<Locale, AuthCopy> = {
     resetPassword: 'পাসওয়ার্ড রিসেট',
     continueWithGoogle: 'Google দিয়ে চালিয়ে যান',
     or: 'অথবা',
+    useEmailInstead: 'ইমেইল ব্যবহার করুন',
     forgotInstructions: 'আপনার ইমেল লিখুন, আমরা পাসওয়ার্ড রিসেট লিংক পাঠাব।',
     name: 'নাম',
     email: 'ইমেল',
@@ -175,6 +181,7 @@ const COPY: Record<Locale, AuthCopy> = {
     resetPassword: 'પાસવર્ડ રીસેટ',
     continueWithGoogle: 'Google સાથે ચાલુ રાખો',
     or: 'અથવા',
+    useEmailInstead: 'ઈમેઈલ વાપરો',
     forgotInstructions: 'તમારો ઇમેલ દાખલ કરો અને અમે પાસવર્ડ રીસેટ લિંક મોકલીશું.',
     name: 'નામ',
     email: 'ઇમેલ',
@@ -199,6 +206,7 @@ const COPY: Record<Locale, AuthCopy> = {
     resetPassword: 'ಪಾಸ್‌ವರ್ಡ್ ಮರುಹೊಂದಿಸಿ',
     continueWithGoogle: 'Google ಜೊತೆ ಮುಂದುವರಿಸಿ',
     or: 'ಅಥವಾ',
+    useEmailInstead: 'ಇಮೇಲ್ ಬಳಸಿ',
     forgotInstructions: 'ನಿಮ್ಮ ಇಮೇಲ್ ನಮೂದಿಸಿ, ನಾವು ಪಾಸ್‌ವರ್ಡ್ ಮರುಹೊಂದಿಸುವ ಲಿಂಕ್ ಕಳುಹಿಸುತ್ತೇವೆ.',
     name: 'ಹೆಸರು',
     email: 'ಇಮೇಲ್',
@@ -223,6 +231,7 @@ const COPY: Record<Locale, AuthCopy> = {
     resetPassword: 'पासवर्ड रीसेट',
     continueWithGoogle: 'Google सँ जारी राखू',
     or: 'अथवा',
+    useEmailInstead: 'ईमेल प्रयोग करू',
     forgotInstructions: 'अपन ईमेल दर्ज करू, हम पासवर्ड रीसेट लिंक पठाएब।',
     name: 'नाम',
     email: 'ईमेल',
@@ -258,6 +267,17 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const { signInWithEmail, signUpWithEmail, signInWithGoogle, resetPassword, loading } = useAuthStore();
   const [mounted, setMounted] = useState(false);
   const portalRef = useRef<HTMLElement | null>(null);
+
+  // Email form visibility — hidden by default in SIGNUP mode (where email
+  // deliverability is the worst conversion path; 2-of-2 recent email signups
+  // never confirmed despite Resend marking the confirmation as delivered —
+  // emails landed in Gmail spam/promotions and got missed). Login mode keeps
+  // it visible because existing email users still need to log in. Forgot
+  // requires email by definition.
+  const [showEmailForm, setShowEmailForm] = useState(true);
+  useEffect(() => {
+    setShowEmailForm(mode !== 'signup');
+  }, [mode]);
 
   useEffect(() => {
     portalRef.current = document.body;
@@ -352,11 +372,27 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               {t.continueWithGoogle}
             </button>
 
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex-1 h-px bg-gold-primary/15" />
-              <span className="text-text-secondary text-xs">{t.or}</span>
-              <div className="flex-1 h-px bg-gold-primary/15" />
-            </div>
+            {showEmailForm ? (
+              <div className="flex items-center gap-3 mb-6">
+                <div className="flex-1 h-px bg-gold-primary/15" />
+                <span className="text-text-secondary text-xs">{t.or}</span>
+                <div className="flex-1 h-px bg-gold-primary/15" />
+              </div>
+            ) : (
+              // Signup mode: collapsed email form behind a small link. Google
+              // is the only visible CTA. Reduces signup abandonment from
+              // missed confirmation emails (Gmail spam/promotions). Click
+              // expands the email form inline.
+              <div className="text-center mb-2">
+                <button
+                  type="button"
+                  onClick={() => setShowEmailForm(true)}
+                  className="text-text-secondary/70 hover:text-gold-light transition-colors text-xs underline-offset-2 hover:underline"
+                >
+                  {t.useEmailInstead}
+                </button>
+              </div>
+            )}
           </>
         )}
 
@@ -364,6 +400,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           <p className="text-text-secondary text-sm mb-6">{t.forgotInstructions}</p>
         )}
 
+        {showEmailForm && (
         <form onSubmit={handleSubmit} className="space-y-4">
           {mode === 'signup' && (
             <input
@@ -429,6 +466,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             {loading ? t.loading : mode === 'login' ? t.signIn : mode === 'signup' ? t.createAccount : t.sendResetLink}
           </button>
         </form>
+        )}
 
         <div className="text-center text-text-secondary text-sm mt-6 space-y-2">
           {mode === 'login' && (

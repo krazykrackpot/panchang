@@ -621,8 +621,54 @@ function isInvalidDevotionalPath(segments: string[]): boolean {
  * the legacy `middleware.ts` convention). The function name is what
  * changed (`middleware` → `proxy`), not the export style.
  */
+/**
+ * Freeloader bot user-agents we hard-block at the top of the middleware.
+ * These crawlers drive zero meaningful traffic to a global EN/Hindi/Tamil
+ * Vedic-astrology site but consume function invocations + bandwidth at
+ * scale (Baidu+Yandex were eating ~12-14k req/period each per Vercel
+ * analytics 2026-06-26; Bytespider + CCBot are AI-training scrapers).
+ *
+ * Pattern is `User-Agent.toLowerCase().includes(needle)` so we catch all
+ * sub-variants:
+ *   Baiduspider/2.0, Baiduspider-image, Baiduspider-video
+ *   YandexBot/3.0, YandexImages/3.0, YandexMedia/3.0, YandexVideo/3.0
+ *   Bytespider; spider-feedback@bytedance.com
+ *   CCBot/2.0
+ *
+ * Distinct from Googlebot/Bingbot/DuckDuckBot/GPTBot/PerplexityBot UAs —
+ * those continue to crawl normally. robots.txt already requests these
+ * blocks (PR #728); this is the hard backstop for bots that ignore it.
+ */
+const BLOCKED_BOT_UAS: readonly string[] = [
+  'baiduspider',
+  'yandexbot',
+  'yandeximages',
+  'yandexmedia',
+  'yandexvideo',
+  'bytespider',
+  'ccbot',
+];
+
 export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // ─── Freeloader-bot UA block (cost reduction) ────────────────────
+  // Checked BEFORE any routing work so the function exits in ~1ms with
+  // no DB / regex / page-render cost. Returns 403 with a short body so
+  // operators see something meaningful in logs if they investigate.
+  const ua = (request.headers.get('user-agent') ?? '').toLowerCase();
+  if (ua && BLOCKED_BOT_UAS.some((needle) => ua.includes(needle))) {
+    return new NextResponse('Forbidden', {
+      status: 403,
+      headers: {
+        'Content-Type': 'text/plain',
+        // Edge-cache the 403 hard — same UA on the same path doesn't
+        // need a second function invocation. 7-day TTL since a UA
+        // blocklist changes rarely.
+        'Cache-Control': 'public, s-maxage=604800, max-age=604800',
+      },
+    });
+  }
 
   // Return HTTP 410 Gone for retired locales (currently just `sa`).
   // Cleaner permanent-removal signal than 301→/en — Google + Gemini drop
@@ -696,7 +742,14 @@ export default function proxy(request: NextRequest) {
       // params) across the redirect. Gemini PR #719 r2 MED.
       const url = request.nextUrl.clone();
       url.pathname = `/${fcLocale}/festivals/${fcSlug}/${fcYear}`;
-      return NextResponse.redirect(url, 308);
+      const response = NextResponse.redirect(url, 308);
+      // Edge-cache the 308 for 24h. Without this, every bot hit was
+      // re-invoking the proxy function — 11K function invocations/day
+      // for a deterministic redirect. The destination is path-only
+      // (no header/cookie variance) so cache safety is trivial. If we
+      // ever need to undo the redirect, edge cache evicts within 24h.
+      response.headers.set('Cache-Control', 'public, s-maxage=86400, max-age=86400');
+      return response;
     }
   }
 
@@ -725,7 +778,12 @@ export default function proxy(request: NextRequest) {
     ) {
       const url = request.nextUrl.clone();
       url.pathname = `/${mLocale}/muhurta/${mType}`;
-      return NextResponse.redirect(url, 308);
+      const response = NextResponse.redirect(url, 308);
+      // Edge-cache the 308 for 24h — same rationale as the festival/city
+      // 308 above. Without this, every bot hit re-invokes the proxy
+      // function for a deterministic redirect.
+      response.headers.set('Cache-Control', 'public, s-maxage=86400, max-age=86400');
+      return response;
     }
   }
 

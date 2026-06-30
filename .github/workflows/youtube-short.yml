@@ -40,7 +40,16 @@ jobs:
         run: npm ci
 
       - name: Install ffmpeg
-        uses: FedericoCarboni/setup-ffmpeg@v3
+        # Was `FedericoCarboni/setup-ffmpeg@v3` — that action fetches a
+        # static build from johnvansickle.com which intermittently 404s
+        # (failed 2026-06-26 and 2026-06-30, both daily Shorts missed).
+        # apt's Ubuntu-packaged ffmpeg is on the runner image cache so
+        # apt-get install is fast + 100% reliable. We don't need any
+        # bleeding-edge codec, just the standard h264/aac for Shorts.
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version | head -1
 
       - name: Random delay (0-10 minutes)
         run: |

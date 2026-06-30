@@ -1,0 +1,288 @@
+'use client';
+
+/**
+ * In-app NPS modal. Mounted globally in /dashboard/layout.tsx.
+ *
+ * Why this exists: Resend reports 96% delivery of NPS emails but our
+ * audit log shows ~1.3% click-through — Gmail dumps the message in
+ * Promotions and nobody scrolls there. This modal catches signed-in
+ * users who have been past the 7-day email window and still haven't
+ * scored us.
+ *
+ * Eligibility is decided server-side at /api/feedback/nps-inapp (GET).
+ * The client only triggers the visible UI; it never asserts eligibility
+ * itself. A separate POST records `submit` (with a score) or `dismiss`
+ * (no score) — both flip `user_profiles.nps_modal_shown_at` so the
+ * modal cannot recur for the same user.
+ *
+ * UX rules:
+ *   - Don't pop instantly — wait 4s after dashboard mount so a casual
+ *     "open dashboard → look at my chart" interaction isn't interrupted.
+ *   - Optimistic dismiss: hide the UI immediately, mark shown in the
+ *     background. The user shouldn't see the modal twice if the network
+ *     is slow.
+ *   - sessionStorage cooldown: even if the user reloads before the
+ *     server-side `nps_modal_shown_at` write lands, the modal won't
+ *     reappear this session.
+ */
+
+import { useEffect, useState } from 'react';
+import { useLocale } from 'next-intl';
+import { getSupabase } from '@/lib/supabase/client';
+
+type Phase = 'hidden' | 'asking_score' | 'asking_reason' | 'submitting' | 'thanks';
+
+const MOUNT_DELAY_MS = 4000;
+const COOLDOWN_KEY = 'dekho-nps-inapp-cooldown';
+
+interface Labels {
+  title: string;
+  question: string;
+  notLikely: string;
+  veryLikely: string;
+  reasonPrompt: string;
+  reasonPlaceholder: string;
+  skipReason: string;
+  submit: string;
+  notNow: string;
+  thanks: string;
+}
+
+const LABELS: Record<string, Labels> = {
+  en: {
+    title: 'Quick favour?',
+    question: 'How likely are you to recommend Dekho Panchang to a friend?',
+    notLikely: 'Not at all',
+    veryLikely: 'Extremely',
+    reasonPrompt: "Anything you'd like to share about why?",
+    reasonPlaceholder: 'Optional — but I read every reply.',
+    skipReason: 'Skip',
+    submit: 'Send',
+    notNow: 'Not now',
+    thanks: 'Thank you  –  this really helps.',
+  },
+  hi: {
+    title: 'एक छोटा निवेदन?',
+    question: 'देखो पंचांग को किसी मित्र को सुझाने की कितनी संभावना है?',
+    notLikely: 'बिल्कुल नहीं',
+    veryLikely: 'अवश्य',
+    reasonPrompt: 'क्या आप कुछ कारण साझा करना चाहेंगे?',
+    reasonPlaceholder: 'वैकल्पिक — पर मैं हर उत्तर पढ़ता हूँ।',
+    skipReason: 'छोड़ें',
+    submit: 'भेजें',
+    notNow: 'अभी नहीं',
+    thanks: 'धन्यवाद  –  यह बहुत सहायक है।',
+  },
+};
+
+function getLabels(locale: string): Labels {
+  return LABELS[locale] ?? LABELS.en;
+}
+
+function colourFor(score: number, selected: number | null): string {
+  const isSelected = selected === score;
+  const base =
+    score <= 6
+      ? 'bg-red-500/15 text-red-200 border-red-500/30 hover:bg-red-500/30'
+      : score <= 8
+      ? 'bg-gold-primary/10 text-gold-light border-gold-primary/30 hover:bg-gold-primary/25'
+      : 'bg-emerald-500/15 text-emerald-200 border-emerald-500/30 hover:bg-emerald-500/30';
+  const ring = isSelected ? 'ring-2 ring-gold-light scale-110' : '';
+  return `${base} ${ring}`;
+}
+
+export function NpsModal() {
+  const locale = useLocale();
+  const L = getLabels(locale);
+  const [phase, setPhase] = useState<Phase>('hidden');
+  const [score, setScore] = useState<number | null>(null);
+  const [reason, setReason] = useState('');
+
+  useEffect(() => {
+    // Cooldown — if we already showed this session, don't re-check the
+    // server. Even if the user navigates across dashboard sub-routes the
+    // modal won't reappear until next session at the earliest.
+    if (typeof window !== 'undefined' && sessionStorage.getItem(COOLDOWN_KEY)) {
+      return;
+    }
+
+    let cancelled = false;
+    const timer = setTimeout(async () => {
+      try {
+        const sb = getSupabase();
+        if (!sb) return;
+        const { data: { session } } = await sb.auth.getSession();
+        const token = session?.access_token;
+        if (!token) return;
+
+        const res = await fetch('/api/feedback/nps-inapp', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!res.ok) return;
+        const json: { eligible?: boolean } = await res.json();
+        if (cancelled) return;
+        if (json.eligible) setPhase('asking_score');
+      } catch (err) {
+        // Eligibility check is best-effort. A network blip just means
+        // "don't show this load" — definitely surface to console so
+        // failures are debuggable, but don't bug the user.
+        console.error('[NpsModal] eligibility check failed:', err);
+      }
+    }, MOUNT_DELAY_MS);
+
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, []);
+
+  async function postAction(
+    body: { action: 'submit'; score: number; reason?: string } | { action: 'dismiss' },
+  ): Promise<boolean> {
+    try {
+      const sb = getSupabase();
+      if (!sb) return false;
+      const { data: { session } } = await sb.auth.getSession();
+      const token = session?.access_token;
+      if (!token) return false;
+      const res = await fetch('/api/feedback/nps-inapp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body),
+      });
+      return res.ok;
+    } catch (err) {
+      console.error('[NpsModal] postAction failed:', err);
+      return false;
+    }
+  }
+
+  function markCooldown() {
+    try {
+      sessionStorage.setItem(COOLDOWN_KEY, '1');
+    } catch {
+      // sessionStorage blocked in private mode on some browsers — we
+      // tolerate the reappearance; server-side write is the real guard.
+    }
+  }
+
+  function handleDismiss() {
+    setPhase('hidden');
+    markCooldown();
+    // Fire-and-forget — the server-side mark-shown will arrive shortly;
+    // if it doesn't, sessionStorage covers this session and the modal
+    // won't reappear until a new session at the earliest. The next
+    // mount cycle's GET will still no-op once the server write lands.
+    void postAction({ action: 'dismiss' });
+  }
+
+  function handlePickScore(n: number) {
+    setScore(n);
+    setPhase('asking_reason');
+  }
+
+  async function handleSubmit() {
+    if (score === null) return;
+    setPhase('submitting');
+    const trimmed = reason.trim();
+    const ok = await postAction({
+      action: 'submit',
+      score,
+      ...(trimmed.length > 0 ? { reason: trimmed } : {}),
+    });
+    markCooldown();
+    if (ok) {
+      setPhase('thanks');
+      setTimeout(() => setPhase('hidden'), 2500);
+    } else {
+      // Surface the failure — user spent time on this, silent dismiss
+      // would feel like the response went into a black hole. Reset to
+      // 'asking_reason' so they can retry without re-picking the score.
+      setPhase('asking_reason');
+      alert('Sorry, sending your feedback failed. Please try again.');
+    }
+  }
+
+  if (phase === 'hidden') return null;
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-end justify-center sm:items-center bg-black/50 backdrop-blur-sm p-4">
+      <div className="w-full max-w-md rounded-2xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/70 via-[#1a1040]/80 to-[#0a0e27] p-6 shadow-2xl shadow-black/40">
+        {(phase === 'asking_score' || phase === 'asking_reason' || phase === 'submitting') && (
+          <>
+            <div className="flex items-start justify-between mb-2">
+              <h2 className="text-lg font-semibold text-gold-light">{L.title}</h2>
+              <button
+                type="button"
+                onClick={handleDismiss}
+                className="text-text-secondary hover:text-gold-light text-sm transition-colors px-2 py-1 -mr-2 -mt-1"
+                aria-label={L.notNow}
+              >
+                ×
+              </button>
+            </div>
+            <p className="text-text-primary text-sm mb-5 leading-relaxed">{L.question}</p>
+            <div className="grid grid-cols-11 gap-1 mb-2">
+              {Array.from({ length: 11 }, (_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => handlePickScore(i)}
+                  disabled={phase === 'submitting'}
+                  className={`aspect-square rounded-lg border font-semibold text-sm transition-all disabled:opacity-50 ${colourFor(i, score)}`}
+                  aria-label={`Score ${i}`}
+                >
+                  {i}
+                </button>
+              ))}
+            </div>
+            <div className="flex justify-between text-xs text-text-secondary mb-5 px-1">
+              <span>{L.notLikely}</span>
+              <span>{L.veryLikely}</span>
+            </div>
+
+            {phase === 'asking_reason' || phase === 'submitting' ? (
+              <>
+                <label className="block text-sm text-gold-light mb-2">{L.reasonPrompt}</label>
+                <textarea
+                  value={reason}
+                  onChange={(e) => setReason(e.target.value)}
+                  placeholder={L.reasonPlaceholder}
+                  maxLength={2000}
+                  rows={3}
+                  disabled={phase === 'submitting'}
+                  className="w-full rounded-lg border border-gold-primary/20 bg-[#0a0e27]/60 px-3 py-2 text-sm text-text-primary placeholder:text-text-secondary/70 focus:border-gold-primary/60 focus:outline-none disabled:opacity-50 resize-none"
+                />
+                <div className="mt-4 flex items-center justify-end gap-2">
+                  <button
+                    type="button"
+                    onClick={handleDismiss}
+                    disabled={phase === 'submitting'}
+                    className="px-4 py-2 text-sm text-text-secondary hover:text-gold-light disabled:opacity-50 transition-colors"
+                  >
+                    {L.notNow}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleSubmit}
+                    disabled={phase === 'submitting'}
+                    className="px-5 py-2 text-sm font-semibold rounded-lg bg-gold-primary/90 text-[#0a0e27] hover:bg-gold-light disabled:opacity-50 transition-colors"
+                  >
+                    {phase === 'submitting' ? '…' : L.submit}
+                  </button>
+                </div>
+              </>
+            ) : null}
+          </>
+        )}
+
+        {phase === 'thanks' && (
+          <p className="text-center py-4 text-gold-light font-medium">{L.thanks}</p>
+        )}
+      </div>
+    </div>
+  );
+}

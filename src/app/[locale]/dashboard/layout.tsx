@@ -5,6 +5,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 import { BASE_URL } from '@/lib/seo/base-url';
+import { NpsModal } from '@/components/feedback/NpsModal';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -24,5 +25,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      {/* Global in-app NPS prompt. Self-eligibility check, only fires
+          ≥7 days after the NPS email and only if not already answered. */}
+      <NpsModal />
+    </>
+  );
 }

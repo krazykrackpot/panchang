@@ -52,8 +52,21 @@ export function npsFeedbackEmail({
 }): { subject: string; html: string } {
   const token = signNpsToken(userId);
   const npsButtonsRow = buildNpsButtonsRow(token);
-  const greeting = displayName.trim().length > 0 ? displayName.trim() : 'there';
-  const subject = 'One quick question about your Dekho Panchang experience';
+  const trimmedName = displayName.trim();
+  const greeting = trimmedName.length > 0 ? trimmedName : 'there';
+  // Subject lines deliberately avoid the brand word, the phrase
+  // "quick question" and other classic survey-spam tells — both push
+  // the message into Gmail's Promotions tab. First name when we have
+  // it (much higher open rate); engagement-specific so the subject
+  // matches what the recipient actually did.
+  const firstName = trimmedName.split(/\s+/)[0] ?? '';
+  const namePart = firstName.length > 0 ? `, ${firstName}` : '';
+  const subject =
+    engagement === 'brihaspati'
+      ? `How was your Brihaspati reading${namePart}?`
+      : engagement === 'both'
+      ? `Honest feedback${namePart}?`
+      : `Was your kundali useful${namePart}?`;
   const thankYouLine =
     engagement === 'brihaspati'
       ? 'for trusting us with a Brihaspati reading.'

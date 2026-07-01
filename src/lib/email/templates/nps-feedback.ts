@@ -52,8 +52,32 @@ export function npsFeedbackEmail({
 }): { subject: string; html: string } {
   const token = signNpsToken(userId);
   const npsButtonsRow = buildNpsButtonsRow(token);
-  const greeting = displayName.trim().length > 0 ? displayName.trim() : 'there';
-  const subject = 'One quick question about your Dekho Panchang experience';
+  const trimmedName = displayName.trim();
+  // `displayName` originates from user-provided `user_metadata.name` /
+  // `display_name`. Escape before interpolating into the HTML body —
+  // otherwise a name containing < or " could break out of the greeting
+  // and inject markup. Subject-line interpolation is safe (plain-text
+  // rendering context, not HTML). PR #732 Gemini round 3 SECURITY-HIGH.
+  const escapeHtml = (s: string) =>
+    s.replace(/&/g, '&amp;')
+     .replace(/</g, '&lt;')
+     .replace(/>/g, '&gt;')
+     .replace(/"/g, '&quot;')
+     .replace(/'/g, '&#39;');
+  const greeting = trimmedName.length > 0 ? escapeHtml(trimmedName) : 'there';
+  // Subject lines deliberately avoid the brand word, the phrase
+  // "quick question" and other classic survey-spam tells — both push
+  // the message into Gmail's Promotions tab. First name when we have
+  // it (much higher open rate); engagement-specific so the subject
+  // matches what the recipient actually did.
+  const firstName = trimmedName.split(/\s+/)[0] ?? '';
+  const namePart = firstName.length > 0 ? `, ${firstName}` : '';
+  const subject =
+    engagement === 'brihaspati'
+      ? `How was your Brihaspati reading${namePart}?`
+      : engagement === 'both'
+      ? `Honest feedback${namePart}?`
+      : `Was your kundali useful${namePart}?`;
   const thankYouLine =
     engagement === 'brihaspati'
       ? 'for trusting us with a Brihaspati reading.'

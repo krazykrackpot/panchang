@@ -24,13 +24,22 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default async function DashboardLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   return (
     <>
       {children}
       {/* Global in-app NPS prompt. Self-eligibility check, only fires
-          ≥7 days after the NPS email and only if not already answered. */}
-      <NpsModal />
+          ≥7 days after the NPS email and only if not already answered.
+          `locale` is passed as an explicit prop so the modal renders
+          with the right copy without depending on client-side context. */}
+      <NpsModal locale={locale} />
     </>
   );
 }

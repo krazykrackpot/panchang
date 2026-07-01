@@ -100,6 +100,10 @@ function setupSupabase(stub: Stub = {}) {
 beforeEach(() => {
   vi.clearAllMocks();
   mocks.state.supabaseNotConfigured = false;
+  // Route reads NPS_OPERATOR_EMAIL at call time and silently skips the
+  // operator-notify email when it's missing. Set it so the "notifies
+  // operator on submit" test observes sendEmail actually being called.
+  process.env.NPS_OPERATOR_EMAIL = 'operator@test.local';
 });
 
 describe('GET /api/feedback/nps-inapp eligibility', () => {
@@ -242,5 +246,61 @@ describe('Operator notification HTML escaping', () => {
     const [arg] = sendEmailMock.mock.calls[0] as [{ subject: string; html: string }];
     expect(arg.html).not.toContain('<script>');
     expect(arg.html).toContain('&lt;script&gt;');
+  });
+
+  it('skips operator send when NPS_OPERATOR_EMAIL is not configured', async () => {
+    delete process.env.NPS_OPERATOR_EMAIL;
+    setupSupabase({
+      profile: {
+        nps_feedback_sent_at: new Date(Date.now() - 14 * 86_400_000).toISOString(),
+        nps_modal_shown_at: null,
+      },
+    });
+    // The user submit still succeeds — only the operator alert is
+    // dropped when the env var is missing. Response DB row still lands.
+    const res = await POST(authedReq('POST', { action: 'submit', score: 9 }));
+    expect(res.status).toBe(200);
+    expect(sendEmailMock).not.toHaveBeenCalled();
+  });
+});
+
+describe('Eligibility DB error handling', () => {
+  it('returns eligible=false when the response-count query fails', async () => {
+    // Wire the response-count query to error so checkEligibility hits the
+    // defensive branch. Without the branch, `alreadyResponded` would
+    // default to false and the modal would re-prompt a user we can't
+    // confirm hasn't already responded.
+    supabaseMock.auth.getUser.mockResolvedValue({
+      data: { user: { id: TEST_USER_ID, email: 'user@example.com' } },
+      error: null,
+    });
+    supabaseMock.from.mockImplementation((table: string) => {
+      if (table === 'user_profiles') {
+        return {
+          select: vi.fn().mockReturnValue({
+            eq: vi.fn().mockReturnValue({
+              maybeSingle: vi.fn().mockResolvedValue({
+                data: {
+                  nps_feedback_sent_at: new Date(Date.now() - 14 * 86_400_000).toISOString(),
+                  nps_modal_shown_at: null,
+                },
+                error: null,
+              }),
+            }),
+          }),
+        };
+      }
+      if (table === 'nps_responses') {
+        return {
+          select: vi.fn().mockReturnValue({
+            eq: vi.fn().mockResolvedValue({ data: null, count: null, error: { message: 'boom' } }),
+          }),
+        };
+      }
+      throw new Error(`Unexpected table in test: ${table}`);
+    });
+    const res = await GET(authedReq('GET'));
+    const body = await res.json();
+    expect(body.eligible).toBe(false);
   });
 });

@@ -33,7 +33,15 @@ import { sendEmail } from '@/lib/email/resend-client';
 
 const SOURCE = 'nps_inapp';
 const MIN_DAYS_SINCE_EMAIL = 7;
-const OPERATOR_ADDRESS = process.env.NPS_OPERATOR_EMAIL?.trim() || 'aditya.kr.jha@gmail.com';
+
+// Operator address comes from env only — don't hardcode PII in the
+// source tree. Resolved at call time so tests can set the env var in a
+// beforeEach() hook and matches the runtime-read convention documented
+// in CLAUDE.md ("process.env.* in route handlers reads at runtime, not
+// build"). PR #732 Gemini review.
+function getOperatorAddress(): string | undefined {
+  return process.env.NPS_OPERATOR_EMAIL?.trim();
+}
 
 const SubmitBody = z.discriminatedUnion('action', [
   z.object({
@@ -102,11 +110,19 @@ async function checkEligibility(
   const shownAt = profile?.nps_modal_shown_at ?? null;
 
   // Has the user already clicked an email NPS button? Don't re-prompt.
+  // A DB error here has to be defensive: treating "unknown" as "not yet
+  // responded" would risk a duplicate email → in-app double-prompt if
+  // the count query hits a transient DB blip. Return non-eligible; the
+  // client silently skips the modal for this session. PR #732 Gemini
+  // review.
   const { count: existingResponses, error: respErr } = await supabase
     .from('nps_responses')
     .select('id', { head: true, count: 'exact' })
     .eq('user_id', userId);
-  if (respErr) console.error('[feedback/nps-inapp] response count failed:', respErr.message);
+  if (respErr) {
+    console.error('[feedback/nps-inapp] response count failed:', respErr.message);
+    return { eligible: false, sent_at: sentAt, shown_at: shownAt, already_responded: false };
+  }
   const alreadyResponded = (existingResponses ?? 0) > 0;
 
   const sentLongEnoughAgo =
@@ -199,8 +215,14 @@ export async function POST(req: NextRequest) {
   // email endpoint: the serverless container suspends the moment we
   // return, so a true fire-and-forget Promise risks being killed
   // mid-fetch. Failure is logged but doesn't fail the user's submit.
+  //
+  // We pass the email directly from the getUser() result above rather
+  // than making a second `auth.admin.getUserById` roundtrip inside
+  // notifyOperator. Cheaper + avoids relying on service-role privileges
+  // that the server client may not have in every deployment. PR #732
+  // Gemini HIGH.
   try {
-    await notifyOperator(supabase, user.id, body.score, body.reason);
+    await notifyOperator(user.email ?? '(unknown)', user.id, body.score, body.reason);
   } catch (err) {
     console.error('[feedback/nps-inapp] operator notify failed:', err);
   }
@@ -209,13 +231,19 @@ export async function POST(req: NextRequest) {
 }
 
 async function notifyOperator(
-  supabase: NonNullable<ReturnType<typeof getServerSupabase>>,
+  email: string,
   userId: string,
   score: number,
   reason: string | undefined,
 ): Promise<void> {
-  const { data: authUser } = await supabase.auth.admin.getUserById(userId);
-  const email = authUser?.user?.email ?? '(unknown)';
+  // Skip silently — but loudly — if the operator email isn't configured.
+  // The user's response is still in the DB; a missing env var just
+  // means no founder alert this time, not a dropped submission.
+  const operatorAddress = getOperatorAddress();
+  if (!operatorAddress) {
+    console.error('[feedback/nps-inapp] NPS_OPERATOR_EMAIL not configured — skipping operator notify');
+    return;
+  }
   const category = score >= 9 ? 'PROMOTER' : score <= 6 ? 'DETRACTOR' : 'PASSIVE';
   const subject = `[NPS ${score} · in-app] ${category} from ${email}`;
   const reasonBlock = reason
@@ -232,7 +260,7 @@ async function notifyOperator(
       </table>
     </div>
   `.trim();
-  await sendEmail({ to: OPERATOR_ADDRESS, subject, html });
+  await sendEmail({ to: operatorAddress, subject, html });
 }
 
 function escapeHtml(s: string): string {

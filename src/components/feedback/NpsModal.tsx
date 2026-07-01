@@ -27,7 +27,6 @@
  */
 
 import { useEffect, useState } from 'react';
-import { useLocale } from 'next-intl';
 import { getSupabase } from '@/lib/supabase/client';
 
 type Phase = 'hidden' | 'asking_score' | 'asking_reason' | 'submitting' | 'thanks';
@@ -46,6 +45,11 @@ interface Labels {
   submit: string;
   notNow: string;
   thanks: string;
+  // Surfaced via alert() when the submit POST fails. Kept as a native
+  // alert because the modal is dismissing / mid-transition at that
+  // point and a real UI banner would disappear before the user reads
+  // it. PR #732 Gemini review.
+  submitError: string;
 }
 
 const LABELS: Record<string, Labels> = {
@@ -60,6 +64,7 @@ const LABELS: Record<string, Labels> = {
     submit: 'Send',
     notNow: 'Not now',
     thanks: 'Thank you  –  this really helps.',
+    submitError: 'Sorry, sending your feedback failed. Please try again.',
   },
   hi: {
     title: 'एक छोटा निवेदन?',
@@ -72,6 +77,7 @@ const LABELS: Record<string, Labels> = {
     submit: 'भेजें',
     notNow: 'अभी नहीं',
     thanks: 'धन्यवाद  –  यह बहुत सहायक है।',
+    submitError: 'माफ करें, आपका उत्तर भेजने में समस्या हुई। कृपया फिर से प्रयास करें।',
   },
 };
 
@@ -91,8 +97,13 @@ function colourFor(score: number, selected: number | null): string {
   return `${base} ${ring}`;
 }
 
-export function NpsModal() {
-  const locale = useLocale();
+// `locale` is passed in from the DashboardLayout (Server Component)
+// where it's already resolved from route params. Reading it via
+// useLocale() would still work but the general rule is: components
+// that render localised content should receive `locale` explicitly so
+// they render deterministically regardless of context provider timing.
+// PR #732 Gemini review.
+export function NpsModal({ locale }: { locale: string }) {
   const L = getLabels(locale);
   const [phase, setPhase] = useState<Phase>('hidden');
   const [score, setScore] = useState<number | null>(null);
@@ -135,6 +146,17 @@ export function NpsModal() {
       clearTimeout(timer);
     };
   }, []);
+
+  // Auto-hide the "thanks" screen after 2.5s. Kept as a phase-driven
+  // useEffect (rather than a naked setTimeout inside handleSubmit) so
+  // the timer is cleared on unmount and can't set state on a torn-down
+  // component — matters because the user may navigate away between the
+  // submit and the auto-hide. PR #732 Gemini review.
+  useEffect(() => {
+    if (phase !== 'thanks') return;
+    const timer = setTimeout(() => setPhase('hidden'), 2500);
+    return () => clearTimeout(timer);
+  }, [phase]);
 
   async function postAction(
     body: { action: 'submit'; score: number; reason?: string } | { action: 'dismiss' },
@@ -195,14 +217,15 @@ export function NpsModal() {
     });
     markCooldown();
     if (ok) {
+      // Auto-hide is handled by the phase-driven useEffect above; no
+      // naked setTimeout here.
       setPhase('thanks');
-      setTimeout(() => setPhase('hidden'), 2500);
     } else {
       // Surface the failure — user spent time on this, silent dismiss
       // would feel like the response went into a black hole. Reset to
       // 'asking_reason' so they can retry without re-picking the score.
       setPhase('asking_reason');
-      alert('Sorry, sending your feedback failed. Please try again.');
+      alert(L.submitError);
     }
   }
 

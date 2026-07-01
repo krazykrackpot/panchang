@@ -1,0 +1,87 @@
+{{/*
+  Confirm-signup email — paste into Supabase Dashboard
+  → Authentication → Email Templates → "Confirm signup"
+
+  Available Supabase template variables (Go text/template syntax):
+    {{ .ConfirmationURL }}  Full URL with token_hash + redirect_to
+    {{ .Token }}            6-digit code (unused; we prefer the link)
+    {{ .TokenHash }}        Hash portion only
+    {{ .SiteURL }}          Configured site URL
+    {{ .Email }}            Recipient email address
+    {{ .Data }}             user_metadata (name/locale etc. — NOT available
+                            in the built-in template context in current
+                            Supabase versions; use the Send Email Hook if
+                            you need this. See docs/warmer-confirmation-email-plan.md)
+
+  Subject line to set in the same dashboard screen:
+    You're one click away from your birth chart
+
+  Subject deliberately avoids:
+    - Brand name ("Dekho Panchang") — pushes to Promotions
+    - "Confirm your email" / "Verify" — spam-word tells
+    - "Quick" — repeated NPS-email lesson
+
+  Preview text (first line, becomes the Gmail inbox preview) leads with
+  the payoff (kundali/panchang), not the mechanics (confirm/verify).
+*/}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Activate your account</title>
+</head>
+<body style="margin:0;padding:0;background:#0a0e27;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;">
+  <!-- Preview text (hidden; shows in inbox next to subject) -->
+  <div style="display:none;font-size:1px;color:#0a0e27;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;">
+    One click and your personalized kundali, daily panchang, and Brihaspati sessions are ready.
+  </div>
+
+  <div style="max-width:560px;margin:0 auto;padding:48px 24px;">
+    <!-- Brand line — small, restrained. Full brand name in the footer only. -->
+    <div style="text-align:center;margin-bottom:36px;">
+      <p style="color:#8a6d2b;font-size:12px;letter-spacing:3px;text-transform:uppercase;margin:0;">Dekho Panchang</p>
+    </div>
+
+    <!-- Personal note from founder — plain-language, no marketing register -->
+    <div style="background:linear-gradient(135deg,rgba(45,27,105,0.4),rgba(26,16,64,0.5),#0a0e27);border:1px solid rgba(212,168,83,0.15);border-radius:16px;padding:36px 28px;">
+      <p style="color:#f0d48a;font-size:18px;margin:0 0 20px;font-weight:600;">Namaste,</p>
+
+      <p style="color:#e6e2d8;font-size:15px;line-height:1.65;margin:0 0 16px;">
+        One click below and your account is live — your birth chart, daily panchang for your city, and the whole library open up.
+      </p>
+
+      <p style="color:#e6e2d8;font-size:15px;line-height:1.65;margin:0 0 32px;">
+        The link is good for 24 hours.
+      </p>
+
+      <!-- Primary CTA -->
+      <div style="text-align:center;margin:28px 0;">
+        <a href="{{ .ConfirmationURL }}"
+           style="display:inline-block;background:linear-gradient(135deg,#d4a853,#f0d48a);color:#0a0e27;text-decoration:none;padding:14px 32px;border-radius:10px;font-weight:700;font-size:15px;letter-spacing:0.3px;">
+          Activate my account
+        </a>
+      </div>
+
+      <p style="color:#8a8478;font-size:13px;line-height:1.6;margin:24px 0 0;text-align:center;">
+        Button not working? Paste this link into your browser:<br>
+        <a href="{{ .ConfirmationURL }}" style="color:#d4a853;word-break:break-all;font-size:12px;">{{ .ConfirmationURL }}</a>
+      </p>
+    </div>
+
+    <!-- Signature — first-person, low key -->
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(212,168,83,0.1);">
+      <p style="color:#8a8478;font-size:13px;line-height:1.6;margin:0;">
+        — Aditya, founder<br>
+        <span style="color:#6a655c;font-size:12px;">Corseaux, Switzerland</span>
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <p style="color:#5a5449;font-size:11px;line-height:1.5;margin:28px 0 0;text-align:center;">
+      This email was sent to {{ .Email }} because someone (hopefully you) signed up for a Dekho Panchang account.<br>
+      If it wasn't you, ignore this — the account will be deleted automatically in 24 hours.
+    </p>
+  </div>
+</body>
+</html>

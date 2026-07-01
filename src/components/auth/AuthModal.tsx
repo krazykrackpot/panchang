@@ -358,9 +358,16 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     setPrevMode(mode);
     setShowEmailForm(mode !== 'signup');
     // Mode change wipes the transient resend UI — the nudge only makes
-    // sense in login mode and only for the current email attempt.
+    // sense in login mode and only for the current email attempt. Also
+    // clear `error` and `successMsg` so a leftover message from the
+    // previous mode doesn't sit above the new mode's form (e.g. the
+    // signup-success pill lingering after switching to login). Doing
+    // it here instead of in each mode-switch onClick keeps the resets
+    // in one place. PR #733 Gemini round 3 MEDIUM.
     setErrorCode(undefined);
     setResendState('idle');
+    setError('');
+    setSuccessMsg('');
   }
 
   useEffect(() => {
@@ -386,10 +393,12 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   //   - the trackAuthResendShown useEffect below only fires on
   //     transition, so subsequent opens never re-count as a `shown`
   //   - `submittedEmail` sticks to the previous session's email
+  //   - `email` and `name` linger — matters on shared devices, and
+  //     surfacing the previous user's email is a small but real privacy
+  //     leak. PR #733 Gemini round 3 HIGH.
   //
   // Keep `mode` intact — restoring it to 'login' would surprise a user
   // who explicitly navigated to Sign Up / Forgot Password before closing.
-  // Gemini round 2 HIGH.
   useEffect(() => {
     if (isOpen) return;
     setError('');
@@ -397,6 +406,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     setErrorCode(undefined);
     setResendState('idle');
     setSubmittedEmail('');
+    setEmail('');
+    setName('');
     setPassword('');
     setConfirmPassword('');
   }, [isOpen]);

@@ -5,6 +5,11 @@ import { createPortal } from 'react-dom';
 import { useLocale } from 'next-intl';
 import { X } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
+import {
+  trackAuthResendShown,
+  trackAuthResendClicked,
+  trackAuthResendResult,
+} from '@/lib/analytics';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -365,6 +370,22 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
+  // Funnel — surface a `_shown` event when either resend touchpoint
+  // first renders. State transitions (not renders) trigger these so a
+  // single mount doesn't double-fire. `_clicked` and `_result` are
+  // emitted from handleResend directly.
+  useEffect(() => {
+    if (errorCode === 'email_not_confirmed' && mode === 'login') {
+      trackAuthResendShown({ surface: 'login_nudge' });
+    }
+  }, [errorCode, mode]);
+
+  useEffect(() => {
+    if (mode === 'signup' && successMsg) {
+      trackAuthResendShown({ surface: 'signup_success' });
+    }
+  }, [mode, successMsg]);
+
   if (!isOpen || !mounted) return null;
 
   async function handleSubmit(e: React.FormEvent) {
@@ -421,17 +442,29 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     }
   }
 
+  // Surface is inferred from context at call time: 'signup_success' when
+  // the modal is on the post-signup screen (mode==='signup' + successMsg
+  // set), 'login_nudge' otherwise. Passed through to analytics so the
+  // shown / clicked / result events can be tied back to the same touchpoint.
   async function handleResend() {
     if (!email || resendState === 'sending') return;
+    const surface: 'login_nudge' | 'signup_success' =
+      mode === 'signup' && successMsg ? 'signup_success' : 'login_nudge';
+    trackAuthResendClicked({ surface });
     setResendState('sending');
     const result = await resendConfirmation(email);
     if (result.error) {
-      // Rate-limit or server error — show it inline. Don't flip to
-      // 'sent' because the mail definitely didn't go out.
+      // Rate-limit vs generic error — Supabase surfaces 429s with a
+      // message containing "rate limit" (or "wait X seconds"). We don't
+      // parse it precisely; a coarse string match is good enough for
+      // funnel analytics and won't get us wrong if Supabase changes copy.
+      const isRateLimit = /rate.?limit|wait.*seconds/i.test(result.error);
+      trackAuthResendResult({ surface, result: isRateLimit ? 'rate_limited' : 'error' });
       setError(result.error);
       setResendState('idle');
       return;
     }
+    trackAuthResendResult({ surface, result: 'success' });
     setResendState('sent');
     // Clear the primary error so the "email not confirmed" line doesn't
     // sit next to the success pill — the resend replaces that state.

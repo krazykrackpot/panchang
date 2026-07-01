@@ -269,8 +269,11 @@ export function NpsModal({ locale }: { locale: string }) {
 
             {phase === 'asking_reason' || phase === 'submitting' ? (
               <>
-                <label className="block text-sm text-gold-light mb-2">{L.reasonPrompt}</label>
+                <label htmlFor="nps-inapp-reason" className="block text-sm text-gold-light mb-2">
+                  {L.reasonPrompt}
+                </label>
                 <textarea
+                  id="nps-inapp-reason"
                   value={reason}
                   onChange={(e) => setReason(e.target.value)}
                   placeholder={L.reasonPlaceholder}

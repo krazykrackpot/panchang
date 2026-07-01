@@ -53,7 +53,18 @@ export function npsFeedbackEmail({
   const token = signNpsToken(userId);
   const npsButtonsRow = buildNpsButtonsRow(token);
   const trimmedName = displayName.trim();
-  const greeting = trimmedName.length > 0 ? trimmedName : 'there';
+  // `displayName` originates from user-provided `user_metadata.name` /
+  // `display_name`. Escape before interpolating into the HTML body —
+  // otherwise a name containing < or " could break out of the greeting
+  // and inject markup. Subject-line interpolation is safe (plain-text
+  // rendering context, not HTML). PR #732 Gemini round 3 SECURITY-HIGH.
+  const escapeHtml = (s: string) =>
+    s.replace(/&/g, '&amp;')
+     .replace(/</g, '&lt;')
+     .replace(/>/g, '&gt;')
+     .replace(/"/g, '&quot;')
+     .replace(/'/g, '&#39;');
+  const greeting = trimmedName.length > 0 ? escapeHtml(trimmedName) : 'there';
   // Subject lines deliberately avoid the brand word, the phrase
   // "quick question" and other classic survey-spam tells — both push
   // the message into Gmail's Promotions tab. First name when we have

@@ -50,7 +50,10 @@ interface Stub {
   profile?: { nps_feedback_sent_at: string | null; nps_modal_shown_at: string | null };
   existingResponses?: number;
   responsesUpsert?: { error?: { message: string } | null };
-  markUpdate?: { error?: { message: string } | null };
+  // Route now `.select('id')`s off the update chain for concurrency
+  // safety, so the mock returns { data: rows, error }. `data: []` =
+  // concurrent-loser response.
+  markUpdate?: { data?: Array<{ id: string }>; error?: { message: string } | null };
   logInsert?: { error?: { message: string } | null };
 }
 
@@ -77,7 +80,15 @@ function setupSupabase(stub: Stub = {}) {
         }),
         update: vi.fn().mockReturnValue({
           eq: vi.fn().mockReturnValue({
-            is: vi.fn().mockResolvedValue(stub.markUpdate ?? { error: null }),
+            is: vi.fn().mockReturnValue({
+              // Chain terminates at `.select('id')` so the route can
+              // count affected rows for concurrency safety. Default:
+              // one row updated (winner). Stub `markUpdate.data` to
+              // `[]` to simulate a concurrent-loser response.
+              select: vi.fn().mockResolvedValue(
+                stub.markUpdate ?? { data: [{ id: TEST_USER_ID }], error: null },
+              ),
+            }),
           }),
         }),
       };
@@ -182,6 +193,27 @@ describe('POST /api/feedback/nps-inapp submit', () => {
     setupSupabase();
     const res = await POST(unauthedReq('POST', { action: 'submit', score: 9 }));
     expect(res.status).toBe(401);
+  });
+
+  it('skips with already_shown when a concurrent request already claimed the slot', async () => {
+    // Race scenario — the eligibility check succeeds (both requests
+    // saw nps_modal_shown_at IS NULL), but by the time this request's
+    // conditional update runs, the other has already flipped it. The
+    // update matches zero rows; we treat that as an idempotent no-op
+    // instead of falling through to upsert + operator notify (which
+    // would be a duplicate).
+    setupSupabase({
+      profile: {
+        nps_feedback_sent_at: new Date(Date.now() - 14 * 86_400_000).toISOString(),
+        nps_modal_shown_at: null,
+      },
+      markUpdate: { data: [], error: null },
+    });
+    const res = await POST(authedReq('POST', { action: 'submit', score: 9 }));
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    expect(body.skipped).toBe('already_shown');
+    expect(sendEmailMock).not.toHaveBeenCalled();
   });
 
   it('skips with not_eligible if user no longer eligible (idempotent)', async () => {

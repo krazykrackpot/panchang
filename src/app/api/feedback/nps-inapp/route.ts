@@ -177,19 +177,30 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, skipped: 'not_eligible' });
   }
 
-  // Always mark shown BEFORE write — even on dismiss, even if subsequent
-  // write fails. The contract is "shown once, period." A retry just gives
-  // {skipped:'not_eligible'} on the next call.
+  // Mark-shown is our concurrency claim. The `.is('nps_modal_shown_at',
+  // null)` clause means only one racing POST for the same user will
+  // actually update the row; the others match zero rows. Without
+  // `.select('id')` we couldn't tell winner from loser — the update RPC
+  // returns success either way — and both would upsert the response and
+  // fire operator emails. `updated.length === 0` = another request
+  // already claimed this slot; respond idempotently. PR #732 Gemini
+  // round 3 HIGH (concurrency).
   const nowIso = new Date().toISOString();
-  const { error: markErr } = await supabase
+  const { data: updated, error: markErr } = await supabase
     .from('user_profiles')
     .update({ nps_modal_shown_at: nowIso })
     .eq('id', user.id)
-    .is('nps_modal_shown_at', null);
+    .is('nps_modal_shown_at', null)
+    .select('id');
   if (markErr) {
     console.error('[feedback/nps-inapp] mark shown failed:', markErr.message);
     await logEndpointHit(supabase, 'db_error', user.id, null, req);
     return NextResponse.json({ error: 'Database error' }, { status: 500 });
+  }
+  if (!updated || updated.length === 0) {
+    // Another concurrent request already flipped the flag. Treat as
+    // a benign no-op, same shape as the eligibility check above.
+    return NextResponse.json({ ok: true, skipped: 'already_shown' });
   }
 
   if (body.action === 'dismiss') {

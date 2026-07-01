@@ -5,6 +5,11 @@ import { createPortal } from 'react-dom';
 import { useLocale } from 'next-intl';
 import { X } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
+import {
+  trackAuthResendShown,
+  trackAuthResendClicked,
+  trackAuthResendResult,
+} from '@/lib/analytics';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -47,6 +52,20 @@ interface AuthCopy {
   haveAccount: string;
   backToSignIn: string;
   close: string;
+  // Nudge shown when login fails with code=email_not_confirmed. The
+  // user's account exists but they never clicked the confirmation link
+  // (Gmail promotions tab is the usual reason). We surface a resend
+  // affordance right at the point of frustration instead of leaving them
+  // with an unexplained "Email not confirmed" error.
+  unconfirmedNudge: string;
+  resendConfirmation: string;
+  resendSending: string;
+  resendSent: string;
+  // Shown inside the signup-success box alongside a Resend link. The
+  // in-app nudge (login mode) catches unconfirmed users on their SECOND
+  // visit. This prompt catches them on the FIRST visit — while they're
+  // still on the modal, if the initial confirmation email doesn't land.
+  didntReceiveIt: string;
 }
 
 const COPY: Record<Locale, AuthCopy> = {
@@ -74,6 +93,11 @@ const COPY: Record<Locale, AuthCopy> = {
     haveAccount: 'Already have an account?',
     backToSignIn: 'Back to Sign In',
     close: 'Close',
+    unconfirmedNudge: "Your email isn't confirmed yet. Didn't get the link?",
+    resendConfirmation: 'Resend confirmation link',
+    resendSending: 'Sending…',
+    resendSent: 'Sent. Check your inbox (and the Promotions tab).',
+    didntReceiveIt: "Didn't receive the email?",
   },
   hi: {
     signIn: 'साइन इन',
@@ -99,6 +123,11 @@ const COPY: Record<Locale, AuthCopy> = {
     haveAccount: 'क्या आपका पहले से खाता है?',
     backToSignIn: 'साइन इन पर वापस',
     close: 'बंद करें',
+    unconfirmedNudge: 'आपकी ईमेल अभी तक पुष्टि नहीं हुई है। लिंक नहीं मिला?',
+    resendConfirmation: 'पुष्टिकरण लिंक फिर से भेजें',
+    resendSending: 'भेज रहे हैं…',
+    resendSent: 'भेज दिया। अपना इनबॉक्स (और Promotions टैब) देखें।',
+    didntReceiveIt: 'ईमेल नहीं मिला?',
   },
   ta: {
     signIn: 'உள்நுழைய',
@@ -124,6 +153,11 @@ const COPY: Record<Locale, AuthCopy> = {
     haveAccount: 'ஏற்கனவே கணக்கு உள்ளதா?',
     backToSignIn: 'உள்நுழைய திரும்பு',
     close: 'மூடு',
+    unconfirmedNudge: 'உங்கள் மின்னஞ்சல் இன்னும் உறுதிப்படுத்தப்படவில்லை. இணைப்பு கிடைக்கவில்லையா?',
+    resendConfirmation: 'உறுதிப்படுத்தல் இணைப்பை மீண்டும் அனுப்பு',
+    resendSending: 'அனுப்புகிறது…',
+    resendSent: 'அனுப்பப்பட்டது. உங்கள் இன்பாக்ஸை (மற்றும் Promotions தாவலை) பார்க்கவும்.',
+    didntReceiveIt: 'மின்னஞ்சல் கிடைக்கவில்லையா?',
   },
   te: {
     signIn: 'సైన్ ఇన్',
@@ -149,6 +183,11 @@ const COPY: Record<Locale, AuthCopy> = {
     haveAccount: 'ఇప్పటికే ఖాతా ఉందా?',
     backToSignIn: 'సైన్ ఇన్‌కి తిరిగి',
     close: 'మూసివేయి',
+    unconfirmedNudge: 'మీ ఇమెయిల్ ఇంకా నిర్ధారించబడలేదు. లింక్ రాలేదా?',
+    resendConfirmation: 'నిర్ధారణ లింక్ మళ్లీ పంపండి',
+    resendSending: 'పంపుతోంది…',
+    resendSent: 'పంపబడింది. మీ ఇన్‌బాక్స్ (మరియు Promotions ట్యాబ్) చూడండి.',
+    didntReceiveIt: 'ఇమెయిల్ రాలేదా?',
   },
   bn: {
     signIn: 'সাইন ইন',
@@ -174,6 +213,11 @@ const COPY: Record<Locale, AuthCopy> = {
     haveAccount: 'ইতিমধ্যে অ্যাকাউন্ট আছে?',
     backToSignIn: 'সাইন ইনে ফিরুন',
     close: 'বন্ধ',
+    unconfirmedNudge: 'আপনার ইমেল এখনো নিশ্চিত হয়নি। লিংক পাননি?',
+    resendConfirmation: 'নিশ্চিতকরণ লিংক পুনরায় পাঠান',
+    resendSending: 'পাঠানো হচ্ছে…',
+    resendSent: 'পাঠানো হয়েছে। আপনার ইনবক্স (এবং Promotions ট্যাব) দেখুন।',
+    didntReceiveIt: 'ইমেল পাননি?',
   },
   gu: {
     signIn: 'સાઇન ઇન',
@@ -199,6 +243,11 @@ const COPY: Record<Locale, AuthCopy> = {
     haveAccount: 'પહેલેથી એકાઉન્ટ છે?',
     backToSignIn: 'સાઇન ઇન પર પાછા',
     close: 'બંધ',
+    unconfirmedNudge: 'તમારો ઇમેલ હજી પુષ્ટિ થયો નથી. લિંક નથી મળી?',
+    resendConfirmation: 'પુષ્ટિકરણ લિંક ફરીથી મોકલો',
+    resendSending: 'મોકલી રહ્યા છીએ…',
+    resendSent: 'મોકલી દીધું. તમારો ઇનબોક્સ (અને Promotions ટૅબ) જુઓ.',
+    didntReceiveIt: 'ઇમેલ ન મળી?',
   },
   kn: {
     signIn: 'ಸೈನ್ ಇನ್',
@@ -224,6 +273,11 @@ const COPY: Record<Locale, AuthCopy> = {
     haveAccount: 'ಈಗಾಗಲೇ ಖಾತೆ ಇದೆಯೆ?',
     backToSignIn: 'ಸೈನ್ ಇನ್‌ಗೆ ಹಿಂತಿರುಗಿ',
     close: 'ಮುಚ್ಚಿ',
+    unconfirmedNudge: 'ನಿಮ್ಮ ಇಮೇಲ್ ಇನ್ನೂ ದೃಢೀಕರಿಸಲಾಗಿಲ್ಲ. ಲಿಂಕ್ ಸಿಗಲಿಲ್ಲವೇ?',
+    resendConfirmation: 'ದೃಢೀಕರಣ ಲಿಂಕ್ ಮತ್ತೆ ಕಳುಹಿಸಿ',
+    resendSending: 'ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ…',
+    resendSent: 'ಕಳುಹಿಸಲಾಗಿದೆ. ನಿಮ್ಮ ಇನ್‌ಬಾಕ್ಸ್ (ಮತ್ತು Promotions ಟ್ಯಾಬ್) ಪರಿಶೀಲಿಸಿ.',
+    didntReceiveIt: 'ಇಮೇಲ್ ಸಿಗಲಿಲ್ಲವೇ?',
   },
   mai: {
     signIn: 'साइन इन',
@@ -249,6 +303,11 @@ const COPY: Record<Locale, AuthCopy> = {
     haveAccount: 'पहिनहि खाता अछि?',
     backToSignIn: 'साइन इनपर वापस',
     close: 'बंद',
+    unconfirmedNudge: 'अहाँक ईमेल आब धरि पुष्टि नहि भेल। लिंक नहि भेटल?',
+    resendConfirmation: 'पुष्टिकरण लिंक फेर सँ पठाउ',
+    resendSending: 'पठाओल जा रहल अछि…',
+    resendSent: 'पठा देलहुँ। अपन इनबॉक्स (आ Promotions टैब) देखू।',
+    didntReceiveIt: 'ईमेल नहि भेटल?',
   },
 };
 
@@ -264,7 +323,21 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
-  const { signInWithEmail, signUpWithEmail, signInWithGoogle, resetPassword, loading } = useAuthStore();
+  // Error `code` from the store (Supabase's AuthError.code). We only care
+  // about `email_not_confirmed` — the trigger for the resend nudge.
+  // Kept separate from `error` so the human-readable message and the
+  // machine code don't get conflated at render time.
+  const [errorCode, setErrorCode] = useState<string | undefined>(undefined);
+  const [resendState, setResendState] = useState<'idle' | 'sending' | 'sent'>('idle');
+  // The email that was ACTUALLY submitted (not the live input). Once the
+  // user submits, editing the input must not change the target of the
+  // resend action — otherwise we'd send confirmation links to arbitrary
+  // typed addresses (spam / enumeration vector) and the nudge would show
+  // for one email while resending to another. Set by handleSubmit;
+  // consumed by handleResend and by the nudge/success render conditions.
+  // PR #733 Gemini round 2 SECURITY-HIGH.
+  const [submittedEmail, setSubmittedEmail] = useState('');
+  const { signInWithEmail, signUpWithEmail, signInWithGoogle, resetPassword, resendConfirmation, loading } = useAuthStore();
   const [mounted, setMounted] = useState(false);
   const portalRef = useRef<HTMLElement | null>(null);
 
@@ -284,6 +357,17 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   if (mode !== prevMode) {
     setPrevMode(mode);
     setShowEmailForm(mode !== 'signup');
+    // Mode change wipes the transient resend UI — the nudge only makes
+    // sense in login mode and only for the current email attempt. Also
+    // clear `error` and `successMsg` so a leftover message from the
+    // previous mode doesn't sit above the new mode's form (e.g. the
+    // signup-success pill lingering after switching to login). Doing
+    // it here instead of in each mode-switch onClick keeps the resets
+    // in one place. PR #733 Gemini round 3 MEDIUM.
+    setErrorCode(undefined);
+    setResendState('idle');
+    setError('');
+    setSuccessMsg('');
   }
 
   useEffect(() => {
@@ -301,11 +385,64 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
+  // Reset transient state on close. The modal doesn't unmount when
+  // closed (it just returns null), so state persists across sessions.
+  // Without this reset:
+  //   - errorCode stays 'email_not_confirmed' → next open re-shows the
+  //     amber nudge for a scenario the new session didn't trigger
+  //   - the trackAuthResendShown useEffect below only fires on
+  //     transition, so subsequent opens never re-count as a `shown`
+  //   - `submittedEmail` sticks to the previous session's email
+  //   - `email` and `name` linger — matters on shared devices, and
+  //     surfacing the previous user's email is a small but real privacy
+  //     leak. PR #733 Gemini round 3 HIGH.
+  //
+  // Keep `mode` intact — restoring it to 'login' would surprise a user
+  // who explicitly navigated to Sign Up / Forgot Password before closing.
+  useEffect(() => {
+    if (isOpen) return;
+    setError('');
+    setSuccessMsg('');
+    setErrorCode(undefined);
+    setResendState('idle');
+    setSubmittedEmail('');
+    setEmail('');
+    setName('');
+    setPassword('');
+    setConfirmPassword('');
+  }, [isOpen]);
+
+  // Funnel — surface a `_shown` event when either resend touchpoint
+  // first renders. State transitions (not renders) trigger these so a
+  // single mount doesn't double-fire. `_clicked` and `_result` are
+  // emitted from handleResend directly.
+  useEffect(() => {
+    if (errorCode === 'email_not_confirmed' && mode === 'login') {
+      trackAuthResendShown({ surface: 'login_nudge' });
+    }
+  }, [errorCode, mode]);
+
+  useEffect(() => {
+    if (mode === 'signup' && successMsg) {
+      trackAuthResendShown({ surface: 'signup_success' });
+    }
+  }, [mode, successMsg]);
+
   if (!isOpen || !mounted) return null;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError('');
+    setErrorCode(undefined);
+    // A fresh submit invalidates any previous "sent" pill; the user
+    // is trying a new credential pair, not continuing the last attempt.
+    setResendState('idle');
+    // Pin the target of any subsequent resend action to the email the
+    // user actually submitted, not whatever the input might contain
+    // later. `email.trim()` matches what Supabase normalises to; keeps
+    // the `email === submittedEmail` render gate insensitive to a
+    // trailing-space edit.
+    setSubmittedEmail(email.trim());
 
     if (mode === 'signup' && password !== confirmPassword) {
       setError(t.passwordsDoNotMatch);
@@ -323,21 +460,72 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         return;
       }
 
-      const result = mode === 'login'
-        ? await signInWithEmail(email, password)
-        : await signUpWithEmail(email, password, name);
+      // Kept separate so TS can narrow the `code` field on the login
+      // branch — signUp's return type doesn't carry `code`, and a
+      // ternary widens it to `unknown`.
+      if (mode === 'login') {
+        const result = await signInWithEmail(email, password);
+        if (result.error) {
+          setError(result.error);
+          // Only 'email_not_confirmed' triggers the nudge, but we
+          // store whatever came back for future-proofing.
+          setErrorCode(result.code);
+          return;
+        }
+        onClose();
+        return;
+      }
 
+      // At this point mode === 'signup' — 'forgot' returned earlier,
+      // 'login' returned above.
+      const result = await signUpWithEmail(email, password, name);
       if (result.error) {
         setError(result.error);
-      } else if (mode === 'signup') {
-        setSuccessMsg(t.signupConfirmation);
       } else {
-        onClose();
+        setSuccessMsg(t.signupConfirmation);
       }
     } catch (err) {
       console.error('[AuthModal] Auth failed:', err);
       setError(t.authError);
     }
+  }
+
+  // Surface is inferred from context at call time: 'signup_success' when
+  // the modal is on the post-signup screen (mode==='signup' + successMsg
+  // set), 'login_nudge' otherwise. Passed through to analytics so the
+  // shown / clicked / result events can be tied back to the same touchpoint.
+  async function handleResend() {
+    // Guard on submittedEmail, not the live input — the resend button
+    // only makes sense against the email the user actually submitted.
+    // (Security-high in Gemini round 2: without this, editing the input
+    // AFTER a failed submit and clicking Resend sends the confirmation
+    // link to whatever's in the box.)
+    if (!submittedEmail || resendState === 'sending') return;
+    const surface: 'login_nudge' | 'signup_success' =
+      mode === 'signup' && successMsg ? 'signup_success' : 'login_nudge';
+    trackAuthResendClicked({ surface });
+    setResendState('sending');
+    const result = await resendConfirmation(submittedEmail, locale);
+    if (result.error) {
+      // Rate-limit vs generic error — Supabase surfaces 429s with a
+      // message containing "rate limit" (or "wait X seconds"). We don't
+      // parse it precisely; a coarse string match is good enough for
+      // funnel analytics and won't get us wrong if Supabase changes copy.
+      const isRateLimit = /rate.?limit|wait.*seconds/i.test(result.error);
+      trackAuthResendResult({ surface, result: isRateLimit ? 'rate_limited' : 'error' });
+      setError(result.error);
+      setResendState('idle');
+      return;
+    }
+    trackAuthResendResult({ surface, result: 'success' });
+    setResendState('sent');
+    // Clear the primary error so the "email not confirmed" line doesn't
+    // sit next to the success pill. Do NOT reset `errorCode` here —
+    // the login-mode nudge container renders under
+    // `errorCode === 'email_not_confirmed'`, and clearing it would
+    // unmount the container along with the `resendSent` pill the user
+    // just triggered. See PR #733 Gemini HIGH.
+    setError('');
   }
 
   const modal = (
@@ -459,9 +647,64 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           {error && (
             <p className="text-red-400 text-sm">{error}</p>
           )}
-          {successMsg && (
-            <div className="px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+          {/* Unconfirmed-email nudge — sits between error and success
+              region. Rendered only in login mode when the failure was
+              specifically 'email_not_confirmed'. The user's account
+              exists but the confirmation click never landed (usually
+              Gmail Promotions). Resend uses Supabase's built-in
+              per-email rate limit (default 60s). */}
+          {/* email === submittedEmail — hides the nudge if the user
+              starts editing the input after seeing it, so stale nudges
+              don't linger against a different (unrelated) email. */}
+          {errorCode === 'email_not_confirmed' && mode === 'login' && email.trim() === submittedEmail && (
+            <div className="px-4 py-3 rounded-xl bg-amber-500/10 border border-amber-500/25 space-y-2">
+              <p className="text-amber-200 text-sm">{t.unconfirmedNudge}</p>
+              {resendState === 'sent' ? (
+                <p className="text-emerald-400 text-sm">{t.resendSent}</p>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleResend}
+                  disabled={resendState === 'sending' || !email}
+                  className="text-sm font-semibold text-gold-light hover:text-gold-primary underline underline-offset-4 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  {resendState === 'sending' ? t.resendSending : t.resendConfirmation}
+                </button>
+              )}
+            </div>
+          )}
+          {/* email === submittedEmail — same rationale as the nudge
+              above; hides the "check your email" pill if the user starts
+              typing a different address. */}
+          {successMsg && email.trim() === submittedEmail && (
+            <div className="px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 space-y-2">
               <p className="text-emerald-400 text-sm">{successMsg}</p>
+              {/* On signup only, offer a first-visit resend affordance
+                  next to the "check your email" message. If the initial
+                  confirmation email doesn't land (Gmail Promotions
+                  delay) the user has an escape hatch without closing
+                  the modal. Not shown in forgot/reset — that flow has
+                  its own resetPasswordForEmail retry via the form.
+                  `resendState === 'sent'` swaps in the confirmation
+                  pill so a successful resend doesn't leave two
+                  redundant CTAs visible. */}
+              {mode === 'signup' && email && (
+                resendState === 'sent' ? (
+                  <p className="text-emerald-400/80 text-xs">{t.resendSent}</p>
+                ) : (
+                  <p className="text-emerald-400/80 text-xs">
+                    {t.didntReceiveIt}{' '}
+                    <button
+                      type="button"
+                      onClick={handleResend}
+                      disabled={resendState === 'sending'}
+                      className="text-gold-light hover:text-gold-primary underline underline-offset-2 disabled:opacity-50"
+                    >
+                      {resendState === 'sending' ? t.resendSending : t.resendConfirmation}
+                    </button>
+                  </p>
+                )
+              )}
             </div>
           )}
 

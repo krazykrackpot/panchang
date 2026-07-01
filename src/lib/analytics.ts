@@ -79,6 +79,30 @@ export function trackShareClicked(params: { platform: string; page: string }) {
   track('share_clicked', params);
 }
 
+// Signup-recovery funnel — three touchpoints on the resend-confirmation
+// flow so we can tell if the amber nudge / signup-success prompt is
+// actually converting orphans or just adding noise.
+//
+//   surface: 'login_nudge' — banner shown after 'email_not_confirmed'
+//   surface: 'signup_success' — first-visit resend link inline with
+//            the "check your email" message
+//
+//   result: 'success' | 'rate_limited' | 'error'
+//
+// No PII: we never emit the email address.
+export function trackAuthResendShown(params: { surface: 'login_nudge' | 'signup_success' }) {
+  track('auth_resend_shown', params);
+}
+export function trackAuthResendClicked(params: { surface: 'login_nudge' | 'signup_success' }) {
+  track('auth_resend_clicked', params);
+}
+export function trackAuthResendResult(params: {
+  surface: 'login_nudge' | 'signup_success';
+  result: 'success' | 'rate_limited' | 'error';
+}) {
+  track('auth_resend_result', params);
+}
+
 /**
  * Track a UTM-attributed event. Sends to both Vercel Analytics
  * (with UTM as custom props) and our Supabase utm_visits table.

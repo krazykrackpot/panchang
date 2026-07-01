@@ -47,6 +47,15 @@ interface AuthCopy {
   haveAccount: string;
   backToSignIn: string;
   close: string;
+  // Nudge shown when login fails with code=email_not_confirmed. The
+  // user's account exists but they never clicked the confirmation link
+  // (Gmail promotions tab is the usual reason). We surface a resend
+  // affordance right at the point of frustration instead of leaving them
+  // with an unexplained "Email not confirmed" error.
+  unconfirmedNudge: string;
+  resendConfirmation: string;
+  resendSending: string;
+  resendSent: string;
 }
 
 const COPY: Record<Locale, AuthCopy> = {
@@ -74,6 +83,10 @@ const COPY: Record<Locale, AuthCopy> = {
     haveAccount: 'Already have an account?',
     backToSignIn: 'Back to Sign In',
     close: 'Close',
+    unconfirmedNudge: "Your email isn't confirmed yet. Didn't get the link?",
+    resendConfirmation: 'Resend confirmation link',
+    resendSending: 'Sending…',
+    resendSent: 'Sent. Check your inbox (and the Promotions tab).',
   },
   hi: {
     signIn: 'साइन इन',
@@ -99,6 +112,10 @@ const COPY: Record<Locale, AuthCopy> = {
     haveAccount: 'क्या आपका पहले से खाता है?',
     backToSignIn: 'साइन इन पर वापस',
     close: 'बंद करें',
+    unconfirmedNudge: 'आपकी ईमेल अभी तक पुष्टि नहीं हुई है। लिंक नहीं मिला?',
+    resendConfirmation: 'पुष्टिकरण लिंक फिर से भेजें',
+    resendSending: 'भेज रहे हैं…',
+    resendSent: 'भेज दिया। अपना इनबॉक्स (और Promotions टैब) देखें।',
   },
   ta: {
     signIn: 'உள்நுழைய',
@@ -124,6 +141,10 @@ const COPY: Record<Locale, AuthCopy> = {
     haveAccount: 'ஏற்கனவே கணக்கு உள்ளதா?',
     backToSignIn: 'உள்நுழைய திரும்பு',
     close: 'மூடு',
+    unconfirmedNudge: 'உங்கள் மின்னஞ்சல் இன்னும் உறுதிப்படுத்தப்படவில்லை. இணைப்பு கிடைக்கவில்லையா?',
+    resendConfirmation: 'உறுதிப்படுத்தல் இணைப்பை மீண்டும் அனுப்பு',
+    resendSending: 'அனுப்புகிறது…',
+    resendSent: 'அனுப்பப்பட்டது. உங்கள் இன்பாக்ஸை (மற்றும் Promotions தாவலை) பார்க்கவும்.',
   },
   te: {
     signIn: 'సైన్ ఇన్',
@@ -149,6 +170,10 @@ const COPY: Record<Locale, AuthCopy> = {
     haveAccount: 'ఇప్పటికే ఖాతా ఉందా?',
     backToSignIn: 'సైన్ ఇన్‌కి తిరిగి',
     close: 'మూసివేయి',
+    unconfirmedNudge: 'మీ ఇమెయిల్ ఇంకా నిర్ధారించబడలేదు. లింక్ రాలేదా?',
+    resendConfirmation: 'నిర్ధారణ లింక్ మళ్లీ పంపండి',
+    resendSending: 'పంపుతోంది…',
+    resendSent: 'పంపబడింది. మీ ఇన్‌బాక్స్ (మరియు Promotions ట్యాబ్) చూడండి.',
   },
   bn: {
     signIn: 'সাইন ইন',
@@ -174,6 +199,10 @@ const COPY: Record<Locale, AuthCopy> = {
     haveAccount: 'ইতিমধ্যে অ্যাকাউন্ট আছে?',
     backToSignIn: 'সাইন ইনে ফিরুন',
     close: 'বন্ধ',
+    unconfirmedNudge: 'আপনার ইমেল এখনো নিশ্চিত হয়নি। লিংক পাননি?',
+    resendConfirmation: 'নিশ্চিতকরণ লিংক পুনরায় পাঠান',
+    resendSending: 'পাঠানো হচ্ছে…',
+    resendSent: 'পাঠানো হয়েছে। আপনার ইনবক্স (এবং Promotions ট্যাব) দেখুন।',
   },
   gu: {
     signIn: 'સાઇન ઇન',
@@ -199,6 +228,10 @@ const COPY: Record<Locale, AuthCopy> = {
     haveAccount: 'પહેલેથી એકાઉન્ટ છે?',
     backToSignIn: 'સાઇન ઇન પર પાછા',
     close: 'બંધ',
+    unconfirmedNudge: 'તમારો ઇમેલ હજી પુષ્ટિ થયો નથી. લિંક નથી મળી?',
+    resendConfirmation: 'પુષ્ટિકરણ લિંક ફરીથી મોકલો',
+    resendSending: 'મોકલી રહ્યા છીએ…',
+    resendSent: 'મોકલી દીધું. તમારો ઇનબોક્સ (અને Promotions ટૅબ) જુઓ.',
   },
   kn: {
     signIn: 'ಸೈನ್ ಇನ್',
@@ -224,6 +257,10 @@ const COPY: Record<Locale, AuthCopy> = {
     haveAccount: 'ಈಗಾಗಲೇ ಖಾತೆ ಇದೆಯೆ?',
     backToSignIn: 'ಸೈನ್ ಇನ್‌ಗೆ ಹಿಂತಿರುಗಿ',
     close: 'ಮುಚ್ಚಿ',
+    unconfirmedNudge: 'ನಿಮ್ಮ ಇಮೇಲ್ ಇನ್ನೂ ದೃಢೀಕರಿಸಲಾಗಿಲ್ಲ. ಲಿಂಕ್ ಸಿಗಲಿಲ್ಲವೇ?',
+    resendConfirmation: 'ದೃಢೀಕರಣ ಲಿಂಕ್ ಮತ್ತೆ ಕಳುಹಿಸಿ',
+    resendSending: 'ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ…',
+    resendSent: 'ಕಳುಹಿಸಲಾಗಿದೆ. ನಿಮ್ಮ ಇನ್‌ಬಾಕ್ಸ್ (ಮತ್ತು Promotions ಟ್ಯಾಬ್) ಪರಿಶೀಲಿಸಿ.',
   },
   mai: {
     signIn: 'साइन इन',
@@ -249,6 +286,10 @@ const COPY: Record<Locale, AuthCopy> = {
     haveAccount: 'पहिनहि खाता अछि?',
     backToSignIn: 'साइन इनपर वापस',
     close: 'बंद',
+    unconfirmedNudge: 'अहाँक ईमेल आब धरि पुष्टि नहि भेल। लिंक नहि भेटल?',
+    resendConfirmation: 'पुष्टिकरण लिंक फेर सँ पठाउ',
+    resendSending: 'पठाओल जा रहल अछि…',
+    resendSent: 'पठा देलहुँ। अपन इनबॉक्स (आ Promotions टैब) देखू।',
   },
 };
 
@@ -264,7 +305,13 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
-  const { signInWithEmail, signUpWithEmail, signInWithGoogle, resetPassword, loading } = useAuthStore();
+  // Error `code` from the store (Supabase's AuthError.code). We only care
+  // about `email_not_confirmed` — the trigger for the resend nudge.
+  // Kept separate from `error` so the human-readable message and the
+  // machine code don't get conflated at render time.
+  const [errorCode, setErrorCode] = useState<string | undefined>(undefined);
+  const [resendState, setResendState] = useState<'idle' | 'sending' | 'sent'>('idle');
+  const { signInWithEmail, signUpWithEmail, signInWithGoogle, resetPassword, resendConfirmation, loading } = useAuthStore();
   const [mounted, setMounted] = useState(false);
   const portalRef = useRef<HTMLElement | null>(null);
 
@@ -284,6 +331,10 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   if (mode !== prevMode) {
     setPrevMode(mode);
     setShowEmailForm(mode !== 'signup');
+    // Mode change wipes the transient resend UI — the nudge only makes
+    // sense in login mode and only for the current email attempt.
+    setErrorCode(undefined);
+    setResendState('idle');
   }
 
   useEffect(() => {
@@ -306,6 +357,10 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError('');
+    setErrorCode(undefined);
+    // A fresh submit invalidates any previous "sent" pill; the user
+    // is trying a new credential pair, not continuing the last attempt.
+    setResendState('idle');
 
     if (mode === 'signup' && password !== confirmPassword) {
       setError(t.passwordsDoNotMatch);
@@ -323,21 +378,52 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         return;
       }
 
-      const result = mode === 'login'
-        ? await signInWithEmail(email, password)
-        : await signUpWithEmail(email, password, name);
+      // Kept separate so TS can narrow the `code` field on the login
+      // branch — signUp's return type doesn't carry `code`, and a
+      // ternary widens it to `unknown`.
+      if (mode === 'login') {
+        const result = await signInWithEmail(email, password);
+        if (result.error) {
+          setError(result.error);
+          // Only 'email_not_confirmed' triggers the nudge, but we
+          // store whatever came back for future-proofing.
+          setErrorCode(result.code);
+          return;
+        }
+        onClose();
+        return;
+      }
 
+      // At this point mode === 'signup' — 'forgot' returned earlier,
+      // 'login' returned above.
+      const result = await signUpWithEmail(email, password, name);
       if (result.error) {
         setError(result.error);
-      } else if (mode === 'signup') {
-        setSuccessMsg(t.signupConfirmation);
       } else {
-        onClose();
+        setSuccessMsg(t.signupConfirmation);
       }
     } catch (err) {
       console.error('[AuthModal] Auth failed:', err);
       setError(t.authError);
     }
+  }
+
+  async function handleResend() {
+    if (!email || resendState === 'sending') return;
+    setResendState('sending');
+    const result = await resendConfirmation(email);
+    if (result.error) {
+      // Rate-limit or server error — show it inline. Don't flip to
+      // 'sent' because the mail definitely didn't go out.
+      setError(result.error);
+      setResendState('idle');
+      return;
+    }
+    setResendState('sent');
+    // Clear the primary error so the "email not confirmed" line doesn't
+    // sit next to the success pill — the resend replaces that state.
+    setError('');
+    setErrorCode(undefined);
   }
 
   const modal = (
@@ -458,6 +544,29 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
           {error && (
             <p className="text-red-400 text-sm">{error}</p>
+          )}
+          {/* Unconfirmed-email nudge — sits between error and success
+              region. Rendered only in login mode when the failure was
+              specifically 'email_not_confirmed'. The user's account
+              exists but the confirmation click never landed (usually
+              Gmail Promotions). Resend uses Supabase's built-in
+              per-email rate limit (default 60s). */}
+          {errorCode === 'email_not_confirmed' && mode === 'login' && (
+            <div className="px-4 py-3 rounded-xl bg-amber-500/10 border border-amber-500/25 space-y-2">
+              <p className="text-amber-200 text-sm">{t.unconfirmedNudge}</p>
+              {resendState === 'sent' ? (
+                <p className="text-emerald-400 text-sm">{t.resendSent}</p>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleResend}
+                  disabled={resendState === 'sending' || !email}
+                  className="text-sm font-semibold text-gold-light hover:text-gold-primary underline underline-offset-4 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  {resendState === 'sending' ? t.resendSending : t.resendConfirmation}
+                </button>
+              )}
+            </div>
           )}
           {successMsg && (
             <div className="px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">

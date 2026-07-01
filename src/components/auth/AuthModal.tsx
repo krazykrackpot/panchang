@@ -56,6 +56,11 @@ interface AuthCopy {
   resendConfirmation: string;
   resendSending: string;
   resendSent: string;
+  // Shown inside the signup-success box alongside a Resend link. The
+  // in-app nudge (login mode) catches unconfirmed users on their SECOND
+  // visit. This prompt catches them on the FIRST visit — while they're
+  // still on the modal, if the initial confirmation email doesn't land.
+  didntReceiveIt: string;
 }
 
 const COPY: Record<Locale, AuthCopy> = {
@@ -87,6 +92,7 @@ const COPY: Record<Locale, AuthCopy> = {
     resendConfirmation: 'Resend confirmation link',
     resendSending: 'Sending…',
     resendSent: 'Sent. Check your inbox (and the Promotions tab).',
+    didntReceiveIt: "Didn't receive the email?",
   },
   hi: {
     signIn: 'साइन इन',
@@ -116,6 +122,7 @@ const COPY: Record<Locale, AuthCopy> = {
     resendConfirmation: 'पुष्टिकरण लिंक फिर से भेजें',
     resendSending: 'भेज रहे हैं…',
     resendSent: 'भेज दिया। अपना इनबॉक्स (और Promotions टैब) देखें।',
+    didntReceiveIt: 'ईमेल नहीं मिला?',
   },
   ta: {
     signIn: 'உள்நுழைய',
@@ -145,6 +152,7 @@ const COPY: Record<Locale, AuthCopy> = {
     resendConfirmation: 'உறுதிப்படுத்தல் இணைப்பை மீண்டும் அனுப்பு',
     resendSending: 'அனுப்புகிறது…',
     resendSent: 'அனுப்பப்பட்டது. உங்கள் இன்பாக்ஸை (மற்றும் Promotions தாவலை) பார்க்கவும்.',
+    didntReceiveIt: 'மின்னஞ்சல் கிடைக்கவில்லையா?',
   },
   te: {
     signIn: 'సైన్ ఇన్',
@@ -174,6 +182,7 @@ const COPY: Record<Locale, AuthCopy> = {
     resendConfirmation: 'నిర్ధారణ లింక్ మళ్లీ పంపండి',
     resendSending: 'పంపుతోంది…',
     resendSent: 'పంపబడింది. మీ ఇన్‌బాక్స్ (మరియు Promotions ట్యాబ్) చూడండి.',
+    didntReceiveIt: 'ఇమెయిల్ రాలేదా?',
   },
   bn: {
     signIn: 'সাইন ইন',
@@ -203,6 +212,7 @@ const COPY: Record<Locale, AuthCopy> = {
     resendConfirmation: 'নিশ্চিতকরণ লিংক পুনরায় পাঠান',
     resendSending: 'পাঠানো হচ্ছে…',
     resendSent: 'পাঠানো হয়েছে। আপনার ইনবক্স (এবং Promotions ট্যাব) দেখুন।',
+    didntReceiveIt: 'ইমেল পাননি?',
   },
   gu: {
     signIn: 'સાઇન ઇન',
@@ -232,6 +242,7 @@ const COPY: Record<Locale, AuthCopy> = {
     resendConfirmation: 'પુષ્ટિકરણ લિંક ફરીથી મોકલો',
     resendSending: 'મોકલી રહ્યા છીએ…',
     resendSent: 'મોકલી દીધું. તમારો ઇનબોક્સ (અને Promotions ટૅબ) જુઓ.',
+    didntReceiveIt: 'ઇમેલ ન મળી?',
   },
   kn: {
     signIn: 'ಸೈನ್ ಇನ್',
@@ -261,6 +272,7 @@ const COPY: Record<Locale, AuthCopy> = {
     resendConfirmation: 'ದೃಢೀಕರಣ ಲಿಂಕ್ ಮತ್ತೆ ಕಳುಹಿಸಿ',
     resendSending: 'ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ…',
     resendSent: 'ಕಳುಹಿಸಲಾಗಿದೆ. ನಿಮ್ಮ ಇನ್‌ಬಾಕ್ಸ್ (ಮತ್ತು Promotions ಟ್ಯಾಬ್) ಪರಿಶೀಲಿಸಿ.',
+    didntReceiveIt: 'ಇಮೇಲ್ ಸಿಗಲಿಲ್ಲವೇ?',
   },
   mai: {
     signIn: 'साइन इन',
@@ -290,6 +302,7 @@ const COPY: Record<Locale, AuthCopy> = {
     resendConfirmation: 'पुष्टिकरण लिंक फेर सँ पठाउ',
     resendSending: 'पठाओल जा रहल अछि…',
     resendSent: 'पठा देलहुँ। अपन इनबॉक्स (आ Promotions टैब) देखू।',
+    didntReceiveIt: 'ईमेल नहि भेटल?',
   },
 };
 
@@ -569,8 +582,34 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             </div>
           )}
           {successMsg && (
-            <div className="px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+            <div className="px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 space-y-2">
               <p className="text-emerald-400 text-sm">{successMsg}</p>
+              {/* On signup only, offer a first-visit resend affordance
+                  next to the "check your email" message. If the initial
+                  confirmation email doesn't land (Gmail Promotions
+                  delay) the user has an escape hatch without closing
+                  the modal. Not shown in forgot/reset — that flow has
+                  its own resetPasswordForEmail retry via the form.
+                  `resendState === 'sent'` swaps in the confirmation
+                  pill so a successful resend doesn't leave two
+                  redundant CTAs visible. */}
+              {mode === 'signup' && email && (
+                resendState === 'sent' ? (
+                  <p className="text-emerald-400/80 text-xs">{t.resendSent}</p>
+                ) : (
+                  <p className="text-emerald-400/80 text-xs">
+                    {t.didntReceiveIt}{' '}
+                    <button
+                      type="button"
+                      onClick={handleResend}
+                      disabled={resendState === 'sending'}
+                      className="text-gold-light hover:text-gold-primary underline underline-offset-2 disabled:opacity-50"
+                    >
+                      {resendState === 'sending' ? t.resendSending : t.resendConfirmation}
+                    </button>
+                  </p>
+                )
+              )}
             </div>
           )}
 

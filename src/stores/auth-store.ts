@@ -74,7 +74,10 @@ interface AuthState {
   // Used by the AuthModal nudge when signInWithEmail returns
   // code='email_not_confirmed'. Supabase silently no-ops if the email
   // is already confirmed or unknown — no user-enumeration signal.
-  resendConfirmation: (email: string) => Promise<{ error?: string }>;
+  // `locale` is passed in from React scope (useLocale()) so the redirect
+  // URL lands the user back on their current locale. Store methods
+  // shouldn't parse window.location — see PR #733 Gemini review.
+  resendConfirmation: (email: string, locale?: string) => Promise<{ error?: string }>;
   signOut: () => Promise<void>;
 }
 
@@ -174,15 +177,18 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     return error ? { error: error.message, code: error.code } : {};
   },
 
-  resendConfirmation: async (email) => {
+  resendConfirmation: async (email, locale) => {
     const supabase = getSupabase();
     if (!supabase) return { error: 'Auth not configured' };
     // Supabase's built-in per-email rate limit applies (default 60s). A
     // 429 comes back through `error` with a human-readable message we
     // surface directly. Type 'signup' resends the initial confirmation
     // link (as opposed to 'email_change' or 'invite').
+    // `locale` is passed by the caller — pathname parsing here is
+    // unreliable (routes without a locale prefix return the wrong
+    // segment as 'locale'). See PR #733 Gemini review.
     const baseUrl = BASE_URL;
-    const localePrefix = window.location.pathname.split('/')[1] || 'en';
+    const localePrefix = locale ?? 'en';
     const { error } = await supabase.auth.resend({
       type: 'signup',
       email,

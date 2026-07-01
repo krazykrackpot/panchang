@@ -452,7 +452,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       mode === 'signup' && successMsg ? 'signup_success' : 'login_nudge';
     trackAuthResendClicked({ surface });
     setResendState('sending');
-    const result = await resendConfirmation(email);
+    const result = await resendConfirmation(email, locale);
     if (result.error) {
       // Rate-limit vs generic error — Supabase surfaces 429s with a
       // message containing "rate limit" (or "wait X seconds"). We don't
@@ -467,9 +467,12 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     trackAuthResendResult({ surface, result: 'success' });
     setResendState('sent');
     // Clear the primary error so the "email not confirmed" line doesn't
-    // sit next to the success pill — the resend replaces that state.
+    // sit next to the success pill. Do NOT reset `errorCode` here —
+    // the login-mode nudge container renders under
+    // `errorCode === 'email_not_confirmed'`, and clearing it would
+    // unmount the container along with the `resendSent` pill the user
+    // just triggered. See PR #733 Gemini HIGH.
     setError('');
-    setErrorCode(undefined);
   }
 
   const modal = (

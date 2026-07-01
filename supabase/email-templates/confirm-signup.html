@@ -43,8 +43,10 @@
       <p style="color:#8a6d2b;font-size:12px;letter-spacing:3px;text-transform:uppercase;margin:0;">Dekho Panchang</p>
     </div>
 
-    <!-- Personal note from founder — plain-language, no marketing register -->
-    <div style="background:linear-gradient(135deg,rgba(45,27,105,0.4),rgba(26,16,64,0.5),#0a0e27);border:1px solid rgba(212,168,83,0.15);border-radius:16px;padding:36px 28px;">
+    <!-- Personal note from founder — plain-language, no marketing register.
+         Outlook + several older clients don't render CSS gradients — the
+         solid background-color declared first is the fallback they see. -->
+    <div style="background-color:#1a1040;background:linear-gradient(135deg,rgba(45,27,105,0.4),rgba(26,16,64,0.5),#0a0e27);border:1px solid rgba(212,168,83,0.15);border-radius:16px;padding:36px 28px;">
       <p style="color:#f0d48a;font-size:18px;margin:0 0 20px;font-weight:600;">Namaste,</p>
 
       <p style="color:#e6e2d8;font-size:15px;line-height:1.65;margin:0 0 16px;">
@@ -58,7 +60,7 @@
       <!-- Primary CTA -->
       <div style="text-align:center;margin:28px 0;">
         <a href="{{ .ConfirmationURL }}"
-           style="display:inline-block;background:linear-gradient(135deg,#d4a853,#f0d48a);color:#0a0e27;text-decoration:none;padding:14px 32px;border-radius:10px;font-weight:700;font-size:15px;letter-spacing:0.3px;">
+           style="display:inline-block;background-color:#d4a853;background:linear-gradient(135deg,#d4a853,#f0d48a);color:#0a0e27;text-decoration:none;padding:14px 32px;border-radius:10px;font-weight:700;font-size:15px;letter-spacing:0.3px;">
           Activate my account
         </a>
       </div>

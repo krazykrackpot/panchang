@@ -24,7 +24,7 @@ const AUTHORED: Record<string, Record<string, string>> = {
     descDomesticTemplate: "Today's Panchang for {CITY}, {STATE} — accurate sunrise, sunset, tithi, nakshatra, yoga, karana, Rahu Kaal, Yamaganda & Gulika timings. Vedic calculations using Lahiri Ayanamsha.",
     tzSuffixTemplate: ' in {TZ}',
     // SEO intro card
-    introTemplate: "Today's Panchang for {CITY}, {STATE} — accurate sunrise, sunset, tithi, nakshatra, yoga, and karana timings computed for {CITY}'s exact coordinates ({LAT}, {LNG}). All Vedic calendar elements are calculated using the Lahiri Ayanamsha and Meeus astronomical algorithms for sub-arcsecond accuracy. This page updates daily with {CITY}'s local timings, including Rahu Kaal, Yamaganda Kaal, and Gulika Kaal — essential for planning auspicious activities.",
+    introTemplate: "Today's Panchang for {CITY}, {STATE} — accurate sunrise, sunset, tithi, nakshatra, yoga, and karana timings computed for {CITY}'s exact coordinates ({LAT}, {LNG}). Computed with Swiss Ephemeris (based on NASA JPL DE ephemerides) using Lahiri Ayanamsha (Chitrapaksha) — sub-arcsecond accuracy on planetary positions. This page updates daily with {CITY}'s local timings, including Rahu Kaal, Yamaganda Kaal, and Gulika Kaal — essential for planning auspicious activities.",
     // WhatsApp share
     shareTextTemplate: '{CITY} Panchang Today: {TITHI}, {NAK} | Sunrise {SR}',
     // Calculation Proof block
@@ -38,7 +38,7 @@ const AUTHORED: Record<string, Record<string, string>> = {
     calcTithiFormula: 'Tithi Formula',
     calcRahuKaalRow: 'Rahu Kaal',
     calcRahuKaalFormula: '1/8th of daytime, weekday-indexed segment',
-    calcProofFootnote: 'Tithi transitions determined by 30-iteration binary search on Moon-Sun elongation (~1-second precision). Sunrise/sunset via 2-pass Meeus algorithm with atmospheric refraction.',
+    calcProofFootnote: 'Tithi transitions determined by 30-iteration binary search on Moon-Sun elongation (~1-second precision). Sunrise/sunset via Swiss Ephemeris with atmospheric refraction. See our methodology page for the full pipeline.',
     // Special Yogas
     specialYogasHeading: 'Special Yogas Today',
     // CTA detailed panchang
@@ -62,7 +62,7 @@ const AUTHORED: Record<string, Record<string, string>> = {
     descDiasporaTemplate: '{CITY} में हिन्दू समुदाय के लिए दैनिक वैदिक पंचांग। सटीक तिथि, नक्षत्र और मुहूर्त समय{TZ_SUFFIX}। स्विस इफेमेरिस सटीकता।',
     descDomesticTemplate: '{CITY}, {STATE} का आज का पंचांग — सटीक सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, करण, राहुकाल, यमगण्ड और गुलिक काल। लाहिरी अयनांश पर आधारित वैदिक गणना।',
     tzSuffixTemplate: ' ({TZ} में)',
-    introTemplate: '{CITY}, {STATE} के लिए आज का पंचांग — {CITY} के सटीक निर्देशांक ({LAT}, {LNG}) के अनुसार गणना किए गए सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, और करण का समय। सभी वैदिक पंचांग तत्व लाहिरी अयनांश और मीउस खगोलीय एल्गोरिदम द्वारा उप-चाप-सेकंड सटीकता के साथ गणना किए गए हैं। यह पृष्ठ प्रतिदिन {CITY} के स्थानीय समय के अनुसार अपडेट होता है।',
+    introTemplate: '{CITY}, {STATE} के लिए आज का पंचांग — {CITY} के सटीक निर्देशांक ({LAT}, {LNG}) के अनुसार गणना किए गए सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, और करण का समय। स्विस एफेमेरिस (NASA JPL DE एफेमेरिस पर आधारित) और लाहिरी अयनांश (चित्रपक्ष) से गणना — ग्रह स्थिति पर उप-आर्क-सेकंड सटीकता। यह पृष्ठ प्रतिदिन {CITY} के स्थानीय समय के अनुसार अपडेट होता है, जिसमें राहुकाल, यमगण्ड और गुलिक काल शामिल हैं।',
     shareTextTemplate: '{CITY} पंचांग आज: {TITHI}, {NAK} | सूर्योदय {SR}',
     calcProofHeader: 'गणना प्रमाण — पारदर्शी लेखा परीक्षा',
     calcProofIntroTemplate: 'सभी मान {CITY} के सटीक निर्देशांकों से गणना किए गए हैं। कोई सन्निकटन या डिफ़ॉल्ट नहीं।',
@@ -74,7 +74,7 @@ const AUTHORED: Record<string, Record<string, string>> = {
     calcTithiFormula: 'तिथि सूत्र',
     calcRahuKaalRow: 'राहुकाल सूत्र',
     calcRahuKaalFormula: 'दिन का 1/8 भाग, वार-अनुसार',
-    calcProofFootnote: 'तिथि संक्रमण समय 30-पुनरावृत्ति द्विभाजन खोज से निर्धारित, ~1 सेकंड सटीकता। सूर्योदय/सूर्यास्त मीउस एल्गोरिदम (2-पास) + वायुमण्डलीय अपवर्तन।',
+    calcProofFootnote: 'तिथि संक्रमण समय 30-पुनरावृत्ति द्विभाजन खोज से निर्धारित, ~1 सेकंड सटीकता। सूर्योदय/सूर्यास्त स्विस एफेमेरिस + वायुमण्डलीय अपवर्तन से। सम्पूर्ण गणना पद्धति के लिए पद्धति पृष्ठ देखें।',
     specialYogasHeading: 'आज के विशेष योग',
     ctaSubtextTemplate: 'ग्रह स्थिति, चौघड़िया, होरा, दिशा शूल — {CITY} के लिए सब कुछ',
     aboutPara1Template: '{CITY} ({STATE}) के लिए दैनिक वैदिक पंचांग — प्रत्येक दिन {CITY} के अक्षांश {LAT} और देशांतर {LNG} के अनुसार सटीक गणना। पंचांग के पाँच अंग — तिथि, वार, नक्षत्र, योग, और करण — शुभ मुहूर्त चयन और दैनिक धार्मिक कृत्यों के लिए अनिवार्य हैं।',

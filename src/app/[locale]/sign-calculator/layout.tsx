@@ -31,7 +31,7 @@ export default async function Layout({ children, params }: { children: React.Rea
       { name: 'Enter your birth date', text: 'Select your date of birth from the calendar picker.' },
       { name: 'Enter your birth time', text: 'Enter your exact time of birth. Accuracy to the minute matters for Lagna calculation.' },
       { name: 'Enter your birthplace', text: 'Search for your birth city. The tool resolves coordinates and timezone automatically.' },
-      { name: 'View your signs', text: 'Your Vedic Moon sign (Rashi), Sun sign, and Lagna (Ascendant) are computed instantly using Meeus algorithms.' },
+      { name: 'View your signs', text: 'Your Vedic Moon sign (Rashi), Sun sign, and Lagna (Ascendant) are computed instantly with Swiss Ephemeris precision using Lahiri Ayanamsha.' },
     ],
   });
 

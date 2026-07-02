@@ -314,7 +314,7 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "The Surya Siddhanta achieves about 1 degree accuracy for the Moon. The Sun is better at about 0.1 degrees. By comparison, our app's Meeus algorithms achieve ~0.01 degrees for the Sun and ~0.3 degrees for the Moon.",
+        "en": "The Surya Siddhanta achieves about 1 degree accuracy for the Moon. The Sun is better at about 0.1 degrees. By comparison, our app's primary engine — Swiss Ephemeris — achieves sub-arcsecond accuracy on both; the Meeus algorithms we ship as fallback reach ~0.01° Sun and ~0.3° Moon.",
         "hi": "सूर्य सिद्धान्त चन्द्रमा के लिए लगभग 1 अंश की सटीकता प्राप्त करता है। सूर्य बेहतर है, लगभग 0.1 अंश। तुलना में, हमारे ऐप के मीयस एल्गोरिदम सूर्य के लिए ~0.01 अंश और चन्द्रमा के लिए ~0.3 अंश प्राप्त करते हैं।",
         "ta": "சூரிய சித்தாந்தம் சந்திரனுக்கு சுமார் 1 டிகிரி துல்லியத்தை அடைகிறது. சூரியன் சுமார் 0.1 டிகிரி அளவில் சிறப்பாக உள்ளது. ஒப்பிடுகையில், எங்கள் பயன்பாட்டின் மீயஸ் வழிமுறைகள் சூரியனுக்கு ~0.01 டிகிரி மற்றும் சந்திரனுக்கு ~0.3 டிகிரி துல்லியத்தை அடைகின்றன.",
         "te": "సూర్య సిద్ధాంతం చంద్రుని కోసం సుమారు 1 డిగ్రీ ఖచ్చితత్వాన్ని సాధిస్తుంది. సూర్యుడు సుమారు 0.1 డిగ్రీల వద్ద మెరుగ్గా ఉంటాడు. పోల్చి చూస్తే, మా యాప్ యొక్క మీయస్ అల్గోరిథంలు సూర్యునికి ~0.01 డిగ్రీలు మరియు చంద్రునికి ~0.3 డిగ్రీల ఖచ్చితత్వాన్ని సాధిస్తాయి.",

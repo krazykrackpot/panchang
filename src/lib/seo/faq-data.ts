@@ -77,9 +77,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'एतत् पञ्चाङ्गं कियत् सूक्ष्मम् अस्ति?',
       },
       answer: {
-        en: 'Dekho Panchang uses Meeus astronomical algorithms to compute Sun and Moon positions with an accuracy of approximately 0.01 degrees for the Sun and 0.5 degrees for the Moon. All Panchang values have been verified to be within 1-2 minutes of leading reference sources for multiple locations worldwide.',
-        hi: 'देखो पंचांग मीयस खगोलीय एल्गोरिदम का उपयोग करता है जो सूर्य की स्थिति लगभग 0.01 अंश और चन्द्रमा की स्थिति लगभग 0.5 अंश की सटीकता से गणना करता है। सभी पंचांग मान प्रमुख संदर्भ स्रोतों से 1-2 मिनट के भीतर सत्यापित हैं।',
-        sa: 'देखो-पञ्चाङ्गं मीयस-खगोलगणितसूत्राणि उपयुज्य सूर्यस्य स्थितिं प्रायः ०.०१ अंशपर्यन्तं चन्द्रमसश्च ०.५ अंशपर्यन्तं सूक्ष्मतया गणयति। सर्वाणि पञ्चाङ्गमानानि विश्वस्य अनेकस्थानेषु प्रमुखसन्दर्भस्रोतोभ्यः १-२ निमेषाभ्यन्तरे सत्यापितानि।',
+        en: 'Dekho Panchang is computed with Swiss Ephemeris (based on NASA JPL DE ephemerides) using Lahiri Ayanamsha (Chitrapaksha) — sub-arcsecond accuracy on planetary positions. All Panchang values have been verified to be within 1-2 minutes of leading reference sources for multiple locations worldwide.',
+        hi: 'देखो पंचांग स्विस एफेमेरिस (NASA JPL DE एफेमेरिस पर आधारित) और लाहिरी अयनांश (चित्रपक्ष) से गणना करता है — ग्रह स्थिति पर उप-आर्क-सेकंड सटीकता। सभी पंचांग मान प्रमुख संदर्भ स्रोतों से 1-2 मिनट के भीतर सत्यापित हैं।',
+        sa: 'देखो-पञ्चाङ्गं स्विस-एफेमेरिस्-आधारेण (NASA JPL DE) लाहिरी-अयनांशेन (चित्रपक्ष) गणयति — ग्रहस्थितौ उप-आर्क-सेकंड-सूक्ष्मता। सर्वाणि पञ्चाङ्गमानानि विश्वस्य अनेकस्थानेषु प्रमुखसन्दर्भस्रोतोभ्यः १-२ निमेषाभ्यन्तरे सत्यापितानि।',
       },
     },
   ],
@@ -2500,7 +2500,7 @@ export function generateHoroscopeFAQ(
       },
       {
         q: `How accurate are Vedic daily horoscope predictions for ${westernName}?`,
-        a: `Vedic horoscope predictions on Dekho Panchang are grounded in real planetary transit data computed using classical Meeus astronomical algorithms. While no astrological prediction is guaranteed, our system analyses the actual positions of Jupiter, Saturn, Rahu, Ketu, and other planets relative to ${rashiName} to deliver transit-based insights rather than generic templates.`,
+        a: `Vedic horoscope predictions on Dekho Panchang are grounded in real planetary transit data — computed with Swiss Ephemeris (based on NASA JPL DE ephemerides) using Lahiri Ayanamsha (Chitrapaksha). While no astrological prediction is guaranteed, our system analyses the actual positions of Jupiter, Saturn, Rahu, Ketu, and other planets relative to ${rashiName} to deliver transit-based insights rather than generic templates.`,
       },
     ],
     weekly: [

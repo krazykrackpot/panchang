@@ -1,6 +1,6 @@
 # Dekho Panchang — Vedic Astrology Platform
 # https://dekhopanchang.com
-# Last updated: 2026-06-02
+# Last updated: 2026-07-02
 # For full context with example outputs, see /llms-full.txt
 # For the structured capability catalog: /en/features
 

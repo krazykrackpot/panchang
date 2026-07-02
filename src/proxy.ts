@@ -15,6 +15,7 @@ import {
   isSeoIndexableCity,
   wasLegacyIndexableSlug,
 } from '@/lib/constants/cities-extended';
+import { resolveGeoCitySlug } from '@/lib/seo/locale-default-city';
 
 /** Canonical muhurta type slugs accepted by the deep route
  *  /muhurta/[type]/[year]/[month]/[city]. Sourced from the page's own
@@ -690,6 +691,59 @@ export default function proxy(request: NextRequest) {
         },
       },
     );
+  }
+
+  // ─── Geo-aware redirect: /{locale}/panchang → /{locale}/panchang/{city} ──
+  // Real users with a Vercel-resolved city that maps to a canonical
+  // /panchang/[city] ISR page get a 307 to their city's cached HTML —
+  // fast, geo-correct, and served from the ISR cache instead of the
+  // dynamic /panchang page.
+  //
+  // Bots (Googlebot/Bingbot/GPTBot/etc.) fall through to the dynamic
+  // /panchang page, which now renders with the locale-canonical city
+  // (Delhi for en/hi, Chennai for ta, Patna for mai, …) instead of
+  // whatever US datacentre Vercel geo resolved from the bot's IP.
+  // See src/lib/seo/locale-default-city.ts and the SSR paths at
+  // src/app/[locale]/panchang/page.tsx (getServerPanchang) +
+  // src/app/[locale]/page.tsx (homepage).
+  //
+  // Why 307 (temporary) not 308 (permanent): a user in Delhi today
+  // might sign in from Mumbai next month; the redirect target isn't
+  // the "one true canonical" for the source URL. 307 keeps Google's
+  // ranking signal on the source /panchang page (which is now
+  // bot-correct) and treats the redirect as a per-request UX
+  // optimisation.
+  //
+  // Pinned to exact /{locale}/panchang (no trailing sub-segments) so
+  // /panchang/date/…, /panchang/rashi/…, /panchang/[city] are untouched.
+  const panchangRootMatch = pathname.match(/^\/([a-z]{2,3})\/panchang\/?$/);
+  if (panchangRootMatch) {
+    const [, plocale] = panchangRootMatch;
+    if (LOCALES.includes(plocale as (typeof LOCALES)[number])) {
+      if (!isBotUA(request.headers.get('user-agent'))) {
+        const geoCityRaw = request.headers.get('x-vercel-ip-city');
+        // decodeURIComponent can throw on malformed sequences — same
+        // defensive pattern as the page's generateMetadata.
+        let decoded: string | null = null;
+        if (geoCityRaw) {
+          try {
+            decoded = decodeURIComponent(geoCityRaw);
+          } catch {
+            decoded = geoCityRaw;
+          }
+        }
+        const citySlug = resolveGeoCitySlug(decoded, CANONICAL_CITY_SLUGS);
+        if (citySlug) {
+          const target = new URL(`/${plocale}/panchang/${citySlug}`, request.url);
+          // Preserve query string (utm_* etc.) so campaign attribution
+          // isn't dropped by the redirect.
+          target.search = request.nextUrl.search;
+          return NextResponse.redirect(target, 307);
+        }
+      }
+      // Bot OR unresolved-city → fall through to the /panchang page's
+      // dynamic render, which uses the locale-default city.
+    }
   }
 
   // Phase 1 (2026-06-10) — /panchang/[city] (locale, slug) pairs that

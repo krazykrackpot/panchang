@@ -27,7 +27,7 @@ function Page1() {
     <div className="space-y-6">
       <KeyTakeaway
         points={[
-          'The Sun\'s position is computed using Meeus\'s algorithm with just 3 main sine corrections  –  achieving 0.01-degree accuracy.',
+          "The Sun's position is computed with Swiss Ephemeris (sub-arcsecond); Meeus's 3-sine-correction algorithm (~0.01°) is the documented fallback and the classical algorithmic path this module explains.",
           'The algorithm accounts for Earth\'s elliptical orbit (Equation of Center), axial wobble (nutation), and light travel (aberration).',
           'Tropical-to-sidereal conversion via ayanamsha (~24.22° in 2026) is the final step for Vedic astrology.',
         ]}

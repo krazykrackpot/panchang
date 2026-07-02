@@ -192,7 +192,7 @@ export function generatePersonLD(): object {
       '@type': 'Occupation',
       name: 'Vedic Astrology Researcher',
       description:
-        'Building a free Jyotish platform with first-principles astronomical calculations (Meeus algorithms, BPHS-aligned interpretations).',
+        'Building a free Jyotish platform with first-principles astronomical calculations (Swiss Ephemeris primary, Meeus fallback; Lahiri Ayanamsha; BPHS-aligned interpretations).',
     },
     worksFor: {
       '@type': 'Organization',

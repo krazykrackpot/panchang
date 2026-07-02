@@ -565,7 +565,15 @@ export default async function CityPanchangPage({
               <div className="text-text-secondary/50">{CL('calcRahuKaalRow', locale)}</div>
               <div className="text-text-primary">{CL('calcRahuKaalFormula', locale)}</div>
             </div>
-            <p className="text-text-secondary/50 text-xs">{CL('calcProofFootnote', locale)}</p>
+            <p className="text-text-secondary/50 text-xs">
+              {CL('calcProofFootnote', locale)}{' '}
+              <Link
+                href={`/${locale}/about/methodology`}
+                className="text-gold-light/80 underline underline-offset-2 hover:text-gold-primary"
+              >
+                {locale === 'hi' ? 'सम्पूर्ण पद्धति →' : locale === 'mai' ? 'सम्पूर्ण पद्धति →' : locale === 'mr' ? 'संपूर्ण पद्धती →' : locale === 'ta' ? 'முழு வழிமுறை →' : locale === 'te' ? 'పూర్తి పద్ధతి →' : locale === 'bn' ? 'সম্পূর্ণ পদ্ধতি →' : locale === 'gu' ? 'સંપૂર્ણ પદ્ધતિ →' : locale === 'kn' ? 'ಸಂಪೂರ್ಣ ವಿಧಾನ →' : 'Full methodology →'}
+              </Link>
+            </p>
           </div>
         </details>
       </div>

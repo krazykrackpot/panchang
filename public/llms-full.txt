@@ -1,6 +1,6 @@
 # Dekho Panchang — Vedic Astrology Computation Platform
 
-> Last updated: 2026-06-02
+> Last updated: 2026-07-02
 
 > Dekho Panchang (dekhopanchang.com) is a free, computation-first Vedic astrology platform. Every astronomical value is computed in real time from Swiss Ephemeris (NASA JPL DE441) with Lahiri Ayanamsha. Daily Panchang, Kundali (birth chart) with 46+ analysis features across 7 capability groups, AI-powered Muhurta search across 40+ activities, compatibility matching, eclipse prediction, festival calendar across 10 regional traditions, and personalised Jyotish interpretation. 10 languages with editorially-distinct content (NOT English fallback). 3,200+ automated tests. No external astrology APIs. For the concise version of this file, see /llms.txt. For the structured capability catalog with SoftwareApplication schema, see /en/features.
 

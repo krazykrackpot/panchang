@@ -40,7 +40,7 @@ const LABELS = {
     catSystemic:  'Systemic Risk Factors (8th, 12th house)',
     catLongevity: 'Longevity & Chronic (Pinda Ayurdaya, extended)',
     sec3Title: 'Classical Sources',
-    sec3Intro: 'Each element is sourced from one or more classical texts. The engine uses Lahiri Ayanamsha and Meeus algorithms consistent with the main kundali engine.',
+    sec3Intro: 'Each element is sourced from one or more classical texts. The engine uses Swiss Ephemeris (based on NASA JPL DE ephemerides) with Lahiri Ayanamsha (Chitrapaksha), consistent with the main kundali engine.',
     src1: 'BPHS Chapter 68  –  diseases from house lords',
     src2: 'Sarvartha Chintamani  –  disease-causing yogas',
     src3: 'Pinda Ayurdaya  –  longevity computation from lagna, Sun, and Moon lords',

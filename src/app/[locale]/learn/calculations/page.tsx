@@ -41,8 +41,9 @@ export default function LearnCalculationsPage() {
       {/* Key Takeaway  –  top-level orientation */}
       <KeyTakeaway
         points={[
-          'This page explains how we compute astronomical positions from scratch  –  no external APIs, pure mathematics.',
-          'Every formula here runs in your browser to produce the Panchang you see on this site.',
+          'In production we run Swiss Ephemeris (based on NASA JPL DE ephemerides) — sub-arcsecond planetary positions — with Lahiri Ayanamsha (Chitrapaksha).',
+          'This page walks through Jean Meeus\'s "Astronomical Algorithms" (1991) — the documented fallback path when Swiss Ephemeris is unavailable, and the closest thing to a from-scratch derivation you can read.',
+          'Every formula here runs in your browser and matches Swiss Ephemeris to within Meeus\'s stated accuracy limits (Sun ~0.01°, Moon ~0.5°).',
           'You do not need a math degree to follow along  –  we explain every step in plain language first, then show the formula.',
         ]}
         locale={locale}
@@ -63,9 +64,16 @@ export default function LearnCalculationsPage() {
           from first principles using well-tested mathematical formulas. This means the app works offline,
           has no API rate limits, and we can verify every result against reference sources.
         </p>
-        <p className="text-sm text-text-primary/85 leading-relaxed">
+        <p className="text-sm text-text-primary/85 leading-relaxed mb-3">
           The pipeline is: <strong className="text-gold-light/90">Date → Julian Day → Sun/Moon positions → Sidereal correction → Panchang elements → Transition times</strong>.
           Each section below walks through one step of this pipeline.
+        </p>
+        <p className="text-xs text-text-secondary leading-relaxed border-l-2 border-gold-primary/30 pl-3">
+          <strong className="text-gold-light">A note on engines.</strong> In production this Panchang is powered by <strong>Swiss Ephemeris</strong> — a
+          native C library that fits sub-arcsecond polynomials to NASA JPL DE numerical ephemerides. The Meeus algorithms this page derives from
+          scratch are our <strong>documented fallback</strong>: same conceptual pipeline (mean position → periodic corrections → geocentric coordinates),
+          just with fewer correction terms (Sun ~0.01° vs sub-arcsecond, Moon ~0.5° vs sub-arcsecond). Reading Meeus is the closest thing to
+          watching an ephemeris get built by hand — which is why we teach it here.
         </p>
       </div>
 

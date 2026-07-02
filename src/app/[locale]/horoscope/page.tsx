@@ -39,8 +39,8 @@ export default async function HoroscopePage({ params }: { params: Promise<{ loca
         {/* SSR: Philosophical context  –  Siddhantic foundation */}
         <p className="text-text-secondary text-sm text-center mt-3 max-w-2xl mx-auto leading-relaxed">
           {pickByScript(
-            'Your Vedic horoscope is computed from the actual sidereal positions of the nine grahas — not seasonal approximations. The daily forecast is driven by real planetary transits computed using algorithms from the Surya Siddhanta, verified against modern ephemeris data. This is Siddhantic Jyotish — mathematical astronomy — applied to daily life guidance.',
-            'आपका वैदिक राशिफल नवग्रहों की वास्तविक नाक्षत्रिक स्थितियों से गणना किया जाता है — मौसमी अनुमानों से नहीं। दैनिक फल वास्तविक ग्रह गोचर द्वारा संचालित है, जिनकी गणना सूर्य सिद्धान्त के एल्गोरिदम से होती है और जो आधुनिक पंचांग डेटा से सत्यापित हैं। यह सिद्धान्तिक ज्योतिष है — गणितीय खगोल विज्ञान — जो दैनिक जीवन मार्गदर्शन पर लागू किया गया है।',
+            'Your Vedic horoscope is computed from the actual sidereal positions of the nine grahas — not seasonal approximations. The daily forecast is driven by real planetary transits computed with Swiss Ephemeris (based on NASA JPL DE ephemerides) using Lahiri Ayanamsha (Chitrapaksha). This is Siddhantic Jyotish — mathematical astronomy — applied to daily life guidance.',
+            'आपका वैदिक राशिफल नवग्रहों की वास्तविक नाक्षत्रिक स्थितियों से गणना किया जाता है — मौसमी अनुमानों से नहीं। दैनिक फल वास्तविक ग्रह गोचर द्वारा संचालित है, जिनकी गणना स्विस एफेमेरिस (NASA JPL DE एफेमेरिस पर आधारित) और लाहिरी अयनांश (चित्रपक्ष) से की जाती है। यह सिद्धान्तिक ज्योतिष है — गणितीय खगोल विज्ञान — जो दैनिक जीवन मार्गदर्शन पर लागू किया गया है।',
             locale,
           )}
         </p>

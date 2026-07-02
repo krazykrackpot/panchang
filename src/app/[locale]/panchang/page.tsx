@@ -28,6 +28,7 @@ import { TITHIS } from '@/lib/constants/tithis';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { UJJAIN_REFERENCE, getUjjainToday, formatUjjainDate } from '@/lib/constants/jyotish-reference';
+import { getLocaleDefaultCity, isBotUserAgent } from '@/lib/seo/locale-default-city';
 
 // Inline tithi-name lookups for the Why-Five-Elements links. The
 // inline link labels (Ekadashi / Purnima / Amavasya) read from the
@@ -73,27 +74,37 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   // SEO step 1 — extract city from Vercel geo headers when available so the
   // title can read "Today's Panchang — Mumbai, May 27 — Tithi, Nakshatra"
-  // for real users. Crawlers / IPs without geo data get the Ujjain-based
-  // title that we've always shipped (no degradation).
+  // for real users. Bots get the locale-canonical city (Delhi for en/hi,
+  // etc.) instead of whatever Vercel's US datacentre geo returned —
+  // otherwise Googlebot indexed a title with "Ashburn" / "Iowa" in it.
   let city: string | null = null;
   try {
     const h = await headers();
-    // Vercel exposes the resolved city via `x-vercel-ip-city` (URL-encoded).
-    const rawCity = h.get('x-vercel-ip-city');
-    if (rawCity) {
-      // Isolate decodeURIComponent in its own try (Gemini #239 re-review
-      // MED): a malformed `%XX` sequence throws URIError. Fall back to
-      // the raw header value so a single bad byte doesn't silently
-      // demote the user to the Ujjain default.
-      let decoded: string;
-      try {
-        decoded = decodeURIComponent(rawCity).trim();
-      } catch {
-        decoded = rawCity.trim();
-      }
-      // Guard against placeholder values some edges emit (e.g. literal "-")
-      if (decoded && decoded !== '-' && decoded.length <= 40) {
-        city = decoded;
+    const isBot = isBotUserAgent(h.get('user-agent'));
+    if (isBot) {
+      // Bot → pin to locale-canonical display name. No geo read, no
+      // decode-error risk. This is what Googlebot indexes.
+      city = getLocaleDefaultCity(locale).displayName;
+    } else {
+      // Real user → use resolved geo when available; empty city string
+      // falls through to the Ujjain-based default further down.
+      // Vercel exposes the resolved city via `x-vercel-ip-city` (URL-encoded).
+      const rawCity = h.get('x-vercel-ip-city');
+      if (rawCity) {
+        // Isolate decodeURIComponent in its own try (Gemini #239 re-review
+        // MED): a malformed `%XX` sequence throws URIError. Fall back to
+        // the raw header value so a single bad byte doesn't silently
+        // demote the user to the Ujjain default.
+        let decoded: string;
+        try {
+          decoded = decodeURIComponent(rawCity).trim();
+        } catch {
+          decoded = rawCity.trim();
+        }
+        // Guard against placeholder values some edges emit (e.g. literal "-")
+        if (decoded && decoded !== '-' && decoded.length <= 40) {
+          city = decoded;
+        }
       }
     }
   } catch {
@@ -161,16 +172,37 @@ interface ServerPanchangResult {
   location: { lat: number; lng: number; name: string; timezone: string } | null;
 }
 
-async function getServerPanchang(): Promise<ServerPanchangResult> {
+/**
+ * Compute the SSR panchang.
+ *
+ * - **Bots**: always render for the locale-canonical city (Delhi for
+ *   en/hi, Chennai for ta, Patna for mai, etc.). Without this,
+ *   Googlebot crawling from US IPs indexed HTML with Iowa/Virginia
+ *   panchang values — hours off from what real users searching from
+ *   India see, tanking rank on head-term queries. See
+ *   `src/lib/seo/locale-default-city.ts`.
+ * - **Real users with geo**: use the resolved lat/lng (existing
+ *   behaviour). The routing proxy also redirects real-user requests
+ *   with a canonical-slug geo to `/panchang/[city]` before we get here
+ *   — this branch remains as a fallback for cities we can't map to a
+ *   slug OR for locales that hit an in-city no-slug fall-through.
+ * - **Real users without geo** (local dev, missing header): render for
+ *   locale-canonical city — better than blank.
+ */
+async function getServerPanchang(locale: string): Promise<ServerPanchangResult> {
   try {
     const hdrs = await headers();
+    const isBot = isBotUserAgent(hdrs.get('user-agent'));
     const geoLat = hdrs.get('x-vercel-ip-latitude');
     const geoLng = hdrs.get('x-vercel-ip-longitude');
     const geoCity = hdrs.get('x-vercel-ip-city');
     const geoCountry = hdrs.get('x-vercel-ip-country');
     const geoTz = hdrs.get('x-vercel-ip-timezone');
 
-    if (geoLat && geoLng) {
+    // Bot classification takes precedence — Googlebot from IAD/DFW has
+    // real geo headers, but rendering "Panchang for Ashburn, US" in the
+    // indexed HTML is what caused the rank decay we're fixing here.
+    if (!isBot && geoLat && geoLng) {
       const lat = parseFloat(geoLat);
       const lng = parseFloat(geoLng);
       const locationName = [geoCity ? decodeURIComponent(geoCity) : '', geoCountry || ''].filter(Boolean).join(', ');
@@ -186,7 +218,37 @@ async function getServerPanchang(): Promise<ServerPanchangResult> {
   } catch {
     // Geo headers unavailable (local dev)  –  fallback below
   }
-  return { panchang: null, location: null };
+
+  // Locale-canonical fallback for bots and geo-missing requests. The
+  // indexed HTML now reads "Panchang for Delhi" instead of Iowa; real
+  // users hit this only when the proxy couldn't map their city to a
+  // canonical slug, which is a reasonable "we don't know your city,
+  // here's the top-city default" outcome.
+  try {
+    const def = getLocaleDefaultCity(locale);
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const day = now.getDate();
+    const tzOffset = getUTCOffsetForDate(year, month, day, def.timezone);
+    const panchang = computePanchang({
+      year, month, day,
+      lat: def.lat,
+      lng: def.lng,
+      tzOffset,
+      timezone: def.timezone,
+      locationName: def.displayName,
+    });
+    return {
+      panchang,
+      location: { lat: def.lat, lng: def.lng, name: def.displayName, timezone: def.timezone },
+    };
+  } catch (err) {
+    // Panchang computation should never throw for a hardcoded city, but
+    // if it does we log rather than silently emit a blank page.
+    console.error('[panchang/page] locale-default panchang compute failed:', err);
+    return { panchang: null, location: null };
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -345,7 +407,7 @@ function PanchangSEOBlock({
 export default async function PanchangPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const { panchang, location: serverLocation } = await getServerPanchang();
+  const { panchang, location: serverLocation } = await getServerPanchang(locale);
 
   // Fetch latest YouTube video (RSS feed, cached 1h) for VideoObject schema + embed
   const today = new Date();

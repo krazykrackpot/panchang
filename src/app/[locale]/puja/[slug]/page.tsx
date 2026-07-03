@@ -525,9 +525,12 @@ export default function PujaVidhiPage() {
         'vat-savitri': 'vat-savitri-vrat',
       };
       const lookupSlug = slugMap[puja.festivalSlug] || puja.festivalSlug;
-      const now = new Date();
-      const todayStr = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
-      const year = now.getFullYear();
+      // Resolve "today" in the USER's timezone (via `en-CA` which
+      // formats as YYYY-MM-DD), not the server/client wall clock.
+      // Otherwise a user in India at 02:00 IST would still be on the
+      // previous UTC day and hit last week's Sankashti. Gemini HIGH.
+      const todayStr = new Date().toLocaleDateString('en-CA', { timeZone: userTimezone });
+      const year = Number(todayStr.slice(0, 4));
       const festivals = generateFestivalCalendarV2(year, userLat, userLng, userTimezone);
       let entry = festivals.find(f => f.slug === lookupSlug && f.date >= todayStr);
       if (!entry) {
@@ -627,17 +630,7 @@ export default function PujaVidhiPage() {
           <VratRuleAndParanaCard
             rule={computedVratRule.rule}
             category={computedVratRule.entry?.category}
-            observanceDate={computedVratRule.entry?.date ? (() => {
-              try {
-                const [y, m, d] = computedVratRule.entry!.date.split('-').map(Number);
-                return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString(
-                  tl({ en: 'en-US', hi: 'hi-IN', sa: 'hi-IN', ta: 'ta-IN', te: 'te-IN', bn: 'bn-IN', kn: 'kn-IN', gu: 'gu-IN', mai: 'hi-IN', mr: 'mr-IN' }, locale),
-                  { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' },
-                );
-              } catch {
-                return computedVratRule.entry!.date;
-              }
-            })() : undefined}
+            date={computedVratRule.entry?.date}
             paranaStart={computedVratRule.entry?.paranaStart}
             paranaEnd={computedVratRule.entry?.paranaEnd}
             locationName={userLocationName}

@@ -151,7 +151,7 @@ export interface FestivalEntry {
    * generator's own default. See src/lib/calendar/festival-defs.ts for
    * the type definition and the per-festival assignments.
    */
-  muhurtaRule?: 'sunrise' | 'pratah' | 'madhyahna' | 'aparahna' | 'pradosh' | 'nishita' | 'arunodaya' | 'chandrodaya';
+  muhurtaRule?: MuhurtaRule;
   paranaDate?: string;
   paranaStart?: string;
   paranaEnd?: string;

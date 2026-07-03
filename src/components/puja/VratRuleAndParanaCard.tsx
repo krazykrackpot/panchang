@@ -215,10 +215,16 @@ const FRAME_STYLES: Record<RuleInfo['frame'], { border: string; bg: string; text
 interface Props {
   /** The classical rule this festival follows. */
   rule: MuhurtaRuleName;
-  /** Category label — used for the parana window heading (e.g. "Fast-Break" for chandrodaya on chaturthi, "Puja Window" for others). */
+  /** Category label — surfaced as a small tag under the rule badge. */
   category?: string;
-  /** Observance date (YYYY-MM-DD) — human-readable "Fri, 3 Jul". Optional. */
-  observanceDate?: string;
+  /**
+   * Observance date, raw YYYY-MM-DD from the festival generator. The
+   * card handles both the human-readable formatting AND the
+   * DST-correct timezone abbreviation (an August festival must show
+   * "IST"/"CEST" for August, not the current-date DST offset). Passing
+   * a raw date lets the component do both correctly.
+   */
+  date?: string;
   /** Computed parana start time (HH:mm) — from festival-generator. Optional. */
   paranaStart?: string;
   /** Computed parana end time (HH:mm). */
@@ -269,7 +275,7 @@ function paranaWindowLabel(rule: MuhurtaRuleName, locale: Locale): string {
 export default function VratRuleAndParanaCard({
   rule,
   category,
-  observanceDate,
+  date,
   paranaStart,
   paranaEnd,
   locationName,
@@ -281,13 +287,48 @@ export default function VratRuleAndParanaCard({
   const Icon = pickIcon(info.icon);
 
   const hasComputedWindow = Boolean(paranaStart && paranaEnd);
+
+  // Parse the raw YYYY-MM-DD once. We use this ONE value for both the
+  // displayed label AND the tz abbreviation, so an August festival
+  // always shows August's DST offset (e.g. "CEST") even when rendered
+  // from a December client. Otherwise `new Date()` would land on the
+  // client's current-date offset — surfaced by Gemini as a real DST
+  // bug on winter/summer festivals.
+  const parsedDate = (() => {
+    if (!date) return null;
+    const parts = date.split('-').map(Number);
+    if (parts.length !== 3 || parts.some((n) => !Number.isFinite(n))) return null;
+    const [y, m, d] = parts;
+    // 12:00 UTC on the observance day is safely inside every civil
+    // calendar day worldwide, so no tz-boundary edge case.
+    return new Date(Date.UTC(y, m - 1, d, 12));
+  })();
+
+  const formattedObservanceDate = (() => {
+    if (!parsedDate) return null;
+    const loc = tl(
+      { en: 'en-US', hi: 'hi-IN', sa: 'hi-IN', ta: 'ta-IN', te: 'te-IN', bn: 'bn-IN', kn: 'kn-IN', gu: 'gu-IN', mai: 'hi-IN', mr: 'mr-IN' },
+      locale,
+    );
+    try {
+      return parsedDate.toLocaleDateString(loc, {
+        weekday: 'short',
+        day: 'numeric',
+        month: 'short',
+        timeZone: 'UTC',
+      });
+    } catch {
+      return date;
+    }
+  })();
+
   const tzAbbr = (() => {
     if (!timezone) return null;
     try {
       const parts = new Intl.DateTimeFormat('en', {
         timeZone: timezone,
         timeZoneName: 'short',
-      }).formatToParts(new Date());
+      }).formatToParts(parsedDate ?? new Date());
       return parts.find((p) => p.type === 'timeZoneName')?.value ?? null;
     } catch {
       return null;
@@ -311,13 +352,13 @@ export default function VratRuleAndParanaCard({
             </div>
             <div className="text-[10px] uppercase tracking-widest text-text-secondary/70 mt-0.5">
               {tl(info.vyapiniLabel, locale)}
-              {category ? ` · ${category}` : ''}
+              {category ? ` · ${category.charAt(0).toUpperCase() + category.slice(1)}` : ''}
             </div>
           </div>
         </div>
-        {observanceDate && (
+        {formattedObservanceDate && (
           <span className={`text-xs font-medium ${styles.accent} bg-white/[0.03] border ${styles.border} px-2.5 py-1 rounded-full whitespace-nowrap`}>
-            {observanceDate}
+            {formattedObservanceDate}
           </span>
         )}
       </div>

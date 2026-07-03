@@ -50,6 +50,12 @@ describe('chandrodaya rule fires for monthly Sankashti Chaturthi', () => {
       expect(july).toHaveLength(1);
       expect(july[0].date).toBe('2026-07-03');
       expect(july[0].name.en).toBe('Sankashti Chaturthi');
+      // Parana (fast-breaking) is on the OBSERVANCE day (Jul 3), not
+      // the Udaya Tithi day (Jul 4). Regression guard for the Gemini
+      // HIGH on PR #736: without this the parana window would be
+      // computed for Jul 4's moonrise — 24h after the fast should be
+      // broken.
+      expect(july[0].paranaDate).toBe('2026-07-03');
     });
   }
 });

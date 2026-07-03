@@ -895,10 +895,15 @@ export function generateFestivalCalendarV2(
       // to the annual-festival path.
       const rule = def.muhurtaRule || 'sunrise';
       const festivalDate = resolveFestivalDateByMuhurtaRule(match, rule, lat, lon, timezone);
-      // Parana window computed from the sunrise day that carries the
-      // tithi label — for chaturthi/pradosham/purnima the parana rule
-      // uses the Udaya Tithi day, not the festival-observance date.
-      const parana = computeSimpleParana(match.sunriseDate, lat, lon, timezone, def.category as 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham');
+      // Parana window is computed FOR THE OBSERVANCE DAY, not for the
+      // Udaya Tithi day. For Sankashti Chaturthi (chandrodaya-vyapini),
+      // the fast is broken at moonrise on `festivalDate` (Day 1); using
+      // `match.sunriseDate` (Day 2) would compute the next day's
+      // moonrise, which is 24h too late. Same reasoning for pradosham
+      // (sunset window on observance day), Somvati Amavasya
+      // (observance-day parana), and Satyanarayan Purnima
+      // (evening puja on observance day). PR #736 Gemini HIGH.
+      const parana = computeSimpleParana(festivalDate, lat, lon, timezone, def.category as 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham');
 
       const catName = def.category === 'pradosham'
         ? { en: `${match.paksha === 'shukla' ? 'Shukla' : 'Krishna'} Pradosham`, hi: `${match.paksha === 'shukla' ? 'शुक्ल' : 'कृष्ण'} प्रदोष`, sa: `${match.paksha === 'shukla' ? 'शुक्ल' : 'कृष्ण'}प्रदोषः` }

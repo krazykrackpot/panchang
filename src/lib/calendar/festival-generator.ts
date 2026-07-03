@@ -108,7 +108,7 @@ import {
   // by Gemini's review. Without this it emits as a generic vrat instead
   // of a major festival — the most demanding ekadashi of the year.
   NIRJALA_EKADASHI,
-  defToTithiNumber, isVratByDef, type FestivalDef,
+  defToTithiNumber, isVratByDef, type FestivalDef, type MuhurtaRule,
 } from './festival-defs';
 import { getEkadashiName, getNextHinduMonth, getPreviousHinduMonth, ADHIKA_MASA_EKADASHI, resolveEkadashiDetail } from '@/lib/constants/festival-details-with-overlay';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -581,13 +581,25 @@ function getKalaWindow(y: number, m: number, d: number, lat: number, lon: number
     case 'nishita':    return { startJd: ssJd + (nightLen * 7.5 / 15) / 24 - 0.4 / 24, endJd: ssJd + (nightLen * 7.5 / 15) / 24 + 0.4 / 24 };
     case 'arunodaya':  return { startJd: srJd - 1.6 / 24, endJd: srJd }; // 4 ghatis before sunrise
     case 'chandrodaya': {
-      // Moonrise window: ~1 hour around moonrise. Used for Karwa Chauth, Sankashti Chaturthi.
+      // Moonrise window: ±30 min around the first moonrise after midnight
+      // UT of the queried date. Used for Karwa Chauth, Sankashti Chaturthi.
+      //
+      // Prior implementation added `+1` day when `mrUT < srUT`, on the
+      // theory that a moonrise-UT below sunrise-UT meant "next-day
+      // pre-dawn moonrise". That heuristic silently misfires for
+      // eastern-hemisphere locations because `sunriseUTHoursOr` returns
+      // the NEXT sunrise UT after `jdNoon` — for Delhi, that's tomorrow's
+      // sunrise (23.98 hours) since today's sunrise is at UT 23:59 the
+      // PREVIOUS UT day. mrUT=15.76 (correct Jul-2 evening moonrise Delhi)
+      // was < 23.98 (next-day sunrise), so the code bumped mrJd by +1 and
+      // attributed the Jul-2 moonrise to Jul-3. Sankashti Chaturthi 2026
+      // then landed on Jul 4 for Delhi instead of Jul 3 (Drik-correct).
+      // `swissMoonrise` already returns the FIRST moonrise ≥ midnight UT
+      // of the queried date; no correction needed.
       const baseJd = Math.floor(jdNoon - 0.5) + 0.5; // midnight UT
       const mrUT = calculateMoonriseUT(baseJd + 0.5, lat, lon);
       if (mrUT !== null) {
-        let mrJd = baseJd + mrUT / 24;
-        // If moonrise UT is before sunrise UT, it's an early morning moonrise (next day UT)
-        if (mrUT < srUT) mrJd += 1;
+        const mrJd = baseJd + mrUT / 24;
         return { startJd: mrJd - 0.5 / 24, endJd: mrJd + 0.5 / 24 }; // ±30 min around moonrise
       }
       // Moon doesn't rise  –  fall back to pradosh window
@@ -600,6 +612,67 @@ function getKalaWindow(y: number, m: number, d: number, lat: number, lon: number
 /** Measure how much a tithi overlaps with a time window (in JD days). */
 function getOverlap(tithiStart: number, tithiEnd: number, windowStart: number, windowEnd: number): number {
   return Math.max(0, Math.min(tithiEnd, windowEnd) - Math.max(tithiStart, windowStart));
+}
+
+/**
+ * Apply Dharmasindhu muhurta-rule resolution to pick the observance
+ * date. Returns Day 1 (the day BEFORE match.sunriseDate) or Day 2 (the
+ * sunriseDate itself) based on how the tithi overlaps the rule's
+ * time window on each candidate day.
+ *
+ * Rules:
+ *   1. Active only on Day 1 → pick Day 1 (kala-vyapini fires on Day 1 only)
+ *   2. Active only on Day 2 → keep Day 2 (kala-vyapini fires on Day 2 only)
+ *   3. Active on both → purva-vyapini festivals (pradosh/nishita) pick
+ *      Day 1 regardless of overlap size; bhuyo-vyapini festivals (all
+ *      others, including madhyahna, aparahna, chandrodaya, arunodaya)
+ *      pick the greater overlap.
+ *   4. If rule is 'sunrise' or the tithi doesn't have startJd/endJd,
+ *      return sunriseDate unchanged (Udaya Tithi convention).
+ *
+ * Used by BOTH the annual-festival path (major + regional) AND the
+ * monthly recurring vrats path (Sankashti Chaturthi, Vinayaka
+ * Chaturthi, Karwa Chauth, etc.). Before extraction, only the annual
+ * path applied this logic — monthly Sankashti Chaturthi always fired
+ * on the Udaya Tithi day, missing chandrodaya-vyapini attribution.
+ * Verified against Drik Panchang: Krishnapingala Sankashti Chaturthi
+ * 2026-07-03 (Friday) with moonrise 23:41. Both Delhi and Corseaux
+ * users now attribute correctly to Jul 3 (chandrodaya during Chaturthi
+ * on Jul 3; Chaturthi has ended by Jul 4 moonrise).
+ */
+function resolveFestivalDateByMuhurtaRule(
+  match: { sunriseDate: string; startJd: number; endJd: number },
+  rule: MuhurtaRule,
+  lat: number,
+  lon: number,
+  timezone: string,
+): string {
+  if (rule === 'sunrise' || !match.startJd || !match.endJd) return match.sunriseDate;
+
+  const [y2, m2, d2] = match.sunriseDate.split('-').map(Number);
+  // Use Date.UTC to avoid local-timezone shifts (Lesson L).
+  const date1 = new Date(Date.UTC(y2, m2 - 1, d2 - 1));
+  const [y1, m1, d1] = [date1.getUTCFullYear(), date1.getUTCMonth() + 1, date1.getUTCDate()];
+
+  const win1 = getKalaWindow(y1, m1, d1, lat, lon, timezone, rule);
+  const win2 = getKalaWindow(y2, m2, d2, lat, lon, timezone, rule);
+
+  const overlap1 = getOverlap(match.startJd, match.endJd, win1.startJd, win1.endJd);
+  const overlap2 = getOverlap(match.startJd, match.endJd, win2.startJd, win2.endJd);
+
+  const day1Str = `${y1}-${String(m1).padStart(2, '0')}-${String(d1).padStart(2, '0')}`;
+
+  if (overlap1 > 0 && overlap2 === 0) return day1Str;
+  if (overlap1 > 0 && overlap2 > 0) {
+    // purva-vyapini: Day 1 always wins if BOTH days touch the window
+    // (pradosh/nishita are documented purva-vyapini per Dharmasindhu).
+    // Otherwise pick the larger overlap (bhuyo-vyapini). See the long
+    // comment on Bhai Dooj 2026 in the annual-festival path for the
+    // aparahna/bhuyo-vyapini tie-break rationale (revert of PR #669).
+    if (['pradosh', 'nishita'].includes(rule)) return day1Str;
+    if (overlap1 >= overlap2) return day1Str;
+  }
+  return match.sunriseDate;
 }
 
 // ─── Main Generator ───
@@ -669,50 +742,12 @@ export function generateFestivalCalendarV2(
       // tithi must be active during. We compute the overlap of the tithi with
       // that window on both the sunriseDate (Day 2) and the previous day (Day 1),
       // then apply Dharmasindhu/Nirnayasindhu tie-breaking rules.
-      let festivalDate = match.sunriseDate;
+      // Dharmasindhu muhurta-rule resolution. See
+      // `resolveFestivalDateByMuhurtaRule` for the pradosh/nishita
+      // purva-vyapini vs bhuyo-vyapini distinction, and for the
+      // Bhai Dooj 2026 rationale behind the aparahna tie-break rule.
       const rule = def.muhurtaRule || 'sunrise';
-
-      if (match.startJd && match.endJd && rule !== 'sunrise') {
-        const [y2, m2, d2] = match.sunriseDate.split('-').map(Number);
-        // Use Date.UTC to avoid local-timezone shifts (Lesson L)
-        const date1 = new Date(Date.UTC(y2, m2 - 1, d2 - 1));
-        const [y1, m1, d1] = [date1.getUTCFullYear(), date1.getUTCMonth() + 1, date1.getUTCDate()];
-
-        const win1 = getKalaWindow(y1, m1, d1, lat, lon, timezone, rule);
-        const win2 = getKalaWindow(y2, m2, d2, lat, lon, timezone, rule);
-
-        const overlap1 = getOverlap(match.startJd, match.endJd, win1.startJd, win1.endJd);
-        const overlap2 = getOverlap(match.startJd, match.endJd, win2.startJd, win2.endJd);
-
-        // Dharmasindhu resolution:
-        // 1. Active only on Day 1 → pick Day 1
-        // 2. Active only on Day 2 → keep Day 2 (sunriseDate)
-        // 3. Active on both → purva-vyapini festivals (pradosh/nishita) prefer
-        //    Day 1 regardless of overlap size; other day-festivals (including
-        //    aparahna-vyapini) pick the greater overlap (bhuyo-vyapini).
-        //
-        //    Why 'aparahna' is NOT in the priority list (2026-06-11 revert):
-        //    The original PR #669 added 'aparahna' here based on the assumption
-        //    that Bhai Dooj is purva-vyapini ("observe Day 1 if Dwitiya touches
-        //    aparahna at all"). Direct Drik fetch on Bhai Dooj 2026 page shows
-        //    Drik = Nov 11, NOT Nov 10 as PR #669 claimed, and Drik's own
-        //    explanation on that page uses the aparahna-vyapini framing —
-        //    Drik picks the day where Dwitiya occupies the larger portion of
-        //    aparahna (bhuyo-vyapini). For 2026 that's Day 2 (full ~130 min)
-        //    over Day 1 (~80 min). pradosh and nishita ARE classically
-        //    purva-vyapini (no real lineage disagreement); aparahna is split,
-        //    and Drik + Prokerala + AstroSage + mainstream panchangs all
-        //    apply bhuyo-vyapini. Going with the majority + verifiable
-        //    reference. Bhai Dooj 2026: engine pre-revert Nov 10, Drik Nov 11,
-        //    engine post-revert Nov 11.
-        if (overlap1 > 0 && overlap2 === 0) {
-          festivalDate = `${y1}-${String(m1).padStart(2, '0')}-${String(d1).padStart(2, '0')}`;
-        } else if (overlap1 > 0 && overlap2 > 0) {
-          if (['pradosh', 'nishita'].includes(rule) || overlap1 >= overlap2) {
-            festivalDate = `${y1}-${String(m1).padStart(2, '0')}-${String(d1).padStart(2, '0')}`;
-          }
-        }
-      }
+      const festivalDate = resolveFestivalDateByMuhurtaRule(match, rule, lat, lon, timezone);
 
       // Kshaya tithi: the tithi has no sunrise within it. Per Dharmasindhu,
       // the festival is observed on the preceding day. sunriseDate for kshaya
@@ -850,7 +885,25 @@ export function generateFestivalCalendarV2(
       if (match.lunarMonth.isAdhika && def.category !== 'purnima' && def.category !== 'amavasya') continue;
 
       const catDetail = CATEGORY_DETAILS[def.slug.replace('-shukla', '').replace('-krishna', '')];
-      const parana = computeSimpleParana(match.sunriseDate, lat, lon, timezone, def.category as 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham');
+      // Apply muhurtaRule resolution. Monthly Sankashti Chaturthi
+      // (chandrodaya-vyapini) and monthly Vinayaka Chaturthi
+      // (madhyahna-vyapini) previously fired on `match.sunriseDate`
+      // unconditionally, missing the classical rule. Verified against
+      // Drik + Prokerala for Krishnapingala Sankashti 2026-07-03
+      // (moonrise 23:41) — before this fix, we emitted Jul 4 (Udaya
+      // Tithi day). Bhuyo-vyapini + purva-vyapini semantics identical
+      // to the annual-festival path.
+      const rule = def.muhurtaRule || 'sunrise';
+      const festivalDate = resolveFestivalDateByMuhurtaRule(match, rule, lat, lon, timezone);
+      // Parana window is computed FOR THE OBSERVANCE DAY, not for the
+      // Udaya Tithi day. For Sankashti Chaturthi (chandrodaya-vyapini),
+      // the fast is broken at moonrise on `festivalDate` (Day 1); using
+      // `match.sunriseDate` (Day 2) would compute the next day's
+      // moonrise, which is 24h too late. Same reasoning for pradosham
+      // (sunset window on observance day), Somvati Amavasya
+      // (observance-day parana), and Satyanarayan Purnima
+      // (evening puja on observance day). PR #736 Gemini HIGH.
+      const parana = computeSimpleParana(festivalDate, lat, lon, timezone, def.category as 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham');
 
       const catName = def.category === 'pradosham'
         ? { en: `${match.paksha === 'shukla' ? 'Shukla' : 'Krishna'} Pradosham`, hi: `${match.paksha === 'shukla' ? 'शुक्ल' : 'कृष्ण'} प्रदोष`, sa: `${match.paksha === 'shukla' ? 'शुक्ल' : 'कृष्ण'}प्रदोषः` }
@@ -894,7 +947,7 @@ export function generateFestivalCalendarV2(
 
       festivals.push({
         name: resolvedName,
-        date: match.sunriseDate,
+        date: festivalDate,
         masa: match.masa,
         paksha: match.paksha,
         type: 'vrat',

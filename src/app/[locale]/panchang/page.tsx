@@ -226,10 +226,23 @@ async function getServerPanchang(locale: string): Promise<ServerPanchangResult> 
   // here's the top-city default" outcome.
   try {
     const def = getLocaleDefaultCity(locale);
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth() + 1;
-    const day = now.getDate();
+    // Resolve "today" IN THE CITY'S TIMEZONE, not the server's. Vercel
+    // runs in UTC; between 00:00 and 05:30 IST the UTC day is still
+    // yesterday, so `new Date().getDate()` would produce yesterday's
+    // panchang for Delhi. Uses `formatToParts` (not `toLocaleString`
+    // round-trip) — the latter is locale-sensitive and produces
+    // Invalid Date on edge Node versions. PR #735 Gemini HIGH; same
+    // pattern the homepage uses at src/app/[locale]/page.tsx:602.
+    // Lesson L in CLAUDE.md.
+    const dtParts = new Intl.DateTimeFormat('en-US', {
+      timeZone: def.timezone,
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    }).formatToParts(new Date());
+    const year = Number(dtParts.find((p) => p.type === 'year')?.value);
+    const month = Number(dtParts.find((p) => p.type === 'month')?.value);
+    const day = Number(dtParts.find((p) => p.type === 'day')?.value);
     const tzOffset = getUTCOffsetForDate(year, month, day, def.timezone);
     const panchang = computePanchang({
       year, month, day,

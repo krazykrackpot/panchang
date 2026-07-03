@@ -68,9 +68,11 @@ export function slugifyGeoCity(rawCity: string | null | undefined): string | nul
   const slug = trimmed
     .toLowerCase()
     // Strip diacritics before dropping non-ASCII so "São" → "sao".
+    // Uses \u escapes rather than literal combining marks — the literal
+    // form can be corrupted by bundlers/minifiers and triggers the
+    // no-misleading-character-class ESLint rule. PR #735 Gemini MEDIUM.
     .normalize('NFD')
-    // eslint-disable-next-line no-misleading-character-class
-    .replace(/[̀-ͯ]/g, '')
+    .replace(/[\u0300-\u036f]/g, '')
     .replace(/[_\s]+/g, '-')
     .replace(/[^a-z0-9-]/g, '')
     .replace(/-+/g, '-')

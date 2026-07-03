@@ -600,3 +600,110 @@ describe('proxy — freeloader bot UA block (cost reduction)', () => {
     expect(res.status).not.toBe(403);
   });
 });
+
+/**
+ * SEO fix (2026-07-02): /{locale}/panchang was rendering Iowa panchang
+ * to Googlebot (US IPs) and tanking rank on India-side queries. Real
+ * users with a canonical-mapped city now 307 → /{locale}/panchang/[city];
+ * bots and unresolved cities fall through to the page's locale-default
+ * SSR path.
+ */
+describe('proxy — Iowa-Googlebot fix: geo-aware /panchang redirect', () => {
+  const HUMAN_UA =
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36';
+  const GOOGLEBOT_UA =
+    'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)';
+
+  it('redirects real user in Delhi to /en/panchang/delhi with 307', () => {
+    const res = proxy(
+      makeRequest('https://dekhopanchang.com/en/panchang', {
+        'user-agent': HUMAN_UA,
+        'x-vercel-ip-city': 'Delhi',
+      }),
+    );
+    expect(res.status).toBe(307);
+    expect(res.headers.get('location')).toContain('/en/panchang/delhi');
+  });
+
+  it('redirects real user in Bengaluru to /kn/panchang/bangalore (alias applied)', () => {
+    const res = proxy(
+      makeRequest('https://dekhopanchang.com/kn/panchang', {
+        'user-agent': HUMAN_UA,
+        'x-vercel-ip-city': 'Bengaluru',
+      }),
+    );
+    expect(res.status).toBe(307);
+    expect(res.headers.get('location')).toContain('/kn/panchang/bangalore');
+  });
+
+  it('DOES NOT redirect Googlebot even with a valid geo city — canonical URL indexed', () => {
+    // This is the whole point of the fix. Googlebot from US IPs gets
+    // x-vercel-ip-city=Ashburn; even for a valid Indian city it must
+    // stay on the canonical /en/panchang so the indexed HTML reads
+    // "Panchang for Delhi" (via the page's SSR fallback).
+    const res = proxy(
+      makeRequest('https://dekhopanchang.com/en/panchang', {
+        'user-agent': GOOGLEBOT_UA,
+        'x-vercel-ip-city': 'Delhi',
+      }),
+    );
+    expect(res.status).not.toBe(307);
+  });
+
+  it('DOES NOT redirect real user in Ashburn (unknown canonical city)', () => {
+    // Real user in Ashburn — no ISR page exists. Fall through to the
+    // /panchang page and let its locale-default SSR pick Delhi.
+    const res = proxy(
+      makeRequest('https://dekhopanchang.com/en/panchang', {
+        'user-agent': HUMAN_UA,
+        'x-vercel-ip-city': 'Ashburn',
+      }),
+    );
+    expect(res.status).not.toBe(307);
+  });
+
+  it('DOES NOT redirect real user with missing geo header', () => {
+    const res = proxy(
+      makeRequest('https://dekhopanchang.com/en/panchang', { 'user-agent': HUMAN_UA }),
+    );
+    expect(res.status).not.toBe(307);
+  });
+
+  it('DOES NOT redirect /panchang subroutes (date, rashi, etc.)', () => {
+    // Only the exact /panchang leaf redirects. Sub-routes like
+    // /panchang/date/… /panchang/rashi/… must pass through untouched.
+    for (const subroute of ['date/2026-07-01', 'rashi/mesh', 'yoga/siddha', 'delhi']) {
+      const res = proxy(
+        makeRequest(`https://dekhopanchang.com/en/panchang/${subroute}`, {
+          'user-agent': HUMAN_UA,
+          'x-vercel-ip-city': 'Delhi',
+        }),
+      );
+      expect(res.status, `subroute ${subroute} should not redirect`).not.toBe(307);
+    }
+  });
+
+  it('preserves query string (utm campaign attribution) through the redirect', () => {
+    const res = proxy(
+      makeRequest('https://dekhopanchang.com/en/panchang?utm_source=medium&utm_campaign=d60-deities', {
+        'user-agent': HUMAN_UA,
+        'x-vercel-ip-city': 'Delhi',
+      }),
+    );
+    expect(res.status).toBe(307);
+    const loc = res.headers.get('location') ?? '';
+    expect(loc).toContain('utm_source=medium');
+    expect(loc).toContain('utm_campaign=d60-deities');
+  });
+
+  it('handles URL-encoded x-vercel-ip-city (e.g. "New%20Delhi") via alias', () => {
+    const res = proxy(
+      makeRequest('https://dekhopanchang.com/en/panchang', {
+        'user-agent': HUMAN_UA,
+        'x-vercel-ip-city': 'New%20Delhi',
+      }),
+    );
+    expect(res.status).toBe(307);
+    expect(res.headers.get('location')).toContain('/en/panchang/delhi');
+  });
+});

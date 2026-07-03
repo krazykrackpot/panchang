@@ -10,6 +10,7 @@ import { BrihaspatiHomeBanner } from '@/components/brihaspati/BrihaspatiHomeBann
 import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { getLocaleDefaultCity, isBotUserAgent } from '@/lib/seo/locale-default-city';
 import { DailyBriefingBody } from '@/components/dashboard/DailyBriefingBody';
 import { Clock, Zap, BookOpen } from 'lucide-react';
 import type { PanchangData } from '@/types/panchang';
@@ -557,18 +558,26 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   // OFF Vercel (local dev, non-Vercel deployments): the headers don't exist
   // and the Daily Cosmic Briefing previously disappeared entirely — `null`
   // serverPanchang propagated to <HomeClientWidgets> which rendered nothing.
-  // External audit caught this as a functionality gap. Fallback to a stable
-  // default (Delhi: ~16M users in city + matches our PAGE_META default and
-  // sitemap canonical for city pages) so the section renders consistently
-  // across environments. The client widget still re-fetches if the user has
-  // a saved location, so this default only shows for first-time anon users
-  // on non-Vercel.
-  const DEFAULT_FALLBACK = { lat: 28.6139, lng: 77.2090, name: 'New Delhi, IN', timezone: 'Asia/Kolkata' };
+  // External audit caught this as a functionality gap. Fallback to the
+  // locale-canonical city — Delhi (en/hi), Chennai (ta), Kolkata (bn),
+  // etc. — so the section renders consistently across environments AND
+  // bot-indexed HTML shows a city the target audience recognises rather
+  // than an accidental US datacentre from Vercel geo. The client widget
+  // still re-fetches if the user has a saved location, so this default
+  // only shows for first-time anon users on non-Vercel.
+  const localeDefault = getLocaleDefaultCity(locale);
+  const DEFAULT_FALLBACK = {
+    lat: localeDefault.lat,
+    lng: localeDefault.lng,
+    name: localeDefault.displayName,
+    timezone: localeDefault.timezone,
+  };
 
   let serverPanchang: PanchangData | null = null;
   let serverLocation: { lat: number; lng: number; name: string } | null = null;
   try {
     const hdrs = await headers();
+    const isBot = isBotUserAgent(hdrs.get('user-agent'));
     const geoLat = hdrs.get('x-vercel-ip-latitude');
     const geoLng = hdrs.get('x-vercel-ip-longitude');
     const geoCity = hdrs.get('x-vercel-ip-city');
@@ -579,9 +588,17 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     let lng: number;
     let locationName: string;
     let timezone: string;
-    if (geoLat && geoLng) {
-      lat = parseFloat(geoLat);
-      lng = parseFloat(geoLng);
+    // Bots skip geo entirely — Googlebot's US datacentre coordinates
+    // otherwise seeped into indexed HTML and tanked ranking on Indian
+    // panchang head-term queries. NaN guard prevents a malformed
+    // header (e.g. Vercel emitting "-" or an empty float) from
+    // silently poisoning computePanchang — falls through to the
+    // locale-default city instead. PR #735 Gemini round-2 MEDIUM.
+    const parsedLat = geoLat ? parseFloat(geoLat) : NaN;
+    const parsedLng = geoLng ? parseFloat(geoLng) : NaN;
+    if (!isBot && Number.isFinite(parsedLat) && Number.isFinite(parsedLng)) {
+      lat = parsedLat;
+      lng = parsedLng;
       locationName = [geoCity ? decodeURIComponent(geoCity) : '', geoCountry || ''].filter(Boolean).join(', ');
       timezone = geoTz || 'UTC';
     } else {

@@ -590,10 +590,15 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     let timezone: string;
     // Bots skip geo entirely — Googlebot's US datacentre coordinates
     // otherwise seeped into indexed HTML and tanked ranking on Indian
-    // panchang head-term queries.
-    if (!isBot && geoLat && geoLng) {
-      lat = parseFloat(geoLat);
-      lng = parseFloat(geoLng);
+    // panchang head-term queries. NaN guard prevents a malformed
+    // header (e.g. Vercel emitting "-" or an empty float) from
+    // silently poisoning computePanchang — falls through to the
+    // locale-default city instead. PR #735 Gemini round-2 MEDIUM.
+    const parsedLat = geoLat ? parseFloat(geoLat) : NaN;
+    const parsedLng = geoLng ? parseFloat(geoLng) : NaN;
+    if (!isBot && Number.isFinite(parsedLat) && Number.isFinite(parsedLng)) {
+      lat = parsedLat;
+      lng = parsedLng;
       locationName = [geoCity ? decodeURIComponent(geoCity) : '', geoCountry || ''].filter(Boolean).join(', ');
       timezone = geoTz || 'UTC';
     } else {

@@ -202,18 +202,37 @@ async function getServerPanchang(locale: string): Promise<ServerPanchangResult> 
     // Bot classification takes precedence — Googlebot from IAD/DFW has
     // real geo headers, but rendering "Panchang for Ashburn, US" in the
     // indexed HTML is what caused the rank decay we're fixing here.
-    if (!isBot && geoLat && geoLng) {
-      const lat = parseFloat(geoLat);
-      const lng = parseFloat(geoLng);
+    // NaN guard on parsed lat/lng: a malformed Vercel geo header
+    // (empty float, "-", garbage) falls through to the locale-default
+    // instead of silently rendering NaN panchang. PR #735 Gemini
+    // round-2 MEDIUM.
+    const parsedLat = geoLat ? parseFloat(geoLat) : NaN;
+    const parsedLng = geoLng ? parseFloat(geoLng) : NaN;
+    if (!isBot && Number.isFinite(parsedLat) && Number.isFinite(parsedLng)) {
+      const lat = parsedLat;
+      const lng = parsedLng;
       const locationName = [geoCity ? decodeURIComponent(geoCity) : '', geoCountry || ''].filter(Boolean).join(', ');
       const timezone = geoTz || 'UTC';
-      const now = new Date();
-      const year = now.getFullYear();
-      const month = now.getMonth() + 1;
-      const day = now.getDate();
-      const tzOffset = getUTCOffsetForDate(year, month, day, timezone);
-      const panchang = computePanchang({ year, month, day, lat, lng, tzOffset, timezone, locationName });
-      return { panchang, location: { lat, lng, name: locationName, timezone } };
+      // Resolve "today" in the USER's timezone, not server UTC — same
+      // Lesson-L fix as the fallback branch below. An Ashburn user at
+      // 22:00 EDT would otherwise see tomorrow's panchang because UTC
+      // has already rolled over.
+      const dtParts = new Intl.DateTimeFormat('en-US', {
+        timeZone: timezone,
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+      }).formatToParts(new Date());
+      const year = Number(dtParts.find((p) => p.type === 'year')?.value);
+      const month = Number(dtParts.find((p) => p.type === 'month')?.value);
+      const day = Number(dtParts.find((p) => p.type === 'day')?.value);
+      if (Number.isFinite(year) && Number.isFinite(month) && Number.isFinite(day)) {
+        const tzOffset = getUTCOffsetForDate(year, month, day, timezone);
+        const panchang = computePanchang({ year, month, day, lat, lng, tzOffset, timezone, locationName });
+        return { panchang, location: { lat, lng, name: locationName, timezone } };
+      }
+      // Intl surprisingly returned no-numeric parts (unexpected env / bad
+      // tz string) — fall through to the locale-default branch below.
     }
   } catch {
     // Geo headers unavailable (local dev)  –  fallback below
@@ -243,6 +262,15 @@ async function getServerPanchang(locale: string): Promise<ServerPanchangResult> 
     const year = Number(dtParts.find((p) => p.type === 'year')?.value);
     const month = Number(dtParts.find((p) => p.type === 'month')?.value);
     const day = Number(dtParts.find((p) => p.type === 'day')?.value);
+    // NaN guard: if the target env is Intl-less or the tz string is
+    // unrecognised, find() returns undefined → Number(undefined) → NaN
+    // → downstream computePanchang would emit garbage. Log and return
+    // a blank result so the client renders its own skeleton instead of
+    // a mis-dated SSR panchang. PR #735 Gemini round-2 MEDIUM.
+    if (!Number.isFinite(year) || !Number.isFinite(month) || !Number.isFinite(day)) {
+      console.error('[panchang/page] Intl.DateTimeFormat produced non-numeric parts for tz', def.timezone);
+      return { panchang: null, location: null };
+    }
     const tzOffset = getUTCOffsetForDate(year, month, day, def.timezone);
     const panchang = computePanchang({
       year, month, day,

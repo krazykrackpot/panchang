@@ -354,11 +354,20 @@ export const MONTHLY_VRATS: FestivalDef[] = [
   // Sankashti Chaturthi  –  fast broken at moonrise (chandrodaya rule)
   { tithi: 4,  slug: 'chaturthi',          type: 'vrat', category: 'chaturthi',  recurring: true, paksha: 'krishna', muhurtaRule: 'chandrodaya' },
   // Vinayaka Chaturthi (Shukla)
-  { tithi: 4,  slug: 'vinayaka-chaturthi', type: 'vrat', category: 'chaturthi',  recurring: true, paksha: 'shukla',
+  // Monthly Vinayaka Chaturthi (Shukla Paksha 4) — observed at Madhyahna
+  // (midday) per the classical rule for Vinayaka/Ganapati observances:
+  // Ganesha's birth window is midday. Same rule as the annual Ganesh
+  // Chaturthi in Bhadrapada. Without this the monthly Vinayaka was
+  // firing on the Udaya Tithi day, which occasionally disagreed with
+  // Drik on borderline dwi-tithi cases.
+  { tithi: 4,  slug: 'vinayaka-chaturthi', type: 'vrat', category: 'chaturthi',  recurring: true, paksha: 'shukla', muhurtaRule: 'madhyahna',
     name: { en: 'Vinayaka Chaturthi', hi: 'विनायक चतुर्थी', sa: 'विनायकचतुर्थी' } },
-  // Pradosham  –  both pakshas
-  { tithi: 13, slug: 'pradosham-shukla',   type: 'vrat', category: 'pradosham',  recurring: true, paksha: 'shukla' },
-  { tithi: 13, slug: 'pradosham-krishna',  type: 'vrat', category: 'pradosham',  recurring: true, paksha: 'krishna' },
+  // Pradosham — both pakshas. Observed during Pradosh Kala (sunset window
+  // on Trayodashi day); the muhurtaRule='pradosh' surfaces this in the
+  // vrat-rule badge AND drives Dharmasindhu purva-vyapini tie-break when
+  // Trayodashi touches Pradosh on two consecutive days.
+  { tithi: 13, slug: 'pradosham-shukla',   type: 'vrat', category: 'pradosham',  recurring: true, paksha: 'shukla',  muhurtaRule: 'pradosh' },
+  { tithi: 13, slug: 'pradosham-krishna',  type: 'vrat', category: 'pradosham',  recurring: true, paksha: 'krishna', muhurtaRule: 'pradosh' },
   // Masik Shivaratri (Krishna Chaturdashi)
   { tithi: 14, slug: 'masik-shivaratri',   type: 'vrat', category: 'vrat',       recurring: true, paksha: 'krishna',
     name: { en: 'Masik Shivaratri', hi: 'मासिक शिवरात्रि', sa: 'मासिकशिवरात्रिः' } },

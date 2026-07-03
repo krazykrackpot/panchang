@@ -142,6 +142,16 @@ export interface FestivalEntry {
   description: LocaleText;
   pujaMuhurat?: { start: string; end: string; name: string };
   slug?: string;
+  /**
+   * The classical Kala-Vyapti rule this festival's date was resolved by.
+   * Exposed so UIs (puja / festival detail pages) can show a badge like
+   * "Chandrodaya Rule (moonrise-vyapini) — break fast at moonrise"
+   * alongside the computed parana window. Defaults to 'sunrise' (Udaya
+   * Tithi) for defs that don't declare a muhurtaRule, matching the
+   * generator's own default. See src/lib/calendar/festival-defs.ts for
+   * the type definition and the per-festival assignments.
+   */
+  muhurtaRule?: MuhurtaRule;
   paranaDate?: string;
   paranaStart?: string;
   paranaEnd?: string;
@@ -774,6 +784,10 @@ export function generateFestivalCalendarV2(
         }),
         description: detail?.significance || { en: '', hi: '', sa: '' },
         slug: def.slug,
+        // Expose the Kala-Vyapti rule that resolved this festival's date
+        // so downstream UIs can render a "Chandrodaya Rule / Madhyahna Rule /
+        // Udaya Tithi Rule" badge next to the parana window.
+        muhurtaRule: rule,
       };
 
       // Compute puja muhurat for key festivals
@@ -959,6 +973,7 @@ export function generateFestivalCalendarV2(
         }),
         description: catDetail?.significance || { en: '', hi: '', sa: '' },
         slug: def.slug.replace('-shukla', '').replace('-krishna', ''),
+        muhurtaRule: rule,
         ...parana,
       });
     }

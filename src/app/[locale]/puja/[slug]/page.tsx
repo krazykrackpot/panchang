@@ -14,6 +14,7 @@ import SamagriList from '@/components/puja/SamagriList';
 import SankalpaDisplay from '@/components/puja/SankalpaDisplay';
 import ParanaDisplay from '@/components/puja/ParanaDisplay';
 import EkadashiParanaCard from '@/components/puja/EkadashiParanaCard';
+import VratRuleAndParanaCard, { type MuhurtaRuleName } from '@/components/puja/VratRuleAndParanaCard';
 import { computePujaMuhurta } from '@/lib/puja/muhurta-compute';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { useLocationStore } from '@/stores/location-store';
@@ -492,6 +493,59 @@ export default function PujaVidhiPage() {
     return null;
   }, [puja, userLat, userLng, userTimezone]);
 
+  /**
+   * Non-Ekadashi vrat rule + computed parana window from the festival
+   * calendar. Covers Sankashti Chaturthi (chandrodaya), Vinayaka
+   * Chaturthi (madhyahna), Karva Chauth (chandrodaya), monthly
+   * Pradosham, Somvati Amavasya, Satyanarayan Purnima, and every
+   * annual major festival with a declared muhurtaRule.
+   *
+   * Falls back to reading the muhurtaRule directly off the puja's own
+   * festivalSlug if the festival calendar has no matching entry
+   * (e.g. weekly vrats without a lunar-tithi anchor). The rule badge
+   * still renders — just without a computed window.
+   */
+  const computedVratRule = useMemo<{
+    rule: MuhurtaRuleName;
+    entry?: ReturnType<typeof generateFestivalCalendarV2>[number];
+  } | null>(() => {
+    if (!puja) return null;
+    // Ekadashi has its own richer card; don't double-render.
+    if (puja.festivalSlug.includes('ekadashi')) return null;
+    if (!userLat || !userLng) return null;
+    try {
+      // Same slug map the festivalDate memo uses, so lookup stays
+      // consistent with the existing "next occurrence" resolution.
+      const slugMap: Record<string, string> = {
+        'sankashti-chaturthi': 'chaturthi',
+        'amavasya-tarpan': 'amavasya',
+        'purnima-vrat': 'purnima',
+        'masik-shivaratri': 'masik-shivaratri',
+        'satyanarayan': 'purnima',
+        'vat-savitri': 'vat-savitri-vrat',
+      };
+      const lookupSlug = slugMap[puja.festivalSlug] || puja.festivalSlug;
+      const now = new Date();
+      const todayStr = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
+      const year = now.getFullYear();
+      const festivals = generateFestivalCalendarV2(year, userLat, userLng, userTimezone);
+      let entry = festivals.find(f => f.slug === lookupSlug && f.date >= todayStr);
+      if (!entry) {
+        const next = generateFestivalCalendarV2(year + 1, userLat, userLng, userTimezone);
+        entry = next.find(f => f.slug === lookupSlug && f.date >= todayStr);
+      }
+      // When the calendar entry carries a muhurtaRule, use it.
+      // Otherwise this is either a solar / regional festival without a
+      // declared rule OR a weekly vrat with no lunar anchor — fall
+      // through to the puja config's own default of Udaya Tithi.
+      const rule = (entry?.muhurtaRule ?? 'sunrise') as MuhurtaRuleName;
+      return { rule, entry };
+    } catch (err) {
+      console.error('[puja] Failed to resolve vrat rule + parana:', err);
+      return null;
+    }
+  }, [puja, userLat, userLng, userTimezone]);
+
   if (!puja) {
     return (
       <main className="min-h-screen pt-28 pb-16 px-4">
@@ -567,6 +621,27 @@ export default function PujaVidhiPage() {
             ekadashiEndDate={ekadashiParana.ekadashiEndDate}
             dwadashiEndTime={ekadashiParana.dwadashiEndTime}
             dwadashiEndDate={ekadashiParana.dwadashiEndDate}
+            locale={locale}
+          />
+        ) : computedVratRule ? (
+          <VratRuleAndParanaCard
+            rule={computedVratRule.rule}
+            category={computedVratRule.entry?.category}
+            observanceDate={computedVratRule.entry?.date ? (() => {
+              try {
+                const [y, m, d] = computedVratRule.entry!.date.split('-').map(Number);
+                return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString(
+                  tl({ en: 'en-US', hi: 'hi-IN', sa: 'hi-IN', ta: 'ta-IN', te: 'te-IN', bn: 'bn-IN', kn: 'kn-IN', gu: 'gu-IN', mai: 'hi-IN', mr: 'mr-IN' }, locale),
+                  { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' },
+                );
+              } catch {
+                return computedVratRule.entry!.date;
+              }
+            })() : undefined}
+            paranaStart={computedVratRule.entry?.paranaStart}
+            paranaEnd={computedVratRule.entry?.paranaEnd}
+            locationName={userLocationName}
+            timezone={userTimezone}
             locale={locale}
           />
         ) : puja.parana && userLat && userLng ? (

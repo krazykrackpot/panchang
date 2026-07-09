@@ -108,15 +108,16 @@ function getEkadashiData(): EkadashiCard[] {
   for (const ek of ekadashis) {
     const paksha = ek.paksha || 'shukla';
     const masaName = ek.masa?.amanta || '';
-    const purnimantaName = ek.masa?.purnimanta || '';
     const isAdhika = ek.masa?.isAdhika ?? false;
 
     // Canonical Ekadashi resolution — handles Adhik Maas correctly
     // (Padmini/Parama) instead of falling back to the regular-month
     // Nirjala/Apara. Lesson ZA: shared with the festival generator so
-    // /ekadashi and /festivals never diverge. Purnimanta MUST be passed
-    // for Krishna paksha — EKADASHI_NAMES is Purnimant-keyed.
-    const detail = resolveEkadashiDetail({ amanta: masaName, purnimanta: purnimantaName, isAdhika }, paksha);
+    // /ekadashi and /festivals never diverge. Pass ek.masa directly so
+    // both amanta and purnimanta reach the resolver — EKADASHI_NAMES is
+    // Purnimant-keyed and needs both fields present for Krishna paksha.
+    // PR #738 Gemini review.
+    const detail = resolveEkadashiDetail(ek.masa, paksha);
     if (!detail) continue;
 
     cards.push({

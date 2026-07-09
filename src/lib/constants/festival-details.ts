@@ -1697,9 +1697,14 @@ export function resolveEkadashiDetail(
   // For Shukla paksha, Amant === Purnimant so either key works. For Krishna
   // paksha they differ by one month; passing amanta shifted every Krishna
   // Ekadashi name one month behind (regression of Lesson ZC — 2026-07-10
-  // was labelled "Apara" instead of "Yogini"). Prefer purnimanta; fall back
-  // to amanta only when the caller didn't provide it (Shukla-only surfaces).
-  const monthKey = masa.purnimanta ?? masa.amanta;
+  // was labelled "Apara" instead of "Yogini"). Prefer purnimanta; fall
+  // back to amanta only when the caller didn't provide it (Shukla-only
+  // surfaces) OR provided an empty string. `||` (not `??`) so `''`
+  // triggers the fallback too — a caller that stringified an undefined
+  // `.purnimanta` as `''` would otherwise slip past `??` and land at
+  // getEkadashiName('', paksha) which returns undefined. PR #738 Gemini
+  // review.
+  const monthKey = masa.purnimanta || masa.amanta;
   return getEkadashiName(monthKey, paksha);
 }
 

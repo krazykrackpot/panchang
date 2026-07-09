@@ -79,6 +79,97 @@ const LABELS: Record<string, Labels> = {
     thanks: 'धन्यवाद  –  यह बहुत सहायक है।',
     submitError: 'माफ करें, आपका उत्तर भेजने में समस्या हुई। कृपया फिर से प्रयास करें।',
   },
+  ta: {
+    title: 'ஒரு சிறு உதவி?',
+    question: 'நண்பர்களுக்கு தேகோ பஞ்சாங் பரிந்துரைக்கும் வாய்ப்பு எவ்வளவு?',
+    notLikely: 'இல்லவே இல்லை',
+    veryLikely: 'நிச்சயமாக',
+    reasonPrompt: 'ஏன் என்பதைப் பற்றி பகிர விரும்புகிறீர்களா?',
+    reasonPlaceholder: 'விருப்பமானது — ஆனால் ஒவ்வொரு பதிலையும் நான் படிக்கிறேன்.',
+    skipReason: 'தவிர்',
+    submit: 'அனுப்பு',
+    notNow: 'இப்போது வேண்டாம்',
+    thanks: 'நன்றி  –  இது மிகவும் உதவுகிறது.',
+    submitError: 'மன்னிக்கவும், உங்கள் பதிலை அனுப்ப முடியவில்லை. மீண்டும் முயற்சிக்கவும்.',
+  },
+  te: {
+    title: 'ఒక చిన్న అభ్యర్థన?',
+    question: 'దేఖో పంచాంగ్‌ను స్నేహితులకు సిఫారసు చేసే అవకాశం ఎంత?',
+    notLikely: 'అస్సలు కాదు',
+    veryLikely: 'తప్పకుండా',
+    reasonPrompt: 'ఎందుకో పంచుకోవాలనుకుంటున్నారా?',
+    reasonPlaceholder: 'ఐచ్ఛికం — కానీ ప్రతి సమాధానం నేను చదువుతాను.',
+    skipReason: 'దాటవేయి',
+    submit: 'పంపు',
+    notNow: 'ఇప్పుడు కాదు',
+    thanks: 'ధన్యవాదాలు  –  ఇది చాలా సహాయపడుతుంది.',
+    submitError: 'క్షమించండి, మీ అభిప్రాయాన్ని పంపడంలో సమస్య వచ్చింది. దయచేసి మళ్ళీ ప్రయత్నించండి.',
+  },
+  bn: {
+    title: 'একটি ছোট অনুরোধ?',
+    question: 'বন্ধুদের কাছে দেখো পঞ্চাঙ্গ সুপারিশ করার সম্ভাবনা কতটা?',
+    notLikely: 'একদমই নয়',
+    veryLikely: 'অবশ্যই',
+    reasonPrompt: 'কেন সেই সম্পর্কে কিছু ভাগ করতে চান?',
+    reasonPlaceholder: 'ঐচ্ছিক — কিন্তু আমি প্রতিটি উত্তর পড়ি।',
+    skipReason: 'এড়িয়ে যান',
+    submit: 'পাঠান',
+    notNow: 'এখন নয়',
+    thanks: 'ধন্যবাদ  –  এটি সত্যিই সাহায্য করে।',
+    submitError: 'দুঃখিত, আপনার মতামত পাঠাতে ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।',
+  },
+  gu: {
+    title: 'એક નાની વિનંતી?',
+    question: 'મિત્રોને દેખો પંચાંગ સૂચવવાની કેટલી શક્યતા છે?',
+    notLikely: 'બિલકુલ નહીં',
+    veryLikely: 'અવશ્ય',
+    reasonPrompt: 'કારણ વિશે કંઈક વહેંચવા માંગો છો?',
+    reasonPlaceholder: 'વૈકલ્પિક — પણ હું દરેક જવાબ વાંચું છું.',
+    skipReason: 'છોડો',
+    submit: 'મોકલો',
+    notNow: 'અત્યારે નહીં',
+    thanks: 'આભાર  –  આ ખૂબ મદદરૂપ છે.',
+    submitError: 'માફ કરશો, તમારો પ્રતિભાવ મોકલવામાં નિષ્ફળ. કૃપા કરીને ફરી પ્રયાસ કરો.',
+  },
+  kn: {
+    title: 'ಒಂದು ಸಣ್ಣ ವಿನಂತಿ?',
+    question: 'ಸ್ನೇಹಿತರಿಗೆ ದೇಖೊ ಪಂಚಾಂಗವನ್ನು ಶಿಫಾರಸು ಮಾಡುವ ಸಾಧ್ಯತೆ ಎಷ್ಟು?',
+    notLikely: 'ಬಿಲ್‌ಕುಲ್ ಇಲ್ಲ',
+    veryLikely: 'ಖಚಿತವಾಗಿ',
+    reasonPrompt: 'ಏಕೆ ಎಂಬುದನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಬಯಸುತ್ತೀರಾ?',
+    reasonPlaceholder: 'ಐಚ್ಛಿಕ — ಆದರೆ ನಾನು ಪ್ರತಿ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಓದುತ್ತೇನೆ.',
+    skipReason: 'ಬಿಟ್ಟುಬಿಡಿ',
+    submit: 'ಕಳುಹಿಸಿ',
+    notNow: 'ಈಗ ಬೇಡ',
+    thanks: 'ಧನ್ಯವಾದಗಳು  –  ಇದು ತುಂಬಾ ಸಹಾಯಕವಾಗಿದೆ.',
+    submitError: 'ಕ್ಷಮಿಸಿ, ನಿಮ್ಮ ಪ್ರತಿಕ್ರಿಯೆ ಕಳುಹಿಸಲು ವಿಫಲವಾಗಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
+  },
+  mai: {
+    title: 'एक छोट निवेदन?',
+    question: 'दोस्त कें देखो पंचांग सुझाबय कऽ कतेक संभावना अछि?',
+    notLikely: 'बिल्कुल नै',
+    veryLikely: 'अवश्य',
+    reasonPrompt: 'कोनो कारण बांटय चाहबै?',
+    reasonPlaceholder: 'वैकल्पिक — मुदा हम हर जवाब पढ़ैत छी।',
+    skipReason: 'छोड़ू',
+    submit: 'पठाबू',
+    notNow: 'आब नै',
+    thanks: 'धन्यवाद  –  ई बहुत मदद करैत अछि।',
+    submitError: 'क्षमा करू, अहाँक जवाब पठाबय मे समस्या भेल। कृपया फेर सँ प्रयास करू।',
+  },
+  mr: {
+    title: 'एक छोटी विनंती?',
+    question: 'मित्रांना देखो पंचांग सुचवण्याची शक्यता किती?',
+    notLikely: 'अजिबात नाही',
+    veryLikely: 'नक्कीच',
+    reasonPrompt: 'का ते सांगायला आवडेल?',
+    reasonPlaceholder: 'ऐच्छिक — पण मी प्रत्येक उत्तर वाचतो.',
+    skipReason: 'सोडा',
+    submit: 'पाठवा',
+    notNow: 'आत्ता नको',
+    thanks: 'धन्यवाद  –  हे खरोखर मदत करते.',
+    submitError: 'क्षमस्व, तुमचा प्रतिसाद पाठवण्यात अपयश आले. कृपया पुन्हा प्रयत्न करा.',
+  },
 };
 
 function getLabels(locale: string): Labels {
@@ -111,39 +202,66 @@ export function NpsModal({ locale }: { locale: string }) {
 
   useEffect(() => {
     // Cooldown — if we already showed this session, don't re-check the
-    // server. Even if the user navigates across dashboard sub-routes the
-    // modal won't reappear until next session at the earliest.
+    // server. Even if the user navigates across sub-routes the modal
+    // won't reappear until next session at the earliest.
     if (typeof window !== 'undefined' && sessionStorage.getItem(COOLDOWN_KEY)) {
       return;
     }
 
-    let cancelled = false;
-    const timer = setTimeout(async () => {
-      try {
-        const sb = getSupabase();
-        if (!sb) return;
-        const { data: { session } } = await sb.auth.getSession();
-        const token = session?.access_token;
-        if (!token) return;
+    const sb = getSupabase();
+    if (!sb) return;
 
-        const res = await fetch('/api/feedback/nps-inapp', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        if (!res.ok) return;
-        const json: { eligible?: boolean } = await res.json();
-        if (cancelled) return;
-        if (json.eligible) setPhase('asking_score');
-      } catch (err) {
-        // Eligibility check is best-effort. A network blip just means
-        // "don't show this load" — definitely surface to console so
-        // failures are debuggable, but don't bug the user.
-        console.error('[NpsModal] eligibility check failed:', err);
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+
+    // The modal is mounted in the root [locale]/layout.tsx which
+    // persists across App Router client-side navigation — a
+    // useEffect([]) calling getSession() once would miss users who sign
+    // in mid-session (email/password sign-in doesn't force a reload;
+    // only Google OAuth does). Subscribing to onAuthStateChange means
+    // the eligibility check fires both on initial mount (via the
+    // INITIAL_SESSION event Supabase emits synchronously right after
+    // subscribing) and on any subsequent sign-in. PR #739 Gemini HIGH.
+    const scheduleCheck = (token: string) => {
+      if (timer) return; // already scheduled — cooldown covers replays
+      timer = setTimeout(async () => {
+        try {
+          const res = await fetch('/api/feedback/nps-inapp', {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          if (!res.ok) return;
+          const json: { eligible?: boolean } = await res.json();
+          if (cancelled) return;
+          if (json.eligible) setPhase('asking_score');
+        } catch (err) {
+          // Eligibility check is best-effort. A network blip just means
+          // "don't show this load" — surface to console so failures are
+          // debuggable, but don't bug the user.
+          console.error('[NpsModal] eligibility check failed:', err);
+        }
+      }, MOUNT_DELAY_MS);
+    };
+
+    const { data: { subscription } } = sb.auth.onAuthStateChange((_event, session) => {
+      if (cancelled) return;
+      const token = session?.access_token;
+      if (!token) {
+        // Signed-out (or INITIAL_SESSION for a guest) — cancel any
+        // pending check. Guarding the timer flip so a rapid sign-out
+        // followed by sign-in doesn't stack duplicate timers.
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
+        }
+        return;
       }
-    }, MOUNT_DELAY_MS);
+      scheduleCheck(token);
+    });
 
     return () => {
       cancelled = true;
-      clearTimeout(timer);
+      if (timer) clearTimeout(timer);
+      subscription.unsubscribe();
     };
   }, []);
 

@@ -1681,7 +1681,7 @@ export function getEkadashiName(hinduMonth: string, paksha: 'shukla' | 'krishna'
  * label if needed.
  */
 export function resolveEkadashiDetail(
-  masa: { amanta: string; isAdhika?: boolean } | undefined | null,
+  masa: { amanta: string; purnimanta?: string; isAdhika?: boolean } | undefined | null,
   paksha: 'shukla' | 'krishna',
 ): EkadashiDetail | undefined {
   // `masa` is optional on FestivalEntry — caller may pass undefined
@@ -1691,7 +1691,16 @@ export function resolveEkadashiDetail(
   if (masa.isAdhika) {
     return paksha === 'shukla' ? ADHIKA_MASA_EKADASHI.shukla : ADHIKA_MASA_EKADASHI.krishna;
   }
-  return getEkadashiName(masa.amanta, paksha);
+  // EKADASHI_NAMES is keyed by Purnimant month (Drik/Prokerala convention):
+  //   `jyeshtha.krishna` = Apara Ekadashi = Jyeshtha Krishna 11 Purnimant
+  //                                       = Vaishakha Krishna 11 Amant
+  // For Shukla paksha, Amant === Purnimant so either key works. For Krishna
+  // paksha they differ by one month; passing amanta shifted every Krishna
+  // Ekadashi name one month behind (regression of Lesson ZC — 2026-07-10
+  // was labelled "Apara" instead of "Yogini"). Prefer purnimanta; fall back
+  // to amanta only when the caller didn't provide it (Shukla-only surfaces).
+  const monthKey = masa.purnimanta ?? masa.amanta;
+  return getEkadashiName(monthKey, paksha);
 }
 
 /* ═══════════════════════════════════════════

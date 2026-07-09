@@ -25,14 +25,19 @@ const MONTH_NAMES_HI = [
   'जुलाई', 'अगस्त', 'सितम्बर', 'अक्टूबर', 'नवम्बर', 'दिसम्बर',
 ];
 
+// Keys MUST match `entry.masa.amanta / .purnimanta` from the tithi table,
+// which uses `ashwina` / `kartika` (long forms per Sanskrit orthography),
+// not `ashwin` / `kartik`. Prior maps were keyed on the short forms →
+// lookup missed for those two months and the render dropped down to the
+// raw lowercase slug ("ashwina Krishna Rama Ekadashi").
 const MASA_LABELS_EN: Record<string, string> = {
   chaitra: 'Chaitra', vaishakha: 'Vaishakha', jyeshtha: 'Jyeshtha', ashadha: 'Ashadha',
-  shravana: 'Shravana', bhadrapada: 'Bhadrapada', ashwin: 'Ashwin', kartik: 'Kartik',
+  shravana: 'Shravana', bhadrapada: 'Bhadrapada', ashwina: 'Ashwin', kartika: 'Kartik',
   margashirsha: 'Margashirsha', pausha: 'Pausha', magha: 'Magha', phalguna: 'Phalguna',
 };
 const MASA_LABELS_HI: Record<string, string> = {
   chaitra: 'चैत्र', vaishakha: 'वैशाख', jyeshtha: 'ज्येष्ठ', ashadha: 'आषाढ़',
-  shravana: 'श्रावण', bhadrapada: 'भाद्रपद', ashwin: 'आश्विन', kartik: 'कार्तिक',
+  shravana: 'श्रावण', bhadrapada: 'भाद्रपद', ashwina: 'आश्विन', kartika: 'कार्तिक',
   margashirsha: 'मार्गशीर्ष', pausha: 'पौष', magha: 'माघ', phalguna: 'फाल्गुन',
 };
 
@@ -49,7 +54,10 @@ function getAmavasyaLabel(entry: TithiEntry, locale: string): string {
   if (dow === 1) return TPL('somvatiAmavasya', locale);
   if (dow === 6) return TPL('shaniAmavasya', locale);
   const m = entry.masa.amanta;
-  if (m === 'kartik') return TPL('diwaliAmavasya', locale);
+  // `entry.masa.amanta` produces the long form (`kartika`, `ashwina`) —
+  // the previous 'kartik' comparison never matched, so Diwali Amavasya
+  // was silently rendering as generic "Amavasya". PR #741 Gemini HIGH.
+  if (m === 'kartika') return TPL('diwaliAmavasya', locale);
   if (m === 'magha') return TPL('mauniAmavasya', locale);
   return TPL('amavasya', locale);
 }
@@ -57,11 +65,16 @@ function getAmavasyaLabel(entry: TithiEntry, locale: string): string {
 // Special Purnima labels
 function getPurnimaLabel(entry: TithiEntry, locale: string): string {
   const m = entry.masa.amanta;
+  // Keys use the long forms `ashwina` and `kartika` to match
+  // `entry.masa.amanta`. Previous 'ashwin' / 'kartik' keys never
+  // matched, so Sharad Purnima and Kartik Purnima were silently
+  // rendering as generic "Ashwin Purnima" / "Kartik Purnima" via the
+  // fallback. PR #741 Gemini HIGH.
   const labels: Record<string, { en: string; hi: string }> = {
     ashadha: { en: 'Guru Purnima', hi: 'गुरु पूर्णिमा' },
     shravana: { en: 'Raksha Bandhan', hi: 'रक्षा बन्धन' },
-    ashwin: { en: 'Sharad Purnima', hi: 'शरद पूर्णिमा' },
-    kartik: { en: 'Kartik Purnima', hi: 'कार्तिक पूर्णिमा' },
+    ashwina: { en: 'Sharad Purnima', hi: 'शरद पूर्णिमा' },
+    kartika: { en: 'Kartik Purnima', hi: 'कार्तिक पूर्णिमा' },
     vaishakha: { en: 'Buddha Purnima', hi: 'बुद्ध पूर्णिमा' },
     phalguna: { en: 'Holi (Holika Dahan)', hi: 'होली (होलिका दहन)' },
     magha: { en: 'Maghi Purnima', hi: 'माघी पूर्णिमा' },
@@ -141,11 +154,25 @@ function buildDateRows(category: Category, entries: TithiEntry[], year: number, 
         : (TPL('vinayakaChaturthi', locale));
     }
 
+    // Krishna Ekadashi names follow the Purnimant convention (Yogini =
+    // Ashadha Krishna Purnimant = Jyeshtha Krishna Amant). Rendering the
+    // Amant month next to a Purnimant-named row is confusing: the reader
+    // sees "Jyeshtha Krishna · Yogini Ekadashi" and reasonably asks why
+    // the month name disagrees with the intro's "(Ashadha Krishna)"
+    // callout. Use purnimanta for Krishna-Ekadashi rows so the month
+    // matches the name; other categories keep Amant (Diwali = Kartik
+    // Amavasya Amant, Guru Purnima = Ashadha Shukla — Shukla ⇒ Amant ≡
+    // Purnimant so no ambiguity).
+    const rowMasa =
+      category === 'ekadashi' && entry.paksha === 'krishna'
+        ? (entry.masa.purnimanta || entry.masa.amanta)
+        : entry.masa.amanta;
+
     rows.push({
       date: entry.sunriseDate,
       dow: getDow(entry.sunriseDate),
       paksha: entry.paksha,
-      masa: entry.masa.amanta,
+      masa: rowMasa,
       label,
     });
   }
@@ -195,14 +222,14 @@ const EXPLANATIONS: Record<Category, { en: string[]; hi: string[] }> = {
       'The 24 canonical Ekadashis are: Papamochani (Chaitra Krishna), Kamada (Chaitra Shukla), Varuthini (Vaishakha Krishna), Mohini (Vaishakha Shukla), Apara (Jyeshtha Krishna), Nirjala (Jyeshtha Shukla), Yogini (Ashadha Krishna), Devshayani (Ashadha Shukla — Chaturmas begins), Kamika (Shravana Krishna), Putrada (Shravana Shukla), Aja (Bhadrapada Krishna), Parivartini (Bhadrapada Shukla), Indira (Ashwin Krishna), Papankusha (Ashwin Shukla), Rama (Kartik Krishna), Devutthana (Kartik Shukla — Chaturmas ends), Utpanna (Margashirsha Krishna), Mokshada (Margashirsha Shukla — Gita Jayanti), Saphala (Pausha Krishna), Putrada (Pausha Shukla), Shattila (Magha Krishna), Jaya (Magha Shukla), Vijaya (Phalguna Krishna), and Amalaki (Phalguna Shukla). The most important are Nirjala (merit equal to all 24), Devutthana (marks Vishnu\'s awakening), and Mokshada (Bhagavad Gita recitation).',
       'The 24 Ekadashi cycle includes Nirjala Ekadashi (Jyeshtha Shukla), the most austere -- devotees abstain from both food and water. Papankusha Ekadashi (Ashwin Shukla) absolves accumulated sins. Devutthana Ekadashi (Kartik Shukla) marks the end of Chaturmas when Lord Vishnu awakens from cosmic sleep.',
       'Ekadashi fasting rules are codified in the Hari Bhakti Vilasa. The standard practice is a complete fast from grains and beans. Permitted foods include fruits, nuts, milk, root vegetables, sabudana, and rock salt. Parana (breaking the fast) must be done the next day after sunrise but before the end of Dwadashi tithi.',
-      'The table below lists all Ekadashi dates for the year with their traditional names (from the Amanta month system), paksha, and Hindu month. Both Shukla and Krishna Paksha Ekadashis are included.',
+      'The table below lists all Ekadashi dates for the year with their traditional names, paksha, and Hindu month. The Hindu month is rendered in the Purnimant convention that classical Ekadashi names follow: Yogini falls in Ashadha Krishna, Apara in Jyeshtha Krishna, and so on. Both Shukla and Krishna Paksha Ekadashis are included.',
     ],
     hi: [
       'एकादशी प्रत्येक चान्द्र पक्ष की ग्यारहवीं तिथि है। प्रत्येक माह में दो एकादशियाँ होती हैं -- एक शुक्ल पक्ष में और एक कृष्ण पक्ष में, जिससे वर्ष में लगभग 24 नामित एकादशियाँ आती हैं।',
       '24 प्रमुख एकादशियाँ हैं: पापमोचनी (चैत्र कृष्ण), कामदा (चैत्र शुक्ल), वरूथिनी (वैशाख कृष्ण), मोहिनी (वैशाख शुक्ल), अपरा (ज्येष्ठ कृष्ण), निर्जला (ज्येष्ठ शुक्ल), योगिनी (आषाढ़ कृष्ण), देवशयनी (आषाढ़ शुक्ल — चातुर्मास आरम्भ), कामिका (श्रावण कृष्ण), पुत्रदा (श्रावण शुक्ल), अजा (भाद्रपद कृष्ण), परिवर्तिनी (भाद्रपद शुक्ल), इन्दिरा (आश्विन कृष्ण), पापाङ्कुशा (आश्विन शुक्ल), रमा (कार्तिक कृष्ण), देवउत्थान (कार्तिक शुक्ल — चातुर्मास समाप्त), उत्पन्ना (मार्गशीर्ष कृष्ण), मोक्षदा (मार्गशीर्ष शुक्ल — गीता जयन्ती), सफला (पौष कृष्ण), पुत्रदा (पौष शुक्ल), षट्तिला (माघ कृष्ण), जया (माघ शुक्ल), विजया (फाल्गुन कृष्ण), और आमलकी (फाल्गुन शुक्ल)। सबसे महत्वपूर्ण: निर्जला (24 का पुण्य), देवउत्थान, और मोक्षदा।',
       'निर्जला एकादशी (ज्येष्ठ शुक्ल) सबसे कठोर मानी जाती है। पापाङ्कुशा एकादशी (आश्विन शुक्ल) पापों के नाश के लिए प्रसिद्ध है। देवउत्थान एकादशी (कार्तिक शुक्ल) चातुर्मास के अन्त में भगवान विष्णु के जागरण का पर्व है।',
       'एकादशी व्रत के नियम हरि भक्ति विलास में संहिताबद्ध हैं। अन्न और दालों का पूर्ण त्याग मुख्य नियम है। फल, मेवे, दूध, कन्द-मूल और सेंधा नमक अनुमत हैं। पारण अगले दिन सूर्योदय के बाद द्वादशी समाप्ति से पहले करना अनिवार्य है।',
-      'नीचे दी गई तालिका में वर्ष की सभी एकादशी तिथियाँ उनके पारम्परिक नाम (अमान्त मास), पक्ष और हिन्दू मास सहित दी गई हैं।',
+      'नीचे दी गई तालिका में वर्ष की सभी एकादशी तिथियाँ उनके पारम्परिक नाम, पक्ष और हिन्दू मास सहित दी गई हैं। हिन्दू मास पूर्णिमान्त परिपाटी के अनुसार दिया गया है जिसका अनुसरण एकादशी के शास्त्रीय नाम करते हैं: योगिनी आषाढ़ कृष्ण में, अपरा ज्येष्ठ कृष्ण में, इत्यादि। शुक्ल और कृष्ण दोनों पक्षों की एकादशियाँ सम्मिलित हैं।',
     ],
   },
   pradosham: {

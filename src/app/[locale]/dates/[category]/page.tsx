@@ -25,14 +25,19 @@ const MONTH_NAMES_HI = [
   'जुलाई', 'अगस्त', 'सितम्बर', 'अक्टूबर', 'नवम्बर', 'दिसम्बर',
 ];
 
+// Keys MUST match `entry.masa.amanta / .purnimanta` from the tithi table,
+// which uses `ashwina` / `kartika` (long forms per Sanskrit orthography),
+// not `ashwin` / `kartik`. Prior maps were keyed on the short forms →
+// lookup missed for those two months and the render dropped down to the
+// raw lowercase slug ("ashwina Krishna Rama Ekadashi").
 const MASA_LABELS_EN: Record<string, string> = {
   chaitra: 'Chaitra', vaishakha: 'Vaishakha', jyeshtha: 'Jyeshtha', ashadha: 'Ashadha',
-  shravana: 'Shravana', bhadrapada: 'Bhadrapada', ashwin: 'Ashwin', kartik: 'Kartik',
+  shravana: 'Shravana', bhadrapada: 'Bhadrapada', ashwina: 'Ashwin', kartika: 'Kartik',
   margashirsha: 'Margashirsha', pausha: 'Pausha', magha: 'Magha', phalguna: 'Phalguna',
 };
 const MASA_LABELS_HI: Record<string, string> = {
   chaitra: 'चैत्र', vaishakha: 'वैशाख', jyeshtha: 'ज्येष्ठ', ashadha: 'आषाढ़',
-  shravana: 'श्रावण', bhadrapada: 'भाद्रपद', ashwin: 'आश्विन', kartik: 'कार्तिक',
+  shravana: 'श्रावण', bhadrapada: 'भाद्रपद', ashwina: 'आश्विन', kartika: 'कार्तिक',
   margashirsha: 'मार्गशीर्ष', pausha: 'पौष', magha: 'माघ', phalguna: 'फाल्गुन',
 };
 
@@ -141,11 +146,25 @@ function buildDateRows(category: Category, entries: TithiEntry[], year: number, 
         : (TPL('vinayakaChaturthi', locale));
     }
 
+    // Krishna Ekadashi names follow the Purnimant convention (Yogini =
+    // Ashadha Krishna Purnimant = Jyeshtha Krishna Amant). Rendering the
+    // Amant month next to a Purnimant-named row is confusing: the reader
+    // sees "Jyeshtha Krishna · Yogini Ekadashi" and reasonably asks why
+    // the month name disagrees with the intro's "(Ashadha Krishna)"
+    // callout. Use purnimanta for Krishna-Ekadashi rows so the month
+    // matches the name; other categories keep Amant (Diwali = Kartik
+    // Amavasya Amant, Guru Purnima = Ashadha Shukla — Shukla ⇒ Amant ≡
+    // Purnimant so no ambiguity).
+    const rowMasa =
+      category === 'ekadashi' && entry.paksha === 'krishna'
+        ? (entry.masa.purnimanta || entry.masa.amanta)
+        : entry.masa.amanta;
+
     rows.push({
       date: entry.sunriseDate,
       dow: getDow(entry.sunriseDate),
       paksha: entry.paksha,
-      masa: entry.masa.amanta,
+      masa: rowMasa,
       label,
     });
   }
@@ -195,7 +214,7 @@ const EXPLANATIONS: Record<Category, { en: string[]; hi: string[] }> = {
       'The 24 canonical Ekadashis are: Papamochani (Chaitra Krishna), Kamada (Chaitra Shukla), Varuthini (Vaishakha Krishna), Mohini (Vaishakha Shukla), Apara (Jyeshtha Krishna), Nirjala (Jyeshtha Shukla), Yogini (Ashadha Krishna), Devshayani (Ashadha Shukla — Chaturmas begins), Kamika (Shravana Krishna), Putrada (Shravana Shukla), Aja (Bhadrapada Krishna), Parivartini (Bhadrapada Shukla), Indira (Ashwin Krishna), Papankusha (Ashwin Shukla), Rama (Kartik Krishna), Devutthana (Kartik Shukla — Chaturmas ends), Utpanna (Margashirsha Krishna), Mokshada (Margashirsha Shukla — Gita Jayanti), Saphala (Pausha Krishna), Putrada (Pausha Shukla), Shattila (Magha Krishna), Jaya (Magha Shukla), Vijaya (Phalguna Krishna), and Amalaki (Phalguna Shukla). The most important are Nirjala (merit equal to all 24), Devutthana (marks Vishnu\'s awakening), and Mokshada (Bhagavad Gita recitation).',
       'The 24 Ekadashi cycle includes Nirjala Ekadashi (Jyeshtha Shukla), the most austere -- devotees abstain from both food and water. Papankusha Ekadashi (Ashwin Shukla) absolves accumulated sins. Devutthana Ekadashi (Kartik Shukla) marks the end of Chaturmas when Lord Vishnu awakens from cosmic sleep.',
       'Ekadashi fasting rules are codified in the Hari Bhakti Vilasa. The standard practice is a complete fast from grains and beans. Permitted foods include fruits, nuts, milk, root vegetables, sabudana, and rock salt. Parana (breaking the fast) must be done the next day after sunrise but before the end of Dwadashi tithi.',
-      'The table below lists all Ekadashi dates for the year with their traditional names (from the Amanta month system), paksha, and Hindu month. Both Shukla and Krishna Paksha Ekadashis are included.',
+      'The table below lists all Ekadashi dates for the year with their traditional names, paksha, and Hindu month. The Hindu month is rendered in the Purnimant convention that classical Ekadashi names follow: Yogini falls in Ashadha Krishna, Apara in Jyeshtha Krishna, and so on. Both Shukla and Krishna Paksha Ekadashis are included.',
     ],
     hi: [
       'एकादशी प्रत्येक चान्द्र पक्ष की ग्यारहवीं तिथि है। प्रत्येक माह में दो एकादशियाँ होती हैं -- एक शुक्ल पक्ष में और एक कृष्ण पक्ष में, जिससे वर्ष में लगभग 24 नामित एकादशियाँ आती हैं।',

@@ -13,6 +13,7 @@ import { SadhakaBanner } from '@/components/gamification/SadhakaBanner';
 // live inside a 'use client' module in Next 16 / Turbopack, so it's
 // wrapped in BirthDetailsBannerLazy.
 import BirthDetailsBanner from '@/components/auth/BirthDetailsBannerLazy';
+import { NpsModal } from '@/components/feedback/NpsModal';
 import { ChunkErrorListener } from '@/components/ChunkErrorListener';
 import Footer from '@/components/layout/Footer';
 import StarField from '@/components/layout/StarField';
@@ -241,6 +242,15 @@ export default async function LocaleLayout({
               component is tree-shaken away. */}
           {process.env.VERCEL_ENV && <Analytics />}
           <UtmCapture />
+          {/* Global in-app NPS prompt. Self-eligibility check inside the
+              modal: no network calls for signed-out users (auth check is
+              a synchronous localStorage read). Mounted at the root
+              locale layout — signed-in users on any /[locale]/* page
+              can be reached, not just /dashboard/*. Traffic to
+              /dashboard was too low to surface even one modal display
+              in the 26 days between the last modal-shown row and
+              2026-07-09 (82 eligible users, 0 shown). */}
+          <NpsModal locale={locale} />
           </PersonaModeProvider>
         </NextIntlClientProvider>
       </body>

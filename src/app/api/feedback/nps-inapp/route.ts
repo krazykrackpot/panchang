@@ -130,6 +130,25 @@ async function checkEligibility(
     Date.now() - new Date(sentAt).getTime() >= MIN_DAYS_SINCE_EMAIL * 86_400_000;
   const eligible = sentLongEnoughAgo && shownAt === null && !alreadyResponded;
 
+  // Funnel telemetry — user-level anonymised. Between 2026-06-11 (last
+  // response) and 2026-07-09 the modal collected 0 answers despite 82
+  // eligible users. We couldn't tell whether the modal was never
+  // mounted (dashboard-only, low traffic) or being ineligible-gated.
+  // This structured line lets `vercel logs | grep nps-inapp/GET` show
+  // the answer within an hour of mounting on a busier surface.
+  const reason = !sentAt
+    ? 'email_not_sent'
+    : !sentLongEnoughAgo
+    ? 'email_too_recent'
+    : shownAt !== null
+    ? 'already_shown'
+    : alreadyResponded
+    ? 'already_responded'
+    : 'eligible';
+  console.info(
+    `[nps-inapp/GET] eligible=${eligible} reason=${reason} user=${userId.slice(0, 8)}`,
+  );
+
   return { eligible, sent_at: sentAt, shown_at: shownAt, already_responded: alreadyResponded };
 }
 

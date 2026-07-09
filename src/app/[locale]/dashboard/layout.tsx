@@ -5,7 +5,6 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { buildHreflangMap } from '@/lib/seo/hreflang';
 
 import { BASE_URL } from '@/lib/seo/base-url';
-import { NpsModal } from '@/components/feedback/NpsModal';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -32,14 +31,6 @@ export default async function DashboardLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  return (
-    <>
-      {children}
-      {/* Global in-app NPS prompt. Self-eligibility check, only fires
-          ≥7 days after the NPS email and only if not already answered.
-          `locale` is passed as an explicit prop so the modal renders
-          with the right copy without depending on client-side context. */}
-      <NpsModal locale={locale} />
-    </>
-  );
+  setRequestLocale(locale);
+  return <>{children}</>;
 }

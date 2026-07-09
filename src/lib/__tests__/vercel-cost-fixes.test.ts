@@ -66,13 +66,18 @@ describe('Fix 1 — recomputeNextReminderDueAt', () => {
   it('returns a Date (not NEXT_REMINDER_INFINITY, not null) for an active pref', () => {
     // Ekadashi occurs twice a month — within a 32-day window there should
     // always be at least one upcoming occurrence for an active subscriber.
+    // Snapshot `now` BEFORE the compute call. Comparing to a fresh Date.now()
+    // afterward is racy: the returned reminder-due-at could legitimately be
+    // ~0ms past the compute's internal `Date.now()`, and any wall-clock drift
+    // between compute and the assertion (measured in single-digit ms) then
+    // flips the comparison. Snapshotting first gives a strict-monotonic
+    // "future w.r.t. the moment we invoked the function" invariant.
+    const beforeMs = Date.now();
     const result = recomputeNextReminderDueAt(BASE_PREF, BASE_CTX);
-    // Most likely a Date; could be NEXT_REMINDER_INFINITY if we're in a weird
-    // window, but definitely not null (context is valid).
     expect(result).not.toBeNull();
     if (result !== NEXT_REMINDER_INFINITY) {
       expect(result).toBeInstanceOf(Date);
-      expect((result as Date).getTime()).toBeGreaterThan(Date.now());
+      expect((result as Date).getTime()).toBeGreaterThanOrEqual(beforeMs);
     }
   });
 

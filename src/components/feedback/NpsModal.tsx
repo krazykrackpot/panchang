@@ -202,39 +202,66 @@ export function NpsModal({ locale }: { locale: string }) {
 
   useEffect(() => {
     // Cooldown — if we already showed this session, don't re-check the
-    // server. Even if the user navigates across dashboard sub-routes the
-    // modal won't reappear until next session at the earliest.
+    // server. Even if the user navigates across sub-routes the modal
+    // won't reappear until next session at the earliest.
     if (typeof window !== 'undefined' && sessionStorage.getItem(COOLDOWN_KEY)) {
       return;
     }
 
-    let cancelled = false;
-    const timer = setTimeout(async () => {
-      try {
-        const sb = getSupabase();
-        if (!sb) return;
-        const { data: { session } } = await sb.auth.getSession();
-        const token = session?.access_token;
-        if (!token) return;
+    const sb = getSupabase();
+    if (!sb) return;
 
-        const res = await fetch('/api/feedback/nps-inapp', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        if (!res.ok) return;
-        const json: { eligible?: boolean } = await res.json();
-        if (cancelled) return;
-        if (json.eligible) setPhase('asking_score');
-      } catch (err) {
-        // Eligibility check is best-effort. A network blip just means
-        // "don't show this load" — definitely surface to console so
-        // failures are debuggable, but don't bug the user.
-        console.error('[NpsModal] eligibility check failed:', err);
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+
+    // The modal is mounted in the root [locale]/layout.tsx which
+    // persists across App Router client-side navigation — a
+    // useEffect([]) calling getSession() once would miss users who sign
+    // in mid-session (email/password sign-in doesn't force a reload;
+    // only Google OAuth does). Subscribing to onAuthStateChange means
+    // the eligibility check fires both on initial mount (via the
+    // INITIAL_SESSION event Supabase emits synchronously right after
+    // subscribing) and on any subsequent sign-in. PR #739 Gemini HIGH.
+    const scheduleCheck = (token: string) => {
+      if (timer) return; // already scheduled — cooldown covers replays
+      timer = setTimeout(async () => {
+        try {
+          const res = await fetch('/api/feedback/nps-inapp', {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          if (!res.ok) return;
+          const json: { eligible?: boolean } = await res.json();
+          if (cancelled) return;
+          if (json.eligible) setPhase('asking_score');
+        } catch (err) {
+          // Eligibility check is best-effort. A network blip just means
+          // "don't show this load" — surface to console so failures are
+          // debuggable, but don't bug the user.
+          console.error('[NpsModal] eligibility check failed:', err);
+        }
+      }, MOUNT_DELAY_MS);
+    };
+
+    const { data: { subscription } } = sb.auth.onAuthStateChange((_event, session) => {
+      if (cancelled) return;
+      const token = session?.access_token;
+      if (!token) {
+        // Signed-out (or INITIAL_SESSION for a guest) — cancel any
+        // pending check. Guarding the timer flip so a rapid sign-out
+        // followed by sign-in doesn't stack duplicate timers.
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
+        }
+        return;
       }
-    }, MOUNT_DELAY_MS);
+      scheduleCheck(token);
+    });
 
     return () => {
       cancelled = true;
-      clearTimeout(timer);
+      if (timer) clearTimeout(timer);
+      subscription.unsubscribe();
     };
   }, []);
 

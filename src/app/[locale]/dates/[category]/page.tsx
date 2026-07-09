@@ -2,6 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { pickToolPageLabel as TPL } from '@/lib/content/tool-pages-labels';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { loadPrecomputedTable, buildYearlyTithiTable, lookupAllTithiByNumber, type TithiEntry } from '@/lib/calendar/tithi-table';
+import { resolveEkadashiDetail } from '@/lib/constants/festival-details-with-overlay';
 import Link from 'next/link';
 import DateCategoryClient from './Client';
 
@@ -35,21 +36,12 @@ const MASA_LABELS_HI: Record<string, string> = {
   margashirsha: 'मार्गशीर्ष', pausha: 'पौष', magha: 'माघ', phalguna: 'फाल्गुन',
 };
 
-// Ekadashi names by Amanta month + paksha (canonical 24 names)
-const EKADASHI_NAMES: Record<string, Record<string, { en: string; hi: string }>> = {
-  chaitra: { shukla: { en: 'Kamada', hi: 'कामदा' }, krishna: { en: 'Papamochani', hi: 'पापमोचनी' } },
-  vaishakha: { shukla: { en: 'Mohini', hi: 'मोहिनी' }, krishna: { en: 'Varuthini', hi: 'वरूथिनी' } },
-  jyeshtha: { shukla: { en: 'Nirjala', hi: 'निर्जला' }, krishna: { en: 'Apara', hi: 'अपरा' } },
-  ashadha: { shukla: { en: 'Yogini', hi: 'योगिनी' }, krishna: { en: 'Devshayani', hi: 'देवशयनी' } },
-  shravana: { shukla: { en: 'Kamika', hi: 'कामिका' }, krishna: { en: 'Putrada', hi: 'पुत्रदा' } },
-  bhadrapada: { shukla: { en: 'Aja', hi: 'अजा' }, krishna: { en: 'Parivartini', hi: 'परिवर्तिनी' } },
-  ashwin: { shukla: { en: 'Indira', hi: 'इन्दिरा' }, krishna: { en: 'Papankusha', hi: 'पापाङ्कुशा' } },
-  kartik: { shukla: { en: 'Rama', hi: 'रमा' }, krishna: { en: 'Devutthana', hi: 'देवउत्थान' } },
-  margashirsha: { shukla: { en: 'Utpanna', hi: 'उत्पन्ना' }, krishna: { en: 'Mokshada', hi: 'मोक्षदा' } },
-  pausha: { shukla: { en: 'Saphala', hi: 'सफला' }, krishna: { en: 'Putrada', hi: 'पुत्रदा' } },
-  magha: { shukla: { en: 'Shattila', hi: 'षट्तिला' }, krishna: { en: 'Jaya', hi: 'जया' } },
-  phalguna: { shukla: { en: 'Vijaya', hi: 'विजया' }, krishna: { en: 'Amalaki', hi: 'आमलकी' } },
-};
+// Ekadashi names are resolved via the canonical `resolveEkadashiDetail`
+// helper (keyed by Purnimant month per Drik/Prokerala convention). Local
+// duplicate table was removed 2026-07-09 — it was mislabelled Amant, had
+// several rows swapped (ashadha Shukla/Krishna reversed, pausha Krishna
+// used "Putrada" instead of "Saphala"), and drifted from the source of
+// truth in `src/lib/constants/festival-details.ts`.
 
 // Special Amavasya labels
 function getAmavasyaLabel(entry: TithiEntry, locale: string): string {
@@ -134,8 +126,10 @@ function buildDateRows(category: Category, entries: TithiEntry[], year: number, 
     } else if (category === 'purnima') {
       label = getPurnimaLabel(entry, locale);
     } else if (category === 'ekadashi') {
-      const ekName = EKADASHI_NAMES[entry.masa.amanta]?.[entry.paksha];
-      label = ekName ? (isDev ? ekName.hi : ekName.en) : '';
+      // Purnimant-aware lookup — passing amanta shifts Krishna names one
+      // month behind (2026-07-09 regression). See resolveEkadashiDetail.
+      const detail = resolveEkadashiDetail(entry.masa, entry.paksha);
+      label = detail ? ((isDev ? detail.name.hi : detail.name.en) || detail.name.en) : '';
     } else if (category === 'pradosham') {
       const dow = getDow(entry.sunriseDate);
       if (dow === 6) label = TPL('shaniPradosham', locale);

@@ -138,6 +138,44 @@ describe('generateFestivalCalendarV2', () => {
       expect(typeof f.description.en).toBe('string');
     }
   }, 60000);
+
+  // ─── Krishna Ekadashi naming — Purnimant convention (Lesson ZC regression) ───
+  // The generator's step-2 tithi-table loop calls resolveEkadashiDetail(masa, paksha).
+  // EKADASHI_NAMES is keyed by Purnimant month; passing masa.amanta shifted every
+  // Krishna Ekadashi one month behind (2026-07-10 was labelled "Apara" instead of
+  // "Yogini" — user report 2026-07-09). Pin each Purnimant month → expected slug.
+  it('names 2026 Krishna Ekadashis by Purnimant month (not Amant)', () => {
+    const krishnaEks = festivals.filter(f => f.paksha === 'krishna' && f.slug?.includes('ekadashi'));
+    // Non-Adhika mapping by Purnimant month
+    const byPurnimanta = new Map<string, string>();
+    for (const f of krishnaEks) {
+      if (f.masa?.isAdhika) continue;
+      byPurnimanta.set(f.masa?.purnimanta || '', f.slug || '');
+    }
+    expect(byPurnimanta.get('magha')).toBe('shattila-ekadashi');
+    expect(byPurnimanta.get('phalguna')).toBe('vijaya-ekadashi');
+    expect(byPurnimanta.get('chaitra')).toBe('papamochani-ekadashi');
+    expect(byPurnimanta.get('vaishakha')).toBe('varuthini-ekadashi');
+    expect(byPurnimanta.get('jyeshtha')).toBe('apara-ekadashi');
+    expect(byPurnimanta.get('ashadha')).toBe('yogini-ekadashi');
+    expect(byPurnimanta.get('shravana')).toBe('kamika-ekadashi');
+    expect(byPurnimanta.get('bhadrapada')).toBe('aja-ekadashi');
+    expect(byPurnimanta.get('ashwina')).toBe('indira-ekadashi');
+    expect(byPurnimanta.get('kartika')).toBe('rama-ekadashi');
+    expect(byPurnimanta.get('margashirsha')).toBe('utpanna-ekadashi');
+    // Adhika Jyeshtha Krishna Ekadashi is Parama (2026-06-11)
+    const parama = krishnaEks.find(f => f.masa?.isAdhika);
+    expect(parama?.slug).toBe('parama-ekadashi');
+  }, 60000);
+
+  it('Yogini Ekadashi is correctly labelled around 2026-07-10 (Delhi)', () => {
+    const jul = festivals.find(
+      f => f.date >= '2026-07-08' && f.date <= '2026-07-12' &&
+        f.paksha === 'krishna' && f.slug?.includes('ekadashi'),
+    );
+    expect(jul?.slug).toBe('yogini-ekadashi');
+    expect(jul?.name.en).toBe('Yogini Ekadashi');
+  }, 60000);
 });
 
 // ─── Parana hemisphere regression (2026-06-09) ───

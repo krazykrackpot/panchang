@@ -54,7 +54,10 @@ function getAmavasyaLabel(entry: TithiEntry, locale: string): string {
   if (dow === 1) return TPL('somvatiAmavasya', locale);
   if (dow === 6) return TPL('shaniAmavasya', locale);
   const m = entry.masa.amanta;
-  if (m === 'kartik') return TPL('diwaliAmavasya', locale);
+  // `entry.masa.amanta` produces the long form (`kartika`, `ashwina`) —
+  // the previous 'kartik' comparison never matched, so Diwali Amavasya
+  // was silently rendering as generic "Amavasya". PR #741 Gemini HIGH.
+  if (m === 'kartika') return TPL('diwaliAmavasya', locale);
   if (m === 'magha') return TPL('mauniAmavasya', locale);
   return TPL('amavasya', locale);
 }
@@ -62,11 +65,16 @@ function getAmavasyaLabel(entry: TithiEntry, locale: string): string {
 // Special Purnima labels
 function getPurnimaLabel(entry: TithiEntry, locale: string): string {
   const m = entry.masa.amanta;
+  // Keys use the long forms `ashwina` and `kartika` to match
+  // `entry.masa.amanta`. Previous 'ashwin' / 'kartik' keys never
+  // matched, so Sharad Purnima and Kartik Purnima were silently
+  // rendering as generic "Ashwin Purnima" / "Kartik Purnima" via the
+  // fallback. PR #741 Gemini HIGH.
   const labels: Record<string, { en: string; hi: string }> = {
     ashadha: { en: 'Guru Purnima', hi: 'गुरु पूर्णिमा' },
     shravana: { en: 'Raksha Bandhan', hi: 'रक्षा बन्धन' },
-    ashwin: { en: 'Sharad Purnima', hi: 'शरद पूर्णिमा' },
-    kartik: { en: 'Kartik Purnima', hi: 'कार्तिक पूर्णिमा' },
+    ashwina: { en: 'Sharad Purnima', hi: 'शरद पूर्णिमा' },
+    kartika: { en: 'Kartik Purnima', hi: 'कार्तिक पूर्णिमा' },
     vaishakha: { en: 'Buddha Purnima', hi: 'बुद्ध पूर्णिमा' },
     phalguna: { en: 'Holi (Holika Dahan)', hi: 'होली (होलिका दहन)' },
     magha: { en: 'Maghi Purnima', hi: 'माघी पूर्णिमा' },
@@ -221,7 +229,7 @@ const EXPLANATIONS: Record<Category, { en: string[]; hi: string[] }> = {
       '24 प्रमुख एकादशियाँ हैं: पापमोचनी (चैत्र कृष्ण), कामदा (चैत्र शुक्ल), वरूथिनी (वैशाख कृष्ण), मोहिनी (वैशाख शुक्ल), अपरा (ज्येष्ठ कृष्ण), निर्जला (ज्येष्ठ शुक्ल), योगिनी (आषाढ़ कृष्ण), देवशयनी (आषाढ़ शुक्ल — चातुर्मास आरम्भ), कामिका (श्रावण कृष्ण), पुत्रदा (श्रावण शुक्ल), अजा (भाद्रपद कृष्ण), परिवर्तिनी (भाद्रपद शुक्ल), इन्दिरा (आश्विन कृष्ण), पापाङ्कुशा (आश्विन शुक्ल), रमा (कार्तिक कृष्ण), देवउत्थान (कार्तिक शुक्ल — चातुर्मास समाप्त), उत्पन्ना (मार्गशीर्ष कृष्ण), मोक्षदा (मार्गशीर्ष शुक्ल — गीता जयन्ती), सफला (पौष कृष्ण), पुत्रदा (पौष शुक्ल), षट्तिला (माघ कृष्ण), जया (माघ शुक्ल), विजया (फाल्गुन कृष्ण), और आमलकी (फाल्गुन शुक्ल)। सबसे महत्वपूर्ण: निर्जला (24 का पुण्य), देवउत्थान, और मोक्षदा।',
       'निर्जला एकादशी (ज्येष्ठ शुक्ल) सबसे कठोर मानी जाती है। पापाङ्कुशा एकादशी (आश्विन शुक्ल) पापों के नाश के लिए प्रसिद्ध है। देवउत्थान एकादशी (कार्तिक शुक्ल) चातुर्मास के अन्त में भगवान विष्णु के जागरण का पर्व है।',
       'एकादशी व्रत के नियम हरि भक्ति विलास में संहिताबद्ध हैं। अन्न और दालों का पूर्ण त्याग मुख्य नियम है। फल, मेवे, दूध, कन्द-मूल और सेंधा नमक अनुमत हैं। पारण अगले दिन सूर्योदय के बाद द्वादशी समाप्ति से पहले करना अनिवार्य है।',
-      'नीचे दी गई तालिका में वर्ष की सभी एकादशी तिथियाँ उनके पारम्परिक नाम (अमान्त मास), पक्ष और हिन्दू मास सहित दी गई हैं।',
+      'नीचे दी गई तालिका में वर्ष की सभी एकादशी तिथियाँ उनके पारम्परिक नाम, पक्ष और हिन्दू मास सहित दी गई हैं। हिन्दू मास पूर्णिमान्त परिपाटी के अनुसार दिया गया है जिसका अनुसरण एकादशी के शास्त्रीय नाम करते हैं: योगिनी आषाढ़ कृष्ण में, अपरा ज्येष्ठ कृष्ण में, इत्यादि। शुक्ल और कृष्ण दोनों पक्षों की एकादशियाँ सम्मिलित हैं।',
     ],
   },
   pradosham: {

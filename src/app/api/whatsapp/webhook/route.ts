@@ -1,0 +1,220 @@
+// Meta WhatsApp webhook.
+//
+// GET  — Meta sends a one-time verification challenge during webhook setup
+//        (see docs/runbooks/whatsapp-waba-setup.md Step 7). We compare the
+//        verify_token query param against WHATSAPP_WEBHOOK_VERIFY_TOKEN env
+//        and echo the challenge string back.
+//
+// POST — Meta sends inbound events:
+//          1. messages: user sends us a message (e.g. "STOP" reply)
+//          2. message status updates: delivery/read receipts for messages
+//             we sent (correlated via the whatsapp_message_id we stored in
+//             whatsapp_send_log)
+//
+//        We verify the X-Hub-Signature-256 header before doing ANY work
+//        on the body. An unsigned POST is dropped silently with 200 (Meta
+//        requires 200 to stop retries, but we don't want to leak that the
+//        body was rejected as a Probe — silent drop is fine).
+
+import { NextRequest, NextResponse } from 'next/server';
+import { getServerSupabase } from '@/lib/supabase/server';
+import { verifyWebhookSignature } from '@/lib/whatsapp/client';
+
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
+// Always return 200 to Meta to suppress retries, unless we want them to
+// retry (e.g. our DB is briefly down).
+const OK_200 = NextResponse.json({ ok: true }, { status: 200 });
+
+// ─────────────────────────────────────────────────────────────────────────
+// GET — verify challenge during webhook setup
+// ─────────────────────────────────────────────────────────────────────────
+export async function GET(req: NextRequest) {
+  const expected = (process.env.WHATSAPP_WEBHOOK_VERIFY_TOKEN ?? '').trim();
+  if (!expected) {
+    return NextResponse.json({ error: 'Not configured' }, { status: 503 });
+  }
+  const url = new URL(req.url);
+  const mode = url.searchParams.get('hub.mode');
+  const token = url.searchParams.get('hub.verify_token');
+  const challenge = url.searchParams.get('hub.challenge');
+  if (mode !== 'subscribe' || token !== expected || !challenge) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  }
+  // Meta requires the challenge string echoed as plain text
+  return new NextResponse(challenge, { status: 200, headers: { 'Content-Type': 'text/plain' } });
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// POST — inbound messages + delivery receipts
+// ─────────────────────────────────────────────────────────────────────────
+export async function POST(req: NextRequest) {
+  const appSecret = (process.env.META_APP_SECRET ?? '').trim();
+  if (!appSecret) {
+    console.error('[whatsapp/webhook] META_APP_SECRET not set; dropping');
+    return OK_200;
+  }
+
+  // Read raw body for signature verification
+  const rawBody = await req.text();
+  const sigHeader = req.headers.get('x-hub-signature-256');
+  const valid = await verifyWebhookSignature(rawBody, sigHeader, appSecret);
+  if (!valid) {
+    console.warn('[whatsapp/webhook] signature mismatch; dropping');
+    return OK_200;
+  }
+
+  let payload: WhatsAppWebhookPayload;
+  try {
+    payload = JSON.parse(rawBody);
+  } catch {
+    console.warn('[whatsapp/webhook] body not JSON; dropping');
+    return OK_200;
+  }
+
+  const supabase = getServerSupabase();
+  if (!supabase) {
+    // Don't 200 — let Meta retry once the env is fixed
+    return NextResponse.json({ error: 'Not configured' }, { status: 503 });
+  }
+
+  // Defensive: Meta payloads should always include payload.entry as an
+  // array of changes, but a malformed payload (or one we don't recognise)
+  // shouldn't crash the function with a TypeError. Each array hop guarded
+  // by Array.isArray. (Gemini PR #706 round-4 MED)
+  if (!Array.isArray(payload.entry)) return OK_200;
+
+  for (const entry of payload.entry) {
+    if (!entry || !Array.isArray(entry.changes)) continue;
+    for (const change of entry.changes) {
+      if (!change || change.field !== 'messages') continue;
+      const value = change.value;
+      if (!value) continue;
+
+      // ─── Inbound messages (STOP / HELP / other replies) ─────────────────
+      if (Array.isArray(value.messages)) {
+        for (const msg of value.messages) {
+          if (!msg || msg.type !== 'text' || !msg.text?.body) continue;
+          const from = msg.from;
+          if (typeof from !== 'string' || !from) continue;
+          const phoneE164 = from.startsWith('+') ? from : `+${from}`;
+          const text = msg.text.body.trim();
+          const classification = classifyInbound(text);
+
+          // Log the inbound (200-char truncation in DB trigger)
+          await supabase.from('whatsapp_inbound_log').insert({
+            phone_e164: phoneE164,
+            message_body: text,
+            classification,
+          }).then(({ error }) => {
+            if (error) console.error('[whatsapp/webhook] inbound insert failed:', error);
+          });
+
+          if (classification === 'stop') {
+            const { error } = await supabase
+              .from('user_whatsapp_subscriptions')
+              .update({
+                opted_out_at: new Date().toISOString(),
+                opt_out_reason: 'user_reply_stop',
+              })
+              .eq('phone_e164', phoneE164)
+              .is('opted_out_at', null);
+            if (error) console.error('[whatsapp/webhook] STOP opt-out failed:', error);
+          }
+        }
+      }
+
+      // ─── Delivery + read receipts ───────────────────────────────────────
+      if (Array.isArray(value.statuses)) {
+        for (const st of value.statuses) {
+          if (!st || !st.id || !st.status) continue;
+          const { error } = await supabase
+            .from('whatsapp_send_log')
+            .update({ status: mapMetaStatus(st.status) })
+            .eq('whatsapp_message_id', st.id);
+          if (error) console.error('[whatsapp/webhook] status update failed:', error);
+        }
+      }
+    }
+  }
+
+  return OK_200;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Helpers
+// ─────────────────────────────────────────────────────────────────────────
+
+const STOP_KEYWORDS = ['stop', 'unsubscribe', 'cancel', 'quit', 'end', 'opt out', 'optout', 'रोको', 'বন্ধ', 'நிறுத்து'];
+const HELP_KEYWORDS = ['help', 'info', 'मदद', 'সাহায্য', 'உதவி'];
+
+// Strip ASCII punctuation that commonly trails inbound replies
+// ("STOP!", "stop.", "help?"). Keeps internal whitespace so
+// "opt out" still matches its multi-word form.
+const PUNCT_RE = /[.,/#!$%^&*;:{}=\-_`~()?'"]/g;
+
+// Build per-keyword case-insensitive word-boundary patterns once.
+// `\b` works for ASCII; the Devanagari/Bangla/Tamil tokens are matched
+// via exact-equality first (their script chars don't satisfy ASCII \b
+// boundary semantics in JS regex).
+export function classifyInbound(text: string): 'stop' | 'help' | 'other' {
+  const clean = text.trim().toLowerCase().replace(PUNCT_RE, '').replace(/\s+/g, ' ').trim();
+  if (!clean) return 'other';
+
+  // Exact match — handles single-word + multi-word keywords cleanly.
+  // Use this for both ASCII and non-ASCII (Devanagari etc.) tokens.
+  for (const k of STOP_KEYWORDS) if (clean === k) return 'stop';
+  for (const k of HELP_KEYWORDS) if (clean === k) return 'help';
+
+  // Word-boundary fallback for ASCII tokens — matches "stop please",
+  // "please stop", "i want to unsubscribe" without false-positive
+  // matches on substrings like "stopwatch" or "helpful".
+  for (const k of STOP_KEYWORDS) {
+    if (!/^[a-z ]+$/.test(k)) continue; // non-ASCII skipped (no \b in scripts)
+    if (new RegExp(`\\b${k.replace(/ /g, '\\s+')}\\b`).test(clean)) return 'stop';
+  }
+  for (const k of HELP_KEYWORDS) {
+    if (!/^[a-z ]+$/.test(k)) continue;
+    if (new RegExp(`\\b${k.replace(/ /g, '\\s+')}\\b`).test(clean)) return 'help';
+  }
+
+  return 'other';
+}
+
+function mapMetaStatus(metaStatus: string): string {
+  // Meta uses: 'sent' | 'delivered' | 'read' | 'failed' | 'deleted'
+  // Our DB constraint allows: 'pending', 'sent', 'delivered', 'read', 'failed', ...
+  if (['sent', 'delivered', 'read', 'failed'].includes(metaStatus)) return metaStatus;
+  return 'failed'; // 'deleted' or anything unexpected
+}
+
+// ─── Meta payload types ──────────────────────────────────────────────────
+
+interface WhatsAppWebhookPayload {
+  object?: string;
+  entry?: Array<{
+    id?: string;
+    changes?: Array<{
+      field?: string;
+      value?: {
+        messaging_product?: string;
+        metadata?: { display_phone_number?: string; phone_number_id?: string };
+        contacts?: Array<{ wa_id?: string }>;
+        messages?: Array<{
+          from: string;
+          id: string;
+          timestamp: string;
+          type: string;
+          text?: { body?: string };
+        }>;
+        statuses?: Array<{
+          id?: string;
+          status?: string;
+          timestamp?: string;
+          recipient_id?: string;
+        }>;
+      };
+    }>;
+  }>;
+}

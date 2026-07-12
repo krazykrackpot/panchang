@@ -65,6 +65,7 @@ import { usePrakritiStore } from '@/stores/prakriti-store';
 import AtAGlance from '@/components/dashboard/AtAGlance';
 import DashboardTabs from '@/components/dashboard/DashboardTabs';
 import DailyEmailOptIn from '@/components/dashboard/DailyEmailOptIn';
+import WhatsAppOptInCard from '@/components/dashboard/WhatsAppOptInCard';
 import dynamic from 'next/dynamic';
 
 const VratTracker = dynamic(() => import('@/components/dashboard/VratTracker'), { ssr: false });
@@ -2403,6 +2404,9 @@ function SeekerDashboardImpl() {
 
         {/* Daily email opt-in  –  shown if user hasn't enabled daily_panchang_email */}
         <DailyEmailOptIn locale={locale} />
+
+        {/* WhatsApp daily-panchang opt-in  –  Phase 2; full flow lives in the card */}
+        <WhatsAppOptInCard locale={locale} />
 
         {/* Location prompt  –  shown when location store is empty (no panchang data) */}
         {!panchangData && !loading && (

@@ -410,6 +410,9 @@ export default function CalendarClient() {
               const now = new Date();
               const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), loc.timezone);
               setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, tz, timezone: loc.timezone });
+              // Persist to the global store so downstream pages (/calendar/[slug], /puja/[slug])
+              // see the same location the user just picked here.
+              useLocationStore.getState().setLocation(loc.lat, loc.lng, loc.name, loc.timezone);
               setShowLocationSearch(false);
             }}
           />
@@ -434,6 +437,7 @@ export default function CalendarClient() {
                 const now = new Date();
                 const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), loc.timezone);
                 setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, tz, timezone: loc.timezone });
+                useLocationStore.getState().setLocation(loc.lat, loc.lng, loc.name, loc.timezone);
                 setShowLocationSearch(false);
               }}
             />

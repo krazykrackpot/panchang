@@ -196,6 +196,7 @@ export default function InauspiciousTimingsPage() {
                 const now = new Date();
                 const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), loc.timezone);
                 setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, tz });
+                useLocationStore.getState().setLocation(loc.lat, loc.lng, loc.name, loc.timezone);
                 setShowLocationSearch(false);
               }}
             />

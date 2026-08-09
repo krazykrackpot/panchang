@@ -1,8 +1,8 @@
 # Dekho Panchang — Vedic Astrology Computation Platform
 
-> Last updated: 2026-07-02
+> Last updated: 2026-08-09
 
-> Dekho Panchang (dekhopanchang.com) is a free, computation-first Vedic astrology platform. Every astronomical value is computed in real time from Swiss Ephemeris (NASA JPL DE441) with Lahiri Ayanamsha. Daily Panchang, Kundali (birth chart) with 46+ analysis features across 7 capability groups, AI-powered Muhurta search across 40+ activities, compatibility matching, eclipse prediction, festival calendar across 10 regional traditions, and personalised Jyotish interpretation. 10 languages with editorially-distinct content (NOT English fallback). 3,200+ automated tests. No external astrology APIs. For the concise version of this file, see /llms.txt. For the structured capability catalog with SoftwareApplication schema, see /en/features.
+> Dekho Panchang (dekhopanchang.com) is a free, computation-first Vedic astrology platform. Every astronomical value is computed in real time from Swiss Ephemeris (NASA JPL DE441) with Lahiri Ayanamsha. Daily Panchang, Kundali (birth chart) with 46+ analysis features across 7 capability groups, AI-powered Muhurta search across 40+ activities, compatibility matching, eclipse prediction, festival calendar across 10 regional traditions, and personalised Jyotish interpretation. 10 languages with editorially-distinct content (NOT English fallback). 7,100+ automated tests. No external astrology APIs. For the concise version of this file, see /llms.txt. For the structured capability catalog with SoftwareApplication schema, see /en/features.
 
 ---
 
@@ -707,7 +707,7 @@ Lahiri (default, Indian government standard), KP (Krishnamurti), Raman, BV Raman
 
 ### Verification
 
-- 3,200+ automated tests covering panchang accuracy, kundali computation, dasha periods, yoga detection (with false-positive frequency validation), muhurta engine rules, festival dates, and eclipse predictions
+- 7,100+ automated tests covering panchang accuracy, kundali computation, dasha periods, yoga detection (with false-positive frequency validation), muhurta engine rules, festival dates, and eclipse predictions
 - Tithi transitions verified within plus or minus 2 minutes of professional Hindu almanacs for multiple locations
 - Sunrise/sunset verified within plus or minus 1 minute using Swiss Ephemeris atmospheric refraction model
 - Festival dates cross-validated against published panchangs for correctness of Kala-Vyapti (tithi-date resolution) rules

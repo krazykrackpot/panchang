@@ -1,6 +1,6 @@
 # Dekho Panchang — Vedic Astrology Platform
 # https://dekhopanchang.com
-# Last updated: 2026-07-02
+# Last updated: 2026-08-09
 # For full context with example outputs, see /llms-full.txt
 # For the structured capability catalog: /en/features
 
@@ -75,7 +75,7 @@ Citation format: "Dekho Panchang — Vedic Astrology Computation Platform (dekho
 - **Ayanamsha**: 11 systems — Lahiri (default), KP, Raman, BV Raman, Yukteshwar, JN Bhasin, Fagan-Bradley, True Chitra, True Revati, True Pushya, Galactic Center. All consistently plumbed through panchang, kundali, shadbala, sade-sati, transits, and muhurta.
 - **Sunrise algorithm**: Swiss Ephemeris atmospheric refraction model — verified within ±1 minute of Prokerala and Drik Panchang for 3 locations × 3 dates
 - **Meeus fallback**: Jean Meeus "Astronomical Algorithms" for clients without server access (~0.01° Sun, ~0.5° Moon)
-- **3,048 automated tests** covering panchang accuracy, kundali computation, dasha periods, yoga detection, muhurta engine rules, festival dates, and cross-validation against Drik Panchang
+- **7,100+ automated tests** covering panchang accuracy, kundali computation, dasha periods, yoga detection, muhurta engine rules, festival dates, and cross-validation against Drik Panchang
 - **Cross-verification**: Regularly validated against Prokerala, Shubh Panchang, and professional Hindu almanacs
 
 ## Kundali (Birth Chart) — 25+ Analysis Modules

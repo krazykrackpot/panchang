@@ -16,6 +16,17 @@
  * the same one that powers dekhopanchang.com.
  */
 
+// The engine (src/lib/ephem/swiss-ephemeris.ts) loads the native `sweph`
+// binding via eval('require')('sweph') so bundlers don't try to package
+// the platform-specific .node file. In genuine Node ESM there is no
+// global `require`, so eval('require') throws and the engine falls back
+// to Meeus. Shim globalThis.require here so the eval path finds the
+// real Node require. Must run BEFORE any engine import.
+import { createRequire as _createRequire } from 'node:module';
+if (typeof (globalThis as unknown as { require?: unknown }).require === 'undefined') {
+  (globalThis as unknown as { require: NodeRequire }).require = _createRequire(import.meta.url);
+}
+
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 

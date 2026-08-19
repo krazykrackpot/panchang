@@ -1,5 +1,4 @@
 import { approximateSunrise, approximateSunset } from './astronomical';
-import { createRequire as _createRequire } from 'node:module';
 
 /**
  * Swiss Ephemeris Integration  –  Sub-arcsecond planetary positions
@@ -45,37 +44,15 @@ function getSweph() {
   if (typeof window !== 'undefined') return null;
 
   try {
-    // Prefer eval('require') so Turbopack/Webpack don't try to bundle
-    // the native module (sweph ships a .node binary compiled per host).
-    // Under Next.js runtime, `require` is a real function even in what
-    // looks like ESM source — the eval() indirection just hides it from
-    // the bundler.
-    //
-    // When this file runs in a genuine Node ESM context (e.g. the
-    // @dekhopanchang/mcp CLI, which is `"type": "module"`), `require`
-    // is not defined globally — fall back to `module.createRequire`.
-    // Both branches keep the sweph binary unbundled.
-    let req: NodeRequire | undefined;
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      req = eval('require') as NodeRequire;
-    } catch {
-      req = undefined;
-    }
-    if (!req) {
-      // Genuine ESM (no CJS `require` in scope) — synthesise a require
-      // bound to this file's own URL so Node walks from the file's
-      // nearest `node_modules` chain outward. `createRequire` is
-      // imported statically at the top of this file.
-      //
-      // `import.meta.url` is legal TS syntax under module: "esnext"
-      // (this project's setting). Under CJS bundling by Turbopack /
-      // Webpack the whole `if (!req)` branch is unreachable — the
-      // `eval('require')` path above always succeeds — so no CJS
-      // runtime ever sees `import.meta`.
-      req = _createRequire(import.meta.url);
-    }
-    sweph = req('sweph');
+    // eval('require') so Turbopack/Webpack don't try to bundle the
+    // native module (sweph ships a .node binary compiled per host).
+    // Under pure Node ESM (e.g. @dekhopanchang/mcp CLI), `require` is
+    // not defined — that runtime installs a globalThis.require shim
+    // via createRequire before importing engine code. Static import
+    // of node:module here would be bundled for the client and fail
+    // (node:module doesn't exist in the browser chunker).
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    sweph = eval('require')('sweph');
     sweph.set_sid_mode(sweph.constants.SE_SIDM_LAHIRI, 0, 0);
   } catch (err) {
     console.error('[sweph] Swiss Ephemeris load failed — falling back to Meeus:', err);

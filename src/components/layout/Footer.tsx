@@ -75,6 +75,10 @@ const SECTIONS = [
       // at (cited from /llms.txt). Footer placement keeps main nav clean
       // per feedback_orphan_links_in_footer.
       { href: '/features', label: { en: 'Features', hi: 'विशेषताएँ', ta: 'அம்சங்கள்', bn: 'বৈশিষ্ট্য', te: 'ఫీచర్లు', gu: 'વિશેષતાઓ', kn: 'ವೈಶಿಷ್ಟ್ಯಗಳು', mr: 'वैशिष्ट्ये', mai: 'विशेषता' } },
+      // 2026-08-19 — @dekhopanchang/mcp MCP server install page for AI
+      // developers. Same footer-placement rule as /features: developer /
+      // B2B surface belongs in the Learn column, not main nav.
+      { href: '/mcp', label: { en: 'MCP Server', hi: 'MCP सर्वर', ta: 'MCP சர்வர்', bn: 'MCP সার্ভার', te: 'MCP సర్వర్', gu: 'MCP સર્વર', kn: 'MCP ಸರ್ವರ್', mr: 'MCP सर्व्हर', mai: 'MCP सर्वर' } },
       { href: '/learn/grahas', label: { en: 'Grahas', hi: 'ग्रह', ta: 'கிரகங்கள்', bn: 'গ্রহ', te: 'గ్రహాలు', gu: 'ગ્રહો', kn: 'ಗ್ರಹಗಳು', mr: 'नवग्रह', mai: 'नवग्रहक परिचय' } },
       { href: '/learn/rashis', label: { en: 'Rashis', hi: 'राशियाँ', ta: 'ராசிகள்', bn: 'রাশি', te: 'రాశులు', gu: 'રાશિઓ', kn: 'ರಾಶಿಗಳು', mr: 'राशी', mai: 'राशि' } },
       { href: '/learn/nakshatras', label: { en: 'Nakshatras', hi: 'नक्षत्र', ta: 'நட்சத்திரங்கள்', bn: 'নক্ষত্র', te: 'నక్షత్రాలు', gu: 'નક્ષત્રો', kn: 'ನಕ್ಷತ್ರಗಳು', mr: 'नक्षत्रे', mai: '27 नक्षत्रक विवरण' } },

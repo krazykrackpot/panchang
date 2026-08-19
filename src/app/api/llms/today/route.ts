@@ -221,6 +221,10 @@ export async function GET(request: Request) {
       // so identical-input requests can safely cache for a long window.
       'Cache-Control': `public, s-maxage=${HOUR_SECONDS}, max-age=${HOUR_SECONDS / 6}, stale-while-revalidate=${HOUR_SECONDS * 24}`,
       'X-Robots-Tag': 'all',
+      // Advertise the LLM-tool catalog so MCP-capable crawlers /
+      // agents can auto-discover the full set of tools from a single
+      // response. Part of the 2026-08-19 LLM-first strategy Week 1.3.
+      'Link': '<https://dekhopanchang.com/llms.txt>; rel="describedby"',
     },
   });
 }

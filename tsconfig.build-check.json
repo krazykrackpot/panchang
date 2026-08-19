@@ -7,6 +7,7 @@
     "**/__tests__/**",
     "tests/**",
     "scripts/**",
-    "src/video/**"
+    "src/video/**",
+    "packages/**"
   ]
 }

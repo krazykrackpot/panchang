@@ -2,11 +2,9 @@
 /**
  * GSC health monitor — daily local cron.
  *
- * Pulls topline + canary-query metrics from Search Console and emits a
- * macOS notification when traffic falls off a cliff. Modelled after the
- * June 1 collapse where /en/calendar/regional/bengali went from 146
- * clicks → 0 in 48 hours and we only noticed days later by squinting
- * at the GSC UI.
+ * Pulls topline + canary + click-basket + page-loss metrics from Search
+ * Console and emits a macOS notification when traffic falls off a cliff
+ * or when winning queries slip meaningful rank.
  *
  * Auth: gcloud Application Default Credentials. One-time setup is the
  * same as scripts/gsc-daily-cron.ts — see reference_gsc_via_adc.md in
@@ -16,7 +14,7 @@
  *
  * Schedule: 09:00 local via launchd. GSC's daily aggregation lands at
  * roughly T+24-48h for "final" numbers but `dataState=all` exposes
- * partial-day data within ~3h, which is what we use for the canary.
+ * partial-day data within ~3h.
  *
  * Output:
  *   - Always appends a JSONL row to scripts/gsc-health.log
@@ -26,13 +24,26 @@
  * Alert rules (any single trigger fires the notification):
  *   1. Yesterday clicks < 30% of the rolling 7-day median (-70%+ drop)
  *   2. Yesterday impressions < 30% of the 7-day median
- *   3. Canary query "bangla calendar" impressions drop > 70% vs 7d median
- *   4. Canary query position drops by 3 or more ranks vs 7d median
+ *   3. Canary "bangla calendar" impressions drop > 70% vs 7d median
+ *   5. Click-basket rank slip — ≥3 winning queries lost ≥5 rank positions
+ *      week-over-week (prior position must have been <20 so we only flag
+ *      real winners, not noise on page-5 long-tail).
+ *   6. Page-level impression collapse — any page with ≥100 prior imps
+ *      dropped >70% week-over-week.
+ *
+ * Rule 4 (CANARY_POS_DROP) removed 2026-08-19 — averaging position across
+ * a spray of new long-tail hits mechanically drags the mean and fired
+ * false positives whenever coverage expanded. Rule 5 subsumes its intent
+ * with real statistical footing (per-winner rank tracking).
+ *
+ * API budget: ≈4.14 calls/run. baseline(1) + canary(1) + basket-positions(1) +
+ * pages(1) + basket-refresh(0.14 amortised across 7 days). GSC quota is
+ * 1200/site/day.
  *
  * Manual run: `npx tsx scripts/gsc-health-monitor.ts`
  * Force-alert (for testing the notifier): pass `--test-alert`.
- * Read cached summary without calling GSC: pass `--print-last` (this
- * is what the `/health` slash command uses).
+ * Force basket refresh regardless of age: pass `--refresh-basket`.
+ * Read cached summary without calling GSC: pass `--print-last`.
  */
 
 import { execSync } from 'node:child_process';
@@ -48,39 +59,99 @@ const API_BASE = `https://searchconsole.googleapis.com/webmasters/v3/sites/${SIT
 const CANARY_QUERY = 'bangla calendar';
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
-// Per-run history (one JSONL row per run, append-only)
 const LOG_PATH = resolve(SCRIPT_DIR, 'gsc-health.log');
-// Latest summary, overwritten on every run. Lives at a worktree-
-// independent path so /health and other readers find it without
-// caring which checkout the cron ran from.
+// Worktree-independent path so /health and other readers find the summary
+// regardless of which checkout the cron ran from.
 const CACHE_DIR = resolve(homedir(), '.cache');
 const LATEST_PATH = resolve(CACHE_DIR, 'panchang-gsc-health-latest.json');
 
-// Alert thresholds — tuned to catch the June 1 collapse pattern (>95%
-// drop in 48h) while ignoring normal day-of-week swings (Sundays often
-// run -20% from Wednesday peak).
-const CLICKS_DROP_RATIO = 0.3;      // alert when below 30% of baseline
-const IMPS_DROP_RATIO = 0.3;        // same
-const CANARY_IMPS_DROP_RATIO = 0.3; // canary query impression floor
-const CANARY_POS_DROP = 3;          // canary position ↓ N ranks
+const CLICKS_DROP_RATIO = 0.3;
+const IMPS_DROP_RATIO = 0.3;
+const CANARY_IMPS_DROP_RATIO = 0.3;
 
-interface Row {
+// Rule 5 tuning
+const BASKET_REFRESH_DAYS = 7;
+const BASKET_WINDOW_DAYS = 28;
+const BASKET_SIZE = 20;
+const BASKET_MIN_SLIPPERS = 3;
+const BASKET_MIN_POS_DELTA = 5;
+const BASKET_WINNER_MAX_PRIOR_POS = 20;
+
+// Rule 6 tuning
+const PAGE_MIN_PRIOR_IMPS = 100;
+const PAGE_DROP_PCT = 70;
+
+// ─────────────────────────────────────────────────────────────────────
+// Types
+// ─────────────────────────────────────────────────────────────────────
+
+export interface Row {
   date: string;
   clicks: number;
   impressions: number;
   position: number;
 }
 
-interface CanaryRow extends Row { ctr: number }
+export interface CanaryRow extends Row { ctr: number }
 
-interface Summary {
+export interface BasketQuery {
+  query: string;
+  clicks28d: number;
+  priorPos: number;
+  recentPos: number;
+  posDelta: number;
+  priorClicks7d: number;
+  recentClicks7d: number;
+}
+
+export interface ClickBasket {
+  refreshedAt: string;
+  windowDays: number;
+  queries: BasketQuery[];
+}
+
+export interface PageLoss {
+  page: string;
+  priorImps: number;
+  recentImps: number;
+  dropPct: number;
+}
+
+export interface Summary {
   ranAt: string;
   range: { start: string; end: string };
   daily: Row[];
   baseline: { medianClicks: number; medianImps: number; days: number };
   yesterday: Row | null;
-  canary: { yesterday: CanaryRow | null; baseline: { medianImps: number; medianPos: number; days: number } };
+  canary: {
+    yesterday: CanaryRow | null;
+    baseline: { medianImps: number; medianPos: number; days: number };
+  };
+  clickBasket: ClickBasket;
+  pageLosses: PageLoss[];
   alerts: string[];
+}
+
+export interface GscRow {
+  keys: string[];
+  clicks: number;
+  impressions: number;
+  ctr: number;
+  position: number;
+}
+
+export interface GscResponse {
+  rows?: GscRow[];
+}
+
+export type GscQueryFn = (body: Record<string, unknown>) => Promise<GscResponse>;
+
+export interface GatherOptions {
+  testAlert?: boolean;
+  refreshBasket?: boolean;
+  now?: Date;
+  gscQuery?: GscQueryFn;
+  priorBasket?: ClickBasket | null;
 }
 
 // ─────────────────────────────────────────────────────────────────────
@@ -91,13 +162,19 @@ function ymd(d: Date): string {
   return d.toISOString().slice(0, 10);
 }
 
-function daysAgo(n: number): string {
-  const d = new Date();
+function daysAgo(n: number, from: Date = new Date()): string {
+  const d = new Date(from);
   d.setUTCDate(d.getUTCDate() - n);
   return ymd(d);
 }
 
-function median(nums: number[]): number {
+function daysBetween(a: string, b: string): number {
+  const ma = Date.UTC(+a.slice(0, 4), +a.slice(5, 7) - 1, +a.slice(8, 10));
+  const mb = Date.UTC(+b.slice(0, 4), +b.slice(5, 7) - 1, +b.slice(8, 10));
+  return Math.round((mb - ma) / (24 * 3600 * 1000));
+}
+
+export function median(nums: number[]): number {
   if (nums.length === 0) return 0;
   const sorted = [...nums].sort((a, b) => a - b);
   const mid = Math.floor(sorted.length / 2);
@@ -118,26 +195,26 @@ function getAccessToken(): string {
   }
 }
 
-async function gscQuery(token: string, body: Record<string, unknown>): Promise<{ rows?: Array<{ keys: string[]; clicks: number; impressions: number; ctr: number; position: number }> }> {
-  const res = await fetch(API_BASE, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'x-goog-user-project': PROJECT_ID,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  });
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`[gsc-health] GSC API ${res.status}: ${text.slice(0, 200)}`);
-  }
-  return res.json() as Promise<{ rows?: Array<{ keys: string[]; clicks: number; impressions: number; ctr: number; position: number }> }>;
+function makeLiveGscQuery(token: string): GscQueryFn {
+  return async function gscQuery(body) {
+    const res = await fetch(API_BASE, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'x-goog-user-project': PROJECT_ID,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(`[gsc-health] GSC API ${res.status}: ${text.slice(0, 200)}`);
+    }
+    return res.json() as Promise<GscResponse>;
+  };
 }
 
 function notify(title: string, message: string): void {
-  // macOS native notification. Falls back silently on non-macOS so the
-  // script remains portable for CI runs.
   try {
     const safeTitle = title.replace(/"/g, '\\"');
     const safeMsg = message.replace(/"/g, '\\"');
@@ -150,28 +227,174 @@ function notify(title: string, message: string): void {
   }
 }
 
+function readPriorBasket(): ClickBasket | null {
+  if (!existsSync(LATEST_PATH)) return null;
+  try {
+    const raw = readFileSync(LATEST_PATH, 'utf-8');
+    const parsed = JSON.parse(raw) as { clickBasket?: ClickBasket };
+    return parsed.clickBasket ?? null;
+  } catch (err) {
+    console.error('[gsc-health] Failed to read prior basket:', err);
+    return null;
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────
-// Core analysis
+// Basket refresh + week-over-week enrichment
 // ─────────────────────────────────────────────────────────────────────
 
-async function gatherSummary(testAlert: boolean): Promise<Summary> {
-  const token = getAccessToken();
-  // Window: last 10 days. We let GSC's natural data-availability cliff
-  // tell us which day to treat as "yesterday" — at 09:00 local UTC the
-  // latest returned date may be today-2 (during weekend lag) or today-1.
-  // Baseline is then the 7 days immediately preceding that most-recent
-  // returned date.
-  const end = daysAgo(0);
-  const start = daysAgo(10);
+export function shouldRefreshBasket(
+  prior: ClickBasket | null,
+  today: string,
+  force = false,
+): boolean {
+  if (force) return true;
+  if (!prior) return true;
+  if (!prior.refreshedAt) return true;
+  return daysBetween(prior.refreshedAt, today) >= BASKET_REFRESH_DAYS;
+}
 
-  const totals = await gscQuery(token, {
+export async function refreshBasketQueries(
+  gscQuery: GscQueryFn,
+  today: string,
+): Promise<{ query: string; clicks28d: number }[]> {
+  const start = daysAgo(BASKET_WINDOW_DAYS, new Date(`${today}T00:00:00Z`));
+  const end = daysAgo(1, new Date(`${today}T00:00:00Z`));
+  const resp = await gscQuery({
+    startDate: start,
+    endDate: end,
+    dimensions: ['query'],
+    rowLimit: BASKET_SIZE,
+  });
+  return (resp.rows ?? []).map((r) => ({
+    query: r.keys[0],
+    clicks28d: r.clicks,
+  }));
+}
+
+export async function enrichBasketPositions(
+  gscQuery: GscQueryFn,
+  basketSeeds: { query: string; clicks28d: number }[],
+  today: string,
+): Promise<BasketQuery[]> {
+  if (basketSeeds.length === 0) return [];
+  // 14-day window split into recent-7 and prior-7 halves. Single call
+  // with query+date dimensions lets us derive both halves in code
+  // (keeps API budget under the 5-calls-per-run soft ceiling).
+  const recentEnd = daysAgo(1, new Date(`${today}T00:00:00Z`));
+  const priorStart = daysAgo(14, new Date(`${today}T00:00:00Z`));
+  const recentStart = daysAgo(7, new Date(`${today}T00:00:00Z`));
+  const priorEnd = daysAgo(8, new Date(`${today}T00:00:00Z`));
+
+  const seedSet = new Set(basketSeeds.map((s) => s.query));
+  const resp = await gscQuery({
+    startDate: priorStart,
+    endDate: recentEnd,
+    dimensions: ['query', 'date'],
+    rowLimit: 25000,
+  });
+
+  interface Agg { clicks: number; impressions: number; posSum: number; posN: number }
+  const recent = new Map<string, Agg>();
+  const prior = new Map<string, Agg>();
+  for (const r of resp.rows ?? []) {
+    const query = r.keys[0];
+    const date = r.keys[1];
+    if (!seedSet.has(query)) continue;
+    const bucket = date >= recentStart && date <= recentEnd ? recent
+      : date >= priorStart && date <= priorEnd ? prior
+      : null;
+    if (!bucket) continue;
+    const cur = bucket.get(query) ?? { clicks: 0, impressions: 0, posSum: 0, posN: 0 };
+    cur.clicks += r.clicks;
+    cur.impressions += r.impressions;
+    // Impression-weighted position, matching how GSC computes it.
+    cur.posSum += r.position * r.impressions;
+    cur.posN += r.impressions;
+    bucket.set(query, cur);
+  }
+
+  return basketSeeds.map((seed) => {
+    const r = recent.get(seed.query);
+    const p = prior.get(seed.query);
+    const recentPos = r && r.posN > 0 ? r.posSum / r.posN : 0;
+    const priorPos = p && p.posN > 0 ? p.posSum / p.posN : 0;
+    return {
+      query: seed.query,
+      clicks28d: seed.clicks28d,
+      priorPos,
+      recentPos,
+      posDelta: recentPos - priorPos,
+      priorClicks7d: p?.clicks ?? 0,
+      recentClicks7d: r?.clicks ?? 0,
+    };
+  });
+}
+
+export async function fetchPageLosses(
+  gscQuery: GscQueryFn,
+  today: string,
+): Promise<PageLoss[]> {
+  const priorStart = daysAgo(14, new Date(`${today}T00:00:00Z`));
+  const recentEnd = daysAgo(1, new Date(`${today}T00:00:00Z`));
+  const recentStart = daysAgo(7, new Date(`${today}T00:00:00Z`));
+  const priorEnd = daysAgo(8, new Date(`${today}T00:00:00Z`));
+
+  const resp = await gscQuery({
+    startDate: priorStart,
+    endDate: recentEnd,
+    dimensions: ['page', 'date'],
+    rowLimit: 25000,
+  });
+
+  const recent = new Map<string, number>();
+  const prior = new Map<string, number>();
+  for (const r of resp.rows ?? []) {
+    const page = r.keys[0];
+    const date = r.keys[1];
+    if (date >= recentStart && date <= recentEnd) {
+      recent.set(page, (recent.get(page) ?? 0) + r.impressions);
+    } else if (date >= priorStart && date <= priorEnd) {
+      prior.set(page, (prior.get(page) ?? 0) + r.impressions);
+    }
+  }
+
+  const losses: PageLoss[] = [];
+  for (const [page, priorImps] of prior) {
+    if (priorImps < PAGE_MIN_PRIOR_IMPS) continue;
+    const recentImps = recent.get(page) ?? 0;
+    const dropPct = Math.round((1 - recentImps / priorImps) * 100);
+    if (dropPct > PAGE_DROP_PCT) {
+      losses.push({ page, priorImps, recentImps, dropPct });
+    }
+  }
+  losses.sort((a, b) => b.dropPct - a.dropPct);
+  return losses;
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// Core analysis (exported for tests)
+// ─────────────────────────────────────────────────────────────────────
+
+export async function gatherSummary(opts: GatherOptions = {}): Promise<Summary> {
+  const now = opts.now ?? new Date();
+  const gscQuery = opts.gscQuery ?? makeLiveGscQuery(getAccessToken());
+  const priorBasket = opts.priorBasket !== undefined ? opts.priorBasket : readPriorBasket();
+
+  // Window: last 10 days. GSC's data-availability cliff tells us which
+  // day to treat as "yesterday" — at 09:00 local UTC the latest returned
+  // date may be today-2 (weekend lag) or today-1.
+  const end = daysAgo(0, now);
+  const start = daysAgo(10, now);
+  const today = end;
+
+  const totals = await gscQuery({
     startDate: start,
     endDate: end,
     dimensions: ['date'],
     rowLimit: 15,
   });
 
-  const today = daysAgo(0);
   const daily: Row[] = (totals.rows ?? [])
     .map((r) => ({
       date: r.keys[0],
@@ -179,25 +402,19 @@ async function gatherSummary(testAlert: boolean): Promise<Summary> {
       impressions: r.impressions,
       position: r.position,
     }))
-    // Drop today — its data is always partial when this cron fires and
-    // would trigger a false collapse alert every healthy morning.
+    // Drop today — partial data would trigger a false collapse alert.
     .filter((r) => r.date < today)
     .sort((a, b) => a.date.localeCompare(b.date));
 
-  // "Yesterday" = the most recent complete day GSC has data for (may
-  // be day-1 or day-2 depending on GSC's daily aggregation lag).
-  // Baseline = the 7 days strictly before that.
   const yesterday = daily.length > 0 ? daily[daily.length - 1] : null;
-  const baselineRows = daily.slice(-8, -1); // up to 7 days before "yesterday"
+  const baselineRows = daily.slice(-8, -1);
   const baseline = {
     medianClicks: median(baselineRows.map((r) => r.clicks)),
     medianImps: median(baselineRows.map((r) => r.impressions)),
     days: baselineRows.length,
   };
 
-  // Canary query trajectory — same window, same "last day with data"
-  // semantics.
-  const canaryResp = await gscQuery(token, {
+  const canaryResp = await gscQuery({
     startDate: start,
     endDate: end,
     dimensions: ['date'],
@@ -214,12 +431,8 @@ async function gatherSummary(testAlert: boolean): Promise<Summary> {
       position: r.position,
       ctr: r.ctr,
     }))
-    .filter((r) => r.date < today) // skip partial today, same as topline
+    .filter((r) => r.date < today)
     .sort((a, b) => a.date.localeCompare(b.date));
-  // Align canary "yesterday" to the topline yesterday so comparisons
-  // describe the same day. Falls back to the latest canary date if the
-  // exact day is missing (e.g. zero-impression days are sometimes
-  // omitted from filtered responses).
   const canaryYesterday = yesterday
     ? (canaryDaily.find((d) => d.date === yesterday.date)
        ?? (canaryDaily.length > 0 ? canaryDaily[canaryDaily.length - 1] : null))
@@ -232,6 +445,26 @@ async function gatherSummary(testAlert: boolean): Promise<Summary> {
     medianPos: median(canaryBaselineRows.map((r) => r.position)),
     days: canaryBaselineRows.length,
   };
+
+  // Click basket — refresh the seed set weekly, always re-enrich positions.
+  const needsRefresh = shouldRefreshBasket(priorBasket, today, opts.refreshBasket);
+  let basketSeeds: { query: string; clicks28d: number }[];
+  let basketRefreshedAt: string;
+  if (needsRefresh) {
+    basketSeeds = await refreshBasketQueries(gscQuery, today);
+    basketRefreshedAt = today;
+  } else {
+    basketSeeds = (priorBasket?.queries ?? []).map((q) => ({ query: q.query, clicks28d: q.clicks28d }));
+    basketRefreshedAt = priorBasket?.refreshedAt ?? today;
+  }
+  const basketQueries = await enrichBasketPositions(gscQuery, basketSeeds, today);
+  const clickBasket: ClickBasket = {
+    refreshedAt: basketRefreshedAt,
+    windowDays: BASKET_WINDOW_DAYS,
+    queries: basketQueries,
+  };
+
+  const pageLosses = await fetchPageLosses(gscQuery, today);
 
   // ─── Evaluate alert rules ───
   const alerts: string[] = [];
@@ -247,19 +480,37 @@ async function gatherSummary(testAlert: boolean): Promise<Summary> {
     const pct = Math.round((1 - canaryYesterday.impressions / canaryBaseline.medianImps) * 100);
     alerts.push(`"${CANARY_QUERY}" imps -${pct}%: ${canaryYesterday.impressions} vs 7d median ${Math.round(canaryBaseline.medianImps)}`);
   }
-  if (canaryYesterday && canaryBaseline.medianPos > 0 && canaryYesterday.position - canaryBaseline.medianPos >= CANARY_POS_DROP) {
-    const delta = (canaryYesterday.position - canaryBaseline.medianPos).toFixed(1);
-    alerts.push(`"${CANARY_QUERY}" position +${delta} ranks: ${canaryYesterday.position.toFixed(1)} vs 7d median ${canaryBaseline.medianPos.toFixed(1)}`);
+
+  // Rule 5: click-basket rank slip
+  const slippers = basketQueries.filter((q) =>
+    q.priorPos > 0
+    && q.priorPos < BASKET_WINNER_MAX_PRIOR_POS
+    && q.posDelta >= BASKET_MIN_POS_DELTA,
+  );
+  if (slippers.length >= BASKET_MIN_SLIPPERS) {
+    const preview = slippers
+      .slice(0, 3)
+      .map((q) => `"${q.query}" ${q.priorPos.toFixed(1)}→${q.recentPos.toFixed(1)}`)
+      .join(', ');
+    alerts.push(`Basket rank slip: ${slippers.length} winners ↓≥${BASKET_MIN_POS_DELTA} — ${preview}`);
   }
-  if (testAlert) alerts.push('Test alert (--test-alert flag set)');
+
+  // Rule 6: page-level impression collapse
+  for (const loss of pageLosses) {
+    alerts.push(`Page ${loss.page} imps -${loss.dropPct}%: ${loss.recentImps} vs prior 7d ${loss.priorImps}`);
+  }
+
+  if (opts.testAlert) alerts.push('Test alert (--test-alert flag set)');
 
   return {
-    ranAt: new Date().toISOString(),
+    ranAt: now.toISOString(),
     range: { start, end },
     daily,
     baseline,
     yesterday,
     canary: { yesterday: canaryYesterday, baseline: canaryBaseline },
+    clickBasket,
+    pageLosses,
     alerts,
   };
 }
@@ -280,6 +531,10 @@ function printSummary(s: Summary): void {
   console.log(`7d baseline median: ${Math.round(s.baseline.medianClicks)} clicks · ${Math.round(s.baseline.medianImps)} imps (n=${s.baseline.days})`);
   console.log(`Canary "${CANARY_QUERY}" (${s.canary.yesterday?.date ?? 'no data'}): ${s.canary.yesterday ? formatRow(s.canary.yesterday) : 'no data'}`);
   console.log(`Canary 7d median: ${Math.round(s.canary.baseline.medianImps)} imps · pos ${s.canary.baseline.medianPos.toFixed(1)}`);
+  console.log(`Click basket (refreshed ${s.clickBasket.refreshedAt}, ${s.clickBasket.queries.length} queries)`);
+  if (s.pageLosses.length > 0) {
+    console.log(`Page losses: ${s.pageLosses.length} page(s) dropped >${PAGE_DROP_PCT}%`);
+  }
   if (s.alerts.length === 0) {
     console.log('Status: ✓ healthy');
   } else {
@@ -291,9 +546,6 @@ function printSummary(s: Summary): void {
 function writeLog(s: Summary): void {
   mkdirSync(dirname(LOG_PATH), { recursive: true });
   appendFileSync(LOG_PATH, JSON.stringify(s) + '\n', 'utf-8');
-  // Stable "latest snapshot" path — survives worktree churn so the
-  // /health slash command always finds the most recent summary
-  // regardless of which checkout ran the cron.
   mkdirSync(CACHE_DIR, { recursive: true });
   writeFileSync(LATEST_PATH, JSON.stringify(s, null, 2), 'utf-8');
 }
@@ -320,7 +572,8 @@ async function main(): Promise<void> {
     return;
   }
   const testAlert = process.argv.includes('--test-alert');
-  const summary = await gatherSummary(testAlert);
+  const refreshBasket = process.argv.includes('--refresh-basket');
+  const summary = await gatherSummary({ testAlert, refreshBasket });
   printSummary(summary);
   writeLog(summary);
 
@@ -332,8 +585,19 @@ async function main(): Promise<void> {
   }
 }
 
-main().catch((err) => {
-  console.error('[gsc-health] FAILED:', err);
-  notify('GSC monitor failed', err.message ?? String(err));
-  process.exit(1);
-});
+// Guard entry so `import` from tests doesn't kick off the CLI.
+const invokedDirectly = (() => {
+  try {
+    return process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+  } catch {
+    return false;
+  }
+})();
+
+if (invokedDirectly) {
+  main().catch((err) => {
+    console.error('[gsc-health] FAILED:', err);
+    notify('GSC monitor failed', err.message ?? String(err));
+    process.exit(1);
+  });
+}

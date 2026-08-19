@@ -78,6 +78,10 @@ const routes = [
   // Pandit CRM marketing landing — public B2B surface for jyotishis.
   // Added 2026-06-04 with the Pandit CRM ship.
   '/for-pandits',
+  // /mcp — locally-run MCP server install page for AI-agent developers.
+  // Added 2026-08-19 as part of the LLM-first strategy Week 1 ship.
+  // Human-facing landing for the @dekhopanchang/mcp npm package.
+  '/mcp',
   '/videos',
   // Deep dives
   '/panchang/tithi',

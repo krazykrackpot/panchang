@@ -1,0 +1,62 @@
+{
+  "name": "@dekhopanchang/mcp",
+  "version": "0.1.0",
+  "description": "Model Context Protocol server for Vedic astronomy. Give your AI agent accurate panchang, kundali, muhurat, and matching computation using Swiss Ephemeris — runs locally, no API keys, no per-call cost.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "vedic-astrology",
+    "jyotish",
+    "panchang",
+    "kundali",
+    "muhurat",
+    "swiss-ephemeris",
+    "astronomy",
+    "hindu-calendar",
+    "claude",
+    "anthropic",
+    "llm-tools"
+  ],
+  "homepage": "https://dekhopanchang.com/mcp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krazykrackpot/panchang.git",
+    "directory": "packages/mcp-server"
+  },
+  "bugs": {
+    "url": "https://github.com/krazykrackpot/panchang/issues"
+  },
+  "license": "MIT",
+  "author": "Dekho Panchang <hello@dekhopanchang.com>",
+  "type": "module",
+  "main": "dist/packages/mcp-server/src/index.js",
+  "types": "dist/packages/mcp-server/src/index.d.ts",
+  "bin": {
+    "dekhopanchang-mcp": "dist/packages/mcp-server/src/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json --resolve-full-paths",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "npm run build",
+    "start": "node dist/packages/mcp-server/src/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "sweph": "^2.10.3-b-1",
+    "tz-lookup": "^6.1.25",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsc-alias": "^1.9.2",
+    "typescript": "^5"
+  }
+}
